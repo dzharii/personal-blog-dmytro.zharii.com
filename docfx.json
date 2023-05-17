@@ -40,6 +40,11 @@
         "files": [
           "images/**"
         ]
+      },
+      {
+        "files": [
+          "scripts/**"
+        ]
       }
     ],
     "dest": "docs",

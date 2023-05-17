@@ -60,6 +60,16 @@
       "version": ""
     },
     {
+      "type": "Resource",
+      "source_relative_path": "scripts/index.md/my-timer.js",
+      "output": {
+        "resource": {
+          "relative_path": "scripts/index.md/my-timer.js"
+        }
+      },
+      "version": ""
+    },
+    {
       "type": "Toc",
       "source_relative_path": "toc.yml",
       "output": {
