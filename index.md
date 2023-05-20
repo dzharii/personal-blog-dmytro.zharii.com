@@ -24,3 +24,15 @@ C -->|Two| E[Result 2]
   // Update the time every second (1000 milliseconds)
   setInterval(updateTime, 1000);
 </script>
+
+
+## Added Vale
+2023-05-20 [Vale.sh](https://vale.sh/)
+Vale is an open-source, command-line tool used for syntax-aware text proofreading. It can help enforce style and consistency across various types of content.
+
+2023-05-20 [Structure - Vale.sh](https://vale.sh/docs/vale-cli/structure/)
+2023-05-20 [Config Generator - Vale.sh](https://vale.sh/generator)
+
+
+but this is still experimental.
+
