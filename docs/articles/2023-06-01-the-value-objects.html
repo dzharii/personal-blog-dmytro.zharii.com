@@ -1,0 +1,530 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>The Value Objects </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="The Value Objects ">
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../styles/docfx.min.css">
+      <link rel="stylesheet" href="../styles/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/dzharii/personal-blog-dmytro.zharii.com/blob/main/articles/2023-06-01-the-value-objects.md/#L1">
+
+      <script>
+        MathJax = {
+          options: {
+            processHtmlClass: ['tex2jax_process', 'math']
+          }
+        };
+      </script>
+
+      <script type="text/javascript" src="../styles/docfx.min.js"></script>
+      <script type="text/javascript" src="../styles/main.js"></script>
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navbar">
+            <form class="d-flex ms-auto" role="search" id="search">
+              <i class="bi bi-search"></i>
+              <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+            </form>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="the-value-objects">The Value Objects</h1>
+
+<p>Date: 2023-06-01</p>
+<p>I will allow myself to think outside the box. (from the aww tools)</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>This is a never-ending article, always in beta version.</p>
+</div>
+<p>In this article, we explore the concept of Value Objects. We start by understanding their role in ensuring data integrity, using a simple example of representing distances. We then delve into key features of Value Objects like constructor validation and immutability.</p>
+<p>We enhance our example by introducing common operations into our Value Object, demonstrating cleaner and more intuitive code. We also illustrate the use of Value Objects for input parameters in the context of a legacy system bug fix, showcasing their power in code expressiveness and safety.</p>
+<p>Finally, we emphasize the importance of unit testing in verifying the behavior of our Value Objects. By the end, you will have a comprehensive understanding of how to implement Value Objects effectively in your codebase.</p>
+<h2 id="the-value-of-value-objects">The Value of Value Objects</h2>
+<p>Value Objects. Value Objects come in all sorts of shapes and sizes. Let's dive into an example that seems simple at first.</p>
+<p>This is an example from the normal life, for starters.</p>
+<pre><code class="lang-csharp">void PrintDistance(int meters) {
+  WriteLine($&quot;The distance is {meters} m.&quot;);
+}
+</code></pre>
+<p>This code looks just fine until we start to ponder some hard questions. Can we fully trust the <code>int meters</code>? How can we <strong>ensure</strong> that the variable <code>meters</code> holds a <strong>valid</strong> value? What if someone mistakenly feeds the distance in <strong>feet</strong> into our function? So, <strong>who</strong> is on guard to <strong>validate</strong> <code>int meters</code>?</p>
+<p>Suddenly, our straightforward example might become a tricky puzzle when we think about validation. No one-size-fits-all solution exists to this issue because the correct answer might change based on different circumstances.</p>
+<p>However, we could consider a different approach. Let's modify our previous code to something like this:</p>
+<pre><code class="lang-cs">void PrintDistance(Meters distance) {
+  WriteLine($&quot;The distance is {distance.Value} m.&quot;);
+}
+</code></pre>
+<p>We've swapped <code>int meters</code> with <code>Meters distance</code>. Here, <code>Meters</code> <strong>becomes a Value Object</strong>.</p>
+<p>Think of it as a reliable friend that promises to always hold a valid value once it's created. This way, we're passing the responsibility of providing correct data to the Caller. Now, it's up to the Caller to provide a valid &quot;Meters distance&quot;. It's a subtle but effective way to keep the integrity of our PrintDistance function. How's that for a twist?</p>
+<h2 id="inside-the-value-objects">Inside the Value Objects</h2>
+<p><em>&quot;Only Sith and Value Objects deal in absolutes, Anakin!&quot; - Obi-Wan KeBoolean</em></p>
+<h3 id="constructor-validation">Constructor Validation</h3>
+<p>One of the <strong>key features</strong> of <strong>value objects</strong> is their commitment to <strong>always</strong> contain a <strong>valid</strong> value — well, at least as valid as our programming allows it to be. A simple and effective way to ensure this is by incorporating validation into the <strong>constructor</strong>.</p>
+<p>So, it's a pretty straightforward situation: either we <strong>create a valid value</strong> object <strong>or</strong> run into an <strong>error</strong>. No third option here!</p>
+<p>Let's reconsider our Meters example. While there isn't a one-size-fits-all approach to thoroughly validate Meters, we can tailor our validation to fit the project's specific needs. We'll lay down some ground rules based on the business requirements. So, for the purposes of this article, here's what we'll go with:</p>
+<div class="NOTE">
+<h5>Note</h5>
+<ol>
+<li>Meters are represented <strong>as integer</strong> values because we're not sweating the small stuff — centimeters don't concern us here.</li>
+<li>Meters must be <strong>positive integers</strong>. Why? Because in our world, we don't do negative distances.</li>
+<li>The value for Meters <strong>can't exceed 999</strong>. It's a bit of an old-school restriction, but it's still hanging around.</li>
+</ol>
+</div>
+<p>Let's see an example of how Meters might be implemented in C#.</p>
+<pre><code class="lang-csharp">namespace HelloWorld;
+
+// The Value Object
+public class Meters
+{
+    public int Value { get; }
+
+    // Constructor for the Meters class.
+    // It includes validation to ensure we're abiding by our defined rules.
+    public Meters(int value)
+    {
+        // Rule 1: Meters must be positive integers.
+        if (value &lt;= 0)
+        {
+            throw new ArgumentException($&quot;Invalid value for Meters: {value}. Meters must be a positive integer.&quot;);
+        }
+
+        // Rule 2: Meters can't exceed 999.
+        if (value &gt; 999)
+        {
+            throw new ArgumentException($&quot;Invalid value for Meters: {value}. Meters cannot be greater than 999.&quot;);
+        }
+
+        Value = value;
+    }
+}
+
+</code></pre><h3 id="immutability">Immutability</h3>
+<p>Another very <strong>essential property</strong> for value objects is <strong>immutability</strong>. This means that once value objects are created, they are set in stone – the value they encapsulate doesn't change. It's read-only or &quot;immutable&quot;. The specifics of how you implement this characteristic can differ based on your chosen programming language.</p>
+<p>For example, in C#, integers are inherently immutable. There's no need to add extra code to duplicate the value. However, for more complex scenarios, adding some code to return a clone of the value stored within the value object is necessary.</p>
+<p>Let's illustrate this using our Meters class. We'll demonstrate how to sum two instances of Meters:</p>
+<pre><code class="lang-csharp">// Assuming you have two instances of Meters
+Meters first = new Meters(200);
+Meters second = new Meters(300);
+
+// You can add the values together to create a new Meters instance
+Meters third = new Meters(first.Value + second.Value);
+
+Console.WriteLine($&quot;The total distance is {third.Value} m.&quot;);
+</code></pre>
+<p>Value objects, like in our Meters example, can be customized to fit the specific needs of your application and coding style. We've noticed a frequent operation - adding Meters together. It makes sense to embed this operation into the Meters class by introducing an <code>Add()</code> method. This adjustment not only leads to cleaner code but also enhances its intuitiveness.</p>
+<pre><code class="lang-csharp">public class Meters
+{
+    public int Value { get; private set; }
+
+    public Meters(int value)
+    {
+        if (value &lt;= 0)
+        {
+            throw new ArgumentException($&quot;Invalid value for Meters: {value}. Meters must be a positive integer.&quot;);
+        }
+
+        if (value &gt; 999)
+        {
+            throw new ArgumentException($&quot;Invalid value for Meters: {value}. Meters cannot be greater than 999.&quot;);
+        }
+
+        Value = value;
+    }
+
+    // Adding an 'add' method
+    public Meters Add(Meters other)
+    {
+        return new Meters(this.Value + other.Value);
+    }
+}
+
+// Now, let's illustrate how this new method works:
+
+Meters first = new Meters(200);
+Meters second = new Meters(300);
+
+// Using the new 'add' method to create a new Meters instance
+Meters total = first.Add(second);
+
+Console.WriteLine($&quot;The total distance is {total.Value} m.&quot;);
+</code></pre>
+<p>Please note: once created, the <strong>value objects must remain valid</strong>. This is the core property. And the most straightforward way to keep the value objects valid is to make them immutable.</p>
+<h2 id="value-objects-for-input-parameters">Value Objects for Input Parameters</h2>
+<p>Hey there, dear Reader! Kudos for sticking around through this deep dive. You may think, &quot;This is all great, but what about the slower code when adding Meters?&quot; Hang tight – we'll address performance concerns a bit later. Let's shift our focus to a scenario where performance isn't an issue and Value Objects truly shine: when they're used to encapsulate program input parameters.</p>
+<p>Imagine this – we've got an old-school legacy system using Postgres SQL for data storage. Occasionally, a sneaky bug creates chaos – messing up data links or dropping in duplicate records. We're on a mission to find the root cause, but in the meantime, we need to keep our database in order.</p>
+<p>What's our strategy? We decide to roll out a maintenance script – a triage workflow to patch up the data wounds. It's not a cure-all; we can't heal the buggy code. It's a bit like changing a tire on a moving car – risky, sure, but necessary. The System needs to stay online and handle user requests.</p>
+<pre><code class="lang-csharp">namespace HelloWorld;
+using System;
+
+/*
+ * This program simulates the workflow of updating a customer record in a database. 
+ * The main function of the Program class accepts three command line arguments: customerId, 
+ * ordersPlaced, and lastModified. 
+ * - customerId: Should be a valid, non-empty Guid that is not reserved for the application admin.
+ * - ordersPlaced: Should be an integer greater or equal to 0 but less than 99.
+ * - lastModified: Should be a DateTime value between the store's establishment date (January 1, 2018) 
+ *   and December 31, 2099.
+ * If all parameters pass these validations, the program then calls the ExecuteWorkflow method, 
+ * simulating an update to the database.
+ */
+public class Program
+{
+    private static readonly DateTime StoreEstablishedDate = new DateTime(2018, 1, 1);
+    private static readonly DateTime FutureCutoffDate = new DateTime(2099, 12, 31);
+
+    public static void Main(string[] args)
+    {
+        if (args.Length != 3)
+        {
+            Console.WriteLine(&quot;Please enter the correct parameters: customerId, ordersPlaced, lastModified.&quot;);
+            return;
+        }
+
+        // Parameter: CustomerId
+        Guid customerId;
+        if (!Guid.TryParse(args[0], out customerId))
+        {
+            Console.WriteLine(&quot;The customerId should be a valid Guid value.&quot;);
+            return;
+        }
+
+        // Empty Guid Check
+        if (customerId == Guid.Empty)
+        {
+            Console.WriteLine(&quot;The customerId cannot be an empty Guid.&quot;);
+            return;
+        }
+
+        // Application Admin Guid Check
+        if (customerId == Guid.Parse(&quot;ea2a9d01-e719-42f2-9e5d-56287f142c48&quot;))
+        {
+            Console.WriteLine(&quot;The entered customerId is reserved for the application admin.&quot;);
+            return;
+        }
+
+        // Parameter: ordersPlaced
+        int ordersPlaced;
+        if (!int.TryParse(args[1], out ordersPlaced) || ordersPlaced &lt; 0 || ordersPlaced &gt;= 99)
+        {
+            Console.WriteLine(&quot;The ordersPlaced should be a number greater than or equal to 0 but less than 99.&quot;);
+            return;
+        }
+
+        // Parameter: lastModified
+        DateTime lastModified;
+        if (!DateTime.TryParse(args[2], out lastModified) 
+            || lastModified &lt; StoreEstablishedDate 
+            || lastModified &gt; FutureCutoffDate)
+        {
+            Console.WriteLine(&quot;The lastModified should be a date between the store's established date &quot;
+                              + &quot;and December 31, 2099.&quot;);
+            return;
+        }
+
+        // All validations passed, we can call the method
+        ExecuteWorkflow(customerId, ordersPlaced, lastModified);
+    }
+
+    public static void ExecuteWorkflow(Guid customerId, int ordersPlaced, DateTime lastModified)
+    {
+        //Database.UpdateRecord(customerId, ordersPlaced, lastModified);
+        Console.WriteLine($&quot;Updating Record: CustomerId: {customerId}, OrdersPlaced: {ordersPlaced}, &quot;
+                          + $&quot;LastModified: {lastModified}&quot;);
+    }
+}
+</code></pre>
+<p>Our program is running smoothly! We've effectively validated parameters based on our business rules. There's room for unit tests, but let's keep this article simple.
+Let's say our approach is so practical that we're tasked with creating more workflows. Before we know it, we've got a whole set of them, each validating things like customer IDs, order dates, and last modified dates. We could streamline our code by putting our validation logic into a method like 'ValidateCustomerId', but what if someone forgets to use it down the line?
+This brings us to an exciting solution: how about making it impossible to create an incorrect CustomerId instance? This is exactly where Value Objects come into play!</p>
+<p>The main class:</p>
+<pre><code class="lang-csharp">public class Program
+{
+    public static void Main(string[] args)
+    {
+        if (args.Length != 3)
+        {
+            Console.WriteLine(&quot;Please enter the correct parameters: customerId, ordersPlaced, lastModified.&quot;);
+            return;
+        }
+                
+        try
+        {
+            CustomerId customerId = CustomerId.Parse(args[0]);
+            OrdersPlaced ordersPlaced = OrdersPlaced.Parse(args[1]);
+            OrderLastModified lastModified = OrderLastModified.Parse(args[2]);
+
+            ExecuteWorkflow(customerId, ordersPlaced, lastModified);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+        }
+    }
+
+    public static void ExecuteWorkflow(CustomerId customerId, OrdersPlaced ordersPlaced, OrderLastModified lastModified)
+    {
+        Database.UpdateRecord(customerId.Value, ordersPlaced.Value, lastModified.Value);
+    }
+}
+</code></pre>
+<p>You might notice how much clearer our code has become.</p>
+<pre><code class="lang-csharp">CustomerId customerId = CustomerId.Parse(args[0]);
+</code></pre>
+<p>When you call <code>CustomerId.Parse</code>, it pulls the GUID from a string and creates a Value Object. This step also makes sure that the CustomerId is correct. Yes, it takes a few more lines of code to create these Value Objects, but don't worry. We'll keep these classes neatly tucked away in their own separate files. In future workflows, we can use these Value Objects without looking into their source code. After all, how often do we peek under the hood of <code>System.String</code> or <code>System.Guid</code>? Not very, right?</p>
+<p>Value objects:</p>
+<pre><code class="lang-csharp">namespace HelloWorld;
+
+// CustomerId: A value object that represents the unique identifier of a customer.
+public class CustomerId
+{
+    public Guid Value { get; }
+
+    public static readonly Guid AdminId = Guid.Parse(&quot;ea2a9d01-e719-42f2-9e5d-56287f142c48&quot;);
+
+    public CustomerId(Guid customerId)
+    {
+        if (customerId == Guid.Empty || customerId == AdminId)
+        {
+            throw new ArgumentException(&quot;Customer Id can't be empty or admin Id.&quot;);
+        }
+
+        Value = customerId;
+    }
+
+    public static CustomerId Parse(string input)
+    {
+        if (!Guid.TryParse(input, out Guid output))
+        {
+            throw new ArgumentException(&quot;Customer Id must be a valid GUID.&quot;);
+        }
+
+        return new CustomerId(output);
+    }
+}
+
+// OrdersPlaced: A value object that encapsulates the number of orders a customer has placed.
+public class OrdersPlaced
+{
+    public int Value { get; }
+
+    public OrdersPlaced(int ordersPlaced)
+    {
+        if (ordersPlaced &lt; 0 || ordersPlaced &gt; 98)
+        {
+            throw new ArgumentException(&quot;Orders placed must be between 0 and 98.&quot;);
+        }
+
+        Value = ordersPlaced;
+    }
+
+    public static OrdersPlaced Parse(string input)
+    {
+        if (!int.TryParse(input, out int output))
+        {
+            throw new ArgumentException(&quot;Orders placed must be a valid integer.&quot;);
+        }
+
+        return new OrdersPlaced(output);
+    }
+}
+
+// OrderLastModified: A value object that represents the last date an order was modified.
+public class OrderLastModified
+{
+    public DateTime Value { get; }
+
+    private static readonly DateTime MinDate = new DateTime(2018, 1, 1);
+    private static readonly DateTime MaxDate = new DateTime(2099, 12, 31);
+
+    public OrderLastModified(DateTime lastModified)
+    {
+        if (lastModified &lt; MinDate || lastModified &gt; MaxDate)
+        {
+            throw new ArgumentException($&quot;OrderLastModified date must be between {MinDate} and {MaxDate}.&quot;);
+        }
+
+        Value = lastModified;
+    }
+
+    public static OrderLastModified Parse(string input)
+    {
+        if (!DateTime.TryParse(input, out DateTime output))
+        {
+            throw new ArgumentException(&quot;OrderLastModified must be a valid date.&quot;);
+        }
+
+        return new OrderLastModified(output);
+    }
+}
+
+
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        if (args.Length != 3)
+        {
+            Console.WriteLine(&quot;Please enter the correct parameters: customerId, ordersPlaced, lastModified.&quot;);
+            return;
+        }
+                
+        try
+        {
+            CustomerId customerId = CustomerId.Parse(args[0]);
+            OrdersPlaced ordersPlaced = OrdersPlaced.Parse(args[1]);
+            OrderLastModified lastModified = OrderLastModified.Parse(args[2]);
+
+            ExecuteWorkflow(customerId, ordersPlaced, lastModified);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+        }
+    }
+
+    public static void ExecuteWorkflow(CustomerId customerId, OrdersPlaced ordersPlaced, OrderLastModified lastModified)
+    {
+        Database.UpdateRecord(customerId.Value, ordersPlaced.Value, lastModified.Value);
+    }
+}
+
+
+</code></pre>
+<p>Unit tests for <code>CustomerId</code>:</p>
+<pre><code class="lang-csharp">using System;
+using Xunit;
+
+public class CustomerIdTests
+{
+    // Test: Create a `CustomerId` with a valid `Guid` and 
+    // check if the `Value` property is set correctly
+    [Fact]
+    public void Constructor_WithValidGuid_ShouldSetTheValue()
+    {
+        Guid expectedValue = Guid.NewGuid();
+
+        var customerId = new CustomerId(expectedValue);
+
+        Assert.Equal(expectedValue, customerId.Value);
+    }
+
+    // Test: Try to create a `CustomerId` with an empty `Guid`, 
+    // expecting an exception
+    [Fact]
+    public void Constructor_WithEmptyGuid_ShouldThrowException()
+    {
+        Assert.Throws&lt;ArgumentException&gt;(() =&gt; new CustomerId(Guid.Empty));
+    }
+
+    // Test: Try to create a `CustomerId` 
+    // with the `AdminId` `Guid`, expecting an exception
+    [Fact]
+    public void Constructor_WithAdminIdGuid_ShouldThrowException()
+    {
+        Guid adminId = CustomerId.AdminId;
+
+        Assert.Throws&lt;ArgumentException&gt;(() =&gt; new CustomerId(adminId));
+    }
+
+    // Test: Parse a valid `Guid` string and 
+    // return a `CustomerId` with the correct `Value`
+    [Fact]
+    public void Parse_WithValidGuidString_ShouldReturnCustomerId()
+    {
+        string validGuidString = Guid.NewGuid().ToString();
+
+        var customerId = CustomerId.Parse(validGuidString);
+
+        Assert.Equal(Guid.Parse(validGuidString), customerId.Value);
+    }
+
+    // Test: Try to parse an invalid `Guid` string, expecting an exception
+    [Fact]
+    public void Parse_WithInvalidGuidString_ShouldThrowException()
+    {
+        string invalidGuidString = &quot;invalid guid&quot;;
+
+        Assert.Throws&lt;ArgumentException&gt;(() =&gt; CustomerId.Parse(invalidGuidString));
+    }
+}
+</code></pre>
+<p>Highlight: We need to write unit tests once and only once since we do not repeat the validation logic and keep it inside the <code>CustomerId</code>.</p>
+<h2 id="the-advantages-of-value-objects">The Advantages of Value Objects</h2>
+<ul>
+<li>Eliminates redundancy. The object itself is the single source of truth.</li>
+<li>Reduces testing efforts. By removing duplication, we need to write just one test per behavior. All validation checks are encapsulated within the object, so we don't need to worry about handling invalid data.</li>
+<li>Leverages compiler checks in statically typed languages. You can't supply anything but a <code>CustomerId</code> when it's required, boosting code robustness. Even in dynamic languages, the error traces are more helpful than with primitive types.</li>
+<li>Minimizes the chance of argument misconfiguration. Now <code>CustomerId</code> is a strongly typed object, not a generic string.</li>
+<li>Streamlines code expectations. Using our <code>CustomerId</code> example, we can rely on class preconditions to ensure things like non-null, non-empty forenames and surnames of a certain length. A basic string can't provide such guarantees.</li>
+<li>Encourages making value objects public, which can benefit testing and integration.</li>
+</ul>
+<div class="NOTE">
+<h5>Note</h5>
+<p>I don't know to where this article will go, but
+<em>To be continued...</em>
+End of Revision 2023-06-01</p>
+</div>
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/dzharii/personal-blog-dmytro.zharii.com/blob/main/articles/2023-06-01-the-value-objects.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

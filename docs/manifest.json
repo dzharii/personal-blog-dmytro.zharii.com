@@ -28,10 +28,20 @@
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "articles/fake-first-article.md",
+      "source_relative_path": "articles/2023-05-20-fake-first-article.md",
       "output": {
         ".html": {
-          "relative_path": "articles/fake-first-article.html"
+          "relative_path": "articles/2023-05-20-fake-first-article.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/2023-06-01-the-value-objects.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/2023-06-01-the-value-objects.html"
         }
       },
       "version": ""
