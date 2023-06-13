@@ -3,15 +3,23 @@
 #include "error.h"
 
 typedef enum {
-    ADD, SUB, MUL, DIV, UNKNOWN
+    OPERATION_NONE,
+    OPERATION_ADD,
+    OPERATION_SUB,
+    OPERATION_MUL,
+    OPERATION_DIV,
+    OPERATION_UNKNOWN,
 } operation_type;
 
-typedef struct Operation {
+typedef struct operation {
     operation_type value;
-    Error* err;
-} Operation;
+    error* err;
+} operation;
 
-Operation* operation_new(char* op_str);
+
+operation* operation_from_string(char* op_str);
+
+operation* operation_new(operation_type op_type);
 
 #endif // OPERATION_H
 

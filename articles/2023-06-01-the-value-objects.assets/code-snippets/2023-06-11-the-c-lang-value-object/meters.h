@@ -2,11 +2,11 @@
 #define METERS_H
 #include "error.h"
 
-typedef struct Meters {
+typedef struct meters {
     float value;
-    Error* err;
-} Meters;
+    error* err;
+} meters;
 
-Meters* Meters_new(float value);
+meters* meters_new(float value);
 
 #endif // METERS_H

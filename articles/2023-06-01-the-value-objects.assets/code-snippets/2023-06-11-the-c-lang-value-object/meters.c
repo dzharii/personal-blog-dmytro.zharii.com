@@ -1,14 +1,20 @@
 #include <stdlib.h>
 #include "meters.h"
 
-Meters* Meters_new(float value) {
-    Meters* new_meter = (Meters*)malloc(sizeof(Meters));
+meters* meters_new(float value) {
+    meters* new_meter = (meters*)malloc(sizeof(meters));
     if (value < 0) {
-        Error* err = (Error*)malloc(sizeof(Error));
+        error* err = (error*)malloc(sizeof(error));
         err->code = 1;
         err->message = "Error: Meter value must be non-negative";
         new_meter->err = err;
-    } else {
+    }  else if (value > 999) {
+        error* err = (error*)malloc(sizeof(error));
+        err->code = 2;
+        err->message = "Error: Meter value must be less than 1000";
+        new_meter->err = err;
+    }
+    else {
         new_meter->value = value;
         new_meter->err = NULL;
     }
