@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include "meters.h"
 
-meters* meters_new(float value) {
+meters* meters_new(double value) {
     meters* new_meter = (meters*)malloc(sizeof(meters));
     if (value < 0) {
         error* err = (error*)malloc(sizeof(error));

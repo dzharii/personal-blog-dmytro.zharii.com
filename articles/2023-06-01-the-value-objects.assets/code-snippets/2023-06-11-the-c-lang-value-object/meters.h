@@ -3,11 +3,11 @@
 #include "error.h"
 
 typedef struct meters {
-    float value;
+    double value;
     error* err;
 } meters;
 
-meters* meters_new(float value);
+meters* meters_new(double value);
 void meters_free(meters* m);
 
 #endif // METERS_H

@@ -2,27 +2,46 @@
 #include <stdio.h>
 #include "meters.h"
 #include "operation.h"
+#include <errno.h>
+
+double parse_double(const char* str) {
+    char* endptr;
+    errno = 0; // To distinguish success/failure after call
+    double value = strtod(str, &endptr);
+
+    /* Check for various possible errors */
+
+    if (errno != 0) {
+        /* Some error occurred */
+        printf("Failed to parse double: %d\n", errno);
+        exit(EXIT_FAILURE);
+    }
+
+    /* If we got here, strtod() successfully parsed a number */
+
+    return value;
+}
 
 meters* perform_operation_on_meters(meters* m1, meters* m2, operation* op) {
-    float operand1 = m1->value;
-    float operand2 = m2->value;
+    double operand1 = m1->value;
+    double operand2 = m2->value;
 
     switch (op->value) {
         case OPERATION_ADD:
             printf("performing add operation:\n");
-            float add_result = operand1 + operand2;
+            double add_result = operand1 + operand2;
             return meters_new(add_result);
         case OPERATION_SUB:
             printf("performing sub operation:\n");
-            float sub_result = operand1 - operand2;
+            double sub_result = operand1 - operand2;
             return meters_new(sub_result);
         case OPERATION_MUL:
             printf("performing mul operation:\n");
-            float mul_result = operand1 * operand2;
+            double mul_result = operand1 * operand2;
             return meters_new(mul_result);
         case OPERATION_DIV:
             printf("performing div operation:\n");
-            float div_result = operand1 / operand2;
+            double div_result = operand1 / operand2;
             return meters_new(div_result);
         default:
             printf("Error: operation value is invalid\n");
@@ -39,7 +58,7 @@ int main(int argc, char* argv[]) {
 
     int has_init_errors = 0;
 
-    meters* m1 = meters_new((float)atof(argv[1]));
+    meters* m1 = meters_new(parse_double(argv[1]));
     if (m1->err != NULL) {
         printf("Error in first meter value: %s\n", m1->err->message);
         has_init_errors = 1;
@@ -51,7 +70,7 @@ int main(int argc, char* argv[]) {
         has_init_errors = 1;
     }
 
-    meters* m2 = meters_new((float)atof(argv[3]));
+    meters* m2 = meters_new(parse_double(argv[3]));
     if (m2->err != NULL) {
         printf("Error in second meter value: %s\n", m2->err->message);
         has_init_errors = 1;
