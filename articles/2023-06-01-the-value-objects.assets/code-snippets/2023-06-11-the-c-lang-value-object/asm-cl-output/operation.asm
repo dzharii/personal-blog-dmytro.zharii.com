@@ -13,14 +13,15 @@ PUBLIC	_operation_from_string
 PUBLIC	_operation_new
 EXTRN	_malloc:PROC
 EXTRN	_strncmp:PROC
+EXTRN	_strnlen:PROC
 _DATA	SEGMENT
-$SG9984	DB	'add', 00H
-$SG9987	DB	'sub', 00H
-$SG9990	DB	'mul', 00H
-$SG9993	DB	'div', 00H
-$SG9994	DB	'Error: operation string is invalid', 00H
+$SG9988	DB	'add', 00H
+$SG9991	DB	'sub', 00H
+$SG9994	DB	'mul', 00H
+$SG9997	DB	'div', 00H
+$SG9998	DB	'Error: operation string is invalid', 00H
 	ORG $+1
-$SG10008 DB	'Error: operation value is invalid', 00H
+$SG10012 DB	'Error: operation value is invalid', 00H
 _DATA	ENDS
 ; Function compile flags: /Odtp
 _TEXT	SEGMENT
@@ -29,50 +30,50 @@ _new_op$ = -4						; size = 4
 _op_type$ = 8						; size = 4
 _operation_new PROC
 ; File D:\my-github\personal-blog-dmytro.zharii.com\articles\2023-06-01-the-value-objects.assets\code-snippets\2023-06-11-the-c-lang-value-object\operation.c
-; Line 24
+; Line 29
 	push	ebp
 	mov	ebp, esp
 	sub	esp, 8
-; Line 25
+; Line 30
 	push	8
 	call	_malloc
 	add	esp, 4
 	mov	DWORD PTR _new_op$[ebp], eax
-; Line 27
+; Line 32
 	cmp	DWORD PTR _op_type$[ebp], 0
 	jle	SHORT $LN4@operation_
 	cmp	DWORD PTR _op_type$[ebp], 5
 	jl	SHORT $LN2@operation_
 $LN4@operation_:
-; Line 28
+; Line 33
 	push	8
 	call	_malloc
 	add	esp, 4
 	mov	DWORD PTR _err$1[ebp], eax
-; Line 29
+; Line 34
 	mov	eax, DWORD PTR _err$1[ebp]
 	mov	DWORD PTR [eax], 2
-; Line 30
+; Line 35
 	mov	ecx, DWORD PTR _err$1[ebp]
-	mov	DWORD PTR [ecx+4], OFFSET $SG10008
-; Line 31
+	mov	DWORD PTR [ecx+4], OFFSET $SG10012
+; Line 36
 	mov	edx, DWORD PTR _new_op$[ebp]
 	mov	eax, DWORD PTR _err$1[ebp]
 	mov	DWORD PTR [edx+4], eax
-; Line 32
+; Line 37
 	jmp	SHORT $LN3@operation_
 $LN2@operation_:
-; Line 33
+; Line 38
 	mov	ecx, DWORD PTR _new_op$[ebp]
 	mov	edx, DWORD PTR _op_type$[ebp]
 	mov	DWORD PTR [ecx], edx
-; Line 34
+; Line 39
 	mov	eax, DWORD PTR _new_op$[ebp]
 	mov	DWORD PTR [eax+4], 0
 $LN3@operation_:
-; Line 37
+; Line 42
 	mov	eax, DWORD PTR _new_op$[ebp]
-; Line 38
+; Line 43
 	mov	esp, ebp
 	pop	ebp
 	ret	0
@@ -80,7 +81,11 @@ _operation_new ENDP
 _TEXT	ENDS
 ; Function compile flags: /Odtp
 _TEXT	SEGMENT
-_new_op$1 = -8						; size = 4
+_new_op$1 = -24						; size = 4
+_div_token_len$ = -20					; size = 4
+_mul_token_len$ = -16					; size = 4
+_sub_token_len$ = -12					; size = 4
+_add_token_len$ = -8					; size = 4
 _err$2 = -4						; size = 4
 _op_str$ = 8						; size = 4
 _operation_from_string PROC
@@ -88,96 +93,136 @@ _operation_from_string PROC
 ; Line 5
 	push	ebp
 	mov	ebp, esp
-	sub	esp, 8
+	sub	esp, 24					; 00000018H
 ; Line 6
-	push	3
-	push	OFFSET $SG9984
+	mov	DWORD PTR _add_token_len$[ebp], 3
+; Line 7
+	mov	DWORD PTR _sub_token_len$[ebp], 3
+; Line 8
+	mov	DWORD PTR _mul_token_len$[ebp], 3
+; Line 9
+	mov	DWORD PTR _div_token_len$[ebp], 3
+; Line 11
+	push	10					; 0000000aH
 	mov	eax, DWORD PTR _op_str$[ebp]
 	push	eax
+	call	_strnlen
+	add	esp, 8
+	cmp	eax, DWORD PTR _add_token_len$[ebp]
+	jne	SHORT $LN2@operation_
+	mov	ecx, DWORD PTR _add_token_len$[ebp]
+	push	ecx
+	push	OFFSET $SG9988
+	mov	edx, DWORD PTR _op_str$[ebp]
+	push	edx
 	call	_strncmp
 	add	esp, 12					; 0000000cH
 	test	eax, eax
 	jne	SHORT $LN2@operation_
-; Line 7
+; Line 12
 	push	1
 	call	_operation_new
 	add	esp, 4
 	jmp	$LN1@operation_
 	jmp	$LN1@operation_
 $LN2@operation_:
-; Line 8
-	push	3
-	push	OFFSET $SG9987
-	mov	ecx, DWORD PTR _op_str$[ebp]
+; Line 13
+	push	10					; 0000000aH
+	mov	eax, DWORD PTR _op_str$[ebp]
+	push	eax
+	call	_strnlen
+	add	esp, 8
+	cmp	eax, DWORD PTR _sub_token_len$[ebp]
+	jne	SHORT $LN4@operation_
+	mov	ecx, DWORD PTR _sub_token_len$[ebp]
 	push	ecx
+	push	OFFSET $SG9991
+	mov	edx, DWORD PTR _op_str$[ebp]
+	push	edx
 	call	_strncmp
 	add	esp, 12					; 0000000cH
 	test	eax, eax
 	jne	SHORT $LN4@operation_
-; Line 9
+; Line 14
 	push	2
 	call	_operation_new
 	add	esp, 4
 	jmp	$LN1@operation_
 	jmp	$LN1@operation_
 $LN4@operation_:
-; Line 10
-	push	3
-	push	OFFSET $SG9990
+; Line 15
+	push	10					; 0000000aH
+	mov	eax, DWORD PTR _op_str$[ebp]
+	push	eax
+	call	_strnlen
+	add	esp, 8
+	cmp	eax, DWORD PTR _mul_token_len$[ebp]
+	jne	SHORT $LN6@operation_
+	mov	ecx, DWORD PTR _mul_token_len$[ebp]
+	push	ecx
+	push	OFFSET $SG9994
 	mov	edx, DWORD PTR _op_str$[ebp]
 	push	edx
 	call	_strncmp
 	add	esp, 12					; 0000000cH
 	test	eax, eax
 	jne	SHORT $LN6@operation_
-; Line 11
+; Line 16
 	push	3
 	call	_operation_new
 	add	esp, 4
 	jmp	SHORT $LN1@operation_
 	jmp	SHORT $LN1@operation_
 $LN6@operation_:
-; Line 12
-	push	3
-	push	OFFSET $SG9993
+; Line 17
+	push	10					; 0000000aH
 	mov	eax, DWORD PTR _op_str$[ebp]
 	push	eax
+	call	_strnlen
+	add	esp, 8
+	cmp	eax, DWORD PTR _div_token_len$[ebp]
+	jne	SHORT $LN8@operation_
+	mov	ecx, DWORD PTR _div_token_len$[ebp]
+	push	ecx
+	push	OFFSET $SG9997
+	mov	edx, DWORD PTR _op_str$[ebp]
+	push	edx
 	call	_strncmp
 	add	esp, 12					; 0000000cH
 	test	eax, eax
 	jne	SHORT $LN8@operation_
-; Line 13
+; Line 18
 	push	4
 	call	_operation_new
 	add	esp, 4
 	jmp	SHORT $LN1@operation_
-; Line 14
+; Line 19
 	jmp	SHORT $LN1@operation_
 $LN8@operation_:
-; Line 15
+; Line 20
 	push	8
 	call	_malloc
 	add	esp, 4
 	mov	DWORD PTR _err$2[ebp], eax
-; Line 16
+; Line 21
+	mov	eax, DWORD PTR _err$2[ebp]
+	mov	DWORD PTR [eax], 1
+; Line 22
 	mov	ecx, DWORD PTR _err$2[ebp]
-	mov	DWORD PTR [ecx], 1
-; Line 17
-	mov	edx, DWORD PTR _err$2[ebp]
-	mov	DWORD PTR [edx+4], OFFSET $SG9994
-; Line 18
+	mov	DWORD PTR [ecx+4], OFFSET $SG9998
+; Line 23
 	push	8
 	call	_malloc
 	add	esp, 4
 	mov	DWORD PTR _new_op$1[ebp], eax
-; Line 19
-	mov	eax, DWORD PTR _new_op$1[ebp]
-	mov	ecx, DWORD PTR _err$2[ebp]
-	mov	DWORD PTR [eax+4], ecx
-; Line 20
+; Line 24
+	mov	edx, DWORD PTR _new_op$1[ebp]
+	mov	eax, DWORD PTR _err$2[ebp]
+	mov	DWORD PTR [edx+4], eax
+; Line 25
 	mov	eax, DWORD PTR _new_op$1[ebp]
 $LN1@operation_:
-; Line 22
+; Line 27
 	mov	esp, ebp
 	pop	ebp
 	ret	0

@@ -19,6 +19,7 @@ PUBLIC	??_C@_0CD@EAKMBLEJ@Error?3?5operation?5string?5is?5inva@ ; `string'
 PUBLIC	??_C@_0CC@EOBCENKH@Error?3?5operation?5value?5is?5inval@ ; `string'
 EXTRN	_malloc:PROC
 EXTRN	_strncmp:PROC
+EXTRN	_strnlen:PROC
 ;	COMDAT ??_C@_0CC@EOBCENKH@Error?3?5operation?5value?5is?5inval@
 CONST	SEGMENT
 ??_C@_0CC@EOBCENKH@Error?3?5operation?5value?5is?5inval@ DB 'Error: opera'
@@ -51,38 +52,38 @@ _TEXT	SEGMENT
 _op_type$ = 8						; size = 4
 _operation_new PROC					; COMDAT
 ; File D:\my-github\personal-blog-dmytro.zharii.com\articles\2023-06-01-the-value-objects.assets\code-snippets\2023-06-11-the-c-lang-value-object\operation.c
-; Line 24
+; Line 29
 	push	esi
-; Line 25
+; Line 30
 	push	8
 	call	_malloc
 	pop	ecx
-; Line 27
+; Line 32
 	mov	ecx, DWORD PTR _op_type$[esp]
 	mov	esi, eax
 	lea	eax, DWORD PTR [ecx-1]
 	cmp	eax, 3
 	ja	SHORT $LN4@operation_
-; Line 33
+; Line 38
 	mov	DWORD PTR [esi], ecx
-; Line 34
+; Line 39
 	xor	eax, eax
 	jmp	SHORT $LN3@operation_
 $LN4@operation_:
-; Line 28
+; Line 33
 	push	8
 	call	_malloc
 	pop	ecx
-; Line 29
+; Line 34
 	mov	DWORD PTR [eax], 2
-; Line 30
+; Line 35
 	mov	DWORD PTR [eax+4], OFFSET ??_C@_0CC@EOBCENKH@Error?3?5operation?5value?5is?5inval@
 $LN3@operation_:
-; Line 37
+; Line 42
 	mov	DWORD PTR [esi+4], eax
 	mov	eax, esi
 	pop	esi
-; Line 38
+; Line 43
 	ret	0
 _operation_new ENDP
 _TEXT	ENDS
@@ -94,11 +95,18 @@ _operation_from_string PROC				; COMDAT
 ; File D:\my-github\personal-blog-dmytro.zharii.com\articles\2023-06-01-the-value-objects.assets\code-snippets\2023-06-11-the-c-lang-value-object\operation.c
 ; Line 5
 	push	esi
-; Line 6
+; Line 11
 	mov	esi, DWORD PTR _op_str$[esp]
 	push	edi
+	push	10					; 0000000aH
+	push	esi
+	call	_strnlen
+	pop	ecx
+	pop	ecx
 	push	3
 	pop	edi
+	cmp	eax, edi
+	jne	SHORT $LN2@operation_
 	push	edi
 	push	OFFSET ??_C@_03BDGOHNNK@add@
 	push	esi
@@ -106,14 +114,21 @@ _operation_from_string PROC				; COMDAT
 	add	esp, 12					; 0000000cH
 	test	eax, eax
 	jne	SHORT $LN2@operation_
-; Line 7
+; Line 12
 	push	1
-$LN16@operation_:
-; Line 22
+$LN20@operation_:
+; Line 27
 	call	_operation_new
-	jmp	SHORT $LN15@operation_
+	jmp	$LN19@operation_
 $LN2@operation_:
-; Line 8
+; Line 13
+	push	10					; 0000000aH
+	push	esi
+	call	_strnlen
+	pop	ecx
+	pop	ecx
+	cmp	eax, edi
+	jne	SHORT $LN4@operation_
 	push	edi
 	push	OFFSET ??_C@_03KCMAIMAP@sub@
 	push	esi
@@ -121,44 +136,62 @@ $LN2@operation_:
 	add	esp, 12					; 0000000cH
 	test	eax, eax
 	jne	SHORT $LN4@operation_
-; Line 9
+; Line 14
 	push	2
-	jmp	SHORT $LN16@operation_
+	jmp	SHORT $LN20@operation_
 $LN4@operation_:
-; Line 10
+; Line 15
+	push	10					; 0000000aH
+	push	esi
+	call	_strnlen
+	pop	ecx
+	pop	ecx
+	cmp	eax, edi
+	jne	SHORT $LN6@operation_
 	push	edi
 	push	OFFSET ??_C@_03IMIFIBCN@mul@
 	push	esi
 	call	_strncmp
 	add	esp, 12					; 0000000cH
-	push	edi
 	test	eax, eax
-	je	SHORT $LN16@operation_
-; Line 12
+	jne	SHORT $LN6@operation_
+; Line 16
+	push	edi
+	jmp	SHORT $LN20@operation_
+$LN6@operation_:
+; Line 17
+	push	10					; 0000000aH
+	push	esi
+	call	_strnlen
+	pop	ecx
+	pop	ecx
+	cmp	eax, edi
+	jne	SHORT $LN8@operation_
+	push	edi
 	push	OFFSET ??_C@_03FEJMGOGI@div@
 	push	esi
 	call	_strncmp
 	add	esp, 12					; 0000000cH
 	test	eax, eax
 	jne	SHORT $LN8@operation_
-; Line 13
+; Line 18
 	push	4
-	jmp	SHORT $LN16@operation_
+	jmp	SHORT $LN20@operation_
 $LN8@operation_:
-; Line 15
+; Line 20
 	push	8
 	call	_malloc
 	mov	esi, eax
-; Line 18
+; Line 23
 	push	8
 	mov	DWORD PTR [esi], 1
 	mov	DWORD PTR [esi+4], OFFSET ??_C@_0CD@EAKMBLEJ@Error?3?5operation?5string?5is?5inva@
 	call	_malloc
 	pop	ecx
-; Line 19
+; Line 24
 	mov	DWORD PTR [eax+4], esi
-$LN15@operation_:
-; Line 22
+$LN19@operation_:
+; Line 27
 	pop	ecx
 	pop	edi
 	pop	esi
