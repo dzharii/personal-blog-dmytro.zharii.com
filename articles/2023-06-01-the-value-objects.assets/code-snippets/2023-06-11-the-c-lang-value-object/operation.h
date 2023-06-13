@@ -20,6 +20,7 @@ typedef struct operation {
 operation* operation_from_string(char* op_str);
 
 operation* operation_new(operation_type op_type);
+void operation_free(operation* op);
 
 #endif // OPERATION_H
 

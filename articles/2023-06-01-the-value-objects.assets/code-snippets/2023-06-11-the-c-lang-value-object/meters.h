@@ -8,5 +8,6 @@ typedef struct meters {
 } meters;
 
 meters* meters_new(float value);
+void meters_free(meters* m);
 
 #endif // METERS_H

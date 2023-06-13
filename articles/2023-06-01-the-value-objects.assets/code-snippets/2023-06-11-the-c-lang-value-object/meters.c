@@ -20,3 +20,10 @@ meters* meters_new(float value) {
     }
     return new_meter;
 }
+
+void meters_free(meters* m) {
+    if (m->err != NULL) {
+        free(m->err);
+    }
+    free(m);
+}

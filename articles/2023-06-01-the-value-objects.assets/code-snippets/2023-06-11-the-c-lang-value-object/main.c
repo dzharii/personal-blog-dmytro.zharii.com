@@ -31,23 +31,36 @@ meters* perform_operation_on_meters(meters* m1, meters* m2, operation* op) {
 }
 
 int main(int argc, char* argv[]) {
-    // Check argument count and handle errors ...
 
-    meters* m1 = meters_new(atof(argv[1]));
+    if (argc != 4) {
+        printf("Usage: %s <operand1> <operation> <operand2>\n", argv[0]);
+        exit(EXIT_FAILURE);
+    }
+
+    int has_init_errors = 0;
+
+    meters* m1 = meters_new((float)atof(argv[1]));
     if (m1->err != NULL) {
         printf("Error in first meter value: %s\n", m1->err->message);
-        exit(EXIT_FAILURE);
+        has_init_errors = 1;
     }
 
     operation* op = operation_from_string(argv[2]);
     if (op->err != NULL) {
         printf("Error in operation: %s\n", op->err->message);
-        exit(EXIT_FAILURE);
+        has_init_errors = 1;
     }
 
-    meters* m2 = meters_new(atof(argv[3]));
+    meters* m2 = meters_new((float)atof(argv[3]));
     if (m2->err != NULL) {
         printf("Error in second meter value: %s\n", m2->err->message);
+        has_init_errors = 1;
+    }
+
+    if (has_init_errors) {
+        meters_free(m1);
+        meters_free(m2);
+        operation_free(op);
         exit(EXIT_FAILURE);
     }
 
@@ -58,8 +71,14 @@ int main(int argc, char* argv[]) {
     meters* result = perform_operation_on_meters(m1, m2, op);
     if (result->err != NULL) {
         printf("Error in result: %s\n", result->err->message);
-        exit(EXIT_FAILURE);
+    } else {
+        printf(" - Result: %f\n", result->value);
     }
-    printf(" - Result: %f\n", result->value);
+
+    meters_free(m1);
+    meters_free(m2);
+    meters_free(result);
+
+    operation_free(op);
     return 0;
 }

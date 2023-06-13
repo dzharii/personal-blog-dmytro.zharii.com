@@ -41,3 +41,10 @@ operation* operation_new(operation_type op_type) {
 
     return new_op;
 }
+
+void operation_free(operation* op) {
+    if (op->err != NULL) {
+        free(op->err);
+    }
+    free(op);
+}

@@ -28,5 +28,11 @@ Generic
 cl /FA /c main.c meters.c operation.c
 ```
 
+All warnings as errors
+
+```
+cl /W4 /WX  /c  main.c meters.c operation.c && link main.obj meters.obj operation.obj /OUT:main_program.exe
+```
+
 
 
