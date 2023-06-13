@@ -12,5 +12,21 @@ cl /O1 /c main.c meters.c operation.c && link main.obj meters.obj operation.obj 
 
 ```
 
+Assembly
+
+```
+cl /FA /c meters.c 
+```
+
+Optimized for size:
+```
+cl /O1 /FA /c main.c meters.c operation.c
+```
+
+Generic
+```
+cl /FA /c main.c meters.c operation.c
+```
+
 
 
