@@ -3,13 +3,18 @@
 #include "operation.h"
 
 operation* operation_from_string(char* op_str) {
-    if (strncmp(op_str, "add", 3) == 0) {
+    const size_t add_token_len = 3;
+    const size_t sub_token_len = 3;
+    const size_t mul_token_len = 3;
+    const size_t div_token_len = 3;
+
+    if (strnlen(op_str, 10) == add_token_len && strncmp(op_str, "add", add_token_len) == 0) {
         return operation_new(OPERATION_ADD);
-    } else if (strncmp(op_str, "sub", 3) == 0) {
+    } else if (strnlen(op_str, 10) == sub_token_len && strncmp(op_str, "sub", sub_token_len) == 0) {
         return operation_new(OPERATION_SUB);
-    } else if (strncmp(op_str, "mul", 3) == 0) {
+    } else if (strnlen(op_str, 10) == mul_token_len && strncmp(op_str, "mul", mul_token_len) == 0) {
         return operation_new(OPERATION_MUL);
-    } else if (strncmp(op_str, "div", 3) == 0) {
+    } else if (strnlen(op_str, 10) == div_token_len && strncmp(op_str, "div", div_token_len) == 0) {
         return operation_new(OPERATION_DIV);
     } else {
         error* err = (error*)malloc(sizeof(error));
