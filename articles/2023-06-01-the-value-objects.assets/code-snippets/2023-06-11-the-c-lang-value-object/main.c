@@ -7,9 +7,27 @@
 double parse_double(const char* str) {
     char* endptr;
     errno = 0; // To distinguish success/failure after call
-    double value = strtod(str, &endptr);
 
-    /* Check for various possible errors */
+    // check that str contains only digits and a single decimal point
+    int i = 0;
+    for (; str[i] != '\0'; i++) {
+        char c = str[i];
+        if (c == '.') {
+            if (i == 0) {
+                printf("Error: decimal point must be preceded by a digit\n");
+                exit(EXIT_FAILURE);
+            }
+            if (str[i + 1] == '\0') {
+                printf("Error: decimal point must be followed by a digit\n");
+                exit(EXIT_FAILURE);
+            }
+        } else if (c < '0' || c > '9') {
+            printf("Error: non-digit character in number\n");
+            exit(EXIT_FAILURE);
+        }
+    }
+
+    double value = strtod(str, &endptr);
 
     if (errno != 0) {
         /* Some error occurred */
@@ -18,7 +36,6 @@ double parse_double(const char* str) {
     }
 
     /* If we got here, strtod() successfully parsed a number */
-
     return value;
 }
 
