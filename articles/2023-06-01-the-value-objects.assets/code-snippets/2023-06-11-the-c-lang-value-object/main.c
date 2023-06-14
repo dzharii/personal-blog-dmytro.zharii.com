@@ -8,6 +8,12 @@ double parse_double(const char* str) {
     char* endptr;
     errno = 0; // To distinguish success/failure after call
 
+    // check that str is not longer than 10 characters
+    if (strlen(str) > 10) {
+        printf("Error: provided number is too long\n");
+        exit(EXIT_FAILURE);
+    }
+
     // check that str contains only digits and a single decimal point
     int i = 0;
     for (; str[i] != '\0'; i++) {
