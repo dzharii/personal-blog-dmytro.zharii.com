@@ -3,13 +3,14 @@
 #include "meters.h"
 #include "operation.h"
 #include <errno.h>
+#include <string.h>
 
 double parse_double(const char* str) {
     char* endptr;
     errno = 0; // To distinguish success/failure after call
 
     // check that str is not longer than 10 characters
-    if (strlen(str) > 10) {
+    if (strnlen(str, 20) == 20) {
         printf("Error: provided number is too long\n");
         exit(EXIT_FAILURE);
     }
