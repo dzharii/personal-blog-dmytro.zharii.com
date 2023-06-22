@@ -1,4 +1,5 @@
-# Hello
+Notes for C Value Objects samples
+
 Date: 2023-06-11
 
 GCC

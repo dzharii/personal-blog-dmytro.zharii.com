@@ -500,6 +500,346 @@ public class CustomerIdTests
 <li>Streamlines code expectations. Using our <code>CustomerId</code> example, we can rely on class preconditions to ensure things like non-null, non-empty forenames and surnames of a certain length. A basic string can't provide such guarantees.</li>
 <li>Encourages making value objects public, which can benefit testing and integration.</li>
 </ul>
+<h2 id="value-objects-in-c-language">Value Objects in C language</h2>
+<p><em>Added: 2023-06-22</em></p>
+<p>Let's talk about C. For those who code in this language, there's a good reason for doing so. I, for one, wouldn't claim to be a C maestro, so remember to take my words with a grain of salt.</p>
+<p>Here's the deal with C: it gives you all the power to code at a low system level, but it doesn't come without a catch. It demands meticulous attention and discipline. In C, the blame game ends on your keyboard. Every mistake is your own doing. It's not about the language or the compiler; it's all about you. So, beware.</p>
+<p>Now, don't let this scare you off. It should encourage you. Who doesn't enjoy a good puzzle? And I still find myself tripping over some double-pointer arithmetic occasionally.</p>
+<p>In C, notions like &quot;read-only&quot; or &quot;private&quot; data don't quite fit in. Immutability? More of a mental construct than a language feature. It's C, after all.</p>
+<p>That being said, there's a trick we can use to make things more organized: value objects. These self-validating objects can be pretty handy. Not only do they ensure our data is in the right state, but they also help keep our code clean and easy to understand.</p>
+<p>If you haven't already, give value objects a try. They might be the secret ingredient you didn't know you were missing.</p>
+<p><strong>main.c:</strong></p>
+<pre><code class="lang-c">#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &quot;meters.h&quot;
+#include &quot;operation.h&quot;
+#include &lt;errno.h&gt;
+#include &lt;string.h&gt;
+
+// A function to parse a double from a string with error checking.
+double parse_double(const char* str) {
+    char* endptr;
+    errno = 0; // To distinguish success/failure after call
+
+    // check that str is not longer than 10 characters
+    if (strnlen(str, 20) == 20) {
+        printf(&quot;Error: provided number is too long\n&quot;);
+        exit(EXIT_FAILURE);
+    }
+
+    // check that str contains only digits and a single decimal point
+    int i = 0;
+    for (; str[i] != '\0'; i++) {
+        char c = str[i];
+        if (c == '.') {
+            if (i == 0) {
+                printf(&quot;Error: decimal point must be preceded by a digit\n&quot;);
+                exit(EXIT_FAILURE);
+            }
+            if (str[i + 1] == '\0') {
+                printf(&quot;Error: decimal point must be followed by a digit\n&quot;);
+                exit(EXIT_FAILURE);
+            }
+        } else if (c &lt; '0' || c &gt; '9') {
+            printf(&quot;Error: non-digit character in number\n&quot;);
+            exit(EXIT_FAILURE);
+        }
+    }
+
+    double value = strtod(str, &amp;endptr);
+
+    if (errno != 0) {
+        /* Some error occurred */
+        printf(&quot;Failed to parse double: %d\n&quot;, errno);
+        exit(EXIT_FAILURE);
+    }
+
+    /* If we got here, strtod() successfully parsed a number */
+    return value;
+}
+
+/*
+    Function: perform_operation_on_meters
+
+    This function does a math operation on two 'meter' values. 
+    It uses raw values from 'meter' objects, does the math, 
+    and then wraps the result in a new 'meter' object.
+
+    Here are the steps:
+
+    1. Get raw double values from input 'meter' objects.
+       These values are already checked to be good.
+
+    2. Perform the operation (add, sub, mul, div) on the raw values.
+       The result is a double.
+
+    3. Wrap the result in a new 'meter' object.
+       This also checks that the result is a valid 'meter' value.
+
+    If the math result is not valid for 'meter' (e.g., negative or too big), 
+    the new 'meter' object will hold an error message.
+
+    Although the function works with 'meter' and 'operation' objects, 
+    the actual math is done on raw double values. 
+    This makes the function easier to write and understand.
+
+    Parameters:
+    m1 - The first 'meter' object.
+    m2 - The second 'meter' object.
+    op - The operation to perform.
+
+    Returns:
+    A new 'meter' object holding the result of the operation.
+*/
+meters* perform_operation_on_meters(meters* m1, meters* m2, operation* op) {
+    // Extract the nested values
+    double operand1 = m1-&gt;value;
+    double operand2 = m2-&gt;value;
+
+    switch (op-&gt;value) {
+        case OPERATION_ADD:
+            printf(&quot;performing add operation:\n&quot;);
+            double add_result = operand1 + operand2;
+            return meters_new(add_result);
+        case OPERATION_SUB:
+            printf(&quot;performing sub operation:\n&quot;);
+            double sub_result = operand1 - operand2;
+            return meters_new(sub_result);
+        case OPERATION_MUL:
+            printf(&quot;performing mul operation:\n&quot;);
+            double mul_result = operand1 * operand2;
+            return meters_new(mul_result);
+        case OPERATION_DIV:
+            printf(&quot;performing div operation:\n&quot;);
+            double div_result = operand1 / operand2;
+            return meters_new(div_result);
+        default:
+            printf(&quot;Error: operation value is invalid\n&quot;);
+            exit(EXIT_FAILURE);
+    }
+}
+
+
+/*
+    The main function that takes command-line arguments and performs a specified operation on two meter values.
+
+    Usage examples:
+    &gt; myprogram 2 add 3
+    This will add 2 and 3
+
+    &gt; myprogram 5.5 mul 6
+    This will multiply 5.5 and 6
+
+    &gt; myprogram 10 div 2
+    This will divide 10 by 2
+
+    Arguments:
+    argv[1] - the first operand, a floating point number as a string
+    argv[2] - the operation, a string that is one of the following: add, sub, mul, div
+    argv[3] - the second operand, a floating point number as a string
+
+    Parameter Limits:
+    The operands (argv[1] and argv[3]) should be positive numbers less than 1000. 
+    The operation (argv[2]) should be one of the following: add, sub, mul, div.
+*/
+int main(int argc, char* argv[]) {
+
+    if (argc != 4) {
+        printf(&quot;Usage: %s &lt;operand1&gt; &lt;operation&gt; &lt;operand2&gt;\n&quot;, argv[0]);
+        exit(EXIT_FAILURE);
+    }
+
+    int has_init_errors = 0;
+
+    meters* m1 = meters_new(parse_double(argv[1]));
+    if (m1-&gt;err != NULL) {
+        printf(&quot;Error in first meter value: %s\n&quot;, m1-&gt;err-&gt;message);
+        has_init_errors = 1;
+    }
+
+    operation* op = operation_from_string(argv[2]);
+    if (op-&gt;err != NULL) {
+        printf(&quot;Error in operation: %s\n&quot;, op-&gt;err-&gt;message);
+        has_init_errors = 1;
+    }
+
+    meters* m2 = meters_new(parse_double(argv[3]));
+    if (m2-&gt;err != NULL) {
+        printf(&quot;Error in second meter value: %s\n&quot;, m2-&gt;err-&gt;message);
+        has_init_errors = 1;
+    }
+
+    if (has_init_errors) {
+        meters_free(m1);
+        meters_free(m2);
+        operation_free(op);
+        exit(EXIT_FAILURE);
+    }
+
+    // Perform operation and print result
+    printf(&quot; - Operand 1: %f\n&quot;, m1-&gt;value);
+    printf(&quot; - Operand 2: %f\n&quot;, m2-&gt;value);
+    meters* result = perform_operation_on_meters(m1, m2, op);
+    if (result-&gt;err != NULL) {
+        printf(&quot;Error in result: %s\n&quot;, result-&gt;err-&gt;message);
+    } else {
+        printf(&quot; - Result: %f\n&quot;, result-&gt;value);
+    }
+
+    meters_free(m1);
+    meters_free(m2);
+    meters_free(result);
+
+    operation_free(op);
+    return 0;
+}
+</code></pre>
+<p><strong>error.h:</strong></p>
+<pre><code class="lang-c">#ifndef ERROR_H
+#define ERROR_H
+
+typedef struct error {
+    int code;
+    char* message;
+} error;
+
+#endif // ERROR_H
+</code></pre>
+<p><strong>meters.h:</strong></p>
+<pre><code class="lang-c">#ifndef METERS_H
+#define METERS_H
+#include &quot;error.h&quot;
+
+typedef struct meters {
+    double value;
+    error* err;
+} meters;
+
+meters* meters_new(double value);
+void meters_free(meters* m);
+
+#endif // METERS_H
+</code></pre>
+<p><strong>operation.h:</strong></p>
+<pre><code class="lang-c">#ifndef OPERATION_H
+#define OPERATION_H
+#include &quot;error.h&quot;
+
+typedef enum {
+    OPERATION_NONE,
+    OPERATION_ADD,
+    OPERATION_SUB,
+    OPERATION_MUL,
+    OPERATION_DIV,
+    OPERATION_UNKNOWN,
+} operation_type;
+
+typedef struct operation {
+    operation_type value;
+    error* err;
+} operation;
+
+
+operation* operation_from_string(char* op_str);
+
+operation* operation_new(operation_type op_type);
+void operation_free(operation* op);
+
+#endif // OPERATION_H
+
+</code></pre>
+<p><strong>meters.c:</strong></p>
+<pre><code class="lang-c">#include &lt;stdlib.h&gt;
+#include &quot;meters.h&quot;
+
+// Function that creates a new meter struct, with error checking.
+meters* meters_new(double value) {
+    meters* new_meter = (meters*)malloc(sizeof(meters));
+    if (value &lt; 0) {
+        error* err = (error*)malloc(sizeof(error));
+        err-&gt;code = 1;
+        err-&gt;message = &quot;Error: Meter value must be non-negative&quot;;
+        new_meter-&gt;err = err;
+    }  else if (value &gt; 999) {
+        error* err = (error*)malloc(sizeof(error));
+        err-&gt;code = 2;
+        err-&gt;message = &quot;Error: Meter value must be less than 1000&quot;;
+        new_meter-&gt;err = err;
+    }
+    else {
+        new_meter-&gt;value = value;
+        new_meter-&gt;err = NULL;
+    }
+    return new_meter;
+}
+
+// Function to free the memory allocated for a meter struct.
+void meters_free(meters* m) {
+    if (m-&gt;err != NULL) {
+        free(m-&gt;err);
+    }
+    free(m);
+}
+</code></pre>
+<p><strong>operation.c:</strong></p>
+<pre><code class="lang-c">#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+#include &quot;operation.h&quot;
+
+// Function to create an operation from a string, with error checking.
+// Please notice the separation of concerns. In this function, 
+// we first deal with the problem of parsing the string from the user input into the numeric value. 
+// Then, we create a value objects, which validates the operation number is valid.
+operation* operation_from_string(char* op_str) {
+    const size_t add_token_len = 3;
+    const size_t sub_token_len = 3;
+    const size_t mul_token_len = 3;
+    const size_t div_token_len = 3;
+
+    if (strnlen(op_str, 10) == add_token_len &amp;&amp; strncmp(op_str, &quot;add&quot;, add_token_len) == 0) {
+        return operation_new(OPERATION_ADD);
+    } else if (strnlen(op_str, 10) == sub_token_len &amp;&amp; strncmp(op_str, &quot;sub&quot;, sub_token_len) == 0) {
+        return operation_new(OPERATION_SUB);
+    } else if (strnlen(op_str, 10) == mul_token_len &amp;&amp; strncmp(op_str, &quot;mul&quot;, mul_token_len) == 0) {
+        return operation_new(OPERATION_MUL);
+    } else if (strnlen(op_str, 10) == div_token_len &amp;&amp; strncmp(op_str, &quot;div&quot;, div_token_len) == 0) {
+        return operation_new(OPERATION_DIV);
+    } else {
+        error* err = (error*)malloc(sizeof(error));
+        err-&gt;code = 1;
+        err-&gt;message = &quot;Error: operation string is invalid&quot;;
+        operation* new_op = (operation*)malloc(sizeof(operation));
+        new_op-&gt;err = err;
+        return new_op;
+    }
+}
+
+// Function to create a new operation value object, with error checking.
+operation* operation_new(operation_type op_type) {
+    operation* new_op = (operation*)malloc(sizeof(operation));
+
+    if (op_type &lt;= OPERATION_NONE || op_type &gt;= OPERATION_UNKNOWN) {
+        error* err = (error*)malloc(sizeof(error));
+        err-&gt;code = 2;
+        err-&gt;message = &quot;Error: operation value is invalid&quot;;
+        new_op-&gt;err = err;
+    } else {
+        new_op-&gt;value = op_type;
+        new_op-&gt;err = NULL;
+    }
+
+    return new_op;
+}
+
+// Function to free the memory allocated for an operation struct.
+void operation_free(operation* op) {
+    if (op-&gt;err != NULL) {
+        free(op-&gt;err);
+    }
+    free(op);
+}
+</code></pre>
+<p><a href="2023-06-01-the-value-objects.assets/code-snippets/2023-06-11-the-c-lang-value-object/readme.html">readme.md</a></p>
 <div class="NOTE">
 <h5>Note</h5>
 <p>I don't know to where this article will go, but

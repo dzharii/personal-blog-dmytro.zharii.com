@@ -144,6 +144,45 @@ Highlight: We need to write unit tests once and only once since we do not repeat
 
 
 
+## Value Objects in C language
+
+*Added: 2023-06-22*
+
+Let's talk about C. For those who code in this language, there's a good reason for doing so. I, for one, wouldn't claim to be a C maestro, so remember to take my words with a grain of salt.
+
+Here's the deal with C: it gives you all the power to code at a low system level, but it doesn't come without a catch. It demands meticulous attention and discipline. In C, the blame game ends on your keyboard. Every mistake is your own doing. It's not about the language or the compiler; it's all about you. So, beware.
+
+Now, don't let this scare you off. It should encourage you. Who doesn't enjoy a good puzzle? And I still find myself tripping over some double-pointer arithmetic occasionally.
+
+In C, notions like "read-only" or "private" data don't quite fit in. Immutability? More of a mental construct than a language feature. It's C, after all.
+
+That being said, there's a trick we can use to make things more organized: value objects. These self-validating objects can be pretty handy. Not only do they ensure our data is in the right state, but they also help keep our code clean and easy to understand.
+
+If you haven't already, give value objects a try. They might be the secret ingredient you didn't know you were missing.
+
+**main.c:**
+[!code-c[](2023-06-01-the-value-objects.assets/code-snippets/2023-06-11-the-c-lang-value-object/main.c)]
+
+**error.h:**
+[!code-c[](2023-06-01-the-value-objects.assets/code-snippets/2023-06-11-the-c-lang-value-object/error.h)]
+
+**meters.h:**
+[!code-c[](2023-06-01-the-value-objects.assets/code-snippets/2023-06-11-the-c-lang-value-object/meters.h)]
+
+**operation.h:**
+[!code-c[](2023-06-01-the-value-objects.assets/code-snippets/2023-06-11-the-c-lang-value-object/operation.h)]
+
+**meters.c:**
+[!code-c[](2023-06-01-the-value-objects.assets/code-snippets/2023-06-11-the-c-lang-value-object/meters.c)]
+
+**operation.c:**
+[!code-c[](2023-06-01-the-value-objects.assets/code-snippets/2023-06-11-the-c-lang-value-object/operation.c)]
+
+[readme.md](2023-06-01-the-value-objects.assets/code-snippets/2023-06-11-the-c-lang-value-object/readme.md)
+
+
+
+
 > [!NOTE]
 >  I don't know to where this article will go, but 
 > *To be continued...* 

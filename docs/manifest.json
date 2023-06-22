@@ -38,6 +38,16 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "articles/2023-06-01-the-value-objects.assets/code-snippets/2023-06-11-the-c-lang-value-object/readme.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/2023-06-01-the-value-objects.assets/code-snippets/2023-06-11-the-c-lang-value-object/readme.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "articles/2023-06-01-the-value-objects.md",
       "output": {
         ".html": {
