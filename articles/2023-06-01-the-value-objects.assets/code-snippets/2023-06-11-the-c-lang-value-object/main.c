@@ -5,6 +5,7 @@
 #include <errno.h>
 #include <string.h>
 
+// A function to parse a double from a string with error checking.
 double parse_double(const char* str) {
     char* endptr;
     errno = 0; // To distinguish success/failure after call
@@ -46,7 +47,41 @@ double parse_double(const char* str) {
     return value;
 }
 
+/*
+    Function: perform_operation_on_meters
+
+    This function does a math operation on two 'meter' values. 
+    It uses raw values from 'meter' objects, does the math, 
+    and then wraps the result in a new 'meter' object.
+
+    Here are the steps:
+
+    1. Get raw double values from input 'meter' objects.
+       These values are already checked to be good.
+
+    2. Perform the operation (add, sub, mul, div) on the raw values.
+       The result is a double.
+
+    3. Wrap the result in a new 'meter' object.
+       This also checks that the result is a valid 'meter' value.
+
+    If the math result is not valid for 'meter' (e.g., negative or too big), 
+    the new 'meter' object will hold an error message.
+
+    Although the function works with 'meter' and 'operation' objects, 
+    the actual math is done on raw double values. 
+    This makes the function easier to write and understand.
+
+    Parameters:
+    m1 - The first 'meter' object.
+    m2 - The second 'meter' object.
+    op - The operation to perform.
+
+    Returns:
+    A new 'meter' object holding the result of the operation.
+*/
 meters* perform_operation_on_meters(meters* m1, meters* m2, operation* op) {
+    // Extract the nested values
     double operand1 = m1->value;
     double operand2 = m2->value;
 
@@ -73,6 +108,29 @@ meters* perform_operation_on_meters(meters* m1, meters* m2, operation* op) {
     }
 }
 
+
+/*
+    The main function that takes command-line arguments and performs a specified operation on two meter values.
+
+    Usage examples:
+    > myprogram 2 add 3
+    This will add 2 and 3
+
+    > myprogram 5.5 mul 6
+    This will multiply 5.5 and 6
+
+    > myprogram 10 div 2
+    This will divide 10 by 2
+
+    Arguments:
+    argv[1] - the first operand, a floating point number as a string
+    argv[2] - the operation, a string that is one of the following: add, sub, mul, div
+    argv[3] - the second operand, a floating point number as a string
+
+    Parameter Limits:
+    The operands (argv[1] and argv[3]) should be positive numbers less than 1000. 
+    The operation (argv[2]) should be one of the following: add, sub, mul, div.
+*/
 int main(int argc, char* argv[]) {
 
     if (argc != 4) {
@@ -107,8 +165,7 @@ int main(int argc, char* argv[]) {
         exit(EXIT_FAILURE);
     }
 
-    // Perform operation and print result ...
-
+    // Perform operation and print result
     printf(" - Operand 1: %f\n", m1->value);
     printf(" - Operand 2: %f\n", m2->value);
     meters* result = perform_operation_on_meters(m1, m2, op);

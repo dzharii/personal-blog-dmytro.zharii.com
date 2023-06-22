@@ -2,6 +2,10 @@
 #include <string.h>
 #include "operation.h"
 
+// Function to create an operation from a string, with error checking.
+// Please notice the separation of concerns. In this function, 
+// we first deal with the problem of parsing the string from the user input into the numeric value. 
+// Then, we create a value objects, which validates the operation number is valid.
 operation* operation_from_string(char* op_str) {
     const size_t add_token_len = 3;
     const size_t sub_token_len = 3;
@@ -26,6 +30,7 @@ operation* operation_from_string(char* op_str) {
     }
 }
 
+// Function to create a new operation value object, with error checking.
 operation* operation_new(operation_type op_type) {
     operation* new_op = (operation*)malloc(sizeof(operation));
 
@@ -42,6 +47,7 @@ operation* operation_new(operation_type op_type) {
     return new_op;
 }
 
+// Function to free the memory allocated for an operation struct.
 void operation_free(operation* op) {
     if (op->err != NULL) {
         free(op->err);

@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include "meters.h"
 
+// Function that creates a new meter struct, with error checking.
 meters* meters_new(double value) {
     meters* new_meter = (meters*)malloc(sizeof(meters));
     if (value < 0) {
@@ -21,6 +22,7 @@ meters* meters_new(double value) {
     return new_meter;
 }
 
+// Function to free the memory allocated for a meter struct.
 void meters_free(meters* m) {
     if (m->err != NULL) {
         free(m->err);
