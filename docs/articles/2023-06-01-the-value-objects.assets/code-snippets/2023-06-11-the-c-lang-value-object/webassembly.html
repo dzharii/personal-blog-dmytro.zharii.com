@@ -2,9 +2,9 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title> </title>
+      <title>Webassembly </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content=" ">
+      <meta name="title" content="Webassembly ">
       
       <link rel="icon" href="../../../../favicon.ico">
       <link rel="stylesheet" href="../../../../styles/docfx.min.css">
@@ -13,7 +13,7 @@
       <meta name="docfx:tocrel" content="../../../toc.html">
       
       
-      <meta name="docfx:docurl" content="https://github.com/dzharii/personal-blog-dmytro.zharii.com/blob/main/articles/2023-06-01-the-value-objects.assets/code-snippets/2023-06-11-the-c-lang-value-object/readme.md/#L1">
+      <meta name="docfx:docurl" content="https://github.com/dzharii/personal-blog-dmytro.zharii.com/blob/main/articles/2023-06-01-the-value-objects.assets/code-snippets/2023-06-11-the-c-lang-value-object/webassembly.md/#L1">
 
       <script>
         MathJax = {
@@ -71,36 +71,48 @@
         </div>
 
         <article data-uid="">
+<h1 id="webassembly">Webassembly</h1>
 
-<p>Notes for C Value Objects samples</p>
-<p>Date: 2023-06-11</p>
-<p>GCC</p>
-<pre><code>gcc -Os -c main.c meters.c operation.c &amp;&amp; gcc main.o meters.o operation.o -o main_program
+<p>Date: 2023-06-22</p>
+<p>To compile C/C++ code to WebAssembly on Windows, you can use Emscripten. Emscripten is an open-source LLVM to JavaScript compiler that also supports WebAssembly as a target.</p>
+<p>Follow these steps to install Emscripten and compile a C/C++ program to WebAssembly:</p>
+<h2 id="install-emscripten-windows">Install Emscripten Windows</h2>
+<ol>
+<li><p><strong>Install Emscripten</strong></p>
+<p>Download and install Emscripten using git. Open your command prompt (cmd) or PowerShell and run:</p>
+<pre><code>git clone https://github.com/emscripten-core/emsdk.git
+cd emsdk
+.\emsdk install latest
+.\emsdk activate latest
 </code></pre>
-<p>CL</p>
-<pre><code>cl /O1 /c main.c meters.c operation.c &amp;&amp; link main.obj meters.obj operation.obj /OUT:main_program.exe
-
+<p>After these steps, Emscripten will be installed. Now you need to set the environment variables for Emscripten using the command:</p>
+<pre><code>.\emsdk_env.bat
 </code></pre>
-<p>Assembly</p>
-<pre><code>cl /FA /c meters.c 
-</code></pre>
-<p>Optimized for size:</p>
-<pre><code>cl /O1 /FA /c main.c meters.c operation.c
-</code></pre>
-<p>Generic</p>
-<pre><code>cl /FA /c main.c meters.c operation.c
-</code></pre>
-<p>All warnings as errors</p>
-<pre><code>cl /W4 /WX  /c  main.c meters.c operation.c &amp;&amp; link main.obj meters.obj operation.obj /OUT:main_program.exe
-</code></pre>
-<p>WebAssembly</p>
 <p>Run <code>emcmdprompt.bat</code> for windows</p>
-<pre><code>emcc main.c meters.c operation.c -s WASM=1 -o program.html
+</li>
+<li><p><strong>Compile Code to WebAssembly</strong></p>
+<p>To compile your C/C++ code to WebAssembly, you can use the <code>emcc</code> command. If your file is named <code>program.c</code>, you can compile it to WebAssembly using the following command:</p>
+<pre><code>emcc program.c -s WASM=1 -o program.html
 </code></pre>
+<p>Here, the <code>-s WASM=1</code> flag is used to specify that you want to compile to WebAssembly. The <code>-o program.html</code> flag tells Emscripten to also create an HTML file that you can use to run your program in a browser.</p>
+<p>After running the command, you should see a <code>program.wasm</code> file (the WebAssembly binary) along with a <code>program.js</code> file (the JavaScript �glue� code) and <code>program.html</code> file (a web page that loads the <code>.wasm</code> and <code>.js</code> files) in your directory.</p>
+</li>
+<li><p><strong>Run Your Program</strong></p>
+<p>To run your WebAssembly program, you need to host it on a local or remote server. Most browsers have restrictions that prevent loading WebAssembly modules over <code>file://</code> URIs.</p>
+<p>If you have Node.js installed, one simple way to do this is to install <code>http-server</code> via npm:</p>
+<pre><code>npm install http-server -g
+</code></pre>
+<p>Then, you can run the server in the directory containing your files:</p>
+<pre><code>http-server . -p 8080
+</code></pre>
+<p>Now, if you navigate to <code>http://localhost:8080/program.html</code> in your browser, you should see your program running.</p>
+</li>
+</ol>
+<p>Remember, this is a simplified guide, and there can be complexities and challenges when dealing with more complex programs, including interfacing between JavaScript and WebAssembly, memory management, and multi-threading.</p>
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/dzharii/personal-blog-dmytro.zharii.com/blob/main/articles/2023-06-01-the-value-objects.assets/code-snippets/2023-06-11-the-c-lang-value-object/readme.md/#L1" class="edit-link">Edit this page</a>
+          <a href="https://github.com/dzharii/personal-blog-dmytro.zharii.com/blob/main/articles/2023-06-01-the-value-objects.assets/code-snippets/2023-06-11-the-c-lang-value-object/webassembly.md/#L1" class="edit-link">Edit this page</a>
         </div>
       </div>
 

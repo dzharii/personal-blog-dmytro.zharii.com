@@ -35,5 +35,12 @@ All warnings as errors
 cl /W4 /WX  /c  main.c meters.c operation.c && link main.obj meters.obj operation.obj /OUT:main_program.exe
 ```
 
+WebAssembly
+
+Run `emcmdprompt.bat` for windows
+```
+emcc main.c meters.c operation.c -s WASM=1 -o program.html
+```
+
 
 
