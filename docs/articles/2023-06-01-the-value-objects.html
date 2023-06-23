@@ -500,6 +500,15 @@ public class CustomerIdTests
 <li>Streamlines code expectations. Using our <code>CustomerId</code> example, we can rely on class preconditions to ensure things like non-null, non-empty forenames and surnames of a certain length. A basic string can't provide such guarantees.</li>
 <li>Encourages making value objects public, which can benefit testing and integration.</li>
 </ul>
+<h2 id="once-more-anakin">Once More, Anakin!</h2>
+<p>Value objects are tailor-made for Sith. As Sith, we <strong>don't assume - we assert!</strong>
+When we establish our communication interface using value objects:</p>
+<pre><code class="lang-csharp">public static void ExecuteWorkflow(CustomerId customerId, OrdersPlaced ordersPlaced, OrderLastModified lastModified)
+{
+    Database.UpdateRecord(customerId.Value, ordersPlaced.Value, lastModified.Value);
+}
+</code></pre>
+<p>We affirm that the <strong>caller's responsible</strong> for supplying us with valid values. Correcting erroneous data lies with the <strong>caller</strong> - they must handle this before creating the value object. This approach forms a <strong>clear boundary</strong>, thus enhancing communication across different program components.</p>
 <h2 id="value-objects-in-c-language">Value Objects in C language</h2>
 <p><em>Added: 2023-06-22</em></p>
 <p>Let's talk about C. For those who code in this language, there's a good reason for doing so. I, for one, wouldn't claim to be a C maestro, so remember to take my words with a grain of salt.</p>

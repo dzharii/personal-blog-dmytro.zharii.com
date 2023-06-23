@@ -144,6 +144,20 @@ Highlight: We need to write unit tests once and only once since we do not repeat
 
 
 
+## Once More, Anakin!
+Value objects are tailor-made for Sith. As Sith, we **don't assume - we assert!** 
+When we establish our communication interface using value objects:
+
+```csharp
+public static void ExecuteWorkflow(CustomerId customerId, OrdersPlaced ordersPlaced, OrderLastModified lastModified)
+{
+    Database.UpdateRecord(customerId.Value, ordersPlaced.Value, lastModified.Value);
+}
+```
+We affirm that the **caller's responsible** for supplying us with valid values. Correcting erroneous data lies with the **caller** - they must handle this before creating the value object. This approach forms a **clear boundary**, thus enhancing communication across different program components.
+
+
+
 ## Value Objects in C language
 
 *Added: 2023-06-22*
