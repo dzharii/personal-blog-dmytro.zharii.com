@@ -849,6 +849,17 @@ void operation_free(operation* op) {
 }
 </code></pre>
 <p><a href="2023-06-01-the-value-objects.assets/code-snippets/2023-06-11-the-c-lang-value-object/readme.html">readme.md</a></p>
+<p>Ah, the code snippet before us. It seems to raise more questions than it answers. Now, you might be staring at it, scratching your head, and wondering... Is this a Value Object? Sadly, no. I must apologize; I pulled a fast one on you.</p>
+<p>Firstly, the hallmark of value objects is their immutability post-creation. We should be able to rely on our programming language to lock our data down, making it immutable or at least read-only. We usually do this by tucking our data away in private members and using getters to access them. But, ah, this is where C pulls a face at us. In C, there are no off-limits; you can change anything in <code>struct meters</code> at any time. Thus, adding a <code>meters</code> getter doesn't make much sense here.</p>
+<p>Despite this, some facets of value objects, such as the coding style and organization, can be useful.
+Consider this function:</p>
+<pre><code class="lang-cpp">meters* perform_operation_on_meters(meters* m1, meters* m2, operation* op) {
+... 
+}
+</code></pre>
+<p>Notice how it is strongly typed? This little nuance helps establish a more precise code contract; for example, you can't pass feet as a parameter here (unless you're fond of type-casting). On the other hand, if we were using <code>double</code>, it would be an open house - feet, hours, temperature, all are welcome. Strong types inject some much-needed clarity.</p>
+<p>Also, the function returns a <code>meters*</code>. This requires us to use <code>meters_new</code> <strong>BEFORE</strong> returning results, and we can trust the result to be correct. There's no need to validate over and over again.</p>
+<p>To sum up, while our example may not be a value object, it has its own charm. It helps clarify our code with strong types and reusable validation logic. So, while it's not perfect, it's still a step in the right direction. And that's not half bad.</p>
 <div class="NOTE">
 <h5>Note</h5>
 <p>I don't know to where this article will go, but
