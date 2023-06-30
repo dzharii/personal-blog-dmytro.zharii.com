@@ -7,25 +7,28 @@
       <meta name="title" content="The Value Objects ">
       
       <link rel="icon" href="../favicon.ico">
-      <link rel="stylesheet" href="../styles/docfx.min.css">
-      <link rel="stylesheet" href="../styles/main.css">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
       <meta name="docfx:navrel" content="../toc.html">
       <meta name="docfx:tocrel" content="toc.html">
       
       
+      
+      
       <meta name="docfx:docurl" content="https://github.com/dzharii/personal-blog-dmytro.zharii.com/blob/main/articles/2023-06-01-the-value-objects.md/#L1">
-
-      <script>
-        MathJax = {
-          options: {
-            processHtmlClass: ['tex2jax_process', 'math']
-          }
-        };
-      </script>
-
-      <script type="text/javascript" src="../styles/docfx.min.js"></script>
-      <script type="text/javascript" src="../styles/main.js"></script>
   </head>
+
+  <script type="module">
+    import options from './../public/main.js'
+    import { init } from './../public/docfx.min.js'
+    init(options)
+  </script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
 
   <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
     <header class="bg-body border-bottom">
@@ -35,14 +38,12 @@
             <img id="logo" class="svg" src="../logo.svg" alt="">
             
           </a>
-          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
             <i class="bi bi-three-dots"></i>
           </button>
-          <div class="collapse navbar-collapse" id="navbar">
-            <form class="d-flex ms-auto" role="search" id="search">
-              <i class="bi bi-search"></i>
-              <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
-            </form>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
           </div>
         </div>
       </nav>
@@ -79,6 +80,89 @@
 <h5>Note</h5>
 <p>This is a never-ending article, always in beta version.</p>
 </div>
+<h2 id="value-objects-in-a-nutshell">Value Objects in a Nutshell</h2>
+<p>Added: 2023-06-30</p>
+<p><strong>What is a Value Object?</strong> A Value Object is a programming design pattern. Its main role is to encapsulate and represent a specific value and its associated behavior. For example, a distance object encapsulating a distance value and related methods like convertToMiles().</p>
+<p><strong>Key Properties</strong></p>
+<ol>
+<li><strong>Immutability:</strong> Once created, the state of a Value Object cannot be changed. If any change is needed, a new object must be created.</li>
+<li><strong>Self-Validation:</strong> Value Objects validate their values, ensuring they're always correct and consistent after creation.</li>
+<li><strong>Equality:</strong> Value Objects are equal if their values are equal, not based on identity.</li>
+<li><strong>No side effects:</strong> Methods in Value Objects don't change the objects' states or any other global state.</li>
+<li><strong>Value-based:</strong> They represent things by their attributes, not their identity.</li>
+</ol>
+<p><strong>When to use Value Objects?</strong> Use Value Objects when you need to represent values that come with related behavior. They help reduce bugs, clean code, and make it more readable and maintainable. They're perfect for:</p>
+<ol>
+<li>Encapsulating validation logic.</li>
+<li>Ensuring data consistency.</li>
+<li>Making code more self-descriptive and expressive.</li>
+<li>Representing domain concepts accurately.</li>
+</ol>
+<p><strong>Cheat Sheet</strong></p>
+<p>Declaration:</p>
+<pre><code class="lang-javascript">// JavaScript
+class Meters {
+    // The constructor validates the input and throws an error if the input is invalid.
+    // This ensures that a Meters object, once created, is always valid.
+    constructor(value) {
+        if (typeof value !== 'number' || value &lt; 0) {
+            throw new Error('Invalid meter value');
+        }
+        this._value = value; // The underscore convention signifies that this property should not be accessed directly
+    }
+
+    // A getter method provides read-only access to the encapsulated value.
+    // This supports the object's immutability.
+    get value() {
+        return this._value;
+    }
+
+    // Equality is determined by comparing values, not identities.
+    equals(otherMeters) {
+        if (!(otherMeters instanceof Meters)) {
+            throw new Error('Can only compare to another Meters object');
+        }
+        return this.value === otherMeters.value;
+    }
+
+    // An example method that doesn't produce side effects.
+    // It returns a new Meters object instead of modifying the existing one.
+    add(otherMeters) {
+        if (!(otherMeters instanceof Meters)) {
+            throw new Error('Can only add another Meters object');
+        }
+        return new Meters(this.value + otherMeters.value);
+    }
+}
+</code></pre>
+<p>Usage Example:</p>
+<pre><code class="lang-html">&lt;!-- HTML --&gt;
+&lt;input id=&quot;input1&quot; type=&quot;number&quot; min=&quot;0&quot; max=&quot;999&quot;&gt;
+&lt;input id=&quot;input2&quot; type=&quot;number&quot; min=&quot;0&quot; max=&quot;999&quot;&gt;
+&lt;button id=&quot;calculateButton&quot;&gt;Calculate&lt;/button&gt;
+&lt;div id=&quot;result&quot;&gt;&lt;/div&gt;
+</code></pre><pre><code class="lang-javascript">// JavaScript
+document.getElementById('calculateButton').addEventListener('click', () =&gt; {
+    // Retrieve the meter values from the inputs
+    const inputValue1 = parseFloat(document.getElementById('input1').value);
+    const inputValue2 = parseFloat(document.getElementById('input2').value);
+
+    // Validate the inputs and create Meters objects
+    try {
+        const meters1 = new Meters(inputValue1);
+        const meters2 = new Meters(inputValue2);
+
+        // Perform the addition operation and get the result
+        const resultMeters = meters1.add(meters2);
+
+        // Display the result
+        document.getElementById('result').innerText = resultMeters.value + ' m';
+    } catch (error) {
+        // Handle any errors that occurred during the creation of the Meters objects
+        document.getElementById('result').innerText = 'Error: ' + error.message;
+    }
+});
+</code></pre><h2 id="main-article-a-lot-of-words">Main article, a lot of words!</h2>
 <p>In this article, we explore the concept of Value Objects. We start by understanding their role in ensuring data integrity, using a simple example of representing distances. We then delve into key features of Value Objects like constructor validation and immutability.</p>
 <p>We enhance our example by introducing common operations into our Value Object, demonstrating cleaner and more intuitive code. We also illustrate the use of Value Objects for input parameters in the context of a legacy system bug fix, showcasing their power in code expressiveness and safety.</p>
 <p>Finally, we emphasize the importance of unit testing in verifying the behavior of our Value Objects. By the end, you will have a comprehensive understanding of how to implement Value Objects effectively in your codebase.</p>
@@ -871,6 +955,9 @@ End of Revision 2023-06-01</p>
         <div class="contribution d-print-none">
           <a href="https://github.com/dzharii/personal-blog-dmytro.zharii.com/blob/main/articles/2023-06-01-the-value-objects.md/#L1" class="edit-link">Edit this page</a>
         </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+        
       </div>
 
       <div class="affix">

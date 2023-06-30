@@ -1,6 +1,6 @@
 {
   "homepages": [],
-  "source_base_path": "D:/my-github/personal-blog-dmytro.zharii.com",
+  "source_base_path": "C:/my-git/personal-blog-dmytro.zharii.com",
   "xrefmap": "xrefmap.yml",
   "files": [
     {
@@ -9,19 +9,6 @@
       "output": {
         ".html": {
           "relative_path": "api/index.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Toc",
-      "source_relative_path": "api/toc.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/toc.html"
-        },
-        ".json": {
-          "relative_path": "api/toc.json"
         }
       },
       "version": ""

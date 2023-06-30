@@ -11,6 +11,40 @@ I will allow myself to think outside the box. (from the aww tools)
 
 
 
+## Value Objects in a Nutshell
+
+Added: 2023-06-30
+
+**What is a Value Object?** A Value Object is a programming design pattern. Its main role is to encapsulate and represent a specific value and its associated behavior. For example, a distance object encapsulating a distance value and related methods like convertToMiles().
+
+**Key Properties**
+
+1. **Immutability:** Once created, the state of a Value Object cannot be changed. If any change is needed, a new object must be created.
+2. **Self-Validation:** Value Objects validate their values, ensuring they're always correct and consistent after creation.
+3. **Equality:** Value Objects are equal if their values are equal, not based on identity.
+4. **No side effects:** Methods in Value Objects don't change the objects' states or any other global state.
+5. **Value-based:** They represent things by their attributes, not their identity.
+
+**When to use Value Objects?** Use Value Objects when you need to represent values that come with related behavior. They help reduce bugs, clean code, and make it more readable and maintainable. They're perfect for:
+
+1. Encapsulating validation logic.
+2. Ensuring data consistency.
+3. Making code more self-descriptive and expressive.
+4. Representing domain concepts accurately.
+
+**Cheat Sheet**
+
+Declaration:
+
+[!code-javascript[](2023-06-01-the-value-objects.assets/code-snippets/10__Meters-Cheatsheet.js)]
+
+Usage Example:
+[!code-html[](2023-06-01-the-value-objects.assets/code-snippets/10__Meters-Usage.html)]
+
+[!code-javascript[](2023-06-01-the-value-objects.assets/code-snippets/10__Meters-Usage.js)]
+
+## Main article, a lot of words!
+
 In this article, we explore the concept of Value Objects. We start by understanding their role in ensuring data integrity, using a simple example of representing distances. We then delve into key features of Value Objects like constructor validation and immutability.
 
 We enhance our example by introducing common operations into our Value Object, demonstrating cleaner and more intuitive code. We also illustrate the use of Value Objects for input parameters in the context of a legacy system bug fix, showcasing their power in code expressiveness and safety.
@@ -65,6 +99,7 @@ So, it's a pretty straightforward situation: either we **create a valid value** 
 Let's reconsider our Meters example. While there isn't a one-size-fits-all approach to thoroughly validate Meters, we can tailor our validation to fit the project's specific needs. We'll lay down some ground rules based on the business requirements. So, for the purposes of this article, here's what we'll go with:
 
 > [!NOTE]
+>
 > 1. Meters are represented **as integer** values because we're not sweating the small stuff — centimeters don't concern us here.
 > 2. Meters must be **positive integers**. Why? Because in our world, we don't do negative distances.
 > 3. The value for Meters **can't exceed 999**. It's a bit of an old-school restriction, but it's still hanging around.
