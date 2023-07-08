@@ -16,18 +16,18 @@
       
       
       <meta name="docfx:docurl" content="https://github.com/dzharii/personal-blog-dmytro.zharii.com/blob/main/articles/2023-06-01-the-value-objects.md/#L1">
+
+      <script type="module">
+        import docfx from './../public/main.js'
+        window.docfx = docfx
+        window.MathJax = {
+          options: {
+            processHtmlClass: ['tex2jax_process', 'math']
+          }
+        }
+      </script>
+      <script type="text/javascript" src="../public/docfx.min.js"></script>
   </head>
-
-  <script type="module">
-    import options from './../public/main.js'
-    import { init } from './../public/docfx.min.js'
-    init(options)
-  </script>
-
-  <script>
-    const theme = localStorage.getItem('theme') || 'auto'
-    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
-  </script>
 
 
   <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
@@ -593,6 +593,39 @@ When we establish our communication interface using value objects:</p>
 }
 </code></pre>
 <p>We affirm that the <strong>caller's responsible</strong> for supplying us with valid values. Correcting erroneous data lies with the <strong>caller</strong> - they must handle this before creating the value object. This approach forms a <strong>clear boundary</strong>, thus enhancing communication across different program components.</p>
+<h2 id="compound-value-objects-the-unified-whole">Compound Value Objects: The Unified Whole</h2>
+<p><em>Added: 2023-07-07</em></p>
+<p>In some cases, single values alone are insufficient. They are interdependent and need to be considered together to convey meaningful information. This is where <strong>compound value objects</strong> come into play. These objects group together interrelated values, which jointly form a meaningful unit.</p>
+<p>Consider a point in a 2D space as an example:</p>
+<pre><code class="lang-csharp">Point2D(int X, int Y) // X and Y together define the point
+</code></pre>
+<p>Here, X and Y are inseparable. They jointly define a specific location in a two-dimensional space. Separately, X and Y do not convey the concept of a point in 2D space.</p>
+<p>On the other hand, creating a <code>Point2D</code> class with individual <code>Coordinate</code> objects would ignore this intrinsic connection:</p>
+<pre><code class="lang-csharp">Point2D(Coordinate X, Coordinate Y)  // Not ideal
+Point2D(CoordinateX X, CoordinateY Y) // Too weird
+</code></pre>
+<p>For instance, how do we know that <code>var x = new CoordinateX(42)</code> is a valid value? The class <code>CoordinateX</code> is almost as generic as integer.</p>
+<p>Another example of a compound value object is a date range. A start date without an end date is incomplete:</p>
+<pre><code class="lang-csharp">DateTimeRange(DateTime beginDate, DateTime endDate)
+</code></pre>
+<p>Here, <code>beginDate</code> and <code>endDate</code> together define a date range. The constructor verifies that <code>beginDate</code> is earlier than <code>endDate</code>, and both dates fall within valid limits. Hence, compound value objects not only bundle values but also encapsulate the rules and relationships between them.</p>
+<h2 id="validation-the-all-mighty-value-objects">Validation: The all-mighty value objects?</h2>
+<p><em>Added: 2023-07-07</em></p>
+<p>As we've talked about, arranging our validation code within constructors can help us trim duplicate logic and minimize repeated tests. Now, with a hint of bravado, we might be tempted to declare that we can use value objects to tackle any validation problem, creating a fortress of correctness every time an object is formed. But, well...that's not entirely accurate.</p>
+<p>A value object's knowledge doesn't extend beyond the program it's running in and its own properties. It's like that friend who's super focused—value objects don't get distracted with input/output operations (we'll give memory access a pass, though, it's not quite the same thing) like go accessing file system or network resources.</p>
+<p>So, in reality, a valid value object is less like an impenetrable fortress and more like a cozy, mostly error-free cottage.</p>
+<p>Take our previous code, for example:</p>
+<pre><code class="lang-csharp">public CustomerId(Guid customerId) 
+{ 
+  if (customerId == Guid.Empty || customerId == AdminId) 
+  { 
+    throw new ArgumentException(&quot;Customer Id can't be empty or admin Id.&quot;); 
+  } 
+  Value = customerId; 
+}
+</code></pre>
+<p>We're checking that <code>customerId</code> isn't wildly off track. But to know if it's valid, we need to cross-check it with our database and see if this customer is on our list. To do that, we will need some help from code outside of our <code>CustomerId</code> value object.</p>
+<p>Sometimes, it's not feasible to validate everything. And in those cases where a new value object doesn't offer any added value over a simple integer or Data Transfer Object (DTO), it might be wiser to stick with these simpler types.</p>
 <h2 id="value-objects-in-c-language">Value Objects in C language</h2>
 <p><em>Added: 2023-06-22</em></p>
 <p>Let's talk about C. For those who code in this language, there's a good reason for doing so. I, for one, wouldn't claim to be a C maestro, so remember to take my words with a grain of salt.</p>
