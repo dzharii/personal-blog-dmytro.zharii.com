@@ -193,6 +193,32 @@ We affirm that the **caller's responsible** for supplying us with valid values. 
 
 
 
+## Compound Value Objects: The Unified Whole
+
+In some cases, single values alone are insufficient. They are interdependent and need to be considered together to convey meaningful information. This is where **compound value objects** come into play. These objects group together interrelated values, which jointly form a meaningful unit.
+
+Consider a point in a 2D space as an example:
+```csharp
+Point2D(int X, int Y) // X and Y together define the point
+```
+Here, X and Y are inseparable. They jointly define a specific location in a two-dimensional space. Separately, X and Y do not convey the concept of a point in 2D space.
+
+On the other hand, creating a `Point2D` class with individual `Coordinate` objects would ignore this intrinsic connection:
+```csharp
+Point2D(Coordinate X, Coordinate Y)  // Not ideal
+Point2D(CoordinateX X, CoordinateY Y) // Too weird
+```
+For instance, how do we know that `var x = new CoordinateX(42)` is a valid value? The class `CoordinateX` is almost as generic as integer. 
+
+Another example of a compound value object is a date range. A start date without an end date is incomplete:
+
+```csharp
+DateTimeRange(DateTime beginDate, DateTime endDate)
+```
+Here, `beginDate` and `endDate` together define a date range. The constructor verifies that `beginDate` is earlier than `endDate`, and both dates fall within valid limits. Hence, compound value objects not only bundle values but also encapsulate the rules and relationships between them.
+
+
+
 ## Value Objects in C language
 
 *Added: 2023-06-22*
