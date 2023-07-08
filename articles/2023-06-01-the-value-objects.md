@@ -195,6 +195,8 @@ We affirm that the **caller's responsible** for supplying us with valid values. 
 
 ## Compound Value Objects: The Unified Whole
 
+*Added: 2023-07-07*
+
 In some cases, single values alone are insufficient. They are interdependent and need to be considered together to convey meaningful information. This is where **compound value objects** come into play. These objects group together interrelated values, which jointly form a meaningful unit.
 
 Consider a point in a 2D space as an example:
@@ -216,6 +218,35 @@ Another example of a compound value object is a date range. A start date without
 DateTimeRange(DateTime beginDate, DateTime endDate)
 ```
 Here, `beginDate` and `endDate` together define a date range. The constructor verifies that `beginDate` is earlier than `endDate`, and both dates fall within valid limits. Hence, compound value objects not only bundle values but also encapsulate the rules and relationships between them.
+
+
+
+## Validation: The all-mighty value objects?
+
+*Added: 2023-07-07*
+
+As we've talked about, arranging our validation code within constructors can help us trim duplicate logic and minimize repeated tests. Now, with a hint of bravado, we might be tempted to declare that we can use value objects to tackle any validation problem, creating a fortress of correctness every time an object is formed. But, well...that's not entirely accurate.
+
+A value object's knowledge doesn't extend beyond the program it's running in and its own properties. It's like that friend who's super focused—value objects don't get distracted with input/output operations (we'll give memory access a pass, though, it's not quite the same thing) like go accessing file system or network resources.
+
+So, in reality, a valid value object is less like an impenetrable fortress and more like a cozy, mostly error-free cottage. 
+
+Take our previous code, for example:
+
+```csharp
+public CustomerId(Guid customerId) 
+{ 
+  if (customerId == Guid.Empty || customerId == AdminId) 
+  { 
+    throw new ArgumentException("Customer Id can't be empty or admin Id."); 
+  } 
+  Value = customerId; 
+}
+```
+
+We're checking that `customerId` isn't wildly off track. But to know if it's valid, we need to cross-check it with our database and see if this customer is on our list. To do that, we will need some help from code outside of our `CustomerId` value object.
+
+Sometimes, it's not feasible to validate everything. And in those cases where a new value object doesn't offer any added value over a simple integer or Data Transfer Object (DTO), it might be wiser to stick with these simpler types.
 
 
 
