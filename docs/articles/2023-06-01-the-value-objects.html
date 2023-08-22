@@ -7,28 +7,25 @@
       <meta name="title" content="The Value Objects ">
       
       <link rel="icon" href="../favicon.ico">
-      <link rel="stylesheet" href="../public/docfx.min.css">
-      <link rel="stylesheet" href="../public/main.css">
+      <link rel="stylesheet" href="../styles/docfx.min.css">
+      <link rel="stylesheet" href="../styles/main.css">
       <meta name="docfx:navrel" content="../toc.html">
       <meta name="docfx:tocrel" content="toc.html">
       
       
-      
-      
       <meta name="docfx:docurl" content="https://github.com/dzharii/personal-blog-dmytro.zharii.com/blob/main/articles/2023-06-01-the-value-objects.md/#L1">
 
-      <script type="module">
-        import docfx from './../public/main.js'
-        window.docfx = docfx
-        window.MathJax = {
+      <script>
+        MathJax = {
           options: {
             processHtmlClass: ['tex2jax_process', 'math']
           }
-        }
+        };
       </script>
-      <script type="text/javascript" src="../public/docfx.min.js"></script>
-  </head>
 
+      <script type="text/javascript" src="../styles/docfx.min.js"></script>
+      <script type="text/javascript" src="../styles/main.js"></script>
+  </head>
 
   <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
     <header class="bg-body border-bottom">
@@ -38,12 +35,14 @@
             <img id="logo" class="svg" src="../logo.svg" alt="">
             
           </a>
-          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
             <i class="bi bi-three-dots"></i>
           </button>
-          <div class="collapse navbar-collapse" id="navpanel">
-            <div id="navbar">
-            </div>
+          <div class="collapse navbar-collapse" id="navbar">
+            <form class="d-flex ms-auto" role="search" id="search">
+              <i class="bi bi-search"></i>
+              <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+            </form>
           </div>
         </div>
       </nav>
@@ -367,22 +366,35 @@ This brings us to an exciting solution: how about making it impossible to create
 {
     public static void Main(string[] args)
     {
+        ////// UNSAFE ZONE!
+        // Please note that we are in an unsafe zone before we have validated input parameters.
+        ////// UNSAFE ZONE!
+
         if (args.Length != 3)
         {
             Console.WriteLine(&quot;Please enter the correct parameters: customerId, ordersPlaced, lastModified.&quot;);
             return;
         }
-                
+
         try
         {
             CustomerId customerId = CustomerId.Parse(args[0]);
             OrdersPlaced ordersPlaced = OrdersPlaced.Parse(args[1]);
             OrderLastModified lastModified = OrderLastModified.Parse(args[2]);
 
+            // At this line, we have two outcomes:
+            // - The parameters are correct and meet our criteria -- we continue to the safe zone
+            // - The program will throw a validation exception if one or more parameters are incorrect.
+            // At this point, we terminate the program execution.
+            //
+            ////// SAFE ZONE!
+            ////// STARTS HERE!
+
             ExecuteWorkflow(customerId, ordersPlaced, lastModified);
         }
         catch (Exception e)
         {
+            // User unfriendly error handling.
             Console.WriteLine(e.Message);
         }
     }
@@ -988,9 +1000,6 @@ End of Revision 2023-06-01</p>
         <div class="contribution d-print-none">
           <a href="https://github.com/dzharii/personal-blog-dmytro.zharii.com/blob/main/articles/2023-06-01-the-value-objects.md/#L1" class="edit-link">Edit this page</a>
         </div>
-
-        <div class="next-article d-print-none border-top" id="nextArticle"></div>
-        
       </div>
 
       <div class="affix">
