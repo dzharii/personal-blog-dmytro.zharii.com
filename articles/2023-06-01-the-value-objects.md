@@ -1,4 +1,4 @@
-# The Value Objects
+# The Strong Types: Value Objects and Friends
 Date: 2023-06-01
 
 I will allow myself to think outside the box. (from the aww tools)
@@ -8,6 +8,15 @@ I will allow myself to think outside the box. (from the aww tools)
 > [!NOTE]
 >
 > This is a never-ending article, always in beta version.
+
+
+
+## The Strong Types
+
+Added: 2023-10-01
+
+Hello! It's Sunday, 1:04 AM, and since April 2023, I've been delving into the world of Value Objects. A realization hit me: Value Objects are powerful, yet they have their limits and aren't a one-size-fits-all solution.
+This discussion centers on Value Objects, focusing on their immutability and the validations during the object construction. However, there are scenarios where adjustments are necessary, like prioritizing performance over immutability or correcting input data directly within the class constructor instead of throwing the errors. Let's broaden our conversation to understand more about the nuances of Strong Typing in various contexts.
 
 
 
@@ -218,6 +227,41 @@ Another example of a compound value object is a date range. A start date without
 DateTimeRange(DateTime beginDate, DateTime endDate)
 ```
 Here, `beginDate` and `endDate` together define a date range. The constructor verifies that `beginDate` is earlier than `endDate`, and both dates fall within valid limits. Hence, compound value objects not only bundle values but also encapsulate the rules and relationships between them.
+
+There are multiple other examples of the Compound Value Objects. We cannot separate individual components from the Shipping Address:
+
+```csharp
+public class USShippingAddress
+{
+    public string Street { get; private set; }
+    public string City { get; private set; }
+    public string State { get; private set; }
+    public string ZipCode { get; private set; }
+
+    public USShippingAddress(string street, string city, string state, string zipCode)
+    {
+        if (string.IsNullOrWhiteSpace(street))
+            throw new ArgumentException("Street cannot be null or empty.", nameof(street));
+
+        if (string.IsNullOrWhiteSpace(city))
+            throw new ArgumentException("City cannot be null or empty.", nameof(city));
+
+        if (string.IsNullOrWhiteSpace(state) || state.Length != 2)
+            throw new ArgumentException("State must be a 2-letter abbreviation.", nameof(state));
+
+        if (string.IsNullOrWhiteSpace(zipCode) || zipCode.Length != 5)
+            throw new ArgumentException("ZIP Code must be 5 digits long.", nameof(zipCode));
+
+        Street = street;
+        City = city;
+        State = state;
+        ZipCode = zipCode;
+    }
+    // ...Equals, GetHashCode, ToString
+}
+```
+
+`Street` alone without `City` and `City`  without `State` simply does not make much sense. All together, they define same geographical coordinates, like X and Y of a house or a building, but in much more verbose way. 
 
 
 
