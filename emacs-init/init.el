@@ -12,3 +12,9 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+;;
+;; REAL INIT:
+(require 'org)
+(org-babel-load-file (expand-file-name "./emacs-init/init-config.org"))
+

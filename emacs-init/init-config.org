@@ -1,0 +1,7 @@
+* My Emacs Configuration
+** Basic Settings
+
+#+BEGIN_SRC emacs-lisp
+(setq inhibit-startup-message t)
+(tool-bar-mode -1)
+#+END_SRC
