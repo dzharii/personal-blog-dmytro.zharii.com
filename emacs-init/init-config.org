@@ -5,3 +5,28 @@
 (setq inhibit-startup-message t)
 (tool-bar-mode -1)
 #+END_SRC
+
+** Publishing Configuration
+
+#+BEGIN_SRC emacs-lisp
+(require 'org)
+
+(setq org-publish-project-alist
+      '(("doccy"
+         :base-directory "./src"          ;; Directory with source files
+         :publishing-directory "./docs"   ;; Output directory
+         :base-extension "org"
+         :recursive t
+         :publishing-function org-html-publish-to-html
+         :headline-levels 4
+         :auto-preamble t
+         :section-numbers nil
+         :with-toc t)))
+
+(defun doccy-publish ()
+  "Publish the doccy project."
+  (interactive)
+  (org-publish-project "doccy" t))
+
+(global-set-key (kbd "C-c p") 'doccy-publish)
+#+END_SRC
