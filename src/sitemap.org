@@ -1,2 +1,3 @@
+- [[file:thankyou.org][thankyou]]
 - articles
   - [[file:articles/foo.org][An example article]]
