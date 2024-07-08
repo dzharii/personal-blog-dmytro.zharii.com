@@ -17,8 +17,7 @@ This section contains configuration variables for the project. These variables s
 (require 'ox-publish)
 
 ;; Author information
-(setq author "Author")
-(setq email "foo@example.org")
+(setq author "d)zharii")
 
 ;; Timestamp format for published documents
 (setq custom-timestamp-format "%Y-%m-%d")
@@ -28,8 +27,10 @@ This section contains configuration variables for the project. These variables s
       '(("en" "Published %d")))
 
 ;; Default HTML to include at the footer if #+options: html-postamble:t
+;(setq custom-html-postamble-format
+;      '(("en" "&copy; %a. Contact me at &lt;%e&gt;")))
 (setq custom-html-postamble-format
-      '(("en" "&copy; %a. Contact me at &lt;%e&gt;")))
+      '(("en" "Created by %a.")))
 
 ;; Custom HTML to include inside <head>
 (setq custom-html-head "\
@@ -88,7 +89,6 @@ This section contains the publishing configuration, defining how and where the f
          :with-toc nil
          :section-numbers nil
          :author ,author
-         :email ,email
          :auto-sitemap t
          :sitemap-title "Index"
          :sitemap-function sitemap-function
@@ -116,7 +116,6 @@ This section contains the publishing configuration, defining how and where the f
          :with-toc nil
          :section-numbers nil
          :author ,author
-         :email ,email
          :html-doctype "html5"
          :html-html5-fancy t
          :html-head-include-scripts nil
@@ -134,6 +133,15 @@ This section contains the publishing configuration, defining how and where the f
   (interactive)
   (org-publish-all))
 
+;; Function to publish the doccy project
+(defun doccy-publish-force ()
+  "Publish the doccy project."
+  (interactive)
+  (org-publish-all t))
+
 ;; Keybinding to publish the doccy project
 (global-set-key (kbd "C-c p") 'doccy-publish)
 #+END_SRC
+
+#+RESULTS:
+: doccy-publish

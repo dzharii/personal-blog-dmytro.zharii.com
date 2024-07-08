@@ -1,3 +1,5 @@
 - [[file:thankyou.org][thankyou]]
 - articles
   - [[file:articles/foo.org][An example article]]
+- posts
+  - [[file:posts/2024-07-08-first-one.org][2024-07-08-first-one]]
