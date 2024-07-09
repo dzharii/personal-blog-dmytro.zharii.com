@@ -37,7 +37,7 @@ img { max-width: 100%; }
 @media (min-width: 1024px) {
     body { margin-left: 12.5%; width: 87.5%; }
     ul,ol,dl,table,nav { width: 87.5%; }
-    p,figure { width: 55%; }
+    p,figure { width: 87.5%; }
     figure:has(.note),
     figure:has(.full) { clear: both; }
     figure:has(.note) figcaption { float: right; clear: right; width: 50%; margin-right: -60%; position: relative; }

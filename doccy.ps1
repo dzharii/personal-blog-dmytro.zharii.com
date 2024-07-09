@@ -8,6 +8,8 @@ $ThisScriptFolderPath = Split-Path -Parent $MyInvocation.MyCommand.Definition
 
 $COMMAND_HELP = "help"
 $COMMAND_EDIT = "edit"
+$COMMAND_PUBLISH = "pub"
+$COMMAND_PUBLISH_FORCE = "pub-force"
 
 $HELP_MESSAGE = @"
 Usage:
@@ -20,6 +22,10 @@ Commands:
 
     $($COMMAND_EDIT):
       Opens EMACS
+    $($COMMAND_PUBLISH):
+      Publishes site
+    $($COMMAND_PUBLISH_FORCE):
+      Publishes website by applying a lot of force
 "@
 
 switch ($Command.ToLower()) {
@@ -31,6 +37,16 @@ switch ($Command.ToLower()) {
     $COMMAND_EDIT {
         Start-Process -FilePath "runemacs" -WorkingDirectory $ThisScriptFolderPath -ArgumentList "--init-directory .\emacs-init"
     }
+
+    $COMMAND_PUBLISH {
+        & runemacs --init-directory .\emacs-init --eval='(doccy-publish)'
+    }
+
+    $COMMAND_PUBLISH_FORCE {
+        & runemacs --init-directory .\emacs-init --eval='(doccy-publish-force)'
+    }
+
+
 
     Default {
         Write-Host $("=" * 80) -ForegroundColor Red
