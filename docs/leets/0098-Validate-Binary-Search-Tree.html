@@ -1,0 +1,150 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2024-07-08 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>&lrm;</title>
+<meta name="author" content="d)zharii" />
+<meta name="generator" content="Org Mode" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/t.css"/>
+</head>
+<body>
+<nav><a href="/" tabindex="0">&larrhk; Back to Index</a></nav><div id="preamble" class="status">
+Published 
+</div>
+<div id="content" class="content">
+<div id="outline-container-org22614c7" class="outline-2">
+<h2 id="org22614c7">98. Validate Binary Search Tree</h2>
+<div class="outline-text-2" id="text-org22614c7">
+</div>
+
+<div id="outline-container-org93c6f69" class="outline-3">
+<h3 id="org93c6f69">Problem:</h3>
+<div class="outline-text-3" id="text-org93c6f69">
+<p>
+We are given the root of a binary tree and our objective is to determine if it is a valid binary search tree (BST). A valid BST has the property that for every node with a value `N`, all nodes in its left subtree have values less than `N`, and all nodes in its right subtree have values greater than `N`.
+</p>
+
+<p>
+To accomplish this, we can use an efficient approach leveraging DFS (Depth First Search) to traverse the tree while maintaining the constraints of the BST. 
+</p>
+</div>
+</div>
+
+<div id="outline-container-org294d7ad" class="outline-3">
+<h3 id="org294d7ad">Solution Description:</h3>
+<div class="outline-text-3" id="text-org294d7ad">
+<p>
+To implement the validation of a BST, we need to use a recursive function that traverses the tree while keeping track of the acceptable value range for each node. Specifically, we can use the following approach:
+</p>
+
+<ol class="org-ol">
+<li>Start with the root node and an initially unbounded range (`-Infinity` to `Infinity`).</li>
+<li>For each node, check if its value lies within the current valid range.</li>
+<li>Recursively check the left subtree with an updated upper bound (the current node's value).</li>
+<li>Recursively check the right subtree with an updated lower bound (the current node's value).</li>
+</ol>
+
+<p>
+Both subtrees must be valid for the entire tree to be considered a valid BST.
+</p>
+
+<p>
+The time complexity of this solution is O(N), where `N` is the number of nodes, as we visit each node once. The space complexity is O(H), where `H` is the height of the tree, due to the recursion stack.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org9d84b13" class="outline-3">
+<h3 id="org9d84b13">Example:</h3>
+<div class="outline-text-3" id="text-org9d84b13">
+<p>
+Consider the following binary tree:
+</p>
+
+<p>
+```
+       2
+      / \
+     1   3
+```
+</p>
+
+<p>
+The algorithm will:
+</p>
+<ol class="org-ol">
+<li>Check the root node with value `2` (range `-Infinity` to `Infinity`).</li>
+<li>Recursively validate the left child `1` (range `-Infinity` to `2`).</li>
+<li>Recursively validate the right child `3` (range `2` to `Infinity`).</li>
+</ol>
+
+<p>
+All nodes satisfy the BST properties, so the tree is a valid BST.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org03248d5" class="outline-3">
+<h3 id="org03248d5">Setup:</h3>
+<div class="outline-text-3" id="text-org03248d5">
+<div class="org-src-container">
+<pre class="src src-js">/**
+ * Function to validate if a binary tree is a valid Binary Search Tree (BST).
+ *
+ * @param {TreeNode} root - The root node of the binary tree
+ * @returns {boolean} - Returns true if the tree is a valid BST, else false
+ */
+function isValidBST(root) {
+    // Helper definitions as instructed
+    const log = typeof NestedInteger !== 'undefined' ? () =&gt; {} : console.log;
+    const table = typeof NestedInteger !== 'undefined' ? () =&gt; {} : console.table;
+
+    if (!root) return false;
+
+    function dfs(node, low, high) {
+        if (!node) return true;
+
+        if (node.val &lt;= low || node.val &gt;= high) {
+            return false;
+        }
+
+        return dfs(node.left, low, node.val) &amp;&amp; dfs(node.right, node.val, high);
+    }
+
+    return dfs(root, Number.MIN_SAFE_INTEGER, Number.MAX_SAFE_INTEGER);
+}
+
+// TreeNode structure for clarity
+class TreeNode {
+    constructor(val, left = null, right = null) {
+        this.val = val;
+        this.left = left;
+        this.right = right;
+    }
+}
+
+// Test cases
+const testCases = [
+    { tree: new TreeNode(2, new TreeNode(1), new TreeNode(3)), expected: true },
+    { tree: new TreeNode(5, new TreeNode(1), new TreeNode(4, new TreeNode(3), new TreeNode(6))), expected: false },
+    // Add more test cases as needed
+];
+
+testCases.forEach((test, index) =&gt; {
+    const result = isValidBST(test.tree);
+    console.log(`Test Case ${index + 1}: ${result === test.expected ? 'Passed' : 'Failed'} (Expected: ${test.expected}, Got: ${result})`);
+});
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+Created by d)zharii.
+</div>
+</body>
+</html>

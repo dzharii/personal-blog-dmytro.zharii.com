@@ -3,3 +3,11 @@
   - [[file:articles/foo.org][An example article]]
 - posts
   - [[file:posts/2024-07-08-first-one.org][2024-07-08-first-one]]
+- leets
+  - [[file:leets/0049-Group-Anagrams.org][0049-Group-Anagrams]]
+  - [[file:leets/0057-Insert-Interval.org][0057-Insert-Interval]]
+  - [[file:leets/0098-Validate-Binary-Search-Tree.org][0098-Validate-Binary-Search-Tree]]
+  - [[file:leets/1482-Minimum-Number-of-Days-to-Make-m-Bouquets.org][1482-Minimum-Number-of-Days-to-Make-m-Bouquets]]
+  - [[file:leets/1302-Deepest-Leaves-Sum.org][1302-Deepest-Leaves-Sum]]
+  - [[file:leets/0543-Diameter-of-Binary-Tree.org][0543-Diameter-of-Binary-Tree]]
+  - [[file:leets/0104-Maximum-Depth-of-Binary-Tree.org][0104-Maximum-Depth-of-Binary-Tree]]

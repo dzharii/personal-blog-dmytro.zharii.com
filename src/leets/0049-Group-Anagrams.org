@@ -1,0 +1,64 @@
+* 49. Group Anagrams
+  :PROPERTIES:
+  :Created: 2024-05-23
+  :END:
+* Problem Overview
+The problem is to group anagrams from a list of strings. Anagrams are words or phrases made by rearranging the letters of another, such as "cinema" and "iceman". 
+
+Given an array of strings, you need to group the anagrams together. Each group of anagrams should be represented as an array of strings, and all the groups should be returned together in a single array.
+
+* Solution Outline
+  - **Preferred Structure:** Use a hash map (or object) where the key is a sorted version of the string, and the value is an array of strings (the anagrams).
+  - **Brute Force vs Optimal Solution:** The brute force method would involve comparing each string with every other string, which is inefficient. The optimal solution sorts each string and uses it as a key in the hash map to group anagrams together.
+  - **Algorithm Choice:** Sorting each string and using a hash map ensures a time complexity of O(NKlogK), where N is the number of strings and K is the maximum length of a string.
+
+* Implement the Solution
+#+begin_src js
+  /**
+   ,* Groups anagrams from a list of strings.
+   ,* @param {string[]} strs - List of strings.
+   ,* @returns {string[][]} - Grouped anagrams.
+   ,*/
+  function groupAnagrams(strs) {
+      // Return a dummy result for now
+      const h = {};
+
+      function tokey(str) {
+          return str.toLowerCase().split('').sort().join('');
+      }
+
+      for (let s of strs) {
+          const k = tokey(s);
+          if (!h[k]) {
+              h[k] = [];
+          }
+
+          h[k].push(s);
+      }
+
+      const res = [];
+      for (k in h) {
+          res.push(h[k]);
+      }
+
+      return res;
+  }
+
+  // Test cases
+  const testCases = [
+      { strs: ["eat", "tea", "tan", "ate", "nat", "bat"], expected: [["eat", "tea", "ate"], ["tan", "nat"], ["bat"]] },
+      { strs: [""], expected: [[""]] },
+      { strs: ["a"], expected: [["a"]] }
+  ];
+
+  testCases.forEach((test, index) => {
+      const result = groupAnagrams(test.strs);
+      console.log(`Test Case ${index + 1}: ${JSON.stringify(result) === JSON.stringify(test.expected) ? 'Passed' : 'Failed'} (Expected: ${JSON.stringify(test.expected)}, Got: ${JSON.stringify(result)})`);
+  });
+#+end_src
+
+#+RESULTS:
+: Test Case 1: Passed (Expected: [["eat","tea","ate"],["tan","nat"],["bat"]], Got: [["eat","tea","ate"],["tan","nat"],["bat"]])
+: Test Case 2: Passed (Expected: [[""]], Got: [[""]])
+: Test Case 3: Passed (Expected: [["a"]], Got: [["a"]])
+: undefined

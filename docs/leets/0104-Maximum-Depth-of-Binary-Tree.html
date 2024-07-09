@@ -1,0 +1,173 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2024-07-08 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>&lrm;</title>
+<meta name="author" content="d)zharii" />
+<meta name="generator" content="Org Mode" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/t.css"/>
+</head>
+<body>
+<nav><a href="/" tabindex="0">&larrhk; Back to Index</a></nav><div id="preamble" class="status">
+Published 
+</div>
+<div id="content" class="content">
+<div id="outline-container-org554f555" class="outline-2">
+<h2 id="org554f555">104. Maximum Depth of Binary Tree</h2>
+<div class="outline-text-2" id="text-org554f555">
+</div>
+
+<div id="outline-container-orge7601e2" class="outline-3">
+<h3 id="orge7601e2">Problem:</h3>
+<div class="outline-text-3" id="text-orge7601e2">
+<p>
+Given the root of a binary tree, return its maximum depth. The maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgd8b0b6c" class="outline-3">
+<h3 id="orgd8b0b6c">Solution Description:</h3>
+<div class="outline-text-3" id="text-orgd8b0b6c">
+<p>
+To implement the solution for finding the maximum depth of a binary tree, we need to use a depth-first search (DFS) approach. Every time we traverse down a node, we increase our depth count. We need to check both left and right subtrees to find the maximum depth from the current node.
+</p>
+
+<p>
+Here's a step-by-step plan:
+</p>
+<ol class="org-ol">
+<li>If the current node is null, that contributes 0 to the depth.</li>
+<li>Otherwise, compute the depth of the left and right subtrees.</li>
+<li>The depth of the current node is 1 plus the maximum of the depths of the left and right subtrees.</li>
+<li>Return this computed depth.</li>
+</ol>
+
+<p>
+Time Complexity: O(N), where N is the number of nodes in the tree. We have to visit each node once.
+Space Complexity: O(H), where H is the height of the tree. This is due to the recursion stack.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org2bab41c" class="outline-3">
+<h3 id="org2bab41c">Example:</h3>
+<div class="outline-text-3" id="text-org2bab41c">
+<p>
+Consider the binary tree:
+</p>
+
+<p>
+```
+      3
+     / \
+    9  20
+      /  \
+     15   7
+```
+</p>
+
+<p>
+The maximum depth of this tree is 3.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org62c4cb6" class="outline-3">
+<h3 id="org62c4cb6">Setup:</h3>
+<div class="outline-text-3" id="text-org62c4cb6">
+<p>
+Here is a skeleton code for implementing the solution. An additional helper function can also be included for testing purposes using examples.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">
+// Helper function to define a TreeNode
+/**
+ * Definition for a binary tree node.
+ * @param {number} val
+ * @param {TreeNode} left
+ * @param {TreeNode} right
+ */
+function TreeNode(val, left = null, right = null) {
+    this.val = val;
+    this.left = left;
+    this.right = right;
+}
+
+/**
+ * Main function to find the maximum depth of binary tree
+ * @param {TreeNode} root
+ * @return {number}
+ */
+function maxDepth(root) {
+    const log = typeof NestedInteger !== 'undefined' ? () =&gt; {} : console.log;
+    const table = typeof NestedInteger!== 'undefined' ? () =&gt; {} : console.table;
+
+    function depth(node) {
+        if (node === null) return 0;
+        const leftDepth = depth(node.left);
+        const rightDepth = depth(node.right);
+
+        return Math.max(leftDepth, rightDepth) + 1;
+    }
+
+    return depth(root);
+}
+
+// Test cases
+const testCases = [
+    {
+        root: new TreeNode(3,
+                new TreeNode(9),
+                new TreeNode(20,
+                    new TreeNode(15),
+                    new TreeNode(7))),
+        expected: 3
+    },
+    {
+        root: new TreeNode(1,
+                null,
+                new TreeNode(2)),
+        expected: 2
+    },
+    {
+        root: new TreeNode(1),
+        expected: 1
+    },
+    {
+        root: null,
+        expected: 0
+    },
+    {
+        root: new TreeNode(0,
+                new TreeNode(2,
+                    new TreeNode(4,
+                        new TreeNode(8)),
+                    new TreeNode(5)),
+                new TreeNode(3,
+                    null,
+                    new TreeNode(7,
+                        new TreeNode(9)))),
+        expected: 4
+    }
+];
+
+testCases.forEach((test, index) =&gt; {
+    const result = maxDepth(test.root);
+    console.log(`Test Case ${index + 1}: ${result === test.expected ? 'Passed' : 'Failed'} (Expected: ${test.expected}, Got: ${result})`);
+});
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+Created by d)zharii.
+</div>
+</body>
+</html>

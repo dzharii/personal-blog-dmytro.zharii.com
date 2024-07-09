@@ -1,0 +1,210 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2024-07-08 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>&lrm;</title>
+<meta name="author" content="d)zharii" />
+<meta name="generator" content="Org Mode" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/t.css"/>
+</head>
+<body>
+<nav><a href="/" tabindex="0">&larrhk; Back to Index</a></nav><div id="preamble" class="status">
+Published 
+</div>
+<div id="content" class="content">
+<div id="outline-container-org9a0defc" class="outline-2">
+<h2 id="org9a0defc">1482. Minimum Number of Days to Make m Bouquets</h2>
+<div class="outline-text-2" id="text-org9a0defc">
+</div>
+</div>
+
+<div id="outline-container-org08623fa" class="outline-2">
+<h2 id="org08623fa">Problem:</h2>
+<div class="outline-text-2" id="text-org08623fa">
+<p>
+Given `m` bouquets, each with `k` adjacent flowers, and an array `bloomDay` of `n` integers representing the days on which each flower blooms, determine the minimum number of days required to make the bouquets. If it's not possible to make the bouquets, return -1.
+</p>
+
+<p>
+<b><b>Parameters:</b></b>
+</p>
+<ul class="org-ul">
+<li>`bloomDay: number[]`: a list of integers where each integer represents the day a particular flower will bloom.</li>
+<li>`m: number`: the number of bouquets needed.</li>
+<li>`k: number`: the number of adjacent flowers required in each bouquet.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgb8c9789" class="outline-2">
+<h2 id="orgb8c9789">Solution Description:</h2>
+<div class="outline-text-2" id="text-orgb8c9789">
+<p>
+To implement the solution, we need to use a binary search combined with a helper function to check if it's possible to create the required bouquets in a given number of days. Binary search will help minimize the number of days efficiently.
+</p>
+</div>
+
+<div id="outline-container-org7df1841" class="outline-3">
+<h3 id="org7df1841">Steps: **</h3>
+<div class="outline-text-3" id="text-org7df1841">
+<ol class="org-ol">
+<li><b><b>Binary Search Setup</b></b>: 
+<ul class="org-ul">
+<li>Initialize `left` to 1 (which is the minimum possible day).</li>
+<li>Initialize `right` to the maximum value in `bloomDay` (which is the worst-case scenario where all flowers are bloomed).</li>
+</ul></li>
+<li><b><b>Condition Checking Helper</b></b>:
+<ul class="org-ul">
+<li>Create a helper function `canMakeBouquets(days)` that returns true if it's possible to make `m` bouquets in the given `days`.</li>
+</ul></li>
+<li><b><b>Binary Search Execution</b></b>:
+<ul class="org-ul">
+<li>Use the binary search mechanism to find the minimum days by adjusting the `left` and `right` pointers based on the result of `canMakeBouquets(days)`.</li>
+</ul></li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-orgf4fa300" class="outline-3">
+<h3 id="orgf4fa300">Example:</h3>
+<div class="outline-text-3" id="text-orgf4fa300">
+<p>
+Consider `bloomDay = [1, 10, 3, 10, 2]`, `m = 3`, `k = 1`.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org924590e" class="outline-3">
+<h3 id="org924590e">Execution:</h3>
+<div class="outline-text-3" id="text-org924590e">
+<ol class="org-ol">
+<li><b><b>Initialization</b></b>:
+<ul class="org-ul">
+<li>`left` = 1, `right` = 10 (max bloom day)</li>
+</ul></li>
+<li><b><b>Binary Search</b></b>:
+<ul class="org-ul">
+<li>Calculate `mid` = (1 + 10) / 2 = 5.</li>
+<li>Check if we can make `m` bouquets in `5` days using `canMakeBouquets(5)`:
+<ul class="org-ul">
+<li>Result: `false` (as we cannot make 3 bouquets on or before day 5).</li>
+</ul></li>
+<li>Adjust search range: `left` = 6, `right` remains 10.</li>
+<li>Repeat until convergence.</li>
+</ul></li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-orga4b620e" class="outline-3">
+<h3 id="orga4b620e">Time Complexity:</h3>
+<div class="outline-text-3" id="text-orga4b620e">
+<ul class="org-ul">
+<li><b><b>Binary Search</b></b>: O(log(max(bloomDay)))</li>
+<li><b><b>Helper Function</b></b>: O(n) where n is the length of `bloomDay`.</li>
+<li><b><b>Overall Complexity</b></b>: O(n log(max(bloomDay)))</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org853ba30" class="outline-3">
+<h3 id="org853ba30">Space Complexity:</h3>
+<div class="outline-text-3" id="text-org853ba30">
+<ul class="org-ul">
+<li>Space complexity is O(1) as we only use a few extra variables for computation.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org34349e9" class="outline-3">
+<h3 id="org34349e9">Setup:</h3>
+<div class="outline-text-3" id="text-org34349e9">
+<p>
+Initial code with a helper function to check if we can make the bouquets within a given number of days. The main function will perform the binary search.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">/**
+ * Function to determine the minimum number of days to make m bouquets each with k adjacent flowers
+ * 
+ * @param {number[]} bloomDays - Array representing the day each flower blooms
+ * @param {number} m - Number of bouquets required
+ * @param {number} k - Number of adjacent flowers needed in each bouquet
+ * @returns {number} - Minimum number of days required to make m bouquets, or -1 if it's not possible
+ */
+function minDays(bloomDays, m, k) {
+    const log = typeof NestedInteger !== 'undefined' ? () =&gt; {} : console.log;
+    const table = typeof NestedInteger !== 'undefined' ? () =&gt; {} : console.table;
+
+    if (bloomDays.length === 0) {
+        return -1;
+    }
+
+    const minDay = Math.min(...bloomDays);
+    const maxDay = Math.max(...bloomDays);
+
+    const canMakeBouquets = (days) =&gt; {
+        let bouquets = 0;
+        let adjacent = 0;
+
+        for (let bloomDay of bloomDays) {
+            if (days &gt;= bloomDay) {
+                adjacent += 1;
+            } else {
+                adjacent = 0;
+            }
+
+            if (adjacent === k) {
+                bouquets += 1;
+                adjacent = 0;
+            }
+
+            if (bouquets === m) {
+                return true;
+            }
+        }
+
+        return false;
+    };
+
+    let left = minDay;
+    let right = maxDay;
+
+    while (left &lt; right) {
+        const mid = Math.floor((left + right) / 2);
+        if (canMakeBouquets(mid)) {
+            right = mid;
+        } else {
+            left = mid + 1;
+        }
+    }
+
+    return canMakeBouquets(left) ? left : -1;
+}
+
+// Test cases
+const testCases = [
+    { bloomDay: [1, 10, 3, 10, 2], m: 3, k: 1, expected: 3 },
+    { bloomDay: [1, 10, 3, 10, 2], m: 3, k: 2, expected: -1 },
+    { bloomDay: [7, 7, 7, 7, 12, 7, 7], m: 2, k: 3, expected: 12 },
+   // cover all corner cases
+];
+
+testCases.forEach((test, index) =&gt; {
+    const result = minDays(test.bloomDay, test.m, test.k);
+    console.log(`Test Case ${index + 1}: ${result === test.expected ? 'Passed' : 'Failed'} (Expected: ${test.expected}, Got: ${result})`);
+});
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+Created by d)zharii.
+</div>
+</body>
+</html>

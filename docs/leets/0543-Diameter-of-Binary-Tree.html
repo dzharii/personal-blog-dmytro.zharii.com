@@ -1,0 +1,155 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2024-07-08 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>&lrm;</title>
+<meta name="author" content="d)zharii" />
+<meta name="generator" content="Org Mode" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/t.css"/>
+</head>
+<body>
+<nav><a href="/" tabindex="0">&larrhk; Back to Index</a></nav><div id="preamble" class="status">
+Published 
+</div>
+<div id="content" class="content">
+<div id="outline-container-orga2b8eb3" class="outline-2">
+<h2 id="orga2b8eb3">543. Diameter of Binary Tree</h2>
+<div class="outline-text-2" id="text-orga2b8eb3">
+</div>
+
+<div id="outline-container-orga6db20a" class="outline-3">
+<h3 id="orga6db20a">Problem:</h3>
+<div class="outline-text-3" id="text-orga6db20a">
+<p>
+The problem is to determine the diameter of a binary tree. The diameter of a binary tree is defined as the length of the longest path between any two nodes in a tree. This path may or may not pass through the root.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgfe4be28" class="outline-3">
+<h3 id="orgfe4be28">Prerequsite</h3>
+<div class="outline-text-3" id="text-orgfe4be28">
+<p>
+To solve this problem, work on the <a href="https://leetcode.com/problems/maximum-depth-of-binary-tree/">104. Maximum Depth of Binary Tree</a> first.
+<a href="https://leetcode.com/problems/diameter-of-n-ary-tree/">Diameter of N-Ary Tree</a>
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-org79bf159" class="outline-3">
+<h3 id="org79bf159">Solution Description:</h3>
+<div class="outline-text-3" id="text-org79bf159">
+<p>
+To implement the solution, we need to use a recursive Depth-First Search (DFS) approach. The main idea is to calculate the depth of the left subtree and the right subtree for each node, and track the maximum diameter found at each step.
+</p>
+
+<p>
+Here's the plan:
+</p>
+<ul class="org-ul">
+<li>Use a helper function to compute the depth of a tree.</li>
+<li>Track the maximum diameter using a variable that gets updated while calculating the depth.</li>
+<li>For any node, the diameter passing through that node would be the sum of the depth of the left subtree and the depth of the right subtree.</li>
+<li>Return the tracked maximum diameter.</li>
+</ul>
+
+<p>
+The time complexity of this approach is O(n) because each node is visited once. The space complexity is O(h), where h is the height of the tree, due to the recursion stack.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org04c7218" class="outline-3">
+<h3 id="org04c7218">Example:</h3>
+<div class="outline-text-3" id="text-org04c7218">
+<p>
+Consider a binary tree:
+```
+        1
+       / \
+      2   3
+     / \
+    4   5
+```
+The longest path goes from node 4 to node 5 through nodes 2 and 1, so the diameter is 3.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org88b0639" class="outline-3">
+<h3 id="org88b0639">Setup:</h3>
+<div class="outline-text-3" id="text-org88b0639">
+<p>
+We'll define a helper function to recursively calculate the depth of the tree and update the diameter. We'll use modern JavaScript to implement this.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">
+/**
+ * Definition for a binary tree node.
+ * @param {number} val
+ * @param {TreeNode|null} left
+ * @param {TreeNode|null} right
+ */
+function TreeNode(val, left = null, right = null) {
+    this.val = val;
+    this.left = left;
+    this.right = right;
+}
+
+/**
+ * Main solution function to calculate the diameter of binary tree
+ * @param {TreeNode} root - root of the binary tree
+ * @return {number} - diameter of the tree
+ */
+function diameterOfBinaryTree(root) {
+    const log = typeof NestedInteger !== 'undefined' ? () =&gt; {} : console.log;
+    const table = typeof NestedInteger !== 'undefined' ? () =&gt; {} : console.table;
+
+    let diameter = 0;
+
+    function depth(node) {
+        if (node === null) return 0;
+
+        const leftDepth = depth(node.left);
+        const rightDepth = depth(node.right);
+
+        diameter = Math.max(diameter, leftDepth + rightDepth);
+
+        return Math.max(leftDepth, rightDepth) + 1;
+    }
+
+    depth(root);
+    return diameter;
+}
+
+// Test cases
+const testCases = [
+    { root: new TreeNode(1, null, new TreeNode(2)), expected: 1 },
+    { root: new TreeNode(1, new TreeNode(2, new TreeNode(4), new TreeNode(5)), new TreeNode(3)), expected: 3 },
+    { root: new TreeNode(1, new TreeNode(2)), expected: 1 },
+    { root: new TreeNode(1), expected: 0 },
+    { root: new TreeNode(1, null, new TreeNode(2, null, new TreeNode(3))), expected: 2 },
+    { root: new TreeNode(1, new TreeNode(2, new TreeNode(3, new TreeNode(4, new TreeNode(5))))), expected: 4 },
+];
+
+testCases.forEach((test, index) =&gt; {
+    const result = diameterOfBinaryTree(test.root);
+    console.log(`Test Case ${index + 1}: ${result === test.expected ? 'Passed' : 'Failed'} (Expected: ${test.expected}, Got: ${result})`);
+});
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+Created by d)zharii.
+</div>
+</body>
+</html>

@@ -1,0 +1,127 @@
+﻿* 1482. Minimum Number of Days to Make m Bouquets
+:PROPERTIES:
+:Created: 2024-06-19
+:END:
+
+* Problem:
+Given `m` bouquets, each with `k` adjacent flowers, and an array `bloomDay` of `n` integers representing the days on which each flower blooms, determine the minimum number of days required to make the bouquets. If it's not possible to make the bouquets, return -1.
+
+**Parameters:**
+- `bloomDay: number[]`: a list of integers where each integer represents the day a particular flower will bloom.
+- `m: number`: the number of bouquets needed.
+- `k: number`: the number of adjacent flowers required in each bouquet.
+
+* Solution Description:
+To implement the solution, we need to use a binary search combined with a helper function to check if it's possible to create the required bouquets in a given number of days. Binary search will help minimize the number of days efficiently.
+
+** Steps: **
+1. **Binary Search Setup**: 
+   - Initialize `left` to 1 (which is the minimum possible day).
+   - Initialize `right` to the maximum value in `bloomDay` (which is the worst-case scenario where all flowers are bloomed).
+2. **Condition Checking Helper**:
+   - Create a helper function `canMakeBouquets(days)` that returns true if it's possible to make `m` bouquets in the given `days`.
+3. **Binary Search Execution**:
+   - Use the binary search mechanism to find the minimum days by adjusting the `left` and `right` pointers based on the result of `canMakeBouquets(days)`.
+
+** Example:
+Consider `bloomDay = [1, 10, 3, 10, 2]`, `m = 3`, `k = 1`.
+
+** Execution:
+1. **Initialization**:
+   - `left` = 1, `right` = 10 (max bloom day)
+2. **Binary Search**:
+   - Calculate `mid` = (1 + 10) / 2 = 5.
+   - Check if we can make `m` bouquets in `5` days using `canMakeBouquets(5)`:
+     - Result: `false` (as we cannot make 3 bouquets on or before day 5).
+   - Adjust search range: `left` = 6, `right` remains 10.
+   - Repeat until convergence.
+
+** Time Complexity:
+- **Binary Search**: O(log(max(bloomDay)))
+- **Helper Function**: O(n) where n is the length of `bloomDay`.
+- **Overall Complexity**: O(n log(max(bloomDay)))
+
+** Space Complexity:
+- Space complexity is O(1) as we only use a few extra variables for computation.
+
+** Setup:
+Initial code with a helper function to check if we can make the bouquets within a given number of days. The main function will perform the binary search.
+
+#+begin_src js :tangle "1482_Minimum_Number_of_Days_to_Make_m_Bouquets.js"
+/**
+ ,* Function to determine the minimum number of days to make m bouquets each with k adjacent flowers
+ ,* 
+ ,* @param {number[]} bloomDays - Array representing the day each flower blooms
+ ,* @param {number} m - Number of bouquets required
+ ,* @param {number} k - Number of adjacent flowers needed in each bouquet
+ ,* @returns {number} - Minimum number of days required to make m bouquets, or -1 if it's not possible
+ ,*/
+function minDays(bloomDays, m, k) {
+    const log = typeof NestedInteger !== 'undefined' ? () => {} : console.log;
+    const table = typeof NestedInteger !== 'undefined' ? () => {} : console.table;
+
+    if (bloomDays.length === 0) {
+        return -1;
+    }
+
+    const minDay = Math.min(...bloomDays);
+    const maxDay = Math.max(...bloomDays);
+
+    const canMakeBouquets = (days) => {
+        let bouquets = 0;
+        let adjacent = 0;
+
+        for (let bloomDay of bloomDays) {
+            if (days >= bloomDay) {
+                adjacent += 1;
+            } else {
+                adjacent = 0;
+            }
+
+            if (adjacent === k) {
+                bouquets += 1;
+                adjacent = 0;
+            }
+
+            if (bouquets === m) {
+                return true;
+            }
+        }
+
+        return false;
+    };
+
+    let left = minDay;
+    let right = maxDay;
+
+    while (left < right) {
+        const mid = Math.floor((left + right) / 2);
+        if (canMakeBouquets(mid)) {
+            right = mid;
+        } else {
+            left = mid + 1;
+        }
+    }
+
+    return canMakeBouquets(left) ? left : -1;
+}
+
+// Test cases
+const testCases = [
+    { bloomDay: [1, 10, 3, 10, 2], m: 3, k: 1, expected: 3 },
+    { bloomDay: [1, 10, 3, 10, 2], m: 3, k: 2, expected: -1 },
+    { bloomDay: [7, 7, 7, 7, 12, 7, 7], m: 2, k: 3, expected: 12 },
+   // cover all corner cases
+];
+
+testCases.forEach((test, index) => {
+    const result = minDays(test.bloomDay, test.m, test.k);
+    console.log(`Test Case ${index + 1}: ${result === test.expected ? 'Passed' : 'Failed'} (Expected: ${test.expected}, Got: ${result})`);
+});
+#+end_src
+
+#+RESULTS:
+: Test Case 1: Passed (Expected: 3, Got: 3)
+: Test Case 2: Passed (Expected: -1, Got: -1)
+: Test Case 3: Passed (Expected: 12, Got: 12)
+: undefined

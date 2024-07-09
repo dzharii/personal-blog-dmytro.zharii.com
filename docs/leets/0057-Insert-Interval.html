@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2024-07-08 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>&lrm;</title>
+<meta name="author" content="d)zharii" />
+<meta name="generator" content="Org Mode" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/t.css"/>
+</head>
+<body>
+<nav><a href="/" tabindex="0">&larrhk; Back to Index</a></nav><div id="preamble" class="status">
+Published 
+</div>
+<div id="content" class="content">
+<div id="outline-container-orgc717d06" class="outline-2">
+<h2 id="orgc717d06">57. Insert Interval</h2>
+<div class="outline-text-2" id="text-orgc717d06">
+</div>
+</div>
+
+<div id="outline-container-orgfbd8465" class="outline-2">
+<h2 id="orgfbd8465">Problem Overview</h2>
+<div class="outline-text-2" id="text-orgfbd8465">
+<p>
+The problem "Insert Interval" requires us to insert a new interval into a list of non-overlapping intervals 
+(sorted by their start time) and merge if necessary. This involves finding the correct position for the new interval 
+and ensuring that any overlapping intervals are merged correctly.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org4091487" class="outline-2">
+<h2 id="org4091487">Solution Outline</h2>
+<div class="outline-text-2" id="text-org4091487">
+<ul class="org-ul">
+<li><b><b>Preferred Structure:</b></b> Arrays to hold the intervals.</li>
+<li><b><b>Brute Force vs Optimal Solution:</b></b> 
+<ul class="org-ul">
+<li><b>Brute Force:</b> Iterate through the intervals, insert the new interval in the correct position, and then merge the intervals.</li>
+<li><b>Optimal Solution:</b> Use a single pass to insert and merge intervals by leveraging the sorted order of the intervals.</li>
+</ul></li>
+
+<li><b><b>Algorithm Choice:</b></b> Greedy algorithm to merge intervals efficiently. The complexity should ideally be O(n).</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org6ff4dd6" class="outline-2">
+<h2 id="org6ff4dd6">Setup</h2>
+<div class="outline-text-2" id="text-org6ff4dd6">
+<div class="org-src-container">
+<pre class="src src-js">/**
+ * Function to insert and merge intervals
+ * @param {number[][]} intervals - List of non-overlapping intervals sorted by start time
+ * @param {number[]} newInterval - Interval to be inserted
+ * @return {number[][]} - New list of merged intervals
+ */
+function insert(intervals, newInterval) { 
+    const result = [];
+    let i = 0;
+    let [newStart, newEnd] = newInterval;
+
+    // push before start
+    while (i &lt; intervals.length) {
+        const [startC, endC] = intervals[i];
+        if (endC &lt; newStart) {
+            result.push(intervals[i]);
+            i++;
+        } else {
+            break;
+        }
+    }
+
+    console.log('After 1:');
+    console.table(result);
+
+
+    //  overlappings
+    let [start, end] = newInterval;
+    while (i &lt; intervals.length) {
+        const [startC, endC] = intervals[i];
+        if (startC &lt;= end) {
+            start = Math.min(start, startC);
+            end = Math.max(end, endC);
+            i++;
+        } else {
+            break;
+        }
+    }
+    result.push([start, end]);
+
+    console.log('After 2:');
+    console.table(result);
+
+    // Add the rest of the intervals
+    while (i &lt; intervals.length) {
+        result.push(intervals[i]);
+        i++;
+    }
+
+    console.log('After 3:');
+    console.table(result);
+
+    return result;
+
+}
+
+// Test cases
+const testCases = [
+    { intervals: [[1,3],[6,9]], newInterval: [2,5], expected: [[1,5],[6,9]] },
+    { intervals: [[1,2],[3,5],[6,7],[8,10],[12,16]], newInterval: [4,8], expected: [[1,2],[3,10],[12,16]] },
+    { intervals: [], newInterval: [5,7], expected: [[5,7]] },
+    { intervals: [[1,5]], newInterval: [2,3], expected: [[1,5]] },
+    { intervals: [[1,5]], newInterval: [2,7], expected: [[1,7]] }
+];
+
+testCases.forEach((test, index) =&gt; {
+    const result = insert(test.intervals, test.newInterval);
+    console.log(`Test Case ${index + 1}: ${result.length === test.expected.length &amp;&amp; 
+                 result.every((val, i) =&gt; val[0] === test.expected[i][0] &amp;&amp; val[1] === test.expected[i][1]) 
+                 ? 'Passed' : 'Failed'} (Expected: ${JSON.stringify(test.expected)}, Got: ${JSON.stringify(result)})`);
+});
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+Created by d)zharii.
+</div>
+</body>
+</html>
