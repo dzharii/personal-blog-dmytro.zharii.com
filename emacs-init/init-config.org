@@ -47,7 +47,7 @@ This section contains configuration variables for the project. These variables s
 <nav><a href=\"/\" tabindex=\"0\">&larrhk; Back to Index</a></nav>")
 
 ;; List of extensions considered static files
-(setq static-extensions "js\\|css\\|svg\\|csv\\|png\\|jpg\\|jpeg\\|gif")
+(setq static-extensions "org\\|js\\|css\\|svg\\|csv\\|png\\|jpg\\|jpeg\\|gif")
 
 ;; Additional static files to include explicitly
 (setq static-include '(".htaccess"))

@@ -1,0 +1,196 @@
+* 57. Insert Interval
+:PROPERTIES:
+:Created: 2024-05-31
+:END:
+
+* Problem Overview
+
+The problem "Insert Interval" requires us to insert a new interval into a list of non-overlapping intervals 
+(sorted by their start time) and merge if necessary. This involves finding the correct position for the new interval 
+and ensuring that any overlapping intervals are merged correctly.
+
+* Solution Outline
+
+- **Preferred Structure:** Arrays to hold the intervals.
+- **Brute Force vs Optimal Solution:** 
+  - *Brute Force:* Iterate through the intervals, insert the new interval in the correct position, and then merge the intervals.
+  - *Optimal Solution:* Use a single pass to insert and merge intervals by leveraging the sorted order of the intervals.
+
+- **Algorithm Choice:** Greedy algorithm to merge intervals efficiently. The complexity should ideally be O(n).
+
+* Setup
+
+#+begin_src js
+  /**
+   ,* Function to insert and merge intervals
+   ,* @param {number[][]} intervals - List of non-overlapping intervals sorted by start time
+   ,* @param {number[]} newInterval - Interval to be inserted
+   ,* @return {number[][]} - New list of merged intervals
+   ,*/
+  function insert(intervals, newInterval) { 
+      const result = [];
+      let i = 0;
+      let [newStart, newEnd] = newInterval;
+
+      // push before start
+      while (i < intervals.length) {
+          const [startC, endC] = intervals[i];
+          if (endC < newStart) {
+              result.push(intervals[i]);
+              i++;
+          } else {
+              break;
+          }
+      }
+
+      console.log('After 1:');
+      console.table(result);
+
+
+      //  overlappings
+      let [start, end] = newInterval;
+      while (i < intervals.length) {
+          const [startC, endC] = intervals[i];
+          if (startC <= end) {
+              start = Math.min(start, startC);
+              end = Math.max(end, endC);
+              i++;
+          } else {
+              break;
+          }
+      }
+      result.push([start, end]);
+
+      console.log('After 2:');
+      console.table(result);
+
+      // Add the rest of the intervals
+      while (i < intervals.length) {
+          result.push(intervals[i]);
+          i++;
+      }
+
+      console.log('After 3:');
+      console.table(result);
+
+      return result;
+
+  }
+
+  // Test cases
+  const testCases = [
+      { intervals: [[1,3],[6,9]], newInterval: [2,5], expected: [[1,5],[6,9]] },
+      { intervals: [[1,2],[3,5],[6,7],[8,10],[12,16]], newInterval: [4,8], expected: [[1,2],[3,10],[12,16]] },
+      { intervals: [], newInterval: [5,7], expected: [[5,7]] },
+      { intervals: [[1,5]], newInterval: [2,3], expected: [[1,5]] },
+      { intervals: [[1,5]], newInterval: [2,7], expected: [[1,7]] }
+  ];
+
+  testCases.forEach((test, index) => {
+      const result = insert(test.intervals, test.newInterval);
+      console.log(`Test Case ${index + 1}: ${result.length === test.expected.length && 
+                   result.every((val, i) => val[0] === test.expected[i][0] && val[1] === test.expected[i][1]) 
+                   ? 'Passed' : 'Failed'} (Expected: ${JSON.stringify(test.expected)}, Got: ${JSON.stringify(result)})`);
+  });
+#+end_src
+
+#+RESULTS:
+#+begin_example
+After 1:
+┌─────────┐
+│ (index) │
+├─────────┤
+└─────────┘
+After 2:
+┌─────────┬───┬───┐
+│ (index) │ 0 │ 1 │
+├─────────┼───┼───┤
+│ 0       │ 1 │ 5 │
+└─────────┴───┴───┘
+After 3:
+┌─────────┬───┬───┐
+│ (index) │ 0 │ 1 │
+├─────────┼───┼───┤
+│ 0       │ 1 │ 5 │
+│ 1       │ 6 │ 9 │
+└─────────┴───┴───┘
+Test Case 1: Passed (Expected: [[1,5],[6,9]], Got: [[1,5],[6,9]])
+After 1:
+┌─────────┬───┬───┐
+│ (index) │ 0 │ 1 │
+├─────────┼───┼───┤
+│ 0       │ 1 │ 2 │
+└─────────┴───┴───┘
+After 2:
+┌─────────┬───┬────┐
+│ (index) │ 0 │ 1  │
+├─────────┼───┼────┤
+│ 0       │ 1 │ 2  │
+│ 1       │ 3 │ 10 │
+└─────────┴───┴────┘
+After 3:
+┌─────────┬────┬────┐
+│ (index) │ 0  │ 1  │
+├─────────┼────┼────┤
+│ 0       │ 1  │ 2  │
+│ 1       │ 3  │ 10 │
+│ 2       │ 12 │ 16 │
+└─────────┴────┴────┘
+Test Case 2: Passed (Expected: [[1,2],[3,10],[12,16]], Got: [[1,2],[3,10],[12,16]])
+After 1:
+┌─────────┐
+│ (index) │
+├─────────┤
+└─────────┘
+After 2:
+┌─────────┬───┬───┐
+│ (index) │ 0 │ 1 │
+├─────────┼───┼───┤
+│ 0       │ 5 │ 7 │
+└─────────┴───┴───┘
+After 3:
+┌─────────┬───┬───┐
+│ (index) │ 0 │ 1 │
+├─────────┼───┼───┤
+│ 0       │ 5 │ 7 │
+└─────────┴───┴───┘
+Test Case 3: Passed (Expected: [[5,7]], Got: [[5,7]])
+After 1:
+┌─────────┐
+│ (index) │
+├─────────┤
+└─────────┘
+After 2:
+┌─────────┬───┬───┐
+│ (index) │ 0 │ 1 │
+├─────────┼───┼───┤
+│ 0       │ 1 │ 5 │
+└─────────┴───┴───┘
+After 3:
+┌─────────┬───┬───┐
+│ (index) │ 0 │ 1 │
+├─────────┼───┼───┤
+│ 0       │ 1 │ 5 │
+└─────────┴───┴───┘
+Test Case 4: Passed (Expected: [[1,5]], Got: [[1,5]])
+After 1:
+┌─────────┐
+│ (index) │
+├─────────┤
+└─────────┘
+After 2:
+┌─────────┬───┬───┐
+│ (index) │ 0 │ 1 │
+├─────────┼───┼───┤
+│ 0       │ 1 │ 7 │
+└─────────┴───┴───┘
+After 3:
+┌─────────┬───┬───┐
+│ (index) │ 0 │ 1 │
+├─────────┼───┼───┤
+│ 0       │ 1 │ 7 │
+└─────────┴───┴───┘
+Test Case 5: Passed (Expected: [[1,7]], Got: [[1,7]])
+undefined
+#+end_example
+
