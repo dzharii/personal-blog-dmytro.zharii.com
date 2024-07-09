@@ -12,6 +12,14 @@ body { background-color: #fffff8; color: #111; }
 /* Typography */
 body { font-family: Palatino, Georgia, serif; }
 pre,code,tt { font-family: "Consolas", ui-monospace, monospace; font-size: 0.9em; }
+pre.src {
+    padding: 10pt;
+    white-space: pre-wrap;
+    border-radius: 5px;
+    border: 1px solid silver;
+    outline: 1px solid black;
+}
+
 a:visited { color: LinkText; }
 h1,h2,h3,h4,h5,h6 { font-weight: 400; }
 h2,h3,h4,h5,h6 { font-style: italic; }

@@ -49,7 +49,7 @@ This section contains configuration variables for the project. These variables s
 (setq custom-html-head "\
 <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
 <link rel=\"stylesheet\" href=\"/static/t.css\"/>
-<link rel=\"stylesheet\" href=\"/static/highlightjs/styles/base16/green-screen.min.css\"/>")
+<link rel=\"stylesheet\" href=\"/static/highlightjs/styles/base16/brewer.css\"/>")
 
 ;; Custom HTML for navigation bar (applies when :html-link-home is non-nil)
 (setq custom-html-nav "\
