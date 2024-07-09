@@ -35,7 +35,7 @@ This section contains configuration variables for the project. These variables s
 
 ;; Default HTML to include at the footer if #+options: html-postamble:t
 (setq custom-html-postamble-format
-      '(("en" "&copy; %a. Contact me at &lt;%e&gt;
+      '(("en" "&copy; %a.
 <script src=\"/static/highlightjs/highlight.min.js\"></script>
 <script>
   document.addEventListener('DOMContentLoaded', (event) => {
