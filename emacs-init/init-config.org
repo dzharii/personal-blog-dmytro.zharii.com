@@ -31,11 +31,19 @@ This section contains configuration variables for the project. These variables s
 ;      '(("en" "&copy; %a. Contact me at &lt;%e&gt;")))
 ;(setq custom-html-postamble-format
 ;      '(("en" "Created by %a.")))
+
+
 ;; Default HTML to include at the footer if #+options: html-postamble:t
 (setq custom-html-postamble-format
       '(("en" "&copy; %a. Contact me at &lt;%e&gt;
 <script src=\"/static/highlightjs/highlight.min.js\"></script>
-<script>hljs.initHighlightingOnLoad();</script>")))
+<script>
+  document.addEventListener('DOMContentLoaded', (event) => {
+    document.querySelectorAll('pre.src').forEach((block) => {
+      hljs.highlightElement(block);
+    });
+  });
+</script>")))
 
 ;; Custom HTML to include inside <head>
 (setq custom-html-head "\

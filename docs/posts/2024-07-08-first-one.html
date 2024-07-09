@@ -16,14 +16,20 @@
 Published 
 </div>
 <div id="content" class="content">
-<div id="outline-container-orgbef8fe6" class="outline-2">
-<h2 id="orgbef8fe6">The First Post</h2>
+<div id="outline-container-org4b95f1a" class="outline-2">
+<h2 id="org4b95f1a">The First Post</h2>
 </div>
 </div>
 <div id="postamble" class="status">
 &copy; d)zharii. Contact me at &lt;<a href="mailto:home@DESKTOP-FKN1U1P">home@DESKTOP-FKN1U1P</a>&gt;
 <script src="/static/highlightjs/highlight.min.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
+<script>
+  document.addEventListener('DOMContentLoaded', (event) => {
+    document.querySelectorAll('pre.src').forEach((block) => {
+      hljs.highlightElement(block);
+    });
+  });
+</script>
 </div>
 </body>
 </html>

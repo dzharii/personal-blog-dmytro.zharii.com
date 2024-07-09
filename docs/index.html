@@ -13,9 +13,9 @@
 </head>
 <body>
 <div id="content" class="content">
-<div id="outline-container-org1725797" class="outline-2">
-<h2 id="org1725797">Hello, World!</h2>
-<div class="outline-text-2" id="text-org1725797">
+<div id="outline-container-org384a0b7" class="outline-2">
+<h2 id="org384a0b7">Hello, World!</h2>
+<div class="outline-text-2" id="text-org384a0b7">
 <p>
 Next, check this: 
 </p>
@@ -28,7 +28,13 @@ Next, check this:
 <div id="postamble" class="status">
 &copy; d)zharii. Contact me at &lt;<a href="mailto:home@DESKTOP-FKN1U1P">home@DESKTOP-FKN1U1P</a>&gt;
 <script src="/static/highlightjs/highlight.min.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
+<script>
+  document.addEventListener('DOMContentLoaded', (event) => {
+    document.querySelectorAll('pre.src').forEach((block) => {
+      hljs.highlightElement(block);
+    });
+  });
+</script>
 </div>
 </body>
 </html>

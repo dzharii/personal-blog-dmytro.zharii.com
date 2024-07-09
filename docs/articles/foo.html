@@ -24,14 +24,14 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur interdum tell
 </p>
 
 
-<figure id="org16b5b84">
+<figure id="org6719047">
 <img src="./exports-imports.png" alt="exports-imports.png" class="note">
 
 <figcaption><span class="figure-number">Figure 1: </span>This is an example of the <code>.note</code> class for images</figcaption>
 </figure>
 
 
-<figure id="org6067b90">
+<figure id="org84db898">
 <img src="./rhino.png" alt="rhino.png" class="aside">
 
 <figcaption><span class="figure-number">Figure 2: </span>This is an example of the <code>.aside</code> class for images</figcaption>
@@ -46,7 +46,7 @@ Integer ac leo et elit volutpat ultricies eu et eros. Morbi vestibulum metus et 
 </p>
 
 
-<figure id="org5bb01aa">
+<figure id="orge9d56fc">
 <img src="./napoleons-march.png" alt="napoleons-march.png" class="full">
 
 <figcaption><span class="figure-number">Figure 3: </span>This is an example of the <code>.full</code> class for images</figcaption>
@@ -57,33 +57,33 @@ Proin a ligula eros. In eget felis odio. Cras leo lectus, mattis in posuere vel,
 </p>
 
 
-<figure id="org5e762fb">
+<figure id="orgc39cd17">
 <img src="./photo.jpg" alt="photo.jpg" class="triptych">
 
 <figcaption><span class="figure-number">Figure 4: </span><code>.triptych</code></figcaption>
 </figure>
 
 
-<figure id="org7f7c257">
+<figure id="org3878d02">
 <img src="./photo.jpg" alt="photo.jpg" class="triptych">
 
 </figure>
 
 
-<figure id="orgff43b73">
+<figure id="orga15ce50">
 <img src="./photo.jpg" alt="photo.jpg" class="triptych">
 
 </figure>
 
 
-<figure id="orgcb7120b">
+<figure id="org25b4a3c">
 <img src="./photo.jpg" alt="photo.jpg" class="diptych">
 
 <figcaption><span class="figure-number">Figure 5: </span><code>.diptych</code></figcaption>
 </figure>
 
 
-<figure id="org0d576dd">
+<figure id="org0ec08e8">
 <img src="./photo.jpg" alt="photo.jpg" class="diptych">
 
 </figure>
@@ -95,7 +95,13 @@ Maecenas auctor porttitor consequat. Cras in porttitor eros. Maecenas tincidunt 
 <div id="postamble" class="status">
 &copy; d)zharii. Contact me at &lt;<a href="mailto:home@DESKTOP-FKN1U1P">home@DESKTOP-FKN1U1P</a>&gt;
 <script src="/static/highlightjs/highlight.min.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
+<script>
+  document.addEventListener('DOMContentLoaded', (event) => {
+    document.querySelectorAll('pre.src').forEach((block) => {
+      hljs.highlightElement(block);
+    });
+  });
+</script>
 </div>
 </body>
 </html>
