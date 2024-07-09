@@ -29,20 +29,26 @@ This section contains configuration variables for the project. These variables s
 ;; Default HTML to include at the footer if #+options: html-postamble:t
 ;(setq custom-html-postamble-format
 ;      '(("en" "&copy; %a. Contact me at &lt;%e&gt;")))
+;(setq custom-html-postamble-format
+;      '(("en" "Created by %a.")))
+;; Default HTML to include at the footer if #+options: html-postamble:t
 (setq custom-html-postamble-format
-      '(("en" "Created by %a.")))
+      '(("en" "&copy; %a. Contact me at &lt;%e&gt;
+<script src=\"/static/highlightjs/highlight.min.js\"></script>
+<script>hljs.initHighlightingOnLoad();</script>")))
 
 ;; Custom HTML to include inside <head>
 (setq custom-html-head "\
 <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
-<link rel=\"stylesheet\" href=\"/static/t.css\"/>")
+<link rel=\"stylesheet\" href=\"/static/t.css\"/>
+<link rel=\"stylesheet\" href=\"/static/highlightjs/styles/brown-paper.css\"/>")
 
 ;; Custom HTML for navigation bar (applies when :html-link-home is non-nil)
 (setq custom-html-nav "\
 <nav><a href=\"/\" tabindex=\"0\">&larrhk; Back to Index</a></nav>")
 
 ;; List of extensions considered static files
-(setq static-extensions "css\\|svg\\|csv\\|png\\|jpg\\|jpeg\\|gif")
+(setq static-extensions "js\\|css\\|svg\\|csv\\|png\\|jpg\\|jpeg\\|gif")
 
 ;; Additional static files to include explicitly
 (setq static-include '(".htaccess"))

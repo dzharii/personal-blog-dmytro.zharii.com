@@ -9,29 +9,30 @@
 <meta name="generator" content="Org Mode" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="/static/t.css"/>
+<link rel="stylesheet" href="/static/highlightjs/styles/brown-paper.css"/>
 </head>
 <body>
 <nav><a href="/" tabindex="0">&larrhk; Back to Index</a></nav><div id="preamble" class="status">
 Published 
 </div>
 <div id="content" class="content">
-<div id="outline-container-orga2b8eb3" class="outline-2">
-<h2 id="orga2b8eb3">543. Diameter of Binary Tree</h2>
-<div class="outline-text-2" id="text-orga2b8eb3">
+<div id="outline-container-org035861c" class="outline-2">
+<h2 id="org035861c">543. Diameter of Binary Tree</h2>
+<div class="outline-text-2" id="text-org035861c">
 </div>
 
-<div id="outline-container-orga6db20a" class="outline-3">
-<h3 id="orga6db20a">Problem:</h3>
-<div class="outline-text-3" id="text-orga6db20a">
+<div id="outline-container-orgd7d6ffa" class="outline-3">
+<h3 id="orgd7d6ffa">Problem:</h3>
+<div class="outline-text-3" id="text-orgd7d6ffa">
 <p>
 The problem is to determine the diameter of a binary tree. The diameter of a binary tree is defined as the length of the longest path between any two nodes in a tree. This path may or may not pass through the root.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgfe4be28" class="outline-3">
-<h3 id="orgfe4be28">Prerequsite</h3>
-<div class="outline-text-3" id="text-orgfe4be28">
+<div id="outline-container-orgaa907ad" class="outline-3">
+<h3 id="orgaa907ad">Prerequsite</h3>
+<div class="outline-text-3" id="text-orgaa907ad">
 <p>
 To solve this problem, work on the <a href="https://leetcode.com/problems/maximum-depth-of-binary-tree/">104. Maximum Depth of Binary Tree</a> first.
 <a href="https://leetcode.com/problems/diameter-of-n-ary-tree/">Diameter of N-Ary Tree</a>
@@ -40,9 +41,9 @@ To solve this problem, work on the <a href="https://leetcode.com/problems/maximu
 </div>
 
 
-<div id="outline-container-org79bf159" class="outline-3">
-<h3 id="org79bf159">Solution Description:</h3>
-<div class="outline-text-3" id="text-org79bf159">
+<div id="outline-container-org45c1f18" class="outline-3">
+<h3 id="org45c1f18">Solution Description:</h3>
+<div class="outline-text-3" id="text-org45c1f18">
 <p>
 To implement the solution, we need to use a recursive Depth-First Search (DFS) approach. The main idea is to calculate the depth of the left subtree and the right subtree for each node, and track the maximum diameter found at each step.
 </p>
@@ -63,9 +64,9 @@ The time complexity of this approach is O(n) because each node is visited once. 
 </div>
 </div>
 
-<div id="outline-container-org04c7218" class="outline-3">
-<h3 id="org04c7218">Example:</h3>
-<div class="outline-text-3" id="text-org04c7218">
+<div id="outline-container-org12c77db" class="outline-3">
+<h3 id="org12c77db">Example:</h3>
+<div class="outline-text-3" id="text-org12c77db">
 <p>
 Consider a binary tree:
 ```
@@ -80,9 +81,9 @@ The longest path goes from node 4 to node 5 through nodes 2 and 1, so the diamet
 </div>
 </div>
 
-<div id="outline-container-org88b0639" class="outline-3">
-<h3 id="org88b0639">Setup:</h3>
-<div class="outline-text-3" id="text-org88b0639">
+<div id="outline-container-orgbe619df" class="outline-3">
+<h3 id="orgbe619df">Setup:</h3>
+<div class="outline-text-3" id="text-orgbe619df">
 <p>
 We'll define a helper function to recursively calculate the depth of the tree and update the diameter. We'll use modern JavaScript to implement this.
 </p>
@@ -149,7 +150,9 @@ testCases.forEach((test, index) =&gt; {
 </div>
 </div>
 <div id="postamble" class="status">
-Created by d)zharii.
+&copy; d)zharii. Contact me at &lt;<a href="mailto:home@DESKTOP-FKN1U1P">home@DESKTOP-FKN1U1P</a>&gt;
+<script src="/static/highlightjs/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
 </div>
 </body>
 </html>
