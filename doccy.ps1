@@ -1,3 +1,4 @@
+#!/bin/env pwsh
 param(
     [Parameter(Mandatory=$true)]
     [string]$Command
@@ -10,6 +11,11 @@ $COMMAND_HELP = "help"
 $COMMAND_EDIT = "edit"
 $COMMAND_PUBLISH = "pub"
 $COMMAND_PUBLISH_FORCE = "pub-force"
+
+$EMACS = if (Get-Command -Name "emacs" -erroraction silentlycontinue) { "emacs" } 
+	 elseif (Get-Command -Name "runemacs" -erroraction silentlycontinue) { "runemacs" }
+         else { throw "Critical: Emacs command was not found" } 
+
 
 $HELP_MESSAGE = @"
 Usage:
@@ -35,15 +41,15 @@ switch ($Command.ToLower()) {
     }
 
     $COMMAND_EDIT {
-        Start-Process -FilePath "runemacs" -WorkingDirectory $ThisScriptFolderPath -ArgumentList "--init-directory .\emacs-init"
+        Start-Process -FilePath $EMACS -WorkingDirectory $ThisScriptFolderPath -ArgumentList "--init-directory ./emacs-init"
     }
 
     $COMMAND_PUBLISH {
-        & runemacs --init-directory .\emacs-init --eval='(doccy-publish)'
+        & $($EMACS) --init-directory ./emacs-init --eval='(doccy-publish)'
     }
 
     $COMMAND_PUBLISH_FORCE {
-        & runemacs --init-directory .\emacs-init --eval='(doccy-publish-force)'
+        & $($EMACS) --init-directory ./emacs-init --eval='(doccy-publish-force)'
     }
 
 

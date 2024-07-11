@@ -1,0 +1,141 @@
+* 143. Reorder List
+  :PROPERTIES:
+  :Created: 2024-05-21
+  :END:
+
+  * Problem Overview
+The problem "Reorder List" requires us to reorder a singly linked list such that the nodes are arranged in a specific pattern. Specifically, given a list `L0 → L1 → … → Ln-1 → Ln`, we need to transform it to `L0 → Ln → L1 → Ln-1 → L2 → Ln-2 → …`.
+
+* Solution Outline
+  - **Preferred Structure:** Linked List.
+  - **Brute Force vs Optimal Solution:** The brute force approach would involve iterating through the list multiple times to rearrange the nodes. The optimal solution involves using a two-pointer technique and list reversal.
+  - **Algorithm Choice:** The most suitable algorithm involves:
+    1. Finding the middle of the linked list.
+    2. Reversing the second half of the list.
+    3. Merging the two halves in the required order.
+
+* Plan
+1. **Find the Middle:** Use the slow and fast pointer technique to find the middle node of the linked list.
+2. **Reverse the Second Half:** Reverse the second half of the linked list.
+3. **Merge the Two Halves:** Merge the two halves, alternating nodes from each half.
+
+* Initial Setup and Test Cases
+#+begin_src js
+  /**
+   ,* Definition for singly-linked list.
+   ,* function ListNode(val, next) {
+   ,*     this.val = (val===undefined ? 0 : val)
+   ,*     this.next = (next===undefined ? null : next)
+   ,* }
+   ,*/
+
+  /**
+   ,* Function to reorder the list
+   ,* @param {ListNode} head - The head of the linked list
+   ,*/
+  function reorderList(head) {
+    if (!head || !head.next) return;
+
+    // Helper 
+    function printList(head) {
+        const result = [];
+        let current = head;
+        while (current) {
+            result.push(current.val);
+            current = current.next;
+        }
+        return result;
+    }
+
+    // mid
+    function findMid(h) {
+        let slow = h;
+        let fast = h.next;
+        while (fast && fast.next) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;
+    }
+
+    let mid = findMid(head);
+    let secondHalf = mid.next;
+    mid.next = null;
+
+    // rev
+    function reverseMid(mid) {
+        let prev = null;
+        let cur = mid;
+        while (cur) {
+            let next = cur.next;
+            cur.next = prev;
+            prev = cur;
+            cur = next;
+        }
+        return prev;
+    }
+
+    let head2 = reverseMid(secondHalf);
+
+    // zip
+    function zip(first, second) {
+        while (second) {
+            let temp1 = first.next;
+            let temp2 = second.next;
+            first.next = second;
+            second.next = temp1;
+            first = temp1;
+            second = temp2;
+        }
+    }
+
+    zip(head, head2);
+  }
+
+  // Test cases
+  const testCases = [
+      { head: [1,2,3,4], expected: [1,4,2,3] },
+      { head: [1,2,3,4,5], expected: [1,5,2,4,3] },
+  ];
+
+  function ListNode(val, next) {
+      this.val = (val===undefined ? 0 : val)
+      this.next = (next===undefined ? null : next)
+  }
+
+
+  // Function to print list nodes for testing
+  function printList(head) {
+      const result = [];
+      let current = head;
+      while (current) {
+          result.push(current.val);
+          current = current.next;
+      }
+      return result;
+  }
+
+  // Helper function to create linked list from array
+  function createLinkedList(arr) {
+      let dummy = new ListNode(0);
+      let current = dummy;
+      for (const val of arr) {
+          current.next = new ListNode(val);
+          current = current.next;
+      }
+      return dummy.next;
+  }
+
+  testCases.forEach((test, index) => {
+      const head = createLinkedList(test.head);
+      reorderList(head);
+      const result = printList(head);
+      console.log(`Test Case ${index + 1}: ${JSON.stringify(result) === JSON.stringify(test.expected) ? 'Passed' : 'Failed'} (Expected: ${JSON.stringify(test.expected)}, Got: ${JSON.stringify(result)})`);
+  });
+#+end_src
+
+#+RESULTS:
+: Test Case 1: Passed (Expected: [1,4,2,3], Got: [1,4,2,3])
+: Test Case 2: Passed (Expected: [1,5,2,4,3], Got: [1,5,2,4,3])
+: undefined
+

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2024-07-10 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>&lrm;</title>
+<meta name="author" content="d)zharii" />
+<meta name="generator" content="Org Mode" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/t.css"/>
+</head>
+<body>
+<nav><a href="/" tabindex="0">&larrhk; Back to Index</a></nav><div id="preamble" class="status">
+Published 
+</div>
+<div id="content" class="content">
+<div id="outline-container-orgb92dc42" class="outline-2">
+<h2 id="orgb92dc42">150. Evaluate Reverse Polish Notation</h2>
+<div class="outline-text-2" id="text-orgb92dc42">
+<ul class="org-ul">
+<li>Problem Overview</li>
+</ul>
+<p>
+The problem involves evaluating an arithmetic expression in Reverse Polish Notation (RPN). In RPN, operators follow their operands, which eliminates the need for parentheses to denote operation precedence. The task is to evaluate the expression using a stack data structure.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org738a698" class="outline-2">
+<h2 id="org738a698">Solution Outline</h2>
+<div class="outline-text-2" id="text-org738a698">
+<ul class="org-ul">
+<li><b><b>Preferred Structure:</b></b> Utilize a stack to keep track of numbers.</li>
+<li><b><b>Brute Force vs Optimal Solution:</b></b> 
+<ul class="org-ul">
+<li>Brute Force: Directly evaluate using multiple passes or without using a stack.</li>
+<li>Optimal: Use a single stack to efficiently process the expression in one pass.</li>
+</ul></li>
+<li><b><b>Algorithm Choice:</b></b> A stack-based approach ensures O(n) time complexity where n is the number of tokens in the input.</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-js">/**
+ * Evaluate the value of an arithmetic expression in Reverse Polish Notation.
+ * @param {string[]} tokens - An array of strings representing the RPN expression.
+ * @returns {number} - The result of the expression.
+ */
+function evalRPN(tokens) {
+    const stack = [];
+
+    tokens.forEach(token =&gt; {
+        if (!isNaN(token)) {
+            stack.push(Number(token));
+            console.log(`Push =&gt; ${tokens}`)
+        } else {
+            const b = stack.pop();
+            const a = stack.pop();
+            console.log(``);
+            switch (token) {
+                case '+':
+                    const summ = a + b;
+                    console.log(`summ = ${summ}`);
+                    stack.push(summ);
+                    break;
+                case '-':
+                   const summ2 = a - b;
+                   console.log(`summ2 = ${summ2}`);
+                   stack.push(summ2);
+                    break
+                ;
+                case '*':
+                    const mul = a * b;
+                    console.log(`mul = ${mul}`);
+                    stack.push(mul);
+                    break;
+
+                case '/':
+                    const div = (a / b) | 0;
+                    console.log(`div = ${div}`);
+                    stack.push(div);
+                    break;
+                default:
+                throw "bleah!";
+            }
+        }
+    });
+
+    // The result is the last item in the stack
+    if (stack.length === 0) {
+        throw "bleh, no item on stack.";
+    }
+    return stack.pop();
+}
+
+// Test cases
+const testCases = [
+    { tokens: ["2", "1", "+", "3", "*"], expected: 9 },
+    { tokens: ["4", "13", "5", "/", "+"], expected: 6 },
+    { tokens: ["10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+"], expected: 22 },
+];
+
+testCases.forEach((test, index) =&gt; {
+    const result = evalRPN(test.tokens);
+    console.log(`Test Case ${index + 1}: ${result === test.expected ? 'Passed' : 'Failed'} (Expected: ${test.expected}, Got: ${result})`);
+});
+</pre>
+</div>
+
+<p>
+<b><b>Solution Analysis</b></b>
+</p>
+<ul class="org-ul">
+<li><b><b>Time Complexity:</b></b> O(n), where n is the number of tokens, as each token is processed once.</li>
+<li><b><b>Space Complexity:</b></b> O(n), as the stack may hold up to n/2 elements in the worst case.</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+&copy; d)zharii. <a href="/sitemap.html">sitemap</a>
+</div>
+</body>
+</html>

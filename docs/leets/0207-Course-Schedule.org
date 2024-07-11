@@ -1,0 +1,200 @@
+﻿* 207. Course Schedule
+:PROPERTIES:
+:Created: 2024-07-10
+:END:
+
+* Submission
+[[https://leetcode.com/submissions/detail/1317044983/][Course Schedule]]
+
+* Problem:
+The problem is the Course Schedule problem (often referred to as Leetcode 207). The given problem can be restated as follows:
+
+You are given a total of `numCourses`, labeled from `0` to `numCourses-1`. You are also given an array `prerequisites` where `prerequisites[i] = [ai, bi]` indicates that in order to take course `ai`, you must first take course `bi`.
+
+Write a function that determines if it is possible to finish all courses. If there is a cyclic dependency, it is impossible to finish all courses.
+
+    - For example:
+        - Input: numCourses = 2, prerequisites = [[1, 0]]
+        - Output: True
+        - Explanation: There are a total of 2 courses to take. To take course 1, you must first take course 0. So it is possible.
+
+* Solution Description:
+To implement this, we need to represent the courses and their prerequisites as a directed graph and then check if the graph has any cycles. If it has a cycle, it means there is a circular dependency, and the courses cannot all be finished. We can use Depth-First Search (DFS) to detect cycles in the graph.
+
+Here’s the plan:
+1. Construct a graph using adjacency lists.
+2. Maintain a state for each course (unvisited, visiting, visited).
+3. Perform DFS on each unvisited course to detect cycles.
+
+Time Complexity: O(V + E) where V is the number of courses and E is the number of prerequisites since we might visit each course and prerequisite once.
+Space Complexity: O(V + E) to store the graph and the state of each course.
+
+* Example:
+Let’s take an example to clarify:
+    - Input: numCourses = 4, prerequisites = [[1, 0], [2, 1], [3, 2]]
+    - The graph would look like:
+        0 → 1 → 2 → 3 
+    - We perform a DFS starting from course 0, then 1, then 2, then 3. There’s no cycle, so the output is true.
+
+* Setup:
+Below is the general framework for implementing the solution using modern JavaScript. The `console.log` statements will help identify the input, actual result, and expected result.
+
+#+begin_src js :tangle "207_course_schedule.js"
+
+/**
+ ,* Determines if you can finish all courses given the prerequisites.
+ ,* @param {number} numCourses - Total number of courses
+ ,* @param {number[][]} prerequisites - List of prerequisite pairs
+ ,* @returns {boolean} True if all courses can be finished, otherwise False
+ ,*/
+function canFinish(numCourses, prerequisites) {
+    // Helper logging functions for environments without console support
+    const log = typeof NestedInteger !== 'undefined' ? () => {} : console.log;
+    const table = typeof NestedInteger !== 'undefined' ? () => {} : console.table;
+
+    if (prerequisites.length === 0) {
+        return true;
+    }
+
+    let g = Array(numCourses).fill(0).map(n => []);
+
+    const UNVISITED = 0;
+    const VISITING = 1;
+    const VISITED = 2;
+    const state = Array(numCourses).fill(UNVISITED);
+
+    for (const [course, prereq] of prerequisites) {
+        g[prereq].push(course);
+    }
+    table(g);
+
+    function hasCycle(v) {
+        if (state[v] === VISITING) {
+            return true;
+        }
+        if (state[v] === VISITED) {
+            return false;
+        }
+
+        state[v] = VISITING;
+        for (const neighbor of g[v]) {
+            if (hasCycle(neighbor)) {
+                return true;
+            }
+        }
+        state[v] = VISITED;
+        return false;
+    }
+
+    for (let i = 0; i < numCourses; i++) {
+        if (hasCycle(i)) {
+            log(`Cycle found! i = ${i}`);
+            return false;
+        }
+    }
+    return true;
+}
+
+// Test cases
+const testCases = [
+    { numCourses: 5, prerequisites: [[1,4],[2,4],[3,1],[3,2]], expected: true },
+    { numCourses: 2, prerequisites: [[1, 0]], expected: true },
+    { numCourses: 2, prerequisites: [[1, 0], [0, 1]], expected: false },
+    { numCourses: 4, prerequisites: [[1, 0], [2, 1], [3, 2]], expected: true },
+    { numCourses: 5, prerequisites: [[1, 0], [2, 1], [3, 2], [4, 3], [3, 1]], expected: true },
+    { numCourses: 3, prerequisites: [[0, 1], [1, 2], [2, 0]], expected: false },
+    // Additional test cases covering various scenarios
+    { numCourses: 1, prerequisites: [], expected: true },
+    { numCourses: 20, prerequisites: [[0,10],[3,18],[5,5],[6,11],[11,14],[13,1],[15,1],[17,4]], expected: false },
+];
+
+testCases.forEach((test, index) => {
+    const result = canFinish(test.numCourses, test.prerequisites);
+    console.log(`Test Case ${index + 1}: ${result === test.expected ? 'Passed' : 'Failed'} (Expected: ${test.expected}, Got: ${result})`);
+});
+#+end_src
+
+#+RESULTS:
+#+begin_example
+┌─────────┬───┬───┐
+│ (index) │ 0 │ 1 │
+├─────────┼───┼───┤
+│    0    │   │   │
+│    1    │ 3 │   │
+│    2    │ 3 │   │
+│    3    │   │   │
+│    4    │ 1 │ 2 │
+└─────────┴───┴───┘
+Test Case 1: Passed (Expected: true, Got: true)
+┌─────────┬───┐
+│ (index) │ 0 │
+├─────────┼───┤
+│    0    │ 1 │
+│    1    │   │
+└─────────┴───┘
+Test Case 2: Passed (Expected: true, Got: true)
+┌─────────┬───┐
+│ (index) │ 0 │
+├─────────┼───┤
+│    0    │ 1 │
+│    1    │ 0 │
+└─────────┴───┘
+Cycle found! i = 0
+Test Case 3: Passed (Expected: false, Got: false)
+┌─────────┬───┐
+│ (index) │ 0 │
+├─────────┼───┤
+│    0    │ 1 │
+│    1    │ 2 │
+│    2    │ 3 │
+│    3    │   │
+└─────────┴───┘
+Test Case 4: Passed (Expected: true, Got: true)
+┌─────────┬───┬───┐
+│ (index) │ 0 │ 1 │
+├─────────┼───┼───┤
+│    0    │ 1 │   │
+│    1    │ 2 │ 3 │
+│    2    │ 3 │   │
+│    3    │ 4 │   │
+│    4    │   │   │
+└─────────┴───┴───┘
+Test Case 5: Passed (Expected: true, Got: true)
+┌─────────┬───┐
+│ (index) │ 0 │
+├─────────┼───┤
+│    0    │ 2 │
+│    1    │ 0 │
+│    2    │ 1 │
+└─────────┴───┘
+Cycle found! i = 0
+Test Case 6: Passed (Expected: false, Got: false)
+Test Case 7: Passed (Expected: true, Got: true)
+┌─────────┬────┬────┐
+│ (index) │ 0  │ 1  │
+├─────────┼────┼────┤
+│    0    │    │    │
+│    1    │ 13 │ 15 │
+│    2    │    │    │
+│    3    │    │    │
+│    4    │ 17 │    │
+│    5    │ 5  │    │
+│    6    │    │    │
+│    7    │    │    │
+│    8    │    │    │
+│    9    │    │    │
+│   10    │ 0  │    │
+│   11    │ 6  │    │
+│   12    │    │    │
+│   13    │    │    │
+│   14    │ 11 │    │
+│   15    │    │    │
+│   16    │    │    │
+│   17    │    │    │
+│   18    │ 3  │    │
+│   19    │    │    │
+└─────────┴────┴────┘
+Cycle found! i = 5
+Test Case 8: Passed (Expected: false, Got: false)
+undefined
+#+end_example
