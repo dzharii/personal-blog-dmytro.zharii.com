@@ -1,0 +1,8 @@
+# Ignore Emacs backup files
+*~
+
+# Ignore Emacs autosave files
+\#*\#
+
+# Ignore Emacs lock files
+.\#*

@@ -1,0 +1,226 @@
+﻿* 15. 3Sum
+:PROPERTIES:
+:Created: 2024-07-02
+:END:
+
+org
+* Problem:
+Find all unique triplets in the array which gives the sum of zero. The solution set must not contain duplicate triplets.
+
+** Solution Description:
+To implement a solution for the 3Sum problem, we need to:
+1. Sort the array to enable the two-pointer approach for finding triplets.
+2. Iterate through the array with the first pointer, and for each element, use two additional pointers (one starting just after the first pointer, and the other starting from the end of the array) to find pairs that sum up to the negative value of the current element.
+3. If the sum of the triplet (current element and the values pointed by the two pointers) is zero, then it's a valid triplet.
+4. Move the pointers closer to skip duplicate elements and continue the search.
+5. Continue the iteration until all triplets are found.
+6. Return the list of unique triplets.
+
+* Note:-
+Time Complexity: O(n^2) â Sorting the array takes O(n log n) time and the two-pointer strategy takes O(n) time for each element, resulting in O(n^2) overall.
+Space Complexity: O(1) â aside from the space required for the output list, the solution uses a constant amount of space.
+
+** Example:
+Given array nums = [-1, 0, 1, 2, -1, -4],
+A solution set is: [[-1, 0, 1], [-1, -1, 2]]
+The algorithm starts by sorting the array: [-4, -1, -1, 0, 1, 2]
+- For the first element (-4), the remaining array is [-1, -1, 0, 1, 2]
+  - Using two pointers, we don't find any triplet that sums to zero
+- For the second element (-1), the remaining array is [-1, 0, 1, 2]
+  - We find triplets: [-1, -1, 2] and [-1, 0, 1]
+
+** Setup:
+Here is the general framework in which we will plug our code blocks. We will use modern JavaScript and include a testing setup to verify our solution.
+
+#+begin_src js :tangle "leetcode_15_3sum_solution.js"
+// Helper definitions to setup logging for testing.
+
+/**
+ ,* Main function to find all unique triplets in the array that sum to zero.
+ ,* @param {number[]} nums
+ ,* @returns {number[][]} - Array of arrays containing unique triplets
+ ,*/
+function threeSum(nums) {
+    const log = typeof NestedInteger !== 'undefined' ? () => {} : console.log;
+    const table = typeof NestedInteger !== 'undefined' ? () => {} : console.table;
+
+    nums = nums.sort((a, b) => a - b);
+
+    log("A", JSON.stringify(nums));
+
+    if (nums.length < 3) return [];
+    if (nums[0] === 0 && nums[0] === nums[nums.length - 1]) return [[0, 0, 0]];
+
+    const result = [];
+
+    for (let i = 0; i < nums.length - 2; i += 1) {
+        // Skip duplicates for the current element
+        if (i > 0 && nums[i] === nums[i - 1]) continue;
+
+        const a = nums[i];
+        let j = i + 1;
+        let k = nums.length - 1;
+
+        while (j < k) {
+            const b = nums[j];
+            const c = nums[k];
+            const tsum = a + b + c;
+
+            log('c', `i = ${i}; j = ${j}; k = ${k}`);
+            log('d', `a = ${a}; b = ${b}; c = ${c}`);
+            log('e', `tsum = ${tsum}`);
+
+            if (tsum === 0) {
+                result.push([a, b, c]);
+
+                while (j < k && nums[j] === b) j += 1;
+                while (j < k && nums[k] === c) k -= 1;
+            } else if (tsum < 0) {
+                j += 1;
+            } else {
+                k -= 1;
+            }
+            log('=======');
+        }
+    }
+
+    return result;
+}
+
+// Test cases to validate our solution.
+const testCases = [
+    { nums: [3,0,-2,-1,1,2], expected: [[-2,-1,3],[-2,0,2],[-1,0,1]] },
+    { nums: [-1, 0, 1, 2, -1, -4], expected: [[-1, 0, 1], [-1, -1, 2]] },
+    { nums: [], expected: [] },
+    { nums: [0], expected: [] },
+    { nums: [0, 0, 0], expected: [[0, 0, 0]] },
+    { nums: [-2, 0, 0, 2, 2], expected: [[-2, 0, 2]] },
+    // Additional edge case where we have multiple triplet combinations
+    { nums: [-4, -1, -1, 0, 1, 2], expected: [[-1, -1, 2], [-1, 0, 1]] }
+];
+
+// Execute the test cases to verify the solution.
+testCases.forEach((test, index) => {
+    const result = threeSum(test.nums);
+    console.log(`Test Case ${index + 1}: ${JSON.stringify(result) === JSON.stringify(test.expected) ? 'Passed' : 'Failed'} (Expected: ${JSON.stringify(test.expected)}, Got: ${JSON.stringify(result)})`);
+});
+#+end_src
+
+#+RESULTS:
+#+begin_example
+A [-2,-1,0,1,2,3]
+c i = 0; j = 1; k = 5
+d a = -2; b = -1; c = 3
+e tsum = 0
+=======
+c i = 0; j = 2; k = 4
+d a = -2; b = 0; c = 2
+e tsum = 0
+=======
+c i = 1; j = 2; k = 5
+d a = -1; b = 0; c = 3
+e tsum = 2
+=======
+c i = 1; j = 2; k = 4
+d a = -1; b = 0; c = 2
+e tsum = 1
+=======
+c i = 1; j = 2; k = 3
+d a = -1; b = 0; c = 1
+e tsum = 0
+=======
+c i = 2; j = 3; k = 5
+d a = 0; b = 1; c = 3
+e tsum = 4
+=======
+c i = 2; j = 3; k = 4
+d a = 0; b = 1; c = 2
+e tsum = 3
+=======
+c i = 3; j = 4; k = 5
+d a = 1; b = 2; c = 3
+e tsum = 6
+=======
+Test Case 1: Passed (Expected: [[-2,-1,3],[-2,0,2],[-1,0,1]], Got: [[-2,-1,3],[-2,0,2],[-1,0,1]])
+A [-4,-1,-1,0,1,2]
+c i = 0; j = 1; k = 5
+d a = -4; b = -1; c = 2
+e tsum = -3
+=======
+c i = 0; j = 2; k = 5
+d a = -4; b = -1; c = 2
+e tsum = -3
+=======
+c i = 0; j = 3; k = 5
+d a = -4; b = 0; c = 2
+e tsum = -2
+=======
+c i = 0; j = 4; k = 5
+d a = -4; b = 1; c = 2
+e tsum = -1
+=======
+c i = 1; j = 2; k = 5
+d a = -1; b = -1; c = 2
+e tsum = 0
+=======
+c i = 1; j = 3; k = 4
+d a = -1; b = 0; c = 1
+e tsum = 0
+=======
+c i = 3; j = 4; k = 5
+d a = 0; b = 1; c = 2
+e tsum = 3
+=======
+Test Case 2: Failed (Expected: [[-1,0,1],[-1,-1,2]], Got: [[-1,-1,2],[-1,0,1]])
+A []
+Test Case 3: Passed (Expected: [], Got: [])
+A [0]
+Test Case 4: Passed (Expected: [], Got: [])
+A [0,0,0]
+Test Case 5: Passed (Expected: [[0,0,0]], Got: [[0,0,0]])
+A [-2,0,0,2,2]
+c i = 0; j = 1; k = 4
+d a = -2; b = 0; c = 2
+e tsum = 0
+=======
+c i = 1; j = 2; k = 4
+d a = 0; b = 0; c = 2
+e tsum = 2
+=======
+c i = 1; j = 2; k = 3
+d a = 0; b = 0; c = 2
+e tsum = 2
+=======
+Test Case 6: Passed (Expected: [[-2,0,2]], Got: [[-2,0,2]])
+A [-4,-1,-1,0,1,2]
+c i = 0; j = 1; k = 5
+d a = -4; b = -1; c = 2
+e tsum = -3
+=======
+c i = 0; j = 2; k = 5
+d a = -4; b = -1; c = 2
+e tsum = -3
+=======
+c i = 0; j = 3; k = 5
+d a = -4; b = 0; c = 2
+e tsum = -2
+=======
+c i = 0; j = 4; k = 5
+d a = -4; b = 1; c = 2
+e tsum = -1
+=======
+c i = 1; j = 2; k = 5
+d a = -1; b = -1; c = 2
+e tsum = 0
+=======
+c i = 1; j = 3; k = 4
+d a = -1; b = 0; c = 1
+e tsum = 0
+=======
+c i = 3; j = 4; k = 5
+d a = 0; b = 1; c = 2
+e tsum = 3
+=======
+Test Case 7: Passed (Expected: [[-1,-1,2],[-1,0,1]], Got: [[-1,-1,2],[-1,0,1]])
+undefined
+#+end_example

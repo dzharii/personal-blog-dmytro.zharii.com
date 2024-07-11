@@ -1,0 +1,97 @@
+﻿* 401. Binary Watch
+:PROPERTIES:
+:Created: 2024-06-21
+:END:
+
+** Problem:
+A binary watch has 4 LEDs on the top that represent the hours (0-11), and the 6 LEDs on the bottom represent the minutes (0-59). Each LED represents a zero or one, with the least significant bit on the right.
+
+Given a non-negative integer n which represents the number of LEDs that are currently on, return all possible times the watch could represent.
+
+** Solution Description:
+To implement the solution, we need to generate all possible combinations of hour and minute counts where the total number of bits is equal to n. This can be achieved by iterating through all possible hours (0-11) and minutes (0-59) and counting their respective bits. If the sum of the bits equals n, we format the time as a string and store it.
+
+* Time Complexity: O(1), because there are a fixed number of hours (12) and minutes (60), resulting in a constant time complexity regardless of input size.
+* Space Complexity: O(1) for the variables and result storage, which does not grow with input size.
+
+** Example:
+For example, if n = 1, should return ['0:01', '0:02', '0:04', '0:08', '0:16', '0:32', '1:00', '2:00', '4:00', '8:00'] because each of these times has exactly one LED on.
+
+Here's how the algorithm will work step-by-step:
+1. Iterate through each hour (0 to 11).
+2. Iterate through each minute (0 to 59).
+3. Count the number of bits in the binary representation of the hour and minute.
+4. If the count of bits matches n, format the time and add it to the result list.
+5. Return the result list.
+
+** Setup:
+Here's the general framework for the solution implementation:
+
+#+begin_src js :tangle "401_binary_watch.js"
+
+/**
+ ,* Calculates the binary watch times with exactly n LEDs turned on
+ ,* @param {number} num - number of LEDs that are currently on
+ ,* @returns {string[]} - Array of possible times in 'h:mm' format
+ ,*/
+function readBinaryWatch(num) {
+    const log = typeof NestedInteger !== 'undefined' ? () => {} : console.log;
+    const table = typeof NestedInteger!== 'undefined' ? () => {} : console.table;
+
+    if (num > 10) {
+        return [];
+    }
+
+    function countSetBits(n, range) {
+        let cnt = 0;
+        for (let s = 0; s < range; s++) {
+            cnt += (n >> s) & 1;
+        }
+        return cnt;
+    }
+
+    function fmt(hour, minute) {
+        return `${hour}:${minute > 9 ? minute : '0' + minute}`;
+    }
+
+    // log(countSetBits(1, 6));
+    // log(countSetBits(6, 6));
+
+    const result = [];
+    for (let hour = 0; hour < 12; hour++) {
+        const hourBits = countSetBits(hour, 4);
+
+        if (hourBits === num) {
+            result.push(fmt(hour, 0))
+        } else if (hourBits < num) {
+            for (let minute = 0; minute < 60; minute++) {
+                const minBits = countSetBits(minute, 6);
+                if (hourBits + minBits === num) {
+                    result.push(fmt(hour, minute));
+                }
+            }
+        }
+    }
+
+    return result;
+}
+
+// Test cases
+const testCases = [
+    { num: 1, expected: ["0:01","0:02","0:04","0:08","0:16","0:32","1:00","2:00","4:00","8:00"] },
+    { num: 0, expected: ["0:00"] },
+    { num: 11, expected: [] }, // Impossible case since max LEDs possible is 10 (4 hours LEDs + 6 minutes LEDs)
+];
+
+testCases.forEach((test, index) => {
+    const result = readBinaryWatch(test.num);
+    const passed = JSON.stringify(result.sort()) === JSON.stringify(test.expected.sort());
+    console.log(`Test Case ${index + 1}: ${passed ? 'Passed' : 'Failed'} (Expected: ${JSON.stringify(test.expected.sort())}, Got: ${JSON.stringify(result.sort())})`);
+});
+#+end_src
+
+#+RESULTS:
+: Test Case 1: Passed (Expected: ["0:01","0:02","0:04","0:08","0:16","0:32","1:00","2:00","4:00","8:00"], Got: ["0:01","0:02","0:04","0:08","0:16","0:32","1:00","2:00","4:00","8:00"])
+: Test Case 2: Passed (Expected: ["0:00"], Got: ["0:00"])
+: Test Case 3: Passed (Expected: [], Got: [])
+: undefined

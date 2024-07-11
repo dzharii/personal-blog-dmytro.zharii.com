@@ -34,7 +34,7 @@ The maximum depth of this tree is 3.
 ** Setup:
 Here is a skeleton code for implementing the solution. An additional helper function can also be included for testing purposes using examples.
 
-#+begin_src js :tangle "104_maximum_depth_of_binary_tree.js"
+#+begin_src js :tangle "104_maximum_depth_of_binary_tree.js" :exports results
 
 // Helper function to define a TreeNode
 /**

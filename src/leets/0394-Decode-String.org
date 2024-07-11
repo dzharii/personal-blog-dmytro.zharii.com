@@ -1,0 +1,147 @@
+* 394. Decode String
+  :PROPERTIES:
+  :Created: 2024-05-24
+  :END:
+
+  * Problem Overview
+The problem involves decoding a given encoded string that follows a specific format: numbers followed by square brackets containing a substring. The numbers indicate how many times the substring within the brackets should be repeated. The string can be nested with multiple levels of encoding.
+
+Example:
+- Input: "3[a]2[bc]"
+- Output: "aaabcbc"
+
+* Solution Outline
+** Preferred Structure
+- Use a stack to help with decoding, as it can handle nested patterns effectively.
+- Utilize string operations to build the decoded result.
+
+** Brute Force vs Optimal Solution
+- **Brute Force Approach:** Recursively decode the string, which might be inefficient for deeply nested patterns due to call stack limitations.
+- **Optimal Solution:** Use an iterative approach with a stack to manage nested structures and avoid recursion depth issues.
+
+** Algorithm Choice
+- **Stack-based Decoding:** This method iterates through the string, pushing numbers and current substrings onto the stack whenever a new bracket is encountered. When a closing bracket is found, it constructs the substring by popping from the stack, which ensures correct handling of nested patterns.
+
+* Solution Implementation
+Here's the skeleton of the solution with test cases. The core implementation will follow in incremental steps.
+
+#+begin_src js
+  /**
+   ,* Decode the given encoded string.
+   ,* @param {string} s - The encoded string.
+   ,* @returns {string} - The decoded string.
+   ,*/
+  function decodeString(s) {
+      // Initial implementation, returns empty string for now
+      let r = '';
+      let numbers = '';
+      let letters = '';
+
+      const stack = [];
+
+      for (let ch of s) {
+          const isDigit = /[0-9]/.test(ch);
+          const isLetter = /[a-zA-Z]/.test(ch);
+          const isStartGroup = ch === '[';
+          const isEndGroup = ch === ']';
+          const wtf = !isDigit && !isLetter && !isStartGroup && !isEndGroup;
+
+                    console.log(`ch = '${ch}; isDigit = ${isDigit}'; isLetter = ${isLetter}; isStartgroup = ${isStartGroup}; isEndgroup = ${isEndGroup}; stack=${stack}; letters='${letters}'`);
+
+          if (wtf) {
+              throw "Bleah!";
+          }
+
+          if (isDigit) {
+              numbers += ch;
+          } else if (isLetter) {
+              letters += ch;
+          } else if (isStartGroup) {
+              stack.push({numbers, letters});
+              numbers = '';
+              letters = '';
+          } else if (isEndGroup) {
+
+              let oldL = '';
+              let oldN = '';
+
+              if (stack.length) {
+                  const x = stack.pop();
+                  oldL = x.letters;
+                  oldN = x.numbers;
+              }
+
+              letters = oldL + letters.repeat(oldN);
+
+          }
+
+
+      }
+
+      return letters;
+  }
+
+  // Test cases
+  const testCases = [
+      { input: "3[a]2[bc]", expected: "aaabcbc" },
+      { input: "3[a2[c]]", expected: "accaccacc" },
+      { input: "2[abc]3[cd]ef", expected: "abcabccdcdcdef" },
+      { input: "abc3[cd]xyz", expected: "abccdcdcdxyz" },
+  ];
+
+  testCases.forEach((test, index) => {
+      const result = decodeString(test.input);
+      console.log(`Test Case ${index + 1}: ${result === test.expected ? 'Passed' : 'Failed'} (Expected: ${test.expected}, Got: ${result})`);
+  });
+#+end_src
+
+#+RESULTS:
+#+begin_example
+ch = '3; isDigit = true'; isLetter = false; isStartgroup = false; isEndgroup = false; stack=; letters=''
+ch = '[; isDigit = false'; isLetter = false; isStartgroup = true; isEndgroup = false; stack=; letters=''
+ch = 'a; isDigit = false'; isLetter = true; isStartgroup = false; isEndgroup = false; stack=[object Object]; letters=''
+ch = ']; isDigit = false'; isLetter = false; isStartgroup = false; isEndgroup = true; stack=[object Object]; letters='a'
+ch = '2; isDigit = true'; isLetter = false; isStartgroup = false; isEndgroup = false; stack=; letters='aaa'
+ch = '[; isDigit = false'; isLetter = false; isStartgroup = true; isEndgroup = false; stack=; letters='aaa'
+ch = 'b; isDigit = false'; isLetter = true; isStartgroup = false; isEndgroup = false; stack=[object Object]; letters=''
+ch = 'c; isDigit = false'; isLetter = true; isStartgroup = false; isEndgroup = false; stack=[object Object]; letters='b'
+ch = ']; isDigit = false'; isLetter = false; isStartgroup = false; isEndgroup = true; stack=[object Object]; letters='bc'
+Test Case 1: Passed (Expected: aaabcbc, Got: aaabcbc)
+ch = '3; isDigit = true'; isLetter = false; isStartgroup = false; isEndgroup = false; stack=; letters=''
+ch = '[; isDigit = false'; isLetter = false; isStartgroup = true; isEndgroup = false; stack=; letters=''
+ch = 'a; isDigit = false'; isLetter = true; isStartgroup = false; isEndgroup = false; stack=[object Object]; letters=''
+ch = '2; isDigit = true'; isLetter = false; isStartgroup = false; isEndgroup = false; stack=[object Object]; letters='a'
+ch = '[; isDigit = false'; isLetter = false; isStartgroup = true; isEndgroup = false; stack=[object Object]; letters='a'
+ch = 'c; isDigit = false'; isLetter = true; isStartgroup = false; isEndgroup = false; stack=[object Object],[object Object]; letters=''
+ch = ']; isDigit = false'; isLetter = false; isStartgroup = false; isEndgroup = true; stack=[object Object],[object Object]; letters='c'
+ch = ']; isDigit = false'; isLetter = false; isStartgroup = false; isEndgroup = true; stack=[object Object]; letters='acc'
+Test Case 2: Passed (Expected: accaccacc, Got: accaccacc)
+ch = '2; isDigit = true'; isLetter = false; isStartgroup = false; isEndgroup = false; stack=; letters=''
+ch = '[; isDigit = false'; isLetter = false; isStartgroup = true; isEndgroup = false; stack=; letters=''
+ch = 'a; isDigit = false'; isLetter = true; isStartgroup = false; isEndgroup = false; stack=[object Object]; letters=''
+ch = 'b; isDigit = false'; isLetter = true; isStartgroup = false; isEndgroup = false; stack=[object Object]; letters='a'
+ch = 'c; isDigit = false'; isLetter = true; isStartgroup = false; isEndgroup = false; stack=[object Object]; letters='ab'
+ch = ']; isDigit = false'; isLetter = false; isStartgroup = false; isEndgroup = true; stack=[object Object]; letters='abc'
+ch = '3; isDigit = true'; isLetter = false; isStartgroup = false; isEndgroup = false; stack=; letters='abcabc'
+ch = '[; isDigit = false'; isLetter = false; isStartgroup = true; isEndgroup = false; stack=; letters='abcabc'
+ch = 'c; isDigit = false'; isLetter = true; isStartgroup = false; isEndgroup = false; stack=[object Object]; letters=''
+ch = 'd; isDigit = false'; isLetter = true; isStartgroup = false; isEndgroup = false; stack=[object Object]; letters='c'
+ch = ']; isDigit = false'; isLetter = false; isStartgroup = false; isEndgroup = true; stack=[object Object]; letters='cd'
+ch = 'e; isDigit = false'; isLetter = true; isStartgroup = false; isEndgroup = false; stack=; letters='abcabccdcdcd'
+ch = 'f; isDigit = false'; isLetter = true; isStartgroup = false; isEndgroup = false; stack=; letters='abcabccdcdcde'
+Test Case 3: Passed (Expected: abcabccdcdcdef, Got: abcabccdcdcdef)
+ch = 'a; isDigit = false'; isLetter = true; isStartgroup = false; isEndgroup = false; stack=; letters=''
+ch = 'b; isDigit = false'; isLetter = true; isStartgroup = false; isEndgroup = false; stack=; letters='a'
+ch = 'c; isDigit = false'; isLetter = true; isStartgroup = false; isEndgroup = false; stack=; letters='ab'
+ch = '3; isDigit = true'; isLetter = false; isStartgroup = false; isEndgroup = false; stack=; letters='abc'
+ch = '[; isDigit = false'; isLetter = false; isStartgroup = true; isEndgroup = false; stack=; letters='abc'
+ch = 'c; isDigit = false'; isLetter = true; isStartgroup = false; isEndgroup = false; stack=[object Object]; letters=''
+ch = 'd; isDigit = false'; isLetter = true; isStartgroup = false; isEndgroup = false; stack=[object Object]; letters='c'
+ch = ']; isDigit = false'; isLetter = false; isStartgroup = false; isEndgroup = true; stack=[object Object]; letters='cd'
+ch = 'x; isDigit = false'; isLetter = true; isStartgroup = false; isEndgroup = false; stack=; letters='abccdcdcd'
+ch = 'y; isDigit = false'; isLetter = true; isStartgroup = false; isEndgroup = false; stack=; letters='abccdcdcdx'
+ch = 'z; isDigit = false'; isLetter = true; isStartgroup = false; isEndgroup = false; stack=; letters='abccdcdcdxy'
+Test Case 4: Passed (Expected: abccdcdcdxyz, Got: abccdcdcdxyz)
+undefined
+#+end_example
+

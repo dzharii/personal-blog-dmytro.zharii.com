@@ -1,0 +1,83 @@
+* 121. Best Time to Buy and Sell Stock
+:PROPERTIES:
+:Created:  2024-06-07
+:END:
+
+*Problem:* 
+
+You are given an array `prices` where `prices[i]` is the price of a given stock on the i-th day. You want to maximize your profit by choosing a single day to buy one stock and choosing a different day in the future to sell that stock. 
+
+Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0.
+
+*Solution Description:*
+
+To implement the solution, we need to:
+
+1. Initialize two variables, `minPrice` to a very large value and `maxProfit` to 0.
+2. Iterate through the `prices` array.
+3. For each price, update `minPrice` to be the minimum of `minPrice` and the current price.
+4. Calculate the profit by subtracting `minPrice` from the current price.
+5. Update `maxProfit` to be the maximum of `maxProfit` and the calculated profit.
+6. Return `maxProfit`.
+
+Time complexity: O(n), where n is the number of days. We traverse the list once.
+Space complexity: O(1), only a few variables are used.
+
+*Example:*
+
+Consider the prices array [7, 1, 5, 3, 6, 4]:
+
+1. Initialize `minPrice` to infinity and `maxProfit` to 0.
+2. Traverse through the array:
+   - At price 7, `minPrice` is updated to 7.
+   - At price 1, `minPrice` is updated to 1.
+   - At price 5, profit is 4, `maxProfit` is updated to 4.
+   - At price 3, profit is 2, `maxProfit` remains 4.
+   - At price 6, profit is 5, `maxProfit` is updated to 5.
+   - At price 4, profit is 3, `maxProfit` remains 5.
+3. Return `maxProfit` which is 5.
+
+*Setup:*
+
+Below is the initial skeleton for the solution function and test cases:
+
+#+begin_src js :tangle "Best_Time_to_Buy_and_Sell_Stock.js"
+/**
+ ,* Calculates the maximum profit from a list of stock prices.
+ ,* @param {number[]} prices - List of stock prices.
+ ,* @return {number} The maximum profit.
+ ,*/
+function maxProfit(prices) {
+    let minPrice = Number.MAX_SAFE_INTEGER;
+    let maxProfit = 0;
+
+    for (let p of prices) {
+        minPrice = Math.min(minPrice, p);
+        maxProfit = Math.max(maxProfit, p - minPrice);
+    }
+
+    return maxProfit;
+}
+
+// Test cases
+const testCases = [
+    { prices: [7, 1, 5, 3, 6, 4], expected: 5 },
+    { prices: [7, 6, 4, 3, 1], expected: 0 },
+    { prices: [1, 2, 3, 4, 5], expected: 4 },
+    { prices: [2, 4, 1], expected: 2 },
+    { prices: [3, 2, 6, 5, 0, 3], expected: 4 },
+];
+
+testCases.forEach((test, index) => {
+    const result = maxProfit(test.prices);
+    console.log(`Test Case ${index + 1}: ${result === test.expected ? 'Passed' : 'Failed'} (Expected: ${test.expected}, Got: ${result})`);
+});
+#+end_src
+
+#+RESULTS:
+: Test Case 1: Passed (Expected: 5, Got: 5)
+: Test Case 2: Passed (Expected: 0, Got: 0)
+: Test Case 3: Passed (Expected: 4, Got: 4)
+: Test Case 4: Passed (Expected: 2, Got: 2)
+: Test Case 5: Passed (Expected: 4, Got: 4)
+: undefined
