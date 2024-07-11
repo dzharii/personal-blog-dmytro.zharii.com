@@ -1,0 +1,181 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2024-07-10 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>&lrm;</title>
+<meta name="author" content="d)zharii" />
+<meta name="generator" content="Org Mode" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/t.css"/>
+</head>
+<body>
+<nav><a href="/" tabindex="0">&larrhk; Back to Index</a></nav><div id="preamble" class="status">
+Published 
+</div>
+<div id="content" class="content">
+<div id="outline-container-orgf129d30" class="outline-2">
+<h2 id="orgf129d30">207. Course Schedule</h2>
+<div class="outline-text-2" id="text-orgf129d30">
+</div>
+</div>
+
+<div id="outline-container-orgb02d814" class="outline-2">
+<h2 id="orgb02d814">Submission</h2>
+<div class="outline-text-2" id="text-orgb02d814">
+<p>
+<a href="https://leetcode.com/submissions/detail/1317044983/">Course Schedule</a>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org9fb127b" class="outline-2">
+<h2 id="org9fb127b">Problem:</h2>
+<div class="outline-text-2" id="text-org9fb127b">
+<p>
+The problem is the Course Schedule problem (often referred to as Leetcode 207). The given problem can be restated as follows:
+</p>
+
+<p>
+You are given a total of `numCourses`, labeled from `0` to `numCourses-1`. You are also given an array `prerequisites` where `prerequisites[i] = [ai, bi]` indicates that in order to take course `ai`, you must first take course `bi`.
+</p>
+
+<p>
+Write a function that determines if it is possible to finish all courses. If there is a cyclic dependency, it is impossible to finish all courses.
+</p>
+
+<pre class="example" id="org466852a">
+- For example:
+    - Input: numCourses = 2, prerequisites = [[1, 0]]
+    - Output: True
+    - Explanation: There are a total of 2 courses to take. To take course 1, you must first take course 0. So it is possible.
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org605fafc" class="outline-2">
+<h2 id="org605fafc">Solution Description:</h2>
+<div class="outline-text-2" id="text-org605fafc">
+<p>
+To implement this, we need to represent the courses and their prerequisites as a directed graph and then check if the graph has any cycles. If it has a cycle, it means there is a circular dependency, and the courses cannot all be finished. We can use Depth-First Search (DFS) to detect cycles in the graph.
+</p>
+
+<p>
+Here’s the plan:
+</p>
+<ol class="org-ol">
+<li>Construct a graph using adjacency lists.</li>
+<li>Maintain a state for each course (unvisited, visiting, visited).</li>
+<li>Perform DFS on each unvisited course to detect cycles.</li>
+</ol>
+
+<p>
+Time Complexity: O(V + E) where V is the number of courses and E is the number of prerequisites since we might visit each course and prerequisite once.
+Space Complexity: O(V + E) to store the graph and the state of each course.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org50a1385" class="outline-2">
+<h2 id="org50a1385">Example:</h2>
+<div class="outline-text-2" id="text-org50a1385">
+<pre class="example" id="org7cbcb4f">
+Let’s take an example to clarify:
+    - Input: numCourses = 4, prerequisites = [[1, 0], [2, 1], [3, 2]]
+    - The graph would look like:
+        0 → 1 → 2 → 3 
+    - We perform a DFS starting from course 0, then 1, then 2, then 3. There’s no cycle, so the output is true.
+</pre>
+</div>
+</div>
+<div id="outline-container-org85189dc" class="outline-2">
+<h2 id="org85189dc">Setup:</h2>
+<div class="outline-text-2" id="text-org85189dc">
+<p>
+Below is the general framework for implementing the solution using modern JavaScript. The `console.log` statements will help identify the input, actual result, and expected result.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">
+/**
+ * Determines if you can finish all courses given the prerequisites.
+ * @param {number} numCourses - Total number of courses
+ * @param {number[][]} prerequisites - List of prerequisite pairs
+ * @returns {boolean} True if all courses can be finished, otherwise False
+ */
+function canFinish(numCourses, prerequisites) {
+    // Helper logging functions for environments without console support
+    const log = typeof NestedInteger !== 'undefined' ? () =&gt; {} : console.log;
+    const table = typeof NestedInteger !== 'undefined' ? () =&gt; {} : console.table;
+
+    if (prerequisites.length === 0) {
+        return true;
+    }
+
+    let g = Array(numCourses).fill(0).map(n =&gt; []);
+
+    const UNVISITED = 0;
+    const VISITING = 1;
+    const VISITED = 2;
+    const state = Array(numCourses).fill(UNVISITED);
+
+    for (const [course, prereq] of prerequisites) {
+        g[prereq].push(course);
+    }
+    table(g);
+
+    function hasCycle(v) {
+        if (state[v] === VISITING) {
+            return true;
+        }
+        if (state[v] === VISITED) {
+            return false;
+        }
+
+        state[v] = VISITING;
+        for (const neighbor of g[v]) {
+            if (hasCycle(neighbor)) {
+                return true;
+            }
+        }
+        state[v] = VISITED;
+        return false;
+    }
+
+    for (let i = 0; i &lt; numCourses; i++) {
+        if (hasCycle(i)) {
+            log(`Cycle found! i = ${i}`);
+            return false;
+        }
+    }
+    return true;
+}
+
+// Test cases
+const testCases = [
+    { numCourses: 5, prerequisites: [[1,4],[2,4],[3,1],[3,2]], expected: true },
+    { numCourses: 2, prerequisites: [[1, 0]], expected: true },
+    { numCourses: 2, prerequisites: [[1, 0], [0, 1]], expected: false },
+    { numCourses: 4, prerequisites: [[1, 0], [2, 1], [3, 2]], expected: true },
+    { numCourses: 5, prerequisites: [[1, 0], [2, 1], [3, 2], [4, 3], [3, 1]], expected: true },
+    { numCourses: 3, prerequisites: [[0, 1], [1, 2], [2, 0]], expected: false },
+    // Additional test cases covering various scenarios
+    { numCourses: 1, prerequisites: [], expected: true },
+    { numCourses: 20, prerequisites: [[0,10],[3,18],[5,5],[6,11],[11,14],[13,1],[15,1],[17,4]], expected: false },
+];
+
+testCases.forEach((test, index) =&gt; {
+    const result = canFinish(test.numCourses, test.prerequisites);
+    console.log(`Test Case ${index + 1}: ${result === test.expected ? 'Passed' : 'Failed'} (Expected: ${test.expected}, Got: ${result})`);
+});
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+&copy; d)zharii. <a href="/sitemap.html">sitemap</a>
+</div>
+</body>
+</html>

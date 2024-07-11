@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2024-07-10 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>&lrm;</title>
+<meta name="author" content="d)zharii" />
+<meta name="generator" content="Org Mode" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/t.css"/>
+</head>
+<body>
+<nav><a href="/" tabindex="0">&larrhk; Back to Index</a></nav><div id="preamble" class="status">
+Published 
+</div>
+<div id="content" class="content">
+<div id="outline-container-org232861d" class="outline-2">
+<h2 id="org232861d">338. Counting Bits</h2>
+<div class="outline-text-2" id="text-org232861d">
+</div>
+</div>
+
+<div id="outline-container-orge897ccf" class="outline-2">
+<h2 id="orge897ccf">Problem Overview</h2>
+<div class="outline-text-2" id="text-orge897ccf">
+<p>
+The problem "Counting Bits" requires us to return an array `ans` where `ans[i]` is the number of 1's in the binary representation of the number `i` for all `i` in the range 0 to `n` inclusive.
+</p>
+
+<p>
+Key Points:
+</p>
+<ul class="org-ul">
+<li>We need to count the number of 1's in the binary representation of numbers from 0 to `n`.</li>
+<li>The result should be stored in an array.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org45265b4" class="outline-2">
+<h2 id="org45265b4">Solution Outline</h2>
+<div class="outline-text-2" id="text-org45265b4">
+<ol class="org-ol">
+<li><b><b>Preferred Structure:</b></b> 
+<ul class="org-ul">
+<li>Use an array to store the count of 1's for each number from 0 to `n`.</li>
+</ul></li>
+<li><b><b>Brute Force vs Optimal Solution:</b></b>
+<ul class="org-ul">
+<li><b><b>Brute Force:</b></b> For each number, convert it to its binary form and count the 1's. This would be inefficient.</li>
+<li><b><b>Optimal Solution:</b></b> Utilize a dynamic programming approach where the count of 1's for a number can be derived from previously computed results. Specifically, use the relation: `countBits[i] = countBits[i &gt;&gt; 1] + (i &amp; 1)`.</li>
+</ul></li>
+<li><b><b>Algorithm Choice:</b></b>
+<ul class="org-ul">
+<li>Dynamic Programming: This approach leverages previously computed results to build up the solution efficiently.</li>
+</ul></li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org0ee86dd" class="outline-2">
+<h2 id="org0ee86dd">Implementation Plan</h2>
+<div class="outline-text-2" id="text-org0ee86dd">
+<ol class="org-ol">
+<li>Initialize an array `result` of length `n + 1` with all elements set to 0.</li>
+<li>Iterate from 1 to `n`, updating each entry based on the relation `result[i] = result[i &gt;&gt; 1] + (i &amp; 1)`.</li>
+</ol>
+
+<div class="org-src-container">
+<pre class="src src-js">/**
+ * Function to count the number of 1's in the binary representation of numbers from 0 to n.
+ * @param {number} n - The upper limit of the range.
+ * @returns {number[]} - Array where the ith element is the number of 1's in the binary representation of i.
+ */
+function countBits(n) {
+    // Initialize the result array with zeros
+    const result = Array(n + 1).fill(0);
+
+    for (let i = 0; i &lt; result.length; i++) {
+        let el = i;
+        let cnt = el &amp; 1;
+        el = el &gt;&gt; 1;
+
+        while (el &gt; 0) {
+            cnt += el &amp; 1;
+            el = el &gt;&gt; 1;
+        }
+        result[i] = cnt;
+
+    }
+    return result;
+}
+
+// Test cases
+const testCases = [
+    { n: 2, expected: [0, 1, 1] },
+    { n: 5, expected: [0, 1, 1, 2, 1, 2] },
+    // Additional test cases
+    { n: 0, expected: [0] },
+    { n: 1, expected: [0, 1] },
+    { n: 10, expected: [0, 1, 1, 2, 1, 2, 2, 3, 1, 2, 2] },
+];
+
+testCases.forEach((test, index) =&gt; {
+    const result = countBits(test.n);
+    console.log(`Test Case ${index + 1}: ${JSON.stringify(result) === JSON.stringify(test.expected) ? 'Passed' : 'Failed'} (Expected: ${JSON.stringify(test.expected)}, Got: ${JSON.stringify(result)})`);
+});
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org273e150" class="outline-2">
+<h2 id="org273e150">Solution Analysis</h2>
+<div class="outline-text-2" id="text-org273e150">
+<ul class="org-ul">
+<li><b><b>Time Complexity:</b></b> O(n). Each number from 0 to `n` is processed exactly once.</li>
+<li><b><b>Space Complexity:</b></b> O(n). We use an array of size `n + 1` to store the result.</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+&copy; d)zharii. <a href="/sitemap.html">sitemap</a>
+</div>
+</body>
+</html>

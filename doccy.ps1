@@ -13,13 +13,14 @@ $COMMAND_PUBLISH = "pub"
 $COMMAND_PUBLISH_FORCE = "pub-force"
 
 $EMACS = ""
-if (Get-Command -Name "emacs" -erroraction silentlycontinue) { 
-    $EMACS = "emacs" 
-} elseif (Get-Command -Name "runemacs" -erroraction silentlycontinue) { 
-    $EMACS = "runemacs" 
+if (Get-Command -Name "runemacs" -erroraction silentlycontinue) { 
+    $EMACS = "runemacs"
+} elseif (Get-Command -Name "emacs" -erroraction silentlycontinue) { 
+    $EMACS = "emacs"
 } else { 
     throw "Critical: Emacs command was not found" 
 } 
+Write-Host "`$EMACS=$($EMACS)"
 
 
 $HELP_MESSAGE = @"
@@ -46,7 +47,7 @@ switch ($Command.ToLower()) {
     }
 
     $COMMAND_EDIT {
-        Start-Process -FilePath $EMACS -WorkingDirectory $ThisScriptFolderPath -ArgumentList "--init-directory ./emacs-init"
+        & $($EMACS) --init-directory ./emacs-init
     }
 
     $COMMAND_PUBLISH {

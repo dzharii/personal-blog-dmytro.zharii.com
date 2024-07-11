@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2024-07-10 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>&lrm;</title>
+<meta name="author" content="d)zharii" />
+<meta name="generator" content="Org Mode" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/t.css"/>
+</head>
+<body>
+<nav><a href="/" tabindex="0">&larrhk; Back to Index</a></nav><div id="preamble" class="status">
+Published 
+</div>
+<div id="content" class="content">
+<div id="outline-container-org3106916" class="outline-2">
+<h2 id="org3106916">945. Minimum Increment to Make Array Unique</h2>
+<div class="outline-text-2" id="text-org3106916">
+<p>
+<b><b>Problem:</b></b>
+</p>
+
+<p>
+Given an array of integers `nums`, we need to make the array unique. In each operation, we can increment any element by `1`. We need to find the minimum number of increments required to make all elements in the array unique.
+</p>
+
+<p>
+<b><b>Solution Description:</b></b>
+</p>
+
+<p>
+To implement the solution, we need to:
+</p>
+<ol class="org-ol">
+<li>Sort the array `nums`.</li>
+<li>Iterate through the sorted array and for each element, if it is not greater than the previous element, increment it to make it unique and count the increments.</li>
+<li>Keep track of the minimum increments required to ensure all elements are unique.</li>
+</ol>
+
+<p>
+The optimal solution will involve sorting the array which takes `O(n log n)` time and then a single pass through the array, resulting in an overall time complexity of `O(n log n)`. The space complexity is `O(1)` if we ignore the space required for sorting.
+</p>
+
+<p>
+<b><b>Example:</b></b>
+</p>
+
+<p>
+Let's take an example to understand the algorithm:
+</p>
+
+<p>
+Given `nums = [3, 2, 1, 2, 1, 7]`.
+</p>
+
+<ol class="org-ol">
+<li>Sort `nums` -&gt; `[1, 1, 2, 2, 3, 7]`</li>
+<li>Iterate through the sorted array:
+<ul class="org-ul">
+<li>At index 1: `nums[1]` is not greater than `nums[0]`, so increment `nums[1]` to `2`. Increment count is `1`.</li>
+<li>At index 2: `nums[2]` is not greater than `nums[1]`, so increment `nums[2]` to `3`. Increment count is `2`.</li>
+<li>At index 3: `nums[3]` is not greater than `nums[2]`, so increment `nums[3]` to `4`. Increment count is `4`.</li>
+<li>At index 4: `nums[4]` is already greater than `nums[3]`, no increment needed.</li>
+<li>At index 5: `nums[5]` is already unique.</li>
+</ul></li>
+</ol>
+
+<p>
+Final array: `[1, 2, 3, 4, 3, 7]` with a total increment count of `6`.
+</p>
+
+<p>
+<b><b>Setup:</b></b>
+</p>
+
+<p>
+Here is the skeleton of the solution along with the test cases to verify the implementation.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">
+/**
+ * Finds the minimum increments required to make all elements in the array unique.
+ *
+ * @param {number[]} nums - The array of integers.
+ * @return {number} The minimum number of increments.
+ */
+var minIncrementForUnique = function(nums) {
+    const log = typeof NestedInteger !== 'undefined' ? () =&gt; {} : console.log;
+    const table = typeof NestedInteger!== 'undefined' ? () =&gt; {} : console.table;
+
+    if (nums.length === 0) return 0;
+
+    // Sort the array
+    nums.sort((a, b) =&gt; a - b);
+
+    let c = 0;
+    table(nums);
+    for (let i = 1; i &lt; nums.length; i++) {
+
+        const cur = nums[i];
+        const prev = nums[i - 1];
+        log(`cur=${cur}; prev=${prev}`);
+
+        if (prev &gt;= cur) {
+            let inc = prev - cur + 1;
+            nums[i] += inc;
+            c += inc;
+            log(`prev=${prev}; cur=${cur}; inc=${inc}; nums[i]=${nums[i]}`);
+
+        }
+    }
+
+    table(nums);
+    return c;
+};
+
+// Test cases
+const testCases = [
+    { nums: [3, 2, 1, 2, 1, 7], expected: 6 },
+    { nums: [1, 2, 2], expected: 1 },
+    { nums: [1, 1, 1], expected: 3 },
+    { nums: [], expected: 0 },
+    { nums: [0, 2, 2, 2, 3], expected: 3 },
+];
+
+// [0, 2, 2, 2, 3]
+// [0, 2, 3, 4, 3]
+
+testCases.forEach((test, index) =&gt; {
+    const result = minIncrementForUnique(test.nums);
+    console.log(`Test Case ${index + 1}: ${result === test.expected ? 'Passed' : 'Failed'} (Expected: ${test.expected}, Got: ${result})`);
+});
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+&copy; d)zharii. <a href="/sitemap.html">sitemap</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2024-07-10 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>&lrm;</title>
+<meta name="author" content="d)zharii" />
+<meta name="generator" content="Org Mode" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/t.css"/>
+</head>
+<body>
+<nav><a href="/" tabindex="0">&larrhk; Back to Index</a></nav><div id="preamble" class="status">
+Published 
+</div>
+<div id="content" class="content">
+<div id="outline-container-org7494578" class="outline-2">
+<h2 id="org7494578">394. Decode String</h2>
+<div class="outline-text-2" id="text-org7494578">
+<ul class="org-ul">
+<li>Problem Overview</li>
+</ul>
+<p>
+The problem involves decoding a given encoded string that follows a specific format: numbers followed by square brackets containing a substring. The numbers indicate how many times the substring within the brackets should be repeated. The string can be nested with multiple levels of encoding.
+</p>
+
+<p>
+Example:
+</p>
+<ul class="org-ul">
+<li>Input: "3[a]2[bc]"</li>
+<li>Output: "aaabcbc"</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org6588500" class="outline-2">
+<h2 id="org6588500">Solution Outline</h2>
+<div class="outline-text-2" id="text-org6588500">
+</div>
+<div id="outline-container-org122ae46" class="outline-3">
+<h3 id="org122ae46">Preferred Structure</h3>
+<div class="outline-text-3" id="text-org122ae46">
+<ul class="org-ul">
+<li>Use a stack to help with decoding, as it can handle nested patterns effectively.</li>
+<li>Utilize string operations to build the decoded result.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org34644cc" class="outline-3">
+<h3 id="org34644cc">Brute Force vs Optimal Solution</h3>
+<div class="outline-text-3" id="text-org34644cc">
+<ul class="org-ul">
+<li><b><b>Brute Force Approach:</b></b> Recursively decode the string, which might be inefficient for deeply nested patterns due to call stack limitations.</li>
+<li><b><b>Optimal Solution:</b></b> Use an iterative approach with a stack to manage nested structures and avoid recursion depth issues.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org12034ed" class="outline-3">
+<h3 id="org12034ed">Algorithm Choice</h3>
+<div class="outline-text-3" id="text-org12034ed">
+<ul class="org-ul">
+<li><b><b>Stack-based Decoding:</b></b> This method iterates through the string, pushing numbers and current substrings onto the stack whenever a new bracket is encountered. When a closing bracket is found, it constructs the substring by popping from the stack, which ensures correct handling of nested patterns.</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge752db7" class="outline-2">
+<h2 id="orge752db7">Solution Implementation</h2>
+<div class="outline-text-2" id="text-orge752db7">
+<p>
+Here's the skeleton of the solution with test cases. The core implementation will follow in incremental steps.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">/**
+ * Decode the given encoded string.
+ * @param {string} s - The encoded string.
+ * @returns {string} - The decoded string.
+ */
+function decodeString(s) {
+    // Initial implementation, returns empty string for now
+    let r = '';
+    let numbers = '';
+    let letters = '';
+
+    const stack = [];
+
+    for (let ch of s) {
+        const isDigit = /[0-9]/.test(ch);
+        const isLetter = /[a-zA-Z]/.test(ch);
+        const isStartGroup = ch === '[';
+        const isEndGroup = ch === ']';
+        const wtf = !isDigit &amp;&amp; !isLetter &amp;&amp; !isStartGroup &amp;&amp; !isEndGroup;
+
+                  console.log(`ch = '${ch}; isDigit = ${isDigit}'; isLetter = ${isLetter}; isStartgroup = ${isStartGroup}; isEndgroup = ${isEndGroup}; stack=${stack}; letters='${letters}'`);
+
+        if (wtf) {
+            throw "Bleah!";
+        }
+
+        if (isDigit) {
+            numbers += ch;
+        } else if (isLetter) {
+            letters += ch;
+        } else if (isStartGroup) {
+            stack.push({numbers, letters});
+            numbers = '';
+            letters = '';
+        } else if (isEndGroup) {
+
+            let oldL = '';
+            let oldN = '';
+
+            if (stack.length) {
+                const x = stack.pop();
+                oldL = x.letters;
+                oldN = x.numbers;
+            }
+
+            letters = oldL + letters.repeat(oldN);
+
+        }
+
+
+    }
+
+    return letters;
+}
+
+// Test cases
+const testCases = [
+    { input: "3[a]2[bc]", expected: "aaabcbc" },
+    { input: "3[a2[c]]", expected: "accaccacc" },
+    { input: "2[abc]3[cd]ef", expected: "abcabccdcdcdef" },
+    { input: "abc3[cd]xyz", expected: "abccdcdcdxyz" },
+];
+
+testCases.forEach((test, index) =&gt; {
+    const result = decodeString(test.input);
+    console.log(`Test Case ${index + 1}: ${result === test.expected ? 'Passed' : 'Failed'} (Expected: ${test.expected}, Got: ${result})`);
+});
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+&copy; d)zharii. <a href="/sitemap.html">sitemap</a>
+</div>
+</body>
+</html>

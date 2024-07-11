@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2024-07-09 -->
+<!-- 2024-07-10 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>&lrm;</title>
@@ -15,24 +15,24 @@
 Published 
 </div>
 <div id="content" class="content">
-<div id="outline-container-org7fc9b37" class="outline-2">
-<h2 id="org7fc9b37">1302. Deepest Leaves Sum</h2>
-<div class="outline-text-2" id="text-org7fc9b37">
+<div id="outline-container-org8108bc3" class="outline-2">
+<h2 id="org8108bc3">1302. Deepest Leaves Sum</h2>
+<div class="outline-text-2" id="text-org8108bc3">
 </div>
 </div>
 
-<div id="outline-container-orgdd5e801" class="outline-2">
-<h2 id="orgdd5e801">Problem:</h2>
-<div class="outline-text-2" id="text-orgdd5e801">
+<div id="outline-container-org4797f74" class="outline-2">
+<h2 id="org4797f74">Problem:</h2>
+<div class="outline-text-2" id="text-org4797f74">
 <p>
 The goal is to find the sum of the values of the deepest leaves in a binary tree. A leaf is a node with no children, and the deepest leaves are those at the maximum depth of the tree.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgfda29ec" class="outline-2">
-<h2 id="orgfda29ec">Solution Description:</h2>
-<div class="outline-text-2" id="text-orgfda29ec">
+<div id="outline-container-org917b9d9" class="outline-2">
+<h2 id="org917b9d9">Solution Description:</h2>
+<div class="outline-text-2" id="text-org917b9d9">
 <p>
 To implement a solution for summing the values of the deepest leaves, we need to perform the following steps:
 </p>
@@ -47,18 +47,18 @@ The BFS approach ensures that when we reach the deepest level nodes, we will hav
 </p>
 </div>
 
-<div id="outline-container-orgb040241" class="outline-3">
-<h3 id="orgb040241">Time Complexity:</h3>
-<div class="outline-text-3" id="text-orgb040241">
+<div id="outline-container-org5c2edf0" class="outline-3">
+<h3 id="org5c2edf0">Time Complexity:</h3>
+<div class="outline-text-3" id="text-org5c2edf0">
 <p>
 The time complexity is O(N), where N is the number of nodes in the binary tree, as we need to visit each node exactly once.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgd827e88" class="outline-3">
-<h3 id="orgd827e88">Space Complexity:</h3>
-<div class="outline-text-3" id="text-orgd827e88">
+<div id="outline-container-orgeb3173e" class="outline-3">
+<h3 id="orgeb3173e">Space Complexity:</h3>
+<div class="outline-text-3" id="text-orgeb3173e">
 <p>
 The space complexity is O(M), where M is the maximum number of nodes at any one level (the width of the tree).
 </p>
@@ -66,9 +66,9 @@ The space complexity is O(M), where M is the maximum number of nodes at any one 
 </div>
 </div>
 
-<div id="outline-container-org2b367ea" class="outline-2">
-<h2 id="org2b367ea">Example:</h2>
-<div class="outline-text-2" id="text-org2b367ea">
+<div id="outline-container-org4255acb" class="outline-2">
+<h2 id="org4255acb">Example:</h2>
+<div class="outline-text-2" id="text-org4255acb">
 <p>
 Consider the following binary tree:
 ```
@@ -88,18 +88,18 @@ Consider the following binary tree:
 </div>
 </div>
 
-<div id="outline-container-org1b51dff" class="outline-2">
-<h2 id="org1b51dff">Setup:</h2>
-<div class="outline-text-2" id="text-org1b51dff">
+<div id="outline-container-org7b56cf6" class="outline-2">
+<h2 id="org7b56cf6">Setup:</h2>
+<div class="outline-text-2" id="text-org7b56cf6">
 <p>
 The solution will be implemented in JavaScript using modern JS syntax. The testing setup will use `console.log` statements to verify the results.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgf2263ea" class="outline-2">
-<h2 id="orgf2263ea">Plan:</h2>
-<div class="outline-text-2" id="text-orgf2263ea">
+<div id="outline-container-orgf1d8a59" class="outline-2">
+<h2 id="orgf1d8a59">Plan:</h2>
+<div class="outline-text-2" id="text-orgf1d8a59">
 <ol class="org-ol">
 <li>Create a function to traverse the tree using BFS.</li>
 <li>Keep track of the deepest level and sum the values of the leaves at this level.</li>
