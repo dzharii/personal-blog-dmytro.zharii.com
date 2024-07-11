@@ -26,3 +26,4 @@
   - [[file:leets/0543-Diameter-of-Binary-Tree.org][0543-Diameter-of-Binary-Tree]]
   - [[file:leets/0104-Maximum-Depth-of-Binary-Tree.org][0104-Maximum-Depth-of-Binary-Tree]]
   - [[file:leets/0207-Course-Schedule.org][0207-Course-Schedule]]
+  - [[file:leets/1190-Reverse-Substrings-Between-Each-Pair-of-Parentheses.org][1190-Reverse-Substrings-Between-Each-Pair-of-Parentheses]]

@@ -3,6 +3,11 @@
 :Created: 2024-07-11
 :END:
 
+** Links:
+
+- [[./1190-Reverse-Substrings-Between-Each-Pair-of-Parentheses.org][1190-Reverse-Substrings-Between-Each-Pair-of-Parentheses.org]]
+- submission: [[https://leetcode.com/submissions/detail/1317774463/][Reverse Substrings Between Each Pair of Parentheses]]
+
 ** Problem:
 Given a string `s` which consists of lowercase English letters and brackets. Reverse substrings that are in each pair of matching parentheses from the innermost one to the outermost one, and return the resulting string without any parentheses.
 
