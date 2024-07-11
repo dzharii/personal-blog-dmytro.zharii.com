@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2024-07-10 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>&lrm;</title>
+<meta name="author" content="d)zharii" />
+<meta name="generator" content="Org Mode" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/t.css"/>
+</head>
+<body>
+<nav><a href="/" tabindex="0">&larrhk; Back to Index</a></nav><div id="preamble" class="status">
+Published 
+</div>
+<div id="content" class="content">
+<div id="outline-container-org51082db" class="outline-2">
+<h2 id="org51082db">62. Unique Paths</h2>
+<div class="outline-text-2" id="text-org51082db">
+</div>
+</div>
+
+<div id="outline-container-org003866d" class="outline-2">
+<h2 id="org003866d">Problem Overview</h2>
+<div class="outline-text-2" id="text-org003866d">
+<p>
+The problem "Unique Paths" requires determining the number of unique paths from the top-left corner to the bottom-right corner of an m x n grid. The only allowed moves are either down or right.
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-org542e9c5" class="outline-2">
+<h2 id="org542e9c5">Solution Outline</h2>
+<div class="outline-text-2" id="text-org542e9c5">
+<ul class="org-ul">
+<li><b><b>Preferred Structure:</b></b> Use a 2D array (matrix) for dynamic programming (DP).</li>
+<li><b><b>Brute Force vs Optimal Solution:</b></b> 
+<ul class="org-ul">
+<li>Brute Force: Explore all possible paths recursively.</li>
+<li>Optimal Solution: Use dynamic programming to store the number of paths to each cell.</li>
+</ul></li>
+<li><b><b>Algorithm Choice:</b></b> Dynamic programming is most suitable. It has a time complexity of O(m*n) and space complexity of O(m*n).</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org147093b" class="outline-2">
+<h2 id="org147093b">Setup and Testing Skeleton</h2>
+<div class="outline-text-2" id="text-org147093b">
+<div class="org-src-container">
+<pre class="src src-js">/**
+ * Unique Paths - Determine the number of unique paths from top-left to bottom-right in a grid.
+ * @param {number} m - The number of rows.
+ * @param {number} n - The number of columns.
+ * @returns {number} - The number of unique paths.
+ */
+function uniquePaths(cols, rows) {
+    function rec(col, row) {
+        if (col &gt;= cols) {
+            return null;
+        }
+
+        if (row &gt;= rows) {
+            return null;
+        }
+        return {col, row};
+    }
+
+
+    if (cols === 0 || rows  === 0) {
+        return 0;
+    }
+
+    const dp = Array(cols).fill(1).map(() =&gt; Array(rows).fill(0));
+
+    console.table(dp);
+
+    let stack = [];
+
+    dp[0][0] = 1;
+    stack.push(rec(0,0));
+    while (stack.length &gt; 0) {
+        let c = stack.pop();
+        const right = rec(c.col + 1, c.row);
+        const bot = rec(c.col, c.row + 1);
+
+        // console.log(`right = ${JSON.stringify(right)}; bot = ${JSON.stringify(bot)};`)
+
+        if (right) {
+
+            dp[right.col][right.row] += 1;
+            stack.push(right);
+        }
+
+        if (bot) {
+            dp[bot.col][bot.row] += 1;
+            stack.push(bot);
+        }
+        console.table(dp);
+
+    }
+
+    return dp[cols - 1][rows - 1];
+}
+
+// Test cases
+const testCases = [
+    { m: 3, n: 7, expected: 28 },
+    { m: 3, n: 2, expected: 3 },
+    { m: 7, n: 3, expected: 28 },
+    { m: 3, n: 3, expected: 6 },
+    { m: 1, n: 1, expected: 1 },
+];
+
+testCases.forEach((test, index) =&gt; {
+    const result = uniquePaths(test.m, test.n);
+    console.log(`Test Case ${index + 1}: ${result === test.expected ? 'Passed' : 'Failed'} 
+    (Expected: ${test.expected}, Got: ${result})`);
+});
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+&copy; d)zharii. <a href="/sitemap.html">sitemap</a>
+</div>
+</body>
+</html>

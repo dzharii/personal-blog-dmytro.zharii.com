@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2024-07-10 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Combination Sum Problem Overview and Solution Plan</title>
+<meta name="author" content="d)zharii" />
+<meta name="generator" content="Org Mode" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/t.css"/>
+</head>
+<body>
+<nav><a href="/" tabindex="0">&larrhk; Back to Index</a></nav><div id="preamble" class="status">
+Published 
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">Combination Sum Problem Overview and Solution Plan</h1>
+</header><p>
+:Created: 2024-05-13
+</p>
+
+<div id="outline-container-orgf0b7aa0" class="outline-2">
+<h2 id="orgf0b7aa0">Link</h2>
+<div class="outline-text-2" id="text-orgf0b7aa0">
+<p>
+<a href="https://leetcode.com/problems/combination-sum/description/">2024-05-13 Combination Sum - LeetCode</a>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org455798c" class="outline-2">
+<h2 id="org455798c">Problem Overview:</h2>
+<div class="outline-text-2" id="text-org455798c">
+<p>
+The "Combination Sum" problem asks us to find all unique combinations in a given set of candidate numbers that sum up to a target number. The numbers in the candidates set can be used multiple times in the combination, and the solution set must not contain duplicate combinations.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org16f87b2" class="outline-2">
+<h2 id="org16f87b2">Solution Outline:</h2>
+<div class="outline-text-2" id="text-org16f87b2">
+</div>
+<div id="outline-container-org80331da" class="outline-3">
+<h3 id="org80331da">Preferred Structure:</h3>
+<div class="outline-text-3" id="text-org80331da">
+<p>
+Utilizing recursion for backtracking is highly effective here since we need to explore all possible combinations that sum up to the target. An array or list can be used to store the current combination of numbers being considered.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga332011" class="outline-3">
+<h3 id="orga332011">Brute Force vs Optimal Solution:</h3>
+<div class="outline-text-3" id="text-orga332011">
+<ul class="org-ul">
+<li><b>Brute Force:</b> Try all possible combinations of numbers to see which ones meet the target sum. This would involve recursion or iteration over each number and is not efficient.</li>
+<li><b>Optimal Solution:</b> Use backtracking to build combinations efficiently. Only continue adding to the current combination if the sum has not exceeded the target.</li>
+<li><b>Spoilers:</b> The use of backtracking helps in pruning unnecessary computations, making the solution much more efficient than the brute force approach.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgc70348f" class="outline-3">
+<h3 id="orgc70348f">Algorithm Choice:</h3>
+<div class="outline-text-3" id="text-orgc70348f">
+<ul class="org-ul">
+<li>The backtracking algorithm is ideal here due to its ability to eliminate many non-viable combinations early, especially when the current sum exceeds the target. This approach significantly reduces the number of combinations to check.</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-js">// Function to find all combinations that sum up to a given target
+function combinationSum(candidates, target) {
+    // Initial call to the recursive function with empty combination
+    const results = [];
+    findCombinations(candidates, target, [], results, 0);
+    return results;
+}
+
+// Recursive function to find combinations
+function findCombinations(candidates, target, current, results, index) {
+    // Base case: if target is zero, a valid combination is found
+    if (target === 0) {
+        results.push([...current]);
+        return;
+    }
+
+    // Explore further only if the remaining target is positive
+    if (target &gt; 0) {
+        for (let i = index; i &lt; candidates.length; i++) {
+            current.push(candidates[i]);
+            // Recursively call to build the rest of the combination
+            findCombinations(candidates, target - candidates[i], current, results, i);
+            current.pop(); // Backtrack
+        }
+    }
+}
+
+// Test cases
+const testCases = [
+    { candidates: [2,3,6,7], target: 7, expected: [[2,2,3], [7]] },
+    { candidates: [2,3,5], target: 8, expected: [[2,2,2,2], [2,3,3], [3,5]] },
+    // Include more test cases and edge cases
+];
+
+testCases.forEach((test, index) =&gt; {
+    const result = combinationSum(test.candidates, test.target);
+    console.log(`Test Case ${index + 1}: ${JSON.stringify(result) === JSON.stringify(test.expected) ? 'Passed' : 'Failed'} (Expected: ${JSON.stringify(test.expected)}, Got: ${JSON.stringify(result)})`);
+});
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+&copy; d)zharii. <a href="/sitemap.html">sitemap</a>
+</div>
+</body>
+</html>

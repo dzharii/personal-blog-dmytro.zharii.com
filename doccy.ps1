@@ -12,9 +12,14 @@ $COMMAND_EDIT = "edit"
 $COMMAND_PUBLISH = "pub"
 $COMMAND_PUBLISH_FORCE = "pub-force"
 
-$EMACS = if (Get-Command -Name "emacs" -erroraction silentlycontinue) { "emacs" } 
-	 elseif (Get-Command -Name "runemacs" -erroraction silentlycontinue) { "runemacs" }
-         else { throw "Critical: Emacs command was not found" } 
+$EMACS = ""
+if (Get-Command -Name "emacs" -erroraction silentlycontinue) { 
+    $EMACS = "emacs" 
+} elseif (Get-Command -Name "runemacs" -erroraction silentlycontinue) { 
+    $EMACS = "runemacs" 
+} else { 
+    throw "Critical: Emacs command was not found" 
+} 
 
 
 $HELP_MESSAGE = @"

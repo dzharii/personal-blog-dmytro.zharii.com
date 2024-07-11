@@ -1,0 +1,155 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2024-07-10 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>&lrm;</title>
+<meta name="author" content="d)zharii" />
+<meta name="generator" content="Org Mode" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/t.css"/>
+</head>
+<body>
+<nav><a href="/" tabindex="0">&larrhk; Back to Index</a></nav><div id="preamble" class="status">
+Published 
+</div>
+<div id="content" class="content">
+<div id="outline-container-org6725ba7" class="outline-2">
+<h2 id="org6725ba7">165. Compare Version Numbers</h2>
+<div class="outline-text-2" id="text-org6725ba7">
+</div>
+
+<div id="outline-container-org75d2098" class="outline-3">
+<h3 id="org75d2098">Problem:</h3>
+<div class="outline-text-3" id="text-org75d2098">
+<p>
+The problem "Compare Version Numbers" requires comparing two version numbers `a` and `b` and returning:
+</p>
+<ul class="org-ul">
+<li>`1` if `a` is greater,</li>
+<li>`-1` if `b` is greater,</li>
+<li>`0` if both are equal.</li>
+</ul>
+
+<p>
+Each version number string comprises numbers separated by dots (e.g., "1.0.1", "7.5.2.4"). We will compare each numerical segment from left to right. If any segment differs, the comparison result is determined.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgbc17e91" class="outline-3">
+<h3 id="orgbc17e91">Solution Description:</h3>
+<div class="outline-text-3" id="text-orgbc17e91">
+<p>
+To implement the solution, we need to:
+</p>
+<ol class="org-ol">
+<li>Split the version numbers by the dot.</li>
+<li>Iterate through the numbers segment by segment.</li>
+<li>Compare corresponding segments as integers.</li>
+<li>Return `1`, `-1`, or `0` based on the first non-equal segment. If all compared segments are equal, return `0`.</li>
+</ol>
+
+<p>
+Time Complexity: O(n) where n is the number of segments in the longer version number.
+Space Complexity: O(n) for storing the split segments.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org98e17e4" class="outline-3">
+<h3 id="org98e17e4">Example:</h3>
+<div class="outline-text-3" id="text-org98e17e4">
+<p>
+Consider two version numbers "1.0.1" and "1". 
+Splitting them gives ["1", "0", "1"] and ["1"].
+</p>
+<ul class="org-ul">
+<li>Compare "1" with "1" -&gt; equal.</li>
+<li>Compare "0" with no corresponding part in "1" (assumed 0) -&gt; segment in "1.0.1" is greater.</li>
+</ul>
+<p>
+Thus, "1.0.1" &gt; "1" and should return `1`.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org6c70800" class="outline-3">
+<h3 id="org6c70800">Setup:</h3>
+<div class="outline-text-3" id="text-org6c70800">
+<p>
+We'll use a skeleton code and a series of test cases for implementation. This includes the main comparison logic and console logs for validation.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga342656" class="outline-3">
+<h3 id="orga342656">Test Execution:</h3>
+<div class="outline-text-3" id="text-orga342656">
+<p>
+Multiple test cases including edge cases and different lengths of versions will be covered.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">
+// Dummy function for template purposes.
+/**
+ * Compares two version numbers.
+ * @param {string} version1
+ * @param {string} version2
+ * @return {number} -1 if version1 &lt; version2, 1 if version1 &gt; version2, else 0
+ */
+function compareVersion(version1, version2) {
+    const log = typeof NestedInteger !== 'undefined' ? () =&gt; {} : console.log;
+    const table = typeof NestedInteger!== 'undefined' ? () =&gt; {} : console.table;
+
+    const vLeftGreater = 1;
+    const vEqual = 0;
+    const vRightGreater = -1;
+
+    const leftTokens = version1.split('.').map(n =&gt; Number(n));
+    const rightTokens = version2.split('.').map(n =&gt; Number(n));
+
+    const maxLen = Math.max(leftTokens.length, rightTokens.length);
+
+    for (let i = 0; i &lt; maxLen; i++) {
+        const left = i &lt; leftTokens.length ? leftTokens[i] : 0;
+        const right = i &lt; rightTokens.length ? rightTokens[i] : 0;
+
+        if (left &gt; right) {
+            return vLeftGreater;
+        } else if (left &lt; right) {
+            return vRightGreater;
+        }
+    }
+
+
+    // Dummy result for now.
+    return vEqual;
+}
+
+// Test cases
+const testCases = [
+    { version1: "1.01", version2: "1.001", expected: 0 },
+    { version1: "1.0", version2: "1.0.0", expected: 0 },
+    { version1: "0.1", version2: "1.1", expected: -1 },
+    { version1: "1.0.1", version2: "1", expected: 1 },
+    { version1: "7.5.2.4", version2: "7.5.3", expected: -1 }
+];
+
+testCases.forEach((test, index) =&gt; {
+    const result = compareVersion(test.version1, test.version2);
+    console.log(`Test Case ${index + 1}: ${result === test.expected ? 'Passed' : `Failed (Expected: ${test.expected}, Got: ${result})`}`);
+});
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+&copy; d)zharii. <a href="/sitemap.html">sitemap</a>
+</div>
+</body>
+</html>

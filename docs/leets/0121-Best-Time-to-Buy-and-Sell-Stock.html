@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2024-07-10 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>&lrm;</title>
+<meta name="author" content="d)zharii" />
+<meta name="generator" content="Org Mode" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/t.css"/>
+</head>
+<body>
+<nav><a href="/" tabindex="0">&larrhk; Back to Index</a></nav><div id="preamble" class="status">
+Published 
+</div>
+<div id="content" class="content">
+<div id="outline-container-orgd9e7d43" class="outline-2">
+<h2 id="orgd9e7d43">121. Best Time to Buy and Sell Stock</h2>
+<div class="outline-text-2" id="text-orgd9e7d43">
+<p>
+<b>Problem:</b> 
+</p>
+
+<p>
+You are given an array `prices` where `prices[i]` is the price of a given stock on the i-th day. You want to maximize your profit by choosing a single day to buy one stock and choosing a different day in the future to sell that stock. 
+</p>
+
+<p>
+Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0.
+</p>
+
+<p>
+<b>Solution Description:</b>
+</p>
+
+<p>
+To implement the solution, we need to:
+</p>
+
+<ol class="org-ol">
+<li>Initialize two variables, `minPrice` to a very large value and `maxProfit` to 0.</li>
+<li>Iterate through the `prices` array.</li>
+<li>For each price, update `minPrice` to be the minimum of `minPrice` and the current price.</li>
+<li>Calculate the profit by subtracting `minPrice` from the current price.</li>
+<li>Update `maxProfit` to be the maximum of `maxProfit` and the calculated profit.</li>
+<li>Return `maxProfit`.</li>
+</ol>
+
+<p>
+Time complexity: O(n), where n is the number of days. We traverse the list once.
+Space complexity: O(1), only a few variables are used.
+</p>
+
+<p>
+<b>Example:</b>
+</p>
+
+<p>
+Consider the prices array [7, 1, 5, 3, 6, 4]:
+</p>
+
+<ol class="org-ol">
+<li>Initialize `minPrice` to infinity and `maxProfit` to 0.</li>
+<li>Traverse through the array:
+<ul class="org-ul">
+<li>At price 7, `minPrice` is updated to 7.</li>
+<li>At price 1, `minPrice` is updated to 1.</li>
+<li>At price 5, profit is 4, `maxProfit` is updated to 4.</li>
+<li>At price 3, profit is 2, `maxProfit` remains 4.</li>
+<li>At price 6, profit is 5, `maxProfit` is updated to 5.</li>
+<li>At price 4, profit is 3, `maxProfit` remains 5.</li>
+</ul></li>
+<li>Return `maxProfit` which is 5.</li>
+</ol>
+
+<p>
+<b>Setup:</b>
+</p>
+
+<p>
+Below is the initial skeleton for the solution function and test cases:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">/**
+ * Calculates the maximum profit from a list of stock prices.
+ * @param {number[]} prices - List of stock prices.
+ * @return {number} The maximum profit.
+ */
+function maxProfit(prices) {
+    let minPrice = Number.MAX_SAFE_INTEGER;
+    let maxProfit = 0;
+
+    for (let p of prices) {
+        minPrice = Math.min(minPrice, p);
+        maxProfit = Math.max(maxProfit, p - minPrice);
+    }
+
+    return maxProfit;
+}
+
+// Test cases
+const testCases = [
+    { prices: [7, 1, 5, 3, 6, 4], expected: 5 },
+    { prices: [7, 6, 4, 3, 1], expected: 0 },
+    { prices: [1, 2, 3, 4, 5], expected: 4 },
+    { prices: [2, 4, 1], expected: 2 },
+    { prices: [3, 2, 6, 5, 0, 3], expected: 4 },
+];
+
+testCases.forEach((test, index) =&gt; {
+    const result = maxProfit(test.prices);
+    console.log(`Test Case ${index + 1}: ${result === test.expected ? 'Passed' : 'Failed'} (Expected: ${test.expected}, Got: ${result})`);
+});
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+&copy; d)zharii. <a href="/sitemap.html">sitemap</a>
+</div>
+</body>
+</html>
