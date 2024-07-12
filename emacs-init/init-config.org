@@ -91,7 +91,7 @@ This section contains the publishing configuration, defining how and where the f
          :exclude "index.org"
          :publishing-directory ,target-dir
          :publishing-function org-html-publish-to-html
-         :with-toc nil
+         :with-toc t
          :section-numbers nil
          :author ,author
          :auto-sitemap t
@@ -118,7 +118,7 @@ This section contains the publishing configuration, defining how and where the f
          :include ("index.org")
          :publishing-directory ,target-dir
          :publishing-function org-html-publish-to-html
-         :with-toc nil
+         :with-toc t
          :section-numbers nil
          :author ,author
          :html-doctype "html5"
@@ -147,6 +147,3 @@ This section contains the publishing configuration, defining how and where the f
 ;; Keybinding to publish the doccy project
 (global-set-key (kbd "C-c p") 'doccy-publish)
 #+END_SRC
-
-#+RESULTS:
-: doccy-publish

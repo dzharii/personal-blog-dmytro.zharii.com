@@ -1,0 +1,22 @@
+* Emacs snippets
+
+** Configuration Management
+
+To reload configuration:
+#+begin_src emacs-lisp
+load-file emacs-init/init.el
+#+end_src
+
+** Publishing
+
+To publish static HTML website:
+#+begin_src emacs-lisp
+(org-publish-all)
+#+end_src
+
+To force publish static HTML website:
+#+begin_src emacs-lisp
+(org-publish-all t)
+#+end_src
+
+#+RESULTS:

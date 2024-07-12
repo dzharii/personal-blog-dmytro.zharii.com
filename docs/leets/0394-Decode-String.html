@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2024-07-10 -->
+<!-- 2024-07-11 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>&lrm;</title>
@@ -15,9 +15,25 @@
 Published 
 </div>
 <div id="content" class="content">
-<div id="outline-container-org7494578" class="outline-2">
-<h2 id="org7494578">394. Decode String</h2>
-<div class="outline-text-2" id="text-org7494578">
+<nav id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org2b9253d">394. Decode String</a></li>
+<li><a href="#org421293d">Solution Outline</a>
+<ul>
+<li><a href="#org246963e">Preferred Structure</a></li>
+<li><a href="#orgb8df7fe">Brute Force vs Optimal Solution</a></li>
+<li><a href="#orge9bd385">Algorithm Choice</a></li>
+</ul>
+</li>
+<li><a href="#orgebe6460">Solution Implementation</a></li>
+</ul>
+</div>
+</nav>
+<div id="outline-container-org2b9253d" class="outline-2">
+<h2 id="org2b9253d">394. Decode String</h2>
+<div class="outline-text-2" id="text-org2b9253d">
 <ul class="org-ul">
 <li>Problem Overview</li>
 </ul>
@@ -35,13 +51,13 @@ Example:
 </div>
 </div>
 
-<div id="outline-container-org6588500" class="outline-2">
-<h2 id="org6588500">Solution Outline</h2>
-<div class="outline-text-2" id="text-org6588500">
+<div id="outline-container-org421293d" class="outline-2">
+<h2 id="org421293d">Solution Outline</h2>
+<div class="outline-text-2" id="text-org421293d">
 </div>
-<div id="outline-container-org122ae46" class="outline-3">
-<h3 id="org122ae46">Preferred Structure</h3>
-<div class="outline-text-3" id="text-org122ae46">
+<div id="outline-container-org246963e" class="outline-3">
+<h3 id="org246963e">Preferred Structure</h3>
+<div class="outline-text-3" id="text-org246963e">
 <ul class="org-ul">
 <li>Use a stack to help with decoding, as it can handle nested patterns effectively.</li>
 <li>Utilize string operations to build the decoded result.</li>
@@ -49,9 +65,9 @@ Example:
 </div>
 </div>
 
-<div id="outline-container-org34644cc" class="outline-3">
-<h3 id="org34644cc">Brute Force vs Optimal Solution</h3>
-<div class="outline-text-3" id="text-org34644cc">
+<div id="outline-container-orgb8df7fe" class="outline-3">
+<h3 id="orgb8df7fe">Brute Force vs Optimal Solution</h3>
+<div class="outline-text-3" id="text-orgb8df7fe">
 <ul class="org-ul">
 <li><b><b>Brute Force Approach:</b></b> Recursively decode the string, which might be inefficient for deeply nested patterns due to call stack limitations.</li>
 <li><b><b>Optimal Solution:</b></b> Use an iterative approach with a stack to manage nested structures and avoid recursion depth issues.</li>
@@ -59,9 +75,9 @@ Example:
 </div>
 </div>
 
-<div id="outline-container-org12034ed" class="outline-3">
-<h3 id="org12034ed">Algorithm Choice</h3>
-<div class="outline-text-3" id="text-org12034ed">
+<div id="outline-container-orge9bd385" class="outline-3">
+<h3 id="orge9bd385">Algorithm Choice</h3>
+<div class="outline-text-3" id="text-orge9bd385">
 <ul class="org-ul">
 <li><b><b>Stack-based Decoding:</b></b> This method iterates through the string, pushing numbers and current substrings onto the stack whenever a new bracket is encountered. When a closing bracket is found, it constructs the substring by popping from the stack, which ensures correct handling of nested patterns.</li>
 </ul>
@@ -69,9 +85,9 @@ Example:
 </div>
 </div>
 
-<div id="outline-container-orge752db7" class="outline-2">
-<h2 id="orge752db7">Solution Implementation</h2>
-<div class="outline-text-2" id="text-orge752db7">
+<div id="outline-container-orgebe6460" class="outline-2">
+<h2 id="orgebe6460">Solution Implementation</h2>
+<div class="outline-text-2" id="text-orgebe6460">
 <p>
 Here's the skeleton of the solution with test cases. The core implementation will follow in incremental steps.
 </p>

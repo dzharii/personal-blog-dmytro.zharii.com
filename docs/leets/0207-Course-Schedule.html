@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2024-07-10 -->
+<!-- 2024-07-11 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>&lrm;</title>
@@ -15,24 +15,37 @@
 Published 
 </div>
 <div id="content" class="content">
-<div id="outline-container-orgf129d30" class="outline-2">
-<h2 id="orgf129d30">207. Course Schedule</h2>
-<div class="outline-text-2" id="text-orgf129d30">
+<nav id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org95729cb">207. Course Schedule</a></li>
+<li><a href="#orgcc410f0">Submission</a></li>
+<li><a href="#org5260f39">Problem:</a></li>
+<li><a href="#org945244d">Solution Description:</a></li>
+<li><a href="#org03e5bc0">Example:</a></li>
+<li><a href="#orgf7b915c">Setup:</a></li>
+</ul>
+</div>
+</nav>
+<div id="outline-container-org95729cb" class="outline-2">
+<h2 id="org95729cb">207. Course Schedule</h2>
+<div class="outline-text-2" id="text-org95729cb">
 </div>
 </div>
 
-<div id="outline-container-orgb02d814" class="outline-2">
-<h2 id="orgb02d814">Submission</h2>
-<div class="outline-text-2" id="text-orgb02d814">
+<div id="outline-container-orgcc410f0" class="outline-2">
+<h2 id="orgcc410f0">Submission</h2>
+<div class="outline-text-2" id="text-orgcc410f0">
 <p>
 <a href="https://leetcode.com/submissions/detail/1317044983/">Course Schedule</a>
 </p>
 </div>
 </div>
 
-<div id="outline-container-org9fb127b" class="outline-2">
-<h2 id="org9fb127b">Problem:</h2>
-<div class="outline-text-2" id="text-org9fb127b">
+<div id="outline-container-org5260f39" class="outline-2">
+<h2 id="org5260f39">Problem:</h2>
+<div class="outline-text-2" id="text-org5260f39">
 <p>
 The problem is the Course Schedule problem (often referred to as Leetcode 207). The given problem can be restated as follows:
 </p>
@@ -45,7 +58,7 @@ You are given a total of `numCourses`, labeled from `0` to `numCourses-1`. You a
 Write a function that determines if it is possible to finish all courses. If there is a cyclic dependency, it is impossible to finish all courses.
 </p>
 
-<pre class="example" id="org466852a">
+<pre class="example" id="org4012098">
 - For example:
     - Input: numCourses = 2, prerequisites = [[1, 0]]
     - Output: True
@@ -54,9 +67,9 @@ Write a function that determines if it is possible to finish all courses. If the
 </div>
 </div>
 
-<div id="outline-container-org605fafc" class="outline-2">
-<h2 id="org605fafc">Solution Description:</h2>
-<div class="outline-text-2" id="text-org605fafc">
+<div id="outline-container-org945244d" class="outline-2">
+<h2 id="org945244d">Solution Description:</h2>
+<div class="outline-text-2" id="text-org945244d">
 <p>
 To implement this, we need to represent the courses and their prerequisites as a directed graph and then check if the graph has any cycles. If it has a cycle, it means there is a circular dependency, and the courses cannot all be finished. We can use Depth-First Search (DFS) to detect cycles in the graph.
 </p>
@@ -77,10 +90,10 @@ Space Complexity: O(V + E) to store the graph and the state of each course.
 </div>
 </div>
 
-<div id="outline-container-org50a1385" class="outline-2">
-<h2 id="org50a1385">Example:</h2>
-<div class="outline-text-2" id="text-org50a1385">
-<pre class="example" id="org7cbcb4f">
+<div id="outline-container-org03e5bc0" class="outline-2">
+<h2 id="org03e5bc0">Example:</h2>
+<div class="outline-text-2" id="text-org03e5bc0">
+<pre class="example" id="orga30cb81">
 Let’s take an example to clarify:
     - Input: numCourses = 4, prerequisites = [[1, 0], [2, 1], [3, 2]]
     - The graph would look like:
@@ -89,9 +102,9 @@ Let’s take an example to clarify:
 </pre>
 </div>
 </div>
-<div id="outline-container-org85189dc" class="outline-2">
-<h2 id="org85189dc">Setup:</h2>
-<div class="outline-text-2" id="text-org85189dc">
+<div id="outline-container-orgf7b915c" class="outline-2">
+<h2 id="orgf7b915c">Setup:</h2>
+<div class="outline-text-2" id="text-orgf7b915c">
 <p>
 Below is the general framework for implementing the solution using modern JavaScript. The `console.log` statements will help identify the input, actual result, and expected result.
 </p>
