@@ -4,10 +4,20 @@
 
 To reload configuration:
 #+begin_src emacs-lisp
-load-file emacs-init/init.el
+(load-file "emacs-init/init.el")
 #+end_src
 
+#+RESULTS:
+: t
+
 ** Publishing
+
+My publish
+#+begin_src emacs-lisp
+(doccy-publish)
+#+end_src
+
+
 
 To publish static HTML website:
 #+begin_src emacs-lisp

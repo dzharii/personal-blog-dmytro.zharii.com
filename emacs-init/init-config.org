@@ -132,18 +132,10 @@ This section contains the publishing configuration, defining how and where the f
         ("all"
          :components ("static" "pages" "index"))))
 
-;; Function to publish the doccy project
 (defun doccy-publish ()
-  "Publish the doccy project."
+  "Publish the doccy project and display the *Messages* buffer."
   (interactive)
-  (org-publish-all))
+  (org-publish-all t)
+  (display-buffer "*Messages*"))
 
-;; Function to publish the doccy project
-(defun doccy-publish-force ()
-  "Publish the doccy project."
-  (interactive)
-  (org-publish-all t))
-
-;; Keybinding to publish the doccy project
-(global-set-key (kbd "C-c p") 'doccy-publish)
 #+END_SRC

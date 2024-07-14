@@ -1,0 +1,195 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2024-07-13 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>&lrm;</title>
+<meta name="author" content="d)zharii" />
+<meta name="generator" content="Org Mode" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/t.css"/>
+</head>
+<body>
+<nav><a href="/" tabindex="0">&larrhk; Back to Index</a></nav><div id="preamble" class="status">
+Published 
+</div>
+<div id="content" class="content">
+<nav id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org0c2711f">1717. Maximum Score From Removing Substrings</a></li>
+<li><a href="#org9ceb3f9">Links</a></li>
+<li><a href="#org1ddf697">Problem:</a>
+<ul>
+<li><a href="#org0cf335d">Solution Description:</a></li>
+<li><a href="#orgfaa98cd">Example:</a></li>
+<li><a href="#org3faea76">Setup:</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</nav>
+<div id="outline-container-org0c2711f" class="outline-2">
+<h2 id="org0c2711f">1717. Maximum Score From Removing Substrings</h2>
+<div class="outline-text-2" id="text-org0c2711f">
+</div>
+</div>
+
+<div id="outline-container-org9ceb3f9" class="outline-2">
+<h2 id="org9ceb3f9">Links</h2>
+<div class="outline-text-2" id="text-org9ceb3f9">
+<ul class="org-ul">
+<li><a href="https://leetcode.com/submissions/detail/1318218623/">Submission</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org1ddf697" class="outline-2">
+<h2 id="org1ddf697">Problem:</h2>
+<div class="outline-text-2" id="text-org1ddf697">
+<p>
+1717 Maximum Score From Removing Substrings
+</p>
+
+<p>
+You are given a string `s` and two integers `x` and `y`. You can perform two types of operations any number of times:
+</p>
+
+<ol class="org-ol">
+<li>Remove substring "ab" and gain `x` points.</li>
+<li>Remove substring "ba" and gain `y` points.</li>
+</ol>
+
+<p>
+Return the maximum score you can achieve after performing any number of above operations on `s`.
+</p>
+
+<p>
+Constraints:
+</p>
+<ul class="org-ul">
+<li>1 &lt;= s.length &lt;= 10<sup>5</sup></li>
+<li>1 &lt;= x, y &lt;= 10<sup>4</sup></li>
+<li>s consists of lowercase English letters.</li>
+</ul>
+</div>
+
+<div id="outline-container-org0cf335d" class="outline-3">
+<h3 id="org0cf335d">Solution Description:</h3>
+<div class="outline-text-3" id="text-org0cf335d">
+<p>
+To implement the solution, we need to simulate the characters removal process in an optimal way. We should perform the removal of the higher score substring first. This helps in maximizing the score at each step.
+</p>
+
+<ol class="org-ol">
+<li>Determine the removal order:
+<ul class="org-ul">
+<li>If `x &gt;= y`, remove "ab" first, and then remove "ba".</li>
+<li>If `y &gt; x`, remove "ba" first, and then remove "ab".</li>
+</ul></li>
+
+<li>Use a stack data structure to facilitate the removal process:
+<ul class="org-ul">
+<li>Iterate through the characters of the string and use stack operations to collect and evaluate substrings for removal.</li>
+</ul></li>
+</ol>
+
+<p>
+By processing characters in the optimal removal order and utilising a stack, we ensure a linear time complexity solution with O(n). Space complexity will be O(n) in the worst-case scenario, due to the use of stack.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgfaa98cd" class="outline-3">
+<h3 id="orgfaa98cd">Example:</h3>
+<div class="outline-text-3" id="text-orgfaa98cd">
+<p>
+Suppose `s = "aabbaaxybbaabb"`, `x = 5`, and `y = 3`.
+</p>
+<ul class="org-ul">
+<li>First, we check `x &gt;= y`, hence we will remove "ab" first.</li>
+<li>After each removal, the new string will be evaluated and the next optimal removal step will be performed.</li>
+<li>The final score is sum of all the points gained from these steps.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org3faea76" class="outline-3">
+<h3 id="org3faea76">Setup:</h3>
+<div class="outline-text-3" id="text-org3faea76">
+<p>
+Below is the skeleton of the solution using modern JavaScript:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">/**
+ * Main function to calculate the maximum score by removing substrings.
+ * @param {string} s - The input string.
+ * @param {number} x - Points for removing "ab".
+ * @param {number} y - Points for removing "ba".
+ * @returns {number} - The maximum score achieved.
+ */
+function maximumScore(s, x, y) {
+    const log = typeof NestedInteger !== 'undefined' ? () =&gt; {} : console.log;
+    const table = typeof NestedInteger !== 'undefined' ? () =&gt; {} : console.table;
+
+    function removeAndCount(s, sub, points) {
+        let stack = [];
+        let score = 0;
+        for (let char of s) {
+            stack.push(char);
+            // Check the last two characters in the stack
+            if (stack.length &gt;= 2 &amp;&amp; stack[stack.length - 2] + stack[stack.length - 1] === sub) {
+                stack.pop();
+                stack.pop();
+                score += points;
+            }
+        }
+        return [stack.join(''), score];
+    }
+
+    // Determine the order of removal
+    let firstSub, firstPoints, secondSub, secondPoints;
+    if (x &gt;= y) {
+        firstSub = "ab";
+        firstPoints = x;
+        secondSub = "ba";
+        secondPoints = y;
+    } else {
+        firstSub = "ba";
+        firstPoints = y;
+        secondSub = "ab";
+        secondPoints = x;
+    }
+
+    // Remove the first substring
+    let [remainingString, firstScore] = removeAndCount(s, firstSub, firstPoints);
+    // Remove the second substring from the remaining string
+    let [finalString, secondScore] = removeAndCount(remainingString, secondSub, secondPoints);
+
+    // The total score is the sum of both scores
+    return firstScore + secondScore;
+}
+
+// Test cases
+const testCases = [
+    { s: "cdbcbbaaabab", x: 4, y: 5, expected: 19 },
+];
+
+testCases.forEach((test, index) =&gt; {
+    const result = maximumScore(test.s, test.x, test.y);
+    console.log(`Test Case ${index + 1}: ${result === test.expected ? 'Passed' : 'Failed'} (Expected: ${test.expected}, Got: ${result})`);
+});
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+&copy; d)zharii. <a href="/sitemap.html">sitemap</a>
+</div>
+</body>
+</html>

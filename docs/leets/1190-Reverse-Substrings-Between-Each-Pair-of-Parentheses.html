@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2024-07-11 -->
+<!-- 2024-07-13 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>&lrm;</title>
@@ -19,26 +19,26 @@ Published
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org5b4d0e6">1190. Reverse Substrings Between Each Pair of Parentheses</a>
+<li><a href="#org885b8c2">1190. Reverse Substrings Between Each Pair of Parentheses</a>
 <ul>
-<li><a href="#orgd860271">Links:</a></li>
-<li><a href="#org70ccf0c">Problem:</a></li>
-<li><a href="#orgda37a77">Solution Description:</a></li>
-<li><a href="#orgea1bb73">Example:</a></li>
-<li><a href="#org80797a4">Setup:</a></li>
+<li><a href="#org826c17c">Links:</a></li>
+<li><a href="#orge6e774a">Problem:</a></li>
+<li><a href="#org4c45349">Solution Description:</a></li>
+<li><a href="#org6816e1d">Example:</a></li>
+<li><a href="#org79b782c">Setup:</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </nav>
-<div id="outline-container-org5b4d0e6" class="outline-2">
-<h2 id="org5b4d0e6">1190. Reverse Substrings Between Each Pair of Parentheses</h2>
-<div class="outline-text-2" id="text-org5b4d0e6">
+<div id="outline-container-org885b8c2" class="outline-2">
+<h2 id="org885b8c2">1190. Reverse Substrings Between Each Pair of Parentheses</h2>
+<div class="outline-text-2" id="text-org885b8c2">
 </div>
 
-<div id="outline-container-orgd860271" class="outline-3">
-<h3 id="orgd860271">Links:</h3>
-<div class="outline-text-3" id="text-orgd860271">
+<div id="outline-container-org826c17c" class="outline-3">
+<h3 id="org826c17c">Links:</h3>
+<div class="outline-text-3" id="text-org826c17c">
 <ul class="org-ul">
 <li><a href="./1190-Reverse-Substrings-Between-Each-Pair-of-Parentheses.html">1190-Reverse-Substrings-Between-Each-Pair-of-Parentheses.org</a></li>
 <li>submission: <a href="https://leetcode.com/submissions/detail/1317774463/">Reverse Substrings Between Each Pair of Parentheses</a></li>
@@ -46,9 +46,9 @@ Published
 </div>
 </div>
 
-<div id="outline-container-org70ccf0c" class="outline-3">
-<h3 id="org70ccf0c">Problem:</h3>
-<div class="outline-text-3" id="text-org70ccf0c">
+<div id="outline-container-orge6e774a" class="outline-3">
+<h3 id="orge6e774a">Problem:</h3>
+<div class="outline-text-3" id="text-orge6e774a">
 <p>
 Given a string `s` which consists of lowercase English letters and brackets. Reverse substrings that are in each pair of matching parentheses from the innermost one to the outermost one, and return the resulting string without any parentheses.
 </p>
@@ -57,16 +57,16 @@ Given a string `s` which consists of lowercase English letters and brackets. Rev
 For example:
 </p>
 
-<pre class="example" id="org744c268">
+<pre class="example" id="orgf4e600e">
 Input: `s = "(ab(cd)e)"`
 Output: `s = "edcba"`
 </pre>
 </div>
 </div>
 
-<div id="outline-container-orgda37a77" class="outline-3">
-<h3 id="orgda37a77">Solution Description:</h3>
-<div class="outline-text-3" id="text-orgda37a77">
+<div id="outline-container-org4c45349" class="outline-3">
+<h3 id="org4c45349">Solution Description:</h3>
+<div class="outline-text-3" id="text-org4c45349">
 <p>
 To implement the solution, we need to use a stack to manage the parentheses and the nested substrings efficiently.
 </p>
@@ -85,10 +85,10 @@ The time complexity is O(n) because we traverse the string twice (one push and o
 </div>
 </div>
 
-<div id="outline-container-orgea1bb73" class="outline-3">
-<h3 id="orgea1bb73">Example:</h3>
-<div class="outline-text-3" id="text-orgea1bb73">
-<pre class="example" id="orgb1b229d">
+<div id="outline-container-org6816e1d" class="outline-3">
+<h3 id="org6816e1d">Example:</h3>
+<div class="outline-text-3" id="text-org6816e1d">
+<pre class="example" id="org0f17a7f">
 Consider the input `s = "(u(love)i)"`.
 
 1. Traverse and push `(`, `u`.
@@ -102,9 +102,9 @@ The final stack holds `iloveu`.
 </div>
 </div>
 
-<div id="outline-container-org80797a4" class="outline-3">
-<h3 id="org80797a4">Setup:</h3>
-<div class="outline-text-3" id="text-org80797a4">
+<div id="outline-container-org79b782c" class="outline-3">
+<h3 id="org79b782c">Setup:</h3>
+<div class="outline-text-3" id="text-org79b782c">
 <p>
 Below is the JavaScript function implementing the described solution, along with a set of test cases.
 </p>

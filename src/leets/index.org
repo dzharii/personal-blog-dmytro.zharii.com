@@ -20,3 +20,4 @@
 * [[./0104-Maximum-Depth-of-Binary-Tree.org][2024-07-07 104 Maximum Depth of Binary Tree]]
 * [[./0207-Course-Schedule.org][2024-07-10 207 Course Schedule]]
 * [[./1190-Reverse-Substrings-Between-Each-Pair-of-Parentheses.org][2024-07-11 1190 Reverse Substrings Between Each Pair of Parentheses]]
+* [[./1717-Maximum-Score-From-Removing-Substrings.org][2024-07-11 1717 Maximum Score From Removing Substrings]]

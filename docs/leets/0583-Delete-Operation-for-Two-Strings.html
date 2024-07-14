@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2024-07-11 -->
+<!-- 2024-07-13 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>&lrm;</title>
@@ -19,21 +19,21 @@ Published
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org6a46d09">583. Delete Operation for Two Strings</a>
+<li><a href="#org8788104">583. Delete Operation for Two Strings</a>
 <ul>
-<li><a href="#orgd750ed9">Problem:</a></li>
-<li><a href="#org05bb608">Solution Description:</a></li>
-<li><a href="#org10f2567">What is LCS?</a></li>
-<li><a href="#org458ca87">Example:</a></li>
-<li><a href="#org49508f2">Setup:</a></li>
+<li><a href="#org81e8724">Problem:</a></li>
+<li><a href="#org151dc44">Solution Description:</a></li>
+<li><a href="#org3006a92">What is LCS?</a></li>
+<li><a href="#org00ffcad">Example:</a></li>
+<li><a href="#org9efdffd">Setup:</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </nav>
-<div id="outline-container-org6a46d09" class="outline-2">
-<h2 id="org6a46d09">583. Delete Operation for Two Strings</h2>
-<div class="outline-text-2" id="text-org6a46d09">
+<div id="outline-container-org8788104" class="outline-2">
+<h2 id="org8788104">583. Delete Operation for Two Strings</h2>
+<div class="outline-text-2" id="text-org8788104">
 <ol class="org-ol">
 <li>Delete Operation for Two Strings</li>
 </ol>
@@ -61,27 +61,27 @@ So I like the content at Algo Monster more.
 </div>
 
 
-<div id="outline-container-orgd750ed9" class="outline-3">
-<h3 id="orgd750ed9">Problem:</h3>
-<div class="outline-text-3" id="text-orgd750ed9">
+<div id="outline-container-org81e8724" class="outline-3">
+<h3 id="org81e8724">Problem:</h3>
+<div class="outline-text-3" id="text-org81e8724">
 <p>
 Given two words `word1` and `word2`, return the minimum number of steps required to make `word1` and `word2` the same. In each step, you can delete one character in either string.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org05bb608" class="outline-3">
-<h3 id="org05bb608">Solution Description:</h3>
-<div class="outline-text-3" id="text-org05bb608">
+<div id="outline-container-org151dc44" class="outline-3">
+<h3 id="org151dc44">Solution Description:</h3>
+<div class="outline-text-3" id="text-org151dc44">
 <p>
 To implement the solution, we need to find the length of the longest common subsequence (LCS) of the two words. The minimum number of deletions required to make the two strings equal will be the sum of the lengths of both strings minus twice the length of the LCS.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org10f2567" class="outline-3">
-<h3 id="org10f2567">What is LCS?</h3>
-<div class="outline-text-3" id="text-org10f2567">
+<div id="outline-container-org3006a92" class="outline-3">
+<h3 id="org3006a92">What is LCS?</h3>
+<div class="outline-text-3" id="text-org3006a92">
 <p>
 The Longest Common Subsequence (LCS) is the longest sequence that appears in both given sequences in the same order but not necessarily consecutively. For example, the LCS of "sea" and "eat" is "ea", and the LCS of "abc" and "ac" is "ac".
 </p>
@@ -101,9 +101,9 @@ The steps are as follows:
 </div>
 </div>
 
-<div id="outline-container-org458ca87" class="outline-3">
-<h3 id="org458ca87">Example:</h3>
-<div class="outline-text-3" id="text-org458ca87">
+<div id="outline-container-org00ffcad" class="outline-3">
+<h3 id="org00ffcad">Example:</h3>
+<div class="outline-text-3" id="text-org00ffcad">
 <p>
 Consider `word1 = "sea"` and `word2 = "eat"`. The LCS of "sea" and "eat" is "ea", which has a length of 2. Therefore, the minimum number of deletions required is `3 + 3 - 2 * 2 = 2`.
 </p>
@@ -131,9 +131,9 @@ The LCS problem can be solved using dynamic programming. The idea is to build a 
 </div>
 
 
-<div id="outline-container-org49508f2" class="outline-3">
-<h3 id="org49508f2">Setup:</h3>
-<div class="outline-text-3" id="text-org49508f2">
+<div id="outline-container-org9efdffd" class="outline-3">
+<h3 id="org9efdffd">Setup:</h3>
+<div class="outline-text-3" id="text-org9efdffd">
 <p>
 The initial setup involves defining a function to find the LCS and then using it to calculate the minimum deletions. Below is the skeleton and test setup:
 </p>
