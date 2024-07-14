@@ -1,7 +1,8 @@
-* 435. Non-overlapping Intervals
-  :PROPERTIES:
-  :Created: 2024-05-20
-  :END:
+#+title: 0435. Non-overlapping Intervals
+#+subtitle: leetcode
+#+date: <2024-05-20>
+#+language: en
+
 * Problem Overview
 The problem requires determining the minimum number of intervals to remove from a list of intervals so that the remaining intervals are non-overlapping. 
 

@@ -1,10 +1,10 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2024-07-13 -->
+<!-- 2024-07-14 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>&lrm;</title>
+<title>0401. Binary Watch</title>
 <meta name="author" content="d)zharii" />
 <meta name="generator" content="Org Mode" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,37 +12,32 @@
 </head>
 <body>
 <nav><a href="/" tabindex="0">&larrhk; Back to Index</a></nav><div id="preamble" class="status">
-Published 
+Published 2024-06-21
 </div>
 <div id="content" class="content">
-<nav id="table-of-contents" role="doc-toc">
+<header>
+<h1 class="title">0401. Binary Watch</h1>
+<p class="subtitle" role="doc-subtitle">leetcode</p>
+</header><nav id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org9bb141c">401. Binary Watch</a>
-<ul>
-<li><a href="#org559afa4">Problem:</a></li>
-<li><a href="#org72ac7fb">Solution Description:</a></li>
+<li><a href="#orgc16585f">Problem:</a></li>
+<li><a href="#orgc3b062c">Solution Description:</a></li>
 </ul>
 </li>
-<li><a href="#org60f88c3">Time Complexity: O(1), because there are a fixed number of hours (12) and minutes (60), resulting in a constant time complexity regardless of input size.</a></li>
-<li><a href="#org677f468">Space Complexity: O(1) for the variables and result storage, which does not grow with input size.</a>
+<li><a href="#org032a2ae">Time Complexity: O(1), because there are a fixed number of hours (12) and minutes (60), resulting in a constant time complexity regardless of input size.</a></li>
+<li><a href="#org419468c">Space Complexity: O(1) for the variables and result storage, which does not grow with input size.</a>
 <ul>
-<li><a href="#org89ea7dd">Example:</a></li>
-<li><a href="#orgf4884c4">Setup:</a></li>
-</ul>
-</li>
+<li><a href="#org6f4b99f">Example:</a></li>
+<li><a href="#org32e1c79">Setup:</a></li>
 </ul>
 </div>
 </nav>
-<div id="outline-container-org9bb141c" class="outline-2">
-<h2 id="org9bb141c">401. Binary Watch</h2>
-<div class="outline-text-2" id="text-org9bb141c">
-</div>
 
-<div id="outline-container-org559afa4" class="outline-3">
-<h3 id="org559afa4">Problem:</h3>
-<div class="outline-text-3" id="text-org559afa4">
+<div id="outline-container-orgc16585f" class="outline-3">
+<h3 id="orgc16585f">Problem:</h3>
+<div class="outline-text-3" id="text-orgc16585f">
 <p>
 A binary watch has 4 LEDs on the top that represent the hours (0-11), and the 6 LEDs on the bottom represent the minutes (0-59). Each LED represents a zero or one, with the least significant bit on the right.
 </p>
@@ -53,26 +48,25 @@ Given a non-negative integer n which represents the number of LEDs that are curr
 </div>
 </div>
 
-<div id="outline-container-org72ac7fb" class="outline-3">
-<h3 id="org72ac7fb">Solution Description:</h3>
-<div class="outline-text-3" id="text-org72ac7fb">
+<div id="outline-container-orgc3b062c" class="outline-3">
+<h3 id="orgc3b062c">Solution Description:</h3>
+<div class="outline-text-3" id="text-orgc3b062c">
 <p>
 To implement the solution, we need to generate all possible combinations of hour and minute counts where the total number of bits is equal to n. This can be achieved by iterating through all possible hours (0-11) and minutes (0-59) and counting their respective bits. If the sum of the bits equals n, we format the time as a string and store it.
 </p>
 </div>
 </div>
-</div>
 
-<div id="outline-container-org60f88c3" class="outline-2">
-<h2 id="org60f88c3">Time Complexity: O(1), because there are a fixed number of hours (12) and minutes (60), resulting in a constant time complexity regardless of input size.</h2>
+<div id="outline-container-org032a2ae" class="outline-2">
+<h2 id="org032a2ae">Time Complexity: O(1), because there are a fixed number of hours (12) and minutes (60), resulting in a constant time complexity regardless of input size.</h2>
 </div>
-<div id="outline-container-org677f468" class="outline-2">
-<h2 id="org677f468">Space Complexity: O(1) for the variables and result storage, which does not grow with input size.</h2>
-<div class="outline-text-2" id="text-org677f468">
+<div id="outline-container-org419468c" class="outline-2">
+<h2 id="org419468c">Space Complexity: O(1) for the variables and result storage, which does not grow with input size.</h2>
+<div class="outline-text-2" id="text-org419468c">
 </div>
-<div id="outline-container-org89ea7dd" class="outline-3">
-<h3 id="org89ea7dd">Example:</h3>
-<div class="outline-text-3" id="text-org89ea7dd">
+<div id="outline-container-org6f4b99f" class="outline-3">
+<h3 id="org6f4b99f">Example:</h3>
+<div class="outline-text-3" id="text-org6f4b99f">
 <p>
 For example, if n = 1, should return ['0:01', '0:02', '0:04', '0:08', '0:16', '0:32', '1:00', '2:00', '4:00', '8:00'] because each of these times has exactly one LED on.
 </p>
@@ -90,9 +84,9 @@ Here's how the algorithm will work step-by-step:
 </div>
 </div>
 
-<div id="outline-container-orgf4884c4" class="outline-3">
-<h3 id="orgf4884c4">Setup:</h3>
-<div class="outline-text-3" id="text-orgf4884c4">
+<div id="outline-container-org32e1c79" class="outline-3">
+<h3 id="org32e1c79">Setup:</h3>
+<div class="outline-text-3" id="text-org32e1c79">
 <p>
 Here's the general framework for the solution implementation:
 </p>

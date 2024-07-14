@@ -1,6 +1,11 @@
-﻿* 543. Diameter of Binary Tree
+﻿#+title: 543. Diameter of Binary Tree
+#+subtitle: leetcode
+#+date: <2024-07-07>
+#+language: en
+
+* 
 :PROPERTIES:
-:Created: 2024-07-07
+:Created: 
 :END:
 
 ** Problem:
@@ -25,13 +30,14 @@ The time complexity of this approach is O(n) because each node is visited once. 
 
 ** Example:
 Consider a binary tree:
-```
+#+begin_example
         1
        / \
       2   3
      / \
     4   5
-```
+#+end_example
+
 The longest path goes from node 4 to node 5 through nodes 2 and 1, so the diameter is 3.
 
 ** Setup:

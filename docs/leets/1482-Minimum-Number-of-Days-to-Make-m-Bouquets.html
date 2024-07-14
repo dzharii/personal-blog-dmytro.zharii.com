@@ -1,10 +1,10 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2024-07-13 -->
+<!-- 2024-07-14 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>&lrm;</title>
+<title>1482. Minimum Number of Days to Make m Bouquets</title>
 <meta name="author" content="d)zharii" />
 <meta name="generator" content="Org Mode" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,37 +12,34 @@
 </head>
 <body>
 <nav><a href="/" tabindex="0">&larrhk; Back to Index</a></nav><div id="preamble" class="status">
-Published 
+Published 2024-06-19
 </div>
 <div id="content" class="content">
-<nav id="table-of-contents" role="doc-toc">
+<header>
+<h1 class="title">1482. Minimum Number of Days to Make m Bouquets</h1>
+<p class="subtitle" role="doc-subtitle">leetcode</p>
+</header><nav id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org7fe91aa">1482. Minimum Number of Days to Make m Bouquets</a></li>
-<li><a href="#org8c499a7">Problem:</a></li>
-<li><a href="#org2f35718">Solution Description:</a>
+<li><a href="#orgc091388">Problem:</a></li>
+<li><a href="#org0b599d8">Solution Description:</a>
 <ul>
-<li><a href="#org83c179f">Steps: **</a></li>
-<li><a href="#org38ae417">Example:</a></li>
-<li><a href="#org5f66015">Execution:</a></li>
-<li><a href="#org76705aa">Time Complexity:</a></li>
-<li><a href="#org7bfbc85">Space Complexity:</a></li>
-<li><a href="#org92f9096">Setup:</a></li>
+<li><a href="#orge10b9d6">Steps: **</a></li>
+<li><a href="#org62d5679">Example:</a></li>
+<li><a href="#orgb2e18c4">Execution:</a></li>
+<li><a href="#orgcaa2010">Time Complexity:</a></li>
+<li><a href="#orgbb12be7">Space Complexity:</a></li>
+<li><a href="#org4bd2b49">Setup:</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </nav>
-<div id="outline-container-org7fe91aa" class="outline-2">
-<h2 id="org7fe91aa">1482. Minimum Number of Days to Make m Bouquets</h2>
-<div class="outline-text-2" id="text-org7fe91aa">
-</div>
-</div>
 
-<div id="outline-container-org8c499a7" class="outline-2">
-<h2 id="org8c499a7">Problem:</h2>
-<div class="outline-text-2" id="text-org8c499a7">
+<div id="outline-container-orgc091388" class="outline-2">
+<h2 id="orgc091388">Problem:</h2>
+<div class="outline-text-2" id="text-orgc091388">
 <p>
 Given `m` bouquets, each with `k` adjacent flowers, and an array `bloomDay` of `n` integers representing the days on which each flower blooms, determine the minimum number of days required to make the bouquets. If it's not possible to make the bouquets, return -1.
 </p>
@@ -58,17 +55,17 @@ Given `m` bouquets, each with `k` adjacent flowers, and an array `bloomDay` of `
 </div>
 </div>
 
-<div id="outline-container-org2f35718" class="outline-2">
-<h2 id="org2f35718">Solution Description:</h2>
-<div class="outline-text-2" id="text-org2f35718">
+<div id="outline-container-org0b599d8" class="outline-2">
+<h2 id="org0b599d8">Solution Description:</h2>
+<div class="outline-text-2" id="text-org0b599d8">
 <p>
 To implement the solution, we need to use a binary search combined with a helper function to check if it's possible to create the required bouquets in a given number of days. Binary search will help minimize the number of days efficiently.
 </p>
 </div>
 
-<div id="outline-container-org83c179f" class="outline-3">
-<h3 id="org83c179f">Steps: **</h3>
-<div class="outline-text-3" id="text-org83c179f">
+<div id="outline-container-orge10b9d6" class="outline-3">
+<h3 id="orge10b9d6">Steps: **</h3>
+<div class="outline-text-3" id="text-orge10b9d6">
 <ol class="org-ol">
 <li><b><b>Binary Search Setup</b></b>: 
 <ul class="org-ul">
@@ -87,18 +84,18 @@ To implement the solution, we need to use a binary search combined with a helper
 </div>
 </div>
 
-<div id="outline-container-org38ae417" class="outline-3">
-<h3 id="org38ae417">Example:</h3>
-<div class="outline-text-3" id="text-org38ae417">
+<div id="outline-container-org62d5679" class="outline-3">
+<h3 id="org62d5679">Example:</h3>
+<div class="outline-text-3" id="text-org62d5679">
 <p>
 Consider `bloomDay = [1, 10, 3, 10, 2]`, `m = 3`, `k = 1`.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org5f66015" class="outline-3">
-<h3 id="org5f66015">Execution:</h3>
-<div class="outline-text-3" id="text-org5f66015">
+<div id="outline-container-orgb2e18c4" class="outline-3">
+<h3 id="orgb2e18c4">Execution:</h3>
+<div class="outline-text-3" id="text-orgb2e18c4">
 <ol class="org-ol">
 <li><b><b>Initialization</b></b>:
 <ul class="org-ul">
@@ -118,9 +115,9 @@ Consider `bloomDay = [1, 10, 3, 10, 2]`, `m = 3`, `k = 1`.
 </div>
 </div>
 
-<div id="outline-container-org76705aa" class="outline-3">
-<h3 id="org76705aa">Time Complexity:</h3>
-<div class="outline-text-3" id="text-org76705aa">
+<div id="outline-container-orgcaa2010" class="outline-3">
+<h3 id="orgcaa2010">Time Complexity:</h3>
+<div class="outline-text-3" id="text-orgcaa2010">
 <ul class="org-ul">
 <li><b><b>Binary Search</b></b>: O(log(max(bloomDay)))</li>
 <li><b><b>Helper Function</b></b>: O(n) where n is the length of `bloomDay`.</li>
@@ -129,18 +126,18 @@ Consider `bloomDay = [1, 10, 3, 10, 2]`, `m = 3`, `k = 1`.
 </div>
 </div>
 
-<div id="outline-container-org7bfbc85" class="outline-3">
-<h3 id="org7bfbc85">Space Complexity:</h3>
-<div class="outline-text-3" id="text-org7bfbc85">
+<div id="outline-container-orgbb12be7" class="outline-3">
+<h3 id="orgbb12be7">Space Complexity:</h3>
+<div class="outline-text-3" id="text-orgbb12be7">
 <ul class="org-ul">
 <li>Space complexity is O(1) as we only use a few extra variables for computation.</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org92f9096" class="outline-3">
-<h3 id="org92f9096">Setup:</h3>
-<div class="outline-text-3" id="text-org92f9096">
+<div id="outline-container-org4bd2b49" class="outline-3">
+<h3 id="org4bd2b49">Setup:</h3>
+<div class="outline-text-3" id="text-org4bd2b49">
 <p>
 Initial code with a helper function to check if we can make the bouquets within a given number of days. The main function will perform the binary search.
 </p>

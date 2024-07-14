@@ -1,7 +1,7 @@
-﻿* 1302. Deepest Leaves Sum
-:PROPERTIES:
-:Created: 2024-06-27
-:END:
+﻿#+title: 1302. Deepest Leaves Sum
+#+subtitle: leetcode
+#+date: <2024-06-27>
+#+language: en
 
 * Problem:
 The goal is to find the sum of the values of the deepest leaves in a binary tree. A leaf is a node with no children, and the deepest leaves are those at the maximum depth of the tree.
@@ -22,7 +22,8 @@ The space complexity is O(M), where M is the maximum number of nodes at any one 
 
 * Example:
 Consider the following binary tree:
-```
+
+#+begin_example
          1
        /   \
       2     3
@@ -30,7 +31,8 @@ Consider the following binary tree:
     4   5     6
    /         / \
   7         8   9
-```
+#+end_example
+
 - The deepest leaves are 7, 8, and 9.
 - Their sum is 7 + 8 + 9 = 24.
 

@@ -1,9 +1,8 @@
-﻿* 15. 3Sum
-:PROPERTIES:
-:Created: 2024-07-02
-:END:
+﻿#+title: 0015. 3Sum
+#+subtitle: leetcode
+#+date: <2024-07-02>
+#+language: en
 
-org
 * Problem:
 Find all unique triplets in the array which gives the sum of zero. The solution set must not contain duplicate triplets.
 

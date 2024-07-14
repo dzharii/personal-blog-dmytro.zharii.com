@@ -1,7 +1,7 @@
-﻿* 1482. Minimum Number of Days to Make m Bouquets
-:PROPERTIES:
-:Created: 2024-06-19
-:END:
+﻿#+title: 1482. Minimum Number of Days to Make m Bouquets
+#+subtitle: leetcode
+#+date: <2024-06-19>
+#+language: en
 
 * Problem:
 Given `m` bouquets, each with `k` adjacent flowers, and an array `bloomDay` of `n` integers representing the days on which each flower blooms, determine the minimum number of days required to make the bouquets. If it's not possible to make the bouquets, return -1.

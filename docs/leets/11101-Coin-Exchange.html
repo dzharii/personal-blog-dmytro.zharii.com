@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2024-07-13 -->
+<!-- 2024-07-14 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>&lrm;</title>
+<title>11101. Coin Exchange</title>
 <meta name="author" content="d)zharii" />
 <meta name="generator" content="Org Mode" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,21 +12,13 @@
 </head>
 <body>
 <nav><a href="/" tabindex="0">&larrhk; Back to Index</a></nav><div id="preamble" class="status">
-Published 
+Published 2024-06-06
 </div>
 <div id="content" class="content">
-<nav id="table-of-contents" role="doc-toc">
-<h2>Table of Contents</h2>
-<div id="text-table-of-contents" role="doc-toc">
-<ul>
-<li><a href="#org349dd9d">11101. Coin Exchange</a></li>
-</ul>
-</div>
-</nav>
-<div id="outline-container-org349dd9d" class="outline-2">
-<h2 id="org349dd9d">11101. Coin Exchange</h2>
-<div class="outline-text-2" id="text-org349dd9d">
-<div class="org-src-container">
+<header>
+<h1 class="title">11101. Coin Exchange</h1>
+<p class="subtitle" role="doc-subtitle">leetcode</p>
+</header><div class="org-src-container">
 <pre class="src src-js">
 function coinChange(coins, amount) {
     let dp = Array(amount + 1).fill(amount + 1);
@@ -57,8 +49,6 @@ testCases.forEach((test, index) =&gt; {
     console.log(`Test Case ${index + 1}: ${JSON.stringify(result) === JSON.stringify(test.expected) ? 'Passed' : 'Failed'} (Expected: ${JSON.stringify(test.expected)}, Got: ${JSON.stringify(result)})`);
 });
 </pre>
-</div>
-</div>
 </div>
 </div>
 <div id="postamble" class="status">

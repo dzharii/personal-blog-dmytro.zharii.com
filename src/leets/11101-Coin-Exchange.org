@@ -1,7 +1,7 @@
-* 11101. Coin Exchange
-:PROPERTIES:
-:Created:  2024-06-06
-:END:
+#+title: 11101. Coin Exchange
+#+subtitle: leetcode
+#+date: <2024-06-06>
+#+language: en
 
 #+begin_src js
 

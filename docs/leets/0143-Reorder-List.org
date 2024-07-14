@@ -1,9 +1,9 @@
-* 143. Reorder List
-  :PROPERTIES:
-  :Created: 2024-05-21
-  :END:
+#+title: 0143. Reorder List
+#+subtitle: leetcode
+#+date: <2024-05-21>
+#+language: en
 
-  * Problem Overview
+* Problem Overview
 The problem "Reorder List" requires us to reorder a singly linked list such that the nodes are arranged in a specific pattern. Specifically, given a list `L0 → L1 → … → Ln-1 → Ln`, we need to transform it to `L0 → Ln → L1 → Ln-1 → L2 → Ln-2 → …`.
 
 * Solution Outline

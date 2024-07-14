@@ -1,7 +1,7 @@
-﻿* 207. Course Schedule
-:PROPERTIES:
-:Created: 2024-07-10
-:END:
+﻿#+title: 0207. Course Schedule
+#+subtitle: leetcode
+#+date: <2024-07-10>
+#+language: en
 
 * Submission
 [[https://leetcode.com/submissions/detail/1317044983/][Course Schedule]]

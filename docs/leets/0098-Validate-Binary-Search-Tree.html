@@ -1,10 +1,10 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2024-07-13 -->
+<!-- 2024-07-14 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>&lrm;</title>
+<title>0098. Validate Binary Search Tree</title>
 <meta name="author" content="d)zharii" />
 <meta name="generator" content="Org Mode" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,32 +12,27 @@
 </head>
 <body>
 <nav><a href="/" tabindex="0">&larrhk; Back to Index</a></nav><div id="preamble" class="status">
-Published 
+Published 2024-06-17
 </div>
 <div id="content" class="content">
-<nav id="table-of-contents" role="doc-toc">
+<header>
+<h1 class="title">0098. Validate Binary Search Tree</h1>
+<p class="subtitle" role="doc-subtitle">leetcode</p>
+</header><nav id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org426446f">98. Validate Binary Search Tree</a>
-<ul>
-<li><a href="#org82a9e6d">Problem:</a></li>
-<li><a href="#orgd0b4b0d">Solution Description:</a></li>
-<li><a href="#org1b34893">Example:</a></li>
-<li><a href="#orgc8cb9d0">Setup:</a></li>
-</ul>
-</li>
+<li><a href="#org61d2aa8">Problem:</a></li>
+<li><a href="#orgcfe7906">Solution Description:</a></li>
+<li><a href="#org106df21">Example:</a></li>
+<li><a href="#org28202ca">Setup:</a></li>
 </ul>
 </div>
 </nav>
-<div id="outline-container-org426446f" class="outline-2">
-<h2 id="org426446f">98. Validate Binary Search Tree</h2>
-<div class="outline-text-2" id="text-org426446f">
-</div>
 
-<div id="outline-container-org82a9e6d" class="outline-3">
-<h3 id="org82a9e6d">Problem:</h3>
-<div class="outline-text-3" id="text-org82a9e6d">
+<div id="outline-container-org61d2aa8" class="outline-2">
+<h2 id="org61d2aa8">Problem:</h2>
+<div class="outline-text-2" id="text-org61d2aa8">
 <p>
 We are given the root of a binary tree and our objective is to determine if it is a valid binary search tree (BST). A valid BST has the property that for every node with a value `N`, all nodes in its left subtree have values less than `N`, and all nodes in its right subtree have values greater than `N`.
 </p>
@@ -48,9 +43,9 @@ To accomplish this, we can use an efficient approach leveraging DFS (Depth First
 </div>
 </div>
 
-<div id="outline-container-orgd0b4b0d" class="outline-3">
-<h3 id="orgd0b4b0d">Solution Description:</h3>
-<div class="outline-text-3" id="text-orgd0b4b0d">
+<div id="outline-container-orgcfe7906" class="outline-2">
+<h2 id="orgcfe7906">Solution Description:</h2>
+<div class="outline-text-2" id="text-orgcfe7906">
 <p>
 To implement the validation of a BST, we need to use a recursive function that traverses the tree while keeping track of the acceptable value range for each node. Specifically, we can use the following approach:
 </p>
@@ -72,9 +67,9 @@ The time complexity of this solution is O(N), where `N` is the number of nodes, 
 </div>
 </div>
 
-<div id="outline-container-org1b34893" class="outline-3">
-<h3 id="org1b34893">Example:</h3>
-<div class="outline-text-3" id="text-org1b34893">
+<div id="outline-container-org106df21" class="outline-2">
+<h2 id="org106df21">Example:</h2>
+<div class="outline-text-2" id="text-org106df21">
 <p>
 Consider the following binary tree:
 </p>
@@ -102,9 +97,9 @@ All nodes satisfy the BST properties, so the tree is a valid BST.
 </div>
 </div>
 
-<div id="outline-container-orgc8cb9d0" class="outline-3">
-<h3 id="orgc8cb9d0">Setup:</h3>
-<div class="outline-text-3" id="text-orgc8cb9d0">
+<div id="outline-container-org28202ca" class="outline-2">
+<h2 id="org28202ca">Setup:</h2>
+<div class="outline-text-2" id="text-org28202ca">
 <div class="org-src-container">
 <pre class="src src-js">/**
  * Function to validate if a binary tree is a valid Binary Search Tree (BST).
@@ -153,7 +148,6 @@ testCases.forEach((test, index) =&gt; {
     console.log(`Test Case ${index + 1}: ${result === test.expected ? 'Passed' : 'Failed'} (Expected: ${test.expected}, Got: ${result})`);
 });
 </pre>
-</div>
 </div>
 </div>
 </div>

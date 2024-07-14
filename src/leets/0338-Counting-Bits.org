@@ -1,7 +1,7 @@
-* 338. Counting Bits
-  :PROPERTIES:
-  :Created: 2024-05-17
-  :END:
+#+title: 0338. Counting Bits
+#+subtitle: leetcode
+#+date: <2024-05-17>
+#+language: en
 
 * Problem Overview
 The problem "Counting Bits" requires us to return an array `ans` where `ans[i]` is the number of 1's in the binary representation of the number `i` for all `i` in the range 0 to `n` inclusive.

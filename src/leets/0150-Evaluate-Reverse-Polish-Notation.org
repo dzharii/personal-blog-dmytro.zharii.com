@@ -1,9 +1,10 @@
-* 150. Evaluate Reverse Polish Notation
-  :PROPERTIES:
-  :Created: 2024-05-29
-  :END:
+#+title: 0150. Evaluate Reverse Polish Notation
+#+subtitle: leetcode
+#+date: <2024-05-29>
+#+language: en
 
- * Problem Overview
+
+* Problem Overview
 The problem involves evaluating an arithmetic expression in Reverse Polish Notation (RPN). In RPN, operators follow their operands, which eliminates the need for parentheses to denote operation precedence. The task is to evaluate the expression using a stack data structure.
 
 * Solution Outline

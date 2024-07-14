@@ -18,7 +18,7 @@ Commands:
     $($COMMAND_HELP):
       Shows this help message
     $($COMMAND_NEW) """<number> <title>""":
-      Creates a .org file for a given problem number and title and updates the index.org file.
+      Creates a .org file for a given problem number and title.
       E.g., lc.ps1 new 20 "Valid Parentheses"
 
 "@
@@ -48,12 +48,7 @@ $($Content)
     [System.IO.File]::WriteAllText($orgFileName, $orgContent, [System.Text.Encoding]::UTF8)
 
     Write-Host "Created ORG file: $($orgFileName)"
-    
-    # Updating index.org
-    $indexFilePath = "./index.org"
-    $indexContent = "* [[./$orgFileName][$dateNow $Number $Title]]"
-    Add-Content -Path $indexFilePath -Value $indexContent
-    Write-Host "Updated index file: $($indexFilePath)"
+
 }
 
 function Invoke-GptCompletionContent {

@@ -1,7 +1,7 @@
-﻿* 1717. Maximum Score From Removing Substrings
-:PROPERTIES:
-:Created: 2024-07-11
-:END:
+﻿#+title: 1717. Maximum Score From Removing Substrings
+#+subtitle: leetcode
+#+date: <2024-07-11>
+#+language: en
 
 * Links
 

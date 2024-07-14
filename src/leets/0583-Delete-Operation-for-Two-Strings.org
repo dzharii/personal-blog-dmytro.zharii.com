@@ -1,8 +1,7 @@
-* 583. Delete Operation for Two Strings
-:PROPERTIES:
-:Created: 2024-06-08
-:END:
-
+#+title: 0583. Delete Operation for Two Strings
+#+subtitle: leetcode
+#+date: <2024-06-08>
+#+language: en
 
 583. Delete Operation for Two Strings
 https://leetcode.com/submissions/detail/1282282457/

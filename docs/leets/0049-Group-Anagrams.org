@@ -1,7 +1,8 @@
-* 49. Group Anagrams
-  :PROPERTIES:
-  :Created: 2024-05-23
-  :END:
+#+title: 0049. Group Anagrams
+#+subtitle: leetcode
+#+date: <2024-05-23>
+#+language: en
+
 * Problem Overview
 The problem is to group anagrams from a list of strings. Anagrams are words or phrases made by rearranging the letters of another, such as "cinema" and "iceman". 
 

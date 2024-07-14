@@ -1,7 +1,7 @@
-* 57. Insert Interval
-:PROPERTIES:
-:Created: 2024-05-31
-:END:
+#+title: Insert Interval
+#+subtitle: leetcode
+#+date: <2024-05-31>
+#+language: en
 
 * Problem Overview
 

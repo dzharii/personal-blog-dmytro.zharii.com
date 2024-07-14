@@ -1,10 +1,10 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2024-07-13 -->
+<!-- 2024-07-14 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>&lrm;</title>
+<title>0104. Maximum Depth of Binary Tree</title>
 <meta name="author" content="d)zharii" />
 <meta name="generator" content="Org Mode" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,41 +12,36 @@
 </head>
 <body>
 <nav><a href="/" tabindex="0">&larrhk; Back to Index</a></nav><div id="preamble" class="status">
-Published 
+Published 2024-07-07
 </div>
 <div id="content" class="content">
-<nav id="table-of-contents" role="doc-toc">
+<header>
+<h1 class="title">0104. Maximum Depth of Binary Tree</h1>
+<p class="subtitle" role="doc-subtitle">leetcode</p>
+</header><nav id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgaca27a9">104. Maximum Depth of Binary Tree</a>
-<ul>
-<li><a href="#org83e1eb7">Problem:</a></li>
-<li><a href="#org12fcd6b">Solution Description:</a></li>
-<li><a href="#org4c1993d">Example:</a></li>
-<li><a href="#org27bf789">Setup:</a></li>
-</ul>
-</li>
+<li><a href="#org792474d">Problem:</a></li>
+<li><a href="#org737d79c">Solution Description:</a></li>
+<li><a href="#org74810b9">Example:</a></li>
+<li><a href="#orgf38c8f6">Setup:</a></li>
 </ul>
 </div>
 </nav>
-<div id="outline-container-orgaca27a9" class="outline-2">
-<h2 id="orgaca27a9">104. Maximum Depth of Binary Tree</h2>
-<div class="outline-text-2" id="text-orgaca27a9">
-</div>
 
-<div id="outline-container-org83e1eb7" class="outline-3">
-<h3 id="org83e1eb7">Problem:</h3>
-<div class="outline-text-3" id="text-org83e1eb7">
+<div id="outline-container-org792474d" class="outline-2">
+<h2 id="org792474d">Problem:</h2>
+<div class="outline-text-2" id="text-org792474d">
 <p>
 Given the root of a binary tree, return its maximum depth. The maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org12fcd6b" class="outline-3">
-<h3 id="org12fcd6b">Solution Description:</h3>
-<div class="outline-text-3" id="text-org12fcd6b">
+<div id="outline-container-org737d79c" class="outline-2">
+<h2 id="org737d79c">Solution Description:</h2>
+<div class="outline-text-2" id="text-org737d79c">
 <p>
 To implement the solution for finding the maximum depth of a binary tree, we need to use a depth-first search (DFS) approach. Every time we traverse down a node, we increase our depth count. We need to check both left and right subtrees to find the maximum depth from the current node.
 </p>
@@ -68,9 +63,9 @@ Space Complexity: O(H), where H is the height of the tree. This is due to the re
 </div>
 </div>
 
-<div id="outline-container-org4c1993d" class="outline-3">
-<h3 id="org4c1993d">Example:</h3>
-<div class="outline-text-3" id="text-org4c1993d">
+<div id="outline-container-org74810b9" class="outline-2">
+<h2 id="org74810b9">Example:</h2>
+<div class="outline-text-2" id="text-org74810b9">
 <p>
 Consider the binary tree:
 </p>
@@ -91,9 +86,9 @@ The maximum depth of this tree is 3.
 </div>
 </div>
 
-<div id="outline-container-org27bf789" class="outline-3">
-<h3 id="org27bf789">Setup:</h3>
-<div class="outline-text-3" id="text-org27bf789">
+<div id="outline-container-orgf38c8f6" class="outline-2">
+<h2 id="orgf38c8f6">Setup:</h2>
+<div class="outline-text-2" id="text-orgf38c8f6">
 <p>
 Here is a skeleton code for implementing the solution. An additional helper function can also be included for testing purposes using examples.
 </p>
@@ -106,7 +101,6 @@ Test Case 4: Passed (Expected: 0, Got: 0)
 Test Case 5: Passed (Expected: 4, Got: 4)
 undefined
 </pre>
-</div>
 </div>
 </div>
 </div>

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2024-07-13 -->
+<!-- 2024-07-14 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>&lrm;</title>
+<title>0583. Delete Operation for Two Strings</title>
 <meta name="author" content="d)zharii" />
 <meta name="generator" content="Org Mode" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,28 +12,24 @@
 </head>
 <body>
 <nav><a href="/" tabindex="0">&larrhk; Back to Index</a></nav><div id="preamble" class="status">
-Published 
+Published 2024-06-08
 </div>
 <div id="content" class="content">
-<nav id="table-of-contents" role="doc-toc">
+<header>
+<h1 class="title">0583. Delete Operation for Two Strings</h1>
+<p class="subtitle" role="doc-subtitle">leetcode</p>
+</header><nav id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org8788104">583. Delete Operation for Two Strings</a>
-<ul>
-<li><a href="#org81e8724">Problem:</a></li>
-<li><a href="#org151dc44">Solution Description:</a></li>
-<li><a href="#org3006a92">What is LCS?</a></li>
-<li><a href="#org00ffcad">Example:</a></li>
-<li><a href="#org9efdffd">Setup:</a></li>
-</ul>
-</li>
+<li><a href="#orga18a0c8">Problem:</a></li>
+<li><a href="#org835ed94">Solution Description:</a></li>
+<li><a href="#org177f9d1">What is LCS?</a></li>
+<li><a href="#org3f5fb9b">Example:</a></li>
+<li><a href="#org146eaf8">Setup:</a></li>
 </ul>
 </div>
 </nav>
-<div id="outline-container-org8788104" class="outline-2">
-<h2 id="org8788104">583. Delete Operation for Two Strings</h2>
-<div class="outline-text-2" id="text-org8788104">
 <ol class="org-ol">
 <li>Delete Operation for Two Strings</li>
 </ol>
@@ -58,30 +54,29 @@ The solution is somewhat reverse to the Algo Monster, with some parts that is ch
       return m + n - 2 * lcsLength;
 So I like the content at Algo Monster more. 
 </p>
-</div>
 
 
-<div id="outline-container-org81e8724" class="outline-3">
-<h3 id="org81e8724">Problem:</h3>
-<div class="outline-text-3" id="text-org81e8724">
+<div id="outline-container-orga18a0c8" class="outline-2">
+<h2 id="orga18a0c8">Problem:</h2>
+<div class="outline-text-2" id="text-orga18a0c8">
 <p>
 Given two words `word1` and `word2`, return the minimum number of steps required to make `word1` and `word2` the same. In each step, you can delete one character in either string.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org151dc44" class="outline-3">
-<h3 id="org151dc44">Solution Description:</h3>
-<div class="outline-text-3" id="text-org151dc44">
+<div id="outline-container-org835ed94" class="outline-2">
+<h2 id="org835ed94">Solution Description:</h2>
+<div class="outline-text-2" id="text-org835ed94">
 <p>
 To implement the solution, we need to find the length of the longest common subsequence (LCS) of the two words. The minimum number of deletions required to make the two strings equal will be the sum of the lengths of both strings minus twice the length of the LCS.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org3006a92" class="outline-3">
-<h3 id="org3006a92">What is LCS?</h3>
-<div class="outline-text-3" id="text-org3006a92">
+<div id="outline-container-org177f9d1" class="outline-2">
+<h2 id="org177f9d1">What is LCS?</h2>
+<div class="outline-text-2" id="text-org177f9d1">
 <p>
 The Longest Common Subsequence (LCS) is the longest sequence that appears in both given sequences in the same order but not necessarily consecutively. For example, the LCS of "sea" and "eat" is "ea", and the LCS of "abc" and "ac" is "ac".
 </p>
@@ -101,9 +96,9 @@ The steps are as follows:
 </div>
 </div>
 
-<div id="outline-container-org00ffcad" class="outline-3">
-<h3 id="org00ffcad">Example:</h3>
-<div class="outline-text-3" id="text-org00ffcad">
+<div id="outline-container-org3f5fb9b" class="outline-2">
+<h2 id="org3f5fb9b">Example:</h2>
+<div class="outline-text-2" id="text-org3f5fb9b">
 <p>
 Consider `word1 = "sea"` and `word2 = "eat"`. The LCS of "sea" and "eat" is "ea", which has a length of 2. Therefore, the minimum number of deletions required is `3 + 3 - 2 * 2 = 2`.
 </p>
@@ -131,9 +126,9 @@ The LCS problem can be solved using dynamic programming. The idea is to build a 
 </div>
 
 
-<div id="outline-container-org9efdffd" class="outline-3">
-<h3 id="org9efdffd">Setup:</h3>
-<div class="outline-text-3" id="text-org9efdffd">
+<div id="outline-container-org146eaf8" class="outline-2">
+<h2 id="org146eaf8">Setup:</h2>
+<div class="outline-text-2" id="text-org146eaf8">
 <p>
 The initial setup involves defining a function to find the LCS and then using it to calculate the minimum deletions. Below is the skeleton and test setup:
 </p>
@@ -202,7 +197,6 @@ testCases.forEach((test, index) =&gt; {
     console.log(`Test Case ${index + 1}: ${result === test.expected ? 'Passed' : 'Failed'} (Expected: ${test.expected}, Got: ${result})`);
 });
 </pre>
-</div>
 </div>
 </div>
 </div>

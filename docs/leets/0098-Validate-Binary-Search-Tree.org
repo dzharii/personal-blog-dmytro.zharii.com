@@ -1,7 +1,7 @@
-﻿* 98. Validate Binary Search Tree
-:PROPERTIES:
-:Created: 2024-06-17
-:END:
+﻿#+title: 0098. Validate Binary Search Tree
+#+subtitle: leetcode
+#+date: <2024-06-17>
+#+language: en
 
 ** Problem:
 We are given the root of a binary tree and our objective is to determine if it is a valid binary search tree (BST). A valid BST has the property that for every node with a value `N`, all nodes in its left subtree have values less than `N`, and all nodes in its right subtree have values greater than `N`.

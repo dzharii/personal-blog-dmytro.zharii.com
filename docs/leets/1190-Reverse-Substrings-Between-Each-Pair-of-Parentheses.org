@@ -1,7 +1,7 @@
-﻿* 1190. Reverse Substrings Between Each Pair of Parentheses
-:PROPERTIES:
-:Created: 2024-07-11
-:END:
+﻿#+title: 1190. Reverse Substrings Between Each Pair of Parentheses
+#+subtitle: leetcode
+#+date: <2024-07-11>
+#+language: en
 
 ** Links:
 

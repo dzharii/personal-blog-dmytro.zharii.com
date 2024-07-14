@@ -1,9 +1,9 @@
-* 394. Decode String
-  :PROPERTIES:
-  :Created: 2024-05-24
-  :END:
+#+title: 0394. Decode String
+#+subtitle: leetcode
+#+date: <2024-05-24>
+#+language: en
 
-  * Problem Overview
+* Problem Overview
 The problem involves decoding a given encoded string that follows a specific format: numbers followed by square brackets containing a substring. The numbers indicate how many times the substring within the brackets should be repeated. The string can be nested with multiple levels of encoding.
 
 Example:

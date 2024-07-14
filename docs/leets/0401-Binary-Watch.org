@@ -1,7 +1,7 @@
-﻿* 401. Binary Watch
-:PROPERTIES:
-:Created: 2024-06-21
-:END:
+﻿#+title: 0401. Binary Watch
+#+subtitle: leetcode
+#+date: <2024-06-21>
+#+language: en
 
 ** Problem:
 A binary watch has 4 LEDs on the top that represent the hours (0-11), and the 6 LEDs on the bottom represent the minutes (0-59). Each LED represents a zero or one, with the least significant bit on the right.

@@ -1,7 +1,7 @@
-#+TITLE: Combination Sum Problem Overview and Solution Plan
-  :PROPERTIES:
-  :Created: 2024-05-13
-  :END:
+#+title: Combination Sum Problem Overview and Solution Plan
+#+subtitle: leetcode
+#+date: <2024-05-13>
+#+language: en
 
 * Link
 [[https://leetcode.com/problems/combination-sum/description/][2024-05-13 Combination Sum - LeetCode]]

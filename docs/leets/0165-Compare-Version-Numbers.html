@@ -1,10 +1,10 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2024-07-13 -->
+<!-- 2024-07-14 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>&lrm;</title>
+<title>0165. Compare Version Numbers</title>
 <meta name="author" content="d)zharii" />
 <meta name="generator" content="Org Mode" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,33 +12,28 @@
 </head>
 <body>
 <nav><a href="/" tabindex="0">&larrhk; Back to Index</a></nav><div id="preamble" class="status">
-Published 
+Published 2024-06-24
 </div>
 <div id="content" class="content">
-<nav id="table-of-contents" role="doc-toc">
+<header>
+<h1 class="title">0165. Compare Version Numbers</h1>
+<p class="subtitle" role="doc-subtitle">leetcode</p>
+</header><nav id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgec4f2a6">165. Compare Version Numbers</a>
-<ul>
-<li><a href="#orgac2b398">Problem:</a></li>
-<li><a href="#org739154b">Solution Description:</a></li>
-<li><a href="#orgcc67beb">Example:</a></li>
-<li><a href="#orgcc78353">Setup:</a></li>
-<li><a href="#org3a0a633">Test Execution:</a></li>
-</ul>
-</li>
+<li><a href="#org5ae068e">Problem:</a></li>
+<li><a href="#org4fd3b2d">Solution Description:</a></li>
+<li><a href="#org59e2cf7">Example:</a></li>
+<li><a href="#org097db2f">Setup:</a></li>
+<li><a href="#org16fe4bf">Test Execution:</a></li>
 </ul>
 </div>
 </nav>
-<div id="outline-container-orgec4f2a6" class="outline-2">
-<h2 id="orgec4f2a6">165. Compare Version Numbers</h2>
-<div class="outline-text-2" id="text-orgec4f2a6">
-</div>
 
-<div id="outline-container-orgac2b398" class="outline-3">
-<h3 id="orgac2b398">Problem:</h3>
-<div class="outline-text-3" id="text-orgac2b398">
+<div id="outline-container-org5ae068e" class="outline-2">
+<h2 id="org5ae068e">Problem:</h2>
+<div class="outline-text-2" id="text-org5ae068e">
 <p>
 The problem "Compare Version Numbers" requires comparing two version numbers `a` and `b` and returning:
 </p>
@@ -54,9 +49,9 @@ Each version number string comprises numbers separated by dots (e.g., "1.0.1", "
 </div>
 </div>
 
-<div id="outline-container-org739154b" class="outline-3">
-<h3 id="org739154b">Solution Description:</h3>
-<div class="outline-text-3" id="text-org739154b">
+<div id="outline-container-org4fd3b2d" class="outline-2">
+<h2 id="org4fd3b2d">Solution Description:</h2>
+<div class="outline-text-2" id="text-org4fd3b2d">
 <p>
 To implement the solution, we need to:
 </p>
@@ -74,9 +69,9 @@ Space Complexity: O(n) for storing the split segments.
 </div>
 </div>
 
-<div id="outline-container-orgcc67beb" class="outline-3">
-<h3 id="orgcc67beb">Example:</h3>
-<div class="outline-text-3" id="text-orgcc67beb">
+<div id="outline-container-org59e2cf7" class="outline-2">
+<h2 id="org59e2cf7">Example:</h2>
+<div class="outline-text-2" id="text-org59e2cf7">
 <p>
 Consider two version numbers "1.0.1" and "1". 
 Splitting them gives ["1", "0", "1"] and ["1"].
@@ -91,18 +86,18 @@ Thus, "1.0.1" &gt; "1" and should return `1`.
 </div>
 </div>
 
-<div id="outline-container-orgcc78353" class="outline-3">
-<h3 id="orgcc78353">Setup:</h3>
-<div class="outline-text-3" id="text-orgcc78353">
+<div id="outline-container-org097db2f" class="outline-2">
+<h2 id="org097db2f">Setup:</h2>
+<div class="outline-text-2" id="text-org097db2f">
 <p>
 We'll use a skeleton code and a series of test cases for implementation. This includes the main comparison logic and console logs for validation.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org3a0a633" class="outline-3">
-<h3 id="org3a0a633">Test Execution:</h3>
-<div class="outline-text-3" id="text-org3a0a633">
+<div id="outline-container-org16fe4bf" class="outline-2">
+<h2 id="org16fe4bf">Test Execution:</h2>
+<div class="outline-text-2" id="text-org16fe4bf">
 <p>
 Multiple test cases including edge cases and different lengths of versions will be covered.
 </p>
@@ -159,7 +154,6 @@ testCases.forEach((test, index) =&gt; {
     console.log(`Test Case ${index + 1}: ${result === test.expected ? 'Passed' : `Failed (Expected: ${test.expected}, Got: ${result})`}`);
 });
 </pre>
-</div>
 </div>
 </div>
 </div>

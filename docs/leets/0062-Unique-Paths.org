@@ -1,7 +1,7 @@
-* 62. Unique Paths
-:PROPERTIES:
-:Created: 2024-05-30
-:END:
+#+title: 0062. Unique Paths
+#+subtitle: leetcode
+#+date: <2024-05-30>
+#+language: en
 
 * Problem Overview
 The problem "Unique Paths" requires determining the number of unique paths from the top-left corner to the bottom-right corner of an m x n grid. The only allowed moves are either down or right.

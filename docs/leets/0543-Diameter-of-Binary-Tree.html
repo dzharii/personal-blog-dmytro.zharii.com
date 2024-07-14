@@ -1,10 +1,10 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2024-07-13 -->
+<!-- 2024-07-14 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>&lrm;</title>
+<title>543. Diameter of Binary Tree</title>
 <meta name="author" content="d)zharii" />
 <meta name="generator" content="Org Mode" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,42 +12,46 @@
 </head>
 <body>
 <nav><a href="/" tabindex="0">&larrhk; Back to Index</a></nav><div id="preamble" class="status">
-Published 
+Published 2024-07-07
 </div>
 <div id="content" class="content">
-<nav id="table-of-contents" role="doc-toc">
+<header>
+<h1 class="title">543. Diameter of Binary Tree</h1>
+<p class="subtitle" role="doc-subtitle">leetcode</p>
+</header><nav id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org62ad7e8">543. Diameter of Binary Tree</a>
+<li><a href="#org1e473f9"></a>
 <ul>
-<li><a href="#org44bba52">Problem:</a></li>
-<li><a href="#orgc4f1dcf">Prerequsite</a></li>
-<li><a href="#orgf984272">Solution Description:</a></li>
-<li><a href="#orgbe02e2c">Example:</a></li>
-<li><a href="#org722237b">Setup:</a></li>
+<li><a href="#org215407b">Problem:</a></li>
+<li><a href="#org33106b7">Prerequsite</a></li>
+<li><a href="#org85e8b96">Solution Description:</a></li>
+<li><a href="#orgbe2a566">Example:</a></li>
+<li><a href="#org780c004">Setup:</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </nav>
-<div id="outline-container-org62ad7e8" class="outline-2">
-<h2 id="org62ad7e8">543. Diameter of Binary Tree</h2>
-<div class="outline-text-2" id="text-org62ad7e8">
+
+<div id="outline-container-org1e473f9" class="outline-2">
+<h2 id="org1e473f9"></h2>
+<div class="outline-text-2" id="text-org1e473f9">
 </div>
 
-<div id="outline-container-org44bba52" class="outline-3">
-<h3 id="org44bba52">Problem:</h3>
-<div class="outline-text-3" id="text-org44bba52">
+<div id="outline-container-org215407b" class="outline-3">
+<h3 id="org215407b">Problem:</h3>
+<div class="outline-text-3" id="text-org215407b">
 <p>
 The problem is to determine the diameter of a binary tree. The diameter of a binary tree is defined as the length of the longest path between any two nodes in a tree. This path may or may not pass through the root.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgc4f1dcf" class="outline-3">
-<h3 id="orgc4f1dcf">Prerequsite</h3>
-<div class="outline-text-3" id="text-orgc4f1dcf">
+<div id="outline-container-org33106b7" class="outline-3">
+<h3 id="org33106b7">Prerequsite</h3>
+<div class="outline-text-3" id="text-org33106b7">
 <p>
 To solve this problem, work on the <a href="https://leetcode.com/problems/maximum-depth-of-binary-tree/">104. Maximum Depth of Binary Tree</a> first.
 <a href="https://leetcode.com/problems/diameter-of-n-ary-tree/">Diameter of N-Ary Tree</a>
@@ -56,9 +60,9 @@ To solve this problem, work on the <a href="https://leetcode.com/problems/maximu
 </div>
 
 
-<div id="outline-container-orgf984272" class="outline-3">
-<h3 id="orgf984272">Solution Description:</h3>
-<div class="outline-text-3" id="text-orgf984272">
+<div id="outline-container-org85e8b96" class="outline-3">
+<h3 id="org85e8b96">Solution Description:</h3>
+<div class="outline-text-3" id="text-org85e8b96">
 <p>
 To implement the solution, we need to use a recursive Depth-First Search (DFS) approach. The main idea is to calculate the depth of the left subtree and the right subtree for each node, and track the maximum diameter found at each step.
 </p>
@@ -79,26 +83,29 @@ The time complexity of this approach is O(n) because each node is visited once. 
 </div>
 </div>
 
-<div id="outline-container-orgbe02e2c" class="outline-3">
-<h3 id="orgbe02e2c">Example:</h3>
-<div class="outline-text-3" id="text-orgbe02e2c">
+<div id="outline-container-orgbe2a566" class="outline-3">
+<h3 id="orgbe2a566">Example:</h3>
+<div class="outline-text-3" id="text-orgbe2a566">
 <p>
 Consider a binary tree:
-```
-        1
-       / \
-      2   3
-     / \
-    4   5
-```
+</p>
+<pre class="example" id="org9370e0e">
+    1
+   / \
+  2   3
+ / \
+4   5
+</pre>
+
+<p>
 The longest path goes from node 4 to node 5 through nodes 2 and 1, so the diameter is 3.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org722237b" class="outline-3">
-<h3 id="org722237b">Setup:</h3>
-<div class="outline-text-3" id="text-org722237b">
+<div id="outline-container-org780c004" class="outline-3">
+<h3 id="org780c004">Setup:</h3>
+<div class="outline-text-3" id="text-org780c004">
 <p>
 We'll define a helper function to recursively calculate the depth of the tree and update the diameter. We'll use modern JavaScript to implement this.
 </p>

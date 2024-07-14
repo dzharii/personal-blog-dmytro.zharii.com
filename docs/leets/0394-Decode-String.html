@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2024-07-13 -->
+<!-- 2024-07-14 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>&lrm;</title>
+<title>0394. Decode String</title>
 <meta name="author" content="d)zharii" />
 <meta name="generator" content="Org Mode" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,31 +12,32 @@
 </head>
 <body>
 <nav><a href="/" tabindex="0">&larrhk; Back to Index</a></nav><div id="preamble" class="status">
-Published 
+Published 2024-05-24
 </div>
 <div id="content" class="content">
-<nav id="table-of-contents" role="doc-toc">
+<header>
+<h1 class="title">0394. Decode String</h1>
+<p class="subtitle" role="doc-subtitle">leetcode</p>
+</header><nav id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgad2d81f">394. Decode String</a></li>
-<li><a href="#orgd6d97a7">Solution Outline</a>
+<li><a href="#org3cf23ad">Problem Overview</a></li>
+<li><a href="#orgd5df28f">Solution Outline</a>
 <ul>
-<li><a href="#orgee3baa5">Preferred Structure</a></li>
-<li><a href="#orga38e8a9">Brute Force vs Optimal Solution</a></li>
-<li><a href="#orgd8bebda">Algorithm Choice</a></li>
+<li><a href="#org83fe195">Preferred Structure</a></li>
+<li><a href="#orgf299303">Brute Force vs Optimal Solution</a></li>
+<li><a href="#org150401c">Algorithm Choice</a></li>
 </ul>
 </li>
-<li><a href="#orga3c6689">Solution Implementation</a></li>
+<li><a href="#org08a019b">Solution Implementation</a></li>
 </ul>
 </div>
 </nav>
-<div id="outline-container-orgad2d81f" class="outline-2">
-<h2 id="orgad2d81f">394. Decode String</h2>
-<div class="outline-text-2" id="text-orgad2d81f">
-<ul class="org-ul">
-<li>Problem Overview</li>
-</ul>
+
+<div id="outline-container-org3cf23ad" class="outline-2">
+<h2 id="org3cf23ad">Problem Overview</h2>
+<div class="outline-text-2" id="text-org3cf23ad">
 <p>
 The problem involves decoding a given encoded string that follows a specific format: numbers followed by square brackets containing a substring. The numbers indicate how many times the substring within the brackets should be repeated. The string can be nested with multiple levels of encoding.
 </p>
@@ -51,13 +52,13 @@ Example:
 </div>
 </div>
 
-<div id="outline-container-orgd6d97a7" class="outline-2">
-<h2 id="orgd6d97a7">Solution Outline</h2>
-<div class="outline-text-2" id="text-orgd6d97a7">
+<div id="outline-container-orgd5df28f" class="outline-2">
+<h2 id="orgd5df28f">Solution Outline</h2>
+<div class="outline-text-2" id="text-orgd5df28f">
 </div>
-<div id="outline-container-orgee3baa5" class="outline-3">
-<h3 id="orgee3baa5">Preferred Structure</h3>
-<div class="outline-text-3" id="text-orgee3baa5">
+<div id="outline-container-org83fe195" class="outline-3">
+<h3 id="org83fe195">Preferred Structure</h3>
+<div class="outline-text-3" id="text-org83fe195">
 <ul class="org-ul">
 <li>Use a stack to help with decoding, as it can handle nested patterns effectively.</li>
 <li>Utilize string operations to build the decoded result.</li>
@@ -65,9 +66,9 @@ Example:
 </div>
 </div>
 
-<div id="outline-container-orga38e8a9" class="outline-3">
-<h3 id="orga38e8a9">Brute Force vs Optimal Solution</h3>
-<div class="outline-text-3" id="text-orga38e8a9">
+<div id="outline-container-orgf299303" class="outline-3">
+<h3 id="orgf299303">Brute Force vs Optimal Solution</h3>
+<div class="outline-text-3" id="text-orgf299303">
 <ul class="org-ul">
 <li><b><b>Brute Force Approach:</b></b> Recursively decode the string, which might be inefficient for deeply nested patterns due to call stack limitations.</li>
 <li><b><b>Optimal Solution:</b></b> Use an iterative approach with a stack to manage nested structures and avoid recursion depth issues.</li>
@@ -75,9 +76,9 @@ Example:
 </div>
 </div>
 
-<div id="outline-container-orgd8bebda" class="outline-3">
-<h3 id="orgd8bebda">Algorithm Choice</h3>
-<div class="outline-text-3" id="text-orgd8bebda">
+<div id="outline-container-org150401c" class="outline-3">
+<h3 id="org150401c">Algorithm Choice</h3>
+<div class="outline-text-3" id="text-org150401c">
 <ul class="org-ul">
 <li><b><b>Stack-based Decoding:</b></b> This method iterates through the string, pushing numbers and current substrings onto the stack whenever a new bracket is encountered. When a closing bracket is found, it constructs the substring by popping from the stack, which ensures correct handling of nested patterns.</li>
 </ul>
@@ -85,9 +86,9 @@ Example:
 </div>
 </div>
 
-<div id="outline-container-orga3c6689" class="outline-2">
-<h2 id="orga3c6689">Solution Implementation</h2>
-<div class="outline-text-2" id="text-orga3c6689">
+<div id="outline-container-org08a019b" class="outline-2">
+<h2 id="org08a019b">Solution Implementation</h2>
+<div class="outline-text-2" id="text-org08a019b">
 <p>
 Here's the skeleton of the solution with test cases. The core implementation will follow in incremental steps.
 </p>

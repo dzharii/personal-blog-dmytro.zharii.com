@@ -1,7 +1,7 @@
-﻿* 165. Compare Version Numbers
-:PROPERTIES:
-:Created: 2024-06-24
-:END:
+﻿#+title: 0165. Compare Version Numbers
+#+subtitle: leetcode
+#+date: <2024-06-24>
+#+language: en
 
 ** Problem:
 The problem "Compare Version Numbers" requires comparing two version numbers `a` and `b` and returning:
