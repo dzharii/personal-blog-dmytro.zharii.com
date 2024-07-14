@@ -37,10 +37,10 @@ function New-ProblemFiles {
 
     # ORG file creation
     $orgContent = @"
-* $($Number). $($Title)
-:PROPERTIES:
-:Created: $($dateNow)
-:END:
+#+title: $($Number). $($Title)
+#+subtitle: leetcode
+#+date: <$($dateNow)>
+#+language: en
 
 $($Content)
 "@
@@ -76,6 +76,10 @@ Always use Modern Emacs Org mode syntax in the replies, as responses will be sav
 
 !IMPORTANT:
 When a user asks about a Code problem by providing its URL, the default response should not only offer a hint but also include a detailed plan for the interview and solution. This plan should cover the following:
+
+!IMPORTANT:
+In some cases the source code outside of src blocks is conflicting with org mode syntax. Be sure to use #+begin_example / #+end_example blocks. 
+
 
 ** Problem:
 Restate the problem in clear, well formatted way. Try to improve the the problem description to make it more clear for the reader. 
