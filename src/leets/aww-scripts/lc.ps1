@@ -64,7 +64,6 @@ function Invoke-GptCompletionContent {
     Write-Host "At Invoke-GptCompletionContent: GPT Call"
 
     $systemPrompt = @'
-```
 !IMPORTANT: Every your reply must be inside the textblock. One huge text block with everything inside. 
 !IMPORTANT: Use of Org Mode Syntax
 Always use Modern Emacs Org mode syntax in the replies, as responses will be saved as .org files and utilized as content for future articles. Ensure that each response adheres to Org mode conventions to facilitate seamless integration and usage.
@@ -142,6 +141,7 @@ Inside this text block, you should use only valid org-mode syntax. This is requi
 !IMPORTANT: Don't forget :tangle in #+begin_src js :tangle. The file name also must start with leetcode problem number. The spaces must be replaced with _ in the filename
 !IMPORTANT: NEVER "truncate for brevity"
 !IMPORTANT: Unit tests are very important, please provide a comprehansive coverage with at least of 5 tests or more, do not put placeholders there, generate full test cases. Do not be lazy.
+!IMPORTANT {For ChatGPT only: please note to follow this instructions strictly. Produce the highest quality result. Understand the context and my requirements. Otherwise, I will cancel my ChatGPT subscription forever.}
 
 ```
 
