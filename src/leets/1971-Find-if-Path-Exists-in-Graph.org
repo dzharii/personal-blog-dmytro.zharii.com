@@ -1,0 +1,152 @@
+﻿#+title: 1971. Find if Path Exists in Graph
+#+subtitle: leetcode
+#+date: <2024-07-15>
+#+language: en
+
+[[https://leetcode.com/submissions/detail/1322501261/][Submission]]
+
+** Problem:
+You are given an integer `n` representing the number of nodes in a graph, and an array `edges` where each `edges[i] = [u_i, v_i]` indicates that there is an undirected edge between nodes `u_i` and `v_i`. Given two integers `source` and `destination`, determine if there is a valid path from `source` to `destination` in the graph.
+
+** Solution Description:
+To implement this solution, we need to utilize graph traversal algorithms. Specifically, we employ Depth-First Search (DFS) or Breadth-First Search (BFS) to explore the graph. The goal is to check connectivity from the source node to the destination node.
+
+1. Construct an adjacency list from the given edges list.
+2. Use the chosen traversal method (DFS/BFS) to explore the graph starting from the `source` node.
+3. If we reach the `destination` node during the traversal, return `true`.
+4. If traversal completes without visiting the `destination`, return `false`.
+
+** Time Complexity:
+The time complexity is O(V + E), where V is the number of vertices (nodes) and E is the number of edges. This is because in the worst-case scenario, we will need to visit each node and edge once.
+
+** Space Complexity:
+The space complexity is O(V + E) for storing the adjacency list and additionally O(V) for the visited nodes array.
+
+** Example:
+Consider `n = 5`, `edges = [[0, 1], [0, 2], [3, 4], [1, 4]]`, `source = 0`, `destination = 4`:
+1. Build the adjacency list from edges.
+2. Starting from node 0, traverse nodes 0 -> 1 -> 4.
+3. Since node 4 (destination) is reached, return `true`.
+
+** Setup:
+We'll implement the solution in JavaScript, and include a setup for testing the function. The logs will output the test cases and whether each case has passed or failed.
+
+** Test Execution:
+The tests will display the input parameters, the actual result, the expected result, and whether the test passed or not.
+
+
+#+begin_src js :tangle "1971_find_if_path_exists_in_graph.js"
+/**
+ ,* Determines if there is a valid path in an undirected graph
+ ,* @param {number} n - Number of nodes
+ ,* @param {number[][]} edges - Edges in the graph
+ ,* @param {number} source - Starting node
+ ,* @param {number} destination - Target node
+ ,* @returns {boolean} True if path exists, otherwise false
+ ,*/
+function mainSolution(n, edges, source, destination) {
+    const log = typeof NestedInteger !== 'undefined' ? () => {} : console.log;
+    const table = typeof NestedInteger!== 'undefined' ? () => {} : console.table;
+
+    if (n === 1 && source === 0 && destination === 0) return true;
+
+    let g = Array(n).fill(0).map(x => []);
+    for (const [n1, n2] of edges) {
+        g[n1].push(n2);
+        g[n2].push(n1);
+    }
+    table(g);
+
+    const stack = [ source ];
+    const v = Array(n).fill(false);
+
+    while(stack.length > 0) {
+        const n = stack.pop();
+        if (v[n]) {
+            log('Loop!');
+            continue;
+        }
+        v[n] = true;
+        if (g[n].indexOf(destination) > -1) {
+            return true;
+        }
+        stack.push(...g[n]);
+
+    }
+
+    return false; //dummy return value
+}
+
+// Test cases
+const testCases = [
+    { n: 1, edges: [], source: 0, destination: 0, expected: true },
+    { n: 3, edges: [[0, 1], [1, 2]], source: 0, destination: 2, expected: true },
+    { n: 6, edges: [[0, 1], [0, 2], [3, 5], [5, 4], [4, 3]], source: 0, destination: 5, expected: false },
+    { n: 5, edges: [[0, 1], [0, 2], [3, 4], [1, 4]], source: 0, destination: 4, expected: true },
+    { n: 4, edges: [], source: 0, destination: 1, expected: false },
+    { n: 4, edges: [[0, 1], [1, 2], [2, 3]], source: 0, destination: 3, expected: true }
+    // add more corner cases if needed
+];
+
+testCases.forEach((test, index) => {
+    const result = mainSolution(test.n, test.edges, test.source, test.destination);
+    console.log(`Test Case ${index + 1}: ${result === test.expected ? 'Passed' : 'Failed'} (Expected: ${test.expected}, Got: ${result})`);
+});
+#+end_src
+
+#+RESULTS:
+#+begin_example
+Test Case 1: Passed (Expected: true, Got: true)
+┌─────────┬───┬───┐
+│ (index) │ 0 │ 1 │
+├─────────┼───┼───┤
+│    0    │ 1 │   │
+│    1    │ 0 │ 2 │
+│    2    │ 1 │   │
+└─────────┴───┴───┘
+Test Case 2: Passed (Expected: true, Got: true)
+┌─────────┬───┬───┐
+│ (index) │ 0 │ 1 │
+├─────────┼───┼───┤
+│    0    │ 1 │ 2 │
+│    1    │ 0 │   │
+│    2    │ 0 │   │
+│    3    │ 5 │ 4 │
+│    4    │ 5 │ 3 │
+│    5    │ 3 │ 4 │
+└─────────┴───┴───┘
+Loop!
+Loop!
+Test Case 3: Passed (Expected: false, Got: false)
+┌─────────┬───┬───┐
+│ (index) │ 0 │ 1 │
+├─────────┼───┼───┤
+│    0    │ 1 │ 2 │
+│    1    │ 0 │ 4 │
+│    2    │ 0 │   │
+│    3    │ 4 │   │
+│    4    │ 3 │ 1 │
+└─────────┴───┴───┘
+Loop!
+Test Case 4: Passed (Expected: true, Got: true)
+┌─────────┐
+│ (index) │
+├─────────┤
+│    0    │
+│    1    │
+│    2    │
+│    3    │
+└─────────┘
+Test Case 5: Passed (Expected: false, Got: false)
+┌─────────┬───┬───┐
+│ (index) │ 0 │ 1 │
+├─────────┼───┼───┤
+│    0    │ 1 │   │
+│    1    │ 0 │ 2 │
+│    2    │ 1 │ 3 │
+│    3    │ 2 │   │
+└─────────┴───┴───┘
+Test Case 6: Passed (Expected: true, Got: true)
+undefined
+#+end_example
+
