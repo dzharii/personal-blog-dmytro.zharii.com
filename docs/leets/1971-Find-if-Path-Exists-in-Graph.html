@@ -1,0 +1,179 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2024-07-16 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>1971. Find if Path Exists in Graph</title>
+<meta name="author" content="d)zharii" />
+<meta name="generator" content="Org Mode" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/t.css"/>
+</head>
+<body>
+<nav><a href="/" tabindex="0">&larrhk; Back to Index</a></nav><div id="preamble" class="status">
+Published 2024-07-15
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">1971. Find if Path Exists in Graph</h1>
+<p class="subtitle" role="doc-subtitle">leetcode</p>
+</header><nav id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org4373a5e">Problem:</a></li>
+<li><a href="#orgbb0eef9">Solution Description:</a></li>
+<li><a href="#orga809b4f">Time Complexity:</a></li>
+<li><a href="#orgb62a361">Space Complexity:</a></li>
+<li><a href="#org84339f1">Example:</a></li>
+<li><a href="#orgc6efb0d">Setup:</a></li>
+<li><a href="#org2fcdcf0">Test Execution:</a></li>
+</ul>
+</div>
+</nav>
+<p>
+<a href="https://leetcode.com/submissions/detail/1322501261/">Submission</a>
+</p>
+
+<div id="outline-container-org4373a5e" class="outline-2">
+<h2 id="org4373a5e">Problem:</h2>
+<div class="outline-text-2" id="text-org4373a5e">
+<p>
+You are given an integer `n` representing the number of nodes in a graph, and an array `edges` where each `edges[i] = [u<sub>i</sub>, v<sub>i</sub>]` indicates that there is an undirected edge between nodes `u<sub>i</sub>` and `v<sub>i</sub>`. Given two integers `source` and `destination`, determine if there is a valid path from `source` to `destination` in the graph.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgbb0eef9" class="outline-2">
+<h2 id="orgbb0eef9">Solution Description:</h2>
+<div class="outline-text-2" id="text-orgbb0eef9">
+<p>
+To implement this solution, we need to utilize graph traversal algorithms. Specifically, we employ Depth-First Search (DFS) or Breadth-First Search (BFS) to explore the graph. The goal is to check connectivity from the source node to the destination node.
+</p>
+
+<ol class="org-ol">
+<li>Construct an adjacency list from the given edges list.</li>
+<li>Use the chosen traversal method (DFS/BFS) to explore the graph starting from the `source` node.</li>
+<li>If we reach the `destination` node during the traversal, return `true`.</li>
+<li>If traversal completes without visiting the `destination`, return `false`.</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-orga809b4f" class="outline-2">
+<h2 id="orga809b4f">Time Complexity:</h2>
+<div class="outline-text-2" id="text-orga809b4f">
+<p>
+The time complexity is O(V + E), where V is the number of vertices (nodes) and E is the number of edges. This is because in the worst-case scenario, we will need to visit each node and edge once.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgb62a361" class="outline-2">
+<h2 id="orgb62a361">Space Complexity:</h2>
+<div class="outline-text-2" id="text-orgb62a361">
+<p>
+The space complexity is O(V + E) for storing the adjacency list and additionally O(V) for the visited nodes array.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org84339f1" class="outline-2">
+<h2 id="org84339f1">Example:</h2>
+<div class="outline-text-2" id="text-org84339f1">
+<p>
+Consider `n = 5`, `edges = [[0, 1], [0, 2], [3, 4], [1, 4]]`, `source = 0`, `destination = 4`:
+</p>
+<ol class="org-ol">
+<li>Build the adjacency list from edges.</li>
+<li>Starting from node 0, traverse nodes 0 -&gt; 1 -&gt; 4.</li>
+<li>Since node 4 (destination) is reached, return `true`.</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-orgc6efb0d" class="outline-2">
+<h2 id="orgc6efb0d">Setup:</h2>
+<div class="outline-text-2" id="text-orgc6efb0d">
+<p>
+We'll implement the solution in JavaScript, and include a setup for testing the function. The logs will output the test cases and whether each case has passed or failed.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org2fcdcf0" class="outline-2">
+<h2 id="org2fcdcf0">Test Execution:</h2>
+<div class="outline-text-2" id="text-org2fcdcf0">
+<p>
+The tests will display the input parameters, the actual result, the expected result, and whether the test passed or not.
+</p>
+
+
+<div class="org-src-container">
+<pre class="src src-js">/**
+ * Determines if there is a valid path in an undirected graph
+ * @param {number} n - Number of nodes
+ * @param {number[][]} edges - Edges in the graph
+ * @param {number} source - Starting node
+ * @param {number} destination - Target node
+ * @returns {boolean} True if path exists, otherwise false
+ */
+function mainSolution(n, edges, source, destination) {
+    const log = typeof NestedInteger !== 'undefined' ? () =&gt; {} : console.log;
+    const table = typeof NestedInteger!== 'undefined' ? () =&gt; {} : console.table;
+
+    if (n === 1 &amp;&amp; source === 0 &amp;&amp; destination === 0) return true;
+
+    let g = Array(n).fill(0).map(x =&gt; []);
+    for (const [n1, n2] of edges) {
+        g[n1].push(n2);
+        g[n2].push(n1);
+    }
+    table(g);
+
+    const stack = [ source ];
+    const v = Array(n).fill(false);
+
+    while(stack.length &gt; 0) {
+        const n = stack.pop();
+        if (v[n]) {
+            log('Loop!');
+            continue;
+        }
+        v[n] = true;
+        if (g[n].indexOf(destination) &gt; -1) {
+            return true;
+        }
+        stack.push(...g[n]);
+
+    }
+
+    return false; //dummy return value
+}
+
+// Test cases
+const testCases = [
+    { n: 1, edges: [], source: 0, destination: 0, expected: true },
+    { n: 3, edges: [[0, 1], [1, 2]], source: 0, destination: 2, expected: true },
+    { n: 6, edges: [[0, 1], [0, 2], [3, 5], [5, 4], [4, 3]], source: 0, destination: 5, expected: false },
+    { n: 5, edges: [[0, 1], [0, 2], [3, 4], [1, 4]], source: 0, destination: 4, expected: true },
+    { n: 4, edges: [], source: 0, destination: 1, expected: false },
+    { n: 4, edges: [[0, 1], [1, 2], [2, 3]], source: 0, destination: 3, expected: true }
+    // add more corner cases if needed
+];
+
+testCases.forEach((test, index) =&gt; {
+    const result = mainSolution(test.n, test.edges, test.source, test.destination);
+    console.log(`Test Case ${index + 1}: ${result === test.expected ? 'Passed' : 'Failed'} (Expected: ${test.expected}, Got: ${result})`);
+});
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+&copy; d)zharii. <a href="/sitemap.html">sitemap</a>
+</div>
+</body>
+</html>
