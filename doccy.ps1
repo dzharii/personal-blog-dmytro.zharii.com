@@ -10,7 +10,6 @@ $ThisScriptFolderPath = Split-Path -Parent $MyInvocation.MyCommand.Definition
 $COMMAND_HELP = "help"
 $COMMAND_EDIT = "edit"
 $COMMAND_PUBLISH = "pub"
-$COMMAND_PUBLISH_FORCE = "pub-force"
 
 $EMACS = ""
 if (Get-Command -Name "runemacs" -erroraction silentlycontinue) { 
@@ -36,8 +35,6 @@ Commands:
       Opens EMACS
     $($COMMAND_PUBLISH):
       Publishes site
-    $($COMMAND_PUBLISH_FORCE):
-      Publishes website by applying a lot of force
 "@
 
 switch ($Command.ToLower()) {
@@ -53,12 +50,6 @@ switch ($Command.ToLower()) {
     $COMMAND_PUBLISH {
         & $($EMACS) --init-directory ./emacs-init --eval='(doccy-publish)'
     }
-
-    $COMMAND_PUBLISH_FORCE {
-        & $($EMACS) --init-directory ./emacs-init --eval='(doccy-publish-force)'
-    }
-
-
 
     Default {
         Write-Host $("=" * 80) -ForegroundColor Red

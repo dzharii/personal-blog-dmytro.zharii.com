@@ -1,0 +1,94 @@
+﻿#+title: 168. Excel Sheet Column Title
+#+subtitle: leetcode
+#+date: <2024-07-17>
+#+language: en
+
+** Links
+[[https://leetcode.com/submissions/detail/1324854334/][Submission]]
+
+** Problem:
+Given a positive integer, return its corresponding column title as it would appear in an Excel sheet. Each integer maps to a specific alphabet arrangement where 1 maps to 'A', ..., and 26 maps to 'Z'. For numbers greater than 26, the sequence continues as follows: 27 -> 'AA', 28 -> 'AB', ..., 52 -> 'AZ', 53 -> 'BA', etc.
+
+** Solution Description:
+To implement the conversion of a number to its corresponding Excel column title, we need to repeatedly extract the remainder when dividing the number by 26 (which gives the offset for the corresponding character starting from 'A'). The quotient from this division is then used as the number for the next iteration. Special care is needed to handle cases where the remainder is 0 because that maps to 'Z' in the Excel column logic and affects the quotient calculation.
+
+1. Initialize an empty string to store the column title.
+2. Run a loop until the number is greater than 0.
+3. Compute the remainder (`remainder = (number - 1) % 26`).
+4. Prepend the corresponding character for the remainder to the result string.
+5. Reduce the number for the next iteration (`number = Math.floor((number - 1) / 26)`).
+6. Repeat until the number is reduced to 0.
+
+This algorithm operates in O(log_{26}(n)) time complexity, where n is the input number, due to the repeated division by 26.
+
+** Example:
+For instance, converting number 28 to its column title:
+- Initial number: 28
+- First iteration: Remainder = 1 (‘B’), Number = 1 -> Result is 'A'
+- Second iteration: Remainder = 0, leading to ‘B’, Number = 0
+- Thus it results in "AB"
+
+** Setup:
+
+#+begin_src js :tangle "168_excel_sheet_column_title.js"
+// Convert a number to Excel sheet column title
+// @param {number} n - The number to be converted
+// @returns {string} - Corresponding Excel column title
+const log = typeof NestedInteger !== 'undefined' ? () => {} : console.log;
+const table = typeof NestedInteger !== 'undefined' ? () => {} : console.table;
+
+function numberToExcelTitle(n) {
+    const log = typeof NestedInteger !== 'undefined' ? () => {} : console.log;
+    const table = typeof NestedInteger !== 'undefined' ? () => {} : console.table;
+
+    const A = 'A'.charCodeAt();
+    const Z = 'Z'.charCodeAt();
+    const BASE = Z - A + 1; // it is like .length need to add 1 
+    log(BASE);
+
+    let result = '';
+
+    while (n > 0) {
+        n--; // make n 0-based
+        let remainder = n % BASE;
+        result = String.fromCharCode(A + remainder) + result;
+        n = Math.floor(n / BASE);
+    }
+
+    return result;
+}
+
+// Test cases
+const testCases = [
+    { input: 1, expected: "A" },
+    { input: 28, expected: "AB" },
+    { input: 52, expected: "AZ" },
+    { input: 701, expected: "ZY" },
+    { input: 702, expected: "ZZ" },
+    { input: 703, expected: "AAA" },
+];
+
+testCases.forEach((test, index) => {
+    const result = numberToExcelTitle(test.input);
+    log(`Test Case ${index + 1}: ${result === test.expected ? 'Passed' : 'Failed'} (Expected: ${test.expected}, Got: ${result})`);
+});
+#+end_src
+
+#+RESULTS:
+#+begin_example
+26
+Test Case 1: Passed (Expected: A, Got: A)
+26
+Test Case 2: Passed (Expected: AB, Got: AB)
+26
+Test Case 3: Passed (Expected: AZ, Got: AZ)
+26
+Test Case 4: Passed (Expected: ZY, Got: ZY)
+26
+Test Case 5: Passed (Expected: ZZ, Got: ZZ)
+26
+Test Case 6: Passed (Expected: AAA, Got: AAA)
+undefined
+#+end_example
+
+Test cases cover various scenarios including minimum and edge cases like transitions from ‘Z’ to ‘AA’ and beyond.

@@ -1,0 +1,147 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2024-07-17 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>168. Excel Sheet Column Title</title>
+<meta name="author" content="d)zharii" />
+<meta name="generator" content="Org Mode" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/t.css"/>
+</head>
+<body>
+<nav><a href="/" tabindex="0">&larrhk; Back to Index</a></nav><div id="preamble" class="status">
+Published 2024-07-17
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">168. Excel Sheet Column Title</h1>
+<p class="subtitle" role="doc-subtitle">leetcode</p>
+</header><nav id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org2993721">Links</a></li>
+<li><a href="#org6934ce0">Problem:</a></li>
+<li><a href="#orga1149c3">Solution Description:</a></li>
+<li><a href="#orgf506b46">Example:</a></li>
+<li><a href="#org5f46ede">Setup:</a></li>
+</ul>
+</div>
+</nav>
+
+<div id="outline-container-org2993721" class="outline-2">
+<h2 id="org2993721">Links</h2>
+<div class="outline-text-2" id="text-org2993721">
+<p>
+<a href="https://leetcode.com/submissions/detail/1324854334/">Submission</a>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org6934ce0" class="outline-2">
+<h2 id="org6934ce0">Problem:</h2>
+<div class="outline-text-2" id="text-org6934ce0">
+<p>
+Given a positive integer, return its corresponding column title as it would appear in an Excel sheet. Each integer maps to a specific alphabet arrangement where 1 maps to 'A', &#x2026;, and 26 maps to 'Z'. For numbers greater than 26, the sequence continues as follows: 27 -&gt; 'AA', 28 -&gt; 'AB', &#x2026;, 52 -&gt; 'AZ', 53 -&gt; 'BA', etc.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga1149c3" class="outline-2">
+<h2 id="orga1149c3">Solution Description:</h2>
+<div class="outline-text-2" id="text-orga1149c3">
+<p>
+To implement the conversion of a number to its corresponding Excel column title, we need to repeatedly extract the remainder when dividing the number by 26 (which gives the offset for the corresponding character starting from 'A'). The quotient from this division is then used as the number for the next iteration. Special care is needed to handle cases where the remainder is 0 because that maps to 'Z' in the Excel column logic and affects the quotient calculation.
+</p>
+
+<ol class="org-ol">
+<li>Initialize an empty string to store the column title.</li>
+<li>Run a loop until the number is greater than 0.</li>
+<li>Compute the remainder (`remainder = (number - 1) % 26`).</li>
+<li>Prepend the corresponding character for the remainder to the result string.</li>
+<li>Reduce the number for the next iteration (`number = Math.floor((number - 1) / 26)`).</li>
+<li>Repeat until the number is reduced to 0.</li>
+</ol>
+
+<p>
+This algorithm operates in O(log<sub>26</sub>(n)) time complexity, where n is the input number, due to the repeated division by 26.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgf506b46" class="outline-2">
+<h2 id="orgf506b46">Example:</h2>
+<div class="outline-text-2" id="text-orgf506b46">
+<p>
+For instance, converting number 28 to its column title:
+</p>
+<ul class="org-ul">
+<li>Initial number: 28</li>
+<li>First iteration: Remainder = 1 (‘B’), Number = 1 -&gt; Result is 'A'</li>
+<li>Second iteration: Remainder = 0, leading to ‘B’, Number = 0</li>
+<li>Thus it results in "AB"</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org5f46ede" class="outline-2">
+<h2 id="org5f46ede">Setup:</h2>
+<div class="outline-text-2" id="text-org5f46ede">
+<div class="org-src-container">
+<pre class="src src-js">// Convert a number to Excel sheet column title
+// @param {number} n - The number to be converted
+// @returns {string} - Corresponding Excel column title
+const log = typeof NestedInteger !== 'undefined' ? () =&gt; {} : console.log;
+const table = typeof NestedInteger !== 'undefined' ? () =&gt; {} : console.table;
+
+function numberToExcelTitle(n) {
+    const log = typeof NestedInteger !== 'undefined' ? () =&gt; {} : console.log;
+    const table = typeof NestedInteger !== 'undefined' ? () =&gt; {} : console.table;
+
+    const A = 'A'.charCodeAt();
+    const Z = 'Z'.charCodeAt();
+    const BASE = Z - A + 1; // it is like .length need to add 1 
+    log(BASE);
+
+    let result = '';
+
+    while (n &gt; 0) {
+        n--; // make n 0-based
+        let remainder = n % BASE;
+        result = String.fromCharCode(A + remainder) + result;
+        n = Math.floor(n / BASE);
+    }
+
+    return result;
+}
+
+// Test cases
+const testCases = [
+    { input: 1, expected: "A" },
+    { input: 28, expected: "AB" },
+    { input: 52, expected: "AZ" },
+    { input: 701, expected: "ZY" },
+    { input: 702, expected: "ZZ" },
+    { input: 703, expected: "AAA" },
+];
+
+testCases.forEach((test, index) =&gt; {
+    const result = numberToExcelTitle(test.input);
+    log(`Test Case ${index + 1}: ${result === test.expected ? 'Passed' : 'Failed'} (Expected: ${test.expected}, Got: ${result})`);
+});
+</pre>
+</div>
+
+<p>
+Test cases cover various scenarios including minimum and edge cases like transitions from ‘Z’ to ‘AA’ and beyond.
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+&copy; d)zharii. <a href="/sitemap.html">sitemap</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,179 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2024-07-17 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>1530. Number of Good Leaf Nodes Pairs</title>
+<meta name="author" content="d)zharii" />
+<meta name="generator" content="Org Mode" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/t.css"/>
+</head>
+<body>
+<nav><a href="/" tabindex="0">&larrhk; Back to Index</a></nav><div id="preamble" class="status">
+Published 2024-07-17
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">1530. Number of Good Leaf Nodes Pairs</h1>
+<p class="subtitle" role="doc-subtitle">leetcode</p>
+</header><nav id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org84f5e8d">Problem:</a></li>
+<li><a href="#org8e4b3b8">Solution Description:</a></li>
+<li><a href="#orgf8d0a0d">Example:</a></li>
+<li><a href="#orgb3948c0">Setup:</a></li>
+</ul>
+</div>
+</nav>
+
+<div id="outline-container-org84f5e8d" class="outline-2">
+<h2 id="org84f5e8d">Problem:</h2>
+<div class="outline-text-2" id="text-org84f5e8d">
+<p>
+The problem is to find the number of good leaf node pairs in a binary tree. A pair of leaf nodes (leaf1, leaf2) is considered good if the distance between them is less than or equal to a given value `distance`. The distance between two nodes in a binary tree is the number of edges on the shortest path between them.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org8e4b3b8" class="outline-2">
+<h2 id="org8e4b3b8">Solution Description:</h2>
+<div class="outline-text-2" id="text-org8e4b3b8">
+<p>
+To implement the solution, we need to perform the following steps:
+</p>
+
+<ol class="org-ol">
+<li>Traverse the tree using a Depth-First Search (DFS) approach.</li>
+<li>For each node, collect the distances to all leaf nodes in its subtree.</li>
+<li>Combine the distances from the left and right subtrees to count the number of good leaf node pairs.</li>
+<li>Propagate the distances up to the root, adjusting for the distance increment as we move up in the tree.</li>
+<li>The count of good leaf node pairs is accumulated during the traversal.</li>
+</ol>
+
+<p>
+Time Complexity: The solution operates in O(n<sup>2</sup>) for each node combination in the worst case, where n is the number of nodes.
+Space Complexity: The space complexity is O(n) due to the recursion stack and storage of leaf distances.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgf8d0a0d" class="outline-2">
+<h2 id="orgf8d0a0d">Example:</h2>
+<div class="outline-text-2" id="text-orgf8d0a0d">
+<p>
+Consider a binary tree:
+</p>
+<pre class="example" id="org358a54a">
+    1
+   / \
+  2   3
+ /   / \
+4   5   6
+</pre>
+
+<p>
+For `distance = 3`, a possible solution:
+</p>
+<ul class="org-ul">
+<li>Pairs (4, 5) and (4, 6) are within distance 3.</li>
+<li>The function should return 2.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgb3948c0" class="outline-2">
+<h2 id="orgb3948c0">Setup:</h2>
+<div class="outline-text-2" id="text-orgb3948c0">
+<p>
+Introduces the general framework of the solution.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">/**
+ * Definition for a binary tree node.
+ * @param {TreeNode} val
+ * @param {TreeNode} left
+ * @param {TreeNode} right
+ * @constructor
+ */
+class TreeNode {
+    constructor(val, left = null, right = null) {
+        this.val = val;
+        this.left = left;
+        this.right = right;
+    }
+}
+
+/**
+ * Main solution function to find the number of good leaf node pairs.
+ * @param {TreeNode} root
+ * @param {number} distance
+ * @return {number}
+ */
+function numberOfGoodLeafNodePairs(root, distance) {
+    const log = typeof NestedInteger !== 'undefined' ? () =&gt; {} : console.log;
+    const table = typeof NestedInteger !== 'undefined' ? () =&gt; {} : console.table;
+
+    log(root, distance);
+    return 0; // Dummy return
+}
+
+// Test cases
+const testCases = [
+    {
+        root: new TreeNode(1, 
+            new TreeNode(2, new TreeNode(4)), 
+            new TreeNode(3, new TreeNode(5), new TreeNode(6))
+        ),
+        distance: 3,
+        expected: 2
+    },
+    {
+        root: new TreeNode(1, new TreeNode(2), new TreeNode(3)),
+        distance: 1,
+        expected: 0
+    },
+    {
+        root: new TreeNode(1, new TreeNode(2)), // Single path tree
+        distance: 2,
+        expected: 0
+    },
+    {
+        root: new TreeNode(1, 
+            new TreeNode(2, 
+                new TreeNode(4), 
+                new TreeNode(5, null, new TreeNode(8))
+            ), 
+            new TreeNode(3, 
+                new TreeNode(6), 
+                new TreeNode(7, null, new TreeNode(9))
+            )
+        ),
+        distance: 4,
+        expected: 4
+    },
+    {
+        root: new TreeNode(1), // Single node tree
+        distance: 1,
+        expected: 0
+    }
+];
+
+testCases.forEach((test, index) =&gt; {
+    const result = numberOfGoodLeafNodePairs(test.root, test.distance);
+    console.log(`Test Case ${index + 1}: ${result === test.expected ? 'Passed' : 'Failed'} (Expected: ${test.expected}, Got: ${result})`);
+});
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+&copy; d)zharii. <a href="/sitemap.html">sitemap</a>
+</div>
+</body>
+</html>
