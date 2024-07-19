@@ -1,0 +1,169 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2024-07-18 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>1380. Lucky Numbers in a Matrix</title>
+<meta name="author" content="d)zharii" />
+<meta name="generator" content="Org Mode" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/t.css"/>
+</head>
+<body>
+<nav><a href="/" tabindex="0">&larrhk; Back to Index</a></nav><div id="preamble" class="status">
+Published 2024-07-18
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">1380. Lucky Numbers in a Matrix</h1>
+<p class="subtitle" role="doc-subtitle">leetcode</p>
+</header><nav id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org6b76b53">Links</a></li>
+<li><a href="#org20d8535">Problem: Lucky Numbers in a Matrix</a></li>
+<li><a href="#org6729df3">Solution Description:</a></li>
+<li><a href="#orgcbad0a2">Example:</a></li>
+<li><a href="#org88a4a15">Setup:</a></li>
+</ul>
+</div>
+</nav>
+
+<div id="outline-container-org6b76b53" class="outline-2">
+<h2 id="org6b76b53">Links</h2>
+<div class="outline-text-2" id="text-org6b76b53">
+<p>
+<a href="https://leetcode.com/submissions/detail/1325865807/">Submission</a>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org20d8535" class="outline-2">
+<h2 id="org20d8535">Problem: Lucky Numbers in a Matrix</h2>
+<div class="outline-text-2" id="text-org20d8535">
+<p>
+A "lucky number" in a matrix is defined as an element that is the minimum element in its row and the maximum element in its column. Given a matrix of integers, the task is to find all lucky numbers in the matrix.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org6729df3" class="outline-2">
+<h2 id="org6729df3">Solution Description:</h2>
+<div class="outline-text-2" id="text-org6729df3">
+<p>
+To implement the problem, we need to follow these steps:
+</p>
+
+<ol class="org-ol">
+<li><b><b>Identify Row Minimums</b></b>: For each row in the matrix, we determine the minimum value.</li>
+<li><b><b>Check Column Maximums</b></b>: For each of the identified row minimums, we check if it is the maximum in its respective column.</li>
+<li><b><b>Collect Lucky Numbers</b></b>: If a number meets both conditions, it is added to the list of lucky numbers.</li>
+</ol>
+
+<p>
+The time complexity of this solution is O(m * n), where m is the number of rows and n is the number of columns, as we traverse each element of the matrix at least once. The space complexity is O(k), where k is the number of lucky numbers, as we store them in a list.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgcbad0a2" class="outline-2">
+<h2 id="orgcbad0a2">Example:</h2>
+<div class="outline-text-2" id="text-orgcbad0a2">
+<p>
+Consider the matrix:
+</p>
+<pre class="example" id="org844de59">
+1 10 4 2
+9 3 8 7
+15 16 17 12
+</pre>
+
+<ul class="org-ul">
+<li>The minimum in the first row is 1, which is also the maximum in its column (1).</li>
+<li>The minimum in the second row is 3, which is not the maximum in its column (9).</li>
+<li>The minimum in the third row is 12, which is not the maximum in its column (17).</li>
+</ul>
+<p>
+Thus, the only lucky number is `1`.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org88a4a15" class="outline-2">
+<h2 id="org88a4a15">Setup:</h2>
+<div class="outline-text-2" id="text-org88a4a15">
+<p>
+We will set up the initial solution and testing framework in JavaScript.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">
+// Helper functions will be defined here.
+
+/**
+ * Function to find lucky numbers in a matrix.
+ * @param {number[][]} matrix - The input matrix of integers.
+ * @return {number[]} - An array of lucky numbers.
+ */
+function findLuckyNumbers(matrix) {
+
+    const log = typeof NestedInteger !== 'undefined' ? () =&gt; {} : console.log;
+    const table = typeof NestedInteger !== 'undefined' ? () =&gt; {} : console.table;
+
+    const numRows = matrix.length;
+    const numCols = matrix[0].length;
+
+    const rowMin = Array(numRows).fill(+Infinity);
+    const colMax = Array(numCols).fill(-Infinity);
+
+    for (let row = 0; row &lt; numRows; row += 1) {
+        for (let col = 0; col &lt; numCols; col += 1) {
+            rowMin[row] = Math.min(rowMin[row], matrix[row][col]);
+            colMax[col] = Math.max(colMax[col], matrix[row][col]);
+        }
+    }
+
+    log('rowMin');
+    table(rowMin);
+
+    log('colMax');
+    table(colMax);
+
+    const result = [];
+
+    for (const el of colMax) {
+        if (rowMin.indexOf(el) &gt; -1) {
+            result.push(el);
+        }
+    }
+
+    return result;
+}
+
+// Test cases to check the function
+const testCases = [
+    { matrix:
+      [
+          [3,7,8],
+          [9,11,13],
+          [15,16,17]
+      ], expected: [15] },
+    { matrix: [[5]], expected: [5] },
+];
+
+testCases.forEach((test, index) =&gt; {
+    const result = findLuckyNumbers(test.matrix);
+    console.log(`Test Case ${index + 1}: ${result.toString() === test.expected.toString() ? 'Passed' : 'Failed'} (Expected: ${test.expected}, Got: ${result})`);
+});
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+&copy; d)zharii. <a href="/sitemap.html">sitemap</a>
+</div>
+</body>
+</html>

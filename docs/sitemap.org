@@ -30,3 +30,5 @@
   - [[file:leets/1190-Reverse-Substrings-Between-Each-Pair-of-Parentheses.org][1190. Reverse Substrings Between Each Pair of Parentheses]]
   - [[file:leets/1971-Find-if-Path-Exists-in-Graph.org][1971. Find if Path Exists in Graph]]
   - [[file:leets/1110-Delete-Nodes-And-Return-Forest.org][1110. Delete Nodes And Return Forest]]
+  - [[file:leets/1530-Number-of-Good-Leaf-Nodes-Pairs.org][1530. Number of Good Leaf Nodes Pairs]]
+  - [[file:leets/0168-Excel-Sheet-Column-Title.org][168. Excel Sheet Column Title]]
