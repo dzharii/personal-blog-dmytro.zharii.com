@@ -1,0 +1,140 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2024-07-22 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>1636. Sort Array by Increasing Frequency</title>
+<meta name="author" content="d)zharii" />
+<meta name="generator" content="Org Mode" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/t.css"/>
+</head>
+<body>
+<nav><a href="/" tabindex="0">&larrhk; Back to Index</a></nav><div id="preamble" class="status">
+Published 2024-07-22
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">1636. Sort Array by Increasing Frequency</h1>
+<p class="subtitle" role="doc-subtitle">leetcode</p>
+</header><nav id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orga9ca981">Problem:</a></li>
+<li><a href="#org0b4c06b">Solution Description:</a></li>
+<li><a href="#orgf6e4a42">Example:</a></li>
+<li><a href="#org538b006">Setup:</a></li>
+</ul>
+</div>
+</nav>
+
+<div id="outline-container-orga9ca981" class="outline-2">
+<h2 id="orga9ca981">Problem:</h2>
+<div class="outline-text-2" id="text-orga9ca981">
+<p>
+Given an array of integers `nums`, you need to sort the array in increasing order based on the frequency of the values. If there are multiple values with the same frequency, you should sort them in decreasing order.
+</p>
+
+<p>
+For example, input: `nums = [1,1,2,2,2,3]` should output: `[3,1,1,2,2,2]`.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0b4c06b" class="outline-2">
+<h2 id="org0b4c06b">Solution Description:</h2>
+<div class="outline-text-2" id="text-org0b4c06b">
+<p>
+To implement a solution for sorting the array by frequency, we need to:
+</p>
+<ol class="org-ol">
+<li>Count the frequency of each element in the array.</li>
+<li>Use a custom comparator to sort the array first by frequency in ascending order. If frequencies are the same, sort by value in descending order.</li>
+</ol>
+
+<p>
+The steps to achieve this:
+</p>
+<ol class="org-ol">
+<li>Create a frequency map that tracks how many times each element appears in the array.</li>
+<li>Sort the array with a custom comparator that uses the frequency map; sort by frequency in ascending order and, in case of ties, by the element's value in descending order.</li>
+</ol>
+
+<p>
+Time complexity is O(n log n) due to the sort operation. Space complexity is O(n) due to the additional space used by the frequency map.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgf6e4a42" class="outline-2">
+<h2 id="orgf6e4a42">Example:</h2>
+<div class="outline-text-2" id="text-orgf6e4a42">
+<p>
+Let's consider the input `nums = [1,1,2,2,2,3]`.
+</p>
+<ol class="org-ol">
+<li>Frequency map: {1: 2, 2: 3, 3: 1}</li>
+<li>Sorted result: [3,1,1,2,2,2]</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org538b006" class="outline-2">
+<h2 id="org538b006">Setup:</h2>
+<div class="outline-text-2" id="text-org538b006">
+<p>
+The initial code framework setup in modern JavaScript, including helper functions and dummy return values. We'll use simple `console.log` statements for testing and validation.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">
+/**
+ * Function to sort the array by increasing frequency
+ * @param {number[]} nums - An array of integers
+ * @return {number[]} - Sorted array based on frequency and value
+ */
+function sortByFrequency(nums) {
+    // Helper log functions for testing and demonstrations
+    const log = typeof NestedInteger !== 'undefined' ? () =&gt; {} : console.log;
+    const table = typeof NestedInteger !== 'undefined' ? () =&gt; {} : console.table;
+
+    const f = {};
+    nums.forEach(num =&gt; {
+        f[num] = (f[num] || 0) + 1;
+    });
+
+    nums.sort((a, b) =&gt; {
+        if (f[a] === f[b]) {
+            return b - a;
+        }
+        return f[a] - f[b];
+    });
+
+    return nums;
+}
+
+// Test cases
+const testCases = [
+    { nums: [1,1,2,2,2,3], expected: [3,1,1,2,2,2]},
+    { nums: [2,3,1,3,2], expected: [1,3,3,2,2] },
+    { nums: [-1,1,-6,4,5,-6,1,4,1], expected: [5,-1,4,4,-6,-6,1,1,1] },
+    { nums: [2,3,3,2,1], expected: [1,3,3,2,2] },
+];
+
+testCases.forEach((test, index) =&gt; {
+    const result = sortByFrequency(test.nums);
+    console.log(`Test Case ${index + 1}: ${result.join(',') === test.expected.join(',') ? 'Passed' : 'Failed'} (Expected: ${test.expected.join(',')}, Got: ${result.join(',')})`);
+});
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+&copy; d)zharii. <a href="/sitemap.html">sitemap</a>
+</div>
+</body>
+</html>

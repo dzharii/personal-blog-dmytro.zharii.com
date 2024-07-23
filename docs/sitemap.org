@@ -32,3 +32,4 @@
   - [[file:leets/1110-Delete-Nodes-And-Return-Forest.org][1110. Delete Nodes And Return Forest]]
   - [[file:leets/1530-Number-of-Good-Leaf-Nodes-Pairs.org][1530. Number of Good Leaf Nodes Pairs]]
   - [[file:leets/0168-Excel-Sheet-Column-Title.org][168. Excel Sheet Column Title]]
+  - [[file:leets/1380-Lucky-Numbers-in-a-Matrix.org][1380. Lucky Numbers in a Matrix]]
