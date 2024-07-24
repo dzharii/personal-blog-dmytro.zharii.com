@@ -1,0 +1,223 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2024-07-23 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>2191. Sort the Jumbled Numbers</title>
+<meta name="author" content="d)zharii" />
+<meta name="generator" content="Org Mode" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/t.css"/>
+</head>
+<body>
+<nav><a href="/" tabindex="0">&larrhk; Back to Index</a></nav><div id="preamble" class="status">
+Published 2024-07-23
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">2191. Sort the Jumbled Numbers</h1>
+<p class="subtitle" role="doc-subtitle">leetcode</p>
+</header><nav id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org4ff26a0">Submission</a></li>
+<li><a href="#orgecc2112">Problem:</a></li>
+<li><a href="#org23905be">Solution Description:</a></li>
+<li><a href="#org97b0c77">Example:</a></li>
+<li><a href="#orgb08fd18">Setup:</a></li>
+<li><a href="#org0b06cfd">Test Execution:</a></li>
+<li><a href="#org6e3755d">Always Provide testcases Example:</a></li>
+<li><a href="#orgdec3000">Output sample</a></li>
+</ul>
+</div>
+</nav>
+
+<div id="outline-container-org4ff26a0" class="outline-2">
+<h2 id="org4ff26a0">Submission</h2>
+<div class="outline-text-2" id="text-org4ff26a0">
+<p>
+<a href="https://leetcode.com/submissions/detail/1331311653/">Sort the Jumbled Numbers</a>
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-orgecc2112" class="outline-2">
+<h2 id="orgecc2112">Problem:</h2>
+<div class="outline-text-2" id="text-orgecc2112">
+<p>
+You are given an integer array `mapping` which ranges from 0 to 9 and an array of integers `nums`.
+The `mapping` representation of an integer is the new integer obtained by replacing each occurrence of digit `i` in the integer with `mapping[i]` for all 0 &lt;= i &lt;= 9.
+</p>
+
+<p>
+For example, if `mapping = [2,1,4,8,6,3,0,9,7,5]` and `nums = [990, 332, 981]`, then:
+</p>
+<ul class="org-ul">
+<li>The mapped value of `990` is `550`.</li>
+<li>The mapped value of `332` is `883`.</li>
+<li>The mapped value of `981` is `583`.</li>
+</ul>
+
+<p>
+Your task is to return a sorted array of `nums` such that `nums[i]` is less than or equal to `nums[j]` if their mapped values are in non-decreasing order.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org23905be" class="outline-2">
+<h2 id="org23905be">Solution Description:</h2>
+<div class="outline-text-2" id="text-org23905be">
+<p>
+To implement this solution, we need to:
+</p>
+<ol class="org-ol">
+<li>Convert each number in `nums` to its mapped value using the `mapping` array.</li>
+<li>Pair each original number with its mapped value.</li>
+<li>Sort these pairs based on the mapped values.</li>
+<li>Extract the original numbers from the sorted pairs.</li>
+</ol>
+
+<p>
+Time Complexity: O(n log n), dominated by the sorting step.
+Space Complexity: O(n), for storing the pairs and the intermediate mapped values.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org97b0c77" class="outline-2">
+<h2 id="org97b0c77">Example:</h2>
+<div class="outline-text-2" id="text-org97b0c77">
+<p>
+For `mapping = [2,1,4,8,6,3,0,9,7,5]` and `nums = [990, 332, 981]`,
+</p>
+<ul class="org-ul">
+<li>Mapped values are: `550` (for `990`), `883` (for `332`), `583` (for `981`).</li>
+<li>After sorting by mapped values: `[990, 981, 332]`.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgb08fd18" class="outline-2">
+<h2 id="orgb08fd18">Setup:</h2>
+<div class="outline-text-2" id="text-orgb08fd18">
+<p>
+Create a general framework for this solution, including the skeleton for the function and a setup for testing using `console.log`.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0b06cfd" class="outline-2">
+<h2 id="org0b06cfd">Test Execution:</h2>
+<div class="outline-text-2" id="text-org0b06cfd">
+<p>
+Design tests that verify input parameters, actual results, expected results, and whether the tests passed or failed, ensuring complete coverage.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org6e3755d" class="outline-2">
+<h2 id="org6e3755d">Always Provide testcases Example:</h2>
+<div class="outline-text-2" id="text-org6e3755d">
+<p>
+```js
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">
+
+/**
+ * @param {number[]} mapping - An array representing the digit mapping.
+ * @param {number[]} nums - An array of integers to be sorted based on the mapping values.
+ * @return {number[]} The sorted array of numbers based on their mapped values.
+ */
+function sortJumbledNumbers(mapping, nums) {
+    // Helper functions for logging
+    const log = typeof NestedInteger !== 'undefined' ? () =&gt; {} : console.log;
+    const table = typeof NestedInteger !== 'undefined' ? () =&gt; {} : console.table;
+
+    /**
+     * @param {number} num original
+     * @returns {number} mapped
+     */
+    function conv(num) {
+        return +String(num).split('').map(ch =&gt; mapping[+ch]).join('');
+    }
+
+    const pairs = nums.map(n =&gt; [n, conv(n)]);
+    log('\npairs:');
+    table(pairs);
+
+    const sortedPairs = [...pairs].sort((a, b) =&gt; a[1] - b[1]);
+    log('\nsortedPairs:');
+    table(sortedPairs);
+
+    const result = sortedPairs.map(p =&gt; p[0]);
+    log('\nresult:');
+    table(result);
+
+    return result;
+}
+
+// Test cases
+const testCases = [
+    { mapping: [2,1,4,8,6,3,0,9,7,5], nums: [990, 332, 981], expected: [990, 981, 332] },
+//    { mapping: [0,1,2,3,4,5,6,7,8,9], nums: [12, 21, 3], expected: [3, 12, 21] },
+//    { mapping: [9,8,7,6,5,4,3,2,1,0], nums: [12, 34, 56, 78], expected: [78, 56, 34, 12] },
+//    { mapping: [1,0,3,2,6,4,5,9,7,8], nums: [101, 200, 123, 241], expected: [123, 241, 101, 200] },
+//    { mapping: [5,4,3,2,1,0,9,8,7,6], nums: [500, 432, 990, 321], expected: [432, 321, 500, 990] }
+];
+
+testCases.forEach((test, index) =&gt; {
+    const result = sortJumbledNumbers(test.mapping, test.nums);
+    console.log(`Test Case ${index + 1}: ${result.toString() === test.expected.toString() ? 'Passed' : 'Failed'} (Expected: ${test.expected}, Got: ${result})`);
+});
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgdec3000" class="outline-2">
+<h2 id="orgdec3000">Output sample</h2>
+<div class="outline-text-2" id="text-orgdec3000">
+<pre class="example" id="org499e6d4">
+
+pairs:
+┌─────────┬─────┬─────┐
+│ (index) │ 0   │ 1   │
+├─────────┼─────┼─────┤
+│ 0       │ 990 │ 552 │
+│ 1       │ 332 │ 884 │
+│ 2       │ 981 │ 571 │
+└─────────┴─────┴─────┘
+
+sortedPairs:
+┌─────────┬─────┬─────┐
+│ (index) │ 0   │ 1   │
+├─────────┼─────┼─────┤
+│ 0       │ 990 │ 552 │
+│ 1       │ 981 │ 571 │
+│ 2       │ 332 │ 884 │
+└─────────┴─────┴─────┘
+
+result:
+┌─────────┬────────┐
+│ (index) │ Values │
+├─────────┼────────┤
+│ 0       │ 990    │
+│ 1       │ 981    │
+│ 2       │ 332    │
+└─────────┴────────┘
+Test Case 1: Passed (Expected: 990,981,332, Got: 990,981,332)
+undefined
+</pre>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+&copy; d)zharii. <a href="/sitemap.html">sitemap</a>
+</div>
+</body>
+</html>
