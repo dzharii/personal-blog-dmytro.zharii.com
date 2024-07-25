@@ -1,0 +1,170 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2024-07-24 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>912. Sort an Array Merge Sort</title>
+<meta name="author" content="d)zharii" />
+<meta name="generator" content="Org Mode" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/t.css"/>
+</head>
+<body>
+<nav><a href="/" tabindex="0">&larrhk; Back to Index</a></nav><div id="preamble" class="status">
+Published 2024-07-24
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">912. Sort an Array Merge Sort</h1>
+<p class="subtitle" role="doc-subtitle">leetcode</p>
+</header><nav id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org2dc4d09">Links</a></li>
+<li><a href="#org2f0d624">Problem:</a></li>
+<li><a href="#org540b6a2">Solution Description:</a></li>
+<li><a href="#org3e1231c">Example:</a></li>
+<li><a href="#org452f969">Setup:</a></li>
+</ul>
+</div>
+</nav>
+
+<div id="outline-container-org2dc4d09" class="outline-2">
+<h2 id="org2dc4d09">Links</h2>
+<div class="outline-text-2" id="text-org2dc4d09">
+<ul class="org-ul">
+<li><a href="https://www.tutorialspoint.com/data_structures_algorithms/merge_sort_algorithm.htm">Merge Sort Algorithm</a></li>
+<li><a href="https://leetcode.com/submissions/detail/1332432286/">Submission</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org2f0d624" class="outline-2">
+<h2 id="org2f0d624">Problem:</h2>
+<div class="outline-text-2" id="text-org2f0d624">
+<p>
+Given an array of integers, sort the array in ascending order using the merge sort algorithm.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org540b6a2" class="outline-2">
+<h2 id="org540b6a2">Solution Description:</h2>
+<div class="outline-text-2" id="text-org540b6a2">
+<p>
+To implement a merge sort, we need to follow the divide-and-conquer strategy:
+</p>
+
+<ol class="org-ol">
+<li><b><b>Divide</b></b>: Split the array into two halves.</li>
+<li><b><b>Conquer</b></b>: Recursively sort each half.</li>
+<li><b><b>Combine</b></b>: Merge the two sorted halves to produce the sorted array.</li>
+</ol>
+
+<p>
+The merge sort algorithm has a time complexity of O(n log n) because the array is recursively divided in half for log n levels, and each level has a linear operation of merging two halves. The space complexity is O(n) due to the usage of additional space for merging purposes.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org3e1231c" class="outline-2">
+<h2 id="org3e1231c">Example:</h2>
+<div class="outline-text-2" id="text-org3e1231c">
+<p>
+Consider the array [5, 2, 3, 1]:
+</p>
+<ul class="org-ul">
+<li>Divide it into two halves: [5, 2] and [3, 1]</li>
+<li>Recursively sort each half: [2, 5] and [1, 3]</li>
+<li>Merge the sorted halves: [1, 2, 3, 5]</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org452f969" class="outline-2">
+<h2 id="org452f969">Setup:</h2>
+<div class="outline-text-2" id="text-org452f969">
+<p>
+We will define the main function `mergeSort` to handle the recursion and `merge` function to merge two sorted arrays. For simplicity, we will use temporary arrays to store smaller segments while merging.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+var sortArray = function(nums) {
+    // Helper functions for logging
+    const log = typeof NestedInteger !== 'undefined' ? () =&gt; {} : console.log;
+    const table = typeof NestedInteger !== 'undefined' ? () =&gt; {} : console.table;
+
+    log('nums initial:');
+    table(nums);
+
+    if (nums.length &lt; 2) return nums;
+
+    /**
+     * @param {number[]} left
+     * @param {number[]} right
+     */
+    function merge(left, right) {
+        let res = [];
+        let l = 0;
+        let r = 0;
+        while (l &lt; left.length || r &lt; right.length) {
+            if (l === left.length) {
+                while (r &lt; right.length) res.push(right[r++]);
+            } else if (r === right.length) {
+                while (l &lt; left.length) res.push(left[l++]);
+            } else {
+                if (left[l] &lt;= right[r]) res.push(left[l++])
+                else res.push(right[r++])
+            }
+        }
+        return res;
+    }
+    //log(merge([1, 4], [3, 3, 5, 6]));
+
+    /**
+     * @param {number[]} arr
+     * @returns {number[]}
+     */
+    function sort(arr) {
+        if (arr.length &lt; 2) return arr;
+        const mid = Math.floor(arr.length / 2);
+        const left = sort(arr.slice(0, mid));
+        const right = sort(arr.slice(mid));
+
+        //log(`mid = '${mid}'; left = '${left}'; right = '${right}';`);
+        return merge(left, right);
+    }
+
+    // log(sort([1, 3, 1, 2]))
+    return sort(nums);
+};
+
+// Test cases
+const testCases = [
+    { array: [5, 2, 3, 1], expected: [1, 2, 3, 5] },
+    { array: [5, 1, 1, 2, 0, 0], expected: [0, 0, 1, 1, 2, 5] },
+    { array: [], expected: [] },
+    { array: [10, 5, 2, 3, 7, 1, 9, 8], expected: [1, 2, 3, 5, 7, 8, 9, 10] },
+    { array: [1], expected: [1] },
+];
+
+testCases.forEach((test, index) =&gt; {
+    const result = sortArray(test.array) || 'undefined';
+    console.log(`Test Case ${index + 1}: ${result.toString() === test.expected.toString() ? 'Passed' : 'Failed'} (Expected: ${test.expected}, Got: ${result})`);
+});
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+&copy; d)zharii. <a href="/sitemap.html">sitemap</a>
+</div>
+</body>
+</html>
