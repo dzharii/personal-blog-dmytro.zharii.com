@@ -25,9 +25,12 @@ Space Complexity: O(H), where H is the height of the tree due to the recursion s
 ** Example:
 Consider a tree where the root node has 3 coins, the left child has 0 coins, and the right child has 0 coins:
 
+#+begin_example
            3
           / \
          0   0
+#+end_example
+
 To balance this:
 - Move 1 coin from the root to the left child
 - Move 1 coin from the root to the right child

@@ -36,3 +36,4 @@
   - [[file:leets/1636-Sort-Array-by-Increasing-Frequency.org][1636. Sort Array by Increasing Frequency]]
   - [[file:leets/2191-Sort-the-Jumbled-Numbers.org][2191. Sort the Jumbled Numbers]]
   - [[file:leets/0912-Sort-an-Array-Merge-Sort.org][912. Sort an Array Merge Sort]]
+  - [[file:leets/0979-Distribute-Coins-in-Binary-Tree.org][979. Distribute Coins in Binary Tree]]
