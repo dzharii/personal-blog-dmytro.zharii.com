@@ -1,0 +1,183 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2024-07-25 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>979. Distribute Coins in Binary Tree</title>
+<meta name="author" content="d)zharii" />
+<meta name="generator" content="Org Mode" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/t.css"/>
+</head>
+<body>
+<nav><a href="/" tabindex="0">&larrhk; Back to Index</a></nav><div id="preamble" class="status">
+Published 2024-07-25
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">979. Distribute Coins in Binary Tree</h1>
+<p class="subtitle" role="doc-subtitle">leetcode</p>
+</header><nav id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org67be4c9">Problem:</a>
+<ul>
+<li><a href="#org4036302">Solution Description:</a></li>
+<li><a href="#orga50a4a4">Example:</a></li>
+<li><a href="#orgf2a529f">Setup:</a></li>
+<li><a href="#org70aeaa3">Test Execution:</a></li>
+<li><a href="#orgf57e2c2">Plan:</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</nav>
+
+<div id="outline-container-org67be4c9" class="outline-2">
+<h2 id="org67be4c9">Problem:</h2>
+<div class="outline-text-2" id="text-org67be4c9">
+<p>
+LeetCode Problem 979: Distribute Coins in Binary Tree
+</p>
+
+<p>
+You are given the root of a binary tree with "N" nodes, where each node in the tree has `Node.val` coins, and there are exactly `N` coins total. In one move, we may choose two adjacent nodes and transfer one coin from one node to another. (The move may be from parent to child, or child to parent.)
+</p>
+
+<p>
+The goal is to return the minimum number of moves required to make every node have exactly one coin.
+</p>
+</div>
+
+<div id="outline-container-org4036302" class="outline-3">
+<h3 id="org4036302">Solution Description:</h3>
+<div class="outline-text-3" id="text-org4036302">
+<p>
+To implement the solution, we need to use a Depth-First Search (DFS) algorithm to traverse the tree. At each node, we'll calculate the surplus or deficit of coins and propagate this value to its parent. This can be done recursively where each call returns the balance of coins for the subtree rooted at that node. The number of moves is accumulated based on the absolute balance values at each node.
+</p>
+
+<p>
+Step-by-step approach:
+</p>
+<ol class="org-ol">
+<li>Traverse each node starting from the leaves using DFS.</li>
+<li>Calculate the balance of coins as the number of coins at the node minus one (since each node needs one coin to be balanced).</li>
+<li>Propagate the balance to the parent node to keep track of the total movements needed.</li>
+<li>Accumulate the total moves needed based on the absolute values of the balances.</li>
+</ol>
+
+<p>
+Time Complexity: O(N), where N is the number of nodes in the tree because we visit each node exactly once.
+Space Complexity: O(H), where H is the height of the tree due to the recursion stack.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga50a4a4" class="outline-3">
+<h3 id="orga50a4a4">Example:</h3>
+<div class="outline-text-3" id="text-orga50a4a4">
+<p>
+Consider a tree where the root node has 3 coins, the left child has 0 coins, and the right child has 0 coins:
+</p>
+
+<pre class="example" id="orgb06665a">
+  3
+ / \
+0   0
+</pre>
+
+<p>
+To balance this:
+</p>
+<ul class="org-ul">
+<li>Move 1 coin from the root to the left child</li>
+<li>Move 1 coin from the root to the right child</li>
+</ul>
+<p>
+This requires 2 moves.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgf2a529f" class="outline-3">
+<h3 id="orgf2a529f">Setup:</h3>
+<div class="outline-text-3" id="text-orgf2a529f">
+<p>
+We will define a recursive helper function `dfs` within the main function. The main function will initiate the DFS call and return the total number of moves.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org70aeaa3" class="outline-3">
+<h3 id="org70aeaa3">Test Execution:</h3>
+<div class="outline-text-3" id="text-org70aeaa3">
+<p>
+We will design comprehensive test cases to verify the solution, ensuring that each part of the tree is correctly balanced and the output matches the expected results.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgf57e2c2" class="outline-3">
+<h3 id="orgf57e2c2">Plan:</h3>
+<div class="outline-text-3" id="text-orgf57e2c2">
+<ol class="org-ol">
+<li>Initialize a variable to keep track of the total moves.</li>
+<li>Implement the `dfs` function to process each node.</li>
+<li>Traverse the tree using `dfs` starting from the root node.</li>
+<li>Return the total moves after the DFS completes.</li>
+</ol>
+
+<div class="org-src-container">
+<pre class="src src-js">// Helper definitions:
+const log = typeof NestedInteger !== 'undefined' ? () =&gt; {} : console.log;
+const table = typeof NestedInteger !== 'undefined' ? () =&gt; {} : console.table;
+
+/**
+ * Definition for a binary tree node.
+ * @param {number} value
+ * @param {TreeNode} left
+ * @param {TreeNode} right
+ */
+function TreeNode(val, left = null, right = null) {
+  this.val = val;
+  this.left = left;
+  this.right = right;
+}
+
+/**
+ * Main function to distribute coins in a binary tree
+ * @param {TreeNode} root
+ * @returns {number}
+ */
+function distributeCoins(root) {
+  let totalMoves = 0;
+
+  return totalMoves;
+}
+
+// Test cases
+const testCases = [
+  { root: new TreeNode(3, new TreeNode(0), new TreeNode(0)), expected: 2 },
+  { root: new TreeNode(0, new TreeNode(3), null), expected: 3 },
+  { root: new TreeNode(1, new TreeNode(0), new TreeNode(2)), expected: 2 },
+  { root: new TreeNode(1, new TreeNode(0, new TreeNode(3)), new TreeNode(0)), expected: 4 },
+  { root: new TreeNode(1), expected: 0 } // Single node, no moves needed
+];
+
+testCases.forEach((test, index) =&gt; {
+  const result = distributeCoins(test.root);
+  console.log(`Test Case ${index + 1}: ${result === test.expected ? 'Passed' : 'Failed'} (Expected: ${test.expected}, Got: ${result})`);
+});
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+&copy; d)zharii. <a href="/sitemap.html">sitemap</a>
+</div>
+</body>
+</html>
