@@ -1,0 +1,4 @@
+﻿# Main script logic
+param (
+    [string]$FolderPath
+)

@@ -1,119 +1,280 @@
-#+title: PowerShell Clipboard Saver
-#+subtitle: aww tools
-#+date: <2024-07-27>
-#+language: en
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2024-07-27 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>PowerShell Clipboard Saver</title>
+<meta name="author" content="d)zharii" />
+<meta name="generator" content="Org Mode" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/t.css"/>
+</head>
+<body>
+<nav><a href="/" tabindex="0">&larrhk; Back to Index</a></nav><div id="preamble" class="status">
+Published 2024-07-27
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">PowerShell Clipboard Saver</h1>
+<p class="subtitle" role="doc-subtitle">aww tools</p>
+</header><nav id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orge214931">Introduction: Simplifying Clipboard Content Saving with PowerShell</a></li>
+<li><a href="#org56468e6">Project Intention:</a></li>
+<li><a href="#orgb48766b">Project Summary:</a></li>
+<li><a href="#orge0deed4">Outline for PowerShell Script to Save Clipboard Contents to a File</a>
+<ul>
+<li><a href="#orgcce319b">1. Initialization</a></li>
+<li><a href="#org8b4ea93">2. Reading Clipboard Content</a></li>
+<li><a href="#orgc220742">3. Generating File Name</a></li>
+<li><a href="#orgdc70748">4. Saving Clipboard Content to File</a></li>
+<li><a href="#org4df4c05">5. Error Handling and Logging</a></li>
+<li><a href="#orgea06ca1">6. Script Termination</a></li>
+</ul>
+</li>
+<li><a href="#org5f7a615">Notes:</a></li>
+<li><a href="#org1da9305">GPT Implementation</a>
+<ul>
+<li><a href="#org9bc1540">Fixes and Improvements:</a>
+<ul>
+<li><a href="#org752447d">1. Assembly Loading Check:</a></li>
+<li><a href="#org3c676a7">2. Script Execution Context:</a></li>
+<li><a href="#orgdda571e">3. Fallback Mechanism:</a></li>
+</ul>
+</li>
+<li><a href="#org3b25f4d">Script:</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</nav>
 
 
-* Introduction: Simplifying Clipboard Content Saving with PowerShell
-
+<div id="outline-container-orge214931" class="outline-2">
+<h2 id="orge214931">Introduction: Simplifying Clipboard Content Saving with PowerShell</h2>
+<div class="outline-text-2" id="text-orge214931">
+<p>
 In my daily workflow, particularly when writing in Emacs using Org Mode, I often find myself needing to quickly save and reference clipboard content. Unfortunately, the built-in screenshotting tools in Windows 11 do not meet my requirements. They involve lengthy path selections and extra clicks, which disrupt my productivity.
+</p>
 
+<p>
 To address this, I decided to create a PowerShell script that streamlines the process of saving clipboard contents. The goal was to have a much simpler save procedure that automatically generates a file name using the current date and a GUID. This way, I can run the command directly from Emacs or any other editor, save the clipboard content (be it an image or text) to the current working directory, and reference it immediately in my documents.
+</p>
 
+<p>
 This script is designed to save me time and clicks, allowing me to quickly save screenshots and other clipboard contents directly to my working folder. This seamless integration into my workflow ensures that I can maintain my focus on writing and editing, rather than navigating through cumbersome save dialogs. The ability to quickly back up my clipboard content and organize it efficiently was the primary motivation behind this project.
+</p>
 
-Right now, when I run the [[https://awwtools.com/][awwtools]] command:
-#+begin_example
+<p>
+Right now, when I run the <a href="https://awwtools.com/">awwtools</a> command:
+</p>
+<pre class="example" id="org42cd20c">
 aww run winclip
-#+end_example
+</pre>
 
+<p>
 it simply saves new screenshot into the current folder, but I can also specify the path as an optional parameter (I've got this idea right now and desperately need to implement it).
-#+begin_example
+</p>
+<pre class="example" id="orge684378">
 aww run winclip images
-#+end_example
+</pre>
 
-[[./img/2024-07-27T15-45-45-4a9621ca-9872-4cf4-b5e0-b75a914d9bc6.png]]
-[[./img/2024-07-27T15-46-21-ff8d0a20-b1a3-4b2a-935f-01f314548dbe.png]]
+<p>
+<img src="./img/2024-07-27T15-45-45-4a9621ca-9872-4cf4-b5e0-b75a914d9bc6.png" alt="2024-07-27T15-45-45-4a9621ca-9872-4cf4-b5e0-b75a914d9bc6.png">
+<img src="./img/2024-07-27T15-46-21-ff8d0a20-b1a3-4b2a-935f-01f314548dbe.png" alt="2024-07-27T15-46-21-ff8d0a20-b1a3-4b2a-935f-01f314548dbe.png">
+</p>
+</div>
+</div>
 
 
-* Project Intention:
+<div id="outline-container-org56468e6" class="outline-2">
+<h2 id="org56468e6">Project Intention:</h2>
+<div class="outline-text-2" id="text-org56468e6">
+<p>
 The intention of this project is to create a cross-platform PowerShell script that utilizes the .NET SDK to read the current contents of the clipboard and save them to a file in the appropriate format. The script is designed to handle various types of clipboard content, including text, images, and rich text, and will create files with appropriate extensions and names based on the content type. This utility aims to be simple yet powerful, providing users with an easy way to save clipboard contents while ensuring compatibility with both Windows and Linux systems.
+</p>
+</div>
+</div>
 
-* Project Summary:
+<div id="outline-container-orgb48766b" class="outline-2">
+<h2 id="orgb48766b">Project Summary:</h2>
+<div class="outline-text-2" id="text-orgb48766b">
+<p>
 The PowerShell script will read the current clipboard contents, determine the content type, and save the data to a file in the current directory. The file name will include the current date and time in ISO format, a random GUID, and an appropriate extension based on the content type. The script will include detailed logging with ANSI color formatting for better readability and will handle errors gracefully, ensuring users are informed of the script's operations and any issues that arise.
+</p>
+</div>
+</div>
 
-* Outline for PowerShell Script to Save Clipboard Contents to a File
+<div id="outline-container-orge0deed4" class="outline-2">
+<h2 id="orge0deed4">Outline for PowerShell Script to Save Clipboard Contents to a File</h2>
+<div class="outline-text-2" id="text-orge0deed4">
+</div>
+<div id="outline-container-orgcce319b" class="outline-3">
+<h3 id="orgcce319b">1. Initialization</h3>
+<div class="outline-text-3" id="text-orgcce319b">
+<ul class="org-ul">
+<li>1.1 Load necessary .NET SDK assemblies.</li>
+<li>1.2 Initialize variables for logging and error reporting using PowerShell built-in plain text messages with ANSI code formatting.</li>
+</ul>
+</div>
+</div>
 
-** 1. Initialization
-   - 1.1 Load necessary .NET SDK assemblies.
-   - 1.2 Initialize variables for logging and error reporting using PowerShell built-in plain text messages with ANSI code formatting.
+<div id="outline-container-org8b4ea93" class="outline-3">
+<h3 id="org8b4ea93">2. Reading Clipboard Content</h3>
+<div class="outline-text-3" id="text-org8b4ea93">
+<ul class="org-ul">
+<li>2.1 Check if the clipboard contains any data.</li>
+<li>2.2 Determine the type of content in the clipboard (text, image, rich text, etc.).</li>
+<li>2.3 Handle only the most recent item if multiple items are present.</li>
+</ul>
+</div>
+</div>
 
-** 2. Reading Clipboard Content
-   - 2.1 Check if the clipboard contains any data.
-   - 2.2 Determine the type of content in the clipboard (text, image, rich text, etc.).
-   - 2.3 Handle only the most recent item if multiple items are present.
+<div id="outline-container-orgc220742" class="outline-3">
+<h3 id="orgc220742">3. Generating File Name</h3>
+<div class="outline-text-3" id="text-orgc220742">
+<ul class="org-ul">
+<li>3.1 Get the current date and time in ISO format.</li>
+<li>3.2 Generate a random GUID.</li>
+<li>3.3 Determine the appropriate file extension based on the clipboard content type.</li>
+<li>3.4 Construct the file name using the date, GUID, and extension.</li>
+</ul>
+</div>
+</div>
 
-** 3. Generating File Name
-   - 3.1 Get the current date and time in ISO format.
-   - 3.2 Generate a random GUID.
-   - 3.3 Determine the appropriate file extension based on the clipboard content type.
-   - 3.4 Construct the file name using the date, GUID, and extension.
+<div id="outline-container-orgdc70748" class="outline-3">
+<h3 id="orgdc70748">4. Saving Clipboard Content to File</h3>
+<div class="outline-text-3" id="text-orgdc70748">
+<ul class="org-ul">
+<li>4.1 For text content:
+<ul class="org-ul">
+<li>4.1.1 Retrieve the text from the clipboard.</li>
+<li>4.1.2 Write the text to a .txt file.</li>
+</ul></li>
+<li>4.2 For image content:
+<ul class="org-ul">
+<li>4.2.1 Retrieve the image from the clipboard.</li>
+<li>4.2.2 Save the image as a PNG file.</li>
+</ul></li>
+<li>4.3 For rich text content:
+<ul class="org-ul">
+<li>4.3.1 Retrieve the rich text from the clipboard.</li>
+<li>4.3.2 Save the rich text to an .rtf or .html file.</li>
+</ul></li>
+<li>4.4 For other content types:
+<ul class="org-ul">
+<li>4.4.1 Retrieve the content from the clipboard.</li>
+<li>4.4.2 Determine an appropriate file format.</li>
+<li>4.4.3 Save the content to the file.</li>
+</ul></li>
+</ul>
+</div>
+</div>
 
-** 4. Saving Clipboard Content to File
-   - 4.1 For text content:
-      - 4.1.1 Retrieve the text from the clipboard.
-      - 4.1.2 Write the text to a .txt file.
-   - 4.2 For image content:
-      - 4.2.1 Retrieve the image from the clipboard.
-      - 4.2.2 Save the image as a PNG file.
-   - 4.3 For rich text content:
-      - 4.3.1 Retrieve the rich text from the clipboard.
-      - 4.3.2 Save the rich text to an .rtf or .html file.
-   - 4.4 For other content types:
-      - 4.4.1 Retrieve the content from the clipboard.
-      - 4.4.2 Determine an appropriate file format.
-      - 4.4.3 Save the content to the file.
+<div id="outline-container-org4df4c05" class="outline-3">
+<h3 id="org4df4c05">5. Error Handling and Logging</h3>
+<div class="outline-text-3" id="text-org4df4c05">
+<ul class="org-ul">
+<li>5.1 Log the start of the operation.</li>
+<li>5.2 Log each significant step (clipboard read, file creation, etc.).</li>
+<li>5.3 If an error occurs:
+<ul class="org-ul">
+<li>5.3.1 Log the error details with ANSI color highlighting for the word "error".</li>
+<li>5.3.2 Print debugging information to the console.</li>
+<li>5.3.3 Exit the script with a negative exit code.</li>
+</ul></li>
+<li>5.4 If successful:
+<ul class="org-ul">
+<li>5.4.1 Log the success message.</li>
+<li>5.4.2 Print the resulting file name to the console.</li>
+<li>5.4.3 Exit the script with a positive exit code.</li>
+</ul></li>
+</ul>
+</div>
+</div>
 
-** 5. Error Handling and Logging
-   - 5.1 Log the start of the operation.
-   - 5.2 Log each significant step (clipboard read, file creation, etc.).
-   - 5.3 If an error occurs:
-      - 5.3.1 Log the error details with ANSI color highlighting for the word "error".
-      - 5.3.2 Print debugging information to the console.
-      - 5.3.3 Exit the script with a negative exit code.
-   - 5.4 If successful:
-      - 5.4.1 Log the success message.
-      - 5.4.2 Print the resulting file name to the console.
-      - 5.4.3 Exit the script with a positive exit code.
+<div id="outline-container-orgea06ca1" class="outline-3">
+<h3 id="orgea06ca1">6. Script Termination</h3>
+<div class="outline-text-3" id="text-orgea06ca1">
+<ul class="org-ul">
+<li>6.1 Ensure all resources are properly released.</li>
+<li>6.2 Finalize logging.</li>
+</ul>
+</div>
+</div>
+</div>
 
-** 6. Script Termination
-   - 6.1 Ensure all resources are properly released.
-   - 6.2 Finalize logging.
+<div id="outline-container-org5f7a615" class="outline-2">
+<h2 id="org5f7a615">Notes:</h2>
+<div class="outline-text-2" id="text-org5f7a615">
+<ul class="org-ul">
+<li>The script will prioritize saving images as PNG and text as TXT.</li>
+<li>For rich content, the script will attempt to save as RTF or HTML, ensuring compatibility with default readers on both Windows and Linux.</li>
+<li>The script will work cross-platform on both PowerShell 5 and the latest PowerShell 7.</li>
+<li>Logging will be done directly to the console with ANSI code formatting for enhanced readability.</li>
+</ul>
 
-* Notes:
-- The script will prioritize saving images as PNG and text as TXT.
-- For rich content, the script will attempt to save as RTF or HTML, ensuring compatibility with default readers on both Windows and Linux.
-- The script will work cross-platform on both PowerShell 5 and the latest PowerShell 7.
-- Logging will be done directly to the console with ANSI code formatting for enhanced readability.
-
+<p>
 If this outline meets your needs, we can proceed to the speedrun phase where we quickly draft the script. Let me know if there are any further adjustments or if we’re ready to move on!
+</p>
+</div>
+</div>
 
-* GPT Implementation
-
+<div id="outline-container-org1da9305" class="outline-2">
+<h2 id="org1da9305">GPT Implementation</h2>
+<div class="outline-text-2" id="text-org1da9305">
+<p>
 It seems that the script failed to load the necessary .NET assemblies because the `System.Windows.Forms.Clipboard` type was not found. This error can occur if the required assemblies are not present in the environment where the script is being executed.
+</p>
+</div>
 
-** Fixes and Improvements:
+<div id="outline-container-org9bc1540" class="outline-3">
+<h3 id="org9bc1540">Fixes and Improvements:</h3>
+<div class="outline-text-3" id="text-org9bc1540">
+</div>
+<div id="outline-container-org752447d" class="outline-4">
+<h4 id="org752447d">1. Assembly Loading Check:</h4>
+<div class="outline-text-4" id="text-org752447d">
+<ul class="org-ul">
+<li>We should ensure that the assemblies are loaded correctly.</li>
+<li>For cross-platform compatibility, ensure that the script handles the differences between Windows and Linux environments.</li>
+</ul>
+</div>
+</div>
 
-*** 1. Assembly Loading Check:
-   - We should ensure that the assemblies are loaded correctly.
-   - For cross-platform compatibility, ensure that the script handles the differences between Windows and Linux environments.
+<div id="outline-container-org3c676a7" class="outline-4">
+<h4 id="org3c676a7">2. Script Execution Context:</h4>
+<div class="outline-text-4" id="text-org3c676a7">
+<ul class="org-ul">
+<li>Since clipboard operations are typically only available in a desktop environment, we should check and handle cases where the script is run in non-interactive or non-GUI environments.</li>
+</ul>
+</div>
+</div>
 
-*** 2. Script Execution Context:
-   - Since clipboard operations are typically only available in a desktop environment, we should check and handle cases where the script is run in non-interactive or non-GUI environments.
+<div id="outline-container-orgdda571e" class="outline-4">
+<h4 id="orgdda571e">3. Fallback Mechanism:</h4>
+<div class="outline-text-4" id="text-orgdda571e">
+<ul class="org-ul">
+<li>Implement a fallback or more robust error handling when assemblies are not found.</li>
+</ul>
+</div>
+</div>
+</div>
 
-*** 3. Fallback Mechanism:
-   - Implement a fallback or more robust error handling when assemblies are not found.
-
-**  Script:
-
-#+begin_src powershell
-param (
+<div id="outline-container-org3b25f4d" class="outline-3">
+<h3 id="org3b25f4d">Script:</h3>
+<div class="outline-text-3" id="text-org3b25f4d">
+<div class="org-src-container">
+<pre class="src src-powershell">param (
     [string]$FolderPath
 )
 
 # Function to load necessary .NET assemblies
 function Load-Assemblies {
-    <#
+    &lt;#
     .SYNOPSIS
     Loads the necessary .NET assemblies for clipboard operations.
     .DESCRIPTION
@@ -121,7 +282,7 @@ function Load-Assemblies {
     required for accessing and manipulating clipboard content.
     .EXAMPLE
     Load-Assemblies
-    #>
+    #&gt;
     try {
         Add-Type -AssemblyName System.Windows.Forms -ErrorAction Stop
         Add-Type -AssemblyName System.Drawing -ErrorAction Stop
@@ -137,7 +298,7 @@ function Initialize-Logging {
     param (
         [string]$LogLevel = "INFO" # Default log level
     )
-    <#
+    &lt;#
     .SYNOPSIS
     Initializes logging for the script.
     .DESCRIPTION
@@ -147,13 +308,13 @@ function Initialize-Logging {
     The log level for logging messages (default is "INFO").
     .EXAMPLE
     Initialize-Logging -LogLevel "DEBUG"
-    #>
+    #&gt;
     Write-Host "`e[32m[INFO] Initializing logging at $($LogLevel) level...`e[0m"
 }
 
 # Function to determine clipboard content type
 function Get-ClipboardContentType {
-    <#
+    &lt;#
     .SYNOPSIS
     Determines the content type of the clipboard data.
     .DESCRIPTION
@@ -163,7 +324,7 @@ function Get-ClipboardContentType {
     [string] - The type of content present in the clipboard.
     .EXAMPLE
     $contentType = Get-ClipboardContentType
-    #>
+    #&gt;
     try {
         $clipboard = [System.Windows.Forms.Clipboard]::GetDataObject()
         if ($null -eq $clipboard) {
@@ -190,7 +351,7 @@ function Generate-FileName {
     param (
         [string]$extension
     )
-    <#
+    &lt;#
     .SYNOPSIS
     Generates a unique file name with the specified extension.
     .DESCRIPTION
@@ -203,14 +364,14 @@ function Generate-FileName {
     [string] - The generated file name.
     .EXAMPLE
     $fileName = Generate-FileName -extension "txt"
-    #>
+    #&gt;
     try {
         $currentDate = Get-Date -Format "yyyy-MM-ddTHH-mm-ss"
         $guid = [guid]::NewGuid().ToString()
         $fileName = "$($currentDate)-$($guid).$($extension)"
 
         # Ensure the file name is valid for both Windows and Linux
-        $fileName = $fileName -replace '[<>:"/\\|?*]', '_'
+        $fileName = $fileName -replace '[&lt;&gt;:"/\\|?*]', '_'
         return $fileName
     } catch {
         Write-Host "`e[31m[ERROR] Failed to generate file name: $($_.Exception.Message)`e[0m"
@@ -223,7 +384,7 @@ function Resolve-FolderPath {
     param (
         [string]$FolderPath
     )
-    <#
+    &lt;#
     .SYNOPSIS
     Resolves the folder path for saving files.
     .DESCRIPTION
@@ -235,7 +396,7 @@ function Resolve-FolderPath {
     [string] - The resolved folder path.
     .EXAMPLE
     $resolvedPath = Resolve-FolderPath -FolderPath "subfolder"
-    #>
+    #&gt;
     try {
         if ([string]::IsNullOrEmpty($FolderPath)) {
             return (Get-Location).Path
@@ -269,7 +430,7 @@ function Save-TextContent {
     param (
         [string]$FolderPath
     )
-    <#
+    &lt;#
     .SYNOPSIS
     Saves text content from the clipboard to a file.
     .DESCRIPTION
@@ -279,7 +440,7 @@ function Save-TextContent {
     The folder path where the file will be saved.
     .EXAMPLE
     Save-TextContent -FolderPath "subfolder"
-    #>
+    #&gt;
     try {
         $resolvedPath = Resolve-FolderPath -FolderPath $FolderPath
         $text = [System.Windows.Forms.Clipboard]::GetText()
@@ -301,7 +462,7 @@ function Save-ImageContent {
     param (
         [string]$FolderPath
     )
-    <#
+    &lt;#
     .SYNOPSIS
     Saves image content from the clipboard to a file.
     .DESCRIPTION
@@ -311,7 +472,7 @@ function Save-ImageContent {
     The folder path where the file will be saved.
     .EXAMPLE
     Save-ImageContent -FolderPath "subfolder"
-    #>
+    #&gt;
     try {
         $resolvedPath = Resolve-FolderPath -FolderPath $FolderPath
         $image = [System.Windows.Forms.Clipboard]::GetImage()
@@ -333,7 +494,7 @@ function Save-RichTextContent {
     param (
         [string]$FolderPath
     )
-    <#
+    &lt;#
     .SYNOPSIS
     Saves rich text content from the clipboard to a file.
     .DESCRIPTION
@@ -343,7 +504,7 @@ function Save-RichTextContent {
     The folder path where the file will be saved.
     .EXAMPLE
     Save-RichTextContent -FolderPath "subfolder"
-    #>
+    #&gt;
     try {
         $resolvedPath = Resolve-FolderPath -FolderPath $FolderPath
         $richText = [System.Windows.Forms.Clipboard]::GetData([System.Windows.Forms.DataFormats]::Rtf)
@@ -365,7 +526,7 @@ function Handle-Error {
     param (
         [string]$message
     )
-    <#
+    &lt;#
     .SYNOPSIS
     Handles errors by logging the message and exiting the script.
     .DESCRIPTION
@@ -374,21 +535,21 @@ function Handle-Error {
     The error message to be logged.
     .EXAMPLE
     Handle-Error -message "An unexpected error occurred."
-    #>
+    #&gt;
     Write-Host "`e[31m[ERROR] $($message)`e[0m"
     exit 1
 }
 
 # Function to handle success and exit
 function Handle-Success {
-    <#
+    &lt;#
     .SYNOPSIS
     Handles successful operations by logging a success message and exiting the script.
     .DESCRIPTION
     This function logs a success message to the console and exits the script with a success code.
     .EXAMPLE
     Handle-Success
-    #>
+    #&gt;
     Write-Host "`e[32m[INFO] Operation completed successfully`e[0m"
     exit 0
 }
@@ -414,4 +575,14 @@ try {
 } finally {
     Write-Host "`e[32m[INFO] Script execution finished`e[0m"
 }
-#+end_src
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+&copy; d)zharii. <a href="/sitemap.html">sitemap</a>
+</div>
+</body>
+</html>

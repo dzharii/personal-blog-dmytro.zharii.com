@@ -1,8 +1,6 @@
 - [[file:thankyou.org][thankyou]]
 - articles
   - [[file:articles/foo.org][An example article]]
-- posts
-  - [[file:posts/2024-07-08-first-one.org][2024-07-08-first-one]]
 - leets
   - [[file:leets/0039-Combination-Sum.org][Combination Sum Problem Overview and Solution Plan]]
   - [[file:leets/0338-Counting-Bits.org][0338. Counting Bits]]
@@ -23,8 +21,8 @@
   - [[file:leets/0165-Compare-Version-Numbers.org][0165. Compare Version Numbers]]
   - [[file:leets/1302-Deepest-Leaves-Sum.org][1302. Deepest Leaves Sum]]
   - [[file:leets/0015-3Sum.org][0015. 3Sum]]
-  - [[file:leets/0104-Maximum-Depth-of-Binary-Tree.org][0104. Maximum Depth of Binary Tree]]
   - [[file:leets/0543-Diameter-of-Binary-Tree.org][543. Diameter of Binary Tree]]
+  - [[file:leets/0104-Maximum-Depth-of-Binary-Tree.org][0104. Maximum Depth of Binary Tree]]
   - [[file:leets/0207-Course-Schedule.org][0207. Course Schedule]]
   - [[file:leets/1717-Maximum-Score-From-Removing-Substrings.org][1717. Maximum Score From Removing Substrings]]
   - [[file:leets/1190-Reverse-Substrings-Between-Each-Pair-of-Parentheses.org][1190. Reverse Substrings Between Each Pair of Parentheses]]
@@ -37,3 +35,5 @@
   - [[file:leets/2191-Sort-the-Jumbled-Numbers.org][2191. Sort the Jumbled Numbers]]
   - [[file:leets/0912-Sort-an-Array-Merge-Sort.org][912. Sort an Array Merge Sort]]
   - [[file:leets/0979-Distribute-Coins-in-Binary-Tree.org][979. Distribute Coins in Binary Tree]]
+- posts
+  - [[file:posts/2024-07-27-PowerShell-Clipboard-Saver.org][PowerShell Clipboard Saver]]
