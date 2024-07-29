@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2024-07-27 -->
+<!-- 2024-07-28 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>1971. Find if Path Exists in Graph</title>
@@ -22,13 +22,13 @@ Published 2024-07-15
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgd3e1108">Problem:</a></li>
-<li><a href="#org8bf5baf">Solution Description:</a></li>
-<li><a href="#org388e5fd">Time Complexity:</a></li>
-<li><a href="#orgf3562c4">Space Complexity:</a></li>
-<li><a href="#orgb4e43ce">Example:</a></li>
-<li><a href="#orga529ebc">Setup:</a></li>
-<li><a href="#org9e38a7b">Test Execution:</a></li>
+<li><a href="#orgb732d27">Problem:</a></li>
+<li><a href="#org7cc7564">Solution Description:</a></li>
+<li><a href="#org84ec231">Time Complexity:</a></li>
+<li><a href="#orge0daf6a">Space Complexity:</a></li>
+<li><a href="#org7116e6c">Example:</a></li>
+<li><a href="#org36cc6aa">Setup:</a></li>
+<li><a href="#org685e98d">Test Execution:</a></li>
 </ul>
 </div>
 </nav>
@@ -36,18 +36,18 @@ Published 2024-07-15
 <a href="https://leetcode.com/submissions/detail/1322501261/">Submission</a>
 </p>
 
-<div id="outline-container-orgd3e1108" class="outline-2">
-<h2 id="orgd3e1108">Problem:</h2>
-<div class="outline-text-2" id="text-orgd3e1108">
+<div id="outline-container-orgb732d27" class="outline-2">
+<h2 id="orgb732d27">Problem:</h2>
+<div class="outline-text-2" id="text-orgb732d27">
 <p>
 You are given an integer `n` representing the number of nodes in a graph, and an array `edges` where each `edges[i] = [u<sub>i</sub>, v<sub>i</sub>]` indicates that there is an undirected edge between nodes `u<sub>i</sub>` and `v<sub>i</sub>`. Given two integers `source` and `destination`, determine if there is a valid path from `source` to `destination` in the graph.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org8bf5baf" class="outline-2">
-<h2 id="org8bf5baf">Solution Description:</h2>
-<div class="outline-text-2" id="text-org8bf5baf">
+<div id="outline-container-org7cc7564" class="outline-2">
+<h2 id="org7cc7564">Solution Description:</h2>
+<div class="outline-text-2" id="text-org7cc7564">
 <p>
 To implement this solution, we need to utilize graph traversal algorithms. Specifically, we employ Depth-First Search (DFS) or Breadth-First Search (BFS) to explore the graph. The goal is to check connectivity from the source node to the destination node.
 </p>
@@ -61,27 +61,27 @@ To implement this solution, we need to utilize graph traversal algorithms. Speci
 </div>
 </div>
 
-<div id="outline-container-org388e5fd" class="outline-2">
-<h2 id="org388e5fd">Time Complexity:</h2>
-<div class="outline-text-2" id="text-org388e5fd">
+<div id="outline-container-org84ec231" class="outline-2">
+<h2 id="org84ec231">Time Complexity:</h2>
+<div class="outline-text-2" id="text-org84ec231">
 <p>
 The time complexity is O(V + E), where V is the number of vertices (nodes) and E is the number of edges. This is because in the worst-case scenario, we will need to visit each node and edge once.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgf3562c4" class="outline-2">
-<h2 id="orgf3562c4">Space Complexity:</h2>
-<div class="outline-text-2" id="text-orgf3562c4">
+<div id="outline-container-orge0daf6a" class="outline-2">
+<h2 id="orge0daf6a">Space Complexity:</h2>
+<div class="outline-text-2" id="text-orge0daf6a">
 <p>
 The space complexity is O(V + E) for storing the adjacency list and additionally O(V) for the visited nodes array.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgb4e43ce" class="outline-2">
-<h2 id="orgb4e43ce">Example:</h2>
-<div class="outline-text-2" id="text-orgb4e43ce">
+<div id="outline-container-org7116e6c" class="outline-2">
+<h2 id="org7116e6c">Example:</h2>
+<div class="outline-text-2" id="text-org7116e6c">
 <p>
 Consider `n = 5`, `edges = [[0, 1], [0, 2], [3, 4], [1, 4]]`, `source = 0`, `destination = 4`:
 </p>
@@ -93,18 +93,18 @@ Consider `n = 5`, `edges = [[0, 1], [0, 2], [3, 4], [1, 4]]`, `source = 0`, `des
 </div>
 </div>
 
-<div id="outline-container-orga529ebc" class="outline-2">
-<h2 id="orga529ebc">Setup:</h2>
-<div class="outline-text-2" id="text-orga529ebc">
+<div id="outline-container-org36cc6aa" class="outline-2">
+<h2 id="org36cc6aa">Setup:</h2>
+<div class="outline-text-2" id="text-org36cc6aa">
 <p>
 We'll implement the solution in JavaScript, and include a setup for testing the function. The logs will output the test cases and whether each case has passed or failed.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org9e38a7b" class="outline-2">
-<h2 id="org9e38a7b">Test Execution:</h2>
-<div class="outline-text-2" id="text-org9e38a7b">
+<div id="outline-container-org685e98d" class="outline-2">
+<h2 id="org685e98d">Test Execution:</h2>
+<div class="outline-text-2" id="text-org685e98d">
 <p>
 The tests will display the input parameters, the actual result, the expected result, and whether the test passed or not.
 </p>

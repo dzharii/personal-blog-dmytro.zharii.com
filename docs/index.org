@@ -1,6 +1,10 @@
 * Hello, World!
+:PROPERTIES:
+:ID:       5d0ee3a3-a17f-4afa-9a20-cec95eb14791
+:PUBDATE:  2024-07-28 Sun 19:16
+:END:
 
-Next, check this: 
+Next, check this:
 huh
 
 https://github.com/hcarvalhoalves/org-mode-site-template

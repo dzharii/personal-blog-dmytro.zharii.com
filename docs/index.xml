@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0"
+	 xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	 xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	 xmlns:dc="http://purl.org/dc/elements/1.1/"
+	 xmlns:atom="http://www.w3.org/2005/Atom"
+	 xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	 xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	 xmlns:georss="http://www.georss.org/georss"
+     xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+     xmlns:media="http://search.yahoo.com/mrss/"><channel>
+  <title></title>
+  <atom:link href="https://dmytro.zharii.com/index.xml" rel="self" type="application/rss+xml" />
+  <link>https://dmytro.zharii.com/</link>
+  <description><![CDATA[]]></description>
+  <language>en</language>
+  <pubDate>Sun, 28 Jul 2024 19:38:44 -0700</pubDate>
+  <lastBuildDate>Sun, 28 Jul 2024 19:38:44 -0700</lastBuildDate>
+  <generator>Emacs 29.3 Org-mode 9.6.15</generator>
+  <webMaster>home@DESKTOP-FKN1U1P (nil)</webMaster>
+  <image>
+    <url>https://dmytro.zharii.com/rss-logo.png</url>
+    <title></title>
+    <link>https://dmytro.zharii.com/</link>
+  </image>
+
+  <item>
+    <title>Hello, World!</title>
+    <link>https://dmytro.zharii.com/index.html#org7d3963f</link>
+    <author>home@DESKTOP-FKN1U1P (nil)</author>
+    <guid isPermaLink="false">https://dmytro.zharii.com/index.html#org7d3963f</guid>
+    <pubDate>Sun, 28 Jul 2024 19:16:00 -0700</pubDate>
+
+    <description><![CDATA[<p>
+    Next, check this:
+    huh
+    </p>
+
+    <p>
+    <a href="https://github.com/hcarvalhoalves/org-mode-site-template">https://github.com/hcarvalhoalves/org-mode-site-template</a>
+    </p>
+    ]]></description>
+  </item>
+</channel>
+</rss>

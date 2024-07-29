@@ -15,6 +15,7 @@ This section contains configuration variables for the project. These variables s
 
 #+BEGIN_SRC emacs-lisp
 (require 'ox-publish)
+(require 'ox-rss)
 
 ;; Author information
 (setq author "d)zharii")
@@ -129,8 +130,17 @@ This section contains the publishing configuration, defining how and where the f
          :html-head ,custom-html-head
          :html-postamble t
          :html-postamble-format ,custom-html-postamble-format)
+        ("blog-rss"
+         :base-directory        "src/"
+         :base-extension        "org"
+         :rss-image-url         "https://dmytro.zharii.com/rss-logo.png"
+         :publishing-directory  ,target-dir
+         :publishing-function   (org-rss-publish-to-rss)
+         :html-link-home        "https://dmytro.zharii.com/"
+         :html-link-use-abs-url t
+         :with-toc              nil
         ("all"
-         :components ("static" "pages" "index"))))
+         :components ("static" "pages" "index", "blog-rss"))))
 
 (defun doccy-publish ()
   "Publish the doccy project and display the *Messages* buffer."
