@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2024-07-29 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>T10-emacs-lisp-idioms</title>
+<meta name="author" content="d)zharii" />
+<meta name="generator" content="Org Mode" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/t.css"/>
+</head>
+<body>
+<nav><a href="/" tabindex="0">&larrhk; Back to Index</a></nav><div id="preamble" class="status">
+Published 2024-07-28
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">T10-emacs-lisp-idioms</h1>
+<p class="subtitle" role="doc-subtitle">docs</p>
+</header><nav id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org864fc33">Summary</a></li>
+<li><a href="#org8402b4d">Ref</a></li>
+<li><a href="#org314a67c">Examples</a>
+<ul>
+<li><a href="#org7c5eb6c">Print hello 10 times</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</nav>
+
+<div id="outline-container-org864fc33" class="outline-2">
+<h2 id="org864fc33">Summary</h2>
+<div class="outline-text-2" id="text-org864fc33">
+<p>
+I will take time for self-reflection and listen to my inner voice.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org8402b4d" class="outline-2">
+<h2 id="org8402b4d">Ref</h2>
+<div class="outline-text-2" id="text-org8402b4d">
+<ul class="org-ul">
+<li><a href="https://programming-idioms.org/coverage">2024-07-29 programming-idioms.org</a></li>
+<li><a href="https://www.gnu.org/software/emacs/manual/html_node/elisp/">2024-07-29 Top (GNU Emacs Lisp Reference Manual)</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org314a67c" class="outline-2">
+<h2 id="org314a67c">Examples</h2>
+<div class="outline-text-2" id="text-org314a67c">
+</div>
+<div id="outline-container-org7c5eb6c" class="outline-3">
+<h3 id="org7c5eb6c">Print hello 10 times</h3>
+<div class="outline-text-3" id="text-org7c5eb6c">
+<ul class="org-ul">
+<li>`princ`: Outputs a string or character without additional formatting.</li>
+<li>`message`: Prints a message to the minibuffer.</li>
+<li>`insert`: Inserts text into the current buffer.</li>
+<li>`print`: Outputs a Lisp object with additional formatting and a newline.</li>
+<li>`prin1`: Outputs a Lisp object without additional formatting.</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(dotimes (i 10)
+  (princ "Hello\n"))
+</pre>
+</div>
+
+<pre class="example" id="orgcb985fd">
+Hello
+Hello
+Hello
+Hello
+Hello
+Hello
+Hello
+Hello
+Hello
+Hello
+</pre>
+
+
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">
+</pre>
+</div>
+
+
+
+<pre class="example" id="org52c88dc">
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+&copy; d)zharii. <a href="/sitemap.html">sitemap</a>
+</div>
+</body>
+</html>

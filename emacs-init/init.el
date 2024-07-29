@@ -17,4 +17,3 @@
 ;; REAL INIT:
 (require 'org)
 (org-babel-load-file (expand-file-name "./emacs-init/init-config.org"))
-
