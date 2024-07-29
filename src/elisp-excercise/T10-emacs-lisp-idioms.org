@@ -1,0 +1,18 @@
+#+title: T10-emacs-lisp-idioms
+#+subtitle: docs
+#+date: <2024-07-28>
+#+language: en
+
+* Summary
+I will take time for self-reflection and listen to my inner voice.
+
+* Examples
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_example emacs-lisp
+
+#+end_example
