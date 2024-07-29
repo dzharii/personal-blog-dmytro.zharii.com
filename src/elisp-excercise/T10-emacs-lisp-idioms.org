@@ -6,6 +6,10 @@
 * Summary
 I will take time for self-reflection and listen to my inner voice.
 
+* Ref
+[[https://programming-idioms.org/coverage][2024-07-29 programming-idioms.org]]
+
+
 * Examples
 
 #+begin_src emacs-lisp
