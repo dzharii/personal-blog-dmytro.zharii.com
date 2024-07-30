@@ -22,27 +22,27 @@ Published 2024-07-10
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org0a9e4f0">Submission</a></li>
-<li><a href="#org5c80fe2">Problem:</a></li>
-<li><a href="#org56918ed">Solution Description:</a></li>
-<li><a href="#org0afd7f5">Example:</a></li>
-<li><a href="#orgd35f492">Setup:</a></li>
+<li><a href="#org5047a9b">Submission</a></li>
+<li><a href="#org236f1e7">Problem:</a></li>
+<li><a href="#org0f976b0">Solution Description:</a></li>
+<li><a href="#org911e0db">Example:</a></li>
+<li><a href="#org8af6aac">Setup:</a></li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-org0a9e4f0" class="outline-2">
-<h2 id="org0a9e4f0">Submission</h2>
-<div class="outline-text-2" id="text-org0a9e4f0">
+<div id="outline-container-org5047a9b" class="outline-2">
+<h2 id="org5047a9b">Submission</h2>
+<div class="outline-text-2" id="text-org5047a9b">
 <p>
 <a href="https://leetcode.com/submissions/detail/1317044983/">Course Schedule</a>
 </p>
 </div>
 </div>
 
-<div id="outline-container-org5c80fe2" class="outline-2">
-<h2 id="org5c80fe2">Problem:</h2>
-<div class="outline-text-2" id="text-org5c80fe2">
+<div id="outline-container-org236f1e7" class="outline-2">
+<h2 id="org236f1e7">Problem:</h2>
+<div class="outline-text-2" id="text-org236f1e7">
 <p>
 The problem is the Course Schedule problem (often referred to as Leetcode 207). The given problem can be restated as follows:
 </p>
@@ -55,7 +55,7 @@ You are given a total of `numCourses`, labeled from `0` to `numCourses-1`. You a
 Write a function that determines if it is possible to finish all courses. If there is a cyclic dependency, it is impossible to finish all courses.
 </p>
 
-<pre class="example" id="org7700332">
+<pre class="example" id="org7f7f62a">
 - For example:
     - Input: numCourses = 2, prerequisites = [[1, 0]]
     - Output: True
@@ -64,9 +64,9 @@ Write a function that determines if it is possible to finish all courses. If the
 </div>
 </div>
 
-<div id="outline-container-org56918ed" class="outline-2">
-<h2 id="org56918ed">Solution Description:</h2>
-<div class="outline-text-2" id="text-org56918ed">
+<div id="outline-container-org0f976b0" class="outline-2">
+<h2 id="org0f976b0">Solution Description:</h2>
+<div class="outline-text-2" id="text-org0f976b0">
 <p>
 To implement this, we need to represent the courses and their prerequisites as a directed graph and then check if the graph has any cycles. If it has a cycle, it means there is a circular dependency, and the courses cannot all be finished. We can use Depth-First Search (DFS) to detect cycles in the graph.
 </p>
@@ -87,10 +87,10 @@ Space Complexity: O(V + E) to store the graph and the state of each course.
 </div>
 </div>
 
-<div id="outline-container-org0afd7f5" class="outline-2">
-<h2 id="org0afd7f5">Example:</h2>
-<div class="outline-text-2" id="text-org0afd7f5">
-<pre class="example" id="org6902435">
+<div id="outline-container-org911e0db" class="outline-2">
+<h2 id="org911e0db">Example:</h2>
+<div class="outline-text-2" id="text-org911e0db">
+<pre class="example" id="orgc428b2e">
 Let’s take an example to clarify:
     - Input: numCourses = 4, prerequisites = [[1, 0], [2, 1], [3, 2]]
     - The graph would look like:
@@ -99,9 +99,9 @@ Let’s take an example to clarify:
 </pre>
 </div>
 </div>
-<div id="outline-container-orgd35f492" class="outline-2">
-<h2 id="orgd35f492">Setup:</h2>
-<div class="outline-text-2" id="text-orgd35f492">
+<div id="outline-container-org8af6aac" class="outline-2">
+<h2 id="org8af6aac">Setup:</h2>
+<div class="outline-text-2" id="text-org8af6aac">
 <p>
 Below is the general framework for implementing the solution using modern JavaScript. The `console.log` statements will help identify the input, actual result, and expected result.
 </p>

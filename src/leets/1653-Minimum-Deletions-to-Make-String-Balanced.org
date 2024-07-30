@@ -1,0 +1,97 @@
+﻿#+title: 1653. Minimum Deletions to Make String Balanced
+#+subtitle: leetcode
+#+date: <2024-07-29>
+#+language: en
+
+** Links
+
+- Submission [[https://leetcode.com/submissions/detail/1337966430/][2024-07-30 Minimum Deletions to Make String Balanced - Submission Detail - LeetCode]]
+
+** Problem:
+The problem "1653. Minimum Deletions to Make String Balanced" from LeetCode requires you to find the minimum number of deletions needed to make a given string `s`, which consists of characters 'a' and 'b', balanced. A string is considered balanced if there is no 'b' that appears before an 'a' in the string.
+
+** Solution Description:
+To implement the solution, we need to keep track of the prefixes of 'a' and 'b'. Specifically, we can calculate the minimum deletions required to balance the string using a single pass through the string, maintaining a count of 'b's seen before each 'a'. We achieve this by tracking cumulative counts of 'b's and calculating the minimum number of deletions at each step.
+
+1. Initialize a counter for the number of 'b's.
+2. Traverse through the string.
+3. For each character:
+   - If it is 'b', increment the 'b' counter.
+   - If it is 'a', compute deletions needed to remove either this 'a' or all previous 'b's, update the minimum deletions required.
+4. Return the computed minimum deletions.
+
+** Time Complexity: O(n), where n is the length of the string.
+** Space Complexity: O(1), as we use a constant amount of extra space.
+
+** Example:
+Let's consider the string "aababbab":
+- Initialize bCount = 0 and minDeletions = 0.
+- Iterate through the string and update counts:
+  - On encountering 'b', increment bCount.
+  - On encountering 'a', update minDeletions to the minimum of itself or the current bCount.
+
+** Setup:
+Here is the general framework of the solution in JavaScript. We'll include a testing setup using `console.log` statements to verify the correctness of our solution.
+
+** Test Execution:
+We will define multiple test cases and verify if the implemented solution meets the expected output.
+
+#+begin_src js :tangle "1653_minimum_deletions_to_make_string_balanced.js"
+
+/**
+ ,* Function to compute the minimum deletions to make the string balanced
+ ,* @param {string} s - The input string containing characters 'a' and 'b'
+ ,* @returns {number} - The minimum number of deletions needed to make the string balanced
+ ,*/
+function minDeletionsToMakeStringBalanced(s) {
+    /**
+     ,* Log results only if NestedInteger is not defined (for debugging purposes).
+     ,*/
+    const log = typeof NestedInteger !== 'undefined' ? () => {} : console.log;
+    const table = typeof NestedInteger !== 'undefined' ? () => {} : console.table;
+
+
+    log(`Processing string: ${s}`);
+
+    let bs = 0;
+    let dels = 0;
+
+    for (const ch of s) {
+        if (ch === 'b') {
+            bs += 1;
+        } else {
+            dels = Math.min(dels + 1, bs);
+        }
+
+    }
+    return dels;
+}
+
+// Test cases
+const testCases = [
+    { s: "aababbab", expected: 2 },
+    { s: "bbaaaa", expected: 2 },
+    { s: "abababab", expected: 4 },
+    { s: "aaaaa", expected: 0 },
+    { s: "bbbb", expected: 0 },
+];
+
+testCases.forEach((test, index) => {
+    const result = minDeletionsToMakeStringBalanced(test.s);
+    console.log(`Test Case ${index + 1}: ${result === test.expected ? 'Passed' : 'Failed'} (Expected: ${test.expected}, Got: ${result})`);
+});
+#+end_src
+
+#+begin_example
+Processing string: aababbab
+Test Case 1: Passed (Expected: 2, Got: 2)
+Processing string: bbaaaa
+Test Case 2: Passed (Expected: 2, Got: 2)
+Processing string: abababab
+Test Case 3: Failed (Expected: 4, Got: 3)
+Processing string: aaaaa
+Test Case 4: Passed (Expected: 0, Got: 0)
+Processing string: bbbb
+Test Case 5: Passed (Expected: 0, Got: 0)
+undefined
+#+end_example

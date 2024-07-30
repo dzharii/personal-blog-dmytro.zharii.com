@@ -22,36 +22,36 @@ Published 2024-07-07
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org1a32c34"></a>
+<li><a href="#org0c57e74"></a>
 <ul>
-<li><a href="#orgf53bb94">Problem:</a></li>
-<li><a href="#org8ca06a6">Prerequsite</a></li>
-<li><a href="#org891305c">Solution Description:</a></li>
-<li><a href="#orgdd56f70">Example:</a></li>
-<li><a href="#orge235e9f">Setup:</a></li>
+<li><a href="#org0beb49a">Problem:</a></li>
+<li><a href="#orgf49c559">Prerequsite</a></li>
+<li><a href="#org4faffb8">Solution Description:</a></li>
+<li><a href="#org0025dd1">Example:</a></li>
+<li><a href="#orgd23124e">Setup:</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-org1a32c34" class="outline-2">
-<h2 id="org1a32c34"></h2>
-<div class="outline-text-2" id="text-org1a32c34">
+<div id="outline-container-org0c57e74" class="outline-2">
+<h2 id="org0c57e74"></h2>
+<div class="outline-text-2" id="text-org0c57e74">
 </div>
 
-<div id="outline-container-orgf53bb94" class="outline-3">
-<h3 id="orgf53bb94">Problem:</h3>
-<div class="outline-text-3" id="text-orgf53bb94">
+<div id="outline-container-org0beb49a" class="outline-3">
+<h3 id="org0beb49a">Problem:</h3>
+<div class="outline-text-3" id="text-org0beb49a">
 <p>
 The problem is to determine the diameter of a binary tree. The diameter of a binary tree is defined as the length of the longest path between any two nodes in a tree. This path may or may not pass through the root.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org8ca06a6" class="outline-3">
-<h3 id="org8ca06a6">Prerequsite</h3>
-<div class="outline-text-3" id="text-org8ca06a6">
+<div id="outline-container-orgf49c559" class="outline-3">
+<h3 id="orgf49c559">Prerequsite</h3>
+<div class="outline-text-3" id="text-orgf49c559">
 <p>
 To solve this problem, work on the <a href="https://leetcode.com/problems/maximum-depth-of-binary-tree/">104. Maximum Depth of Binary Tree</a> first.
 <a href="https://leetcode.com/problems/diameter-of-n-ary-tree/">Diameter of N-Ary Tree</a>
@@ -60,9 +60,9 @@ To solve this problem, work on the <a href="https://leetcode.com/problems/maximu
 </div>
 
 
-<div id="outline-container-org891305c" class="outline-3">
-<h3 id="org891305c">Solution Description:</h3>
-<div class="outline-text-3" id="text-org891305c">
+<div id="outline-container-org4faffb8" class="outline-3">
+<h3 id="org4faffb8">Solution Description:</h3>
+<div class="outline-text-3" id="text-org4faffb8">
 <p>
 To implement the solution, we need to use a recursive Depth-First Search (DFS) approach. The main idea is to calculate the depth of the left subtree and the right subtree for each node, and track the maximum diameter found at each step.
 </p>
@@ -83,13 +83,13 @@ The time complexity of this approach is O(n) because each node is visited once. 
 </div>
 </div>
 
-<div id="outline-container-orgdd56f70" class="outline-3">
-<h3 id="orgdd56f70">Example:</h3>
-<div class="outline-text-3" id="text-orgdd56f70">
+<div id="outline-container-org0025dd1" class="outline-3">
+<h3 id="org0025dd1">Example:</h3>
+<div class="outline-text-3" id="text-org0025dd1">
 <p>
 Consider a binary tree:
 </p>
-<pre class="example" id="org4d6aee1">
+<pre class="example" id="orgd3dd3fb">
     1
    / \
   2   3
@@ -103,9 +103,9 @@ The longest path goes from node 4 to node 5 through nodes 2 and 1, so the diamet
 </div>
 </div>
 
-<div id="outline-container-orge235e9f" class="outline-3">
-<h3 id="orge235e9f">Setup:</h3>
-<div class="outline-text-3" id="text-orge235e9f">
+<div id="outline-container-orgd23124e" class="outline-3">
+<h3 id="orgd23124e">Setup:</h3>
+<div class="outline-text-3" id="text-orgd23124e">
 <p>
 We'll define a helper function to recursively calculate the depth of the tree and update the diameter. We'll use modern JavaScript to implement this.
 </p>
