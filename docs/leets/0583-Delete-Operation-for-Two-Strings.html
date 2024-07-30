@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2024-07-29 -->
+<!-- 2024-07-30 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>0583. Delete Operation for Two Strings</title>
@@ -22,11 +22,11 @@ Published 2024-06-08
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org85a7272">Problem:</a></li>
-<li><a href="#org697eb45">Solution Description:</a></li>
-<li><a href="#org92dde6d">What is LCS?</a></li>
-<li><a href="#org463c880">Example:</a></li>
-<li><a href="#org47e4ba1">Setup:</a></li>
+<li><a href="#org320952c">Problem:</a></li>
+<li><a href="#orgcb0c82d">Solution Description:</a></li>
+<li><a href="#org2de98fd">What is LCS?</a></li>
+<li><a href="#org26b1015">Example:</a></li>
+<li><a href="#org81aab23">Setup:</a></li>
 </ul>
 </div>
 </nav>
@@ -56,27 +56,27 @@ So I like the content at Algo Monster more.
 </p>
 
 
-<div id="outline-container-org85a7272" class="outline-2">
-<h2 id="org85a7272">Problem:</h2>
-<div class="outline-text-2" id="text-org85a7272">
+<div id="outline-container-org320952c" class="outline-2">
+<h2 id="org320952c">Problem:</h2>
+<div class="outline-text-2" id="text-org320952c">
 <p>
 Given two words `word1` and `word2`, return the minimum number of steps required to make `word1` and `word2` the same. In each step, you can delete one character in either string.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org697eb45" class="outline-2">
-<h2 id="org697eb45">Solution Description:</h2>
-<div class="outline-text-2" id="text-org697eb45">
+<div id="outline-container-orgcb0c82d" class="outline-2">
+<h2 id="orgcb0c82d">Solution Description:</h2>
+<div class="outline-text-2" id="text-orgcb0c82d">
 <p>
 To implement the solution, we need to find the length of the longest common subsequence (LCS) of the two words. The minimum number of deletions required to make the two strings equal will be the sum of the lengths of both strings minus twice the length of the LCS.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org92dde6d" class="outline-2">
-<h2 id="org92dde6d">What is LCS?</h2>
-<div class="outline-text-2" id="text-org92dde6d">
+<div id="outline-container-org2de98fd" class="outline-2">
+<h2 id="org2de98fd">What is LCS?</h2>
+<div class="outline-text-2" id="text-org2de98fd">
 <p>
 The Longest Common Subsequence (LCS) is the longest sequence that appears in both given sequences in the same order but not necessarily consecutively. For example, the LCS of "sea" and "eat" is "ea", and the LCS of "abc" and "ac" is "ac".
 </p>
@@ -96,9 +96,9 @@ The steps are as follows:
 </div>
 </div>
 
-<div id="outline-container-org463c880" class="outline-2">
-<h2 id="org463c880">Example:</h2>
-<div class="outline-text-2" id="text-org463c880">
+<div id="outline-container-org26b1015" class="outline-2">
+<h2 id="org26b1015">Example:</h2>
+<div class="outline-text-2" id="text-org26b1015">
 <p>
 Consider `word1 = "sea"` and `word2 = "eat"`. The LCS of "sea" and "eat" is "ea", which has a length of 2. Therefore, the minimum number of deletions required is `3 + 3 - 2 * 2 = 2`.
 </p>
@@ -126,9 +126,9 @@ The LCS problem can be solved using dynamic programming. The idea is to build a 
 </div>
 
 
-<div id="outline-container-org47e4ba1" class="outline-2">
-<h2 id="org47e4ba1">Setup:</h2>
-<div class="outline-text-2" id="text-org47e4ba1">
+<div id="outline-container-org81aab23" class="outline-2">
+<h2 id="org81aab23">Setup:</h2>
+<div class="outline-text-2" id="text-org81aab23">
 <p>
 The initial setup involves defining a function to find the LCS and then using it to calculate the minimum deletions. Below is the skeleton and test setup:
 </p>
