@@ -1,0 +1,99 @@
+﻿#+title: 2134. Minimum Swaps to Group All 1s Together II
+#+subtitle: leetcode
+#+date: <2024-08-01>
+#+language: en
+
+
+* Links
+- [[https://leetcode.com/submissions/detail/1341373218/][2024-08-02 Minimum Swaps to Group All 1's Together II - Submission Detail - LeetCode]] (Time limit exceeded)
+
+* Problem
+Given a binary circular array nums, you need to find the minimum number of swaps required to group all ~1~'s present in the array together in any location in the circular array.
+
+For instance, the array `[1, 0, 1, 0, 1]` as a circular array can be represented as repeating infinitely: `...1, 0, 1, 0, 1, 1, 0, 1, 0, 1...`.
+
+* Solution Description
+To implement a solution for this problem, we need to use the sliding window technique. This approach allows us to assess a window of a fixed size (equal to the number of 1's in the array) and count the number of zeroes in that window. The goal is to identify the window with the fewest zeroes, as this indicates the minimum number of swaps needed to group all 1's together.
+
+Steps:
+1. Count the number of 1’s in the array, let this count be `k`.
+2. Create an initial window of size `k` and count the number of 0’s in this window.
+3. Slide the window over the array (considering its circular nature) and keep track of the minimum number of zeroes encountered.
+4. The minimum number of zeroes found in any window is the minimum number of swaps needed.
+
+Time Complexity: ~O(n)~ because we traverse the array once to count 1’s and then use a sliding window across the array.
+Space Complexity: ~O(1)~ as we use a constant amount of extra space.
+
+* Example
+Consider the array `[1, 0, 1, 0, 1]`.
+1. Count the 1’s: `k = 3`.
+2. Initial window: `[1, 0, 1]`, contains one `0`.
+3. Slide the window:
+   - `...0, 1, 0, 1, 0,...` contains two `0`s.
+   - `...1, 0, 1, 1, 0,...` contains one `0`.
+4. The minimum number of zeroes in any window is `1`, so the minimum swaps required are `1`.
+
+* References
+- Sliding Window Technique: [[https://en.wikipedia.org/wiki/Sliding_window_protocol]]
+- Circular Array Handling: [[https://www.geeksforgeeks.org/circular-array/]]
+
+* Solution
+
+#+begin_src js :tangle example_2134_minimum_swaps_to_group_all_1s_together_ii.js
+/**
+ ,* Calculate the minimum number of swaps required to group all 1's together in a circular array
+ ,* @param {number[]} nums - The input binary array
+ ,* @returns {number} - The minimum number of swaps
+ ,*/
+function minSwaps(nums) {
+    const log = typeof NestedInteger !== 'undefined' ? () => {} : console.log;
+    const table = typeof NestedInteger!== 'undefined' ? () => {} : console.table;
+    log('Input: ' + JSON.stringify(nums));
+
+    if (nums.length === 0) return 0;
+    // window size is the count of 1s
+    const wsize = nums.filter(x => x === 1).length;
+
+    if (wsize === 0) return 0;
+    if (wsize === nums.length) return 0;
+
+    let min0 = +Infinity
+    for (let i = 0; i < nums.length; i++) {
+        let zeros = 0;
+        for (let n = 0; n < wsize; n++) {
+            const j = (i + n) % nums.length;
+            if (nums[j] === 0) zeros += 1;
+        }
+        min0 = Math.min(min0, zeros);
+    }
+
+
+    return min0;
+}
+
+// Test cases
+const testCases = [
+    { nums: [0,1,0,1,1,0,0], expected: 1 },
+    { nums: [0,1,1,1,0,0,1,1,0], expected: 2 },
+    { nums: [0, 0, 0, 0, 0], expected: 0 },
+    { nums: [1, 1, 1, 1, 1], expected: 0 },
+];
+
+// Adding tests execution
+testCases.forEach((test, index) => {
+    const {nums, expected} = test;
+    const result = minSwaps(nums);
+    console.log(`Test Case ${index + 1}: ${result === expected ? 'Passed' : 'Failed'} (Expected: ${expected}, Got: ${result})`);
+});
+#+end_src
+
+#+RESULTS:
+: Input: [0,1,0,1,1,0,0]
+: Test Case 1: Passed (Expected: 1, Got: 1)
+: Input: [0,1,1,1,0,0,1,1,0]
+: Test Case 2: Passed (Expected: 2, Got: 2)
+: Input: [0,0,0,0,0]
+: Test Case 3: Passed (Expected: 0, Got: 0)
+: Input: [1,1,1,1,1]
+: Test Case 4: Passed (Expected: 0, Got: 0)
+: undefined

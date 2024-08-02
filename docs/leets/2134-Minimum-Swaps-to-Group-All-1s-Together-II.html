@@ -1,0 +1,169 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2024-08-01 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>2134. Minimum Swaps to Group All 1s Together II</title>
+<meta name="author" content="d)zharii" />
+<meta name="generator" content="Org Mode" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/t.css"/>
+</head>
+<body>
+<nav><a href="/" tabindex="0">&larrhk; Back to Index</a></nav><div id="preamble" class="status">
+Published 2024-08-01
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">2134. Minimum Swaps to Group All 1s Together II</h1>
+<p class="subtitle" role="doc-subtitle">leetcode</p>
+</header><nav id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orge0ca768">Links</a></li>
+<li><a href="#org7701036">Problem</a></li>
+<li><a href="#orgc014e9a">Solution Description</a></li>
+<li><a href="#org858c331">Example</a></li>
+<li><a href="#org9ff30af">References</a></li>
+<li><a href="#orga63066f">Solution</a></li>
+</ul>
+</div>
+</nav>
+
+
+<div id="outline-container-orge0ca768" class="outline-2">
+<h2 id="orge0ca768">Links</h2>
+<div class="outline-text-2" id="text-orge0ca768">
+<ul class="org-ul">
+<li><a href="https://leetcode.com/submissions/detail/1341373218/">2024-08-02 Minimum Swaps to Group All 1's Together II - Submission Detail - LeetCode</a> (Time limit exceeded)</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org7701036" class="outline-2">
+<h2 id="org7701036">Problem</h2>
+<div class="outline-text-2" id="text-org7701036">
+<p>
+Given a binary circular array nums, you need to find the minimum number of swaps required to group all <code>1</code>'s present in the array together in any location in the circular array.
+</p>
+
+<p>
+For instance, the array `[1, 0, 1, 0, 1]` as a circular array can be represented as repeating infinitely: `&#x2026;1, 0, 1, 0, 1, 1, 0, 1, 0, 1&#x2026;`.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc014e9a" class="outline-2">
+<h2 id="orgc014e9a">Solution Description</h2>
+<div class="outline-text-2" id="text-orgc014e9a">
+<p>
+To implement a solution for this problem, we need to use the sliding window technique. This approach allows us to assess a window of a fixed size (equal to the number of 1's in the array) and count the number of zeroes in that window. The goal is to identify the window with the fewest zeroes, as this indicates the minimum number of swaps needed to group all 1's together.
+</p>
+
+<p>
+Steps:
+</p>
+<ol class="org-ol">
+<li>Count the number of 1’s in the array, let this count be `k`.</li>
+<li>Create an initial window of size `k` and count the number of 0’s in this window.</li>
+<li>Slide the window over the array (considering its circular nature) and keep track of the minimum number of zeroes encountered.</li>
+<li>The minimum number of zeroes found in any window is the minimum number of swaps needed.</li>
+</ol>
+
+<p>
+Time Complexity: <code>O(n)</code> because we traverse the array once to count 1’s and then use a sliding window across the array.
+Space Complexity: <code>O(1)</code> as we use a constant amount of extra space.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org858c331" class="outline-2">
+<h2 id="org858c331">Example</h2>
+<div class="outline-text-2" id="text-org858c331">
+<p>
+Consider the array `[1, 0, 1, 0, 1]`.
+</p>
+<ol class="org-ol">
+<li>Count the 1’s: `k = 3`.</li>
+<li>Initial window: `[1, 0, 1]`, contains one `0`.</li>
+<li>Slide the window:
+<ul class="org-ul">
+<li>`&#x2026;0, 1, 0, 1, 0,&#x2026;` contains two `0`s.</li>
+<li>`&#x2026;1, 0, 1, 1, 0,&#x2026;` contains one `0`.</li>
+</ul></li>
+<li>The minimum number of zeroes in any window is `1`, so the minimum swaps required are `1`.</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org9ff30af" class="outline-2">
+<h2 id="org9ff30af">References</h2>
+<div class="outline-text-2" id="text-org9ff30af">
+<ul class="org-ul">
+<li>Sliding Window Technique: <a href="https://en.wikipedia.org/wiki/Sliding_window_protocol">https://en.wikipedia.org/wiki/Sliding_window_protocol</a></li>
+<li>Circular Array Handling: <a href="https://www.geeksforgeeks.org/circular-array/">https://www.geeksforgeeks.org/circular-array/</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orga63066f" class="outline-2">
+<h2 id="orga63066f">Solution</h2>
+<div class="outline-text-2" id="text-orga63066f">
+<div class="org-src-container">
+<pre class="src src-js">/**
+ * Calculate the minimum number of swaps required to group all 1's together in a circular array
+ * @param {number[]} nums - The input binary array
+ * @returns {number} - The minimum number of swaps
+ */
+function minSwaps(nums) {
+    const log = typeof NestedInteger !== 'undefined' ? () =&gt; {} : console.log;
+    const table = typeof NestedInteger!== 'undefined' ? () =&gt; {} : console.table;
+    log('Input: ' + JSON.stringify(nums));
+
+    if (nums.length === 0) return 0;
+    // window size is the count of 1s
+    const wsize = nums.filter(x =&gt; x === 1).length;
+
+    if (wsize === 0) return 0;
+    if (wsize === nums.length) return 0;
+
+    let min0 = +Infinity
+    for (let i = 0; i &lt; nums.length; i++) {
+        let zeros = 0;
+        for (let n = 0; n &lt; wsize; n++) {
+            const j = (i + n) % nums.length;
+            if (nums[j] === 0) zeros += 1;
+        }
+        min0 = Math.min(min0, zeros);
+    }
+
+
+    return min0;
+}
+
+// Test cases
+const testCases = [
+    { nums: [0,1,0,1,1,0,0], expected: 1 },
+    { nums: [0,1,1,1,0,0,1,1,0], expected: 2 },
+    { nums: [0, 0, 0, 0, 0], expected: 0 },
+    { nums: [1, 1, 1, 1, 1], expected: 0 },
+];
+
+// Adding tests execution
+testCases.forEach((test, index) =&gt; {
+    const {nums, expected} = test;
+    const result = minSwaps(nums);
+    console.log(`Test Case ${index + 1}: ${result === expected ? 'Passed' : 'Failed'} (Expected: ${expected}, Got: ${result})`);
+});
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+&copy; d)zharii. <a href="/sitemap.html">sitemap</a>
+</div>
+</body>
+</html>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2024-07-30 -->
+<!-- 2024-08-01 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>T10-emacs-lisp-idioms</title>
@@ -22,34 +22,34 @@ Published 2024-07-28
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org78e00df">Summary</a></li>
-<li><a href="#org8861c7a">Ref</a></li>
-<li><a href="#org9c275ee">Idioms</a>
+<li><a href="#org619a620">Summary</a></li>
+<li><a href="#orgec59505">Ref</a></li>
+<li><a href="#org2465024">Idioms</a>
 <ul>
-<li><a href="#orgd4a896a">#001 Print Hello World</a></li>
-<li><a href="#org7bf0f8c">#002 Print hello 10 times</a></li>
-<li><a href="#org53cf2fa">#003 Create a procedure</a></li>
-<li><a href="#orgffc42fd">#004 Create a Function</a></li>
-<li><a href="#orga0ae2cc">#005 Create a 2D Point data structure</a></li>
-<li><a href="#org8e470da">#006 Iterate Over List Values</a></li>
+<li><a href="#orgd9420eb">#001 Print Hello World</a></li>
+<li><a href="#org08c8faa">#002 Print hello 10 times</a></li>
+<li><a href="#orgacad9cf">#003 Create a procedure</a></li>
+<li><a href="#org56ab1e4">#004 Create a Function</a></li>
+<li><a href="#org623bf0e">#005 Create a 2D Point data structure</a></li>
+<li><a href="#orgb13f13d">#006 Iterate Over List Values</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-org78e00df" class="outline-2">
-<h2 id="org78e00df">Summary</h2>
-<div class="outline-text-2" id="text-org78e00df">
+<div id="outline-container-org619a620" class="outline-2">
+<h2 id="org619a620">Summary</h2>
+<div class="outline-text-2" id="text-org619a620">
 <p>
 I will take time for self-reflection and listen to my inner voice.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org8861c7a" class="outline-2">
-<h2 id="org8861c7a">Ref</h2>
-<div class="outline-text-2" id="text-org8861c7a">
+<div id="outline-container-orgec59505" class="outline-2">
+<h2 id="orgec59505">Ref</h2>
+<div class="outline-text-2" id="text-orgec59505">
 <ul class="org-ul">
 <li><a href="https://programming-idioms.org/coverage">2024-07-29 programming-idioms.org</a></li>
 <li><a href="https://www.gnu.org/software/emacs/manual/html_node/elisp/">2024-07-29 Top (GNU Emacs Lisp Reference Manual)</a></li>
@@ -57,32 +57,32 @@ I will take time for self-reflection and listen to my inner voice.
 </div>
 </div>
 
-<div id="outline-container-org9c275ee" class="outline-2">
-<h2 id="org9c275ee">Idioms</h2>
-<div class="outline-text-2" id="text-org9c275ee">
+<div id="outline-container-org2465024" class="outline-2">
+<h2 id="org2465024">Idioms</h2>
+<div class="outline-text-2" id="text-org2465024">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
 </pre>
 </div>
 </div>
 
-<div id="outline-container-orgd4a896a" class="outline-3">
-<h3 id="orgd4a896a">#001 Print Hello World</h3>
-<div class="outline-text-3" id="text-orgd4a896a">
+<div id="outline-container-orgd9420eb" class="outline-3">
+<h3 id="orgd9420eb">#001 Print Hello World</h3>
+<div class="outline-text-3" id="text-orgd9420eb">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(print "Hello, World!")
 </pre>
 </div>
 
-<pre class="example" id="orged4d051">
+<pre class="example" id="orgc66b960">
 "Hello, World!"
 </pre>
 </div>
 </div>
 
-<div id="outline-container-org7bf0f8c" class="outline-3">
-<h3 id="org7bf0f8c">#002 Print hello 10 times</h3>
-<div class="outline-text-3" id="text-org7bf0f8c">
+<div id="outline-container-org08c8faa" class="outline-3">
+<h3 id="org08c8faa">#002 Print hello 10 times</h3>
+<div class="outline-text-3" id="text-org08c8faa">
 <ul class="org-ul">
 <li>`princ`: Outputs a string or character without additional formatting.</li>
 <li>`message`: Prints a message to the minibuffer.</li>
@@ -97,7 +97,7 @@ I will take time for self-reflection and listen to my inner voice.
 </pre>
 </div>
 
-<pre class="example" id="orgb05ad06">
+<pre class="example" id="org14136af">
 Hello
 Hello
 Hello
@@ -112,9 +112,9 @@ Hello
 </div>
 </div>
 
-<div id="outline-container-org53cf2fa" class="outline-3">
-<h3 id="org53cf2fa">#003 Create a procedure</h3>
-<div class="outline-text-3" id="text-org53cf2fa">
+<div id="outline-container-orgacad9cf" class="outline-3">
+<h3 id="orgacad9cf">#003 Create a procedure</h3>
+<div class="outline-text-3" id="text-orgacad9cf">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(defun show (message)
   "Display a message in the echo area."
@@ -126,9 +126,9 @@ Hello
 </div>
 </div>
 
-<div id="outline-container-orgffc42fd" class="outline-3">
-<h3 id="orgffc42fd">#004 Create a Function</h3>
-<div class="outline-text-3" id="text-orgffc42fd">
+<div id="outline-container-org56ab1e4" class="outline-3">
+<h3 id="org56ab1e4">#004 Create a Function</h3>
+<div class="outline-text-3" id="text-org56ab1e4">
 <p>
 Functions in Emacs Lisp are defined using `defun`. The function `square` here takes a parameter `x` and returns its square by multiplying `x` by itself. Emacs Lisp automatically returns the value of the last evaluated expression. Functions are used for modularity and reuse of code. The provided function is a common example of mathematical operations often implemented in scripts.
 </p>
@@ -143,15 +143,15 @@ Functions in Emacs Lisp are defined using `defun`. The function `square` here ta
 </pre>
 </div>
 
-<pre class="example" id="org3a16f75">
+<pre class="example" id="orge7b8238">
 "Square of 16 is 256"
 </pre>
 </div>
 </div>
 
-<div id="outline-container-orga0ae2cc" class="outline-3">
-<h3 id="orga0ae2cc">#005 Create a 2D Point data structure</h3>
-<div class="outline-text-3" id="text-orga0ae2cc">
+<div id="outline-container-org623bf0e" class="outline-3">
+<h3 id="org623bf0e">#005 Create a 2D Point data structure</h3>
+<div class="outline-text-3" id="text-org623bf0e">
 <p>
 In Emacs Lisp, a 2D point structure can be represented using various methods. One common approach is to use a list or vector to store the x and y coordinates. This example shows a simple implementation using a list and how to create a point and access its coordinates.
 </p>
@@ -174,15 +174,15 @@ In Emacs Lisp, a 2D point structure can be represented using various methods. On
 </pre>
 </div>
 
-<pre class="example" id="org645fafa">
+<pre class="example" id="org7a8b937">
 "Point: (3.000000, 4.000000)"
 </pre>
 </div>
 </div>
 
-<div id="outline-container-org8e470da" class="outline-3">
-<h3 id="org8e470da">#006 Iterate Over List Values</h3>
-<div class="outline-text-3" id="text-org8e470da">
+<div id="outline-container-orgb13f13d" class="outline-3">
+<h3 id="orgb13f13d">#006 Iterate Over List Values</h3>
+<div class="outline-text-3" id="text-orgb13f13d">
 <p>
 In Emacs Lisp, iterating over list values can be achieved using several methods, such as `dolist`, `mapcar`, and `while` loops. This example demonstrates how to use `dolist` to iterate over a list and print each value.
 </p>
@@ -195,7 +195,7 @@ In Emacs Lisp, iterating over list values can be achieved using several methods,
 </pre>
 </div>
 
-<pre class="example" id="orgef502b5">
+<pre class="example" id="orgda50439">
 Item: 1
 Item: 2
 Item: 3
