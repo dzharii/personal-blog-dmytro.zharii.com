@@ -1,6 +1,5 @@
 * Hello, World!
 
-Next, check this: 
-huh
+** Sitemap
 
-https://github.com/hcarvalhoalves/org-mode-site-template
+#+include: "./sitemap.org"
