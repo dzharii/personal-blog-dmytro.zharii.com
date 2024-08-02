@@ -1,6 +1,0 @@
-* Hello, World!
-
-Next, check this: 
-huh
-
-https://github.com/hcarvalhoalves/org-mode-site-template

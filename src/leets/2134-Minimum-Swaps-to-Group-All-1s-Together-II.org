@@ -10,14 +10,14 @@
 * Problem
 Given a binary circular array nums, you need to find the minimum number of swaps required to group all ~1~'s present in the array together in any location in the circular array.
 
-For instance, the array `[1, 0, 1, 0, 1]` as a circular array can be represented as repeating infinitely: `...1, 0, 1, 0, 1, 1, 0, 1, 0, 1...`.
+For instance, the array =[1, 0, 1, 0, 1]= as a circular array can be represented as repeating infinitely: =...1, 0, 1, 0, 1, 1, 0, 1, 0, 1...=.
 
 * Solution Description
 To implement a solution for this problem, we need to use the sliding window technique. This approach allows us to assess a window of a fixed size (equal to the number of 1's in the array) and count the number of zeroes in that window. The goal is to identify the window with the fewest zeroes, as this indicates the minimum number of swaps needed to group all 1's together.
 
 Steps:
-1. Count the number of 1’s in the array, let this count be `k`.
-2. Create an initial window of size `k` and count the number of 0’s in this window.
+1. Count the number of 1’s in the array, let this count be =k=.
+2. Create an initial window of size =k= and count the number of 0’s in this window.
 3. Slide the window over the array (considering its circular nature) and keep track of the minimum number of zeroes encountered.
 4. The minimum number of zeroes found in any window is the minimum number of swaps needed.
 
@@ -25,13 +25,13 @@ Time Complexity: ~O(n)~ because we traverse the array once to count 1’s and th
 Space Complexity: ~O(1)~ as we use a constant amount of extra space.
 
 * Example
-Consider the array `[1, 0, 1, 0, 1]`.
-1. Count the 1’s: `k = 3`.
-2. Initial window: `[1, 0, 1]`, contains one `0`.
+Consider the array =[1, 0, 1, 0, 1]=.
+1. Count the 1’s: ~k = 3~.
+2. Initial window: =[1, 0, 1]=, contains one =0=.
 3. Slide the window:
-   - `...0, 1, 0, 1, 0,...` contains two `0`s.
-   - `...1, 0, 1, 1, 0,...` contains one `0`.
-4. The minimum number of zeroes in any window is `1`, so the minimum swaps required are `1`.
+   - =...0, 1, 0, 1, 0,...= contains two =0=s.
+   - =...1, 0, 1, 1, 0,...= contains one =0=.
+4. The minimum number of zeroes in any window is =1=, so the minimum swaps required are =1=.
 
 * References
 - Sliding Window Technique: [[https://en.wikipedia.org/wiki/Sliding_window_protocol]]
@@ -39,6 +39,66 @@ Consider the array `[1, 0, 1, 0, 1]`.
 
 * Solution
 
+~Roma~:
+#+begin_src java
+class Solution {
+    public int minSwaps(int[] nums) {
+        // Total number of 1s in the array
+        int totalOnes = count(nums, 1, 0, nums.length - 1);
+        
+        // Number of 0s in the initial window of size `totalOnes`
+        int currentZeros = count(nums, 0, 0, totalOnes - 1);
+        int minZeros = currentZeros;
+        
+        // Initialize window pointers
+        int left = 0;
+        int right = totalOnes;
+        
+        // Slide the window across the array
+        for (; right < nums.length; left++, right++) {
+            // Update the count of zeros when sliding the window to the right
+            if (nums[left] == 0) {
+                currentZeros--;
+            }
+            if (nums[right] == 0) {
+                currentZeros++;
+            }
+            // Keep track of the minimum number of zeros found in any window
+            minZeros = Math.min(minZeros, currentZeros);
+        }
+        
+        // Continue sliding the window wrapping around the array
+        right = 0;
+        for (; left < nums.length; left++, right++) {
+            // Update the count of zeros when the window wraps around the array
+            if (nums[left] == 0) {
+                currentZeros--;
+            }
+            if (nums[right] == 0) {
+                currentZeros++;
+            }
+            // Keep track of the minimum number of zeros found in any window
+            minZeros = Math.min(minZeros, currentZeros);
+        }
+        
+        // The minimum number of swaps needed is equal to the minimum number of zeros found
+        return minZeros;
+    }
+
+    // Helper method to count the occurrences of a value `val` in a subarray `nums[start..end]`
+    int count(int[] nums, int val, int start, int end) {
+        int count = 0;
+        for (int i = start; i <= end; i++) {
+            if (nums[i] == val) {
+                count++;
+            }
+        }
+        return count;
+    }
+}
+#+end_src
+
+Does not pass leetcode tests. Not optimal:
 #+begin_src js :tangle example_2134_minimum_swaps_to_group_all_1s_together_ii.js
 /**
  ,* Calculate the minimum number of swaps required to group all 1's together in a circular array

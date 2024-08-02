@@ -22,42 +22,42 @@ Published 2024-08-01
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgc8c0f57">Links</a></li>
-<li><a href="#orgfe88fe0">Problem</a></li>
-<li><a href="#orgb63d45a">Solution Description</a></li>
-<li><a href="#org6c3491f">Example</a></li>
-<li><a href="#org6d3b8a8">References</a></li>
-<li><a href="#org82af391">Solution</a></li>
+<li><a href="#org183bdeb">Links</a></li>
+<li><a href="#org95a9695">Problem</a></li>
+<li><a href="#org66f79a5">Solution Description</a></li>
+<li><a href="#orgca641f6">Example</a></li>
+<li><a href="#orge6e323b">References</a></li>
+<li><a href="#orga34a236">Solution</a></li>
 </ul>
 </div>
 </nav>
 
 
-<div id="outline-container-orgc8c0f57" class="outline-2">
-<h2 id="orgc8c0f57">Links</h2>
-<div class="outline-text-2" id="text-orgc8c0f57">
+<div id="outline-container-org183bdeb" class="outline-2">
+<h2 id="org183bdeb">Links</h2>
+<div class="outline-text-2" id="text-org183bdeb">
 <ul class="org-ul">
 <li><a href="https://leetcode.com/submissions/detail/1341373218/">2024-08-02 Minimum Swaps to Group All 1's Together II - Submission Detail - LeetCode</a> (Time limit exceeded)</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgfe88fe0" class="outline-2">
-<h2 id="orgfe88fe0">Problem</h2>
-<div class="outline-text-2" id="text-orgfe88fe0">
+<div id="outline-container-org95a9695" class="outline-2">
+<h2 id="org95a9695">Problem</h2>
+<div class="outline-text-2" id="text-org95a9695">
 <p>
 Given a binary circular array nums, you need to find the minimum number of swaps required to group all <code>1</code>'s present in the array together in any location in the circular array.
 </p>
 
 <p>
-For instance, the array `[1, 0, 1, 0, 1]` as a circular array can be represented as repeating infinitely: `&#x2026;1, 0, 1, 0, 1, 1, 0, 1, 0, 1&#x2026;`.
+For instance, the array <code>[1, 0, 1, 0, 1]</code> as a circular array can be represented as repeating infinitely: <code>...1, 0, 1, 0, 1, 1, 0, 1, 0, 1...</code>.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgb63d45a" class="outline-2">
-<h2 id="orgb63d45a">Solution Description</h2>
-<div class="outline-text-2" id="text-orgb63d45a">
+<div id="outline-container-org66f79a5" class="outline-2">
+<h2 id="org66f79a5">Solution Description</h2>
+<div class="outline-text-2" id="text-org66f79a5">
 <p>
 To implement a solution for this problem, we need to use the sliding window technique. This approach allows us to assess a window of a fixed size (equal to the number of 1's in the array) and count the number of zeroes in that window. The goal is to identify the window with the fewest zeroes, as this indicates the minimum number of swaps needed to group all 1's together.
 </p>
@@ -66,8 +66,8 @@ To implement a solution for this problem, we need to use the sliding window tech
 Steps:
 </p>
 <ol class="org-ol">
-<li>Count the number of 1’s in the array, let this count be `k`.</li>
-<li>Create an initial window of size `k` and count the number of 0’s in this window.</li>
+<li>Count the number of 1’s in the array, let this count be <code>k</code>.</li>
+<li>Create an initial window of size <code>k</code> and count the number of 0’s in this window.</li>
 <li>Slide the window over the array (considering its circular nature) and keep track of the minimum number of zeroes encountered.</li>
 <li>The minimum number of zeroes found in any window is the minimum number of swaps needed.</li>
 </ol>
@@ -79,28 +79,28 @@ Space Complexity: <code>O(1)</code> as we use a constant amount of extra space.
 </div>
 </div>
 
-<div id="outline-container-org6c3491f" class="outline-2">
-<h2 id="org6c3491f">Example</h2>
-<div class="outline-text-2" id="text-org6c3491f">
+<div id="outline-container-orgca641f6" class="outline-2">
+<h2 id="orgca641f6">Example</h2>
+<div class="outline-text-2" id="text-orgca641f6">
 <p>
-Consider the array `[1, 0, 1, 0, 1]`.
+Consider the array <code>[1, 0, 1, 0, 1]</code>.
 </p>
 <ol class="org-ol">
-<li>Count the 1’s: `k = 3`.</li>
-<li>Initial window: `[1, 0, 1]`, contains one `0`.</li>
+<li>Count the 1’s: <code>k = 3</code>.</li>
+<li>Initial window: <code>[1, 0, 1]</code>, contains one <code>0</code>.</li>
 <li>Slide the window:
 <ul class="org-ul">
-<li>`&#x2026;0, 1, 0, 1, 0,&#x2026;` contains two `0`s.</li>
-<li>`&#x2026;1, 0, 1, 1, 0,&#x2026;` contains one `0`.</li>
+<li><code>...0, 1, 0, 1, 0,...</code> contains two =0=s.</li>
+<li><code>...1, 0, 1, 1, 0,...</code> contains one <code>0</code>.</li>
 </ul></li>
-<li>The minimum number of zeroes in any window is `1`, so the minimum swaps required are `1`.</li>
+<li>The minimum number of zeroes in any window is <code>1</code>, so the minimum swaps required are <code>1</code>.</li>
 </ol>
 </div>
 </div>
 
-<div id="outline-container-org6d3b8a8" class="outline-2">
-<h2 id="org6d3b8a8">References</h2>
-<div class="outline-text-2" id="text-org6d3b8a8">
+<div id="outline-container-orge6e323b" class="outline-2">
+<h2 id="orge6e323b">References</h2>
+<div class="outline-text-2" id="text-orge6e323b">
 <ul class="org-ul">
 <li>Sliding Window Technique: <a href="https://en.wikipedia.org/wiki/Sliding_window_protocol">https://en.wikipedia.org/wiki/Sliding_window_protocol</a></li>
 <li>Circular Array Handling: <a href="https://www.geeksforgeeks.org/circular-array/">https://www.geeksforgeeks.org/circular-array/</a></li>
@@ -108,9 +108,74 @@ Consider the array `[1, 0, 1, 0, 1]`.
 </div>
 </div>
 
-<div id="outline-container-org82af391" class="outline-2">
-<h2 id="org82af391">Solution</h2>
-<div class="outline-text-2" id="text-org82af391">
+<div id="outline-container-orga34a236" class="outline-2">
+<h2 id="orga34a236">Solution</h2>
+<div class="outline-text-2" id="text-orga34a236">
+<p>
+<code>Roma</code>:
+</p>
+<div class="org-src-container">
+<pre class="src src-java">class Solution {
+    public int minSwaps(int[] nums) {
+        // Total number of 1s in the array
+        int totalOnes = count(nums, 1, 0, nums.length - 1);
+
+        // Number of 0s in the initial window of size `totalOnes`
+        int currentZeros = count(nums, 0, 0, totalOnes - 1);
+        int minZeros = currentZeros;
+
+        // Initialize window pointers
+        int left = 0;
+        int right = totalOnes;
+
+        // Slide the window across the array
+        for (; right &lt; nums.length; left++, right++) {
+            // Update the count of zeros when sliding the window to the right
+            if (nums[left] == 0) {
+                currentZeros--;
+            }
+            if (nums[right] == 0) {
+                currentZeros++;
+            }
+            // Keep track of the minimum number of zeros found in any window
+            minZeros = Math.min(minZeros, currentZeros);
+        }
+
+        // Continue sliding the window wrapping around the array
+        right = 0;
+        for (; left &lt; nums.length; left++, right++) {
+            // Update the count of zeros when the window wraps around the array
+            if (nums[left] == 0) {
+                currentZeros--;
+            }
+            if (nums[right] == 0) {
+                currentZeros++;
+            }
+            // Keep track of the minimum number of zeros found in any window
+            minZeros = Math.min(minZeros, currentZeros);
+        }
+
+        // The minimum number of swaps needed is equal to the minimum number of zeros found
+        return minZeros;
+    }
+
+    // Helper method to count the occurrences of a value `val` in a subarray `nums[start..end]`
+    int count(int[] nums, int val, int start, int end) {
+        int count = 0;
+        for (int i = start; i &lt;= end; i++) {
+            if (nums[i] == val) {
+                count++;
+            }
+        }
+        return count;
+    }
+}
+</pre>
+</div>
+
+<p>
+Does not pass leetcode tests. Not optimal:
+</p>
 <div class="org-src-container">
 <pre class="src src-js">/**
  * Calculate the minimum number of swaps required to group all 1's together in a circular array
