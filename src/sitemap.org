@@ -3,8 +3,6 @@
   - [[file:articles/foo.org][An example article]]
 - posts
   - [[file:posts/2024-07-27-PowerShell-Clipboard-Saver.org][PowerShell Clipboard Saver]]
-- elisp-excercise
-  - [[file:elisp-excercise/2024-07-28-T10-emacs-lisp-idioms.org][T10-emacs-lisp-idioms]]
 - leets
   - [[file:leets/0039-Combination-Sum.org][Combination Sum Problem Overview and Solution Plan]]
   - [[file:leets/0338-Counting-Bits.org][0338. Counting Bits]]
@@ -42,3 +40,5 @@
   - [[file:leets/1653-Minimum-Deletions-to-Make-String-Balanced.org][1653. Minimum Deletions to Make String Balanced]]
   - [[file:leets/1105-Filling-Bookcase-Shelves.org][1105. Filling Bookcase Shelves]]
   - [[file:leets/2134-Minimum-Swaps-to-Group-All-1s-Together-II.org][2134. Minimum Swaps to Group All 1s Together II]]
+- elisp-excercise
+  - [[file:elisp-excercise/2024-07-28-T10-emacs-lisp-idioms.org][T10-emacs-lisp-idioms]]

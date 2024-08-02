@@ -122,3 +122,126 @@ Item: 5
 #+end_example
 
 Other methods include `mapcar`, which applies a function to each element of a list and returns a new list with the results. For side effects only, use `mapc` instead. The `while` loop provides a more manual approach, giving full control over iteration conditions and index management.
+
+** #007 Iterate Over List Indexes and Values
+In Emacs Lisp, you can iterate over both the indexes and values of a list using a combination of =dotimes= and =nth=. This approach is useful when you need to access each element along with its index.
+
+#+begin_src emacs-lisp :results output
+(setq items '(10 20 30 40 50))
+
+(dotimes (i (length items))
+  (let ((x (nth i items)))
+    (print (format "Index %d: Value %d" i x))))
+#+end_src
+
+#+begin_example
+
+"Index 0: Value 10"
+
+"Index 1: Value 20"
+
+"Index 2: Value 30"
+
+"Index 3: Value 40"
+
+"Index 4: Value 50"
+#+end_example
+
+This example demonstrates iterating over a list =items=, retrieving each value using =nth=, and printing both the index and the value. The =dotimes= loop runs from 0 to the length of the list minus one, ensuring each element is processed.
+
+** #008 Create a Map (Associative Array)
+In Emacs Lisp, a map or associative array can be represented using a hash table. Hash tables allow for efficient storage and retrieval of key-value pairs. Here's an example of creating and using a hash table:
+
+#+begin_src emacs-lisp :results output
+(setq my-map (make-hash-table :test 'equal))
+
+(puthash "one" 1 my-map)
+(puthash "two" 2 my-map)
+(puthash "three" 3 my-map)
+
+(princ (format "Value for 'one': %d\n" (gethash "one" my-map)))
+(princ (format "Value for 'two': %d\n" (gethash "two" my-map)))
+(princ (format "Value for 'three': %d\n" (gethash "three" my-map)))
+#+end_src
+
+#+begin_example
+Value for 'one': 1
+Value for 'two': 2
+Value for 'three': 3
+#+end_example
+
+This example creates a hash table =my-map= using =make-hash-table= with =:test 'equal= for key comparison. The =puthash= function is used to store key-value pairs, and =gethash= retrieves values associated with specific keys. Finally, =print= is used to display the values to verify the contents of the hash table.
+
+** #009 Create a Binary Tree Data Structure
+In Emacs Lisp, a binary tree can be represented using an alist (association list) where each node contains a value and pointers to its left and right children. This setup is useful for hierarchical data structures.
+
+#+begin_src emacs-lisp :results output
+(defun make-node (value left right)
+  "Create a binary tree node with VALUE, LEFT child, and RIGHT child."
+  (list (cons 'value value) (cons 'left left) (cons 'right right)))
+
+(defun node-value (node)
+  "Get the value of NODE."
+  (cdr (assoc 'value node)))
+
+(defun node-left (node)
+  "Get the left child of NODE."
+  (cdr (assoc 'left node)))
+
+(defun node-right (node)
+  "Get the right child of NODE."
+  (cdr (assoc 'right node)))
+
+(setq root (make-node 10 (make-node 5 nil nil) (make-node 15 nil nil)))
+
+(princ (format "Root: %d\n" (node-value root)))
+(princ (format "Left Child: %d\n" (node-value (node-left root))))
+(princ (format "Right Child: %d\n" (node-value (node-right root))))
+#+end_src
+
+
+#+begin_example
+Root: 10
+Left Child: 5
+Right Child: 15
+#+end_example
+
+This example includes the following Emacs Lisp keywords and their functions:
+
+- =list=: Creates a list of elements. Used here to define a node structure.
+- =cons=: Constructs a cons cell, which is a pair of two values. In this context, it creates key-value pairs like ('value . value) for easy lookup.
+- =assoc=: Finds the first pair in an alist whose key matches the given key. Used to retrieve specific parts of the node structure.
+- =cdr=: Returns the second part of a cons cell. Here, it extracts the actual value associated with a key in a cons pair.
+- =princ=: Outputs a string to the standard output. It is used to print the formatted results.
+
+This structure efficiently represents a binary tree, with each node capable of storing data and references to its children, facilitating various operations like traversal and manipulation.
+
+** #010 Shuffle a List
+To shuffle a list in Emacs Lisp, you can implement a Fisher-Yates shuffle algorithm. This is an efficient way to randomize the elements of a list.
+
+#+begin_src emacs-lisp :results output
+(defun shuffle (list)
+  "Shuffle LIST randomly using the Fisher-Yates algorithm."
+  (let ((vector (vconcat list))
+        (len (length list)))
+    (dotimes (i len)
+      (let ((j (+ i (random (- len i)))))
+        (cl-rotatef (aref vector i) (aref vector j))))
+    (append vector nil)))
+
+(setq my-list '(1 2 3 4 5))
+(princ (shuffle my-list))
+#+end_src
+
+#+RESULTS:
+: (5 1 3 2 4)
+
+#+begin_example
+(3 5 1 4 2)
+#+end_example
+
+- ~vconcat~: Converts a list to a vector, which allows for element swapping.
+- ~dotimes~: Iterates a specified number of times, here used to traverse the list.
+- ~cl-rotatef~: Swaps the values of two places in the vector.
+
+This method ensures that each element has an equal probability of ending up in any position, providing an unbiased shuffle.
