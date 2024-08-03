@@ -1,0 +1,30 @@
+#+title: Installing Chicago95 Theme on Ubuntu MATE Release 22.04.4 LTS (Jammy Jellyfish) 64-bit
+#+subtitle: docs
+#+date: <2024-08-02>
+#+language: en
+
+Theme repository: [[https://github.com/grassmunk/Chicago95][Chicago95 GitHub Repository]]
+
+** Introduction
+I've been using Ubuntu MATE for a while now, and recently I felt the urge to tweak the appearance a bit. After exploring a few options, I decided to install the Chicago95 theme. This theme brings back the classic look of Windows 95, which I thought would be a fun and nostalgic way to customize my desktop environment.
+
+** Installation
+ I followed the auto installation instructions provided in the Chicago95 GitHub repository, and it worked really well. For detailed steps, refer to the [installation guide](https://github.com/grassmunk/Chicago95/blob/master/INSTALL.md#install_auto).
+
+As stated in the guide:
+
+#+begin_quote
+Chicago 95 comes with an automated installer. Run the ~installer.py~ python script to walk through a guided install of Chicago 95.
+#+end_quote
+
+The only issue I encountered was a missing module error for ~import gi~. To resolve this, I installed the necessary package using:
+
+#+begin_src
+   pip install PyGObject
+#+end_src
+
+I found the solution in this Stack Overflow answer: [[https://stackoverflow.com/a/71347337][Python 3: Installing gi package with pip]].
+
+Looks awesome so far:
+
+[[./img/2024-08-02 23-09-38.png]]
