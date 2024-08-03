@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2024-08-03 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Insert images with org download package</title>
+<meta name="author" content="d)zharii" />
+<meta name="generator" content="Org Mode" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/t.css"/>
+</head>
+<body>
+<nav><a href="/" tabindex="0">&larrhk; Back to Index</a></nav><div id="preamble" class="status">
+Published 2024-08-03
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">Insert images with org download package</h1>
+<p class="subtitle" role="doc-subtitle">docs, emacs</p>
+</header><nav id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgc2d66a0">Org mode package configuration</a></li>
+<li><a href="#org3417b62">Explanation</a>
+<ul>
+<li><a href="#orga8366fe">This is a test!</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</nav>
+<p>
+In this post, we will explore how to enhance your Emacs experience by using the <code>org-download</code> package. This package, available on <a href="https://github.com/abo-abo/org-download">GitHub abo-abo/org-download</a>, allows for seamless insertion and management of images within Org mode documents, streamlining the process of including visual content directly from your clipboard. We will cover the installation, configuration, and usage of this powerful tool, as well as provide insights into customization and practical use cases.
+</p>
+
+<div id="outline-container-orgc2d66a0" class="outline-2">
+<h2 id="orgc2d66a0">Org mode package configuration</h2>
+<div class="outline-text-2" id="text-orgc2d66a0">
+<p>
+This section contains configurations to enhance Org mode functionality, including handling image pasting and storage.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">;; Install and configure org-download
+(use-package org-download
+  :ensure t
+  :config
+  (setq org-download-method 'directory)
+  (setq org-download-image-dir (concat (file-name-sans-extension (buffer-file-name)) ".assets"))
+  (setq org-download-image-org-width 600)
+  (setq org-download-link-format "[[file:%s]]\n"
+        org-download-abbreviate-filename-function #'file-relative-name)
+  (setq org-download-link-format-function #'org-download-link-format-function-default))
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org3417b62" class="outline-2">
+<h2 id="org3417b62">Explanation</h2>
+<div class="outline-text-2" id="text-org3417b62">
+<p>
+This setup includes the installation and configuration of the <code>org-download</code> package, which facilitates the pasting of images from the clipboard directly into Org mode documents. The package is set up to save images in a directory named after the current Org file, with <code>.assets</code> appended. The images are linked in the document with a specified width for consistent display. The links to the images use relative paths, ensuring portability across different environments.
+</p>
+
+<p>
+The <code>org-download</code> package provides several additional options for customization:
+</p>
+<ul class="org-ul">
+<li><code>org-download-screenshot-method</code>: Define a custom command to take screenshots, useful if your environment requires specific tools for capturing screenshots.</li>
+<li><code>org-download-timestamp</code>: Automatically add timestamps to image filenames to avoid overwriting and for better organization.</li>
+<li><code>org-download-heading-lvl</code>: Specify the heading level under which the images should be placed, helping in organizing images under specific sections.</li>
+</ul>
+
+<p>
+For more information on this setup, including further customizations and troubleshooting, refer to the discussion on Emacs Stack Exchange: <a href="https://emacs.stackexchange.com/questions/71100/pasting-images-from-clipboard-into-orgmode">Pasting images from clipboard into Org mode</a>.
+</p>
+
+<p>
+In my configuration, I have specifically used the <code>org-download-clipboard</code> command to paste images from the clipboard into my documents. This functionality significantly streamlines the workflow of inserting and managing images within Org documents, enhancing both the visual appeal and organizational structure of my notes and projects.
+</p>
+</div>
+
+<div id="outline-container-orga8366fe" class="outline-3">
+<h3 id="orga8366fe">This is a test!</h3>
+<div class="outline-text-3" id="text-orga8366fe">
+
+<figure id="orgf773c16">
+<img src="img/2024-08-03_14-55-20_screenshot.png" alt="2024-08-03_14-55-20_screenshot.png">
+
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+&copy; d)zharii. <a href="/sitemap.html">sitemap</a>
+</div>
+</body>
+</html>

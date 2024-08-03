@@ -1,0 +1,40 @@
+#+title: Insert images with org download package
+#+subtitle: docs, emacs
+#+date: <2024-08-03>
+#+language: en
+
+
+In this post, we will explore how to enhance your Emacs experience by using the ~org-download~ package. This package, available on [[https://github.com/abo-abo/org-download][GitHub abo-abo/org-download]], allows for seamless insertion and management of images within Org mode documents, streamlining the process of including visual content directly from your clipboard. We will cover the installation, configuration, and usage of this powerful tool, as well as provide insights into customization and practical use cases.
+
+* Org mode package configuration
+This section contains configurations to enhance Org mode functionality, including handling image pasting and storage.
+
+#+BEGIN_SRC emacs-lisp
+;; Install and configure org-download
+(use-package org-download
+  :ensure t
+  :config
+  (setq org-download-method 'directory)
+  (setq org-download-image-dir (concat (file-name-sans-extension (buffer-file-name)) ".assets"))
+  (setq org-download-image-org-width 600)
+  (setq org-download-link-format "[[file:%s]]\n"
+        org-download-abbreviate-filename-function #'file-relative-name)
+  (setq org-download-link-format-function #'org-download-link-format-function-default))
+#+END_SRC
+
+* Explanation
+This setup includes the installation and configuration of the ~org-download~ package, which facilitates the pasting of images from the clipboard directly into Org mode documents. The package is set up to save images in a directory named after the current Org file, with ~.assets~ appended. The images are linked in the document with a specified width for consistent display. The links to the images use relative paths, ensuring portability across different environments.
+
+The ~org-download~ package provides several additional options for customization:
+- ~org-download-screenshot-method~: Define a custom command to take screenshots, useful if your environment requires specific tools for capturing screenshots.
+- ~org-download-timestamp~: Automatically add timestamps to image filenames to avoid overwriting and for better organization.
+- ~org-download-heading-lvl~: Specify the heading level under which the images should be placed, helping in organizing images under specific sections.
+
+For more information on this setup, including further customizations and troubleshooting, refer to the discussion on Emacs Stack Exchange: [[https://emacs.stackexchange.com/questions/71100/pasting-images-from-clipboard-into-orgmode][Pasting images from clipboard into Org mode]].
+
+In my configuration, I have specifically used the ~org-download-clipboard~ command to paste images from the clipboard into my documents. This functionality significantly streamlines the workflow of inserting and managing images within Org documents, enhancing both the visual appeal and organizational structure of my notes and projects.
+
+** This is a test!
+#+DOWNLOADED: screenshot @ 2024-08-03 14:55:20
+#+attr_org: :width 1600px
+[[file:img/2024-08-03_14-55-20_screenshot.png]]
