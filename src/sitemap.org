@@ -1,8 +1,6 @@
 - [[file:thankyou.org][thankyou]]
 - articles
   - [[file:articles/foo.org][An example article]]
-- posts
-  - [[file:posts/2024-07-27-PowerShell-Clipboard-Saver.org][PowerShell Clipboard Saver]]
 - elisp-excercise
   - [[file:elisp-excercise/2024-07-28-T10-emacs-lisp-idioms.org][T10-emacs-lisp-idioms]]
 - leets
@@ -25,8 +23,8 @@
   - [[file:leets/0165-Compare-Version-Numbers.org][0165. Compare Version Numbers]]
   - [[file:leets/1302-Deepest-Leaves-Sum.org][1302. Deepest Leaves Sum]]
   - [[file:leets/0015-3Sum.org][0015. 3Sum]]
-  - [[file:leets/0543-Diameter-of-Binary-Tree.org][543. Diameter of Binary Tree]]
   - [[file:leets/0104-Maximum-Depth-of-Binary-Tree.org][0104. Maximum Depth of Binary Tree]]
+  - [[file:leets/0543-Diameter-of-Binary-Tree.org][543. Diameter of Binary Tree]]
   - [[file:leets/0207-Course-Schedule.org][0207. Course Schedule]]
   - [[file:leets/1717-Maximum-Score-From-Removing-Substrings.org][1717. Maximum Score From Removing Substrings]]
   - [[file:leets/1190-Reverse-Substrings-Between-Each-Pair-of-Parentheses.org][1190. Reverse Substrings Between Each Pair of Parentheses]]
@@ -42,3 +40,6 @@
   - [[file:leets/1653-Minimum-Deletions-to-Make-String-Balanced.org][1653. Minimum Deletions to Make String Balanced]]
   - [[file:leets/1105-Filling-Bookcase-Shelves.org][1105. Filling Bookcase Shelves]]
   - [[file:leets/2134-Minimum-Swaps-to-Group-All-1s-Together-II.org][2134. Minimum Swaps to Group All 1s Together II]]
+- posts
+  - [[file:posts/2024-07-27-PowerShell-Clipboard-Saver.org][PowerShell Clipboard Saver]]
+  - [[file:posts/2024-08-02-Installing_Chicago95_Theme_on_Ubuntu_MATE.org][Installing Chicago95 Theme on Ubuntu MATE Release 22.04.4 LTS (Jammy Jellyfish) 64-bit]]

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2024-08-02 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Installing Chicago95 Theme on Ubuntu MATE Release 22.04.4 LTS (Jammy Jellyfish) 64-bit</title>
+<meta name="author" content="d)zharii" />
+<meta name="generator" content="Org Mode" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/t.css"/>
+</head>
+<body>
+<nav><a href="/" tabindex="0">&larrhk; Back to Index</a></nav><div id="preamble" class="status">
+Published 2024-08-02
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">Installing Chicago95 Theme on Ubuntu MATE Release 22.04.4 LTS (Jammy Jellyfish) 64-bit</h1>
+<p class="subtitle" role="doc-subtitle">docs</p>
+</header><nav id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org403e296">Introduction</a></li>
+<li><a href="#org0fa0fba">Installation</a></li>
+</ul>
+</div>
+</nav>
+<p>
+Theme repository: <a href="https://github.com/grassmunk/Chicago95">Chicago95 GitHub Repository</a>
+</p>
+
+<div id="outline-container-org403e296" class="outline-2">
+<h2 id="org403e296">Introduction</h2>
+<div class="outline-text-2" id="text-org403e296">
+<p>
+I've been using Ubuntu MATE for a while now, and recently I felt the urge to tweak the appearance a bit. After exploring a few options, I decided to install the Chicago95 theme. This theme brings back the classic look of Windows 95, which I thought would be a fun and nostalgic way to customize my desktop environment.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0fa0fba" class="outline-2">
+<h2 id="org0fa0fba">Installation</h2>
+<div class="outline-text-2" id="text-org0fa0fba">
+<p>
+I followed the auto installation instructions provided in the Chicago95 GitHub repository, and it worked really well. For detailed steps, refer to the [installation guide](<a href="https://github.com/grassmunk/Chicago95/blob/master/INSTALL.md#install_auto">https://github.com/grassmunk/Chicago95/blob/master/INSTALL.md#install_auto</a>).
+</p>
+
+<p>
+As stated in the guide:
+</p>
+
+<blockquote>
+<p>
+Chicago 95 comes with an automated installer. Run the <code>installer.py</code> python script to walk through a guided install of Chicago 95.
+</p>
+</blockquote>
+
+<p>
+The only issue I encountered was a missing module error for <code>import gi</code>. To resolve this, I installed the necessary package using:
+</p>
+
+<pre class="example">
+pip install PyGObject
+</pre>
+
+<p>
+I found the solution in this Stack Overflow answer: <a href="https://stackoverflow.com/a/71347337">Python 3: Installing gi package with pip</a>.
+</p>
+
+<p>
+Looks awesome so far:
+</p>
+
+
+<figure id="org9cec9a5">
+<img src="./img/2024-08-02 23-09-38.png" alt="2024-08-02 23-09-38.png">
+
+</figure>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+&copy; d)zharii. <a href="/sitemap.html">sitemap</a>
+</div>
+</body>
+</html>
