@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2024-08-04 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>2024-08-04 Cross-Platform Clipboard Dithering: A Journey with PowerShell and Bash</title>
+<meta name="author" content="d)zharii" />
+<meta name="generator" content="Org Mode" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/t.css"/>
+</head>
+<body>
+<nav><a href="/" tabindex="0">&larrhk; Back to Index</a></nav><div id="preamble" class="status">
+Published 2024-08-04
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">2024-08-04 Cross-Platform Clipboard Dithering: A Journey with PowerShell and Bash</h1>
+<p class="subtitle" role="doc-subtitle">docs</p>
+</header><nav id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org1e2ffdf">Introduction</a></li>
+<li><a href="#orgc9baa52">Using Custom Scripts with Aww Tools</a></li>
+<li><a href="#org83e0fbf">Dithering from Clipboard on Windows</a></li>
+<li><a href="#orgb065494">Dithering from Clipboard on Linux</a></li>
+<li><a href="#orgba99db8">Conclusion</a></li>
+</ul>
+</div>
+</nav>
+
+<div id="outline-container-org1e2ffdf" class="outline-2">
+<h2 id="org1e2ffdf">Introduction</h2>
+<div class="outline-text-2" id="text-org1e2ffdf">
+<p>
+I've been publishing internet link dumps on my other blog, which I'll link <a href="https://blog.zharii.com/blog">here</a>. These are collections of interesting links I find and publish either monthly or bimonthly. I realized that preserving screenshots along with descriptions helps in future searches. Often, I come across useful information that isn't immediately needed, so I store the link and a screenshot. When the information is needed later, I can easily find it in either the link dump post or the organized, categorized wiki pages on the same blog. However, storing these images in PNG format takes up a lot of space as they can quickly accumulate to several megabytes.
+</p>
+
+<p>
+To address this, I decided to use ImageMagick to dither the images to 16 colors. This process not only adds a unique style but also significantly reduces the file size. You can find more about ImageMagick <a href="https://imagemagick.org">here</a>.
+</p>
+
+<p>
+I use Typora for publishing, which you can find <a href="https://typora.io">here</a>. After taking a screenshot, I run a custom script from Aww Tools to convert and replace the original image in the clipboard with the dithered version. I use Aww Tools' run feature, AWW-Run, which allows the execution of custom scripts. You can explore Aww Tools <a href="https://awwtools.com">here</a>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc9baa52" class="outline-2">
+<h2 id="orgc9baa52">Using Custom Scripts with Aww Tools</h2>
+<div class="outline-text-2" id="text-orgc9baa52">
+<p>
+I'm using custom scripts inside the .aww-tools folder to automate my workflow. These scripts are personal but are integrated with Aww Tools, specifically with AWW-Run. For instance, on Windows, CMD scripts (file extension .cmd) are prioritized, while on Linux, shell scripts (.sh) take precedence. If neither is available, AWW-Run defaults to PowerShell, which is cross-platform but has limitations.
+</p>
+
+<p>
+For example, some libraries available on Windows are implemented differently on Linux, meaning I cannot use common API calls for certain cases. As a result, I implemented the dithering process as separate PowerShell and Bash scripts to ensure compatibility across platforms. PowerShell on Windows can leverage libraries like Windows Forms for clipboard and image manipulation, but on Linux, these features are limited. Despite attempts to create a universal PowerShell script, I found that specific implementations were necessary for each platform to maintain functionality and efficiency.
+</p>
+
+<p>
+This adaptive approach allows me to maintain a consistent workflow regardless of the operating system, ensuring that my tasks are automated efficiently with the appropriate tools and scripts for each environment.
+</p>
+
+<p>
+For more details and access to these tools, visit the .aww-tools GitHub repository <a href="https://github.com/dzharii/dot-awwtools">here</a>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org83e0fbf" class="outline-2">
+<h2 id="org83e0fbf">Dithering from Clipboard on Windows</h2>
+<div class="outline-text-2" id="text-org83e0fbf">
+<p>
+The script located at `.awwtools/aww-scripts/image-dith.ps1` is designed to dither an image directly from the clipboard on a Windows system. Here's an overview and annotation of the script:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-powershell">$ErrorActionPreference = "Stop"
+
+# Load the Windows Forms library to access clipboard functionality
+Add-Type -AssemblyName System.Windows.Forms
+$clipboard = [System.Windows.Forms.Clipboard]::GetImage()
+
+if ($null -ne $clipboard) {
+    # Define temporary file paths for the original and dithered images
+    $tempFile = [System.IO.Path]::Combine([System.IO.Path]::GetTempPath(), "clipboard.png")
+    $ditheredFile = [System.IO.Path]::Combine([System.IO.Path]::GetTempPath(), "dithered.png")
+
+    # Save the clipboard image to a temporary PNG file
+    $clipboard.Save($tempFile, [System.Drawing.Imaging.ImageFormat]::Png)
+
+    # Apply dithering using ImageMagick with Riemersma dithering and 16 colors
+    &amp; magick convert "$tempFile" -dither Riemersma -colors 16 -mattecolor "#704214" -frame 10x10 "$ditheredFile"
+
+    # Load the dithered image and set it back to the clipboard
+    $ditheredImage = [System.Drawing.Image]::FromFile($ditheredFile)
+    [System.Windows.Forms.Clipboard]::SetImage($ditheredImage)
+
+    # Dispose of the image object to free resources
+    $ditheredImage.Dispose()
+
+    # Optionally remove temporary files
+    Remove-Item $tempFile
+    Remove-Item $ditheredFile
+}
+else {
+    Write-Host "No image data found on the clipboard."
+}
+</pre>
+</div>
+
+<p>
+<b><b>Script Annotations:</b></b>
+</p>
+<ul class="org-ul">
+<li><code>$ErrorActionPreference = "Stop"</code>: Ensures the script stops execution on errors.</li>
+<li><code>Add-Type -AssemblyName System.Windows.Forms</code>: Loads Windows Forms to access the clipboard.</li>
+<li><code>GetImage()</code>: Retrieves the image from the clipboard.</li>
+<li><code>magick convert</code>: Invokes ImageMagick to apply the dithering effect, reducing the image to 16 colors.</li>
+<li>The script handles resource management by disposing of the image and optionally deleting temporary files.</li>
+</ul>
+
+<p>
+<b><b>Additional References:</b></b>
+</p>
+<ul class="org-ul">
+<li>For more on ImageMagick's dithering options, see the <a href="https://imagemagick.org/script/command-line-options.php#dither">ImageMagick documentation</a>.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgb065494" class="outline-2">
+<h2 id="orgb065494">Dithering from Clipboard on Linux</h2>
+<div class="outline-text-2" id="text-orgb065494">
+<p>
+The script located at `.awwtools/aww-scripts/image-dith.sh` provides functionality for dithering an image from the clipboard on Linux systems. Below is the script and a breakdown of its operation:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">#!/bin/bash
+
+set -e  # Exit immediately if a command exits with a non-zero status
+set -o pipefail  # The return value of a pipeline is the status of the last command to exit with a non-zero status
+
+# Check if xclip is installed
+if ! command -v xclip &amp;&gt; /dev/null; then
+    echo "xclip is not installed. Please install it using your package manager."
+    exit 1
+fi
+
+echo "xclip is installed. Proceeding..."
+
+# Define the output paths
+rawImageOut="$HOME/tmp/clipboard.png"
+dithImageOut="$HOME/tmp/dithered.png"
+
+echo "rawImageOut='$rawImageOut'"
+echo "dithImageOut='$dithImageOut'"
+
+# Ensure the output directory exists
+mkdir -p "$(dirname "$rawImageOut")"
+
+# Copy the clipboard content to a temporary file
+echo "Saving clipboard content to $rawImageOut"
+xclip -selection clipboard -t image/png -o &gt; "$rawImageOut"
+
+# Check if the clipboard content was saved correctly
+if [ ! -s "$rawImageOut" ]; then
+    echo "No image data found on the clipboard or failed to save the clipboard content."
+    exit 1
+fi
+
+echo "Image saved successfully. File path: $rawImageOut"
+
+# Use ImageMagick to dither and manipulate the image
+echo "Executing ImageMagick command"
+convert "$rawImageOut" -dither Riemersma -colors 16 -mattecolor "#704214" -frame 10x10 "$dithImageOut"
+
+# Check if the dithered image was created successfully
+if [ ! -f "$dithImageOut" ]; then
+    echo "Failed to create dithered image. The file $dithImageOut was not created."
+    exit 1
+fi
+
+echo "Dithered image created successfully. File path: $dithImageOut"
+
+# Copy the dithered image back to the clipboard
+echo "Copying dithered image to clipboard"
+xclip -selection clipboard -t image/png -i &lt; "$dithImageOut"
+echo "Dithered image copied to clipboard successfully."
+
+# Optionally delete temp files
+echo "Removing temporary files."
+rm -f "$rawImageOut" "$dithImageOut"
+
+echo "Script execution completed."
+exit 0
+</pre>
+</div>
+
+<p>
+<b><b>Script Annotations:</b></b>
+</p>
+<ul class="org-ul">
+<li><code>set -e</code> and <code>set -o pipefail</code>: These settings ensure that the script exits if any command fails and correctly propagates errors through pipelines.</li>
+<li><code>command -v xclip</code>: Checks for the presence of xclip, a tool for clipboard operations.</li>
+<li><code>xclip -selection clipboard -t image/png -o</code>: Extracts the image from the clipboard and saves it.</li>
+<li><code>convert</code>: Uses ImageMagick to dither the image, reducing colors and applying additional effects.</li>
+</ul>
+
+<p>
+<b><b>Additional References:</b></b>
+</p>
+<ul class="org-ul">
+<li>For further reading on bash scripting, refer to the <a href="https://www.gnu.org/software/bash/manual/">Bash Reference Manual</a>.</li>
+<li>More about xclip and its usage can be found <a href="https://github.com/astrand/xclip">here</a>.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgba99db8" class="outline-2">
+<h2 id="orgba99db8">Conclusion</h2>
+<div class="outline-text-2" id="text-orgba99db8">
+<p>
+This was my third attempt to implement dithering from the clipboard on Linux, and I'm pleased to finally succeed. Despite spending nearly half a day consulting with ChatGPT, I couldn't create a universal PowerShell script that works seamlessly on both Linux and Windows due to differences in available tools and APIs. Specifically, XClip is a Linux-only tool, while on Windows, I'm using Windows Forms API for clipboard management. These differences necessitated using different approaches for each platform.
+</p>
+
+<p>
+I tried various methods, including redirecting binary output to a PNG file using different techniques, but none were successful. The final shell script, native to Linux, proved to be the solution. While PowerShell has great potential on Linux, not all functionalities are fully implemented, making cross-platform scripting challenging.
+</p>
+
+<p>
+I'm grateful for the maturity of both Windows and Linux systems, which allow me to leverage tools created by others for automation. A big thanks to the contributors behind PowerShell, Bash, XClip,
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+&copy; d)zharii. <a href="/sitemap.html">sitemap</a>
+</div>
+</body>
+</html>
