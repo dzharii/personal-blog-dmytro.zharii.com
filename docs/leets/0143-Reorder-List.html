@@ -22,26 +22,26 @@ Published 2024-05-21
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org1a34161">Problem Overview</a></li>
-<li><a href="#orge73e0b5">Solution Outline</a></li>
-<li><a href="#orgd5ce99a">Plan</a></li>
-<li><a href="#orgb3153f0">Initial Setup and Test Cases</a></li>
+<li><a href="#org47d49f8">Problem Overview</a></li>
+<li><a href="#orgcf14cbf">Solution Outline</a></li>
+<li><a href="#org4a8140a">Plan</a></li>
+<li><a href="#org37a5aa3">Initial Setup and Test Cases</a></li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-org1a34161" class="outline-2">
-<h2 id="org1a34161">Problem Overview</h2>
-<div class="outline-text-2" id="text-org1a34161">
+<div id="outline-container-org47d49f8" class="outline-2">
+<h2 id="org47d49f8">Problem Overview</h2>
+<div class="outline-text-2" id="text-org47d49f8">
 <p>
 The problem "Reorder List" requires us to reorder a singly linked list such that the nodes are arranged in a specific pattern. Specifically, given a list `L0 → L1 → … → Ln-1 → Ln`, we need to transform it to `L0 → Ln → L1 → Ln-1 → L2 → Ln-2 → …`.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orge73e0b5" class="outline-2">
-<h2 id="orge73e0b5">Solution Outline</h2>
-<div class="outline-text-2" id="text-orge73e0b5">
+<div id="outline-container-orgcf14cbf" class="outline-2">
+<h2 id="orgcf14cbf">Solution Outline</h2>
+<div class="outline-text-2" id="text-orgcf14cbf">
 <ul class="org-ul">
 <li><b><b>Preferred Structure:</b></b> Linked List.</li>
 <li><b><b>Brute Force vs Optimal Solution:</b></b> The brute force approach would involve iterating through the list multiple times to rearrange the nodes. The optimal solution involves using a two-pointer technique and list reversal.</li>
@@ -55,9 +55,9 @@ The problem "Reorder List" requires us to reorder a singly linked list such that
 </div>
 </div>
 
-<div id="outline-container-orgd5ce99a" class="outline-2">
-<h2 id="orgd5ce99a">Plan</h2>
-<div class="outline-text-2" id="text-orgd5ce99a">
+<div id="outline-container-org4a8140a" class="outline-2">
+<h2 id="org4a8140a">Plan</h2>
+<div class="outline-text-2" id="text-org4a8140a">
 <ol class="org-ol">
 <li><b><b>Find the Middle:</b></b> Use the slow and fast pointer technique to find the middle node of the linked list.</li>
 <li><b><b>Reverse the Second Half:</b></b> Reverse the second half of the linked list.</li>
@@ -66,9 +66,9 @@ The problem "Reorder List" requires us to reorder a singly linked list such that
 </div>
 </div>
 
-<div id="outline-container-orgb3153f0" class="outline-2">
-<h2 id="orgb3153f0">Initial Setup and Test Cases</h2>
-<div class="outline-text-2" id="text-orgb3153f0">
+<div id="outline-container-org37a5aa3" class="outline-2">
+<h2 id="org37a5aa3">Initial Setup and Test Cases</h2>
+<div class="outline-text-2" id="text-org37a5aa3">
 <div class="org-src-container">
 <pre class="src src-js">/**
  * Definition for singly-linked list.
