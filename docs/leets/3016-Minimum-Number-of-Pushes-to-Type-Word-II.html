@@ -1,0 +1,117 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2024-08-06 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>3016. Minimum Number of Pushes to Type Word II</title>
+<meta name="author" content="d)zharii" />
+<meta name="generator" content="Org Mode" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/t.css"/>
+</head>
+<body>
+<nav><a href="/" tabindex="0">&larrhk; Back to Index</a></nav><div id="preamble" class="status">
+Published 2024-08-06
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">3016. Minimum Number of Pushes to Type Word II</h1>
+<p class="subtitle" role="doc-subtitle">leetcode</p>
+</header><nav id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgcd60309">Problem</a></li>
+<li><a href="#org595da7f">Solution Description</a></li>
+<li><a href="#org63a5987">Example</a></li>
+<li><a href="#org0cd593a">Solution</a></li>
+</ul>
+</div>
+</nav>
+
+<div id="outline-container-orgcd60309" class="outline-2">
+<h2 id="orgcd60309">Problem</h2>
+<div class="outline-text-2" id="text-orgcd60309">
+<p>
+You are given a string `word` consisting of lowercase English letters. A telephone keypad has keys numbered 2 to 9, which can be mapped to distinct collections of these letters. Each key can be remapped to any number of letters, but each letter must be assigned to exactly one key. The task is to remap the keys in such a way that the minimum number of pushes is required to type the string `word`. A single push types the first letter on a key, two pushes type the second letter, and so on.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org595da7f" class="outline-2">
+<h2 id="org595da7f">Solution Description</h2>
+<div class="outline-text-2" id="text-org595da7f">
+<p>
+To implement this solution, we need to:
+</p>
+<ol class="org-ol">
+<li>Calculate the frequency of each letter in the word.</li>
+<li>Sort the letters based on their frequencies in descending order.</li>
+<li>Assign letters to the keys starting from key 2 to key 9, with the most frequent letters assigned first. This will minimize the number of key pushes required, as the most frequent letters will require fewer pushes.</li>
+</ol>
+
+<p>
+Each letter on the key can be pressed `i` times (where `i` is the 1-based index of the letter in the list of letters assigned to a key). We sum the products of the frequency of each letter and the number of pushes required.
+</p>
+
+<p>
+This approach ensures that the letters that appear most frequently in the word are assigned to the front of the key sequences, minimizing the overall number of key presses.
+</p>
+
+<p>
+The time complexity is O(n + m log m) where n is the length of the word and m is the number of distinct letters, due to counting frequencies and sorting the letters by frequency. The space complexity is O(m) for storing the frequency counts.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org63a5987" class="outline-2">
+<h2 id="org63a5987">Example</h2>
+<div class="outline-text-2" id="text-org63a5987">
+<p>
+For the word "aabbccddeeffgghhiiiiii", we first count the frequency of each letter: {a: 2, b: 2, c: 2, d: 2, e: 2, f: 2, g: 2, h: 2, i: 6}. After sorting by frequency, we get ['i', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']. The optimal mapping will assign 'i' to the first position of the first key, 'a' to the first position of the second key, and so on.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0cd593a" class="outline-2">
+<h2 id="org0cd593a">Solution</h2>
+<div class="outline-text-2" id="text-org0cd593a">
+<div class="org-src-container">
+<pre class="src src-js">/**
+ * Calculates the minimum number of pushes to type the word using a remapped keypad.
+ * @param {string} word - The word to type.
+ * @return {number} - The minimum number of pushes required.
+ */
+function minimumPushes(word) {
+    const log = typeof NestedInteger !== 'undefined' ? () =&gt; {} : console.log;
+    const table = typeof NestedInteger !== 'undefined' ? () =&gt; {} : console.table;
+
+    totalPushes = 0;
+
+    return totalPushes;
+}
+
+// Test cases
+const testCases = [
+    { word: "abcde", expected: 5 },
+    { word: "xyzxyzxyzxyz", expected: 12 },
+    { word: "aabbccddeeffgghhiiiiii", expected: 24 },
+    { word: "zzzzzzzzzzzzzzzzzzzzzzzzzz", expected: 26 },
+    { word: "aaaaaaaaaaaaaaaaaaaaaaaaaa", expected: 26 },
+];
+
+testCases.forEach((test, index) =&gt; {
+    const result = minimumPushes(test.word);
+    console.log(`Test Case ${index + 1}: ${result === test.expected ? 'Passed' : 'Failed'} (Expected: ${test.expected}, Got: ${result})`);
+});
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+&copy; d)zharii. <a href="/sitemap.html">sitemap</a>
+</div>
+</body>
+</html>

@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2024-08-04 -->
+<!-- 2024-08-06 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>1482. Minimum Number of Days to Make m Bouquets</title>
@@ -22,24 +22,24 @@ Published 2024-06-19
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgd03087a">Problem:</a></li>
-<li><a href="#orge2c7d84">Solution Description:</a>
+<li><a href="#orgbfe9576">Problem:</a></li>
+<li><a href="#org6fa9195">Solution Description:</a>
 <ul>
-<li><a href="#org2d00832">Steps: **</a></li>
-<li><a href="#orge19c91b">Example:</a></li>
-<li><a href="#org56bcb36">Execution:</a></li>
-<li><a href="#orgd0d7ba5">Time Complexity:</a></li>
-<li><a href="#org5cfb7ca">Space Complexity:</a></li>
-<li><a href="#orge55f4d3">Setup:</a></li>
+<li><a href="#org9ef4ec3">Steps: **</a></li>
+<li><a href="#org4abd0cb">Example:</a></li>
+<li><a href="#org07c6c1c">Execution:</a></li>
+<li><a href="#org5a5ad92">Time Complexity:</a></li>
+<li><a href="#org867355e">Space Complexity:</a></li>
+<li><a href="#org0a20f4c">Setup:</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-orgd03087a" class="outline-2">
-<h2 id="orgd03087a">Problem:</h2>
-<div class="outline-text-2" id="text-orgd03087a">
+<div id="outline-container-orgbfe9576" class="outline-2">
+<h2 id="orgbfe9576">Problem:</h2>
+<div class="outline-text-2" id="text-orgbfe9576">
 <p>
 Given `m` bouquets, each with `k` adjacent flowers, and an array `bloomDay` of `n` integers representing the days on which each flower blooms, determine the minimum number of days required to make the bouquets. If it's not possible to make the bouquets, return -1.
 </p>
@@ -55,17 +55,17 @@ Given `m` bouquets, each with `k` adjacent flowers, and an array `bloomDay` of `
 </div>
 </div>
 
-<div id="outline-container-orge2c7d84" class="outline-2">
-<h2 id="orge2c7d84">Solution Description:</h2>
-<div class="outline-text-2" id="text-orge2c7d84">
+<div id="outline-container-org6fa9195" class="outline-2">
+<h2 id="org6fa9195">Solution Description:</h2>
+<div class="outline-text-2" id="text-org6fa9195">
 <p>
 To implement the solution, we need to use a binary search combined with a helper function to check if it's possible to create the required bouquets in a given number of days. Binary search will help minimize the number of days efficiently.
 </p>
 </div>
 
-<div id="outline-container-org2d00832" class="outline-3">
-<h3 id="org2d00832">Steps: **</h3>
-<div class="outline-text-3" id="text-org2d00832">
+<div id="outline-container-org9ef4ec3" class="outline-3">
+<h3 id="org9ef4ec3">Steps: **</h3>
+<div class="outline-text-3" id="text-org9ef4ec3">
 <ol class="org-ol">
 <li><b><b>Binary Search Setup</b></b>: 
 <ul class="org-ul">
@@ -84,18 +84,18 @@ To implement the solution, we need to use a binary search combined with a helper
 </div>
 </div>
 
-<div id="outline-container-orge19c91b" class="outline-3">
-<h3 id="orge19c91b">Example:</h3>
-<div class="outline-text-3" id="text-orge19c91b">
+<div id="outline-container-org4abd0cb" class="outline-3">
+<h3 id="org4abd0cb">Example:</h3>
+<div class="outline-text-3" id="text-org4abd0cb">
 <p>
 Consider `bloomDay = [1, 10, 3, 10, 2]`, `m = 3`, `k = 1`.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org56bcb36" class="outline-3">
-<h3 id="org56bcb36">Execution:</h3>
-<div class="outline-text-3" id="text-org56bcb36">
+<div id="outline-container-org07c6c1c" class="outline-3">
+<h3 id="org07c6c1c">Execution:</h3>
+<div class="outline-text-3" id="text-org07c6c1c">
 <ol class="org-ol">
 <li><b><b>Initialization</b></b>:
 <ul class="org-ul">
@@ -115,9 +115,9 @@ Consider `bloomDay = [1, 10, 3, 10, 2]`, `m = 3`, `k = 1`.
 </div>
 </div>
 
-<div id="outline-container-orgd0d7ba5" class="outline-3">
-<h3 id="orgd0d7ba5">Time Complexity:</h3>
-<div class="outline-text-3" id="text-orgd0d7ba5">
+<div id="outline-container-org5a5ad92" class="outline-3">
+<h3 id="org5a5ad92">Time Complexity:</h3>
+<div class="outline-text-3" id="text-org5a5ad92">
 <ul class="org-ul">
 <li><b><b>Binary Search</b></b>: O(log(max(bloomDay)))</li>
 <li><b><b>Helper Function</b></b>: O(n) where n is the length of `bloomDay`.</li>
@@ -126,18 +126,18 @@ Consider `bloomDay = [1, 10, 3, 10, 2]`, `m = 3`, `k = 1`.
 </div>
 </div>
 
-<div id="outline-container-org5cfb7ca" class="outline-3">
-<h3 id="org5cfb7ca">Space Complexity:</h3>
-<div class="outline-text-3" id="text-org5cfb7ca">
+<div id="outline-container-org867355e" class="outline-3">
+<h3 id="org867355e">Space Complexity:</h3>
+<div class="outline-text-3" id="text-org867355e">
 <ul class="org-ul">
 <li>Space complexity is O(1) as we only use a few extra variables for computation.</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orge55f4d3" class="outline-3">
-<h3 id="orge55f4d3">Setup:</h3>
-<div class="outline-text-3" id="text-orge55f4d3">
+<div id="outline-container-org0a20f4c" class="outline-3">
+<h3 id="org0a20f4c">Setup:</h3>
+<div class="outline-text-3" id="text-org0a20f4c">
 <p>
 Initial code with a helper function to check if we can make the bouquets within a given number of days. The main function will perform the binary search.
 </p>
