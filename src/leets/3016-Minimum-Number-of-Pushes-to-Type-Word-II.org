@@ -1,0 +1,62 @@
+﻿#+title: 3016. Minimum Number of Pushes to Type Word II
+#+subtitle: leetcode
+#+date: <2024-08-06>
+#+language: en
+
+* Problem
+You are given a string `word` consisting of lowercase English letters. A telephone keypad has keys numbered 2 to 9, which can be mapped to distinct collections of these letters. Each key can be remapped to any number of letters, but each letter must be assigned to exactly one key. The task is to remap the keys in such a way that the minimum number of pushes is required to type the string `word`. A single push types the first letter on a key, two pushes type the second letter, and so on.
+
+* Solution Description
+To implement this solution, we need to:
+1. Calculate the frequency of each letter in the word.
+2. Sort the letters based on their frequencies in descending order.
+3. Assign letters to the keys starting from key 2 to key 9, with the most frequent letters assigned first. This will minimize the number of key pushes required, as the most frequent letters will require fewer pushes.
+
+Each letter on the key can be pressed `i` times (where `i` is the 1-based index of the letter in the list of letters assigned to a key). We sum the products of the frequency of each letter and the number of pushes required.
+
+This approach ensures that the letters that appear most frequently in the word are assigned to the front of the key sequences, minimizing the overall number of key presses.
+
+The time complexity is O(n + m log m) where n is the length of the word and m is the number of distinct letters, due to counting frequencies and sorting the letters by frequency. The space complexity is O(m) for storing the frequency counts.
+
+* Example
+For the word "aabbccddeeffgghhiiiiii", we first count the frequency of each letter: {a: 2, b: 2, c: 2, d: 2, e: 2, f: 2, g: 2, h: 2, i: 6}. After sorting by frequency, we get ['i', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']. The optimal mapping will assign 'i' to the first position of the first key, 'a' to the first position of the second key, and so on.
+
+* Solution
+
+#+begin_src js :tangle "3016_minimum_number_of_pushes.js"
+/**
+ ,* Calculates the minimum number of pushes to type the word using a remapped keypad.
+ ,* @param {string} word - The word to type.
+ ,* @return {number} - The minimum number of pushes required.
+ ,*/
+function minimumPushes(word) {
+    const log = typeof NestedInteger !== 'undefined' ? () => {} : console.log;
+    const table = typeof NestedInteger !== 'undefined' ? () => {} : console.table;
+
+    totalPushes = 0;
+
+    return totalPushes;
+}
+
+// Test cases
+const testCases = [
+    { word: "abcde", expected: 5 },
+    { word: "xyzxyzxyzxyz", expected: 12 },
+    { word: "aabbccddeeffgghhiiiiii", expected: 24 },
+    { word: "zzzzzzzzzzzzzzzzzzzzzzzzzz", expected: 26 },
+    { word: "aaaaaaaaaaaaaaaaaaaaaaaaaa", expected: 26 },
+];
+
+testCases.forEach((test, index) => {
+    const result = minimumPushes(test.word);
+    console.log(`Test Case ${index + 1}: ${result === test.expected ? 'Passed' : 'Failed'} (Expected: ${test.expected}, Got: ${result})`);
+});
+#+end_src
+
+#+RESULTS:
+: Test Case 1: Failed (Expected: 5, Got: 0)
+: Test Case 2: Failed (Expected: 12, Got: 0)
+: Test Case 3: Failed (Expected: 24, Got: 0)
+: Test Case 4: Failed (Expected: 26, Got: 0)
+: Test Case 5: Failed (Expected: 26, Got: 0)
+: undefined

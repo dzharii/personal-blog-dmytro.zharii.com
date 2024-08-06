@@ -29,7 +29,7 @@ function New-ProblemFiles {
         [string]$Title,
         [string]$Content
     )
-    
+
     $sanitizedTitle = $Title -replace '[^a-zA-Z0-9]', '-'
     $paddedNumber = $Number.PadLeft(4, '0')
     $orgFileName = "$($paddedNumber)-$($sanitizedTitle).org"
@@ -55,7 +55,7 @@ function Invoke-GptCompletionContent {
     param(
         [string]$userPrompt
     )
-    
+
     $apiKey = $env:OPEN_AI_KEY
     if (-not $apiKey) {
         throw "OPEN_AI_KEY environment variable is not set."
@@ -64,7 +64,7 @@ function Invoke-GptCompletionContent {
     Write-Host "At Invoke-GptCompletionContent: GPT Call"
 
     $systemPrompt = @'
-!IMPORTANT: Every your reply must be inside the textblock. One huge text block with everything inside. 
+!IMPORTANT: Every your reply must be inside the textblock. One huge text block with everything inside.
 !IMPORTANT: Use of Org Mode Syntax
 Always use Modern Emacs Org mode syntax in the replies, as responses will be saved as .org files and utilized as content for future articles. Ensure that each response adheres to Org mode conventions to facilitate seamless integration and usage.
 
@@ -72,37 +72,37 @@ Always use Modern Emacs Org mode syntax in the replies, as responses will be sav
 When a user asks about a Code problem by providing its URL, the default response should not only offer a hint but also include a detailed plan for the interview and solution. This plan should cover the following:
 
 !IMPORTANT:
-In some cases the source code outside of src blocks is conflicting with org mode syntax. Be sure to use #+begin_example / #+end_example blocks. 
+In some cases the source code outside of src blocks is conflicting with org mode syntax. Be sure to use #+begin_example / #+end_example blocks.
 
 
 ** Problem
-Restate the problem in clear, well formatted way. Try to improve the the problem description to make it more clear for the reader. 
+Restate the problem in clear, well formatted way. Try to improve the the problem description to make it more clear for the reader.
 
 ** Solution Description
 Detail the structure of the optimal solution, including:
-Describe the way to implement the problem in optimal way, use descriptive, but concise language, make sure the reader will understand the approach to solve the problem. 
+Describe the way to implement the problem in optimal way, use descriptive, but concise language, make sure the reader will understand the approach to solve the problem.
 Start it with the template: To implement ... we need to ... (describe the approach)
 Assume the reader sees this class of the problems for the first time, give good hints how to solve the problem. If there any pattern the user can apply to this class of the problems, give informative description to it.
-Include time and space complexity. Explain why. 
+Include time and space complexity. Explain why.
 
 ** Example
 Take a good and clear example and explain step by step how the algorithm should work.
 The example must be clear to understand the solution. Many leetcode puzzles are tricky, but require a few lines to solve them.
-Make sure the example explains algorithm and gives the user enough context. 
+Make sure the example explains algorithm and gives the user enough context.
 
 ** References
-If there is a framework or known algorithm that is used in this solution -- name it. Give the reference links. Make sure the links are valid. 
-If there is any essential "see also" -- include it. 
+If there is a framework or known algorithm that is used in this solution -- name it. Give the reference links. Make sure the links are valid.
+If there is any essential "see also" -- include it.
 
 ** Solution
 Introduce the general framework or skeleton of the solution where subsequent blocks of code will be integrated. Use modern JavaScript for implementation, unless otherwise requested. Include a testing setup using simple `console.log` statements to handle:
 
-** Test Execution: 
+** Test Execution:
 Design tests to display input parameters, the actual result, the expected result, and whether the test passed or failed. This ensures that each part of the solution can be independently verified without external libraries.
 
 ** Always Provide testcases Example:
 
-You **must** always start the solution function code block with the following helper definitions: 
+You **must** always start the solution function code block with the following helper definitions:
 
     const log = typeof NestedInteger !== 'undefined' ? () => {} : console.log;
     const table = typeof NestedInteger!== 'undefined' ? () => {} : console.table;
@@ -111,7 +111,7 @@ After these lines STOP and return dummy result. Do not provide any other impleme
 
 #+begin_src js :tangle "solution_file_name_with_code.js"
 
-// Instruction to ChatGPT: rename the function, update input, update return values to fit the problem. 
+// Instruction to ChatGPT: rename the function, update input, update return values to fit the problem.
 // but keep helper function on top.
 function mainSolution(...) {
 
@@ -138,7 +138,7 @@ Your replies must be included inside markdown textblock: that starts with triple
 
 Inside this text block, you should use only valid org-mode syntax. This is required, because I receive your replies via web-interface, but this web interface supports markdown formatting, but does not support orgmode syntax and I want to copy paste your reply into org file for editing.
 
-!IMPORTANT: 
+!IMPORTANT:
 
 - Always use #+begin_src js
 - Always group the problem code and tests in the same #+begin_src
@@ -151,31 +151,31 @@ Inside this text block, you should use only valid org-mode syntax. This is requi
 
 Here's the corrected ruleset for Org mode formatting:
 
-1. **Headers:** Use asterisks (*) for headers. Increase the number for subheaders.  
+1. **Headers:** Use asterisks (*) for headers. Increase the number for subheaders.
    *Example:* ** Subheader
-2. **Italic Text:** Use slashes (/) around the text.  
+2. **Italic Text:** Use slashes (/) around the text.
    *Example:* /italic text/
-3. **Bold Text:** Use asterisks (*) around the text.  
+3. **Bold Text:** Use asterisks (*) around the text.
    *Example:* *bold text*
-4. **Strikethrough Text:** Use pluses (+) around the text.  
+4. **Strikethrough Text:** Use pluses (+) around the text.
    *Example:* +strikethrough text+
-5. **Unordered Lists:** Use -, +, or * followed by a space.  
+5. **Unordered Lists:** Use -, +, or * followed by a space.
    *Example:* - List item
-6. **Ordered Lists:** Use numbers followed by a period and a space.  
+6. **Ordered Lists:** Use numbers followed by a period and a space.
    *Example:* 1. First item
-7. **Links:** Use [[URL][Description]] format.  
+7. **Links:** Use [[URL][Description]] format.
    *Example:* [[https://example.com][Example]]
 8. **Inline Code:** Use ~ or = around the text.  BACKTICK IS NOT VALID ORG SYNTAX AND NOT ALLOWED.
    *Example:* ~inline code~ or =inline code=
-9. **Code Blocks:** Use #+begin_src and #+end_src.  
+9. **Code Blocks:** Use #+begin_src and #+end_src.
    *Example:* #+begin_src / #+end_src
-10. **Blockquotes:** Indent the text with spaces.  
+10. **Blockquotes:** Indent the text with spaces.
     *Example:*    This is a blockquote.
-11. **Images:** Use [[URL]] to link to images.  
+11. **Images:** Use [[URL]] to link to images.
     *Example:* [[https://example.com/image.jpg]]
-12. **Horizontal Rules:** Use a line of dashes (----).  
+12. **Horizontal Rules:** Use a line of dashes (----).
     *Example:* ----
-13. **Tables:** Use | to separate columns.  
+13. **Tables:** Use | to separate columns.
     *Example:* | Header 1 | Header 2 |
 
 
@@ -217,7 +217,7 @@ function Get-GptCompletionResultContent {
 
     Write-Host "At Get-GptCompletionResultContent"
 
-    # Check if the string starts and ends with triple backticks 
+    # Check if the string starts and ends with triple backticks
     $startsWithBackticks = $completionContent.StartsWith('```')
     $endsWithBackticks = $completionContent.EndsWith('```')
 
@@ -241,11 +241,11 @@ function Get-GptCompletionResultContent {
 }
 
 switch ($Command.ToLower()) {
-    
+
     $COMMAND_HELP {
         Write-Host $HELP_MESSAGE
     }
-    
+
     $COMMAND_NEW {
         if (-not $Argument) {
             Write-Host "The 'new' command requires a number and title argument. E.g., lc.ps1 new 20 'Valid Parentheses'" -ForegroundColor Red
