@@ -6,6 +6,9 @@
 * Problem
 You are given a string `word` consisting of lowercase English letters. A telephone keypad has keys numbered 2 to 9, which can be mapped to distinct collections of these letters. Each key can be remapped to any number of letters, but each letter must be assigned to exactly one key. The task is to remap the keys in such a way that the minimum number of pushes is required to type the string `word`. A single push types the first letter on a key, two pushes type the second letter, and so on.
 
+* Submission
+- [[https://leetcode.com/submissions/detail/1347137060/][2024-08-06 Minimum Number of Pushes to Type Word II - Submission Detail - LeetCode]]
+
 * Solution Description
 To implement this solution, we need to:
 1. Calculate the frequency of each letter in the word.
@@ -33,9 +36,25 @@ function minimumPushes(word) {
     const log = typeof NestedInteger !== 'undefined' ? () => {} : console.log;
     const table = typeof NestedInteger !== 'undefined' ? () => {} : console.table;
 
-    totalPushes = 0;
+    const f = {};
+    for (const char of word) {
+        f[char] = (f[char] || 0) + 1;
+    }
 
-    return totalPushes;
+    log(JSON.stringify(f))
+
+    const sf = Object.entries(f)
+          .sort(([, a], [, b]) => b - a);
+
+    log(JSON.stringify(sf))
+
+    let pushes = 0;
+    for (let i = 0; i < sf.length; i++) {
+        const [ch, freq] = sf[i];
+        pushes += freq * (Math.floor(i / 8) + 1);
+    }
+
+    return pushes;
 }
 
 // Test cases
@@ -54,9 +73,27 @@ testCases.forEach((test, index) => {
 #+end_src
 
 #+RESULTS:
-: Test Case 1: Failed (Expected: 5, Got: 0)
-: Test Case 2: Failed (Expected: 12, Got: 0)
-: Test Case 3: Failed (Expected: 24, Got: 0)
-: Test Case 4: Failed (Expected: 26, Got: 0)
-: Test Case 5: Failed (Expected: 26, Got: 0)
-: undefined
+#+begin_example
+{"a":1,"b":1,"c":1,"d":1,"e":1}
+[["a",1],["b",1],["c",1],["d",1],["e",1]]
+Test Case 1: Passed (Expected: 5, Got: 5)
+{"x":4,"y":4,"z":4}
+[["x",4],["y",4],["z",4]]
+Test Case 2: Passed (Expected: 12, Got: 12)
+{"a":2,"b":2,"c":2,"d":2,"e":2,"f":2,"g":2,"h":2,"i":6}
+[["i",6],["a",2],["b",2],["c",2],["d",2],["e",2],["f",2],["g",2],["h",2]]
+Test Case 3: Passed (Expected: 24, Got: 24)
+{"z":26}
+[["z",26]]
+Test Case 4: Passed (Expected: 26, Got: 26)
+{"a":26}
+[["a",26]]
+Test Case 5: Passed (Expected: 26, Got: 26)
+undefined
+#+end_example
+
+
+
+#+DOWNLOADED: screenshot @ 2024-08-06 16:48:10
+#+attr_org: :width 1024px
+[[file:Solution/2024-08-06_16-48-10_screenshot.png]]
