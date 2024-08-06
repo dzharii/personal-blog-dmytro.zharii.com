@@ -144,13 +144,21 @@ This section contains the publishing configuration, defining how and where the f
 This section contains configurations to enhance Org mode functionality, including handling image pasting and storage.
 
 #+BEGIN_SRC emacs-lisp
-;; Install and configure org-download
 (use-package org-download
   :ensure t
   :config
   (setq org-download-method 'directory)
-  (setq org-download-image-dir (concat (file-name-sans-extension (buffer-file-name)) ".assets"))
-  (setq org-download-image-org-width 600)
+  (setq org-download-image-dir
+        (if (buffer-file-name)
+            (let ((dir (concat (file-name-sans-extension (buffer-file-name)) ".assets")))
+              (unless (file-exists-p dir)
+                (make-directory dir t))
+              dir)
+          (let ((default-dir "~/org-download-assets/"))
+            (unless (file-exists-p default-dir)
+              (make-directory default-dir t))
+            default-dir)))
+  (setq org-download-image-org-width 1024)
   (setq org-download-link-format "[[file:%s]]\n"
         org-download-abbreviate-filename-function #'file-relative-name)
   (setq org-download-link-format-function #'org-download-link-format-function-default))
