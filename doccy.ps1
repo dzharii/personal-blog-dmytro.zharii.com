@@ -79,7 +79,7 @@ switch ($Command.ToLower()) {
     }
     $COMMAND_EDIT {
         git pull
-	Write-Host "Executing edit command."
+        Write-Host "Executing edit command."
         Start-EmacsDetached -EmacsCommand $EMACS -Arguments @("--init-directory", "./emacs-init")
     }
     $COMMAND_PUBLISH {
