@@ -22,18 +22,18 @@ Published 2024-07-11
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgb858a4a">Links:</a></li>
-<li><a href="#org5608530">Problem:</a></li>
-<li><a href="#org3ae45cf">Solution Description:</a></li>
-<li><a href="#org77f3aa3">Example:</a></li>
-<li><a href="#org57386e6">Setup:</a></li>
+<li><a href="#org643d697">Links:</a></li>
+<li><a href="#org7d3adda">Problem:</a></li>
+<li><a href="#org99af87d">Solution Description:</a></li>
+<li><a href="#org1d84f88">Example:</a></li>
+<li><a href="#org46a499c">Setup:</a></li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-orgb858a4a" class="outline-2">
-<h2 id="orgb858a4a">Links:</h2>
-<div class="outline-text-2" id="text-orgb858a4a">
+<div id="outline-container-org643d697" class="outline-2">
+<h2 id="org643d697">Links:</h2>
+<div class="outline-text-2" id="text-org643d697">
 <ul class="org-ul">
 <li><a href="./1190-Reverse-Substrings-Between-Each-Pair-of-Parentheses.html">1190-Reverse-Substrings-Between-Each-Pair-of-Parentheses.org</a></li>
 <li>submission: <a href="https://leetcode.com/submissions/detail/1317774463/">Reverse Substrings Between Each Pair of Parentheses</a></li>
@@ -41,9 +41,9 @@ Published 2024-07-11
 </div>
 </div>
 
-<div id="outline-container-org5608530" class="outline-2">
-<h2 id="org5608530">Problem:</h2>
-<div class="outline-text-2" id="text-org5608530">
+<div id="outline-container-org7d3adda" class="outline-2">
+<h2 id="org7d3adda">Problem:</h2>
+<div class="outline-text-2" id="text-org7d3adda">
 <p>
 Given a string `s` which consists of lowercase English letters and brackets. Reverse substrings that are in each pair of matching parentheses from the innermost one to the outermost one, and return the resulting string without any parentheses.
 </p>
@@ -52,16 +52,16 @@ Given a string `s` which consists of lowercase English letters and brackets. Rev
 For example:
 </p>
 
-<pre class="example" id="orgb3a89d6">
+<pre class="example" id="orgbd36238">
 Input: `s = "(ab(cd)e)"`
 Output: `s = "edcba"`
 </pre>
 </div>
 </div>
 
-<div id="outline-container-org3ae45cf" class="outline-2">
-<h2 id="org3ae45cf">Solution Description:</h2>
-<div class="outline-text-2" id="text-org3ae45cf">
+<div id="outline-container-org99af87d" class="outline-2">
+<h2 id="org99af87d">Solution Description:</h2>
+<div class="outline-text-2" id="text-org99af87d">
 <p>
 To implement the solution, we need to use a stack to manage the parentheses and the nested substrings efficiently.
 </p>
@@ -80,10 +80,10 @@ The time complexity is O(n) because we traverse the string twice (one push and o
 </div>
 </div>
 
-<div id="outline-container-org77f3aa3" class="outline-2">
-<h2 id="org77f3aa3">Example:</h2>
-<div class="outline-text-2" id="text-org77f3aa3">
-<pre class="example" id="org87d3222">
+<div id="outline-container-org1d84f88" class="outline-2">
+<h2 id="org1d84f88">Example:</h2>
+<div class="outline-text-2" id="text-org1d84f88">
+<pre class="example" id="org6d89ed9">
 Consider the input `s = "(u(love)i)"`.
 
 1. Traverse and push `(`, `u`.
@@ -97,9 +97,9 @@ The final stack holds `iloveu`.
 </div>
 </div>
 
-<div id="outline-container-org57386e6" class="outline-2">
-<h2 id="org57386e6">Setup:</h2>
-<div class="outline-text-2" id="text-org57386e6">
+<div id="outline-container-org46a499c" class="outline-2">
+<h2 id="org46a499c">Setup:</h2>
+<div class="outline-text-2" id="text-org46a499c">
 <p>
 Below is the JavaScript function implementing the described solution, along with a set of test cases.
 </p>
