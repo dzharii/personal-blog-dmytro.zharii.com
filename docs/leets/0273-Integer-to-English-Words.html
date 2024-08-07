@@ -1,0 +1,178 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2024-08-06 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>0273. Integer to English Words</title>
+<meta name="author" content="d)zharii" />
+<meta name="generator" content="Org Mode" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/t.css"/>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<nav><a href="/" tabindex="0">&larrhk; Back to Index</a></nav><div id="preamble" class="status">
+Published 2024-08-06
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">0273. Integer to English Words</h1>
+<p class="subtitle" role="doc-subtitle">leetcode</p>
+</header><nav id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org2c8fc9e">Problem</a></li>
+<li><a href="#org4c513f7">Solution Description</a></li>
+<li><a href="#org027033d">Example</a></li>
+<li><a href="#org5279f6b">References</a></li>
+<li><a href="#orgfaf5497">Solution</a></li>
+</ul>
+</div>
+</nav>
+
+<div id="outline-container-org2c8fc9e" class="outline-2">
+<h2 id="org2c8fc9e">Problem</h2>
+<div class="outline-text-2" id="text-org2c8fc9e">
+<p>
+Given a non-negative integer num, convert it to its English words representation.
+</p>
+
+<p>
+The problem requires us to implement a function that takes a non-negative integer (less than \(2^{31}\)) and returns its representation in English words.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org4c513f7" class="outline-2">
+<h2 id="org4c513f7">Solution Description</h2>
+<div class="outline-text-2" id="text-org4c513f7">
+<p>
+To implement the conversion from an integer to English words, we need to:
+</p>
+<ol class="org-ol">
+<li>Define arrays to hold the words for units, tens, and hundreds.</li>
+<li>Handle special cases like "zero".</li>
+<li>Break down the number into chunks of thousands since English words for numbers often group thousands together.</li>
+<li>Convert each chunk separately and then combine the results.</li>
+</ol>
+
+<p>
+Detailed Steps:
+</p>
+<ol class="org-ol">
+<li>Define the words arrays for digits (`0-9`), teens (`10-19`), tens (`20, 30, &#x2026;`), and thousands (`thousand, million, billion`).</li>
+<li>Create a helper function to convert numbers less than 1000.</li>
+<li>Iterate through each chunk of the number (thousands) and convert them to words.</li>
+<li>Combine all the chunks correctly with appropriate thousand separators.</li>
+</ol>
+
+<p>
+The time complexity of this solution is \(O(1)\) because the number of operations is dependent on the fixed maximum number of digits (10<sup>9</sup>). The space complexity is also \(O(1)\) due to the fixed length of helper arrays and strings.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org027033d" class="outline-2">
+<h2 id="org027033d">Example</h2>
+<div class="outline-text-2" id="text-org027033d">
+<p>
+Let's convert 12345:
+</p>
+<ol class="org-ol">
+<li>Split into chunks: "12" thousand and "345".</li>
+<li>Convert "12": twelve</li>
+<li>Convert "345": three hundred forty-five</li>
+<li>Combine to get: "twelve thousand three hundred forty-five"</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org5279f6b" class="outline-2">
+<h2 id="org5279f6b">References</h2>
+<div class="outline-text-2" id="text-org5279f6b">
+<ul class="org-ul">
+<li>[Number to Words Conversion](<a href="https://en.wikipedia.org/wiki/English_numerals">https://en.wikipedia.org/wiki/English_numerals</a>)</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgfaf5497" class="outline-2">
+<h2 id="orgfaf5497">Solution</h2>
+<div class="outline-text-2" id="text-orgfaf5497">
+<div class="org-src-container">
+<pre class="src src-js">/**
+ * Convert a non-negative integer to its English words representation.
+ * @param {number} num - The integer to be converted.
+ * @return {string} - The English words representation of the integer.
+ */
+function numberToWords(num) {
+    const log = typeof NestedInteger !== 'undefined' ? () =&gt; {} : console.log;
+    const table = typeof NestedInteger !== 'undefined' ? () =&gt; {} : console.table;
+
+    if (num === 0) return "Zero";
+
+    const belowTwenty = ["", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", 
+                         "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", 
+                         "Eighteen", "Nineteen"];
+    const tens = ["", "", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"];
+    const thousands = ["", "Thousand", "Million", "Billion"];
+
+    return "dummy";
+}
+
+// Test cases
+const testCases = [
+    { num: 123, expected: "One Hundred Twenty Three" },
+    { num: 12345, expected: "Twelve Thousand Three Hundred Forty Five" },
+    { num: 1234567, expected: "One Million Two Hundred Thirty Four Thousand Five Hundred Sixty Seven" },
+    { num: 1234567891, expected: "One Billion Two Hundred Thirty Four Million Five Hundred Sixty Seven Thousand Eight Hundred Ninety One" },
+    { num: 0, expected: "Zero" },
+];
+
+testCases.forEach((test, index) =&gt; {
+    const result = numberToWords(test.num);
+    console.log(`Test Case ${index + 1}: ${result === test.expected ? 'Passed' : 'Failed'} (Expected: ${test.expected}, Got: ${result})`);
+});
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+&copy; d)zharii. <a href="/sitemap.html">sitemap</a>
+</div>
+</body>
+</html>
