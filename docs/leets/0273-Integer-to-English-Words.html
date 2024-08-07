@@ -54,18 +54,23 @@ Published 2024-08-06
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgb1487a6">Problem</a></li>
-<li><a href="#orgca8ea28">Solution Description</a></li>
-<li><a href="#org303c6df">Example</a></li>
-<li><a href="#org527a738">References</a></li>
-<li><a href="#org3f010a0">Solution</a></li>
+<li><a href="#orgde9045b">Problem</a></li>
+<li><a href="#org3df2943">Submission</a></li>
+<li><a href="#org41e6549">Solution Description</a></li>
+<li><a href="#org290d3d1">Example</a></li>
+<li><a href="#org31cd289">References</a></li>
+<li><a href="#org744a661">Solution</a>
+<ul>
+<li><a href="#orgcc5b877">Output</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-orgb1487a6" class="outline-2">
-<h2 id="orgb1487a6">Problem</h2>
-<div class="outline-text-2" id="text-orgb1487a6">
+<div id="outline-container-orgde9045b" class="outline-2">
+<h2 id="orgde9045b">Problem</h2>
+<div class="outline-text-2" id="text-orgde9045b">
 <p>
 Given a non-negative integer num, convert it to its English words representation.
 </p>
@@ -76,9 +81,18 @@ The problem requires us to implement a function that takes a non-negative intege
 </div>
 </div>
 
-<div id="outline-container-orgca8ea28" class="outline-2">
-<h2 id="orgca8ea28">Solution Description</h2>
-<div class="outline-text-2" id="text-orgca8ea28">
+<div id="outline-container-org3df2943" class="outline-2">
+<h2 id="org3df2943">Submission</h2>
+<div class="outline-text-2" id="text-org3df2943">
+<ul class="org-ul">
+<li><a href="https://leetcode.com/submissions/detail/1348277154/">2024-08-07 Integer to English Words - Submission Detail - LeetCode</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org41e6549" class="outline-2">
+<h2 id="org41e6549">Solution Description</h2>
+<div class="outline-text-2" id="text-org41e6549">
 <p>
 To implement the conversion from an integer to English words, we need to:
 </p>
@@ -105,9 +119,9 @@ The time complexity of this solution is \(O(1)\) because the number of operation
 </div>
 </div>
 
-<div id="outline-container-org303c6df" class="outline-2">
-<h2 id="org303c6df">Example</h2>
-<div class="outline-text-2" id="text-org303c6df">
+<div id="outline-container-org290d3d1" class="outline-2">
+<h2 id="org290d3d1">Example</h2>
+<div class="outline-text-2" id="text-org290d3d1">
 <p>
 Let's convert 12345:
 </p>
@@ -120,18 +134,18 @@ Let's convert 12345:
 </div>
 </div>
 
-<div id="outline-container-org527a738" class="outline-2">
-<h2 id="org527a738">References</h2>
-<div class="outline-text-2" id="text-org527a738">
+<div id="outline-container-org31cd289" class="outline-2">
+<h2 id="org31cd289">References</h2>
+<div class="outline-text-2" id="text-org31cd289">
 <ul class="org-ul">
 <li>[Number to Words Conversion](<a href="https://en.wikipedia.org/wiki/English_numerals">https://en.wikipedia.org/wiki/English_numerals</a>)</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org3f010a0" class="outline-2">
-<h2 id="org3f010a0">Solution</h2>
-<div class="outline-text-2" id="text-org3f010a0">
+<div id="outline-container-org744a661" class="outline-2">
+<h2 id="org744a661">Solution</h2>
+<div class="outline-text-2" id="text-org744a661">
 <div class="org-src-container">
 <pre class="src src-js">/**
  * Convert a non-negative integer to its English words representation.
@@ -144,13 +158,42 @@ function numberToWords(num) {
 
     if (num === 0) return "Zero";
 
-    const belowTwenty = ["", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", 
-                         "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", 
+    const belowTwenty = ["", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten",
+                         "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen",
                          "Eighteen", "Nineteen"];
     const tens = ["", "", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"];
     const thousands = ["", "Thousand", "Million", "Billion"];
+    let result = [];
 
-    return "dummy";
+    function parse1000(num) {
+        log(`parse1000 num=${num}`);
+        if (!num &amp;&amp; num !== 0) throw `WTF num=${num}`;
+
+        if (num === 0) {
+            return [];
+        }
+        else if (num &lt; 20) {
+            return [ belowTwenty[num] ];
+        }
+        else if (num &lt; 100) {
+            return [ tens[ Math.floor(num / 10)], ...parse1000(num % 10) ];
+        }
+        else {
+            return [ belowTwenty[ Math.floor(num / 100)], "Hundred", ...parse1000(num % 100)];
+        }
+    }
+
+    for (let i = 0; i &lt; thousands.length; i++) {
+        const numMod = num % 1000;
+        if (numMod !== 0) {
+            result = [...parse1000(numMod), thousands[i], ...result];
+            log(`i=${i}; result=${JSON.stringify(result)}`);
+        }
+        num = Math.floor(num / 1000);
+    }
+
+    const resultText = result.filter(r =&gt; !!r).join(' ');
+    return resultText;
 }
 
 // Test cases
@@ -158,7 +201,7 @@ const testCases = [
     { num: 123, expected: "One Hundred Twenty Three" },
     { num: 12345, expected: "Twelve Thousand Three Hundred Forty Five" },
     { num: 1234567, expected: "One Million Two Hundred Thirty Four Thousand Five Hundred Sixty Seven" },
-    { num: 1234567891, expected: "One Billion Two Hundred Thirty Four Million Five Hundred Sixty Seven Thousand Eight Hundred Ninety One" },
+   { num: 1234567891, expected: "One Billion Two Hundred Thirty Four Million Five Hundred Sixty Seven Thousand Eight Hundred Ninety One" },
     { num: 0, expected: "Zero" },
 ];
 
@@ -166,6 +209,59 @@ testCases.forEach((test, index) =&gt; {
     const result = numberToWords(test.num);
     console.log(`Test Case ${index + 1}: ${result === test.expected ? 'Passed' : 'Failed'} (Expected: ${test.expected}, Got: ${result})`);
 });
+</pre>
+</div>
+</div>
+
+
+<div id="outline-container-orgcc5b877" class="outline-3">
+<h3 id="orgcc5b877">Output</h3>
+<div class="outline-text-3" id="text-orgcc5b877">
+<pre class="example" id="org0da15c2">
+parse1000 num=123
+parse1000 num=23
+parse1000 num=3
+i=0; result=["One","Hundred","Twenty","Three",""]
+Test Case 1: Passed (Expected: One Hundred Twenty Three, Got: One Hundred Twenty Three)
+
+parse1000 num=345
+parse1000 num=45
+parse1000 num=5
+i=0; result=["Three","Hundred","Forty","Five",""]
+parse1000 num=12
+i=1; result=["Twelve","Thousand","Three","Hundred","Forty","Five",""]
+Test Case 2: Passed (Expected: Twelve Thousand Three Hundred Forty Five, Got: Twelve Thousand Three Hundred Forty Five)
+
+parse1000 num=567
+parse1000 num=67
+parse1000 num=7
+i=0; result=["Five","Hundred","Sixty","Seven",""]
+parse1000 num=234
+parse1000 num=34
+parse1000 num=4
+i=1; result=["Two","Hundred","Thirty","Four","Thousand","Five","Hundred","Sixty","Seven",""]
+parse1000 num=1
+i=2; result=["One","Million","Two","Hundred","Thirty","Four","Thousand","Five","Hundred","Sixty","Seven",""]
+Test Case 3: Passed (Expected: One Million Two Hundred Thirty Four Thousand Five Hundred Sixty Seven, Got: One Million Two Hundred Thirty Four Thousand Five Hundred Sixty Seven)
+
+parse1000 num=891
+parse1000 num=91
+parse1000 num=1
+i=0; result=["Eight","Hundred","Ninety","One",""]
+parse1000 num=567
+parse1000 num=67
+parse1000 num=7
+i=1; result=["Five","Hundred","Sixty","Seven","Thousand","Eight","Hundred","Ninety","One",""]
+parse1000 num=234
+parse1000 num=34
+parse1000 num=4
+i=2; result=["Two","Hundred","Thirty","Four","Million","Five","Hundred","Sixty","Seven","Thousand","Eight","Hundred","Ninety","One",""]
+parse1000 num=1
+i=3; result=["One","Billion","Two","Hundred","Thirty","Four","Million","Five","Hundred","Sixty","Seven","Thousand","Eight","Hundred","Ninety","One",""]
+Test Case 4: Passed (Expected: One Billion Two Hundred Thirty Four Million Five Hundred Sixty Seven Thousand Eight Hundred Ninety One, Got: One Billion Two Hundred Thirty Four Million Five Hundred Sixty Seven Thousand Eight Hundred Ninety One)
+
+Test Case 5: Passed (Expected: Zero, Got: Zero)
+undefined
 </pre>
 </div>
 </div>
