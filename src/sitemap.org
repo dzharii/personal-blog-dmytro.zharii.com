@@ -3,11 +3,6 @@
   - [[file:articles/foo.org][An example article]]
 - elisp-excercise
   - [[file:elisp-excercise/2024-07-28-T10-emacs-lisp-idioms.org][T10-emacs-lisp-idioms]]
-- posts
-  - [[file:posts/2024-07-27-PowerShell-Clipboard-Saver.org][PowerShell Clipboard Saver]]
-  - [[file:posts/2024-08-02-Installing_Chicago95_Theme_on_Ubuntu_MATE.org][Installing Chicago95 Theme on Ubuntu MATE Release 22.04.4 LTS (Jammy Jellyfish) 64-bit]]
-  - [[file:posts/2024-08-03-Insert_images_with_org_download_package.org][Insert images with org download package]]
-  - [[file:posts/2024-08-04-Cross-Platform Clipboard Dithering A Journey with PowerShell and Bash.org][2024-08-04 Cross-Platform Clipboard Dithering: A Journey with PowerShell and Bash]]
 - leets
   - [[file:leets/0039-Combination-Sum.org][Combination Sum Problem Overview and Solution Plan]]
   - [[file:leets/0338-Counting-Bits.org][0338. Counting Bits]]
@@ -47,3 +42,9 @@
   - [[file:leets/2134-Minimum-Swaps-to-Group-All-1s-Together-II.org][2134. Minimum Swaps to Group All 1s Together II]]
   - [[file:leets/3016-Minimum-Number-of-Pushes-to-Type-Word-II.org][3016. Minimum Number of Pushes to Type Word II]]
   - [[file:leets/0273-Integer-to-English-Words.org][0273. Integer to English Words]]
+- posts
+  - [[file:posts/2024-07-27-PowerShell-Clipboard-Saver.org][PowerShell Clipboard Saver]]
+  - [[file:posts/2024-08-02-Installing_Chicago95_Theme_on_Ubuntu_MATE.org][Installing Chicago95 Theme on Ubuntu MATE Release 22.04.4 LTS (Jammy Jellyfish) 64-bit]]
+  - [[file:posts/2024-08-03-Insert_images_with_org_download_package.org][Insert images with org download package]]
+  - [[file:posts/2024-08-04-Cross-Platform Clipboard Dithering A Journey with PowerShell and Bash.org][2024-08-04 Cross-Platform Clipboard Dithering: A Journey with PowerShell and Bash]]
+  - [[file:posts/How I Discovered Outline Speedrunning and Created a Prompt for Project Efficiency.org][How I Discovered Outline Speedrunning and Created a GPT Prompt for bootstrapping a project]]

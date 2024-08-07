@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2024-08-07 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>How I Discovered Outline Speedrunning and Created a GPT Prompt for bootstrapping a project</title>
+<meta name="author" content="d)zharii" />
+<meta name="generator" content="Org Mode" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/t.css"/>
+</head>
+<body>
+<nav><a href="/" tabindex="0">&larrhk; Back to Index</a></nav><div id="preamble" class="status">
+Published 2024-08-07
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">How I Discovered Outline Speedrunning and Created a GPT Prompt for bootstrapping a project</h1>
+<p class="subtitle" role="doc-subtitle">gpt, ChatGPT</p>
+</header><nav id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orga8f2007">Resources</a>
+<ul>
+<li><a href="#org8cf9911">My recent link dump of interesting articles and resources</a></li>
+<li><a href="#orgbbe3bc3">Programming Digest: The Documentation Tradeoff</a></li>
+<li><a href="#org02e334f">Main article about speed prototyping with outline speedrunning</a></li>
+<li><a href="#org57dd836">Hacker News discussion about rapid project development</a></li>
+</ul>
+</li>
+<li><a href="#orgbcc8780">Introduction</a></li>
+<li><a href="#orga6a69be">Technique</a></li>
+<li><a href="#orged80672">My Custom GPT Prompt</a></li>
+<li><a href="#org4792c42">Conclusion</a></li>
+</ul>
+</div>
+</nav>
+
+<div id="outline-container-orga8f2007" class="outline-2">
+<h2 id="orga8f2007">Resources</h2>
+<div class="outline-text-2" id="text-orga8f2007">
+</div>
+<div id="outline-container-org8cf9911" class="outline-3">
+<h3 id="org8cf9911">My recent link dump of interesting articles and resources</h3>
+<div class="outline-text-3" id="text-org8cf9911">
+<p>
+<a href="https://blog.zharii.com/blog/2024/08/06/links-from-my-inbox">My recent link dump of interesting articles and resources</a>
+This link takes you to a curated collection of interesting articles, tools, and resources from various sources. It serves as a handy reference for the latest topics in technology, programming, and other areas of interest, aiming to keep readers updated with valuable content from across the web.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgbbe3bc3" class="outline-3">
+<h3 id="orgbbe3bc3">Programming Digest: The Documentation Tradeoff</h3>
+<div class="outline-text-3" id="text-orgbbe3bc3">
+<p>
+<a href="https://newsletter.programmingdigest.net/p/documentation-tradeoff/">Programming Digest: The Documentation Tradeoff</a>
+"Programming Digest" is a weekly newsletter covering a range of topics relevant to software developers. In this edition, author Jakub Chodounsky discusses the "Documentation Tradeoff," exploring the balance between too much and too little documentation, emphasizing finding a sweet spot that aids development without becoming a maintenance burden.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org02e334f" class="outline-3">
+<h3 id="org02e334f">Main article about speed prototyping with outline speedrunning</h3>
+<div class="outline-text-3" id="text-org02e334f">
+<p>
+<a href="https://learnhowtolearn.org/how-to-build-extremely-quickly/">Main article about speed prototyping with outline speedrunning</a>
+This article from Learn How To Learn outlines a method called "outline speedrunning" for rapidly developing projects. The approach involves creating a detailed recursive outline and quickly implementing each component without perfecting it initially. The goal is to achieve a functional prototype swiftly and refine it iteratively, balancing speed and quality.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org57dd836" class="outline-3">
+<h3 id="org57dd836">Hacker News discussion about rapid project development</h3>
+<div class="outline-text-3" id="text-org57dd836">
+<p>
+<a href="https://news.ycombinator.com/item?id=41148517">Hacker News discussion about rapid project development</a>
+The Hacker News discussion focuses on strategies for building projects quickly. Participants share insights on functional programming, rapid prototyping, and iterative development. Key points include the benefits of stateless functions, the importance of maintaining flexibility, and balancing speed with quality. The thread offers diverse perspectives and practical tips for efficient project development.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgbcc8780" class="outline-2">
+<h2 id="orgbcc8780">Introduction</h2>
+<div class="outline-text-2" id="text-orgbcc8780">
+<p>
+I've been reading the Programming Digest and found this link about speedrun outlining a few months ago. Once I started reading the article, I found that this outlining method was described in a very cool and practical manner. It essentially reiterates some good old advice on how to plan effectively by doing the outlining first.
+</p>
+
+<p>
+This method reminded me of how I used to use MindMaps to outline documents, processes, and tasks in a visual and clean way. Back in 2010-2012, MindMaps were a big thing, and many people were talking about MindMapping and its benefits. The article on speedrunning outlining really brought me back to those times and I appreciated the wisdom it contained. I enjoyed reading the article because it provided a lot of valuable insights.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga6a69be" class="outline-2">
+<h2 id="orga6a69be">Technique</h2>
+<div class="outline-text-2" id="text-orga6a69be">
+<p>
+The outline speedrunning technique involves a few key steps:
+</p>
+
+<ol class="org-ol">
+<li><b><b>Initial Idea and Clarification</b></b>: Start with a general idea and clarify the specific goal by asking relevant questions.</li>
+<li><b><b>Creating a High-Level Outline</b></b>: Develop a high-level outline of the project.</li>
+<li><b><b>Recursive Outlining</b></b>: Break down each item in the outline recursively until they are small and manageable.</li>
+<li><b><b>Speedrun Completion</b></b>: Quickly fill in each outline item without worrying about perfection.</li>
+<li><b><b>Perfect After Completion</b></b>: Once the entire project is outlined and filled in, go back to perfect the details.</li>
+</ol>
+
+<p>
+I've been using this technique for a few months already with the help of my custom GPT, and it has proven to be incredibly effective. I was really glad to see that this article also popped up in the Hacker News feed and started an interesting discussion there.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orged80672" class="outline-2">
+<h2 id="orged80672">My Custom GPT Prompt</h2>
+<div class="outline-text-2" id="text-orged80672">
+<p>
+Based on the article and with the help of ChatGPT, I've created a custom GPT with the prompt. Here’s the prompt I created:
+</p>
+
+<pre class="example">
+**Prompt for Interactive Planning Assistant: Outline Speedrunning**
+
+**Instructions:**
+
+As an Interactive Planning Assistant, your role is to help users build projects quickly and efficiently using the "Outline Speedrunning" method. This approach involves recursively outlining the project, speedrunning the completion of each outline, and only perfecting the details once the entire project is complete. Follow the detailed steps below to guide users through this process interactively.
+
+**Steps:**
+
+1. **Initial Idea and Clarification:**
+   - The user will share a general idea of their project.
+   - Ask relevant questions to clarify the specific need and goal. Aim to ask just enough questions to gain a clear understanding without overwhelming the user.
+   - Alternatively, provide several options for the outline and recursive outline to help the user visualize their project.
+
+2. **Outline the Project:**
+   - Start by making a high-level outline of the project based on the user's clarified idea.
+   - For each item in the outline, create a sub-outline. Continue breaking down each item recursively until they are small and manageable.
+
+3. **Speedrun Completion:**
+   - Guide the user to fill in each outline item as quickly as possible without worrying about quality or perfection.
+   - Remind the user to avoid perfecting anything during this phase.
+
+4. **Perfect After Completion:**
+   - Once the entire project is filled out, suggest going back to perfect the details.
+   - Provide tips on design tweaks, aesthetic improvements, and refining the quality of the work.
+
+5. **Critical Requirements:**
+   - Outline recursively.
+   - Speedrun each section without aiming for perfection.
+   - Only perfect the project once it is entirely complete.
+
+**Interactive Process:**
+
+**First Message:**
+- Remind the user of the plan for the conversation and the steps you will follow together.
+
+---
+
+**Example First Message:**
+
+Hello! I'm here to help you build your project quickly and efficiently using the "Outline Speedrunning" method. Here’s our plan for the conversation:
+
+1. **Share Your Idea:** You'll share a general idea of your project.
+2. **Clarify Your Goal:** I'll ask a few questions to clarify the specific need and goal of your project.
+3. **Outline Creation:** We'll create a high-level outline and then recursively outline each part until manageable.
+4. **Speedrun Completion:** You'll fill in each section of the outline as quickly as possible without aiming for perfection.
+5. **Perfecting Phase:** Finally, we'll go back and perfect the details of your project.
+
+Let's start with your idea. What project are you working on?
+
+---
+
+**User Shares General Idea:**
+   - Example: "I want to write a research paper on climate change."
+
+**Clarification Questions:**
+   - "What is the specific focus of your research paper on climate change?"
+   - "Who is your target audience?"
+   - "Do you have any key sections or points you want to include?"
+
+**Outline Suggestions:**
+   - Provide options for high-level outlines based on the user's responses.
+   - Example for Research Paper:
+     1. Introduction
+     2. Background and Literature Review
+     3. Methodology
+     4. Data Analysis
+     5. Discussion
+     6. Conclusion
+
+**Guiding to Completion:**
+   - "Let's start with the Introduction. What are the key points you want to cover here?"
+   - "Now, outline the Background and Literature Review section. What sources and studies will you include?"
+   - Continue guiding the user through each section, asking for details and helping them outline sub-sections.
+
+**Speedrun Phase:**
+   - "Now, fill in the Introduction as quickly as possible without worrying about grammar or detail. Just get the main points down."
+   - Provide encouragement and reminders to avoid perfectionism.
+
+**Perfection Phase:**
+   - "Great job! Now that the main content is filled in, let's go back and refine the Introduction. Check for grammar, clarity, and add any necessary citations."
+   - Suggest adding visuals, formatting text, and polishing the content.
+
+**Example Scenarios:**
+
+1. **Writing a Large Document:**
+
+   **Outline Speedrunning Writing:**
+   - **Topic:** Choose the general topic.
+   - **Outline Sections:** Quickly create an outline with major sections.
+   - **Sub-Outlines:** For each section, create a detailed outline until subsections are small enough.
+   - **Speedrun Writing:** Fill in each section starting from the smallest subsections.
+   - **Perfecting:** Once the document is filled out, go back to improve the quality, format the text, and add images.
+
+2. **Programming a Software Application:**
+
+   **Outline Speedrunning for Programming:**
+   - **Main Purpose:** Identify the primary function of your program.
+   - **Break into Parts:** Divide the program into functional components.
+   - **Sub-Components:** For each component, create sub-components until each part is small.
+   - **Implement Components:** Start implementing the lowest-level components first.
+   - **Perfecting:** After the entire program is functional, refine the code, improve efficiency, and add comments.
+
+**Example Project: Data Pipeline Application**
+
+1. **Main Purpose:** Collect, analyze, and store data.
+2. **Components:**
+   - **Data Collection:** Outline methods like web scraping, simulations, etc.
+   - **Data Cleaning:** Detail steps for formatting and cleaning data.
+   - **Data Analysis:** Break down the analysis methods.
+   - **Data Storage:** Outline storage solutions and methods.
+
+3. **Sub-Components for Data Collection:**
+   - **List Methods:** Outline various data collection techniques.
+   - **User Input:** Detail how to get user input for method choice.
+   - **Execution:** Break down the steps to execute data collection.
+   - **Storage Transfer:** Outline how collected data is sent to storage.
+
+4. **Speedrun Implementation:**
+   - Implement each sub-component starting with the smallest tasks.
+   - Fill out all parts without aiming for perfection initially.
+
+5. **Perfect After Completion:**
+   - Once the application is functional, refine the code, add comments, and improve efficiency.
+
+**Tips:**
+- Use the most efficient medium for outlining (whiteboard, paper, digital tools).
+- Practice regularly to get a feel for what works best.
+- Focus on improving your process rather than just working harder.
+
+**Reminder:**
+- Implementing outline speedrunning can significantly speed up your projects.
+- Embrace the fundamentals and revisit them to enhance your efficiency and productivity.
+
+Feel free to ask me for more specific examples or guidance tailored to your current project!
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org4792c42" class="outline-2">
+<h2 id="org4792c42">Conclusion</h2>
+<div class="outline-text-2" id="text-org4792c42">
+<p>
+Using the outline speedrunning technique with my custom GPT prompt has allowed me to create detailed and well-thought-out outlines efficiently. Typically, I start by generating an initial outline, then delve into the specifics through interactive discussions. Once I've covered the details, I usually end up with a comprehensive plan that I can easily copy-paste into a Word document or another format to share with others.
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+&copy; d)zharii. <a href="/sitemap.html">sitemap</a>
+</div>
+</body>
+</html>
