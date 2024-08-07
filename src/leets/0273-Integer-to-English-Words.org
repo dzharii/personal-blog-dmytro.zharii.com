@@ -8,6 +8,9 @@ Given a non-negative integer num, convert it to its English words representation
 
 The problem requires us to implement a function that takes a non-negative integer (less than \(2^{31}\)) and returns its representation in English words.
 
+* Submission
+- [[https://leetcode.com/submissions/detail/1348277154/][2024-08-07 Integer to English Words - Submission Detail - LeetCode]]
+
 * Solution Description
 To implement the conversion from an integer to English words, we need to:
 1. Define arrays to hold the words for units, tens, and hundreds.
@@ -36,23 +39,52 @@ Let's convert 12345:
 * Solution
 #+begin_src js :tangle "273_integer_to_english_words.js"
 /**
- * Convert a non-negative integer to its English words representation.
- * @param {number} num - The integer to be converted.
- * @return {string} - The English words representation of the integer.
- */
+ ,* Convert a non-negative integer to its English words representation.
+ ,* @param {number} num - The integer to be converted.
+ ,* @return {string} - The English words representation of the integer.
+ ,*/
 function numberToWords(num) {
     const log = typeof NestedInteger !== 'undefined' ? () => {} : console.log;
     const table = typeof NestedInteger !== 'undefined' ? () => {} : console.table;
-    
+
     if (num === 0) return "Zero";
 
-    const belowTwenty = ["", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", 
-                         "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", 
+    const belowTwenty = ["", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten",
+                         "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen",
                          "Eighteen", "Nineteen"];
     const tens = ["", "", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"];
     const thousands = ["", "Thousand", "Million", "Billion"];
+    let result = [];
 
-    return "dummy";
+    function parse1000(num) {
+        log(`parse1000 num=${num}`);
+        if (!num && num !== 0) throw `WTF num=${num}`;
+
+        if (num === 0) {
+            return [];
+        }
+        else if (num < 20) {
+            return [ belowTwenty[num] ];
+        }
+        else if (num < 100) {
+            return [ tens[ Math.floor(num / 10)], ...parse1000(num % 10) ];
+        }
+        else {
+            return [ belowTwenty[ Math.floor(num / 100)], "Hundred", ...parse1000(num % 100)];
+        }
+    }
+
+    for (let i = 0; i < thousands.length; i++) {
+        const numMod = num % 1000;
+        if (numMod !== 0) {
+            result = [...parse1000(numMod), thousands[i], ...result];
+            log(`i=${i}; result=${JSON.stringify(result)}`);
+        }
+        num = Math.floor(num / 1000);
+    }
+
+    const resultText = result.filter(r => !!r).join(' ');
+    return resultText;
 }
 
 // Test cases
@@ -60,7 +92,7 @@ const testCases = [
     { num: 123, expected: "One Hundred Twenty Three" },
     { num: 12345, expected: "Twelve Thousand Three Hundred Forty Five" },
     { num: 1234567, expected: "One Million Two Hundred Thirty Four Thousand Five Hundred Sixty Seven" },
-    { num: 1234567891, expected: "One Billion Two Hundred Thirty Four Million Five Hundred Sixty Seven Thousand Eight Hundred Ninety One" },
+   { num: 1234567891, expected: "One Billion Two Hundred Thirty Four Million Five Hundred Sixty Seven Thousand Eight Hundred Ninety One" },
     { num: 0, expected: "Zero" },
 ];
 
@@ -69,3 +101,54 @@ testCases.forEach((test, index) => {
     console.log(`Test Case ${index + 1}: ${result === test.expected ? 'Passed' : 'Failed'} (Expected: ${test.expected}, Got: ${result})`);
 });
 #+end_src
+
+#+RESULTS:
+
+
+** Output
+#+begin_example
+parse1000 num=123
+parse1000 num=23
+parse1000 num=3
+i=0; result=["One","Hundred","Twenty","Three",""]
+Test Case 1: Passed (Expected: One Hundred Twenty Three, Got: One Hundred Twenty Three)
+
+parse1000 num=345
+parse1000 num=45
+parse1000 num=5
+i=0; result=["Three","Hundred","Forty","Five",""]
+parse1000 num=12
+i=1; result=["Twelve","Thousand","Three","Hundred","Forty","Five",""]
+Test Case 2: Passed (Expected: Twelve Thousand Three Hundred Forty Five, Got: Twelve Thousand Three Hundred Forty Five)
+
+parse1000 num=567
+parse1000 num=67
+parse1000 num=7
+i=0; result=["Five","Hundred","Sixty","Seven",""]
+parse1000 num=234
+parse1000 num=34
+parse1000 num=4
+i=1; result=["Two","Hundred","Thirty","Four","Thousand","Five","Hundred","Sixty","Seven",""]
+parse1000 num=1
+i=2; result=["One","Million","Two","Hundred","Thirty","Four","Thousand","Five","Hundred","Sixty","Seven",""]
+Test Case 3: Passed (Expected: One Million Two Hundred Thirty Four Thousand Five Hundred Sixty Seven, Got: One Million Two Hundred Thirty Four Thousand Five Hundred Sixty Seven)
+
+parse1000 num=891
+parse1000 num=91
+parse1000 num=1
+i=0; result=["Eight","Hundred","Ninety","One",""]
+parse1000 num=567
+parse1000 num=67
+parse1000 num=7
+i=1; result=["Five","Hundred","Sixty","Seven","Thousand","Eight","Hundred","Ninety","One",""]
+parse1000 num=234
+parse1000 num=34
+parse1000 num=4
+i=2; result=["Two","Hundred","Thirty","Four","Million","Five","Hundred","Sixty","Seven","Thousand","Eight","Hundred","Ninety","One",""]
+parse1000 num=1
+i=3; result=["One","Billion","Two","Hundred","Thirty","Four","Million","Five","Hundred","Sixty","Seven","Thousand","Eight","Hundred","Ninety","One",""]
+Test Case 4: Passed (Expected: One Billion Two Hundred Thirty Four Million Five Hundred Sixty Seven Thousand Eight Hundred Ninety One, Got: One Billion Two Hundred Thirty Four Million Five Hundred Sixty Seven Thousand Eight Hundred Ninety One)
+
+Test Case 5: Passed (Expected: Zero, Got: Zero)
+undefined
+#+end_example
