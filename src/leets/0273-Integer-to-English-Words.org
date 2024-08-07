@@ -1,0 +1,71 @@
+﻿#+title: 0273. Integer to English Words
+#+subtitle: leetcode
+#+date: <2024-08-06>
+#+language: en
+
+* Problem
+Given a non-negative integer num, convert it to its English words representation.
+
+The problem requires us to implement a function that takes a non-negative integer (less than \(2^{31}\)) and returns its representation in English words.
+
+* Solution Description
+To implement the conversion from an integer to English words, we need to:
+1. Define arrays to hold the words for units, tens, and hundreds.
+2. Handle special cases like "zero".
+3. Break down the number into chunks of thousands since English words for numbers often group thousands together.
+4. Convert each chunk separately and then combine the results.
+
+Detailed Steps:
+1. Define the words arrays for digits (`0-9`), teens (`10-19`), tens (`20, 30, ...`), and thousands (`thousand, million, billion`).
+2. Create a helper function to convert numbers less than 1000.
+3. Iterate through each chunk of the number (thousands) and convert them to words.
+4. Combine all the chunks correctly with appropriate thousand separators.
+
+The time complexity of this solution is \(O(1)\) because the number of operations is dependent on the fixed maximum number of digits (10^9). The space complexity is also \(O(1)\) due to the fixed length of helper arrays and strings.
+
+* Example
+Let's convert 12345:
+1. Split into chunks: "12" thousand and "345".
+2. Convert "12": twelve
+3. Convert "345": three hundred forty-five
+4. Combine to get: "twelve thousand three hundred forty-five"
+
+* References
+- [Number to Words Conversion](https://en.wikipedia.org/wiki/English_numerals)
+
+* Solution
+#+begin_src js :tangle "273_integer_to_english_words.js"
+/**
+ * Convert a non-negative integer to its English words representation.
+ * @param {number} num - The integer to be converted.
+ * @return {string} - The English words representation of the integer.
+ */
+function numberToWords(num) {
+    const log = typeof NestedInteger !== 'undefined' ? () => {} : console.log;
+    const table = typeof NestedInteger !== 'undefined' ? () => {} : console.table;
+    
+    if (num === 0) return "Zero";
+
+    const belowTwenty = ["", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", 
+                         "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", 
+                         "Eighteen", "Nineteen"];
+    const tens = ["", "", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"];
+    const thousands = ["", "Thousand", "Million", "Billion"];
+
+    return "dummy";
+}
+
+// Test cases
+const testCases = [
+    { num: 123, expected: "One Hundred Twenty Three" },
+    { num: 12345, expected: "Twelve Thousand Three Hundred Forty Five" },
+    { num: 1234567, expected: "One Million Two Hundred Thirty Four Thousand Five Hundred Sixty Seven" },
+    { num: 1234567891, expected: "One Billion Two Hundred Thirty Four Million Five Hundred Sixty Seven Thousand Eight Hundred Ninety One" },
+    { num: 0, expected: "Zero" },
+];
+
+testCases.forEach((test, index) => {
+    const result = numberToWords(test.num);
+    console.log(`Test Case ${index + 1}: ${result === test.expected ? 'Passed' : 'Failed'} (Expected: ${test.expected}, Got: ${result})`);
+});
+#+end_src
