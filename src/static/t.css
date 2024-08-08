@@ -12,9 +12,11 @@ body { background-color: #fffff8; color: #111; }
 /* Typography */
 body { font-family: Palatino, Georgia, serif; }
 pre,code,tt { font-family: "Consolas", ui-monospace, monospace; font-size: 0.9em; }
+pre {
+    white-space: pre-wrap;
+}
 pre.src {
     padding: 10pt;
-    white-space: pre-wrap;
     border-radius: 5px;
     border: 1px solid silver;
     outline: 1px solid black;
