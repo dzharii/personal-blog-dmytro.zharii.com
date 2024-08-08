@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2024-08-07 -->
+<!-- 2024-08-08 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>2024-08-04 Cross-Platform Clipboard Dithering: A Journey with PowerShell and Bash</title>
@@ -22,18 +22,18 @@ Published 2024-08-04
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgf7d8c4b">Introduction</a></li>
-<li><a href="#org4acff9a">Using Custom Scripts with Aww Tools</a></li>
-<li><a href="#org15db361">Dithering from Clipboard on Windows</a></li>
-<li><a href="#org369eb94">Dithering from Clipboard on Linux</a></li>
-<li><a href="#org5f1d6c7">Conclusion</a></li>
+<li><a href="#orgcc15874">Introduction</a></li>
+<li><a href="#org2141fea">Using Custom Scripts with Aww Tools</a></li>
+<li><a href="#orge88814b">Dithering from Clipboard on Windows</a></li>
+<li><a href="#org44ab267">Dithering from Clipboard on Linux</a></li>
+<li><a href="#org8869fc2">Conclusion</a></li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-orgf7d8c4b" class="outline-2">
-<h2 id="orgf7d8c4b">Introduction</h2>
-<div class="outline-text-2" id="text-orgf7d8c4b">
+<div id="outline-container-orgcc15874" class="outline-2">
+<h2 id="orgcc15874">Introduction</h2>
+<div class="outline-text-2" id="text-orgcc15874">
 <p>
 I've been publishing internet link dumps on my other blog, which I'll link <a href="https://blog.zharii.com/blog">here</a>. These are collections of interesting links I find and publish either monthly or bimonthly. I realized that preserving screenshots along with descriptions helps in future searches. Often, I come across useful information that isn't immediately needed, so I store the link and a screenshot. When the information is needed later, I can easily find it in either the link dump post or the organized, categorized wiki pages on the same blog. However, storing these images in PNG format takes up a lot of space as they can quickly accumulate to several megabytes.
 </p>
@@ -48,9 +48,9 @@ I use Typora for publishing, which you can find <a href="https://typora.io">here
 </div>
 </div>
 
-<div id="outline-container-org4acff9a" class="outline-2">
-<h2 id="org4acff9a">Using Custom Scripts with Aww Tools</h2>
-<div class="outline-text-2" id="text-org4acff9a">
+<div id="outline-container-org2141fea" class="outline-2">
+<h2 id="org2141fea">Using Custom Scripts with Aww Tools</h2>
+<div class="outline-text-2" id="text-org2141fea">
 <p>
 I'm using custom scripts inside the .aww-tools folder to automate my workflow. These scripts are personal but are integrated with Aww Tools, specifically with AWW-Run. For instance, on Windows, CMD scripts (file extension .cmd) are prioritized, while on Linux, shell scripts (.sh) take precedence. If neither is available, AWW-Run defaults to PowerShell, which is cross-platform but has limitations.
 </p>
@@ -69,9 +69,9 @@ For more details and access to these tools, visit the .aww-tools GitHub reposito
 </div>
 </div>
 
-<div id="outline-container-org15db361" class="outline-2">
-<h2 id="org15db361">Dithering from Clipboard on Windows</h2>
-<div class="outline-text-2" id="text-org15db361">
+<div id="outline-container-orge88814b" class="outline-2">
+<h2 id="orge88814b">Dithering from Clipboard on Windows</h2>
+<div class="outline-text-2" id="text-orge88814b">
 <p>
 The script located at `.awwtools/aww-scripts/image-dith.ps1` is designed to dither an image directly from the clipboard on a Windows system. Here's an overview and annotation of the script:
 </p>
@@ -131,9 +131,9 @@ else {
 </div>
 </div>
 
-<div id="outline-container-org369eb94" class="outline-2">
-<h2 id="org369eb94">Dithering from Clipboard on Linux</h2>
-<div class="outline-text-2" id="text-org369eb94">
+<div id="outline-container-org44ab267" class="outline-2">
+<h2 id="org44ab267">Dithering from Clipboard on Linux</h2>
+<div class="outline-text-2" id="text-org44ab267">
 <p>
 The script located at `.awwtools/aww-scripts/image-dith.sh` provides functionality for dithering an image from the clipboard on Linux systems. Below is the script and a breakdown of its operation:
 </p>
@@ -220,9 +220,9 @@ exit 0
 </div>
 </div>
 
-<div id="outline-container-org5f1d6c7" class="outline-2">
-<h2 id="org5f1d6c7">Conclusion</h2>
-<div class="outline-text-2" id="text-org5f1d6c7">
+<div id="outline-container-org8869fc2" class="outline-2">
+<h2 id="org8869fc2">Conclusion</h2>
+<div class="outline-text-2" id="text-org8869fc2">
 <p>
 This was my third attempt to implement dithering from the clipboard on Linux, and I'm pleased to finally succeed. Despite spending nearly half a day consulting with ChatGPT, I couldn't create a universal PowerShell script that works seamlessly on both Linux and Windows due to differences in available tools and APIs. Specifically, XClip is a Linux-only tool, while on Windows, I'm using Windows Forms API for clipboard management. These differences necessitated using different approaches for each platform.
 </p>

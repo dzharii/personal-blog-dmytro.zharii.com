@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2024-08-07 -->
+<!-- 2024-08-08 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>0338. Counting Bits</title>
@@ -22,17 +22,17 @@ Published 2024-05-17
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org82f7867">Problem Overview</a></li>
-<li><a href="#orgd16c262">Solution Outline</a></li>
-<li><a href="#orgb8243e1">Implementation Plan</a></li>
-<li><a href="#org3f9365c">Solution Analysis</a></li>
+<li><a href="#org66c0df3">Problem Overview</a></li>
+<li><a href="#org509fb46">Solution Outline</a></li>
+<li><a href="#org7080002">Implementation Plan</a></li>
+<li><a href="#orge35d5a8">Solution Analysis</a></li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-org82f7867" class="outline-2">
-<h2 id="org82f7867">Problem Overview</h2>
-<div class="outline-text-2" id="text-org82f7867">
+<div id="outline-container-org66c0df3" class="outline-2">
+<h2 id="org66c0df3">Problem Overview</h2>
+<div class="outline-text-2" id="text-org66c0df3">
 <p>
 The problem "Counting Bits" requires us to return an array `ans` where `ans[i]` is the number of 1's in the binary representation of the number `i` for all `i` in the range 0 to `n` inclusive.
 </p>
@@ -47,9 +47,9 @@ Key Points:
 </div>
 </div>
 
-<div id="outline-container-orgd16c262" class="outline-2">
-<h2 id="orgd16c262">Solution Outline</h2>
-<div class="outline-text-2" id="text-orgd16c262">
+<div id="outline-container-org509fb46" class="outline-2">
+<h2 id="org509fb46">Solution Outline</h2>
+<div class="outline-text-2" id="text-org509fb46">
 <ol class="org-ol">
 <li><b><b>Preferred Structure:</b></b> 
 <ul class="org-ul">
@@ -68,9 +68,9 @@ Key Points:
 </div>
 </div>
 
-<div id="outline-container-orgb8243e1" class="outline-2">
-<h2 id="orgb8243e1">Implementation Plan</h2>
-<div class="outline-text-2" id="text-orgb8243e1">
+<div id="outline-container-org7080002" class="outline-2">
+<h2 id="org7080002">Implementation Plan</h2>
+<div class="outline-text-2" id="text-org7080002">
 <ol class="org-ol">
 <li>Initialize an array `result` of length `n + 1` with all elements set to 0.</li>
 <li>Iterate from 1 to `n`, updating each entry based on the relation `result[i] = result[i &gt;&gt; 1] + (i &amp; 1)`.</li>
@@ -120,9 +120,9 @@ testCases.forEach((test, index) =&gt; {
 </div>
 </div>
 
-<div id="outline-container-org3f9365c" class="outline-2">
-<h2 id="org3f9365c">Solution Analysis</h2>
-<div class="outline-text-2" id="text-org3f9365c">
+<div id="outline-container-orge35d5a8" class="outline-2">
+<h2 id="orge35d5a8">Solution Analysis</h2>
+<div class="outline-text-2" id="text-orge35d5a8">
 <ul class="org-ul">
 <li><b><b>Time Complexity:</b></b> O(n). Each number from 0 to `n` is processed exactly once.</li>
 <li><b><b>Space Complexity:</b></b> O(n). We use an array of size `n + 1` to store the result.</li>
