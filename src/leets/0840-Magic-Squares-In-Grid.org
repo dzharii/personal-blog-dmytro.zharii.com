@@ -6,6 +6,10 @@
 * Problem
 Determine how many 3x3 "magic squares" are in a given grid. A "magic square" is a 3x3 grid of numbers such that each number is distinct and in the range 1-9, and all rows, columns, and both diagonals sum to the same number, 15.
 
+** Submission
+
+- [[https://leetcode.com/submissions/detail/1350442342/][2024-08-09 Magic Squares In Grid - Submission Detail - LeetCode]]
+
 * Solution Description
 To implement the solution, we need to follow these steps:
 
@@ -57,7 +61,60 @@ function numMagicSquaresInside(grid) {
 
     const log = typeof NestedInteger !== 'undefined' ? () => {} : console.log;
     const table = typeof NestedInteger !== 'undefined' ? () => {} : console.table;
+
+    const isMagicSquare = (r, c) => {
+        const s = new Set();
+        const nums = [];
+
+        // unique 1 .. 9
+        for (let i = r; i < r + 3; i++) {
+            for (let j = c; j < c + 3; j++) {
+                const num = grid[i][j];
+                nums.push(num);
+                if (num < 1 || num > 9 || s.has(num)) {
+                    return false;
+                }
+                s.add(num);
+            }
+        }
+
+        const magicSum = 15;
+
+        // all rows and cols
+        for (let i = 0; i < 3; i++) {
+            const rowSum = grid[r + i][c] + grid[r + i][c + 1] + grid[r + i][c + 2];
+            if (rowSum !== magicSum) {
+                return false;
+            }
+
+            const colSum = grid[r][c + i] + grid[r + 1][c + i] + grid[r + 2][c + i];
+            if (colSum !== magicSum) {
+                return false;
+            }
+        }
+
+        // diagonalss
+        const diag1 = grid[r][c] + grid[r + 1][c + 1] + grid[r + 2][c + 2];
+        if (diag1 !== magicSum) {
+            return false;
+        }
+
+        const diag2 = grid[r + 2][c] + grid[r + 1][c + 1] + grid[r][c + 2];
+        if (diag2 !== magicSum) {
+            return false;
+        }
+
+
+        return true;
+    };
+
     let count = 0;
+
+    for (let r = 0; r <= grid.length - 3; r++) {
+        for (let c = 0; c <= grid[0].length - 3; c++) {
+            if (isMagicSquare(r, c)) count++;
+        }
+    }
 
     return count;
 }
@@ -99,8 +156,8 @@ testCases.forEach((test, index) => {
 #+end_src
 
 #+RESULTS:
-: Test Case 1: Failed (Expected: 1, Got: 0)
-: Test Case 2: Failed (Expected: 1, Got: 0)
-: Test Case 3: Failed (Expected: 1, Got: 0)
-: Test Case 4: Failed (Expected: 1, Got: 0)
+: Test Case 1: Passed (Expected: 1, Got: 1)
+: Test Case 2: Passed (Expected: 1, Got: 1)
+: Test Case 3: Passed (Expected: 1, Got: 1)
+: Test Case 4: Passed (Expected: 1, Got: 1)
 : undefined

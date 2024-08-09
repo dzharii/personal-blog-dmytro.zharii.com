@@ -8,6 +8,9 @@ This section contains basic settings to customize the initial behavior and appea
 
 ;; Disable the toolbar
 (tool-bar-mode -1)
+
+;; UTF-8 by default
+(prefer-coding-system 'utf-8)
 #+END_SRC
 
 ** Project Configuration

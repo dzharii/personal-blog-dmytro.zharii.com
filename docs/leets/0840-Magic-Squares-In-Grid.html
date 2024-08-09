@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2024-08-08 -->
+<!-- 2024-08-09 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>0840. Magic Squares In Grid</title>
@@ -22,27 +22,40 @@ Published 2024-08-08
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgdbfef24">Problem</a></li>
-<li><a href="#org49d1626">Solution Description</a></li>
-<li><a href="#org52ec200">Example</a></li>
-<li><a href="#org36f243a">References</a></li>
-<li><a href="#org1db5747">Solution</a></li>
+<li><a href="#orgfd2c624">Problem</a>
+<ul>
+<li><a href="#orgeca4ff9">Submission</a></li>
+</ul>
+</li>
+<li><a href="#org1d00bfd">Solution Description</a></li>
+<li><a href="#org387a51f">Example</a></li>
+<li><a href="#org96ab75f">References</a></li>
+<li><a href="#orga33ea49">Solution</a></li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-orgdbfef24" class="outline-2">
-<h2 id="orgdbfef24">Problem</h2>
-<div class="outline-text-2" id="text-orgdbfef24">
+<div id="outline-container-orgfd2c624" class="outline-2">
+<h2 id="orgfd2c624">Problem</h2>
+<div class="outline-text-2" id="text-orgfd2c624">
 <p>
 Determine how many 3x3 "magic squares" are in a given grid. A "magic square" is a 3x3 grid of numbers such that each number is distinct and in the range 1-9, and all rows, columns, and both diagonals sum to the same number, 15.
 </p>
 </div>
+
+<div id="outline-container-orgeca4ff9" class="outline-3">
+<h3 id="orgeca4ff9">Submission</h3>
+<div class="outline-text-3" id="text-orgeca4ff9">
+<ul class="org-ul">
+<li><a href="https://leetcode.com/submissions/detail/1350442342/">2024-08-09 Magic Squares In Grid - Submission Detail - LeetCode</a></li>
+</ul>
+</div>
+</div>
 </div>
 
-<div id="outline-container-org49d1626" class="outline-2">
-<h2 id="org49d1626">Solution Description</h2>
-<div class="outline-text-2" id="text-org49d1626">
+<div id="outline-container-org1d00bfd" class="outline-2">
+<h2 id="org1d00bfd">Solution Description</h2>
+<div class="outline-text-2" id="text-org1d00bfd">
 <p>
 To implement the solution, we need to follow these steps:
 </p>
@@ -60,14 +73,14 @@ The approach involves iterating through potentially (m-2) x (n-2) sub-grids in a
 </div>
 </div>
 
-<div id="outline-container-org52ec200" class="outline-2">
-<h2 id="org52ec200">Example</h2>
-<div class="outline-text-2" id="text-org52ec200">
+<div id="outline-container-org387a51f" class="outline-2">
+<h2 id="org387a51f">Example</h2>
+<div class="outline-text-2" id="text-org387a51f">
 <p>
 Consider a 4x4 grid:
 </p>
 
-<pre class="example" id="org038771b">
+<pre class="example" id="org24ba3e3">
 4 3 8 4
 9 5 1 9
 2 7 6 2
@@ -78,7 +91,7 @@ Consider a 4x4 grid:
 We can identify one magic square in the top left 3x3 section:
 </p>
 
-<pre class="example" id="org7f21150">
+<pre class="example" id="orgd80454c">
 4 3 8
 9 5 1
 2 7 6
@@ -97,9 +110,9 @@ This grid confirms to a magic square.
 </div>
 </div>
 
-<div id="outline-container-org36f243a" class="outline-2">
-<h2 id="org36f243a">References</h2>
-<div class="outline-text-2" id="text-org36f243a">
+<div id="outline-container-org96ab75f" class="outline-2">
+<h2 id="org96ab75f">References</h2>
+<div class="outline-text-2" id="text-org96ab75f">
 <ul class="org-ul">
 <li>Magic square: <a href="https://en.wikipedia.org/wiki/Magic_square">Wikipedia Magic Square</a></li>
 <li>Array traversal: Used to explore sub-grids within a larger array.</li>
@@ -107,9 +120,9 @@ This grid confirms to a magic square.
 </div>
 </div>
 
-<div id="outline-container-org1db5747" class="outline-2">
-<h2 id="org1db5747">Solution</h2>
-<div class="outline-text-2" id="text-org1db5747">
+<div id="outline-container-orga33ea49" class="outline-2">
+<h2 id="orga33ea49">Solution</h2>
+<div class="outline-text-2" id="text-orga33ea49">
 <div class="org-src-container">
 <pre class="src src-js">/**
  * Main function to count magic squares in a grid
@@ -120,7 +133,60 @@ function numMagicSquaresInside(grid) {
 
     const log = typeof NestedInteger !== 'undefined' ? () =&gt; {} : console.log;
     const table = typeof NestedInteger !== 'undefined' ? () =&gt; {} : console.table;
+
+    const isMagicSquare = (r, c) =&gt; {
+        const s = new Set();
+        const nums = [];
+
+        // unique 1 .. 9
+        for (let i = r; i &lt; r + 3; i++) {
+            for (let j = c; j &lt; c + 3; j++) {
+                const num = grid[i][j];
+                nums.push(num);
+                if (num &lt; 1 || num &gt; 9 || s.has(num)) {
+                    return false;
+                }
+                s.add(num);
+            }
+        }
+
+        const magicSum = 15;
+
+        // all rows and cols
+        for (let i = 0; i &lt; 3; i++) {
+            const rowSum = grid[r + i][c] + grid[r + i][c + 1] + grid[r + i][c + 2];
+            if (rowSum !== magicSum) {
+                return false;
+            }
+
+            const colSum = grid[r][c + i] + grid[r + 1][c + i] + grid[r + 2][c + i];
+            if (colSum !== magicSum) {
+                return false;
+            }
+        }
+
+        // diagonalss
+        const diag1 = grid[r][c] + grid[r + 1][c + 1] + grid[r + 2][c + 2];
+        if (diag1 !== magicSum) {
+            return false;
+        }
+
+        const diag2 = grid[r + 2][c] + grid[r + 1][c + 1] + grid[r][c + 2];
+        if (diag2 !== magicSum) {
+            return false;
+        }
+
+
+        return true;
+    };
+
     let count = 0;
+
+    for (let r = 0; r &lt;= grid.length - 3; r++) {
+        for (let c = 0; c &lt;= grid[0].length - 3; c++) {
+            if (isMagicSquare(r, c)) count++;
+        }
+    }
 
     return count;
 }
