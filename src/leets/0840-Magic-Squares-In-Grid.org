@@ -1,0 +1,106 @@
+﻿#+title: 0840. Magic Squares In Grid
+#+subtitle: leetcode
+#+date: <2024-08-08>
+#+language: en
+
+* Problem
+Determine how many 3x3 "magic squares" are in a given grid. A "magic square" is a 3x3 grid of numbers such that each number is distinct and in the range 1-9, and all rows, columns, and both diagonals sum to the same number, 15.
+
+* Solution Description
+To implement the solution, we need to follow these steps:
+
+1. Traverse through each possible 3x3 sub-grid in the larger grid.
+2. For each sub-grid, verify if all elements are distinct and between 1 and 9.
+3. Calculate the sum of each row, column, and both diagonals to check if they all sum up to 15.
+4. Count all sub-grids that satisfy these conditions.
+
+The approach involves iterating through potentially (m-2) x (n-2) sub-grids in an m x n grid since we're focusing on 3x3 sections. Each sub-grid requires checking 8 lines (3 rows, 3 columns, 2 diagonals). This results in a time complexity of O((m-2)(n-2) * 8) and constant space complexity of O(1) as no extra space proportional to input size is used.
+
+* Example
+Consider a 4x4 grid:
+
+#+begin_example
+  4 3 8 4
+  9 5 1 9
+  2 7 6 2
+  9 5 1 9
+#+end_example
+
+We can identify one magic square in the top left 3x3 section:
+
+#+begin_example
+  4 3 8
+  9 5 1
+  2 7 6
+#+end_example
+
+Checking each line, we get:
+  Row sums: 15, 15, 15
+  Column sums: 15, 15, 15
+  Diagonal sums: 15, 15
+
+This grid confirms to a magic square.
+
+* References
+- Magic square: [[https://en.wikipedia.org/wiki/Magic_square][Wikipedia Magic Square]]
+- Array traversal: Used to explore sub-grids within a larger array.
+
+* Solution
+
+#+begin_src js :tangle "840_magic_squares_in_grid.js"
+/**
+ ,* Main function to count magic squares in a grid
+ ,* @param {number[][]} grid
+ ,* @return {number} - Count of 3x3 magic squares
+ ,*/
+function numMagicSquaresInside(grid) {
+
+    const log = typeof NestedInteger !== 'undefined' ? () => {} : console.log;
+    const table = typeof NestedInteger !== 'undefined' ? () => {} : console.table;
+    let count = 0;
+
+    return count;
+}
+
+// Test cases
+const testCases = [
+    { grid: [
+        [4,3,8,4],
+        [9,5,1,9],
+        [2,7,6,2],
+        [9,5,1,9]],
+      expected: 1 },
+
+    { grid: [
+        [4,3,8],
+        [9,5,1],
+        [2,7,6]],
+      expected: 1 },
+
+    { grid: [
+        [8,1,6],
+        [3,5,7],
+        [4,9,2]],
+      expected: 1 },
+
+    { grid: [
+        [4,3,8],
+        [9,5,1],
+        [2,7,6],
+        [1,1,1]],
+      expected: 1 },
+];
+
+testCases.forEach((test, index) => {
+    const result = numMagicSquaresInside(test.grid);
+    console.log(`Test Case ${index + 1}: ${result === test.expected ? 'Passed' : 'Failed'} (Expected: ${test.expected}, Got: ${result})`);
+});
+
+#+end_src
+
+#+RESULTS:
+: Test Case 1: Failed (Expected: 1, Got: 0)
+: Test Case 2: Failed (Expected: 1, Got: 0)
+: Test Case 3: Failed (Expected: 1, Got: 0)
+: Test Case 4: Failed (Expected: 1, Got: 0)
+: undefined

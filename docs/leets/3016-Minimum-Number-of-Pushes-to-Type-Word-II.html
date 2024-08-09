@@ -22,36 +22,36 @@ Published 2024-08-06
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org0c14a4e">Problem</a></li>
-<li><a href="#org6715cd5">Submission</a></li>
-<li><a href="#org8cad3bb">Solution Description</a></li>
-<li><a href="#org627a2ff">Example</a></li>
-<li><a href="#org1105d8d">Solution</a></li>
+<li><a href="#orged09235">Problem</a></li>
+<li><a href="#orgbcf1585">Submission</a></li>
+<li><a href="#org02691ed">Solution Description</a></li>
+<li><a href="#org6be17ac">Example</a></li>
+<li><a href="#orgc90d22a">Solution</a></li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-org0c14a4e" class="outline-2">
-<h2 id="org0c14a4e">Problem</h2>
-<div class="outline-text-2" id="text-org0c14a4e">
+<div id="outline-container-orged09235" class="outline-2">
+<h2 id="orged09235">Problem</h2>
+<div class="outline-text-2" id="text-orged09235">
 <p>
 You are given a string `word` consisting of lowercase English letters. A telephone keypad has keys numbered 2 to 9, which can be mapped to distinct collections of these letters. Each key can be remapped to any number of letters, but each letter must be assigned to exactly one key. The task is to remap the keys in such a way that the minimum number of pushes is required to type the string `word`. A single push types the first letter on a key, two pushes type the second letter, and so on.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org6715cd5" class="outline-2">
-<h2 id="org6715cd5">Submission</h2>
-<div class="outline-text-2" id="text-org6715cd5">
+<div id="outline-container-orgbcf1585" class="outline-2">
+<h2 id="orgbcf1585">Submission</h2>
+<div class="outline-text-2" id="text-orgbcf1585">
 <ul class="org-ul">
 <li><a href="https://leetcode.com/submissions/detail/1347137060/">2024-08-06 Minimum Number of Pushes to Type Word II - Submission Detail - LeetCode</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org8cad3bb" class="outline-2">
-<h2 id="org8cad3bb">Solution Description</h2>
-<div class="outline-text-2" id="text-org8cad3bb">
+<div id="outline-container-org02691ed" class="outline-2">
+<h2 id="org02691ed">Solution Description</h2>
+<div class="outline-text-2" id="text-org02691ed">
 <p>
 To implement this solution, we need to:
 </p>
@@ -75,18 +75,18 @@ The time complexity is O(n + m log m) where n is the length of the word and m is
 </div>
 </div>
 
-<div id="outline-container-org627a2ff" class="outline-2">
-<h2 id="org627a2ff">Example</h2>
-<div class="outline-text-2" id="text-org627a2ff">
+<div id="outline-container-org6be17ac" class="outline-2">
+<h2 id="org6be17ac">Example</h2>
+<div class="outline-text-2" id="text-org6be17ac">
 <p>
 For the word "aabbccddeeffgghhiiiiii", we first count the frequency of each letter: {a: 2, b: 2, c: 2, d: 2, e: 2, f: 2, g: 2, h: 2, i: 6}. After sorting by frequency, we get ['i', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']. The optimal mapping will assign 'i' to the first position of the first key, 'a' to the first position of the second key, and so on.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org1105d8d" class="outline-2">
-<h2 id="org1105d8d">Solution</h2>
-<div class="outline-text-2" id="text-org1105d8d">
+<div id="outline-container-orgc90d22a" class="outline-2">
+<h2 id="orgc90d22a">Solution</h2>
+<div class="outline-text-2" id="text-orgc90d22a">
 <div class="org-src-container">
 <pre class="src src-js">/**
  * Calculates the minimum number of pushes to type the word using a remapped keypad.
@@ -137,7 +137,7 @@ testCases.forEach((test, index) =&gt; {
 
 
 
-<figure id="org9f48eff">
+<figure id="org9648f10">
 <img src="Solution/2024-08-06_16-48-10_screenshot.png" alt="2024-08-06_16-48-10_screenshot.png">
 
 </figure>

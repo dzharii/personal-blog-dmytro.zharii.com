@@ -49,3 +49,4 @@
   - [[file:leets/3016-Minimum-Number-of-Pushes-to-Type-Word-II.org][3016. Minimum Number of Pushes to Type Word II]]
   - [[file:leets/0273-Integer-to-English-Words.org][0273. Integer to English Words]]
   - [[file:leets/0885-Spiral-Matrix-III.org][0885. Spiral Matrix III]]
+  - [[file:leets/0840-Magic-Squares-In-Grid.org][0840. Magic Squares In Grid]]

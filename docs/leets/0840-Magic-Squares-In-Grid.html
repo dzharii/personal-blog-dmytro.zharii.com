@@ -1,0 +1,171 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2024-08-08 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>0840. Magic Squares In Grid</title>
+<meta name="author" content="d)zharii" />
+<meta name="generator" content="Org Mode" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/t.css"/>
+</head>
+<body>
+<nav><a href="/" tabindex="0">&larrhk; Back to Index</a></nav><div id="preamble" class="status">
+Published 2024-08-08
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">0840. Magic Squares In Grid</h1>
+<p class="subtitle" role="doc-subtitle">leetcode</p>
+</header><nav id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgdbfef24">Problem</a></li>
+<li><a href="#org49d1626">Solution Description</a></li>
+<li><a href="#org52ec200">Example</a></li>
+<li><a href="#org36f243a">References</a></li>
+<li><a href="#org1db5747">Solution</a></li>
+</ul>
+</div>
+</nav>
+
+<div id="outline-container-orgdbfef24" class="outline-2">
+<h2 id="orgdbfef24">Problem</h2>
+<div class="outline-text-2" id="text-orgdbfef24">
+<p>
+Determine how many 3x3 "magic squares" are in a given grid. A "magic square" is a 3x3 grid of numbers such that each number is distinct and in the range 1-9, and all rows, columns, and both diagonals sum to the same number, 15.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org49d1626" class="outline-2">
+<h2 id="org49d1626">Solution Description</h2>
+<div class="outline-text-2" id="text-org49d1626">
+<p>
+To implement the solution, we need to follow these steps:
+</p>
+
+<ol class="org-ol">
+<li>Traverse through each possible 3x3 sub-grid in the larger grid.</li>
+<li>For each sub-grid, verify if all elements are distinct and between 1 and 9.</li>
+<li>Calculate the sum of each row, column, and both diagonals to check if they all sum up to 15.</li>
+<li>Count all sub-grids that satisfy these conditions.</li>
+</ol>
+
+<p>
+The approach involves iterating through potentially (m-2) x (n-2) sub-grids in an m x n grid since we're focusing on 3x3 sections. Each sub-grid requires checking 8 lines (3 rows, 3 columns, 2 diagonals). This results in a time complexity of O((m-2)(n-2) * 8) and constant space complexity of O(1) as no extra space proportional to input size is used.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org52ec200" class="outline-2">
+<h2 id="org52ec200">Example</h2>
+<div class="outline-text-2" id="text-org52ec200">
+<p>
+Consider a 4x4 grid:
+</p>
+
+<pre class="example" id="org038771b">
+4 3 8 4
+9 5 1 9
+2 7 6 2
+9 5 1 9
+</pre>
+
+<p>
+We can identify one magic square in the top left 3x3 section:
+</p>
+
+<pre class="example" id="org7f21150">
+4 3 8
+9 5 1
+2 7 6
+</pre>
+
+<p>
+Checking each line, we get:
+  Row sums: 15, 15, 15
+  Column sums: 15, 15, 15
+  Diagonal sums: 15, 15
+</p>
+
+<p>
+This grid confirms to a magic square.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org36f243a" class="outline-2">
+<h2 id="org36f243a">References</h2>
+<div class="outline-text-2" id="text-org36f243a">
+<ul class="org-ul">
+<li>Magic square: <a href="https://en.wikipedia.org/wiki/Magic_square">Wikipedia Magic Square</a></li>
+<li>Array traversal: Used to explore sub-grids within a larger array.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org1db5747" class="outline-2">
+<h2 id="org1db5747">Solution</h2>
+<div class="outline-text-2" id="text-org1db5747">
+<div class="org-src-container">
+<pre class="src src-js">/**
+ * Main function to count magic squares in a grid
+ * @param {number[][]} grid
+ * @return {number} - Count of 3x3 magic squares
+ */
+function numMagicSquaresInside(grid) {
+
+    const log = typeof NestedInteger !== 'undefined' ? () =&gt; {} : console.log;
+    const table = typeof NestedInteger !== 'undefined' ? () =&gt; {} : console.table;
+    let count = 0;
+
+    return count;
+}
+
+// Test cases
+const testCases = [
+    { grid: [
+        [4,3,8,4],
+        [9,5,1,9],
+        [2,7,6,2],
+        [9,5,1,9]],
+      expected: 1 },
+
+    { grid: [
+        [4,3,8],
+        [9,5,1],
+        [2,7,6]],
+      expected: 1 },
+
+    { grid: [
+        [8,1,6],
+        [3,5,7],
+        [4,9,2]],
+      expected: 1 },
+
+    { grid: [
+        [4,3,8],
+        [9,5,1],
+        [2,7,6],
+        [1,1,1]],
+      expected: 1 },
+];
+
+testCases.forEach((test, index) =&gt; {
+    const result = numMagicSquaresInside(test.grid);
+    console.log(`Test Case ${index + 1}: ${result === test.expected ? 'Passed' : 'Failed'} (Expected: ${test.expected}, Got: ${result})`);
+});
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+&copy; d)zharii. <a href="/sitemap.html">sitemap</a>
+</div>
+</body>
+</html>
