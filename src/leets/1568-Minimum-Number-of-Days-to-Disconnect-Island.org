@@ -1,0 +1,84 @@
+﻿#+title: 1568. Minimum Number of Days to Disconnect Island
+#+subtitle: leetcode
+#+date: <2024-08-11>
+#+language: en
+
+* Problem
+Given a 2D grid consists of 0s (water) and 1s (land), an island is a maximal 4-directionally (horizontal or vertical) connected group of 1s. The grid is said to be connected if we have exactly one island, otherwise, it is disconnected. We want to find the minimum number of days to disconnect the island.
+
+**Example**:
+#+begin_example
+1 1 0 1 1
+1 1 0 1 1
+0 0 1 0 0
+#+end_example
+
+* Output: 2
+
+* Solution Description
+To implement the solution, we need to approach it with the following steps:
+1. **Identify if the island is already disconnected**: If the grid has more than one island initially, return 0.
+2. **Simulate removal of one land cell**: Iterate through each land cell in the grid, temporarily remove it, and check if the resulting grid is disconnected.
+3. **Simulate removal of two land cells**: If removing one cell does not disconnect the island, check by removing a pair of cells and see if that results in disconnection.
+4. **Return the minimum days required**: Since the grid size is small, the solution can afford to perform these checks efficiently.
+
+We will use Depth-First Search (DFS) to count the number of connected components in the grid upon each removal simulation. The time complexity of this approach will be O(n*m*(n*m)) and the space complexity is O(n*m), where n and m are the dimensions of the grid.
+
+** Example
+Grid:
+#+begin_example
+[[1, 1, 0, 1, 1],
+ [1, 1, 0, 1, 1],
+ [0, 0, 1, 0, 0]]
+#+end_example
+
+1. Start by checking initial connectivity: One island or multiple islands? => One island.
+2. Try removing each cell and check connectivity with DFS.
+3. If not disconnected, try pairs of cells and check again.
+4. Return the number of days based on the minimum attempts required.
+
+** References
+- [[https://en.wikipedia.org/wiki/Depth-first_search][Depth-First Search]]
+- [[https://leetcode.com/problems/minimum-number-of-days-to-disconnect-island/][Leetcode Problem 1568]]
+
+The solution can be built using DFS to verify the connected components at each step.
+
+** Solution
+#+begin_src js :tangle "leetcode_1568_minimum_number_of_days_to_disconnect_island.js"
+/**
+ ,* Main solution function to determine the minimum number of days to disconnect the island.
+ ,* @param {number[][]} grid - The 2D grid of 0s and 1s.
+ ,* @return {number} - Minimum number of days to disconnect the island.
+ ,*/
+function minimumDaysToDisconnect(grid) {
+    const log = typeof NestedInteger !== 'undefined' ? () => {} : console.log;
+    const table = typeof NestedInteger!== 'undefined' ? () => {} : console.table;
+
+    console.log();
+
+    // Temporarily return a dummy value.
+    return -1;
+}
+
+// Test cases
+const testCases = [
+    { grid: [[1, 1, 0, 1, 1], [1, 1, 0, 1, 1], [0, 0, 1, 0, 0]], expected: 2 },
+    { grid: [[1, 1]], expected: 0 },
+    { grid: [[1, 0, 1]], expected: 0 },
+    { grid: [[1, 1, 0, 0, 1]], expected: 1 },
+    { grid: [[0, 0]], expected: 0 },
+];
+
+testCases.forEach((test, index) => {
+    const result = minimumDaysToDisconnect(test.grid);
+    console.log(`Test Case ${index + 1}: ${result === test.expected ? 'Passed' : 'Failed'} (Expected: ${test.expected}, Got: ${result})`);
+});
+#+end_src
+
+#+RESULTS:
+: Test Case 1: Failed (Expected: 2, Got: -1)
+: Test Case 2: Failed (Expected: 0, Got: -1)
+: Test Case 3: Failed (Expected: 0, Got: -1)
+: Test Case 4: Failed (Expected: 1, Got: -1)
+: Test Case 5: Failed (Expected: 0, Got: -1)
+: undefined
