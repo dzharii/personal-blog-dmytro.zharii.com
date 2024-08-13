@@ -47,7 +47,7 @@ Let's take an example with candidates = [10,1,2,7,6,1,5] and target = 8. Here's 
 - Backtracking Algorithm: [[https://en.wikipedia.org/wiki/Backtracking][Backtracking on Wikipedia]]
 - Combination Sum Problem: [[https://leetcode.com/problems/combination-sum-ii/][LeetCode Problem]]
 - [[https://labuladong.gitbook.io/algo-en/iii.-algorithmic-thinking/subset_permutation_combination][2024-08-13 Backtracking Solve Subset/Permutation/Combination | algo-en]]
-
+  - [[https://github.com/labuladong/fucking-algorithm/blob/english/think_like_computer/DetailsaboutBacktracking.md][2024-08-13 fucking-algorithm/think_like_computer/DetailsaboutBacktracking.md at english · labuladong/fucking-algorithm]]
 * Solution
 Here's the skeleton for the solution function in JavaScript. Feel free to fill in the logic.
 
