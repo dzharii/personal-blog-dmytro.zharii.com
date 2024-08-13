@@ -11,7 +11,7 @@ Each combination should be a unique set of candidate numbers, and the order of c
 Example:
 #+begin_example
 Input: candidates = [10,1,2,7,6,1,5], target = 8
-Output: 
+Output:
 [
   [1,1,6],
   [1,2,5],
@@ -46,25 +46,43 @@ Let's take an example with candidates = [10,1,2,7,6,1,5] and target = 8. Here's 
 * References
 - Backtracking Algorithm: [[https://en.wikipedia.org/wiki/Backtracking][Backtracking on Wikipedia]]
 - Combination Sum Problem: [[https://leetcode.com/problems/combination-sum-ii/][LeetCode Problem]]
+- [[https://labuladong.gitbook.io/algo-en/iii.-algorithmic-thinking/subset_permutation_combination][2024-08-13 Backtracking Solve Subset/Permutation/Combination | algo-en]]
 
 * Solution
 Here's the skeleton for the solution function in JavaScript. Feel free to fill in the logic.
 
 #+begin_src js :tangle leetcode_40_combination_sum_ii.js
 /**
- * Finds all unique combinations in candidates that sum to the target.
- * 
- * @param {number[]} candidates - The candidate numbers.
- * @param {number} target - The target sum.
- * @returns {number[][]} - All unique combinations summing to target.
- */
-function combinationSum2(candidates, target) {
+ ,* Finds all unique combinations in candidates that sum to the target.
+ ,*
+ ,* @param {number[]} candidates - The candidate numbers.
+ ,* @param {number} target - The target sum.
+ ,* @returns {number[][]} - All unique combinations summing to target.
+ ,*/
+function combinationSum2(cands, tgt) {
     // Log and table functions for easy debugging
     const log = typeof NestedInteger !== 'undefined' ? () => {} : console.log;
     const table = typeof NestedInteger!== 'undefined' ? () => {} : console.table;
 
-    // Placeholder for returning the result.
-    return [];
+    cands.sort((a, b) => a - b);
+    const res = [];
+
+    function backtrack(start, t, track) {
+        if (t === 0) {
+            res.push([...track]);
+            return;
+        }
+        for (let i = start; i < cands.length; i++) {
+            if (i > start && cands[i] === cands[i - 1]) continue;
+            if (cands[i] > t) break;
+            track.push(cands[i]);
+            backtrack(i + 1, t - cands[i], track);
+            track.pop();
+        }
+    }
+
+    backtrack(0, tgt, []);
+    return res;
 }
 
 // Test cases
@@ -82,3 +100,11 @@ testCases.forEach((test, index) => {
     console.log(`Test Case ${index + 1}: ${result.toString() === test.expected.toString() ? 'Passed' : 'Failed'} (Expected: ${JSON.stringify(test.expected)}, Got: ${JSON.stringify(result)})`);
 });
 #+end_src
+
+#+RESULTS:
+: Test Case 1: Passed (Expected: [[1,1,6],[1,2,5],[1,7],[2,6]], Got: [[1,1,6],[1,2,5],[1,7],[2,6]])
+: Test Case 2: Passed (Expected: [[1,2,2],[5]], Got: [[1,2,2],[5]])
+: Test Case 3: Passed (Expected: [[1,1]], Got: [[1,1]])
+: Test Case 4: Passed (Expected: [[4,4]], Got: [[4,4]])
+: Test Case 5: Passed (Expected: [[1]], Got: [[1]])
+: undefined
