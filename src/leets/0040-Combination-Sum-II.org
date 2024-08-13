@@ -1,0 +1,84 @@
+﻿#+title: 0040. Combination Sum II
+#+subtitle: leetcode
+#+date: <2024-08-12>
+#+language: en
+
+* Problem
+Given a collection of candidate numbers (candidates) and a target number (target), find all unique combinations in candidates where the candidate numbers sum to target. Each number in candidates may only be used once in the combination.
+
+Each combination should be a unique set of candidate numbers, and the order of combinations does not matter. The solution set must not contain duplicate combinations.
+
+Example:
+#+begin_example
+Input: candidates = [10,1,2,7,6,1,5], target = 8
+Output: 
+[
+  [1,1,6],
+  [1,2,5],
+  [1,7],
+  [2,6]
+]
+#+end_example
+
+* Solution Description
+To implement the solution for finding all unique combinations of candidate numbers that sum to the target, we need to use a backtracking approach:
+
+1. **Sort the candidates array**: This helps to easily skip duplicates and manage the flow of the combinations.
+2. **Backtracking function**: Implement a recursive function that explores each candidate. Include the following steps:
+    - Base case: If the target becomes zero, a valid combination is found.
+    - Iterate through candidates and recursively call the backtracking function.
+    - Skip duplicates intelligently by checking if the current candidate is the same as the previous one.
+3. **Avoiding reuse of elements**: This is managed by adjusting the start index properly so elements aren't reused in the same combination.
+
+The backtracking approach ensures that all possible combinations are explored efficiently without redundancy. Sorting the array and skipping duplicates avoids generating the same combination multiple times.
+
+**Complexity Analysis**:
+- Time complexity is approximately O(2^n) in the worst case due to the exponential nature of the combination generation.
+- Space complexity is O(target/k), where k is the smallest element in the candidates array due to the depth of the recursion stack.
+
+* Example
+Let's take an example with candidates = [10,1,2,7,6,1,5] and target = 8. Here's how the algorithm would work:
+1. Sort candidates: [1,1,2,5,6,7,10]
+2. Start backtracking from the first element, and explore all combinations recursively.
+3. Once a valid combination is found (summing to the target), add it to the result set.
+4. Skip duplicates by checking if the current candidate is the same as the previous one.
+
+* References
+- Backtracking Algorithm: [[https://en.wikipedia.org/wiki/Backtracking][Backtracking on Wikipedia]]
+- Combination Sum Problem: [[https://leetcode.com/problems/combination-sum-ii/][LeetCode Problem]]
+
+* Solution
+Here's the skeleton for the solution function in JavaScript. Feel free to fill in the logic.
+
+#+begin_src js :tangle leetcode_40_combination_sum_ii.js
+/**
+ * Finds all unique combinations in candidates that sum to the target.
+ * 
+ * @param {number[]} candidates - The candidate numbers.
+ * @param {number} target - The target sum.
+ * @returns {number[][]} - All unique combinations summing to target.
+ */
+function combinationSum2(candidates, target) {
+    // Log and table functions for easy debugging
+    const log = typeof NestedInteger !== 'undefined' ? () => {} : console.log;
+    const table = typeof NestedInteger!== 'undefined' ? () => {} : console.table;
+
+    // Placeholder for returning the result.
+    return [];
+}
+
+// Test cases
+const testCases = [
+    { candidates: [10, 1, 2, 7, 6, 1, 5], target: 8, expected: [[1,1,6], [1,2,5], [1,7], [2,6]] },
+    { candidates: [2,5,2,1,2], target: 5, expected: [[1,2,2],[5]] },
+    { candidates: [1,1,1,1], target: 2, expected: [[1,1]] },
+    { candidates: [4,4,4,4], target: 8, expected: [[4,4]] },
+    { candidates: [1], target: 1, expected: [[1]] }
+    // More test cases to cover edge cases and different scenarios
+];
+
+testCases.forEach((test, index) => {
+    const result = combinationSum2(test.candidates, test.target);
+    console.log(`Test Case ${index + 1}: ${result.toString() === test.expected.toString() ? 'Passed' : 'Failed'} (Expected: ${JSON.stringify(test.expected)}, Got: ${JSON.stringify(result)})`);
+});
+#+end_src

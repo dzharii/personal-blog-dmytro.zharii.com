@@ -50,3 +50,5 @@
   - [[file:leets/0273-Integer-to-English-Words.org][0273. Integer to English Words]]
   - [[file:leets/0885-Spiral-Matrix-III.org][0885. Spiral Matrix III]]
   - [[file:leets/0840-Magic-Squares-In-Grid.org][0840. Magic Squares In Grid]]
+  - [[file:leets/1568-Minimum-Number-of-Days-to-Disconnect-Island.org][1568. Minimum Number of Days to Disconnect Island]]
+  - [[file:leets/0040-Combination-Sum-II.org][0040. Combination Sum II]]

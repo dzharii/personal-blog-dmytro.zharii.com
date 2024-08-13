@@ -1,0 +1,155 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2024-08-12 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>1568. Minimum Number of Days to Disconnect Island</title>
+<meta name="author" content="d)zharii" />
+<meta name="generator" content="Org Mode" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/t.css"/>
+</head>
+<body>
+<nav><a href="/" tabindex="0">&larrhk; Back to Index</a></nav><div id="preamble" class="status">
+Published 2024-08-11
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">1568. Minimum Number of Days to Disconnect Island</h1>
+<p class="subtitle" role="doc-subtitle">leetcode</p>
+</header><nav id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org9aabcbc">Problem</a></li>
+<li><a href="#org29dcf46">Output: 2</a></li>
+<li><a href="#org07a2749">Solution Description</a>
+<ul>
+<li><a href="#org480d52d">Example</a></li>
+<li><a href="#org44b4b8c">References</a></li>
+<li><a href="#orgebaf8ab">Solution</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</nav>
+
+<div id="outline-container-org9aabcbc" class="outline-2">
+<h2 id="org9aabcbc">Problem</h2>
+<div class="outline-text-2" id="text-org9aabcbc">
+<p>
+Given a 2D grid consists of 0s (water) and 1s (land), an island is a maximal 4-directionally (horizontal or vertical) connected group of 1s. The grid is said to be connected if we have exactly one island, otherwise, it is disconnected. We want to find the minimum number of days to disconnect the island.
+</p>
+
+<p>
+<b><b>Example</b></b>:
+</p>
+<pre class="example" id="org3836844">
+1 1 0 1 1
+1 1 0 1 1
+0 0 1 0 0
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org29dcf46" class="outline-2">
+<h2 id="org29dcf46">Output: 2</h2>
+</div>
+
+<div id="outline-container-org07a2749" class="outline-2">
+<h2 id="org07a2749">Solution Description</h2>
+<div class="outline-text-2" id="text-org07a2749">
+<p>
+To implement the solution, we need to approach it with the following steps:
+</p>
+<ol class="org-ol">
+<li><b><b>Identify if the island is already disconnected</b></b>: If the grid has more than one island initially, return 0.</li>
+<li><b><b>Simulate removal of one land cell</b></b>: Iterate through each land cell in the grid, temporarily remove it, and check if the resulting grid is disconnected.</li>
+<li><b><b>Simulate removal of two land cells</b></b>: If removing one cell does not disconnect the island, check by removing a pair of cells and see if that results in disconnection.</li>
+<li><b><b>Return the minimum days required</b></b>: Since the grid size is small, the solution can afford to perform these checks efficiently.</li>
+</ol>
+
+<p>
+We will use Depth-First Search (DFS) to count the number of connected components in the grid upon each removal simulation. The time complexity of this approach will be O(n*m*(n*m)) and the space complexity is O(n*m), where n and m are the dimensions of the grid.
+</p>
+</div>
+
+<div id="outline-container-org480d52d" class="outline-3">
+<h3 id="org480d52d">Example</h3>
+<div class="outline-text-3" id="text-org480d52d">
+<p>
+Grid:
+</p>
+<pre class="example" id="org3726c96">
+[[1, 1, 0, 1, 1],
+ [1, 1, 0, 1, 1],
+ [0, 0, 1, 0, 0]]
+</pre>
+
+<ol class="org-ol">
+<li>Start by checking initial connectivity: One island or multiple islands? =&gt; One island.</li>
+<li>Try removing each cell and check connectivity with DFS.</li>
+<li>If not disconnected, try pairs of cells and check again.</li>
+<li>Return the number of days based on the minimum attempts required.</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org44b4b8c" class="outline-3">
+<h3 id="org44b4b8c">References</h3>
+<div class="outline-text-3" id="text-org44b4b8c">
+<ul class="org-ul">
+<li><a href="https://en.wikipedia.org/wiki/Depth-first_search">Depth-First Search</a></li>
+<li><a href="https://leetcode.com/problems/minimum-number-of-days-to-disconnect-island/">Leetcode Problem 1568</a></li>
+</ul>
+
+<p>
+The solution can be built using DFS to verify the connected components at each step.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgebaf8ab" class="outline-3">
+<h3 id="orgebaf8ab">Solution</h3>
+<div class="outline-text-3" id="text-orgebaf8ab">
+<div class="org-src-container">
+<pre class="src src-js">/**
+ * Main solution function to determine the minimum number of days to disconnect the island.
+ * @param {number[][]} grid - The 2D grid of 0s and 1s.
+ * @return {number} - Minimum number of days to disconnect the island.
+ */
+function minimumDaysToDisconnect(grid) {
+    const log = typeof NestedInteger !== 'undefined' ? () =&gt; {} : console.log;
+    const table = typeof NestedInteger!== 'undefined' ? () =&gt; {} : console.table;
+
+    console.log();
+
+    // Temporarily return a dummy value.
+    return -1;
+}
+
+// Test cases
+const testCases = [
+    { grid: [[1, 1, 0, 1, 1], [1, 1, 0, 1, 1], [0, 0, 1, 0, 0]], expected: 2 },
+    { grid: [[1, 1]], expected: 0 },
+    { grid: [[1, 0, 1]], expected: 0 },
+    { grid: [[1, 1, 0, 0, 1]], expected: 1 },
+    { grid: [[0, 0]], expected: 0 },
+];
+
+testCases.forEach((test, index) =&gt; {
+    const result = minimumDaysToDisconnect(test.grid);
+    console.log(`Test Case ${index + 1}: ${result === test.expected ? 'Passed' : 'Failed'} (Expected: ${test.expected}, Got: ${result})`);
+});
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+&copy; d)zharii. <a href="/sitemap.html">sitemap</a>
+</div>
+</body>
+</html>

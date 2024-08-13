@@ -1,0 +1,165 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2024-08-12 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>0040. Combination Sum II</title>
+<meta name="author" content="d)zharii" />
+<meta name="generator" content="Org Mode" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/t.css"/>
+</head>
+<body>
+<nav><a href="/" tabindex="0">&larrhk; Back to Index</a></nav><div id="preamble" class="status">
+Published 2024-08-12
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">0040. Combination Sum II</h1>
+<p class="subtitle" role="doc-subtitle">leetcode</p>
+</header><nav id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orge7c6ee6">Problem</a></li>
+<li><a href="#org48aa5de">Solution Description</a></li>
+<li><a href="#org9990206">Example</a></li>
+<li><a href="#org4c4e260">References</a></li>
+<li><a href="#orge4fb8bb">Solution</a></li>
+</ul>
+</div>
+</nav>
+
+<div id="outline-container-orge7c6ee6" class="outline-2">
+<h2 id="orge7c6ee6">Problem</h2>
+<div class="outline-text-2" id="text-orge7c6ee6">
+<p>
+Given a collection of candidate numbers (candidates) and a target number (target), find all unique combinations in candidates where the candidate numbers sum to target. Each number in candidates may only be used once in the combination.
+</p>
+
+<p>
+Each combination should be a unique set of candidate numbers, and the order of combinations does not matter. The solution set must not contain duplicate combinations.
+</p>
+
+<p>
+Example:
+</p>
+<pre class="example" id="org2f50f71">
+Input: candidates = [10,1,2,7,6,1,5], target = 8
+Output: 
+[
+  [1,1,6],
+  [1,2,5],
+  [1,7],
+  [2,6]
+]
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org48aa5de" class="outline-2">
+<h2 id="org48aa5de">Solution Description</h2>
+<div class="outline-text-2" id="text-org48aa5de">
+<p>
+To implement the solution for finding all unique combinations of candidate numbers that sum to the target, we need to use a backtracking approach:
+</p>
+
+<ol class="org-ol">
+<li><b><b>Sort the candidates array</b></b>: This helps to easily skip duplicates and manage the flow of the combinations.</li>
+<li><b><b>Backtracking function</b></b>: Implement a recursive function that explores each candidate. Include the following steps:
+<ul class="org-ul">
+<li>Base case: If the target becomes zero, a valid combination is found.</li>
+<li>Iterate through candidates and recursively call the backtracking function.</li>
+<li>Skip duplicates intelligently by checking if the current candidate is the same as the previous one.</li>
+</ul></li>
+<li><b><b>Avoiding reuse of elements</b></b>: This is managed by adjusting the start index properly so elements aren't reused in the same combination.</li>
+</ol>
+
+<p>
+The backtracking approach ensures that all possible combinations are explored efficiently without redundancy. Sorting the array and skipping duplicates avoids generating the same combination multiple times.
+</p>
+
+<p>
+<b><b>Complexity Analysis</b></b>:
+</p>
+<ul class="org-ul">
+<li>Time complexity is approximately O(2<sup>n</sup>) in the worst case due to the exponential nature of the combination generation.</li>
+<li>Space complexity is O(target/k), where k is the smallest element in the candidates array due to the depth of the recursion stack.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org9990206" class="outline-2">
+<h2 id="org9990206">Example</h2>
+<div class="outline-text-2" id="text-org9990206">
+<p>
+Let's take an example with candidates = [10,1,2,7,6,1,5] and target = 8. Here's how the algorithm would work:
+</p>
+<ol class="org-ol">
+<li>Sort candidates: [1,1,2,5,6,7,10]</li>
+<li>Start backtracking from the first element, and explore all combinations recursively.</li>
+<li>Once a valid combination is found (summing to the target), add it to the result set.</li>
+<li>Skip duplicates by checking if the current candidate is the same as the previous one.</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org4c4e260" class="outline-2">
+<h2 id="org4c4e260">References</h2>
+<div class="outline-text-2" id="text-org4c4e260">
+<ul class="org-ul">
+<li>Backtracking Algorithm: <a href="https://en.wikipedia.org/wiki/Backtracking">Backtracking on Wikipedia</a></li>
+<li>Combination Sum Problem: <a href="https://leetcode.com/problems/combination-sum-ii/">LeetCode Problem</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orge4fb8bb" class="outline-2">
+<h2 id="orge4fb8bb">Solution</h2>
+<div class="outline-text-2" id="text-orge4fb8bb">
+<p>
+Here's the skeleton for the solution function in JavaScript. Feel free to fill in the logic.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">/**
+ * Finds all unique combinations in candidates that sum to the target.
+ * 
+ * @param {number[]} candidates - The candidate numbers.
+ * @param {number} target - The target sum.
+ * @returns {number[][]} - All unique combinations summing to target.
+ */
+function combinationSum2(candidates, target) {
+    // Log and table functions for easy debugging
+    const log = typeof NestedInteger !== 'undefined' ? () =&gt; {} : console.log;
+    const table = typeof NestedInteger!== 'undefined' ? () =&gt; {} : console.table;
+
+    // Placeholder for returning the result.
+    return [];
+}
+
+// Test cases
+const testCases = [
+    { candidates: [10, 1, 2, 7, 6, 1, 5], target: 8, expected: [[1,1,6], [1,2,5], [1,7], [2,6]] },
+    { candidates: [2,5,2,1,2], target: 5, expected: [[1,2,2],[5]] },
+    { candidates: [1,1,1,1], target: 2, expected: [[1,1]] },
+    { candidates: [4,4,4,4], target: 8, expected: [[4,4]] },
+    { candidates: [1], target: 1, expected: [[1]] }
+    // More test cases to cover edge cases and different scenarios
+];
+
+testCases.forEach((test, index) =&gt; {
+    const result = combinationSum2(test.candidates, test.target);
+    console.log(`Test Case ${index + 1}: ${result.toString() === test.expected.toString() ? 'Passed' : 'Failed'} (Expected: ${JSON.stringify(test.expected)}, Got: ${JSON.stringify(result)})`);
+});
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+&copy; d)zharii. <a href="/sitemap.html">sitemap</a>
+</div>
+</body>
+</html>
