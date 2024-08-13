@@ -22,30 +22,30 @@ Published 2024-08-08
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orge8588db">Problem</a>
+<li><a href="#org864ae1b">Problem</a>
 <ul>
-<li><a href="#org3003c9a">Submission</a></li>
+<li><a href="#orgafe7680">Submission</a></li>
 </ul>
 </li>
-<li><a href="#orgfcd4593">Solution Description</a></li>
-<li><a href="#org1ba45e7">Example</a></li>
-<li><a href="#org9dcfd02">References</a></li>
-<li><a href="#org1123217">Solution</a></li>
+<li><a href="#org240657c">Solution Description</a></li>
+<li><a href="#org52d4ad4">Example</a></li>
+<li><a href="#org13092c1">References</a></li>
+<li><a href="#org3321c5f">Solution</a></li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-orge8588db" class="outline-2">
-<h2 id="orge8588db">Problem</h2>
-<div class="outline-text-2" id="text-orge8588db">
+<div id="outline-container-org864ae1b" class="outline-2">
+<h2 id="org864ae1b">Problem</h2>
+<div class="outline-text-2" id="text-org864ae1b">
 <p>
 Determine how many 3x3 "magic squares" are in a given grid. A "magic square" is a 3x3 grid of numbers such that each number is distinct and in the range 1-9, and all rows, columns, and both diagonals sum to the same number, 15.
 </p>
 </div>
 
-<div id="outline-container-org3003c9a" class="outline-3">
-<h3 id="org3003c9a">Submission</h3>
-<div class="outline-text-3" id="text-org3003c9a">
+<div id="outline-container-orgafe7680" class="outline-3">
+<h3 id="orgafe7680">Submission</h3>
+<div class="outline-text-3" id="text-orgafe7680">
 <ul class="org-ul">
 <li><a href="https://leetcode.com/submissions/detail/1350442342/">2024-08-09 Magic Squares In Grid - Submission Detail - LeetCode</a></li>
 </ul>
@@ -53,9 +53,9 @@ Determine how many 3x3 "magic squares" are in a given grid. A "magic square" is 
 </div>
 </div>
 
-<div id="outline-container-orgfcd4593" class="outline-2">
-<h2 id="orgfcd4593">Solution Description</h2>
-<div class="outline-text-2" id="text-orgfcd4593">
+<div id="outline-container-org240657c" class="outline-2">
+<h2 id="org240657c">Solution Description</h2>
+<div class="outline-text-2" id="text-org240657c">
 <p>
 To implement the solution, we need to follow these steps:
 </p>
@@ -73,14 +73,14 @@ The approach involves iterating through potentially (m-2) x (n-2) sub-grids in a
 </div>
 </div>
 
-<div id="outline-container-org1ba45e7" class="outline-2">
-<h2 id="org1ba45e7">Example</h2>
-<div class="outline-text-2" id="text-org1ba45e7">
+<div id="outline-container-org52d4ad4" class="outline-2">
+<h2 id="org52d4ad4">Example</h2>
+<div class="outline-text-2" id="text-org52d4ad4">
 <p>
 Consider a 4x4 grid:
 </p>
 
-<pre class="example" id="org9338c71">
+<pre class="example" id="org5dd9083">
 4 3 8 4
 9 5 1 9
 2 7 6 2
@@ -91,7 +91,7 @@ Consider a 4x4 grid:
 We can identify one magic square in the top left 3x3 section:
 </p>
 
-<pre class="example" id="org2c449c4">
+<pre class="example" id="org5a7f028">
 4 3 8
 9 5 1
 2 7 6
@@ -110,9 +110,9 @@ This grid confirms to a magic square.
 </div>
 </div>
 
-<div id="outline-container-org9dcfd02" class="outline-2">
-<h2 id="org9dcfd02">References</h2>
-<div class="outline-text-2" id="text-org9dcfd02">
+<div id="outline-container-org13092c1" class="outline-2">
+<h2 id="org13092c1">References</h2>
+<div class="outline-text-2" id="text-org13092c1">
 <ul class="org-ul">
 <li>Magic square: <a href="https://en.wikipedia.org/wiki/Magic_square">Wikipedia Magic Square</a></li>
 <li>Array traversal: Used to explore sub-grids within a larger array.</li>
@@ -120,9 +120,9 @@ This grid confirms to a magic square.
 </div>
 </div>
 
-<div id="outline-container-org1123217" class="outline-2">
-<h2 id="org1123217">Solution</h2>
-<div class="outline-text-2" id="text-org1123217">
+<div id="outline-container-org3321c5f" class="outline-2">
+<h2 id="org3321c5f">Solution</h2>
+<div class="outline-text-2" id="text-org3321c5f">
 <div class="org-src-container">
 <pre class="src src-js">/**
  * Main function to count magic squares in a grid

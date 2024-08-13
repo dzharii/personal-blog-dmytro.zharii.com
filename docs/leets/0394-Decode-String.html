@@ -22,22 +22,22 @@ Published 2024-05-24
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org9ef9ee9">Problem Overview</a></li>
-<li><a href="#org733d100">Solution Outline</a>
+<li><a href="#org61b15f3">Problem Overview</a></li>
+<li><a href="#org591799c">Solution Outline</a>
 <ul>
-<li><a href="#org75607ff">Preferred Structure</a></li>
-<li><a href="#org6689139">Brute Force vs Optimal Solution</a></li>
-<li><a href="#org981c138">Algorithm Choice</a></li>
+<li><a href="#orga627cb0">Preferred Structure</a></li>
+<li><a href="#orgb03fea9">Brute Force vs Optimal Solution</a></li>
+<li><a href="#org1dbabcd">Algorithm Choice</a></li>
 </ul>
 </li>
-<li><a href="#org5a38e50">Solution Implementation</a></li>
+<li><a href="#org870d48c">Solution Implementation</a></li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-org9ef9ee9" class="outline-2">
-<h2 id="org9ef9ee9">Problem Overview</h2>
-<div class="outline-text-2" id="text-org9ef9ee9">
+<div id="outline-container-org61b15f3" class="outline-2">
+<h2 id="org61b15f3">Problem Overview</h2>
+<div class="outline-text-2" id="text-org61b15f3">
 <p>
 The problem involves decoding a given encoded string that follows a specific format: numbers followed by square brackets containing a substring. The numbers indicate how many times the substring within the brackets should be repeated. The string can be nested with multiple levels of encoding.
 </p>
@@ -52,13 +52,13 @@ Example:
 </div>
 </div>
 
-<div id="outline-container-org733d100" class="outline-2">
-<h2 id="org733d100">Solution Outline</h2>
-<div class="outline-text-2" id="text-org733d100">
+<div id="outline-container-org591799c" class="outline-2">
+<h2 id="org591799c">Solution Outline</h2>
+<div class="outline-text-2" id="text-org591799c">
 </div>
-<div id="outline-container-org75607ff" class="outline-3">
-<h3 id="org75607ff">Preferred Structure</h3>
-<div class="outline-text-3" id="text-org75607ff">
+<div id="outline-container-orga627cb0" class="outline-3">
+<h3 id="orga627cb0">Preferred Structure</h3>
+<div class="outline-text-3" id="text-orga627cb0">
 <ul class="org-ul">
 <li>Use a stack to help with decoding, as it can handle nested patterns effectively.</li>
 <li>Utilize string operations to build the decoded result.</li>
@@ -66,9 +66,9 @@ Example:
 </div>
 </div>
 
-<div id="outline-container-org6689139" class="outline-3">
-<h3 id="org6689139">Brute Force vs Optimal Solution</h3>
-<div class="outline-text-3" id="text-org6689139">
+<div id="outline-container-orgb03fea9" class="outline-3">
+<h3 id="orgb03fea9">Brute Force vs Optimal Solution</h3>
+<div class="outline-text-3" id="text-orgb03fea9">
 <ul class="org-ul">
 <li><b><b>Brute Force Approach:</b></b> Recursively decode the string, which might be inefficient for deeply nested patterns due to call stack limitations.</li>
 <li><b><b>Optimal Solution:</b></b> Use an iterative approach with a stack to manage nested structures and avoid recursion depth issues.</li>
@@ -76,9 +76,9 @@ Example:
 </div>
 </div>
 
-<div id="outline-container-org981c138" class="outline-3">
-<h3 id="org981c138">Algorithm Choice</h3>
-<div class="outline-text-3" id="text-org981c138">
+<div id="outline-container-org1dbabcd" class="outline-3">
+<h3 id="org1dbabcd">Algorithm Choice</h3>
+<div class="outline-text-3" id="text-org1dbabcd">
 <ul class="org-ul">
 <li><b><b>Stack-based Decoding:</b></b> This method iterates through the string, pushing numbers and current substrings onto the stack whenever a new bracket is encountered. When a closing bracket is found, it constructs the substring by popping from the stack, which ensures correct handling of nested patterns.</li>
 </ul>
@@ -86,9 +86,9 @@ Example:
 </div>
 </div>
 
-<div id="outline-container-org5a38e50" class="outline-2">
-<h2 id="org5a38e50">Solution Implementation</h2>
-<div class="outline-text-2" id="text-org5a38e50">
+<div id="outline-container-org870d48c" class="outline-2">
+<h2 id="org870d48c">Solution Implementation</h2>
+<div class="outline-text-2" id="text-org870d48c">
 <p>
 Here's the skeleton of the solution with test cases. The core implementation will follow in incremental steps.
 </p>

@@ -22,39 +22,39 @@ Published 2024-08-08
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org3f9475e">Problem</a>
+<li><a href="#org035786d">Problem</a>
 <ul>
-<li><a href="#org90b5253">Submission</a></li>
-<li><a href="#org3196d49">Solution Description</a></li>
-<li><a href="#org336d679">Example</a></li>
-<li><a href="#orgee63fd8">References</a></li>
-<li><a href="#org256c895">Solution</a></li>
+<li><a href="#orgfda27f3">Submission</a></li>
+<li><a href="#org16122f6">Solution Description</a></li>
+<li><a href="#orgc8d5cb6">Example</a></li>
+<li><a href="#org70e962d">References</a></li>
+<li><a href="#org0230a2f">Solution</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-org3f9475e" class="outline-2">
-<h2 id="org3f9475e">Problem</h2>
-<div class="outline-text-2" id="text-org3f9475e">
+<div id="outline-container-org035786d" class="outline-2">
+<h2 id="org035786d">Problem</h2>
+<div class="outline-text-2" id="text-org035786d">
 <p>
 The problem 885 (Spiral Matrix III) asks us to start at a certain coordinate in a grid and traverse the matrix in a spiral order, collecting the coordinates until all the cells in the matrix have been visited. It is essential that we collect the cells in the correct sequence to form a "spiral" around the starting point.
 </p>
 </div>
 
-<div id="outline-container-org90b5253" class="outline-3">
-<h3 id="org90b5253">Submission</h3>
-<div class="outline-text-3" id="text-org90b5253">
+<div id="outline-container-orgfda27f3" class="outline-3">
+<h3 id="orgfda27f3">Submission</h3>
+<div class="outline-text-3" id="text-orgfda27f3">
 <ul class="org-ul">
 <li><a href="https://leetcode.com/submissions/detail/1349086872/">2024-08-08 Spiral Matrix III - Submission Detail - LeetCode</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org3196d49" class="outline-3">
-<h3 id="org3196d49">Solution Description</h3>
-<div class="outline-text-3" id="text-org3196d49">
+<div id="outline-container-org16122f6" class="outline-3">
+<h3 id="org16122f6">Solution Description</h3>
+<div class="outline-text-3" id="text-org16122f6">
 <p>
 To implement the solution, we need to start at the given (rStart, cStart) and then move in a spiral pattern. We can achieve this by:
 </p>
@@ -77,9 +77,9 @@ Space Complexity: O(n), for storing the result coordinates.
 </div>
 </div>
 
-<div id="outline-container-org336d679" class="outline-3">
-<h3 id="org336d679">Example</h3>
-<div class="outline-text-3" id="text-org336d679">
+<div id="outline-container-orgc8d5cb6" class="outline-3">
+<h3 id="orgc8d5cb6">Example</h3>
+<div class="outline-text-3" id="text-orgc8d5cb6">
 <p>
 Consider a grid with rows=5 and cols=6, and starting coordinates rStart=1, cStart=4.
 </p>
@@ -92,18 +92,18 @@ Consider a grid with rows=5 and cols=6, and starting coordinates rStart=1, cStar
 </div>
 </div>
 
-<div id="outline-container-orgee63fd8" class="outline-3">
-<h3 id="orgee63fd8">References</h3>
-<div class="outline-text-3" id="text-orgee63fd8">
+<div id="outline-container-org70e962d" class="outline-3">
+<h3 id="org70e962d">References</h3>
+<div class="outline-text-3" id="text-org70e962d">
 <p>
 The problem uses the concept of traversing a grid or matrix in a specific pattern, often used in problems related to grid/array traversal.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org256c895" class="outline-3">
-<h3 id="org256c895">Solution</h3>
-<div class="outline-text-3" id="text-org256c895">
+<div id="outline-container-org0230a2f" class="outline-3">
+<h3 id="org0230a2f">Solution</h3>
+<div class="outline-text-3" id="text-org0230a2f">
 <p>
 We use arrays for direction vectors and a loop to incrementally build the spiral matrix.
 </p>
@@ -171,7 +171,7 @@ testCases.forEach((test, index) =&gt; {
 <p>
 <code>=</code>
 </p>
-<pre class="example" id="orgd5c3b94">
+<pre class="example" id="orgdb5209e">
 : Test Case 1: Passed (Expected: [[0,0],[0,1],[0,2],[0,3]], Got: [[0,0],[0,1],[0,2],[0,3]])
 : Test Case 2: Passed (Expected: [[1,4],[1,5],[2,5],[2,4],[2,3],[1,3],[0,3],[0,4],[0,5],[3,5],[3,4],[3,3],[3,2],[2,2],[1,2],[0,2],[4,5],[4,4],[4,3],[4,2],[4,1],[3,1],[2,1],[1,1],[0,1],[4,0],[3,0],[2,0],[1,0],[0,0]], Got: [[1,4],[1,5],[2,5],[2,4],[2,3],[1,3],[0,3],[0,4],[0,5],[3,5],[3,4],[3,3],[3,2],[2,2],[1,2],[0,2],[4,5],[4,4],[4,3],[4,2],[4,1],[3,1],[2,1],[1,1],[0,1],[4,0],[3,0],[2,0],[1,0],[0,0]])
 : undefined

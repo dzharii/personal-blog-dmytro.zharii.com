@@ -22,18 +22,18 @@ Published 2024-08-12
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orge7c6ee6">Problem</a></li>
-<li><a href="#org48aa5de">Solution Description</a></li>
-<li><a href="#org9990206">Example</a></li>
-<li><a href="#org4c4e260">References</a></li>
-<li><a href="#orge4fb8bb">Solution</a></li>
+<li><a href="#orgecf1ba1">Problem</a></li>
+<li><a href="#org9989d9c">Solution Description</a></li>
+<li><a href="#org2ab8d2a">Example</a></li>
+<li><a href="#org840b392">References</a></li>
+<li><a href="#org1107563">Solution</a></li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-orge7c6ee6" class="outline-2">
-<h2 id="orge7c6ee6">Problem</h2>
-<div class="outline-text-2" id="text-orge7c6ee6">
+<div id="outline-container-orgecf1ba1" class="outline-2">
+<h2 id="orgecf1ba1">Problem</h2>
+<div class="outline-text-2" id="text-orgecf1ba1">
 <p>
 Given a collection of candidate numbers (candidates) and a target number (target), find all unique combinations in candidates where the candidate numbers sum to target. Each number in candidates may only be used once in the combination.
 </p>
@@ -45,9 +45,9 @@ Each combination should be a unique set of candidate numbers, and the order of c
 <p>
 Example:
 </p>
-<pre class="example" id="org2f50f71">
+<pre class="example" id="orge3f7f5b">
 Input: candidates = [10,1,2,7,6,1,5], target = 8
-Output: 
+Output:
 [
   [1,1,6],
   [1,2,5],
@@ -58,9 +58,9 @@ Output:
 </div>
 </div>
 
-<div id="outline-container-org48aa5de" class="outline-2">
-<h2 id="org48aa5de">Solution Description</h2>
-<div class="outline-text-2" id="text-org48aa5de">
+<div id="outline-container-org9989d9c" class="outline-2">
+<h2 id="org9989d9c">Solution Description</h2>
+<div class="outline-text-2" id="text-org9989d9c">
 <p>
 To implement the solution for finding all unique combinations of candidate numbers that sum to the target, we need to use a backtracking approach:
 </p>
@@ -90,9 +90,9 @@ The backtracking approach ensures that all possible combinations are explored ef
 </div>
 </div>
 
-<div id="outline-container-org9990206" class="outline-2">
-<h2 id="org9990206">Example</h2>
-<div class="outline-text-2" id="text-org9990206">
+<div id="outline-container-org2ab8d2a" class="outline-2">
+<h2 id="org2ab8d2a">Example</h2>
+<div class="outline-text-2" id="text-org2ab8d2a">
 <p>
 Let's take an example with candidates = [10,1,2,7,6,1,5] and target = 8. Here's how the algorithm would work:
 </p>
@@ -105,19 +105,22 @@ Let's take an example with candidates = [10,1,2,7,6,1,5] and target = 8. Here's 
 </div>
 </div>
 
-<div id="outline-container-org4c4e260" class="outline-2">
-<h2 id="org4c4e260">References</h2>
-<div class="outline-text-2" id="text-org4c4e260">
+<div id="outline-container-org840b392" class="outline-2">
+<h2 id="org840b392">References</h2>
+<div class="outline-text-2" id="text-org840b392">
 <ul class="org-ul">
 <li>Backtracking Algorithm: <a href="https://en.wikipedia.org/wiki/Backtracking">Backtracking on Wikipedia</a></li>
 <li>Combination Sum Problem: <a href="https://leetcode.com/problems/combination-sum-ii/">LeetCode Problem</a></li>
+<li><a href="https://labuladong.gitbook.io/algo-en/iii.-algorithmic-thinking/subset_permutation_combination">2024-08-13 Backtracking Solve Subset/Permutation/Combination | algo-en</a>
+<ul class="org-ul">
+<li><a href="https://github.com/labuladong/fucking-algorithm/blob/english/think_like_computer/DetailsaboutBacktracking.md">2024-08-13 fucking-algorithm/think<sub>like</sub><sub>computer</sub>/DetailsaboutBacktracking.md at english · labuladong/fucking-algorithm</a></li>
+</ul></li>
 </ul>
 </div>
 </div>
-
-<div id="outline-container-orge4fb8bb" class="outline-2">
-<h2 id="orge4fb8bb">Solution</h2>
-<div class="outline-text-2" id="text-orge4fb8bb">
+<div id="outline-container-org1107563" class="outline-2">
+<h2 id="org1107563">Solution</h2>
+<div class="outline-text-2" id="text-org1107563">
 <p>
 Here's the skeleton for the solution function in JavaScript. Feel free to fill in the logic.
 </p>
@@ -125,18 +128,35 @@ Here's the skeleton for the solution function in JavaScript. Feel free to fill i
 <div class="org-src-container">
 <pre class="src src-js">/**
  * Finds all unique combinations in candidates that sum to the target.
- * 
+ *
  * @param {number[]} candidates - The candidate numbers.
  * @param {number} target - The target sum.
  * @returns {number[][]} - All unique combinations summing to target.
  */
-function combinationSum2(candidates, target) {
+function combinationSum2(cands, tgt) {
     // Log and table functions for easy debugging
     const log = typeof NestedInteger !== 'undefined' ? () =&gt; {} : console.log;
     const table = typeof NestedInteger!== 'undefined' ? () =&gt; {} : console.table;
 
-    // Placeholder for returning the result.
-    return [];
+    cands.sort((a, b) =&gt; a - b);
+    const res = [];
+
+    function backtrack(start, t, track) {
+        if (t === 0) {
+            res.push([...track]);
+            return;
+        }
+        for (let i = start; i &lt; cands.length; i++) {
+            if (i &gt; start &amp;&amp; cands[i] === cands[i - 1]) continue;
+            if (cands[i] &gt; t) break;
+            track.push(cands[i]);
+            backtrack(i + 1, t - cands[i], track);
+            track.pop();
+        }
+    }
+
+    backtrack(0, tgt, []);
+    return res;
 }
 
 // Test cases
