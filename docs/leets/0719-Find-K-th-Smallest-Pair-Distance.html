@@ -22,71 +22,120 @@ Published 2024-08-14
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgff30a81">Problem</a></li>
-<li><a href="#org62f8be1">Solution Description</a></li>
-<li><a href="#org4c77b58">Example</a></li>
-<li><a href="#org888632c">References</a></li>
-<li><a href="#org8919ade">Solution</a></li>
+<li><a href="#org5cda471">Problem</a></li>
+<li><a href="#orgcbf1979">Solution Description</a></li>
+<li><a href="#orgb6e59a5">Example</a></li>
+<li><a href="#orgda0fb05">References</a></li>
+<li><a href="#orgb7c1ff9">Solution</a></li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-orgff30a81" class="outline-2">
-<h2 id="orgff30a81">Problem</h2>
-<div class="outline-text-2" id="text-orgff30a81">
+<div id="outline-container-org5cda471" class="outline-2">
+<h2 id="org5cda471">Problem</h2>
+<div class="outline-text-2" id="text-org5cda471">
 <p>
 Given an integer array <code>nums</code> and an integer <code>k</code>, return the k-th smallest distance among all the pairs in the array. The distance between a pair (i, j) is defined as <code>|nums[i] - nums[j]|</code>. The problem in simpler terms is to find the k-th smallest absolute difference in any two elements in the array <code>nums</code>.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org62f8be1" class="outline-2">
-<h2 id="org62f8be1">Solution Description</h2>
-<div class="outline-text-2" id="text-org62f8be1">
+<div id="outline-container-orgcbf1979" class="outline-2">
+<h2 id="orgcbf1979">Solution Description</h2>
+<div class="outline-text-2" id="text-orgcbf1979">
 <p>
-To implement the solution, we need to:
+To solve this problem efficiently, we need to use a combination of sorting and binary search on the possible distance values:
 </p>
+
 <ol class="org-ol">
-<li><b><b>Sort the array</b></b>: Sorting will help us to easily calculate distances and use binary search effectively.</li>
-<li><b><b>Use Binary Search on distance</b></b>: The smallest distance is 0 (if there are duplicate elements), and the largest distance is <code>nums[nums.length-1] - nums[0]</code>. Use binary search to find the k-th smallest distance.</li>
-<li><b><b>Count pairs with a distance â¤ mid</b></b>: For each midpoint of the search, count how many pairs have a distance less than or equal to the midpoint. Adjust the binary search range based on whether this count is greater than, less than, or equal to k.</li>
+<li><b><b>Sort the Array</b></b>:
+<ul class="org-ul">
+<li>Sorting the array allows us to efficiently calculate the distance between any two elements since the elements will be in ascending order. This simplifies the comparison of distances.</li>
+</ul></li>
+
+<li><b><b>Binary Search on the Distance</b></b>:
+<ul class="org-ul">
+<li>The smallest possible distance (lower bound) is `0`, which occurs when there are duplicate elements in the array.</li>
+<li>The largest possible distance (upper bound) is `nums[nums.length - 1] - nums[0]`, which is the difference between the largest and smallest elements in the sorted array.</li>
+<li>The goal is to find the smallest distance <code>d</code> such that there are at least `k` pairs whose distance is ≤ <code>d</code>. This can be done efficiently using binary search over the range of possible distances.</li>
+</ul></li>
+
+<li><b><b>Count Pairs with Distance &lt;= Mid</b></b>:
+<ul class="org-ul">
+<li>For a given midpoint <code>mid</code> in the binary search, count how many pairs have a distance less than or equal to <code>mid</code>. This counting step is crucial as it determines the direction in which we adjust our binary search range.</li>
+<li>The counting can be done in O(n) time using two pointers, which iteratively check pairs in the sorted array.</li>
+</ul></li>
 </ol>
 
 <p>
-This approach uses the binary search method, which ensures an optimal time complexity of O(n log n + n log(max-min)) where n is the length of the input array.
-</p>
-</div>
-</div>
-
-<div id="outline-container-org4c77b58" class="outline-2">
-<h2 id="org4c77b58">Example</h2>
-<div class="outline-text-2" id="text-org4c77b58">
-<p>
-Consider an array [1, 3, 1] and k = 1. The sorted array is [1, 1, 3]. Possible pairs (distances) are:
+<b><b>Why This Works</b></b>:
 </p>
 <ul class="org-ul">
-<li>(1,1) -&gt; distance = 0</li>
-<li>(1,3) -&gt; distance = 2</li>
-<li>(1,3) -&gt; distance = 2</li>
+<li>The binary search ensures that we efficiently narrow down the possible distance values to the k-th smallest. By leveraging the sorted order of the array, we can quickly count valid pairs for each midpoint in the search, thus reducing the overall complexity of the problem.</li>
 </ul>
+
 <p>
-Therefore, the 1st smallest distance is 0.
+<b><b>Time Complexity</b></b>:
+</p>
+<ul class="org-ul">
+<li>Sorting the array takes O(n log n).</li>
+<li>The binary search over possible distances requires O(log(max-min)), where <code>max</code> and <code>min</code> are the maximum and minimum distances respectively.</li>
+<li>Counting pairs for each midpoint takes O(n) time.</li>
+</ul>
+
+<p>
+Thus, the overall time complexity is O(n log n + n log(max-min)).
 </p>
 </div>
 </div>
 
-<div id="outline-container-org888632c" class="outline-2">
-<h2 id="org888632c">References</h2>
-<div class="outline-text-2" id="text-org888632c">
+
+<div id="outline-container-orgb6e59a5" class="outline-2">
+<h2 id="orgb6e59a5">Example</h2>
+<div class="outline-text-2" id="text-orgb6e59a5">
 <p>
-For this problem, we are using binary search methods over possible distances, combined with pair counting.
+Consider an array [1, 3, 1] and k = 1. The sorted array is [1, 1, 3]. The possible pairs and their distances are:
 </p>
+<ul class="org-ul">
+<li>(1, 1) -&gt; distance = 0</li>
+<li>(1, 3) -&gt; distance = 2</li>
+<li>(1, 3) -&gt; distance = 2</li>
+</ul>
+
+<p>
+Since we are looking for the 1st smallest distance, the answer is 0.
+</p>
+
+<p>
+<b><b>Detailed Steps</b></b>:
+</p>
+<ol class="org-ol">
+<li>Sort the array: [1, 1, 3].</li>
+<li>Use binary search to find the k-th smallest distance.
+<ul class="org-ul">
+<li>Start with a range of distances: low = 0, high = 2 (3 - 1).</li>
+<li>Calculate the midpoint = 1.</li>
+<li>Count how many pairs have a distance ≤ 1.</li>
+<li>Adjust the search range based on the count and continue until the k-th smallest distance is found.</li>
+</ul></li>
+</ol>
 </div>
 </div>
 
-<div id="outline-container-org8919ade" class="outline-2">
-<h2 id="org8919ade">Solution</h2>
-<div class="outline-text-2" id="text-org8919ade">
+
+<div id="outline-container-orgda0fb05" class="outline-2">
+<h2 id="orgda0fb05">References</h2>
+<div class="outline-text-2" id="text-orgda0fb05">
+<ul class="org-ul">
+<li>[Binary Search](<a href="https://en.wikipedia.org/wiki/Binary_search_algorithm">https://en.wikipedia.org/wiki/Binary_search_algorithm</a>): A method used to find a specific value or its location within a sorted array efficiently.</li>
+<li>[Two-pointer technique](<a href="https://www.geeksforgeeks.org/two-pointers-technique/">https://www.geeksforgeeks.org/two-pointers-technique/</a>): A useful method for solving problems that involve pairs or subarrays in a sorted list.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgb7c1ff9" class="outline-2">
+<h2 id="orgb7c1ff9">Solution</h2>
+<div class="outline-text-2" id="text-orgb7c1ff9">
 <div class="org-src-container">
 <pre class="src src-js">// Helper functions to add logs and tables
 const log = typeof NestedInteger !== 'undefined' ? () =&gt; {} : console.log;
