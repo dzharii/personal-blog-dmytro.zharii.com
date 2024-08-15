@@ -1,0 +1,113 @@
+﻿#+title: 0860. Lemonade Change
+#+subtitle: leetcode
+#+date: <2024-08-14>
+#+language: en
+
+* Problem
+Given an integer array ~bills~ where ~bills[i]~ is the amount of money the i-th customer pays with, you must determine if you can provide every customer with correct change. Initially, you start with an empty cash register.
+
+* If the customer pays with a `$5` bill, you just take it.
+* If the customer pays with a `$10` bill, you give them one `$5` bill if you have one.
+* If the customer pays with a `$20` bill, you give them either:
+    - one =$10= bill and one =$5= bill if you have them.
+    - or three =$5= bills if you don't have a =$10= bill.
+
+Return ~true~ if you can provide the correct change to every customer, otherwise return ~false~.
+
+* Solution Description
+To implement the optimal solution for the problem, we need to:
+  1. Initialize variables to track the count of =$5= and =$10= bills in the cash register.
+  2. Iterate over each customer's bill in the ~bills~ array.
+  3. Depending on the bill value, update the cash register counts and provide the necessary change:
+      - If the bill is =$5=, increment the count of =$5= bills.
+      - If the bill is =$10=, check if there's a =$5= bill available for change, and update both counts accordingly.
+      - If the bill is =$20=, prioritize providing one =$10= bill and one =$5= bill to optimize larger bill usage, otherwise provide three =$5= bills.
+  4. If at any point correct change cannot be provided, return ~false~.
+  5. If we successfully process all customers, return ~true~.
+
+The time complexity of this approach is ~O(n)~ because we process each bill once. The space complexity is ~O(1)~ since we only use a few variables to track counts of =$5= and =$10= bills.
+
+* Example
+Consider the array of bills: ~[5, 5, 5, 10, 20]~:
+
+- First customer pays with =$5=, we take it.
+- Second customer pays with =$5=, we take it.
+- Third customer pays with =$5=, we take it.
+- Fourth customer pays with =$10=, we give back one =$5= and take the =$10=.
+- Fifth customer pays with =$20=, we give back one =$10= and one =$5=.
+
+All customers receive correct change, and the function returns ~true~.
+
+* References
+N/A
+
+* Submissions
+- [[https://leetcode.com/problems/lemonade-change/submissions/][2024-08-15 Lemonade Change - LeetCode]]
+- [[https://leetcode.com/submissions/detail/1356089435/][2024-08-15 Lemonade Change - Submission Detail - LeetCode]]
+
+* Solution
+Below is the implementation of the solution in JavaScript along with test cases.
+
+#+begin_src js :tangle "860_lemonade_change.js"
+"use strict";
+
+/**
+ ,* Function to determine if we can provide the correct change to every customer.
+ ,* @param {number[]} bills - Array of bills provided by the customers.
+ ,* @return {boolean} - Returns true if we can provide correct change to all customers, otherwise false.
+ ,*/
+function lemonadeChange(bills) {
+    const log = typeof NestedInteger !== 'undefined' ? () => {} : console.log;
+    const table = typeof NestedInteger !== 'undefined' ? () => {} : console.table;
+    let five = 0;
+    let ten = 0;
+
+    for (const bill of bills) {
+        switch (bill) {
+        case 5:
+            five +=1;
+        break;
+        case 10:
+            five -= 1;
+            ten += 1;
+            if (five < 0) return false;
+        break;
+        case 20:
+            if (ten > 0 && five > 0) {
+                ten -= 1;
+                five -= 1;
+            } else if (five >= 3) {
+                five -= 3;
+            } else {
+                return false;
+            }
+        break;
+        }
+    }
+    return true;
+}
+
+// Test cases to validate the solution
+const testCases = [
+    { bills: [5, 5, 5, 10, 20], expected: true },
+    { bills: [5, 5, 10], expected: true },
+    { bills: [10, 10], expected: false },
+    { bills: [5, 5, 10, 10, 20], expected: false },
+    { bills: [5, 10, 5, 10, 10, 5, 20], expected: false },
+    { bills: [5, 5, 5, 20], expected: true },
+];
+
+testCases.forEach((test, index) => {
+    const result = lemonadeChange(test.bills);
+    console.log(`Test Case ${index + 1}: ${result === test.expected ? 'Passed' : 'Failed'} (Expected: ${test.expected}, Got: ${result})`);
+});
+#+end_src
+
+#+RESULTS:
+: Test Case 1: Passed (Expected: true, Got: true)
+: Test Case 2: Passed (Expected: true, Got: true)
+: Test Case 3: Passed (Expected: false, Got: false)
+: Test Case 4: Passed (Expected: false, Got: false)
+: Test Case 5: Passed (Expected: false, Got: false)
+: Test Case 6: Passed (Expected: true, Got: true)
+: undefined

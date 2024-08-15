@@ -22,30 +22,30 @@ Published 2024-07-27
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org4f94d06">Introduction: Simplifying Clipboard Content Saving with PowerShell</a></li>
-<li><a href="#org8c4dbd1">Project Intention:</a></li>
-<li><a href="#orgd5d8d8c">Project Summary:</a></li>
-<li><a href="#org759bc79">Outline for PowerShell Script to Save Clipboard Contents to a File</a>
+<li><a href="#org8bc316b">Introduction: Simplifying Clipboard Content Saving with PowerShell</a></li>
+<li><a href="#org7889509">Project Intention:</a></li>
+<li><a href="#org188508d">Project Summary:</a></li>
+<li><a href="#orgc7fec22">Outline for PowerShell Script to Save Clipboard Contents to a File</a>
 <ul>
-<li><a href="#org5ea2243">1. Initialization</a></li>
-<li><a href="#org4c05e2a">2. Reading Clipboard Content</a></li>
-<li><a href="#org4b62835">3. Generating File Name</a></li>
-<li><a href="#org4dbf93f">4. Saving Clipboard Content to File</a></li>
-<li><a href="#orgf10ba68">5. Error Handling and Logging</a></li>
-<li><a href="#org6e779db">6. Script Termination</a></li>
+<li><a href="#org08b0a67">1. Initialization</a></li>
+<li><a href="#org883a96c">2. Reading Clipboard Content</a></li>
+<li><a href="#orgfbdacbf">3. Generating File Name</a></li>
+<li><a href="#orgcc7db4c">4. Saving Clipboard Content to File</a></li>
+<li><a href="#orge357be7">5. Error Handling and Logging</a></li>
+<li><a href="#orgd64e85a">6. Script Termination</a></li>
 </ul>
 </li>
-<li><a href="#org33f1976">Notes:</a></li>
-<li><a href="#org0af065a">GPT Implementation</a>
+<li><a href="#org64d4a51">Notes:</a></li>
+<li><a href="#org34833df">GPT Implementation</a>
 <ul>
-<li><a href="#org27a94da">Fixes and Improvements:</a>
+<li><a href="#org9252306">Fixes and Improvements:</a>
 <ul>
-<li><a href="#orged6b02f">1. Assembly Loading Check:</a></li>
-<li><a href="#org5c6f504">2. Script Execution Context:</a></li>
-<li><a href="#orga1e7726">3. Fallback Mechanism:</a></li>
+<li><a href="#orgf108da7">1. Assembly Loading Check:</a></li>
+<li><a href="#org947955e">2. Script Execution Context:</a></li>
+<li><a href="#org3f49c99">3. Fallback Mechanism:</a></li>
 </ul>
 </li>
-<li><a href="#org604668e">Script:</a></li>
+<li><a href="#org8fef469">Script:</a></li>
 </ul>
 </li>
 </ul>
@@ -53,9 +53,9 @@ Published 2024-07-27
 </nav>
 
 
-<div id="outline-container-org4f94d06" class="outline-2">
-<h2 id="org4f94d06">Introduction: Simplifying Clipboard Content Saving with PowerShell</h2>
-<div class="outline-text-2" id="text-org4f94d06">
+<div id="outline-container-org8bc316b" class="outline-2">
+<h2 id="org8bc316b">Introduction: Simplifying Clipboard Content Saving with PowerShell</h2>
+<div class="outline-text-2" id="text-org8bc316b">
 <p>
 In my daily workflow, particularly when writing in Emacs using Org Mode, I often find myself needing to quickly save and reference clipboard content. Unfortunately, the built-in screenshotting tools in Windows 11 do not meet my requirements. They involve lengthy path selections and extra clicks, which disrupt my productivity.
 </p>
@@ -71,14 +71,14 @@ This script is designed to save me time and clicks, allowing me to quickly save 
 <p>
 Right now, when I run the <a href="https://awwtools.com/">awwtools</a> command:
 </p>
-<pre class="example" id="org7f73f14">
+<pre class="example" id="orgec20db0">
 aww run winclip
 </pre>
 
 <p>
 it simply saves new screenshot into the current folder, but I can also specify the path as an optional parameter (I've got this idea right now and desperately need to implement it).
 </p>
-<pre class="example" id="orge50e3c7">
+<pre class="example" id="org1e6d28b">
 aww run winclip images
 </pre>
 
@@ -90,31 +90,31 @@ aww run winclip images
 </div>
 
 
-<div id="outline-container-org8c4dbd1" class="outline-2">
-<h2 id="org8c4dbd1">Project Intention:</h2>
-<div class="outline-text-2" id="text-org8c4dbd1">
+<div id="outline-container-org7889509" class="outline-2">
+<h2 id="org7889509">Project Intention:</h2>
+<div class="outline-text-2" id="text-org7889509">
 <p>
 The intention of this project is to create a cross-platform PowerShell script that utilizes the .NET SDK to read the current contents of the clipboard and save them to a file in the appropriate format. The script is designed to handle various types of clipboard content, including text, images, and rich text, and will create files with appropriate extensions and names based on the content type. This utility aims to be simple yet powerful, providing users with an easy way to save clipboard contents while ensuring compatibility with both Windows and Linux systems.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgd5d8d8c" class="outline-2">
-<h2 id="orgd5d8d8c">Project Summary:</h2>
-<div class="outline-text-2" id="text-orgd5d8d8c">
+<div id="outline-container-org188508d" class="outline-2">
+<h2 id="org188508d">Project Summary:</h2>
+<div class="outline-text-2" id="text-org188508d">
 <p>
 The PowerShell script will read the current clipboard contents, determine the content type, and save the data to a file in the current directory. The file name will include the current date and time in ISO format, a random GUID, and an appropriate extension based on the content type. The script will include detailed logging with ANSI color formatting for better readability and will handle errors gracefully, ensuring users are informed of the script's operations and any issues that arise.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org759bc79" class="outline-2">
-<h2 id="org759bc79">Outline for PowerShell Script to Save Clipboard Contents to a File</h2>
-<div class="outline-text-2" id="text-org759bc79">
+<div id="outline-container-orgc7fec22" class="outline-2">
+<h2 id="orgc7fec22">Outline for PowerShell Script to Save Clipboard Contents to a File</h2>
+<div class="outline-text-2" id="text-orgc7fec22">
 </div>
-<div id="outline-container-org5ea2243" class="outline-3">
-<h3 id="org5ea2243">1. Initialization</h3>
-<div class="outline-text-3" id="text-org5ea2243">
+<div id="outline-container-org08b0a67" class="outline-3">
+<h3 id="org08b0a67">1. Initialization</h3>
+<div class="outline-text-3" id="text-org08b0a67">
 <ul class="org-ul">
 <li>1.1 Load necessary .NET SDK assemblies.</li>
 <li>1.2 Initialize variables for logging and error reporting using PowerShell built-in plain text messages with ANSI code formatting.</li>
@@ -122,9 +122,9 @@ The PowerShell script will read the current clipboard contents, determine the co
 </div>
 </div>
 
-<div id="outline-container-org4c05e2a" class="outline-3">
-<h3 id="org4c05e2a">2. Reading Clipboard Content</h3>
-<div class="outline-text-3" id="text-org4c05e2a">
+<div id="outline-container-org883a96c" class="outline-3">
+<h3 id="org883a96c">2. Reading Clipboard Content</h3>
+<div class="outline-text-3" id="text-org883a96c">
 <ul class="org-ul">
 <li>2.1 Check if the clipboard contains any data.</li>
 <li>2.2 Determine the type of content in the clipboard (text, image, rich text, etc.).</li>
@@ -133,9 +133,9 @@ The PowerShell script will read the current clipboard contents, determine the co
 </div>
 </div>
 
-<div id="outline-container-org4b62835" class="outline-3">
-<h3 id="org4b62835">3. Generating File Name</h3>
-<div class="outline-text-3" id="text-org4b62835">
+<div id="outline-container-orgfbdacbf" class="outline-3">
+<h3 id="orgfbdacbf">3. Generating File Name</h3>
+<div class="outline-text-3" id="text-orgfbdacbf">
 <ul class="org-ul">
 <li>3.1 Get the current date and time in ISO format.</li>
 <li>3.2 Generate a random GUID.</li>
@@ -145,9 +145,9 @@ The PowerShell script will read the current clipboard contents, determine the co
 </div>
 </div>
 
-<div id="outline-container-org4dbf93f" class="outline-3">
-<h3 id="org4dbf93f">4. Saving Clipboard Content to File</h3>
-<div class="outline-text-3" id="text-org4dbf93f">
+<div id="outline-container-orgcc7db4c" class="outline-3">
+<h3 id="orgcc7db4c">4. Saving Clipboard Content to File</h3>
+<div class="outline-text-3" id="text-orgcc7db4c">
 <ul class="org-ul">
 <li>4.1 For text content:
 <ul class="org-ul">
@@ -174,9 +174,9 @@ The PowerShell script will read the current clipboard contents, determine the co
 </div>
 </div>
 
-<div id="outline-container-orgf10ba68" class="outline-3">
-<h3 id="orgf10ba68">5. Error Handling and Logging</h3>
-<div class="outline-text-3" id="text-orgf10ba68">
+<div id="outline-container-orge357be7" class="outline-3">
+<h3 id="orge357be7">5. Error Handling and Logging</h3>
+<div class="outline-text-3" id="text-orge357be7">
 <ul class="org-ul">
 <li>5.1 Log the start of the operation.</li>
 <li>5.2 Log each significant step (clipboard read, file creation, etc.).</li>
@@ -196,9 +196,9 @@ The PowerShell script will read the current clipboard contents, determine the co
 </div>
 </div>
 
-<div id="outline-container-org6e779db" class="outline-3">
-<h3 id="org6e779db">6. Script Termination</h3>
-<div class="outline-text-3" id="text-org6e779db">
+<div id="outline-container-orgd64e85a" class="outline-3">
+<h3 id="orgd64e85a">6. Script Termination</h3>
+<div class="outline-text-3" id="text-orgd64e85a">
 <ul class="org-ul">
 <li>6.1 Ensure all resources are properly released.</li>
 <li>6.2 Finalize logging.</li>
@@ -207,9 +207,9 @@ The PowerShell script will read the current clipboard contents, determine the co
 </div>
 </div>
 
-<div id="outline-container-org33f1976" class="outline-2">
-<h2 id="org33f1976">Notes:</h2>
-<div class="outline-text-2" id="text-org33f1976">
+<div id="outline-container-org64d4a51" class="outline-2">
+<h2 id="org64d4a51">Notes:</h2>
+<div class="outline-text-2" id="text-org64d4a51">
 <ul class="org-ul">
 <li>The script will prioritize saving images as PNG and text as TXT.</li>
 <li>For rich content, the script will attempt to save as RTF or HTML, ensuring compatibility with default readers on both Windows and Linux.</li>
@@ -223,21 +223,21 @@ If this outline meets your needs, we can proceed to the speedrun phase where we 
 </div>
 </div>
 
-<div id="outline-container-org0af065a" class="outline-2">
-<h2 id="org0af065a">GPT Implementation</h2>
-<div class="outline-text-2" id="text-org0af065a">
+<div id="outline-container-org34833df" class="outline-2">
+<h2 id="org34833df">GPT Implementation</h2>
+<div class="outline-text-2" id="text-org34833df">
 <p>
 It seems that the script failed to load the necessary .NET assemblies because the `System.Windows.Forms.Clipboard` type was not found. This error can occur if the required assemblies are not present in the environment where the script is being executed.
 </p>
 </div>
 
-<div id="outline-container-org27a94da" class="outline-3">
-<h3 id="org27a94da">Fixes and Improvements:</h3>
-<div class="outline-text-3" id="text-org27a94da">
+<div id="outline-container-org9252306" class="outline-3">
+<h3 id="org9252306">Fixes and Improvements:</h3>
+<div class="outline-text-3" id="text-org9252306">
 </div>
-<div id="outline-container-orged6b02f" class="outline-4">
-<h4 id="orged6b02f">1. Assembly Loading Check:</h4>
-<div class="outline-text-4" id="text-orged6b02f">
+<div id="outline-container-orgf108da7" class="outline-4">
+<h4 id="orgf108da7">1. Assembly Loading Check:</h4>
+<div class="outline-text-4" id="text-orgf108da7">
 <ul class="org-ul">
 <li>We should ensure that the assemblies are loaded correctly.</li>
 <li>For cross-platform compatibility, ensure that the script handles the differences between Windows and Linux environments.</li>
@@ -245,18 +245,18 @@ It seems that the script failed to load the necessary .NET assemblies because th
 </div>
 </div>
 
-<div id="outline-container-org5c6f504" class="outline-4">
-<h4 id="org5c6f504">2. Script Execution Context:</h4>
-<div class="outline-text-4" id="text-org5c6f504">
+<div id="outline-container-org947955e" class="outline-4">
+<h4 id="org947955e">2. Script Execution Context:</h4>
+<div class="outline-text-4" id="text-org947955e">
 <ul class="org-ul">
 <li>Since clipboard operations are typically only available in a desktop environment, we should check and handle cases where the script is run in non-interactive or non-GUI environments.</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orga1e7726" class="outline-4">
-<h4 id="orga1e7726">3. Fallback Mechanism:</h4>
-<div class="outline-text-4" id="text-orga1e7726">
+<div id="outline-container-org3f49c99" class="outline-4">
+<h4 id="org3f49c99">3. Fallback Mechanism:</h4>
+<div class="outline-text-4" id="text-org3f49c99">
 <ul class="org-ul">
 <li>Implement a fallback or more robust error handling when assemblies are not found.</li>
 </ul>
@@ -264,9 +264,9 @@ It seems that the script failed to load the necessary .NET assemblies because th
 </div>
 </div>
 
-<div id="outline-container-org604668e" class="outline-3">
-<h3 id="org604668e">Script:</h3>
-<div class="outline-text-3" id="text-org604668e">
+<div id="outline-container-org8fef469" class="outline-3">
+<h3 id="org8fef469">Script:</h3>
+<div class="outline-text-3" id="text-org8fef469">
 <div class="org-src-container">
 <pre class="src src-powershell">param (
     [string]$FolderPath

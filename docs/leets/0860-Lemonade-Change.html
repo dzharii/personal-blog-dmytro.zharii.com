@@ -1,0 +1,201 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2024-08-14 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>0860. Lemonade Change</title>
+<meta name="author" content="d)zharii" />
+<meta name="generator" content="Org Mode" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/t.css"/>
+</head>
+<body>
+<nav><a href="/" tabindex="0">&larrhk; Back to Index</a></nav><div id="preamble" class="status">
+Published 2024-08-14
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">0860. Lemonade Change</h1>
+<p class="subtitle" role="doc-subtitle">leetcode</p>
+</header><nav id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org556b81e">Problem</a></li>
+<li><a href="#orgf9ca671">If the customer pays with a `$5` bill, you just take it.</a></li>
+<li><a href="#org1723068">If the customer pays with a `$10` bill, you give them one `$5` bill if you have one.</a></li>
+<li><a href="#orgb86a5a4">If the customer pays with a `$20` bill, you give them either:</a></li>
+<li><a href="#org8d3be4b">Solution Description</a></li>
+<li><a href="#org4a3cae7">Example</a></li>
+<li><a href="#org6c9bc48">References</a></li>
+<li><a href="#org32ab6dd">Submissions</a></li>
+<li><a href="#orgb86af22">Solution</a></li>
+</ul>
+</div>
+</nav>
+
+<div id="outline-container-org556b81e" class="outline-2">
+<h2 id="org556b81e">Problem</h2>
+<div class="outline-text-2" id="text-org556b81e">
+<p>
+Given an integer array <code>bills</code> where <code>bills[i]</code> is the amount of money the i-th customer pays with, you must determine if you can provide every customer with correct change. Initially, you start with an empty cash register.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgf9ca671" class="outline-2">
+<h2 id="orgf9ca671">If the customer pays with a `$5` bill, you just take it.</h2>
+</div>
+<div id="outline-container-org1723068" class="outline-2">
+<h2 id="org1723068">If the customer pays with a `$10` bill, you give them one `$5` bill if you have one.</h2>
+</div>
+<div id="outline-container-orgb86a5a4" class="outline-2">
+<h2 id="orgb86a5a4">If the customer pays with a `$20` bill, you give them either:</h2>
+<div class="outline-text-2" id="text-orgb86a5a4">
+<ul class="org-ul">
+<li>one <code>$10</code> bill and one <code>$5</code> bill if you have them.</li>
+<li>or three <code>$5</code> bills if you don't have a <code>$10</code> bill.</li>
+</ul>
+
+<p>
+Return <code>true</code> if you can provide the correct change to every customer, otherwise return <code>false</code>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org8d3be4b" class="outline-2">
+<h2 id="org8d3be4b">Solution Description</h2>
+<div class="outline-text-2" id="text-org8d3be4b">
+<p>
+To implement the optimal solution for the problem, we need to:
+</p>
+<ol class="org-ol">
+<li>Initialize variables to track the count of <code>$5</code> and <code>$10</code> bills in the cash register.</li>
+<li>Iterate over each customer's bill in the <code>bills</code> array.</li>
+<li>Depending on the bill value, update the cash register counts and provide the necessary change:
+<ul class="org-ul">
+<li>If the bill is <code>$5</code>, increment the count of <code>$5</code> bills.</li>
+<li>If the bill is <code>$10</code>, check if there's a <code>$5</code> bill available for change, and update both counts accordingly.</li>
+<li>If the bill is <code>$20</code>, prioritize providing one <code>$10</code> bill and one <code>$5</code> bill to optimize larger bill usage, otherwise provide three <code>$5</code> bills.</li>
+</ul></li>
+<li>If at any point correct change cannot be provided, return <code>false</code>.</li>
+<li>If we successfully process all customers, return <code>true</code>.</li>
+</ol>
+
+<p>
+The time complexity of this approach is <code>O(n)</code> because we process each bill once. The space complexity is <code>O(1)</code> since we only use a few variables to track counts of <code>$5</code> and <code>$10</code> bills.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org4a3cae7" class="outline-2">
+<h2 id="org4a3cae7">Example</h2>
+<div class="outline-text-2" id="text-org4a3cae7">
+<p>
+Consider the array of bills: <code>[5, 5, 5, 10, 20]</code>:
+</p>
+
+<ul class="org-ul">
+<li>First customer pays with <code>$5</code>, we take it.</li>
+<li>Second customer pays with <code>$5</code>, we take it.</li>
+<li>Third customer pays with <code>$5</code>, we take it.</li>
+<li>Fourth customer pays with <code>$10</code>, we give back one <code>$5</code> and take the <code>$10</code>.</li>
+<li>Fifth customer pays with <code>$20</code>, we give back one <code>$10</code> and one <code>$5</code>.</li>
+</ul>
+
+<p>
+All customers receive correct change, and the function returns <code>true</code>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org6c9bc48" class="outline-2">
+<h2 id="org6c9bc48">References</h2>
+<div class="outline-text-2" id="text-org6c9bc48">
+<p>
+N/A
+</p>
+</div>
+</div>
+
+<div id="outline-container-org32ab6dd" class="outline-2">
+<h2 id="org32ab6dd">Submissions</h2>
+<div class="outline-text-2" id="text-org32ab6dd">
+<ul class="org-ul">
+<li><a href="https://leetcode.com/problems/lemonade-change/submissions/">2024-08-15 Lemonade Change - LeetCode</a></li>
+<li><a href="https://leetcode.com/submissions/detail/1356089435/">2024-08-15 Lemonade Change - Submission Detail - LeetCode</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgb86af22" class="outline-2">
+<h2 id="orgb86af22">Solution</h2>
+<div class="outline-text-2" id="text-orgb86af22">
+<p>
+Below is the implementation of the solution in JavaScript along with test cases.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">"use strict";
+
+/**
+ * Function to determine if we can provide the correct change to every customer.
+ * @param {number[]} bills - Array of bills provided by the customers.
+ * @return {boolean} - Returns true if we can provide correct change to all customers, otherwise false.
+ */
+function lemonadeChange(bills) {
+    const log = typeof NestedInteger !== 'undefined' ? () =&gt; {} : console.log;
+    const table = typeof NestedInteger !== 'undefined' ? () =&gt; {} : console.table;
+    let five = 0;
+    let ten = 0;
+
+    for (const bill of bills) {
+        switch (bill) {
+        case 5:
+            five +=1;
+        break;
+        case 10:
+            five -= 1;
+            ten += 1;
+            if (five &lt; 0) return false;
+        break;
+        case 20:
+            if (ten &gt; 0 &amp;&amp; five &gt; 0) {
+                ten -= 1;
+                five -= 1;
+            } else if (five &gt;= 3) {
+                five -= 3;
+            } else {
+                return false;
+            }
+        break;
+        }
+    }
+    return true;
+}
+
+// Test cases to validate the solution
+const testCases = [
+    { bills: [5, 5, 5, 10, 20], expected: true },
+    { bills: [5, 5, 10], expected: true },
+    { bills: [10, 10], expected: false },
+    { bills: [5, 5, 10, 10, 20], expected: false },
+    { bills: [5, 10, 5, 10, 10, 5, 20], expected: false },
+    { bills: [5, 5, 5, 20], expected: true },
+];
+
+testCases.forEach((test, index) =&gt; {
+    const result = lemonadeChange(test.bills);
+    console.log(`Test Case ${index + 1}: ${result === test.expected ? 'Passed' : 'Failed'} (Expected: ${test.expected}, Got: ${result})`);
+});
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+&copy; d)zharii. <a href="/sitemap.html">sitemap</a>
+</div>
+</body>
+</html>
