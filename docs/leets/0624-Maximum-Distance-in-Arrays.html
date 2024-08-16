@@ -1,0 +1,177 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2024-08-16 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>0624. Maximum Distance in Arrays</title>
+<meta name="author" content="d)zharii" />
+<meta name="generator" content="Org Mode" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/t.css"/>
+</head>
+<body>
+<nav><a href="/" tabindex="0">&larrhk; Back to Index</a></nav><div id="preamble" class="status">
+Published 2024-08-16
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">0624. Maximum Distance in Arrays</h1>
+<p class="subtitle" role="doc-subtitle">leetcode</p>
+</header><nav id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org6f1ceea">Problem</a></li>
+<li><a href="#orgb7adf21">Solution Description</a></li>
+<li><a href="#org6f71180">Example</a></li>
+<li><a href="#org4377022">References</a></li>
+<li><a href="#orge8274ec">Solution</a></li>
+</ul>
+</div>
+</nav>
+
+<div id="outline-container-org6f1ceea" class="outline-2">
+<h2 id="org6f1ceea">Problem</h2>
+<div class="outline-text-2" id="text-org6f1ceea">
+<p>
+Given a list of arrays, each individual array is sorted in non-decreasing order. Write a function to find the maximum distance between any pair of elements where the first element is taken from one array, and the second is taken from another array. The distance is defined as the absolute difference between the two elements.
+</p>
+
+<p>
+Example input:
+</p>
+<ul class="org-ul">
+<li>arrays = [[1, 2, 3], [4, 5], [1, 2, 3]]</li>
+</ul>
+
+<p>
+Output:
+</p>
+<ul class="org-ul">
+<li>The function should return 4 because the maximum distance can be achieved by taking 1 from the first array and 5 from the second array.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgb7adf21" class="outline-2">
+<h2 id="orgb7adf21">Solution Description</h2>
+<div class="outline-text-2" id="text-orgb7adf21">
+<p>
+To implement the solution, we need to:
+</p>
+<ol class="org-ol">
+<li>Track the minimum and maximum values across the arrays as we iterate through them.</li>
+<li>For each array, consider the possible distances with the current global minimum and maximum values found so far.</li>
+<li>Update the global minimum and maximum values after considering the current array.</li>
+<li>Calculate the distances and track the maximum distance encountered.</li>
+</ol>
+
+<p>
+The approach ensures that we efficiently find the maximum distance without checking every possible pair of elements, resulting in a time complexity of O(n), where n is the number of arrays. The space complexity is O(1) as we are using a fixed amount of additional space.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org6f71180" class="outline-2">
+<h2 id="org6f71180">Example</h2>
+<div class="outline-text-2" id="text-org6f71180">
+<p>
+Consider the arrays <code>[[1, 2, 3], [4, 5], [1, 2, 3]]</code>:
+</p>
+<ol class="org-ol">
+<li>Initialize global<sub>min</sub> with the last element of the first array (1) and global<sub>max</sub> with the first element of the first array (3).</li>
+<li>Iterate through each array:
+<ul class="org-ul">
+<li>For the second array [4, 5], calculate the distances with global<sub>min</sub> (1) and global<sub>max</sub> (3). Update the maximum distance to 4 (|1-5|).</li>
+<li>Update global<sub>min</sub> to 1 (unchanged) and global<sub>max</sub> to 5.</li>
+<li>Process the remaining arrays similarly.</li>
+</ul></li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org4377022" class="outline-2">
+<h2 id="org4377022">References</h2>
+<div class="outline-text-2" id="text-org4377022">
+<p>
+No specific algorithms required, but understanding of array processing and iteration is essential.
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-orge8274ec" class="outline-2">
+<h2 id="orge8274ec">Solution</h2>
+<div class="outline-text-2" id="text-orge8274ec">
+<ul class="org-ul">
+<li><a href="https://leetcode.com/submissions/detail/1358016323/">2024-08-16 Maximum Distance in Arrays - Submission Detail - LeetCode</a></li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-js">// Define logger functions for standalone testing and use in platforms where they are undefined.
+
+/**
+ * @param {number[][]} arrays - A list of sorted arrays.
+ * @return {number} - The maximum distance between any pair of elements where the elements are from different arrays.
+ */
+function maximumDistance(arrays) {
+    const log = typeof NestedInteger !== 'undefined' ? () =&gt; {} : console.log;
+    const table = typeof NestedInteger!== 'undefined' ? () =&gt; {} : console.table;
+
+    let gMin = arrays[0][0];
+    let gMax = arrays[0][arrays[0].length - 1];
+    let maxD = 0;
+
+    log(`#   Initial gMin='${gMin}', gMax='${gMax}'`);
+
+    for (let i = 1; i &lt; arrays.length; i++) {
+        const c = arrays[i];
+        const cMin = c[0];
+        const cMax = c[c.length - 1];
+
+        log(`#     Array ${i}: cMin='${cMin}', cMax='${cMax}'`);
+
+        const oldMaxD = maxD;
+
+        maxD = Math.max(maxD,
+                        Math.abs(gMax - cMin),
+                        Math.abs(cMax - gMin));
+
+        log(`#     oldMaxD='${oldMaxD}'; new maxD='${maxD}';`)
+
+        gMin = Math.min(gMin, cMin);
+        gMax = Math.max(gMax, cMax);
+
+        log(`#     Updated gMin='${gMin}', gMax='${gMax}'`);
+    }
+
+    log(`#  return ${maxD}`);
+
+    return maxD;
+}
+
+// Test cases array, structure with input data and expected results.
+const testCases = [
+    { arrays: [[1, 2, 3], [4, 5], [1, 2, 3]], expected: 4 },
+    { arrays: [[1], [1]], expected: 0 },
+    { arrays: [[1,4], [0,5], [3,6]], expected: 6 },
+    { arrays: [[2, 3, 4], [1, 2, 3, 4, 5, 6], [7, 8]], expected: 7 },
+    { arrays: [[0, 10, 20], [3, 9, 30], [11, 14]], expected: 30 },
+];
+
+// Execute and display test results
+testCases.forEach((test, index) =&gt; {
+    const result = maximumDistance(test.arrays);
+    console.log(`Test Case ${index + 1}: ${result === test.expected ? 'Passed' : 'Failed'} (Expected: ${test.expected}, Got: ${result})`);
+});
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+&copy; d)zharii. <a href="/sitemap.html">sitemap</a>
+</div>
+</body>
+</html>

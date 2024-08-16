@@ -1,0 +1,144 @@
+﻿#+title: 0624. Maximum Distance in Arrays
+#+subtitle: leetcode
+#+date: <2024-08-16>
+#+language: en
+
+* Problem
+Given a list of arrays, each individual array is sorted in non-decreasing order. Write a function to find the maximum distance between any pair of elements where the first element is taken from one array, and the second is taken from another array. The distance is defined as the absolute difference between the two elements.
+
+Example input:
+- arrays = [[1, 2, 3], [4, 5], [1, 2, 3]]
+
+Output:
+- The function should return 4 because the maximum distance can be achieved by taking 1 from the first array and 5 from the second array.
+
+* Solution Description
+To implement the solution, we need to:
+1. Track the minimum and maximum values across the arrays as we iterate through them.
+2. For each array, consider the possible distances with the current global minimum and maximum values found so far.
+3. Update the global minimum and maximum values after considering the current array.
+4. Calculate the distances and track the maximum distance encountered.
+
+The approach ensures that we efficiently find the maximum distance without checking every possible pair of elements, resulting in a time complexity of O(n), where n is the number of arrays. The space complexity is O(1) as we are using a fixed amount of additional space.
+
+* Example
+Consider the arrays =[[1, 2, 3], [4, 5], [1, 2, 3]]=:
+1. Initialize global_min with the last element of the first array (1) and global_max with the first element of the first array (3).
+2. Iterate through each array:
+   - For the second array [4, 5], calculate the distances with global_min (1) and global_max (3). Update the maximum distance to 4 (|1-5|).
+   - Update global_min to 1 (unchanged) and global_max to 5.
+   - Process the remaining arrays similarly.
+
+* References
+No specific algorithms required, but understanding of array processing and iteration is essential.
+
+
+* Solution
+
+- [[https://leetcode.com/submissions/detail/1358016323/][2024-08-16 Maximum Distance in Arrays - Submission Detail - LeetCode]]
+
+#+begin_src js :tangle "624_maximum_distance_in_arrays.js"
+// Define logger functions for standalone testing and use in platforms where they are undefined.
+
+/**
+ ,* @param {number[][]} arrays - A list of sorted arrays.
+ ,* @return {number} - The maximum distance between any pair of elements where the elements are from different arrays.
+ ,*/
+function maximumDistance(arrays) {
+    const log = typeof NestedInteger !== 'undefined' ? () => {} : console.log;
+    const table = typeof NestedInteger!== 'undefined' ? () => {} : console.table;
+
+    let gMin = arrays[0][0];
+    let gMax = arrays[0][arrays[0].length - 1];
+    let maxD = 0;
+
+    log(`#   Initial gMin='${gMin}', gMax='${gMax}'`);
+
+    for (let i = 1; i < arrays.length; i++) {
+        const c = arrays[i];
+        const cMin = c[0];
+        const cMax = c[c.length - 1];
+
+        log(`#     Array ${i}: cMin='${cMin}', cMax='${cMax}'`);
+
+        const oldMaxD = maxD;
+
+        maxD = Math.max(maxD,
+                        Math.abs(gMax - cMin),
+                        Math.abs(cMax - gMin));
+
+        log(`#     oldMaxD='${oldMaxD}'; new maxD='${maxD}';`)
+
+        gMin = Math.min(gMin, cMin);
+        gMax = Math.max(gMax, cMax);
+
+        log(`#     Updated gMin='${gMin}', gMax='${gMax}'`);
+    }
+
+    log(`#  return ${maxD}`);
+
+    return maxD;
+}
+
+// Test cases array, structure with input data and expected results.
+const testCases = [
+    { arrays: [[1, 2, 3], [4, 5], [1, 2, 3]], expected: 4 },
+    { arrays: [[1], [1]], expected: 0 },
+    { arrays: [[1,4], [0,5], [3,6]], expected: 6 },
+    { arrays: [[2, 3, 4], [1, 2, 3, 4, 5, 6], [7, 8]], expected: 7 },
+    { arrays: [[0, 10, 20], [3, 9, 30], [11, 14]], expected: 30 },
+];
+
+// Execute and display test results
+testCases.forEach((test, index) => {
+    const result = maximumDistance(test.arrays);
+    console.log(`Test Case ${index + 1}: ${result === test.expected ? 'Passed' : 'Failed'} (Expected: ${test.expected}, Got: ${result})`);
+});
+#+end_src
+
+#+RESULTS:
+#+begin_example
+#   Initial gMin='1', gMax='3'
+#     Array 1: cMin='4', cMax='5'
+#     oldMaxD='0'; new maxD='4';
+#     Updated gMin='1', gMax='5'
+#     Array 2: cMin='1', cMax='3'
+#     oldMaxD='4'; new maxD='4';
+#     Updated gMin='1', gMax='5'
+#  return 4
+Test Case 1: Passed (Expected: 4, Got: 4)
+#   Initial gMin='1', gMax='1'
+#     Array 1: cMin='1', cMax='1'
+#     oldMaxD='0'; new maxD='0';
+#     Updated gMin='1', gMax='1'
+#  return 0
+Test Case 2: Passed (Expected: 0, Got: 0)
+#   Initial gMin='1', gMax='4'
+#     Array 1: cMin='0', cMax='5'
+#     oldMaxD='0'; new maxD='4';
+#     Updated gMin='0', gMax='5'
+#     Array 2: cMin='3', cMax='6'
+#     oldMaxD='4'; new maxD='6';
+#     Updated gMin='0', gMax='6'
+#  return 6
+Test Case 3: Passed (Expected: 6, Got: 6)
+#   Initial gMin='2', gMax='4'
+#     Array 1: cMin='1', cMax='6'
+#     oldMaxD='0'; new maxD='4';
+#     Updated gMin='1', gMax='6'
+#     Array 2: cMin='7', cMax='8'
+#     oldMaxD='4'; new maxD='7';
+#     Updated gMin='1', gMax='8'
+#  return 7
+Test Case 4: Passed (Expected: 7, Got: 7)
+#   Initial gMin='0', gMax='20'
+#     Array 1: cMin='3', cMax='30'
+#     oldMaxD='0'; new maxD='30';
+#     Updated gMin='0', gMax='30'
+#     Array 2: cMin='11', cMax='14'
+#     oldMaxD='30'; new maxD='30';
+#     Updated gMin='0', gMax='30'
+#  return 30
+Test Case 5: Passed (Expected: 30, Got: 30)
+undefined
+#+end_example
