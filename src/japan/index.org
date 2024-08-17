@@ -1,0 +1,10 @@
+#+title: index
+#+subtitle: docs
+#+date: <2024-08-16>
+#+language: en
+
+* Summary
+I trust in my abilities and the power of my words.
+
+
+* Articles
