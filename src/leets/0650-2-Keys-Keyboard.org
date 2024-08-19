@@ -1,0 +1,55 @@
+﻿#+title: 0650. 2 Keys Keyboard
+#+subtitle: leetcode
+#+date: <2024-08-19>
+#+language: en
+
+
+* Problem
+Given a single character 'A' initially displayed on a notepad, you can perform two operations on this notepad for any number of times:
+
+1. Copy All: You can copy all the characters present on the notepad (partial or entire).
+2. Paste: You can paste the characters which are copied last to the notepad.
+
+Now, you are given an integer n, which represents the target number of 'A' characters. You need to find the minimum number of operations needed to get exactly n 'A' on the notepad.
+
+* Solution Description
+To implement a solution, we need to use dynamic programming to break down the problem into smaller subproblems. We maintain an array where dp[i] represents the minimum number of operations required to get exactly i 'A's. We initialize dp[1] to 0 since no operations are needed to have one 'A'. For each number of 'A's, we try to find a divisor j which divides i. If j is a divisor, then the only way to produce i 'A's is by copying all from dp[j] and pasting (i/j) - 1 times.
+
+The time complexity of this approach is O(n log n) because for each number from 2 to n, we check for its divisors. The space complexity is O(n) due to the dp array.
+
+* Example
+Let's take n = 4:
+dp[1] = 0  (Initial 'A')
+dp[2] = 2  (Copy -> Paste)
+dp[3] = 3  (Copy -> Paste -> Paste)
+dp[4] = 4  (Copy -> Paste -> Copy -> Paste)
+
+* References
+- Dynamic Programming: https://en.wikipedia.org/wiki/Dynamic_programming
+
+* Solution
+#+begin_src js :tangle "leetcode_650_2_keys_keyboard.js"
+/**
+ * @param {number} n - The target number of 'A' characters.
+ * @return {number} - The minimum number of operations needed to achieve n 'A' characters.
+ */
+function minSteps(n) {
+    const dp = new Array(n + 1).fill(0);
+
+    return dp[n];
+}
+
+// Test cases
+const testCases = [
+    { input: 1, expected: 0 },
+    { input: 3, expected: 3 },
+    { input: 4, expected: 4 },
+    { input: 5, expected: 5 },
+    { input: 9, expected: 6 }
+];
+
+testCases.forEach((test, index) => {
+    const result = minSteps(test.input);
+    console.log(`Test Case ${index + 1}: ${result === test.expected ? 'Passed' : 'Failed'} (Expected: ${test.expected}, Got: ${result})`);
+});
+#+end_src

@@ -9,6 +9,8 @@
   - [[file:posts/2024-08-03-Insert_images_with_org_download_package.org][Insert images with org download package]]
   - [[file:posts/2024-08-04-Cross-Platform Clipboard Dithering A Journey with PowerShell and Bash.org][2024-08-04 Cross-Platform Clipboard Dithering: A Journey with PowerShell and Bash]]
   - [[file:posts/How I Discovered Outline Speedrunning and Created a Prompt for Project Efficiency.org][How I Discovered Outline Speedrunning and Created a GPT Prompt for bootstrapping a project]]
+- japan
+  - [[file:japan/Why_You_Shouldnt_Learn_Japanese.org][Why You Shouldn't Learn Japanese]]
 - leets
   - [[file:leets/0039-Combination-Sum.org][Combination Sum Problem Overview and Solution Plan]]
   - [[file:leets/0338-Counting-Bits.org][0338. Counting Bits]]
@@ -55,3 +57,4 @@
   - [[file:leets/0860-Lemonade-Change.org][0860. Lemonade Change]]
   - [[file:leets/0719-Find-K-th-Smallest-Pair-Distance.org][0719. Find K-th Smallest Pair Distance]]
   - [[file:leets/0624-Maximum-Distance-in-Arrays.org][0624. Maximum Distance in Arrays]]
+  - [[file:leets/0650-2-Keys-Keyboard.org][0650. 2 Keys Keyboard]]

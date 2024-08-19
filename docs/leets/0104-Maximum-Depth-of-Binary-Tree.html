@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2024-08-16 -->
+<!-- 2024-08-19 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>0104. Maximum Depth of Binary Tree</title>
@@ -22,26 +22,26 @@ Published 2024-07-07
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org469dd94">Problem:</a></li>
-<li><a href="#org041919a">Solution Description:</a></li>
-<li><a href="#org80d51bf">Example:</a></li>
-<li><a href="#org2a49dee">Setup:</a></li>
+<li><a href="#org8df16d0">Problem:</a></li>
+<li><a href="#org2dbe1f6">Solution Description:</a></li>
+<li><a href="#orgd46a63e">Example:</a></li>
+<li><a href="#org29e91fe">Setup:</a></li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-org469dd94" class="outline-2">
-<h2 id="org469dd94">Problem:</h2>
-<div class="outline-text-2" id="text-org469dd94">
+<div id="outline-container-org8df16d0" class="outline-2">
+<h2 id="org8df16d0">Problem:</h2>
+<div class="outline-text-2" id="text-org8df16d0">
 <p>
 Given the root of a binary tree, return its maximum depth. The maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org041919a" class="outline-2">
-<h2 id="org041919a">Solution Description:</h2>
-<div class="outline-text-2" id="text-org041919a">
+<div id="outline-container-org2dbe1f6" class="outline-2">
+<h2 id="org2dbe1f6">Solution Description:</h2>
+<div class="outline-text-2" id="text-org2dbe1f6">
 <p>
 To implement the solution for finding the maximum depth of a binary tree, we need to use a depth-first search (DFS) approach. Every time we traverse down a node, we increase our depth count. We need to check both left and right subtrees to find the maximum depth from the current node.
 </p>
@@ -63,9 +63,9 @@ Space Complexity: O(H), where H is the height of the tree. This is due to the re
 </div>
 </div>
 
-<div id="outline-container-org80d51bf" class="outline-2">
-<h2 id="org80d51bf">Example:</h2>
-<div class="outline-text-2" id="text-org80d51bf">
+<div id="outline-container-orgd46a63e" class="outline-2">
+<h2 id="orgd46a63e">Example:</h2>
+<div class="outline-text-2" id="text-orgd46a63e">
 <p>
 Consider the binary tree:
 </p>
@@ -86,9 +86,9 @@ The maximum depth of this tree is 3.
 </div>
 </div>
 
-<div id="outline-container-org2a49dee" class="outline-2">
-<h2 id="org2a49dee">Setup:</h2>
-<div class="outline-text-2" id="text-org2a49dee">
+<div id="outline-container-org29e91fe" class="outline-2">
+<h2 id="org29e91fe">Setup:</h2>
+<div class="outline-text-2" id="text-org29e91fe">
 <p>
 Here is a skeleton code for implementing the solution. An additional helper function can also be included for testing purposes using examples.
 </p>

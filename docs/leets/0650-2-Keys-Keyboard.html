@@ -1,0 +1,124 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2024-08-19 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>0650. 2 Keys Keyboard</title>
+<meta name="author" content="d)zharii" />
+<meta name="generator" content="Org Mode" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/t.css"/>
+</head>
+<body>
+<nav><a href="/" tabindex="0">&larrhk; Back to Index</a></nav><div id="preamble" class="status">
+Published 2024-08-19
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">0650. 2 Keys Keyboard</h1>
+<p class="subtitle" role="doc-subtitle">leetcode</p>
+</header><nav id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgb5d1178">Problem</a></li>
+<li><a href="#org7c9fdc8">Solution Description</a></li>
+<li><a href="#org5edeb32">Example</a></li>
+<li><a href="#orge576a89">References</a></li>
+<li><a href="#org8808ad7">Solution</a></li>
+</ul>
+</div>
+</nav>
+
+
+<div id="outline-container-orgb5d1178" class="outline-2">
+<h2 id="orgb5d1178">Problem</h2>
+<div class="outline-text-2" id="text-orgb5d1178">
+<p>
+Given a single character 'A' initially displayed on a notepad, you can perform two operations on this notepad for any number of times:
+</p>
+
+<ol class="org-ol">
+<li>Copy All: You can copy all the characters present on the notepad (partial or entire).</li>
+<li>Paste: You can paste the characters which are copied last to the notepad.</li>
+</ol>
+
+<p>
+Now, you are given an integer n, which represents the target number of 'A' characters. You need to find the minimum number of operations needed to get exactly n 'A' on the notepad.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org7c9fdc8" class="outline-2">
+<h2 id="org7c9fdc8">Solution Description</h2>
+<div class="outline-text-2" id="text-org7c9fdc8">
+<p>
+To implement a solution, we need to use dynamic programming to break down the problem into smaller subproblems. We maintain an array where dp[i] represents the minimum number of operations required to get exactly i 'A's. We initialize dp[1] to 0 since no operations are needed to have one 'A'. For each number of 'A's, we try to find a divisor j which divides i. If j is a divisor, then the only way to produce i 'A's is by copying all from dp[j] and pasting (i/j) - 1 times.
+</p>
+
+<p>
+The time complexity of this approach is O(n log n) because for each number from 2 to n, we check for its divisors. The space complexity is O(n) due to the dp array.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org5edeb32" class="outline-2">
+<h2 id="org5edeb32">Example</h2>
+<div class="outline-text-2" id="text-org5edeb32">
+<p>
+Let's take n = 4:
+dp[1] = 0  (Initial 'A')
+dp[2] = 2  (Copy -&gt; Paste)
+dp[3] = 3  (Copy -&gt; Paste -&gt; Paste)
+dp[4] = 4  (Copy -&gt; Paste -&gt; Copy -&gt; Paste)
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge576a89" class="outline-2">
+<h2 id="orge576a89">References</h2>
+<div class="outline-text-2" id="text-orge576a89">
+<ul class="org-ul">
+<li>Dynamic Programming: <a href="https://en.wikipedia.org/wiki/Dynamic_programming">https://en.wikipedia.org/wiki/Dynamic_programming</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org8808ad7" class="outline-2">
+<h2 id="org8808ad7">Solution</h2>
+<div class="outline-text-2" id="text-org8808ad7">
+<div class="org-src-container">
+<pre class="src src-js">/**
+ * @param {number} n - The target number of 'A' characters.
+ * @return {number} - The minimum number of operations needed to achieve n 'A' characters.
+ */
+function minSteps(n) {
+    const dp = new Array(n + 1).fill(0);
+
+    return dp[n];
+}
+
+// Test cases
+const testCases = [
+    { input: 1, expected: 0 },
+    { input: 3, expected: 3 },
+    { input: 4, expected: 4 },
+    { input: 5, expected: 5 },
+    { input: 9, expected: 6 }
+];
+
+testCases.forEach((test, index) =&gt; {
+    const result = minSteps(test.input);
+    console.log(`Test Case ${index + 1}: ${result === test.expected ? 'Passed' : 'Failed'} (Expected: ${test.expected}, Got: ${result})`);
+});
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+&copy; d)zharii. <a href="/sitemap.html">sitemap</a>
+</div>
+</body>
+</html>
