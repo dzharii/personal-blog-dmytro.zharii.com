@@ -22,29 +22,29 @@ Published 2024-08-01
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org739b620">Links</a></li>
-<li><a href="#org4f63381">Problem</a></li>
-<li><a href="#org913aba8">Solution Description</a></li>
-<li><a href="#org26fa963">Example</a></li>
-<li><a href="#orgb6589bc">References</a></li>
-<li><a href="#org5dce956">Solution</a></li>
+<li><a href="#org4891da6">Links</a></li>
+<li><a href="#org4e17276">Problem</a></li>
+<li><a href="#orgfa8974b">Solution Description</a></li>
+<li><a href="#org5682d7f">Example</a></li>
+<li><a href="#orgaa3de78">References</a></li>
+<li><a href="#orgbc50d52">Solution</a></li>
 </ul>
 </div>
 </nav>
 
 
-<div id="outline-container-org739b620" class="outline-2">
-<h2 id="org739b620">Links</h2>
-<div class="outline-text-2" id="text-org739b620">
+<div id="outline-container-org4891da6" class="outline-2">
+<h2 id="org4891da6">Links</h2>
+<div class="outline-text-2" id="text-org4891da6">
 <ul class="org-ul">
 <li><a href="https://leetcode.com/submissions/detail/1341373218/">2024-08-02 Minimum Swaps to Group All 1's Together II - Submission Detail - LeetCode</a> (Time limit exceeded)</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org4f63381" class="outline-2">
-<h2 id="org4f63381">Problem</h2>
-<div class="outline-text-2" id="text-org4f63381">
+<div id="outline-container-org4e17276" class="outline-2">
+<h2 id="org4e17276">Problem</h2>
+<div class="outline-text-2" id="text-org4e17276">
 <p>
 Given a binary circular array nums, you need to find the minimum number of swaps required to group all <code>1</code>'s present in the array together in any location in the circular array.
 </p>
@@ -55,9 +55,9 @@ For instance, the array <code>[1, 0, 1, 0, 1]</code> as a circular array can be 
 </div>
 </div>
 
-<div id="outline-container-org913aba8" class="outline-2">
-<h2 id="org913aba8">Solution Description</h2>
-<div class="outline-text-2" id="text-org913aba8">
+<div id="outline-container-orgfa8974b" class="outline-2">
+<h2 id="orgfa8974b">Solution Description</h2>
+<div class="outline-text-2" id="text-orgfa8974b">
 <p>
 To implement a solution for this problem, we need to use the sliding window technique. This approach allows us to assess a window of a fixed size (equal to the number of 1's in the array) and count the number of zeroes in that window. The goal is to identify the window with the fewest zeroes, as this indicates the minimum number of swaps needed to group all 1's together.
 </p>
@@ -79,9 +79,9 @@ Space Complexity: <code>O(1)</code> as we use a constant amount of extra space.
 </div>
 </div>
 
-<div id="outline-container-org26fa963" class="outline-2">
-<h2 id="org26fa963">Example</h2>
-<div class="outline-text-2" id="text-org26fa963">
+<div id="outline-container-org5682d7f" class="outline-2">
+<h2 id="org5682d7f">Example</h2>
+<div class="outline-text-2" id="text-org5682d7f">
 <p>
 Consider the array <code>[1, 0, 1, 0, 1]</code>.
 </p>
@@ -98,9 +98,9 @@ Consider the array <code>[1, 0, 1, 0, 1]</code>.
 </div>
 </div>
 
-<div id="outline-container-orgb6589bc" class="outline-2">
-<h2 id="orgb6589bc">References</h2>
-<div class="outline-text-2" id="text-orgb6589bc">
+<div id="outline-container-orgaa3de78" class="outline-2">
+<h2 id="orgaa3de78">References</h2>
+<div class="outline-text-2" id="text-orgaa3de78">
 <ul class="org-ul">
 <li>Sliding Window Technique: <a href="https://en.wikipedia.org/wiki/Sliding_window_protocol">https://en.wikipedia.org/wiki/Sliding_window_protocol</a></li>
 <li>Circular Array Handling: <a href="https://www.geeksforgeeks.org/circular-array/">https://www.geeksforgeeks.org/circular-array/</a></li>
@@ -108,9 +108,9 @@ Consider the array <code>[1, 0, 1, 0, 1]</code>.
 </div>
 </div>
 
-<div id="outline-container-org5dce956" class="outline-2">
-<h2 id="org5dce956">Solution</h2>
-<div class="outline-text-2" id="text-org5dce956">
+<div id="outline-container-orgbc50d52" class="outline-2">
+<h2 id="orgbc50d52">Solution</h2>
+<div class="outline-text-2" id="text-orgbc50d52">
 <p>
 <code>Roma</code>:
 </p>

@@ -1,0 +1,176 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2024-08-19 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>1140. Stone Game II</title>
+<meta name="author" content="d)zharii" />
+<meta name="generator" content="Org Mode" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/t.css"/>
+</head>
+<body>
+<nav><a href="/" tabindex="0">&larrhk; Back to Index</a></nav><div id="preamble" class="status">
+Published 2024-08-19
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">1140. Stone Game II</h1>
+<p class="subtitle" role="doc-subtitle">leetcode</p>
+</header><nav id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgddda35d">Problem</a></li>
+<li><a href="#orgb9c4b28">Solution Description</a></li>
+<li><a href="#org69b59d3">Example</a></li>
+<li><a href="#orgd0da8f7">References</a></li>
+<li><a href="#org38db373">Solution</a></li>
+</ul>
+</div>
+</nav>
+
+<div id="outline-container-orgddda35d" class="outline-2">
+<h2 id="orgddda35d">Problem</h2>
+<div class="outline-text-2" id="text-orgddda35d">
+<p>
+Given an array of integers representing the number of stones in piles, two players (Alice and Bob) play a game with the following rules:
+</p>
+<ul class="org-ul">
+<li>They take turns, with Alice always starting first.</li>
+<li>On each player's turn, they can take all the stones in the first `X` piles where `1 &lt;= X &lt;= 2M`. `M` starts at 1 and is updated to `max(M, X)` after each turn.</li>
+<li>The game ends when there are no more piles to take.</li>
+<li>Each player aims to maximize the total number of stones they can collect.</li>
+</ul>
+
+<p>
+The goal is to determine the maximum stones Alice can get if both Alice and Bob play optimally.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgb9c4b28" class="outline-2">
+<h2 id="orgb9c4b28">Solution Description</h2>
+<div class="outline-text-2" id="text-orgb9c4b28">
+<p>
+To implement the solution for the Stone Game II problem optimally, we need to use dynamic programming (DP). The key here is to simulate the game using a recursive DP approach with memoization to avoid recalculating results for the same states.
+</p>
+
+<p>
+Steps:
+</p>
+<ol class="org-ol">
+<li>Define a recursive function `dp(i, m)` that calculates the maximum number of stones the current player can collect starting from pile `i` with the current value of `M`.</li>
+<li>Use memoization to store the results for each state `(i, m)` to avoid redundant calculations.</li>
+<li>On each player's turn, explore taking `X` piles where `1 &lt;= X &lt;= 2M`, update the maximum value of stones they can collect, and change `M` to `max(M, X)` for the next turn.</li>
+<li>Align the goal to maximize Alice's stones while minimizing Bob's moves by clever decision-making.</li>
+<li>Use suffix sums to compute the total stones available from `i`th pile to the end to assist in quick calculations.</li>
+</ol>
+
+<p>
+Time Complexity: Roughly O(n<sup>3</sup>) due to nested loops and the memoized recursive calls.
+Space Complexity: O(n<sup>2</sup>) for the memoization table.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org69b59d3" class="outline-2">
+<h2 id="org69b59d3">Example</h2>
+<div class="outline-text-2" id="text-org69b59d3">
+<p>
+Consider the piles = [2, 7, 9, 4, 4]:
+</p>
+
+<ol class="org-ol">
+<li>Initially, Alice starts with M = 1 and explores taking 1 or 2 piles.</li>
+<li>If taking 1 pile, Bob will explore with M = max(1, 1) = 1.</li>
+<li>Alice tries to maximize her stones based on Bob's optimal future moves.</li>
+<li>Continue this until there are no more piles left.</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-orgd0da8f7" class="outline-2">
+<h2 id="orgd0da8f7">References</h2>
+<div class="outline-text-2" id="text-orgd0da8f7">
+<ul class="org-ul">
+<li>Dynamic Programming: A method for solving complex problems by breaking them down into simpler subproblems and solving each of them just once and storing their solutions.</li>
+<li><a href="https://leetcode.com/problems/stone-game-ii/">Leetcode 1140 - Stone Game II</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org38db373" class="outline-2">
+<h2 id="org38db373">Solution</h2>
+<div class="outline-text-2" id="text-org38db373">
+<div class="org-src-container">
+<pre class="src src-js">/**
+ * Calculate the maximum number of stones Alice can collect if both play optimally.
+ * @param {number[]} piles - The array representing number of stones in each pile.
+ * @return {number} The maximum number of stones Alice can get.
+ */
+function stoneGameII(piles) {
+    // Log and table functions for easy debugging
+    const log = typeof NestedInteger !== 'undefined' ? () =&gt; {} : console.log;
+    const table = typeof NestedInteger !== 'undefined' ? () =&gt; {} : console.table;
+
+    const n = piles.length;
+    const suffixSums = new Array(n).fill(0);
+    suffixSums[n - 1] = piles[n - 1];
+
+    // Populate suffix sums from right to left
+    for (let i = n - 2; i &gt;= 0; i--) {
+        suffixSums[i] = piles[i] + suffixSums[i + 1];
+    }
+
+    // Memoization table
+    const memo = new Array(n).fill(0).map(() =&gt; new Array(n).fill(-1));
+
+    /**
+     * Helper function to use dynamic programming with memoization.
+     * @param {number} i - Current pile index.
+     * @param {number} m - Current value of M.
+     * @return {number} The maximum stones the player can collect starting at index i with M.
+     */
+    function dp(i, m) {
+        if (i &gt;= n) return 0;
+        if (2 * m &gt;= n - i) return suffixSums[i];
+
+        if (memo[i][m] !== -1) return memo[i][m];
+
+        let maxStones = 0;
+        for (let x = 1; x &lt;= 2 * m; x++) {
+            const current = suffixSums[i] - dp(i + x, Math.max(m, x));
+            maxStones = Math.max(maxStones, current);
+        }
+
+        memo[i][m] = maxStones;
+        return maxStones;
+    }
+
+    return dp(0, 1);
+}
+
+// Test cases
+const testCases = [
+    { piles: [2, 7, 9, 4, 4], expected: 10 },
+    { piles: [1, 2, 3, 4, 5, 100], expected: 104 },
+    { piles: [], expected: 0 },
+    { piles: [1], expected: 1 },
+];
+
+testCases.forEach((test, index) =&gt; {
+    const result = stoneGameII(test.piles);
+    console.log(`Test Case ${index + 1}: ${result === test.expected ? 'Passed' : 'Failed'} (Expected: ${test.expected}, Got: ${result})`);
+});
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+&copy; d)zharii. <a href="/sitemap.html">sitemap</a>
+</div>
+</body>
+</html>

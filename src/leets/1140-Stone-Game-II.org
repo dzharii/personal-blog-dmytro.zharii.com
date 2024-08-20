@@ -1,0 +1,109 @@
+﻿#+title: 1140. Stone Game II
+#+subtitle: leetcode
+#+date: <2024-08-19>
+#+language: en
+
+* Problem
+Given an array of integers representing the number of stones in piles, two players (Alice and Bob) play a game with the following rules:
+- They take turns, with Alice always starting first.
+- On each player's turn, they can take all the stones in the first `X` piles where `1 <= X <= 2M`. `M` starts at 1 and is updated to `max(M, X)` after each turn.
+- The game ends when there are no more piles to take.
+- Each player aims to maximize the total number of stones they can collect.
+
+The goal is to determine the maximum stones Alice can get if both Alice and Bob play optimally.
+
+* Solution Description
+To implement the solution for the Stone Game II problem optimally, we need to use dynamic programming (DP). The key here is to simulate the game using a recursive DP approach with memoization to avoid recalculating results for the same states.
+
+Steps:
+1. Define a recursive function `dp(i, m)` that calculates the maximum number of stones the current player can collect starting from pile `i` with the current value of `M`.
+2. Use memoization to store the results for each state `(i, m)` to avoid redundant calculations.
+3. On each player's turn, explore taking `X` piles where `1 <= X <= 2M`, update the maximum value of stones they can collect, and change `M` to `max(M, X)` for the next turn.
+4. Align the goal to maximize Alice's stones while minimizing Bob's moves by clever decision-making.
+5. Use suffix sums to compute the total stones available from `i`th pile to the end to assist in quick calculations.
+
+Time Complexity: Roughly O(n^3) due to nested loops and the memoized recursive calls.
+Space Complexity: O(n^2) for the memoization table.
+
+* Example
+Consider the piles = [2, 7, 9, 4, 4]:
+
+1. Initially, Alice starts with M = 1 and explores taking 1 or 2 piles.
+2. If taking 1 pile, Bob will explore with M = max(1, 1) = 1.
+3. Alice tries to maximize her stones based on Bob's optimal future moves.
+4. Continue this until there are no more piles left.
+
+* References
+- Dynamic Programming: A method for solving complex problems by breaking them down into simpler subproblems and solving each of them just once and storing their solutions.
+- [[https://leetcode.com/problems/stone-game-ii/][Leetcode 1140 - Stone Game II]]
+
+* Solution
+
+#+begin_src js :tangle leetcode_1140_stone_game_ii.js
+/**
+ ,* Calculate the maximum number of stones Alice can collect if both play optimally.
+ ,* @param {number[]} piles - The array representing number of stones in each pile.
+ ,* @return {number} The maximum number of stones Alice can get.
+ ,*/
+function stoneGameII(piles) {
+    // Log and table functions for easy debugging
+    const log = typeof NestedInteger !== 'undefined' ? () => {} : console.log;
+    const table = typeof NestedInteger !== 'undefined' ? () => {} : console.table;
+
+    const n = piles.length;
+    const suffixSums = new Array(n).fill(0);
+    suffixSums[n - 1] = piles[n - 1];
+
+    // Populate suffix sums from right to left
+    for (let i = n - 2; i >= 0; i--) {
+        suffixSums[i] = piles[i] + suffixSums[i + 1];
+    }
+
+    // Memoization table
+    const memo = new Array(n).fill(0).map(() => new Array(n).fill(-1));
+
+    /**
+     ,* Helper function to use dynamic programming with memoization.
+     ,* @param {number} i - Current pile index.
+     ,* @param {number} m - Current value of M.
+     ,* @return {number} The maximum stones the player can collect starting at index i with M.
+     ,*/
+    function dp(i, m) {
+        if (i >= n) return 0;
+        if (2 * m >= n - i) return suffixSums[i];
+
+        if (memo[i][m] !== -1) return memo[i][m];
+
+        let maxStones = 0;
+        for (let x = 1; x <= 2 * m; x++) {
+            const current = suffixSums[i] - dp(i + x, Math.max(m, x));
+            maxStones = Math.max(maxStones, current);
+        }
+
+        memo[i][m] = maxStones;
+        return maxStones;
+    }
+
+    return dp(0, 1);
+}
+
+// Test cases
+const testCases = [
+    { piles: [2, 7, 9, 4, 4], expected: 10 },
+    { piles: [1, 2, 3, 4, 5, 100], expected: 104 },
+    { piles: [], expected: 0 },
+    { piles: [1], expected: 1 },
+];
+
+testCases.forEach((test, index) => {
+    const result = stoneGameII(test.piles);
+    console.log(`Test Case ${index + 1}: ${result === test.expected ? 'Passed' : 'Failed'} (Expected: ${test.expected}, Got: ${result})`);
+});
+#+end_src
+
+#+RESULTS:
+: Test Case 1: Passed (Expected: 10, Got: 10)
+: Test Case 2: Passed (Expected: 104, Got: 104)
+: Test Case 3: Passed (Expected: 0, Got: 0)
+: Test Case 4: Passed (Expected: 1, Got: 1)
+: undefined
