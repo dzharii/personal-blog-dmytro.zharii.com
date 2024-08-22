@@ -1,0 +1,80 @@
+﻿#+title: 0476. Number Complement
+#+subtitle: leetcode
+#+date: <2024-08-21>
+#+language: en
+
+* Problem
+Given a positive integer ~num~, output its complement number. The complement strategy is to flip the bits of its binary representation.
+
+The complement of an integer is formed by inverting the binary digits (changing 0 to 1 and 1 to 0). For example, the binary complement of ~5~ (which is ~101~ in binary) is ~2~ (which is ~010~ in binary).
+
+** Example:
+- Input: ~5~
+- Output: ~2~
+- Explanation: The binary representation of ~5~ is ~101~, and the complement is ~010~ which is the binary representation of ~2~.
+
+* Solution Description
+To implement the complement number of a given integer, we need to:
+1. Convert the number into its binary representation.
+2. Invert the bits of this binary representation.
+3. Convert the inverted binary representation back to a decimal number.
+
+Here's how the steps can be translated into code:
+1. Convert the number to binary using ~num.toString(2)~.
+2. Flip each bit (0 to 1 and 1 to 0) by iterating over the string.
+3. Convert the resulting binary string back to a number using ~parseInt(binaryString, 2)~.
+
+** Efficient Approach:
+1. Calculate the bit length of the number.
+2. Create a mask which is all bits set to 1 for the length of the number.
+3. XOR the number with the mask to get the complement.
+
+** Time Complexity: O(b), where b is the number of bits.
+** Space Complexity: O(1), as we are using a constant amount of extra space.
+
+* Example
+Let's take the number ~5~:
+1. Binary form of ~5~ is ~101~.
+2. Inverting ~101~ gives ~010~.
+3. Convert ~010~ to decimal, which is ~2~.
+
+* Submission
+[[https://leetcode.com/submissions/detail/1364078436/][2024-08-22 Number Complement - Submission Detail - LeetCode]] =leetcode.com=
+
+* Solution Code
+#+begin_src js :tangle leetcode_476_number_complement.js
+/**
+ ,* @description This function calculates the complement of a given number.
+ ,* @param {number} num - The input number.
+ ,* @returns {number} - The complement of the input number.
+ ,*/
+function findComplement(num) {
+    const bitLength = num.toString(2).length;
+    const mask = (1 << bitLength) - 1;
+    const xor = num ^ mask;
+    return xor;
+}
+
+// Define test cases to validate the solution
+const testCases = [
+    { num: 5, expected: 2 },
+    { num: 1, expected: 0 },
+    { num: 7, expected: 0 },
+    { num: 10, expected: 5 },
+    { num: 0, expected: 1 },
+];
+
+// Testing execution
+testCases.forEach((test, index) => {
+    const result = findComplement(test.num);
+    console.log(`Test Case ${index + 1}: ${result === test.expected ? 'Passed' : 'Failed'} (Expected: ${test.expected}, Got: ${result})`);
+});
+#+end_src
+
+#+RESULTS:
+: Test Case 1: Passed (Expected: 2, Got: 2)
+: Test Case 2: Passed (Expected: 0, Got: 0)
+: Test Case 3: Passed (Expected: 0, Got: 0)
+: Test Case 4: Passed (Expected: 5, Got: 5)
+: Test Case 5: Passed (Expected: 1, Got: 1)
+: undefined

@@ -1,0 +1,171 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2024-08-21 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>0476. Number Complement</title>
+<meta name="author" content="d)zharii" />
+<meta name="generator" content="Org Mode" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/t.css"/>
+</head>
+<body>
+<nav><a href="/" tabindex="0">&larrhk; Back to Index</a></nav><div id="preamble" class="status">
+Published 2024-08-21
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">0476. Number Complement</h1>
+<p class="subtitle" role="doc-subtitle">leetcode</p>
+</header><nav id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orga4ae633">Problem</a>
+<ul>
+<li><a href="#org94d01b2">Example:</a></li>
+</ul>
+</li>
+<li><a href="#orgd029e0a">Solution Description</a>
+<ul>
+<li><a href="#org0e7f6ff">Efficient Approach:</a></li>
+<li><a href="#orga51f99b">Time Complexity: O(b), where b is the number of bits.</a></li>
+<li><a href="#org6ad841f">Space Complexity: O(1), as we are using a constant amount of extra space.</a></li>
+</ul>
+</li>
+<li><a href="#org66a65f6">Example</a></li>
+<li><a href="#org11f61dd">Submission</a></li>
+<li><a href="#orgbbc4077">Solution Code</a></li>
+</ul>
+</div>
+</nav>
+
+<div id="outline-container-orga4ae633" class="outline-2">
+<h2 id="orga4ae633">Problem</h2>
+<div class="outline-text-2" id="text-orga4ae633">
+<p>
+Given a positive integer <code>num</code>, output its complement number. The complement strategy is to flip the bits of its binary representation.
+</p>
+
+<p>
+The complement of an integer is formed by inverting the binary digits (changing 0 to 1 and 1 to 0). For example, the binary complement of <code>5</code> (which is <code>101</code> in binary) is <code>2</code> (which is <code>010</code> in binary).
+</p>
+</div>
+
+<div id="outline-container-org94d01b2" class="outline-3">
+<h3 id="org94d01b2">Example:</h3>
+<div class="outline-text-3" id="text-org94d01b2">
+<ul class="org-ul">
+<li>Input: <code>5</code></li>
+<li>Output: <code>2</code></li>
+<li>Explanation: The binary representation of <code>5</code> is <code>101</code>, and the complement is <code>010</code> which is the binary representation of <code>2</code>.</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgd029e0a" class="outline-2">
+<h2 id="orgd029e0a">Solution Description</h2>
+<div class="outline-text-2" id="text-orgd029e0a">
+<p>
+To implement the complement number of a given integer, we need to:
+</p>
+<ol class="org-ol">
+<li>Convert the number into its binary representation.</li>
+<li>Invert the bits of this binary representation.</li>
+<li>Convert the inverted binary representation back to a decimal number.</li>
+</ol>
+
+<p>
+Here's how the steps can be translated into code:
+</p>
+<ol class="org-ol">
+<li>Convert the number to binary using <code>num.toString(2)</code>.</li>
+<li>Flip each bit (0 to 1 and 1 to 0) by iterating over the string.</li>
+<li>Convert the resulting binary string back to a number using <code>parseInt(binaryString, 2)</code>.</li>
+</ol>
+</div>
+
+<div id="outline-container-org0e7f6ff" class="outline-3">
+<h3 id="org0e7f6ff">Efficient Approach:</h3>
+<div class="outline-text-3" id="text-org0e7f6ff">
+<ol class="org-ol">
+<li>Calculate the bit length of the number.</li>
+<li>Create a mask which is all bits set to 1 for the length of the number.</li>
+<li>XOR the number with the mask to get the complement.</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-orga51f99b" class="outline-3">
+<h3 id="orga51f99b">Time Complexity: O(b), where b is the number of bits.</h3>
+</div>
+<div id="outline-container-org6ad841f" class="outline-3">
+<h3 id="org6ad841f">Space Complexity: O(1), as we are using a constant amount of extra space.</h3>
+</div>
+</div>
+
+<div id="outline-container-org66a65f6" class="outline-2">
+<h2 id="org66a65f6">Example</h2>
+<div class="outline-text-2" id="text-org66a65f6">
+<p>
+Let's take the number <code>5</code>:
+</p>
+<ol class="org-ol">
+<li>Binary form of <code>5</code> is <code>101</code>.</li>
+<li>Inverting <code>101</code> gives <code>010</code>.</li>
+<li>Convert <code>010</code> to decimal, which is <code>2</code>.</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org11f61dd" class="outline-2">
+<h2 id="org11f61dd">Submission</h2>
+<div class="outline-text-2" id="text-org11f61dd">
+<p>
+<a href="https://leetcode.com/submissions/detail/1364078436/">2024-08-22 Number Complement - Submission Detail - LeetCode</a> <code>leetcode.com</code>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgbbc4077" class="outline-2">
+<h2 id="orgbbc4077">Solution Code</h2>
+<div class="outline-text-2" id="text-orgbbc4077">
+<div class="org-src-container">
+<pre class="src src-js">/**
+ * @description This function calculates the complement of a given number.
+ * @param {number} num - The input number.
+ * @returns {number} - The complement of the input number.
+ */
+function findComplement(num) {
+    const bitLength = num.toString(2).length;
+    const mask = (1 &lt;&lt; bitLength) - 1;
+    const xor = num ^ mask;
+    return xor;
+}
+
+// Define test cases to validate the solution
+const testCases = [
+    { num: 5, expected: 2 },
+    { num: 1, expected: 0 },
+    { num: 7, expected: 0 },
+    { num: 10, expected: 5 },
+    { num: 0, expected: 1 },
+];
+
+// Testing execution
+testCases.forEach((test, index) =&gt; {
+    const result = findComplement(test.num);
+    console.log(`Test Case ${index + 1}: ${result === test.expected ? 'Passed' : 'Failed'} (Expected: ${test.expected}, Got: ${result})`);
+});
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+&copy; d)zharii. <a href="/sitemap.html">sitemap</a>
+</div>
+</body>
+</html>
