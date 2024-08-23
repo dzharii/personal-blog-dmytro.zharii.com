@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2024-08-21 -->
+<!-- 2024-08-22 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>0476. Number Complement</title>
@@ -22,28 +22,28 @@ Published 2024-08-21
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orga4ae633">Problem</a>
+<li><a href="#orgc2bc7e7">Problem</a>
 <ul>
-<li><a href="#org94d01b2">Example:</a></li>
+<li><a href="#org6c8dc14">Example:</a></li>
 </ul>
 </li>
-<li><a href="#orgd029e0a">Solution Description</a>
+<li><a href="#orgece56b6">Solution Description</a>
 <ul>
-<li><a href="#org0e7f6ff">Efficient Approach:</a></li>
-<li><a href="#orga51f99b">Time Complexity: O(b), where b is the number of bits.</a></li>
-<li><a href="#org6ad841f">Space Complexity: O(1), as we are using a constant amount of extra space.</a></li>
+<li><a href="#org870116f">Efficient Approach:</a></li>
+<li><a href="#orgea1e3d0">Time Complexity: O(b), where b is the number of bits.</a></li>
+<li><a href="#orgd808756">Space Complexity: O(1), as we are using a constant amount of extra space.</a></li>
 </ul>
 </li>
-<li><a href="#org66a65f6">Example</a></li>
-<li><a href="#org11f61dd">Submission</a></li>
-<li><a href="#orgbbc4077">Solution Code</a></li>
+<li><a href="#org2b21f67">Example</a></li>
+<li><a href="#org4684214">Submission</a></li>
+<li><a href="#orgd3c2ddc">Solution Code</a></li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-orga4ae633" class="outline-2">
-<h2 id="orga4ae633">Problem</h2>
-<div class="outline-text-2" id="text-orga4ae633">
+<div id="outline-container-orgc2bc7e7" class="outline-2">
+<h2 id="orgc2bc7e7">Problem</h2>
+<div class="outline-text-2" id="text-orgc2bc7e7">
 <p>
 Given a positive integer <code>num</code>, output its complement number. The complement strategy is to flip the bits of its binary representation.
 </p>
@@ -53,9 +53,9 @@ The complement of an integer is formed by inverting the binary digits (changing 
 </p>
 </div>
 
-<div id="outline-container-org94d01b2" class="outline-3">
-<h3 id="org94d01b2">Example:</h3>
-<div class="outline-text-3" id="text-org94d01b2">
+<div id="outline-container-org6c8dc14" class="outline-3">
+<h3 id="org6c8dc14">Example:</h3>
+<div class="outline-text-3" id="text-org6c8dc14">
 <ul class="org-ul">
 <li>Input: <code>5</code></li>
 <li>Output: <code>2</code></li>
@@ -65,9 +65,9 @@ The complement of an integer is formed by inverting the binary digits (changing 
 </div>
 </div>
 
-<div id="outline-container-orgd029e0a" class="outline-2">
-<h2 id="orgd029e0a">Solution Description</h2>
-<div class="outline-text-2" id="text-orgd029e0a">
+<div id="outline-container-orgece56b6" class="outline-2">
+<h2 id="orgece56b6">Solution Description</h2>
+<div class="outline-text-2" id="text-orgece56b6">
 <p>
 To implement the complement number of a given integer, we need to:
 </p>
@@ -87,9 +87,9 @@ Here's how the steps can be translated into code:
 </ol>
 </div>
 
-<div id="outline-container-org0e7f6ff" class="outline-3">
-<h3 id="org0e7f6ff">Efficient Approach:</h3>
-<div class="outline-text-3" id="text-org0e7f6ff">
+<div id="outline-container-org870116f" class="outline-3">
+<h3 id="org870116f">Efficient Approach:</h3>
+<div class="outline-text-3" id="text-org870116f">
 <ol class="org-ol">
 <li>Calculate the bit length of the number.</li>
 <li>Create a mask which is all bits set to 1 for the length of the number.</li>
@@ -98,17 +98,17 @@ Here's how the steps can be translated into code:
 </div>
 </div>
 
-<div id="outline-container-orga51f99b" class="outline-3">
-<h3 id="orga51f99b">Time Complexity: O(b), where b is the number of bits.</h3>
+<div id="outline-container-orgea1e3d0" class="outline-3">
+<h3 id="orgea1e3d0">Time Complexity: O(b), where b is the number of bits.</h3>
 </div>
-<div id="outline-container-org6ad841f" class="outline-3">
-<h3 id="org6ad841f">Space Complexity: O(1), as we are using a constant amount of extra space.</h3>
+<div id="outline-container-orgd808756" class="outline-3">
+<h3 id="orgd808756">Space Complexity: O(1), as we are using a constant amount of extra space.</h3>
 </div>
 </div>
 
-<div id="outline-container-org66a65f6" class="outline-2">
-<h2 id="org66a65f6">Example</h2>
-<div class="outline-text-2" id="text-org66a65f6">
+<div id="outline-container-org2b21f67" class="outline-2">
+<h2 id="org2b21f67">Example</h2>
+<div class="outline-text-2" id="text-org2b21f67">
 <p>
 Let's take the number <code>5</code>:
 </p>
@@ -120,18 +120,18 @@ Let's take the number <code>5</code>:
 </div>
 </div>
 
-<div id="outline-container-org11f61dd" class="outline-2">
-<h2 id="org11f61dd">Submission</h2>
-<div class="outline-text-2" id="text-org11f61dd">
+<div id="outline-container-org4684214" class="outline-2">
+<h2 id="org4684214">Submission</h2>
+<div class="outline-text-2" id="text-org4684214">
 <p>
 <a href="https://leetcode.com/submissions/detail/1364078436/">2024-08-22 Number Complement - Submission Detail - LeetCode</a> <code>leetcode.com</code>
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgbbc4077" class="outline-2">
-<h2 id="orgbbc4077">Solution Code</h2>
-<div class="outline-text-2" id="text-orgbbc4077">
+<div id="outline-container-orgd3c2ddc" class="outline-2">
+<h2 id="orgd3c2ddc">Solution Code</h2>
+<div class="outline-text-2" id="text-orgd3c2ddc">
 <div class="org-src-container">
 <pre class="src src-js">/**
  * @description This function calculates the complement of a given number.

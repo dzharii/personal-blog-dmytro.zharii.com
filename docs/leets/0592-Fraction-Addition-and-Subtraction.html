@@ -1,0 +1,187 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2024-08-22 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>0592. Fraction Addition and Subtraction</title>
+<meta name="author" content="d)zharii" />
+<meta name="generator" content="Org Mode" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/t.css"/>
+</head>
+<body>
+<nav><a href="/" tabindex="0">&larrhk; Back to Index</a></nav><div id="preamble" class="status">
+Published 2024-08-22
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">0592. Fraction Addition and Subtraction</h1>
+<p class="subtitle" role="doc-subtitle">leetcode</p>
+</header><nav id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org95d43e1">Problem</a></li>
+<li><a href="#org499fe3c">Solution Description</a></li>
+<li><a href="#org1ad966f">Example</a></li>
+<li><a href="#org298c924">References</a></li>
+<li><a href="#org15176ee">Solution</a></li>
+</ul>
+</div>
+</nav>
+
+<div id="outline-container-org95d43e1" class="outline-2">
+<h2 id="org95d43e1">Problem</h2>
+<div class="outline-text-2" id="text-org95d43e1">
+<p>
+You are given a string <code>expression</code> that represents a mathematical expression of fractions. The fractions are either separated by a plus sign (+) or a minus sign (-), and represent either positive or negative fractions. The task is to evaluate the expression and return the result as a string in the form of a reduced fraction.
+</p>
+
+<p>
+Examples:
+</p>
+<ul class="org-ul">
+<li>expression = "-1/2+1/2+1/3" returns "1/3"</li>
+<li>expression = "1/3-1/2" returns "-1/6"</li>
+<li>expression = "-1/2+1/2+1/3-1/3" returns "0/1"</li>
+</ul>
+
+<p>
+<b><b>Constraints:</b></b>
+</p>
+<ul class="org-ul">
+<li>The input string only contains '0-9', '/', '-', '+'.</li>
+<li>The sign of every fraction is determined by the operators before it.</li>
+<li>The result should be a reduced fraction in the form where the numerator and denominator have no common factors greater than 1.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org499fe3c" class="outline-2">
+<h2 id="org499fe3c">Solution Description</h2>
+<div class="outline-text-2" id="text-org499fe3c">
+<p>
+To implement a solution for fraction addition and subtraction, we need to:
+</p>
+<ol class="org-ol">
+<li>Parse the string to extract the individual fractions along with their signs.</li>
+<li>For each fraction, convert it to a common denominator to make the addition/subtraction straightforward.</li>
+<li>Combine the fractions taking into account their signs.</li>
+<li>Reduce the result fraction by finding the greatest common divisor (GCD) of the numerator and denominator.</li>
+<li>Return the result as a string in the form <code>numerator/denominator</code>.</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org1ad966f" class="outline-2">
+<h2 id="org1ad966f">Example</h2>
+<div class="outline-text-2" id="text-org1ad966f">
+<p>
+Consider the input string <code>"-1/2+1/2+1/3"</code>:
+</p>
+<ol class="org-ol">
+<li>Parse the string to get fractions: -1/2, 1/2, 1/3.</li>
+<li>Convert each fraction to a common denominator:
+<ul class="org-ul">
+<li>Common denominator for this example would be 6.</li>
+<li>Converting fractions: -1/2 = -3/6, 1/2 = 3/6, 1/3 = 2/6.</li>
+</ul></li>
+<li>Perform the addition:
+-3/6 + 3/6 + 2/6 = 2/6.</li>
+<li>Reduce 2/6 by GCD of 2 and 6 which is 2:
+<ul class="org-ul">
+<li>Result: 2/6 = 1/3.</li>
+</ul></li>
+<li>Return the result: "1/3".</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org298c924" class="outline-2">
+<h2 id="org298c924">References</h2>
+<div class="outline-text-2" id="text-org298c924">
+<p>
+This problem requires understanding of the following:
+</p>
+<ul class="org-ul">
+<li>Parsing strings in JavaScript.</li>
+<li>Finding the least common multiple (LCM) and greatest common divisor (GCD).</li>
+<li>Basic fraction addition and reduction.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org15176ee" class="outline-2">
+<h2 id="org15176ee">Solution</h2>
+<div class="outline-text-2" id="text-org15176ee">
+<p>
+Let's define a function to solve this problem and a series of test cases.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">
+/**
+ * Main function to solve the problem of fraction addition and subtraction.
+ * @param {string} expression - The input string representing the expression.
+ * @returns {string} The result as a reduced fraction.
+ */
+function fractionAddition(expression) {
+    // Log helpers
+    const log = typeof NestedInteger !== 'undefined' ? () =&gt; {} : console.log;
+    const table = typeof NestedInteger !== 'undefined' ? () =&gt; {} : console.table;
+
+    /**
+     * This function calculates the greatest common divisor of two numbers
+     * @param {number} a
+     * @param {number} b
+     * @returns {number} greatest common divisor of a and b
+     */
+    function gcd(a, b) {
+        log(`Calculating GCD of ${a} and ${b}`);
+        return b === 0 ? a : gcd(b, a % b);
+    }
+
+    /**
+     * This function computes the least common multiple of two numbers
+     * @param {number} a
+     * @param {number} b
+     * @returns {number} least common multiple of a and b
+     */
+    function lcm(a, b) {
+        return (a * b) / gcd(a, b)
+    }
+
+
+    // Dummy return value, to be replaced by actual implementation.
+    return 'dummy_result';
+}
+
+// Test cases
+const testCases = [
+    { expression: "-1/2+1/2+1/3", expected: "1/3" },
+    { expression: "1/3-1/2", expected: "-1/6" },
+    { expression: "-1/2+1/2+1/3-1/3", expected: "0/1" },
+    { expression: "5/3+1/3", expected: "2/1" },
+    { expression: "-3/7+7/10-3/4", expected: "-41/140" },
+    // Additional test cases to ensure comprehensive coverage.
+];
+
+testCases.forEach((test, index) =&gt; {
+    const result = fractionAddition(test.expression);
+    console.log(`Test Case ${index + 1}: ${result === test.expected ? 'Passed' : 'Failed'} (Expected: ${test.expected}, Got: ${result})`);
+});
+</pre>
+</div>
+
+<p>
+Remember to implement the actual logic inside the <code>fractionAddition</code> function.
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+&copy; d)zharii. <a href="/sitemap.html">sitemap</a>
+</div>
+</body>
+</html>

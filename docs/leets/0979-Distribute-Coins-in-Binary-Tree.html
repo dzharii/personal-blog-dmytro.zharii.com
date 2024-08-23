@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2024-08-21 -->
+<!-- 2024-08-22 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>979. Distribute Coins in Binary Tree</title>
@@ -22,22 +22,22 @@ Published 2024-07-25
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org44c3f18">Problem:</a>
+<li><a href="#org93312db">Problem:</a>
 <ul>
-<li><a href="#org3a40f9e">Solution Description:</a></li>
-<li><a href="#orgd35e23e">Example:</a></li>
-<li><a href="#orgdf59588">Setup:</a></li>
-<li><a href="#orge546044">Test Execution:</a></li>
-<li><a href="#org5ce2d4e">Plan:</a></li>
+<li><a href="#orgacf8149">Solution Description:</a></li>
+<li><a href="#org780e010">Example:</a></li>
+<li><a href="#orgd20be7e">Setup:</a></li>
+<li><a href="#orge83d56f">Test Execution:</a></li>
+<li><a href="#org5406b71">Plan:</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-org44c3f18" class="outline-2">
-<h2 id="org44c3f18">Problem:</h2>
-<div class="outline-text-2" id="text-org44c3f18">
+<div id="outline-container-org93312db" class="outline-2">
+<h2 id="org93312db">Problem:</h2>
+<div class="outline-text-2" id="text-org93312db">
 <p>
 LeetCode Problem 979: Distribute Coins in Binary Tree
 </p>
@@ -51,9 +51,9 @@ The goal is to return the minimum number of moves required to make every node ha
 </p>
 </div>
 
-<div id="outline-container-org3a40f9e" class="outline-3">
-<h3 id="org3a40f9e">Solution Description:</h3>
-<div class="outline-text-3" id="text-org3a40f9e">
+<div id="outline-container-orgacf8149" class="outline-3">
+<h3 id="orgacf8149">Solution Description:</h3>
+<div class="outline-text-3" id="text-orgacf8149">
 <p>
 To implement the solution, we need to use a Depth-First Search (DFS) algorithm to traverse the tree. At each node, we'll calculate the surplus or deficit of coins and propagate this value to its parent. This can be done recursively where each call returns the balance of coins for the subtree rooted at that node. The number of moves is accumulated based on the absolute balance values at each node.
 </p>
@@ -75,14 +75,14 @@ Space Complexity: O(H), where H is the height of the tree due to the recursion s
 </div>
 </div>
 
-<div id="outline-container-orgd35e23e" class="outline-3">
-<h3 id="orgd35e23e">Example:</h3>
-<div class="outline-text-3" id="text-orgd35e23e">
+<div id="outline-container-org780e010" class="outline-3">
+<h3 id="org780e010">Example:</h3>
+<div class="outline-text-3" id="text-org780e010">
 <p>
 Consider a tree where the root node has 3 coins, the left child has 0 coins, and the right child has 0 coins:
 </p>
 
-<pre class="example" id="org245d82b">
+<pre class="example" id="org732270e">
   3
  / \
 0   0
@@ -101,27 +101,27 @@ This requires 2 moves.
 </div>
 </div>
 
-<div id="outline-container-orgdf59588" class="outline-3">
-<h3 id="orgdf59588">Setup:</h3>
-<div class="outline-text-3" id="text-orgdf59588">
+<div id="outline-container-orgd20be7e" class="outline-3">
+<h3 id="orgd20be7e">Setup:</h3>
+<div class="outline-text-3" id="text-orgd20be7e">
 <p>
 We will define a recursive helper function `dfs` within the main function. The main function will initiate the DFS call and return the total number of moves.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orge546044" class="outline-3">
-<h3 id="orge546044">Test Execution:</h3>
-<div class="outline-text-3" id="text-orge546044">
+<div id="outline-container-orge83d56f" class="outline-3">
+<h3 id="orge83d56f">Test Execution:</h3>
+<div class="outline-text-3" id="text-orge83d56f">
 <p>
 We will design comprehensive test cases to verify the solution, ensuring that each part of the tree is correctly balanced and the output matches the expected results.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org5ce2d4e" class="outline-3">
-<h3 id="org5ce2d4e">Plan:</h3>
-<div class="outline-text-3" id="text-org5ce2d4e">
+<div id="outline-container-org5406b71" class="outline-3">
+<h3 id="org5406b71">Plan:</h3>
+<div class="outline-text-3" id="text-org5406b71">
 <ol class="org-ol">
 <li>Initialize a variable to keep track of the total moves.</li>
 <li>Implement the `dfs` function to process each node.</li>
