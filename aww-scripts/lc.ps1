@@ -33,6 +33,7 @@ function New-ProblemFiles {
     $sanitizedTitle = $Title -replace '[^a-zA-Z0-9]', '-'
     $paddedNumber = $Number.PadLeft(4, '0')
     $orgFileName = "$($paddedNumber)-$($sanitizedTitle).org"
+    $orgFilePath = [System.IO.Path]::Combine($ThisScriptFolderPath, "..", "src", "leets", $orgFileName)
     $dateNow = Get-Date -Format "yyyy-MM-dd"
 
     # ORG file creation
@@ -45,9 +46,9 @@ function New-ProblemFiles {
 $($Content)
 "@
     $orgContent = $orgContent.Replace("`r", "").Trim() + "`n";
-    [System.IO.File]::WriteAllText($orgFileName, $orgContent, [System.Text.Encoding]::UTF8)
+    [System.IO.File]::WriteAllText($orgFilePath, $orgContent, [System.Text.Encoding]::UTF8)
 
-    Write-Host "Created ORG file: $($orgFileName)"
+    Write-Host "Created ORG file: $($orgFilePath)"
 
 }
 
