@@ -45,6 +45,8 @@ This problem requires understanding of the following:
 * Solution
 Let's define a function to solve this problem and a series of test cases.
 
+- [[https://leetcode.com/submissions/detail/1365417775/][2024-08-23 Fraction Addition and Subtraction - Submission Detail - LeetCode]] =leetcode.com=
+
 #+begin_src js :tangle "leetcode_592_fraction_addition_subtraction.js"
 
 /**
@@ -142,8 +144,25 @@ function fractionAddition(expression) {
     log(`Expression = '${expression}'`);
     table(fractions);
 
-    // Dummy return value, to be replaced by actual implementation.
-    return 'dummy_result';
+    // find the least common denomiator
+    let lcd = fractions[0].bot;
+    for (let i = 1; i < fractions.length; i++) {
+        lcd = lcm(lcd, fractions[i].bot);
+    }
+    log(`Least Common Denominator (LCD) = ${lcd}`);
+
+    let numeratorSum = 0;
+    for (const frac of fractions) {
+        numeratorSum += frac.sign * frac.top * (lcd / frac.bot);
+    }
+    log(`Numerator Sum = ${numeratorSum}`);
+
+    // finally
+    const gcdFinal = gcd(Math.abs(numeratorSum), lcd);
+    const finalNumerator = numeratorSum / gcdFinal;
+    const finalDenominator = lcd / gcdFinal;
+
+    return `${finalNumerator}/${finalDenominator}`;
 }
 
 // Test cases
@@ -172,7 +191,18 @@ Expression = '-1/2+1/2+1/3'
 │ 1       │ 1    │ 1   │ 2   │
 │ 2       │ 1    │ 1   │ 3   │
 └─────────┴──────┴─────┴─────┘
-Test Case 1: Failed (Expected: 1/3, Got: dummy_result)
+Calculating GCD of 2 and 2
+Calculating GCD of 2 and 0
+Calculating GCD of 2 and 3
+Calculating GCD of 3 and 2
+Calculating GCD of 2 and 1
+Calculating GCD of 1 and 0
+Least Common Denominator (LCD) = 6
+Numerator Sum = 2
+Calculating GCD of 2 and 6
+Calculating GCD of 6 and 2
+Calculating GCD of 2 and 0
+Test Case 1: Passed (Expected: 1/3, Got: 1/3)
 Expression = '1/3-1/2'
 ┌─────────┬──────┬─────┬─────┐
 │ (index) │ sign │ top │ bot │
@@ -180,7 +210,15 @@ Expression = '1/3-1/2'
 │ 0       │ 1    │ 1   │ 3   │
 │ 1       │ -1   │ 1   │ 2   │
 └─────────┴──────┴─────┴─────┘
-Test Case 2: Failed (Expected: -1/6, Got: dummy_result)
+Calculating GCD of 3 and 2
+Calculating GCD of 2 and 1
+Calculating GCD of 1 and 0
+Least Common Denominator (LCD) = 6
+Numerator Sum = -1
+Calculating GCD of 1 and 6
+Calculating GCD of 6 and 1
+Calculating GCD of 1 and 0
+Test Case 2: Passed (Expected: -1/6, Got: -1/6)
 Expression = '-1/2+1/2+1/3-1/3'
 ┌─────────┬──────┬─────┬─────┐
 │ (index) │ sign │ top │ bot │
@@ -190,7 +228,19 @@ Expression = '-1/2+1/2+1/3-1/3'
 │ 2       │ 1    │ 1   │ 3   │
 │ 3       │ -1   │ 1   │ 3   │
 └─────────┴──────┴─────┴─────┘
-Test Case 3: Failed (Expected: 0/1, Got: dummy_result)
+Calculating GCD of 2 and 2
+Calculating GCD of 2 and 0
+Calculating GCD of 2 and 3
+Calculating GCD of 3 and 2
+Calculating GCD of 2 and 1
+Calculating GCD of 1 and 0
+Calculating GCD of 6 and 3
+Calculating GCD of 3 and 0
+Least Common Denominator (LCD) = 6
+Numerator Sum = 0
+Calculating GCD of 0 and 6
+Calculating GCD of 6 and 0
+Test Case 3: Passed (Expected: 0/1, Got: 0/1)
 Expression = '5/3+1/3'
 ┌─────────┬──────┬─────┬─────┐
 │ (index) │ sign │ top │ bot │
@@ -198,7 +248,13 @@ Expression = '5/3+1/3'
 │ 0       │ 1    │ 5   │ 3   │
 │ 1       │ 1    │ 1   │ 3   │
 └─────────┴──────┴─────┴─────┘
-Test Case 4: Failed (Expected: 2/1, Got: dummy_result)
+Calculating GCD of 3 and 3
+Calculating GCD of 3 and 0
+Least Common Denominator (LCD) = 3
+Numerator Sum = 6
+Calculating GCD of 6 and 3
+Calculating GCD of 3 and 0
+Test Case 4: Passed (Expected: 2/1, Got: 2/1)
 Expression = '-3/7+7/10-3/4'
 ┌─────────┬──────┬─────┬─────┐
 │ (index) │ sign │ top │ bot │
@@ -207,7 +263,22 @@ Expression = '-3/7+7/10-3/4'
 │ 1       │ 1    │ 7   │ 10  │
 │ 2       │ -1   │ 3   │ 4   │
 └─────────┴──────┴─────┴─────┘
-Test Case 5: Failed (Expected: -41/140, Got: dummy_result)
+Calculating GCD of 7 and 10
+Calculating GCD of 10 and 7
+Calculating GCD of 7 and 3
+Calculating GCD of 3 and 1
+Calculating GCD of 1 and 0
+Calculating GCD of 70 and 4
+Calculating GCD of 4 and 2
+Calculating GCD of 2 and 0
+Least Common Denominator (LCD) = 140
+Numerator Sum = -67
+Calculating GCD of 67 and 140
+Calculating GCD of 140 and 67
+Calculating GCD of 67 and 6
+Calculating GCD of 6 and 1
+Calculating GCD of 1 and 0
+Test Case 5: Failed (Expected: -41/140, Got: -67/140)
 undefined
 #+end_example
 

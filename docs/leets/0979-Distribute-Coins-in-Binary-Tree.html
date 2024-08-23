@@ -22,22 +22,22 @@ Published 2024-07-25
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org93312db">Problem:</a>
+<li><a href="#org208097b">Problem:</a>
 <ul>
-<li><a href="#orgacf8149">Solution Description:</a></li>
-<li><a href="#org780e010">Example:</a></li>
-<li><a href="#orgd20be7e">Setup:</a></li>
-<li><a href="#orge83d56f">Test Execution:</a></li>
-<li><a href="#org5406b71">Plan:</a></li>
+<li><a href="#org09c8e7c">Solution Description:</a></li>
+<li><a href="#orgecb51d4">Example:</a></li>
+<li><a href="#org765853c">Setup:</a></li>
+<li><a href="#orgd87f10e">Test Execution:</a></li>
+<li><a href="#orgf98257d">Plan:</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-org93312db" class="outline-2">
-<h2 id="org93312db">Problem:</h2>
-<div class="outline-text-2" id="text-org93312db">
+<div id="outline-container-org208097b" class="outline-2">
+<h2 id="org208097b">Problem:</h2>
+<div class="outline-text-2" id="text-org208097b">
 <p>
 LeetCode Problem 979: Distribute Coins in Binary Tree
 </p>
@@ -51,9 +51,9 @@ The goal is to return the minimum number of moves required to make every node ha
 </p>
 </div>
 
-<div id="outline-container-orgacf8149" class="outline-3">
-<h3 id="orgacf8149">Solution Description:</h3>
-<div class="outline-text-3" id="text-orgacf8149">
+<div id="outline-container-org09c8e7c" class="outline-3">
+<h3 id="org09c8e7c">Solution Description:</h3>
+<div class="outline-text-3" id="text-org09c8e7c">
 <p>
 To implement the solution, we need to use a Depth-First Search (DFS) algorithm to traverse the tree. At each node, we'll calculate the surplus or deficit of coins and propagate this value to its parent. This can be done recursively where each call returns the balance of coins for the subtree rooted at that node. The number of moves is accumulated based on the absolute balance values at each node.
 </p>
@@ -75,14 +75,14 @@ Space Complexity: O(H), where H is the height of the tree due to the recursion s
 </div>
 </div>
 
-<div id="outline-container-org780e010" class="outline-3">
-<h3 id="org780e010">Example:</h3>
-<div class="outline-text-3" id="text-org780e010">
+<div id="outline-container-orgecb51d4" class="outline-3">
+<h3 id="orgecb51d4">Example:</h3>
+<div class="outline-text-3" id="text-orgecb51d4">
 <p>
 Consider a tree where the root node has 3 coins, the left child has 0 coins, and the right child has 0 coins:
 </p>
 
-<pre class="example" id="org732270e">
+<pre class="example" id="orge701e32">
   3
  / \
 0   0
@@ -101,27 +101,27 @@ This requires 2 moves.
 </div>
 </div>
 
-<div id="outline-container-orgd20be7e" class="outline-3">
-<h3 id="orgd20be7e">Setup:</h3>
-<div class="outline-text-3" id="text-orgd20be7e">
+<div id="outline-container-org765853c" class="outline-3">
+<h3 id="org765853c">Setup:</h3>
+<div class="outline-text-3" id="text-org765853c">
 <p>
 We will define a recursive helper function `dfs` within the main function. The main function will initiate the DFS call and return the total number of moves.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orge83d56f" class="outline-3">
-<h3 id="orge83d56f">Test Execution:</h3>
-<div class="outline-text-3" id="text-orge83d56f">
+<div id="outline-container-orgd87f10e" class="outline-3">
+<h3 id="orgd87f10e">Test Execution:</h3>
+<div class="outline-text-3" id="text-orgd87f10e">
 <p>
 We will design comprehensive test cases to verify the solution, ensuring that each part of the tree is correctly balanced and the output matches the expected results.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org5406b71" class="outline-3">
-<h3 id="org5406b71">Plan:</h3>
-<div class="outline-text-3" id="text-org5406b71">
+<div id="outline-container-orgf98257d" class="outline-3">
+<h3 id="orgf98257d">Plan:</h3>
+<div class="outline-text-3" id="text-orgf98257d">
 <ol class="org-ol">
 <li>Initialize a variable to keep track of the total moves.</li>
 <li>Implement the `dfs` function to process each node.</li>

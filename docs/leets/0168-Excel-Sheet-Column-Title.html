@@ -22,36 +22,36 @@ Published 2024-07-17
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org26f9268">Links</a></li>
-<li><a href="#orgf65079d">Problem:</a></li>
-<li><a href="#org4e3f7b4">Solution Description:</a></li>
-<li><a href="#org71e362b">Example:</a></li>
-<li><a href="#org19dd748">Setup:</a></li>
+<li><a href="#org6554e69">Links</a></li>
+<li><a href="#org33804b3">Problem:</a></li>
+<li><a href="#org76f8663">Solution Description:</a></li>
+<li><a href="#orgd34b88e">Example:</a></li>
+<li><a href="#org67e3adb">Setup:</a></li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-org26f9268" class="outline-2">
-<h2 id="org26f9268">Links</h2>
-<div class="outline-text-2" id="text-org26f9268">
+<div id="outline-container-org6554e69" class="outline-2">
+<h2 id="org6554e69">Links</h2>
+<div class="outline-text-2" id="text-org6554e69">
 <p>
 <a href="https://leetcode.com/submissions/detail/1324854334/">Submission</a>
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgf65079d" class="outline-2">
-<h2 id="orgf65079d">Problem:</h2>
-<div class="outline-text-2" id="text-orgf65079d">
+<div id="outline-container-org33804b3" class="outline-2">
+<h2 id="org33804b3">Problem:</h2>
+<div class="outline-text-2" id="text-org33804b3">
 <p>
 Given a positive integer, return its corresponding column title as it would appear in an Excel sheet. Each integer maps to a specific alphabet arrangement where 1 maps to 'A', &#x2026;, and 26 maps to 'Z'. For numbers greater than 26, the sequence continues as follows: 27 -&gt; 'AA', 28 -&gt; 'AB', &#x2026;, 52 -&gt; 'AZ', 53 -&gt; 'BA', etc.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org4e3f7b4" class="outline-2">
-<h2 id="org4e3f7b4">Solution Description:</h2>
-<div class="outline-text-2" id="text-org4e3f7b4">
+<div id="outline-container-org76f8663" class="outline-2">
+<h2 id="org76f8663">Solution Description:</h2>
+<div class="outline-text-2" id="text-org76f8663">
 <p>
 To implement the conversion of a number to its corresponding Excel column title, we need to repeatedly extract the remainder when dividing the number by 26 (which gives the offset for the corresponding character starting from 'A'). The quotient from this division is then used as the number for the next iteration. Special care is needed to handle cases where the remainder is 0 because that maps to 'Z' in the Excel column logic and affects the quotient calculation.
 </p>
@@ -71,9 +71,9 @@ This algorithm operates in O(log<sub>26</sub>(n)) time complexity, where n is th
 </div>
 </div>
 
-<div id="outline-container-org71e362b" class="outline-2">
-<h2 id="org71e362b">Example:</h2>
-<div class="outline-text-2" id="text-org71e362b">
+<div id="outline-container-orgd34b88e" class="outline-2">
+<h2 id="orgd34b88e">Example:</h2>
+<div class="outline-text-2" id="text-orgd34b88e">
 <p>
 For instance, converting number 28 to its column title:
 </p>
@@ -86,9 +86,9 @@ For instance, converting number 28 to its column title:
 </div>
 </div>
 
-<div id="outline-container-org19dd748" class="outline-2">
-<h2 id="org19dd748">Setup:</h2>
-<div class="outline-text-2" id="text-org19dd748">
+<div id="outline-container-org67e3adb" class="outline-2">
+<h2 id="org67e3adb">Setup:</h2>
+<div class="outline-text-2" id="text-org67e3adb">
 <div class="org-src-container">
 <pre class="src src-js">// Convert a number to Excel sheet column title
 // @param {number} n - The number to be converted

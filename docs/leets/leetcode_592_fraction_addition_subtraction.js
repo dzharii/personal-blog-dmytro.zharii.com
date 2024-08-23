@@ -30,8 +30,88 @@ function fractionAddition(expression) {
     }
 
 
-    // Dummy return value, to be replaced by actual implementation.
-    return 'dummy_result';
+
+    function frac(sign, top, bot) {
+        return { sign, top, bot };
+    }
+
+
+    function isPSign(ch) {
+        return ch === '+';
+    }
+
+    function isNSign(ch) {
+        return ch === '-';
+    }
+
+
+    /**
+      *
+      * @param {string} input
+      * @returns { Object[] }
+      */
+    function parseFractions(input) {
+        if (!input) return [];
+        if (input.length < 3) throw `Invalid input '${input}'`
+
+        const ret = [];
+        let cur = frac(1, 0, 0);
+        let start = 0;
+        if (isPSign(input[0])) {
+            cur.sign = 1;
+            start = 1;
+        } else if (isNSign(input[0])) {
+            cur.sign = -1;
+            start = 1;
+        }
+
+        let parseTop = true;
+
+        for (let i = start; i < input.length; i++) {
+            const ch = input[i];
+            if (isPSign(ch) || isNSign(ch)) {
+                ret.push(cur);
+                cur = frac(0, 0, 0);
+                cur.sign = isPSign(ch) ? 1 : -1;
+                parseTop = true;
+            } else if (ch === '/') {
+                parseTop = false;
+            } else {
+                if (parseTop) {
+                    cur.top = (cur.top * 10) + + ch;
+                } else {
+                    cur.bot = (cur.bot * 10) + + ch;
+                }
+            }
+        }
+        ret.push(cur);
+
+        return ret;
+    }
+
+    const fractions = parseFractions(expression);
+    log(`Expression = '${expression}'`);
+    table(fractions);
+
+    // find the least common denomiator
+    let lcd = fractions[0].bot;
+    for (let i = 1; i < fractions.length; i++) {
+        lcd = lcm(lcd, fractions[i].bot);
+    }
+    log(`Least Common Denominator (LCD) = ${lcd}`);
+
+    let numeratorSum = 0;
+    for (const frac of fractions) {
+        numeratorSum += frac.sign * frac.top * (lcd / frac.bot);
+    }
+    log(`Numerator Sum = ${numeratorSum}`);
+
+    // finally
+    const gcdFinal = gcd(Math.abs(numeratorSum), lcd);
+    const finalNumerator = numeratorSum / gcdFinal;
+    const finalDenominator = lcd / gcdFinal;
+
+    return `${finalNumerator}/${finalDenominator}`;
 }
 
 // Test cases

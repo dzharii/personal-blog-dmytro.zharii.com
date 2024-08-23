@@ -22,22 +22,22 @@ Published 2024-08-11
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orge2ccade">Problem</a></li>
-<li><a href="#org7b854f7">Output: 2</a></li>
-<li><a href="#org542397e">Solution Description</a>
+<li><a href="#orgedd0088">Problem</a></li>
+<li><a href="#org1aaf3ca">Output: 2</a></li>
+<li><a href="#org5d0acea">Solution Description</a>
 <ul>
-<li><a href="#org60064c0">Example</a></li>
-<li><a href="#orgbd13059">References</a></li>
-<li><a href="#org1465ab9">Solution</a></li>
+<li><a href="#org72ee0a9">Example</a></li>
+<li><a href="#orgd62e91e">References</a></li>
+<li><a href="#orgde124d6">Solution</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-orge2ccade" class="outline-2">
-<h2 id="orge2ccade">Problem</h2>
-<div class="outline-text-2" id="text-orge2ccade">
+<div id="outline-container-orgedd0088" class="outline-2">
+<h2 id="orgedd0088">Problem</h2>
+<div class="outline-text-2" id="text-orgedd0088">
 <p>
 Given a 2D grid consists of 0s (water) and 1s (land), an island is a maximal 4-directionally (horizontal or vertical) connected group of 1s. The grid is said to be connected if we have exactly one island, otherwise, it is disconnected. We want to find the minimum number of days to disconnect the island.
 </p>
@@ -45,7 +45,7 @@ Given a 2D grid consists of 0s (water) and 1s (land), an island is a maximal 4-d
 <p>
 <b><b>Example</b></b>:
 </p>
-<pre class="example" id="orgace86f7">
+<pre class="example" id="orgea741f2">
 1 1 0 1 1
 1 1 0 1 1
 0 0 1 0 0
@@ -53,13 +53,13 @@ Given a 2D grid consists of 0s (water) and 1s (land), an island is a maximal 4-d
 </div>
 </div>
 
-<div id="outline-container-org7b854f7" class="outline-2">
-<h2 id="org7b854f7">Output: 2</h2>
+<div id="outline-container-org1aaf3ca" class="outline-2">
+<h2 id="org1aaf3ca">Output: 2</h2>
 </div>
 
-<div id="outline-container-org542397e" class="outline-2">
-<h2 id="org542397e">Solution Description</h2>
-<div class="outline-text-2" id="text-org542397e">
+<div id="outline-container-org5d0acea" class="outline-2">
+<h2 id="org5d0acea">Solution Description</h2>
+<div class="outline-text-2" id="text-org5d0acea">
 <p>
 To implement the solution, we need to approach it with the following steps:
 </p>
@@ -75,13 +75,13 @@ We will use Depth-First Search (DFS) to count the number of connected components
 </p>
 </div>
 
-<div id="outline-container-org60064c0" class="outline-3">
-<h3 id="org60064c0">Example</h3>
-<div class="outline-text-3" id="text-org60064c0">
+<div id="outline-container-org72ee0a9" class="outline-3">
+<h3 id="org72ee0a9">Example</h3>
+<div class="outline-text-3" id="text-org72ee0a9">
 <p>
 Grid:
 </p>
-<pre class="example" id="org4379560">
+<pre class="example" id="org1828c11">
 [[1, 1, 0, 1, 1],
  [1, 1, 0, 1, 1],
  [0, 0, 1, 0, 0]]
@@ -96,9 +96,9 @@ Grid:
 </div>
 </div>
 
-<div id="outline-container-orgbd13059" class="outline-3">
-<h3 id="orgbd13059">References</h3>
-<div class="outline-text-3" id="text-orgbd13059">
+<div id="outline-container-orgd62e91e" class="outline-3">
+<h3 id="orgd62e91e">References</h3>
+<div class="outline-text-3" id="text-orgd62e91e">
 <ul class="org-ul">
 <li><a href="https://en.wikipedia.org/wiki/Depth-first_search">Depth-First Search</a></li>
 <li><a href="https://leetcode.com/problems/minimum-number-of-days-to-disconnect-island/">Leetcode Problem 1568</a></li>
@@ -110,9 +110,9 @@ The solution can be built using DFS to verify the connected components at each s
 </div>
 </div>
 
-<div id="outline-container-org1465ab9" class="outline-3">
-<h3 id="org1465ab9">Solution</h3>
-<div class="outline-text-3" id="text-org1465ab9">
+<div id="outline-container-orgde124d6" class="outline-3">
+<h3 id="orgde124d6">Solution</h3>
+<div class="outline-text-3" id="text-orgde124d6">
 <div class="org-src-container">
 <pre class="src src-js">/**
  * Main solution function to determine the minimum number of days to disconnect the island.

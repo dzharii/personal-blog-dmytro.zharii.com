@@ -93,8 +93,25 @@ function fractionAddition(expression) {
     log(`Expression = '${expression}'`);
     table(fractions);
 
-    // Dummy return value, to be replaced by actual implementation.
-    return 'dummy_result';
+    // find the least common denomiator
+    let lcd = fractions[0].bot;
+    for (let i = 1; i < fractions.length; i++) {
+        lcd = lcm(lcd, fractions[i].bot);
+    }
+    log(`Least Common Denominator (LCD) = ${lcd}`);
+
+    let numeratorSum = 0;
+    for (const frac of fractions) {
+        numeratorSum += frac.sign * frac.top * (lcd / frac.bot);
+    }
+    log(`Numerator Sum = ${numeratorSum}`);
+
+    // finally
+    const gcdFinal = gcd(Math.abs(numeratorSum), lcd);
+    const finalNumerator = numeratorSum / gcdFinal;
+    const finalDenominator = lcd / gcdFinal;
+
+    return `${finalNumerator}/${finalDenominator}`;
 }
 
 // Test cases
