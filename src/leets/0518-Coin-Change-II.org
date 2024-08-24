@@ -1,0 +1,709 @@
+﻿#+title: 0518. Coin Change II
+#+subtitle: leetcode
+#+date: <2024-08-23>
+#+language: en
+
+* Problem
+We are given an array of distinct integers =coins= and an integer =amount=. Our task is to return the number of combinations that make up that amount. If that amount of money cannot be made up by any combination of the coins, return 0. Assume that we have an infinite number of each kind of coin.
+
+** Solution Description
+To implement the solution, we need to use a dynamic programming (DP) approach. We will create an array =dp= where =dp[i]= represents the number of ways to make the amount =i= using the given coins. We will initialize =dp[0] to 1 because there is one way to make the amount 0 (with no coins).
+
+For each coin, we iterate through all amounts from the value of the coin up to =amount=. For each amount =i=, we add the number of ways to make =i - coin= to =dp[i]=. This process ensures that we count all combinations that can make up the amount.
+
+This solution has a time complexity of =O(n * amount)= where =n= is the number of coins, and a space complexity of =O(amount)= due to the extra array used.
+
+** Example
+Given =coins = [1, 2, 5]= and =amount = 5=.
+
+    - We initialize our dp array: [1, 0, 0, 0, 0, 0]
+    - Using coin 1:
+        dp: [1, 1, 1, 1, 1, 1]
+    - Using coin 2:
+        dp: [1, 1, 2, 2, 3, 3]
+    - Using coin 5:
+        dp: [1, 1, 2, 2, 3, 4]
+
+The number of ways to make the amount 5 is 4.
+
+** References
+- Dynamic Programming: [[https://en.wikipedia.org/wiki/Dynamic_programming][Dynamic Programming - Wikipedia]]
+- LeetCode Problem: [[https://leetcode.com/problems/coin-change-ii/][LeetCode Coin Change II]]
+- [[https://www.youtube.com/watch?v=oBt53YbR9Kk][2024-08-24 Dynamic Programming - Learn to Solve Algorithmic Problems & Coding Challenges - YouTube]] =www.youtube.com=
+#+begin_quote
+4,260,987 views  Dec 3, 2020
+Learn how to use Dynamic Programming in this course for beginners. It can help you solve complex programming problems, such as those often seen in programming interview questions about data structures and algorithms.
+
+This course was developed by Alvin Zablan from Coderbyte. Coderbyte is one of the top websites for technical interview prep and coding challenges.
+#+end_quote
+
+** Solution
+
+- [[https://leetcode.com/submissions/detail/1366207757/][2024-08-24 Coin Change II - Submission Detail - LeetCode]] =leetcode.com=
+
+
+We will implement the described solution using modern JavaScript.
+
+#+begin_src js :tangle "518_coin_change_II.js"
+
+/**
+ ,* @param {number[]} coins - Array of distinct integers representing coin denominations
+ ,* @param {number} amount - Integer representing the total amount of money
+ ,* @returns {number} - Number of combinations that make up the amount
+ ,*/
+function coinChangeII(coins, amount) {
+    // Helper function for structured logging
+    const log = typeof NestedInteger !== 'undefined' ? () => {} : console.log;
+    const table = typeof NestedInteger!== 'undefined' ? () => {} : console.table;
+
+    const dp = new Array(amount + 1).fill(0);
+    dp[0] = 1;
+
+    log(`coins = [${coins}]; amount='${amount}'`);
+
+    log(`Initial dp:`);
+    table(dp);
+    for (const coin of coins) {
+        for (let i = coin; i <= amount; i++) {
+            log(`==[ Ittr coin='${coin}'; i='${i}'`);
+            log(`==[ dp before: += dp[i - coin] (${dp[i - coin]})`)
+            table(dp);
+
+            dp[i] += dp[i - coin];
+            log(`==] dp after: += dp[i - coin] (${dp[i - coin]})`)
+            table(dp);
+        }
+    }
+
+    log(`Final dp. dp[amount] == '${dp[amount]}'`);
+    table(dp);
+
+    return dp[amount];
+}
+
+// Test cases
+const testCases = [
+    { coins: [1, 2, 5], amount: 5, expected: 4 },
+    { coins: [2], amount: 3, expected: 0 },
+    { coins: [10], amount: 10, expected: 1 },
+    { coins: [1, 2, 3], amount: 4, expected: 4 },
+    { coins: [1], amount: 0, expected: 1 }
+];
+
+testCases.forEach((test, index) => {
+    const result = coinChangeII(test.coins, test.amount);
+    console.log(`Test Case ${index + 1}: ${result === test.expected ? 'Passed' : 'Failed'} (Expected: ${test.expected}, Got: ${result})`);
+});
+#+end_src
+
+#+RESULTS:
+
+
+* Results
+#+begin_example
+coins = [1,2,5]; amount='5'
+Initial dp:
+┌─────────┬────────┐
+│ (index) │ Values │
+├─────────┼────────┤
+│ 0       │ 1      │
+│ 1       │ 0      │
+│ 2       │ 0      │
+│ 3       │ 0      │
+│ 4       │ 0      │
+│ 5       │ 0      │
+└─────────┴────────┘
+==[ Ittr coin='1'; i='1'
+==[ dp before: += dp[i - coin] (1)
+┌─────────┬────────┐
+│ (index) │ Values │
+├─────────┼────────┤
+│ 0       │ 1      │
+│ 1       │ 0      │
+│ 2       │ 0      │
+│ 3       │ 0      │
+│ 4       │ 0      │
+│ 5       │ 0      │
+└─────────┴────────┘
+==] dp after: += dp[i - coin] (1)
+┌─────────┬────────┐
+│ (index) │ Values │
+├─────────┼────────┤
+│ 0       │ 1      │
+│ 1       │ 1      │
+│ 2       │ 0      │
+│ 3       │ 0      │
+│ 4       │ 0      │
+│ 5       │ 0      │
+└─────────┴────────┘
+==[ Ittr coin='1'; i='2'
+==[ dp before: += dp[i - coin] (1)
+┌─────────┬────────┐
+│ (index) │ Values │
+├─────────┼────────┤
+│ 0       │ 1      │
+│ 1       │ 1      │
+│ 2       │ 0      │
+│ 3       │ 0      │
+│ 4       │ 0      │
+│ 5       │ 0      │
+└─────────┴────────┘
+==] dp after: += dp[i - coin] (1)
+┌─────────┬────────┐
+│ (index) │ Values │
+├─────────┼────────┤
+│ 0       │ 1      │
+│ 1       │ 1      │
+│ 2       │ 1      │
+│ 3       │ 0      │
+│ 4       │ 0      │
+│ 5       │ 0      │
+└─────────┴────────┘
+==[ Ittr coin='1'; i='3'
+==[ dp before: += dp[i - coin] (1)
+┌─────────┬────────┐
+│ (index) │ Values │
+├─────────┼────────┤
+│ 0       │ 1      │
+│ 1       │ 1      │
+│ 2       │ 1      │
+│ 3       │ 0      │
+│ 4       │ 0      │
+│ 5       │ 0      │
+└─────────┴────────┘
+==] dp after: += dp[i - coin] (1)
+┌─────────┬────────┐
+│ (index) │ Values │
+├─────────┼────────┤
+│ 0       │ 1      │
+│ 1       │ 1      │
+│ 2       │ 1      │
+│ 3       │ 1      │
+│ 4       │ 0      │
+│ 5       │ 0      │
+└─────────┴────────┘
+==[ Ittr coin='1'; i='4'
+==[ dp before: += dp[i - coin] (1)
+┌─────────┬────────┐
+│ (index) │ Values │
+├─────────┼────────┤
+│ 0       │ 1      │
+│ 1       │ 1      │
+│ 2       │ 1      │
+│ 3       │ 1      │
+│ 4       │ 0      │
+│ 5       │ 0      │
+└─────────┴────────┘
+==] dp after: += dp[i - coin] (1)
+┌─────────┬────────┐
+│ (index) │ Values │
+├─────────┼────────┤
+│ 0       │ 1      │
+│ 1       │ 1      │
+│ 2       │ 1      │
+│ 3       │ 1      │
+│ 4       │ 1      │
+│ 5       │ 0      │
+└─────────┴────────┘
+==[ Ittr coin='1'; i='5'
+==[ dp before: += dp[i - coin] (1)
+┌─────────┬────────┐
+│ (index) │ Values │
+├─────────┼────────┤
+│ 0       │ 1      │
+│ 1       │ 1      │
+│ 2       │ 1      │
+│ 3       │ 1      │
+│ 4       │ 1      │
+│ 5       │ 0      │
+└─────────┴────────┘
+==] dp after: += dp[i - coin] (1)
+┌─────────┬────────┐
+│ (index) │ Values │
+├─────────┼────────┤
+│ 0       │ 1      │
+│ 1       │ 1      │
+│ 2       │ 1      │
+│ 3       │ 1      │
+│ 4       │ 1      │
+│ 5       │ 1      │
+└─────────┴────────┘
+==[ Ittr coin='2'; i='2'
+==[ dp before: += dp[i - coin] (1)
+┌─────────┬────────┐
+│ (index) │ Values │
+├─────────┼────────┤
+│ 0       │ 1      │
+│ 1       │ 1      │
+│ 2       │ 1      │
+│ 3       │ 1      │
+│ 4       │ 1      │
+│ 5       │ 1      │
+└─────────┴────────┘
+==] dp after: += dp[i - coin] (1)
+┌─────────┬────────┐
+│ (index) │ Values │
+├─────────┼────────┤
+│ 0       │ 1      │
+│ 1       │ 1      │
+│ 2       │ 2      │
+│ 3       │ 1      │
+│ 4       │ 1      │
+│ 5       │ 1      │
+└─────────┴────────┘
+==[ Ittr coin='2'; i='3'
+==[ dp before: += dp[i - coin] (1)
+┌─────────┬────────┐
+│ (index) │ Values │
+├─────────┼────────┤
+│ 0       │ 1      │
+│ 1       │ 1      │
+│ 2       │ 2      │
+│ 3       │ 1      │
+│ 4       │ 1      │
+│ 5       │ 1      │
+└─────────┴────────┘
+==] dp after: += dp[i - coin] (1)
+┌─────────┬────────┐
+│ (index) │ Values │
+├─────────┼────────┤
+│ 0       │ 1      │
+│ 1       │ 1      │
+│ 2       │ 2      │
+│ 3       │ 2      │
+│ 4       │ 1      │
+│ 5       │ 1      │
+└─────────┴────────┘
+==[ Ittr coin='2'; i='4'
+==[ dp before: += dp[i - coin] (2)
+┌─────────┬────────┐
+│ (index) │ Values │
+├─────────┼────────┤
+│ 0       │ 1      │
+│ 1       │ 1      │
+│ 2       │ 2      │
+│ 3       │ 2      │
+│ 4       │ 1      │
+│ 5       │ 1      │
+└─────────┴────────┘
+==] dp after: += dp[i - coin] (2)
+┌─────────┬────────┐
+│ (index) │ Values │
+├─────────┼────────┤
+│ 0       │ 1      │
+│ 1       │ 1      │
+│ 2       │ 2      │
+│ 3       │ 2      │
+│ 4       │ 3      │
+│ 5       │ 1      │
+└─────────┴────────┘
+==[ Ittr coin='2'; i='5'
+==[ dp before: += dp[i - coin] (2)
+┌─────────┬────────┐
+│ (index) │ Values │
+├─────────┼────────┤
+│ 0       │ 1      │
+│ 1       │ 1      │
+│ 2       │ 2      │
+│ 3       │ 2      │
+│ 4       │ 3      │
+│ 5       │ 1      │
+└─────────┴────────┘
+==] dp after: += dp[i - coin] (2)
+┌─────────┬────────┐
+│ (index) │ Values │
+├─────────┼────────┤
+│ 0       │ 1      │
+│ 1       │ 1      │
+│ 2       │ 2      │
+│ 3       │ 2      │
+│ 4       │ 3      │
+│ 5       │ 3      │
+└─────────┴────────┘
+==[ Ittr coin='5'; i='5'
+==[ dp before: += dp[i - coin] (1)
+┌─────────┬────────┐
+│ (index) │ Values │
+├─────────┼────────┤
+│ 0       │ 1      │
+│ 1       │ 1      │
+│ 2       │ 2      │
+│ 3       │ 2      │
+│ 4       │ 3      │
+│ 5       │ 3      │
+└─────────┴────────┘
+==] dp after: += dp[i - coin] (1)
+┌─────────┬────────┐
+│ (index) │ Values │
+├─────────┼────────┤
+│ 0       │ 1      │
+│ 1       │ 1      │
+│ 2       │ 2      │
+│ 3       │ 2      │
+│ 4       │ 3      │
+│ 5       │ 4      │
+└─────────┴────────┘
+Final dp. dp[amount] == '4'
+┌─────────┬────────┐
+│ (index) │ Values │
+├─────────┼────────┤
+│ 0       │ 1      │
+│ 1       │ 1      │
+│ 2       │ 2      │
+│ 3       │ 2      │
+│ 4       │ 3      │
+│ 5       │ 4      │
+└─────────┴────────┘
+Test Case 1: Passed (Expected: 4, Got: 4)
+coins = [2]; amount='3'
+Initial dp:
+┌─────────┬────────┐
+│ (index) │ Values │
+├─────────┼────────┤
+│ 0       │ 1      │
+│ 1       │ 0      │
+│ 2       │ 0      │
+│ 3       │ 0      │
+└─────────┴────────┘
+==[ Ittr coin='2'; i='2'
+==[ dp before: += dp[i - coin] (1)
+┌─────────┬────────┐
+│ (index) │ Values │
+├─────────┼────────┤
+│ 0       │ 1      │
+│ 1       │ 0      │
+│ 2       │ 0      │
+│ 3       │ 0      │
+└─────────┴────────┘
+==] dp after: += dp[i - coin] (1)
+┌─────────┬────────┐
+│ (index) │ Values │
+├─────────┼────────┤
+│ 0       │ 1      │
+│ 1       │ 0      │
+│ 2       │ 1      │
+│ 3       │ 0      │
+└─────────┴────────┘
+==[ Ittr coin='2'; i='3'
+==[ dp before: += dp[i - coin] (0)
+┌─────────┬────────┐
+│ (index) │ Values │
+├─────────┼────────┤
+│ 0       │ 1      │
+│ 1       │ 0      │
+│ 2       │ 1      │
+│ 3       │ 0      │
+└─────────┴────────┘
+==] dp after: += dp[i - coin] (0)
+┌─────────┬────────┐
+│ (index) │ Values │
+├─────────┼────────┤
+│ 0       │ 1      │
+│ 1       │ 0      │
+│ 2       │ 1      │
+│ 3       │ 0      │
+└─────────┴────────┘
+Final dp. dp[amount] == '0'
+┌─────────┬────────┐
+│ (index) │ Values │
+├─────────┼────────┤
+│ 0       │ 1      │
+│ 1       │ 0      │
+│ 2       │ 1      │
+│ 3       │ 0      │
+└─────────┴────────┘
+Test Case 2: Passed (Expected: 0, Got: 0)
+coins = [10]; amount='10'
+Initial dp:
+┌─────────┬────────┐
+│ (index) │ Values │
+├─────────┼────────┤
+│ 0       │ 1      │
+│ 1       │ 0      │
+│ 2       │ 0      │
+│ 3       │ 0      │
+│ 4       │ 0      │
+│ 5       │ 0      │
+│ 6       │ 0      │
+│ 7       │ 0      │
+│ 8       │ 0      │
+│ 9       │ 0      │
+│ 10      │ 0      │
+└─────────┴────────┘
+==[ Ittr coin='10'; i='10'
+==[ dp before: += dp[i - coin] (1)
+┌─────────┬────────┐
+│ (index) │ Values │
+├─────────┼────────┤
+│ 0       │ 1      │
+│ 1       │ 0      │
+│ 2       │ 0      │
+│ 3       │ 0      │
+│ 4       │ 0      │
+│ 5       │ 0      │
+│ 6       │ 0      │
+│ 7       │ 0      │
+│ 8       │ 0      │
+│ 9       │ 0      │
+│ 10      │ 0      │
+└─────────┴────────┘
+==] dp after: += dp[i - coin] (1)
+┌─────────┬────────┐
+│ (index) │ Values │
+├─────────┼────────┤
+│ 0       │ 1      │
+│ 1       │ 0      │
+│ 2       │ 0      │
+│ 3       │ 0      │
+│ 4       │ 0      │
+│ 5       │ 0      │
+│ 6       │ 0      │
+│ 7       │ 0      │
+│ 8       │ 0      │
+│ 9       │ 0      │
+│ 10      │ 1      │
+└─────────┴────────┘
+Final dp. dp[amount] == '1'
+┌─────────┬────────┐
+│ (index) │ Values │
+├─────────┼────────┤
+│ 0       │ 1      │
+│ 1       │ 0      │
+│ 2       │ 0      │
+│ 3       │ 0      │
+│ 4       │ 0      │
+│ 5       │ 0      │
+│ 6       │ 0      │
+│ 7       │ 0      │
+│ 8       │ 0      │
+│ 9       │ 0      │
+│ 10      │ 1      │
+└─────────┴────────┘
+Test Case 3: Passed (Expected: 1, Got: 1)
+coins = [1,2,3]; amount='4'
+Initial dp:
+┌─────────┬────────┐
+│ (index) │ Values │
+├─────────┼────────┤
+│ 0       │ 1      │
+│ 1       │ 0      │
+│ 2       │ 0      │
+│ 3       │ 0      │
+│ 4       │ 0      │
+└─────────┴────────┘
+==[ Ittr coin='1'; i='1'
+==[ dp before: += dp[i - coin] (1)
+┌─────────┬────────┐
+│ (index) │ Values │
+├─────────┼────────┤
+│ 0       │ 1      │
+│ 1       │ 0      │
+│ 2       │ 0      │
+│ 3       │ 0      │
+│ 4       │ 0      │
+└─────────┴────────┘
+==] dp after: += dp[i - coin] (1)
+┌─────────┬────────┐
+│ (index) │ Values │
+├─────────┼────────┤
+│ 0       │ 1      │
+│ 1       │ 1      │
+│ 2       │ 0      │
+│ 3       │ 0      │
+│ 4       │ 0      │
+└─────────┴────────┘
+==[ Ittr coin='1'; i='2'
+==[ dp before: += dp[i - coin] (1)
+┌─────────┬────────┐
+│ (index) │ Values │
+├─────────┼────────┤
+│ 0       │ 1      │
+│ 1       │ 1      │
+│ 2       │ 0      │
+│ 3       │ 0      │
+│ 4       │ 0      │
+└─────────┴────────┘
+==] dp after: += dp[i - coin] (1)
+┌─────────┬────────┐
+│ (index) │ Values │
+├─────────┼────────┤
+│ 0       │ 1      │
+│ 1       │ 1      │
+│ 2       │ 1      │
+│ 3       │ 0      │
+│ 4       │ 0      │
+└─────────┴────────┘
+==[ Ittr coin='1'; i='3'
+==[ dp before: += dp[i - coin] (1)
+┌─────────┬────────┐
+│ (index) │ Values │
+├─────────┼────────┤
+│ 0       │ 1      │
+│ 1       │ 1      │
+│ 2       │ 1      │
+│ 3       │ 0      │
+│ 4       │ 0      │
+└─────────┴────────┘
+==] dp after: += dp[i - coin] (1)
+┌─────────┬────────┐
+│ (index) │ Values │
+├─────────┼────────┤
+│ 0       │ 1      │
+│ 1       │ 1      │
+│ 2       │ 1      │
+│ 3       │ 1      │
+│ 4       │ 0      │
+└─────────┴────────┘
+==[ Ittr coin='1'; i='4'
+==[ dp before: += dp[i - coin] (1)
+┌─────────┬────────┐
+│ (index) │ Values │
+├─────────┼────────┤
+│ 0       │ 1      │
+│ 1       │ 1      │
+│ 2       │ 1      │
+│ 3       │ 1      │
+│ 4       │ 0      │
+└─────────┴────────┘
+==] dp after: += dp[i - coin] (1)
+┌─────────┬────────┐
+│ (index) │ Values │
+├─────────┼────────┤
+│ 0       │ 1      │
+│ 1       │ 1      │
+│ 2       │ 1      │
+│ 3       │ 1      │
+│ 4       │ 1      │
+└─────────┴────────┘
+==[ Ittr coin='2'; i='2'
+==[ dp before: += dp[i - coin] (1)
+┌─────────┬────────┐
+│ (index) │ Values │
+├─────────┼────────┤
+│ 0       │ 1      │
+│ 1       │ 1      │
+│ 2       │ 1      │
+│ 3       │ 1      │
+│ 4       │ 1      │
+└─────────┴────────┘
+==] dp after: += dp[i - coin] (1)
+┌─────────┬────────┐
+│ (index) │ Values │
+├─────────┼────────┤
+│ 0       │ 1      │
+│ 1       │ 1      │
+│ 2       │ 2      │
+│ 3       │ 1      │
+│ 4       │ 1      │
+└─────────┴────────┘
+==[ Ittr coin='2'; i='3'
+==[ dp before: += dp[i - coin] (1)
+┌─────────┬────────┐
+│ (index) │ Values │
+├─────────┼────────┤
+│ 0       │ 1      │
+│ 1       │ 1      │
+│ 2       │ 2      │
+│ 3       │ 1      │
+│ 4       │ 1      │
+└─────────┴────────┘
+==] dp after: += dp[i - coin] (1)
+┌─────────┬────────┐
+│ (index) │ Values │
+├─────────┼────────┤
+│ 0       │ 1      │
+│ 1       │ 1      │
+│ 2       │ 2      │
+│ 3       │ 2      │
+│ 4       │ 1      │
+└─────────┴────────┘
+==[ Ittr coin='2'; i='4'
+==[ dp before: += dp[i - coin] (2)
+┌─────────┬────────┐
+│ (index) │ Values │
+├─────────┼────────┤
+│ 0       │ 1      │
+│ 1       │ 1      │
+│ 2       │ 2      │
+│ 3       │ 2      │
+│ 4       │ 1      │
+└─────────┴────────┘
+==] dp after: += dp[i - coin] (2)
+┌─────────┬────────┐
+│ (index) │ Values │
+├─────────┼────────┤
+│ 0       │ 1      │
+│ 1       │ 1      │
+│ 2       │ 2      │
+│ 3       │ 2      │
+│ 4       │ 3      │
+└─────────┴────────┘
+==[ Ittr coin='3'; i='3'
+==[ dp before: += dp[i - coin] (1)
+┌─────────┬────────┐
+│ (index) │ Values │
+├─────────┼────────┤
+│ 0       │ 1      │
+│ 1       │ 1      │
+│ 2       │ 2      │
+│ 3       │ 2      │
+│ 4       │ 3      │
+└─────────┴────────┘
+==] dp after: += dp[i - coin] (1)
+┌─────────┬────────┐
+│ (index) │ Values │
+├─────────┼────────┤
+│ 0       │ 1      │
+│ 1       │ 1      │
+│ 2       │ 2      │
+│ 3       │ 3      │
+│ 4       │ 3      │
+└─────────┴────────┘
+==[ Ittr coin='3'; i='4'
+==[ dp before: += dp[i - coin] (1)
+┌─────────┬────────┐
+│ (index) │ Values │
+├─────────┼────────┤
+│ 0       │ 1      │
+│ 1       │ 1      │
+│ 2       │ 2      │
+│ 3       │ 3      │
+│ 4       │ 3      │
+└─────────┴────────┘
+==] dp after: += dp[i - coin] (1)
+┌─────────┬────────┐
+│ (index) │ Values │
+├─────────┼────────┤
+│ 0       │ 1      │
+│ 1       │ 1      │
+│ 2       │ 2      │
+│ 3       │ 3      │
+│ 4       │ 4      │
+└─────────┴────────┘
+Final dp. dp[amount] == '4'
+┌─────────┬────────┐
+│ (index) │ Values │
+├─────────┼────────┤
+│ 0       │ 1      │
+│ 1       │ 1      │
+│ 2       │ 2      │
+│ 3       │ 3      │
+│ 4       │ 4      │
+└─────────┴────────┘
+Test Case 4: Passed (Expected: 4, Got: 4)
+coins = [1]; amount='0'
+Initial dp:
+┌─────────┬────────┐
+│ (index) │ Values │
+├─────────┼────────┤
+│ 0       │ 1      │
+└─────────┴────────┘
+Final dp. dp[amount] == '1'
+┌─────────┬────────┐
+│ (index) │ Values │
+├─────────┼────────┤
+│ 0       │ 1      │
+└─────────┴────────┘
+Test Case 5: Passed (Expected: 1, Got: 1)
+undefined
+#+end_example
