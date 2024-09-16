@@ -1,0 +1,76 @@
+﻿#+title: 2220. Minimum Bit Flips to Convert Number
+#+subtitle: leetcode
+#+date: <2024-09-16>
+#+language: en
+
+* Problem
+Given two integers start and goal, return the minimum number of bit flips to convert start to goal.
+
+Submission:
+[[https://leetcode.com/submissions/detail/1392641558/][2024-09-16 Minimum Bit Flips to Convert Number - Submission Detail - LeetCode]] =leetcode.com=
+
+* Solution Description
+To implement the solution, we need to determine the number of differing bits (i.e., bit flips) between the binary representations of `start` and `goal`. We can achieve this as follows:
+
+1. **XOR Operation**: The first step is to perform an XOR operation between `start` and `goal`. The XOR operation will result in a number where each bit represents whether the corresponding bits of `start` and `goal` are different (1) or the same (0).
+2. **Count Set Bits**: The next step is to count the number of set bits (1's) in the result of the XOR operation. Each set bit represents a bit flip needed to convert `start` to `goal`.
+
+The overall approach is efficient:
+- **Time Complexity**: O(1). The XOR operation and bit counting are performed in constant time as the integers are of fixed-width (32 or 64 bits typically).
+- **Space Complexity**: O(1). No additional space besides a few variables is needed.
+
+* Example
+Let's take the example:
+
+- Input: start = 10, goal = 7
+  Binary representation:
+  - start: 1010
+  - goal:  0111
+
+1. XOR operation: 1010 XOR 0111 = 1101
+2. Count of set bits (1's) in 1101 is 3.
+
+Thus, the minimum number of bit flips needed is 3.
+
+* References
+- [Bit Manipulation in JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_AND)
+- [Counting Bits Hack](https://en.wikipedia.org/wiki/Hamming_weight)
+
+* Solution
+
+#+begin_src js :tangle "leetcode_2220_minimum_bit_flips_to_convert_number.js"
+/**
+ ,* Calculate the minimum number of bit flips to convert one number to another.
+ ,* @param {number} start - The starting integer.
+ ,* @param {number} goal - The target integer.
+ ,* @returns {number} - The minimum number of bit flips required.
+ ,*/
+function minimumBitFlips(start, goal) {
+  const log = typeof NestedInteger !== 'undefined' ? () => {} : console.log;
+  const table = typeof NestedInteger !== 'undefined' ? () => {} : console.table;
+
+  let xor = start ^ goal;
+  let flips = 0;
+
+  while (xor > 0) {
+    flips += xor & 1;
+    xor >>= 1;
+  }
+
+  return flips;
+}
+
+// Test cases
+const testCases = [
+  { start: 10, goal: 7, expected: 3 },
+  { start: 1, goal: 2, expected: 2 },
+  { start: 15, goal: 0, expected: 4 },
+  { start: 29, goal: 29, expected: 0 },
+  { start: 0, goal: 0, expected: 0 },
+];
+
+testCases.forEach((test, index) => {
+  const result = minimumBitFlips(test.start, test.goal);
+  console.log(`Test Case ${index + 1}: ${result === test.expected ? 'Passed' : 'Failed'} (Expected: ${test.expected}, Got: ${result})`);
+});
+#+end_src

@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2024-08-23 -->
+<!-- 2024-09-16 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>1302. Deepest Leaves Sum</title>
@@ -22,32 +22,32 @@ Published 2024-06-27
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orga2cacd3">Problem:</a></li>
-<li><a href="#org701f237">Solution Description:</a>
+<li><a href="#orga0a59da">Problem:</a></li>
+<li><a href="#org90f6c10">Solution Description:</a>
 <ul>
-<li><a href="#orgcf5a9fe">Time Complexity:</a></li>
-<li><a href="#org6004c96">Space Complexity:</a></li>
+<li><a href="#org10d65ec">Time Complexity:</a></li>
+<li><a href="#orge11a714">Space Complexity:</a></li>
 </ul>
 </li>
-<li><a href="#org7a95b6b">Example:</a></li>
-<li><a href="#org2aaf96f">Setup:</a></li>
-<li><a href="#orgab251eb">Plan:</a></li>
+<li><a href="#orgeab7655">Example:</a></li>
+<li><a href="#orgba8ae38">Setup:</a></li>
+<li><a href="#orgd831e87">Plan:</a></li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-orga2cacd3" class="outline-2">
-<h2 id="orga2cacd3">Problem:</h2>
-<div class="outline-text-2" id="text-orga2cacd3">
+<div id="outline-container-orga0a59da" class="outline-2">
+<h2 id="orga0a59da">Problem:</h2>
+<div class="outline-text-2" id="text-orga0a59da">
 <p>
 The goal is to find the sum of the values of the deepest leaves in a binary tree. A leaf is a node with no children, and the deepest leaves are those at the maximum depth of the tree.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org701f237" class="outline-2">
-<h2 id="org701f237">Solution Description:</h2>
-<div class="outline-text-2" id="text-org701f237">
+<div id="outline-container-org90f6c10" class="outline-2">
+<h2 id="org90f6c10">Solution Description:</h2>
+<div class="outline-text-2" id="text-org90f6c10">
 <p>
 To implement a solution for summing the values of the deepest leaves, we need to perform the following steps:
 </p>
@@ -62,18 +62,18 @@ The BFS approach ensures that when we reach the deepest level nodes, we will hav
 </p>
 </div>
 
-<div id="outline-container-orgcf5a9fe" class="outline-3">
-<h3 id="orgcf5a9fe">Time Complexity:</h3>
-<div class="outline-text-3" id="text-orgcf5a9fe">
+<div id="outline-container-org10d65ec" class="outline-3">
+<h3 id="org10d65ec">Time Complexity:</h3>
+<div class="outline-text-3" id="text-org10d65ec">
 <p>
 The time complexity is O(N), where N is the number of nodes in the binary tree, as we need to visit each node exactly once.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org6004c96" class="outline-3">
-<h3 id="org6004c96">Space Complexity:</h3>
-<div class="outline-text-3" id="text-org6004c96">
+<div id="outline-container-orge11a714" class="outline-3">
+<h3 id="orge11a714">Space Complexity:</h3>
+<div class="outline-text-3" id="text-orge11a714">
 <p>
 The space complexity is O(M), where M is the maximum number of nodes at any one level (the width of the tree).
 </p>
@@ -81,14 +81,14 @@ The space complexity is O(M), where M is the maximum number of nodes at any one 
 </div>
 </div>
 
-<div id="outline-container-org7a95b6b" class="outline-2">
-<h2 id="org7a95b6b">Example:</h2>
-<div class="outline-text-2" id="text-org7a95b6b">
+<div id="outline-container-orgeab7655" class="outline-2">
+<h2 id="orgeab7655">Example:</h2>
+<div class="outline-text-2" id="text-orgeab7655">
 <p>
 Consider the following binary tree:
 </p>
 
-<pre class="example" id="org4aad693">
+<pre class="example" id="orgacee02b">
        1
      /   \
     2     3
@@ -105,18 +105,18 @@ Consider the following binary tree:
 </div>
 </div>
 
-<div id="outline-container-org2aaf96f" class="outline-2">
-<h2 id="org2aaf96f">Setup:</h2>
-<div class="outline-text-2" id="text-org2aaf96f">
+<div id="outline-container-orgba8ae38" class="outline-2">
+<h2 id="orgba8ae38">Setup:</h2>
+<div class="outline-text-2" id="text-orgba8ae38">
 <p>
 The solution will be implemented in JavaScript using modern JS syntax. The testing setup will use `console.log` statements to verify the results.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgab251eb" class="outline-2">
-<h2 id="orgab251eb">Plan:</h2>
-<div class="outline-text-2" id="text-orgab251eb">
+<div id="outline-container-orgd831e87" class="outline-2">
+<h2 id="orgd831e87">Plan:</h2>
+<div class="outline-text-2" id="text-orgd831e87">
 <ol class="org-ol">
 <li>Create a function to traverse the tree using BFS.</li>
 <li>Keep track of the deepest level and sum the values of the leaves at this level.</li>

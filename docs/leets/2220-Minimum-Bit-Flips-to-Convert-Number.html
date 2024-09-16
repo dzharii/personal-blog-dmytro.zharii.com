@@ -1,0 +1,152 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2024-09-16 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>2220. Minimum Bit Flips to Convert Number</title>
+<meta name="author" content="d)zharii" />
+<meta name="generator" content="Org Mode" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/t.css"/>
+</head>
+<body>
+<nav><a href="/" tabindex="0">&larrhk; Back to Index</a></nav><div id="preamble" class="status">
+Published 2024-09-16
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">2220. Minimum Bit Flips to Convert Number</h1>
+<p class="subtitle" role="doc-subtitle">leetcode</p>
+</header><nav id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org4f7b8a1">Problem</a></li>
+<li><a href="#org0fa33fd">Solution Description</a></li>
+<li><a href="#org3dac7c7">Example</a></li>
+<li><a href="#org54c1462">References</a></li>
+<li><a href="#org4017878">Solution</a></li>
+</ul>
+</div>
+</nav>
+
+<div id="outline-container-org4f7b8a1" class="outline-2">
+<h2 id="org4f7b8a1">Problem</h2>
+<div class="outline-text-2" id="text-org4f7b8a1">
+<p>
+Given two integers start and goal, return the minimum number of bit flips to convert start to goal.
+</p>
+
+<p>
+Submission:
+<a href="https://leetcode.com/submissions/detail/1392641558/">2024-09-16 Minimum Bit Flips to Convert Number - Submission Detail - LeetCode</a> <code>leetcode.com</code>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0fa33fd" class="outline-2">
+<h2 id="org0fa33fd">Solution Description</h2>
+<div class="outline-text-2" id="text-org0fa33fd">
+<p>
+To implement the solution, we need to determine the number of differing bits (i.e., bit flips) between the binary representations of `start` and `goal`. We can achieve this as follows:
+</p>
+
+<ol class="org-ol">
+<li><b><b>XOR Operation</b></b>: The first step is to perform an XOR operation between `start` and `goal`. The XOR operation will result in a number where each bit represents whether the corresponding bits of `start` and `goal` are different (1) or the same (0).</li>
+<li><b><b>Count Set Bits</b></b>: The next step is to count the number of set bits (1's) in the result of the XOR operation. Each set bit represents a bit flip needed to convert `start` to `goal`.</li>
+</ol>
+
+<p>
+The overall approach is efficient:
+</p>
+<ul class="org-ul">
+<li><b><b>Time Complexity</b></b>: O(1). The XOR operation and bit counting are performed in constant time as the integers are of fixed-width (32 or 64 bits typically).</li>
+<li><b><b>Space Complexity</b></b>: O(1). No additional space besides a few variables is needed.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org3dac7c7" class="outline-2">
+<h2 id="org3dac7c7">Example</h2>
+<div class="outline-text-2" id="text-org3dac7c7">
+<p>
+Let's take the example:
+</p>
+
+<ul class="org-ul">
+<li>Input: start = 10, goal = 7
+Binary representation:
+<ul class="org-ul">
+<li>start: 1010</li>
+<li>goal:  0111</li>
+</ul></li>
+
+<li>XOR operation: 1010 XOR 0111 = 1101</li>
+<li>Count of set bits (1's) in 1101 is 3.</li>
+</ul>
+
+<p>
+Thus, the minimum number of bit flips needed is 3.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org54c1462" class="outline-2">
+<h2 id="org54c1462">References</h2>
+<div class="outline-text-2" id="text-org54c1462">
+<ul class="org-ul">
+<li>[Bit Manipulation in JavaScript](<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_AND">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_AND</a>)</li>
+<li>[Counting Bits Hack](<a href="https://en.wikipedia.org/wiki/Hamming_weight">https://en.wikipedia.org/wiki/Hamming_weight</a>)</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org4017878" class="outline-2">
+<h2 id="org4017878">Solution</h2>
+<div class="outline-text-2" id="text-org4017878">
+<div class="org-src-container">
+<pre class="src src-js">/**
+ * Calculate the minimum number of bit flips to convert one number to another.
+ * @param {number} start - The starting integer.
+ * @param {number} goal - The target integer.
+ * @returns {number} - The minimum number of bit flips required.
+ */
+function minimumBitFlips(start, goal) {
+  const log = typeof NestedInteger !== 'undefined' ? () =&gt; {} : console.log;
+  const table = typeof NestedInteger !== 'undefined' ? () =&gt; {} : console.table;
+
+  let xor = start ^ goal;
+  let flips = 0;
+
+  while (xor &gt; 0) {
+    flips += xor &amp; 1;
+    xor &gt;&gt;= 1;
+  }
+
+  return flips;
+}
+
+// Test cases
+const testCases = [
+  { start: 10, goal: 7, expected: 3 },
+  { start: 1, goal: 2, expected: 2 },
+  { start: 15, goal: 0, expected: 4 },
+  { start: 29, goal: 29, expected: 0 },
+  { start: 0, goal: 0, expected: 0 },
+];
+
+testCases.forEach((test, index) =&gt; {
+  const result = minimumBitFlips(test.start, test.goal);
+  console.log(`Test Case ${index + 1}: ${result === test.expected ? 'Passed' : 'Failed'} (Expected: ${test.expected}, Got: ${result})`);
+});
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+&copy; d)zharii. <a href="/sitemap.html">sitemap</a>
+</div>
+</body>
+</html>
