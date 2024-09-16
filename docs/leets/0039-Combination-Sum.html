@@ -22,53 +22,53 @@ Published 2024-05-13
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org8326699">Link</a></li>
-<li><a href="#org55eb8e8">Problem Overview:</a></li>
-<li><a href="#org05372f4">Solution Outline:</a>
+<li><a href="#orga669239">Link</a></li>
+<li><a href="#orgd6490e9">Problem Overview:</a></li>
+<li><a href="#orgac2b892">Solution Outline:</a>
 <ul>
-<li><a href="#org88ba996">Preferred Structure:</a></li>
-<li><a href="#org7612a56">Brute Force vs Optimal Solution:</a></li>
-<li><a href="#orgc384432">Algorithm Choice:</a></li>
+<li><a href="#org614b0bb">Preferred Structure:</a></li>
+<li><a href="#orge6c398a">Brute Force vs Optimal Solution:</a></li>
+<li><a href="#org1590971">Algorithm Choice:</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-org8326699" class="outline-2">
-<h2 id="org8326699">Link</h2>
-<div class="outline-text-2" id="text-org8326699">
+<div id="outline-container-orga669239" class="outline-2">
+<h2 id="orga669239">Link</h2>
+<div class="outline-text-2" id="text-orga669239">
 <p>
 <a href="https://leetcode.com/problems/combination-sum/description/">2024-05-13 Combination Sum - LeetCode</a>
 </p>
 </div>
 </div>
 
-<div id="outline-container-org55eb8e8" class="outline-2">
-<h2 id="org55eb8e8">Problem Overview:</h2>
-<div class="outline-text-2" id="text-org55eb8e8">
+<div id="outline-container-orgd6490e9" class="outline-2">
+<h2 id="orgd6490e9">Problem Overview:</h2>
+<div class="outline-text-2" id="text-orgd6490e9">
 <p>
 The "Combination Sum" problem asks us to find all unique combinations in a given set of candidate numbers that sum up to a target number. The numbers in the candidates set can be used multiple times in the combination, and the solution set must not contain duplicate combinations.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org05372f4" class="outline-2">
-<h2 id="org05372f4">Solution Outline:</h2>
-<div class="outline-text-2" id="text-org05372f4">
+<div id="outline-container-orgac2b892" class="outline-2">
+<h2 id="orgac2b892">Solution Outline:</h2>
+<div class="outline-text-2" id="text-orgac2b892">
 </div>
-<div id="outline-container-org88ba996" class="outline-3">
-<h3 id="org88ba996">Preferred Structure:</h3>
-<div class="outline-text-3" id="text-org88ba996">
+<div id="outline-container-org614b0bb" class="outline-3">
+<h3 id="org614b0bb">Preferred Structure:</h3>
+<div class="outline-text-3" id="text-org614b0bb">
 <p>
 Utilizing recursion for backtracking is highly effective here since we need to explore all possible combinations that sum up to the target. An array or list can be used to store the current combination of numbers being considered.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org7612a56" class="outline-3">
-<h3 id="org7612a56">Brute Force vs Optimal Solution:</h3>
-<div class="outline-text-3" id="text-org7612a56">
+<div id="outline-container-orge6c398a" class="outline-3">
+<h3 id="orge6c398a">Brute Force vs Optimal Solution:</h3>
+<div class="outline-text-3" id="text-orge6c398a">
 <ul class="org-ul">
 <li><b>Brute Force:</b> Try all possible combinations of numbers to see which ones meet the target sum. This would involve recursion or iteration over each number and is not efficient.</li>
 <li><b>Optimal Solution:</b> Use backtracking to build combinations efficiently. Only continue adding to the current combination if the sum has not exceeded the target.</li>
@@ -77,9 +77,9 @@ Utilizing recursion for backtracking is highly effective here since we need to e
 </div>
 </div>
 
-<div id="outline-container-orgc384432" class="outline-3">
-<h3 id="orgc384432">Algorithm Choice:</h3>
-<div class="outline-text-3" id="text-orgc384432">
+<div id="outline-container-org1590971" class="outline-3">
+<h3 id="org1590971">Algorithm Choice:</h3>
+<div class="outline-text-3" id="text-org1590971">
 <ul class="org-ul">
 <li>The backtracking algorithm is ideal here due to its ability to eliminate many non-viable combinations early, especially when the current sum exceeds the target. This approach significantly reduces the number of combinations to check.</li>
 </ul>
