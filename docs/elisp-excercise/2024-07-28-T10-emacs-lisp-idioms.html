@@ -22,38 +22,38 @@ Published 2024-07-28
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org3b6e5a0">Summary</a></li>
-<li><a href="#org851f551">Ref</a></li>
-<li><a href="#org6438e49">Idioms</a>
+<li><a href="#orgcf35c9a">Summary</a></li>
+<li><a href="#org36a24f2">Ref</a></li>
+<li><a href="#org207f8d8">Idioms</a>
 <ul>
-<li><a href="#org7898841">#001 Print Hello World</a></li>
-<li><a href="#org3b5916b">#002 Print hello 10 times</a></li>
-<li><a href="#org652b3cc">#003 Create a procedure</a></li>
-<li><a href="#org46cbd6a">#004 Create a Function</a></li>
-<li><a href="#org7409af0">#005 Create a 2D Point data structure</a></li>
-<li><a href="#org67ddd46">#006 Iterate Over List Values</a></li>
-<li><a href="#org0b1f1ec">#007 Iterate Over List Indexes and Values</a></li>
-<li><a href="#orgb83f33e">#008 Create a Map (Associative Array)</a></li>
-<li><a href="#org07cbb0d">#009 Create a Binary Tree Data Structure</a></li>
-<li><a href="#org784837a">#010 Shuffle a List</a></li>
+<li><a href="#org72f4689">#001 Print Hello World</a></li>
+<li><a href="#org4f067d1">#002 Print hello 10 times</a></li>
+<li><a href="#org82fe34b">#003 Create a procedure</a></li>
+<li><a href="#org34d9a21">#004 Create a Function</a></li>
+<li><a href="#org4efe529">#005 Create a 2D Point data structure</a></li>
+<li><a href="#orgf260d7b">#006 Iterate Over List Values</a></li>
+<li><a href="#orgb130ff0">#007 Iterate Over List Indexes and Values</a></li>
+<li><a href="#orgd692388">#008 Create a Map (Associative Array)</a></li>
+<li><a href="#org65fe8db">#009 Create a Binary Tree Data Structure</a></li>
+<li><a href="#orgf075b80">#010 Shuffle a List</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-org3b6e5a0" class="outline-2">
-<h2 id="org3b6e5a0">Summary</h2>
-<div class="outline-text-2" id="text-org3b6e5a0">
+<div id="outline-container-orgcf35c9a" class="outline-2">
+<h2 id="orgcf35c9a">Summary</h2>
+<div class="outline-text-2" id="text-orgcf35c9a">
 <p>
 I will take time for self-reflection and listen to my inner voice.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org851f551" class="outline-2">
-<h2 id="org851f551">Ref</h2>
-<div class="outline-text-2" id="text-org851f551">
+<div id="outline-container-org36a24f2" class="outline-2">
+<h2 id="org36a24f2">Ref</h2>
+<div class="outline-text-2" id="text-org36a24f2">
 <ul class="org-ul">
 <li><a href="https://programming-idioms.org/coverage">2024-07-29 programming-idioms.org</a></li>
 <li><a href="https://www.gnu.org/software/emacs/manual/html_node/elisp/">2024-07-29 Top (GNU Emacs Lisp Reference Manual)</a></li>
@@ -61,32 +61,32 @@ I will take time for self-reflection and listen to my inner voice.
 </div>
 </div>
 
-<div id="outline-container-org6438e49" class="outline-2">
-<h2 id="org6438e49">Idioms</h2>
-<div class="outline-text-2" id="text-org6438e49">
+<div id="outline-container-org207f8d8" class="outline-2">
+<h2 id="org207f8d8">Idioms</h2>
+<div class="outline-text-2" id="text-org207f8d8">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
 </pre>
 </div>
 </div>
 
-<div id="outline-container-org7898841" class="outline-3">
-<h3 id="org7898841">#001 Print Hello World</h3>
-<div class="outline-text-3" id="text-org7898841">
+<div id="outline-container-org72f4689" class="outline-3">
+<h3 id="org72f4689">#001 Print Hello World</h3>
+<div class="outline-text-3" id="text-org72f4689">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(print "Hello, World!")
 </pre>
 </div>
 
-<pre class="example" id="org872d841">
+<pre class="example" id="orge1cf952">
 "Hello, World!"
 </pre>
 </div>
 </div>
 
-<div id="outline-container-org3b5916b" class="outline-3">
-<h3 id="org3b5916b">#002 Print hello 10 times</h3>
-<div class="outline-text-3" id="text-org3b5916b">
+<div id="outline-container-org4f067d1" class="outline-3">
+<h3 id="org4f067d1">#002 Print hello 10 times</h3>
+<div class="outline-text-3" id="text-org4f067d1">
 <ul class="org-ul">
 <li>`princ`: Outputs a string or character without additional formatting.</li>
 <li>`message`: Prints a message to the minibuffer.</li>
@@ -101,7 +101,7 @@ I will take time for self-reflection and listen to my inner voice.
 </pre>
 </div>
 
-<pre class="example" id="org97bf47f">
+<pre class="example" id="org78a9302">
 Hello
 Hello
 Hello
@@ -116,9 +116,9 @@ Hello
 </div>
 </div>
 
-<div id="outline-container-org652b3cc" class="outline-3">
-<h3 id="org652b3cc">#003 Create a procedure</h3>
-<div class="outline-text-3" id="text-org652b3cc">
+<div id="outline-container-org82fe34b" class="outline-3">
+<h3 id="org82fe34b">#003 Create a procedure</h3>
+<div class="outline-text-3" id="text-org82fe34b">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(defun show (message)
   "Display a message in the echo area."
@@ -130,9 +130,9 @@ Hello
 </div>
 </div>
 
-<div id="outline-container-org46cbd6a" class="outline-3">
-<h3 id="org46cbd6a">#004 Create a Function</h3>
-<div class="outline-text-3" id="text-org46cbd6a">
+<div id="outline-container-org34d9a21" class="outline-3">
+<h3 id="org34d9a21">#004 Create a Function</h3>
+<div class="outline-text-3" id="text-org34d9a21">
 <p>
 Functions in Emacs Lisp are defined using `defun`. The function `square` here takes a parameter `x` and returns its square by multiplying `x` by itself. Emacs Lisp automatically returns the value of the last evaluated expression. Functions are used for modularity and reuse of code. The provided function is a common example of mathematical operations often implemented in scripts.
 </p>
@@ -147,15 +147,15 @@ Functions in Emacs Lisp are defined using `defun`. The function `square` here ta
 </pre>
 </div>
 
-<pre class="example" id="org2cfbff7">
+<pre class="example" id="org95acdb7">
 "Square of 16 is 256"
 </pre>
 </div>
 </div>
 
-<div id="outline-container-org7409af0" class="outline-3">
-<h3 id="org7409af0">#005 Create a 2D Point data structure</h3>
-<div class="outline-text-3" id="text-org7409af0">
+<div id="outline-container-org4efe529" class="outline-3">
+<h3 id="org4efe529">#005 Create a 2D Point data structure</h3>
+<div class="outline-text-3" id="text-org4efe529">
 <p>
 In Emacs Lisp, a 2D point structure can be represented using various methods. One common approach is to use a list or vector to store the x and y coordinates. This example shows a simple implementation using a list and how to create a point and access its coordinates.
 </p>
@@ -178,15 +178,15 @@ In Emacs Lisp, a 2D point structure can be represented using various methods. On
 </pre>
 </div>
 
-<pre class="example" id="org96707da">
+<pre class="example" id="org3640a67">
 "Point: (3.000000, 4.000000)"
 </pre>
 </div>
 </div>
 
-<div id="outline-container-org67ddd46" class="outline-3">
-<h3 id="org67ddd46">#006 Iterate Over List Values</h3>
-<div class="outline-text-3" id="text-org67ddd46">
+<div id="outline-container-orgf260d7b" class="outline-3">
+<h3 id="orgf260d7b">#006 Iterate Over List Values</h3>
+<div class="outline-text-3" id="text-orgf260d7b">
 <p>
 In Emacs Lisp, iterating over list values can be achieved using several methods, such as `dolist`, `mapcar`, and `while` loops. This example demonstrates how to use `dolist` to iterate over a list and print each value.
 </p>
@@ -199,7 +199,7 @@ In Emacs Lisp, iterating over list values can be achieved using several methods,
 </pre>
 </div>
 
-<pre class="example" id="orgf802483">
+<pre class="example" id="orga3c61e6">
 Item: 1
 Item: 2
 Item: 3
@@ -213,9 +213,9 @@ Other methods include `mapcar`, which applies a function to each element of a li
 </div>
 </div>
 
-<div id="outline-container-org0b1f1ec" class="outline-3">
-<h3 id="org0b1f1ec">#007 Iterate Over List Indexes and Values</h3>
-<div class="outline-text-3" id="text-org0b1f1ec">
+<div id="outline-container-orgb130ff0" class="outline-3">
+<h3 id="orgb130ff0">#007 Iterate Over List Indexes and Values</h3>
+<div class="outline-text-3" id="text-orgb130ff0">
 <p>
 In Emacs Lisp, you can iterate over both the indexes and values of a list using a combination of <code>dotimes</code> and <code>nth</code>. This approach is useful when you need to access each element along with its index.
 </p>
@@ -229,7 +229,7 @@ In Emacs Lisp, you can iterate over both the indexes and values of a list using 
 </pre>
 </div>
 
-<pre class="example" id="org8e56b59">
+<pre class="example" id="org060e4b6">
 
 "Index 0: Value 10"
 
@@ -248,9 +248,9 @@ This example demonstrates iterating over a list <code>items</code>, retrieving e
 </div>
 </div>
 
-<div id="outline-container-orgb83f33e" class="outline-3">
-<h3 id="orgb83f33e">#008 Create a Map (Associative Array)</h3>
-<div class="outline-text-3" id="text-orgb83f33e">
+<div id="outline-container-orgd692388" class="outline-3">
+<h3 id="orgd692388">#008 Create a Map (Associative Array)</h3>
+<div class="outline-text-3" id="text-orgd692388">
 <p>
 In Emacs Lisp, a map or associative array can be represented using a hash table. Hash tables allow for efficient storage and retrieval of key-value pairs. Here's an example of creating and using a hash table:
 </p>
@@ -268,7 +268,7 @@ In Emacs Lisp, a map or associative array can be represented using a hash table.
 </pre>
 </div>
 
-<pre class="example" id="orgcd464ca">
+<pre class="example" id="org49a6c33">
 Value for 'one': 1
 Value for 'two': 2
 Value for 'three': 3
@@ -280,9 +280,9 @@ This example creates a hash table <code>my-map</code> using <code>make-hash-tabl
 </div>
 </div>
 
-<div id="outline-container-org07cbb0d" class="outline-3">
-<h3 id="org07cbb0d">#009 Create a Binary Tree Data Structure</h3>
-<div class="outline-text-3" id="text-org07cbb0d">
+<div id="outline-container-org65fe8db" class="outline-3">
+<h3 id="org65fe8db">#009 Create a Binary Tree Data Structure</h3>
+<div class="outline-text-3" id="text-org65fe8db">
 <p>
 In Emacs Lisp, a binary tree can be represented using an alist (association list) where each node contains a value and pointers to its left and right children. This setup is useful for hierarchical data structures.
 </p>
@@ -313,7 +313,7 @@ In Emacs Lisp, a binary tree can be represented using an alist (association list
 </div>
 
 
-<pre class="example" id="org4e7af6e">
+<pre class="example" id="org7d5a28a">
 Root: 10
 Left Child: 5
 Right Child: 15
@@ -337,9 +337,9 @@ This structure efficiently represents a binary tree, with each node capable of s
 </div>
 </div>
 
-<div id="outline-container-org784837a" class="outline-3">
-<h3 id="org784837a">#010 Shuffle a List</h3>
-<div class="outline-text-3" id="text-org784837a">
+<div id="outline-container-orgf075b80" class="outline-3">
+<h3 id="orgf075b80">#010 Shuffle a List</h3>
+<div class="outline-text-3" id="text-orgf075b80">
 <p>
 To shuffle a list in Emacs Lisp, you can implement a Fisher-Yates shuffle algorithm. This is an efficient way to randomize the elements of a list.
 </p>
@@ -359,7 +359,7 @@ To shuffle a list in Emacs Lisp, you can implement a Fisher-Yates shuffle algori
 </pre>
 </div>
 
-<pre class="example" id="orgc06863a">
+<pre class="example" id="org8e0934e">
 (3 5 1 4 2)
 </pre>
 

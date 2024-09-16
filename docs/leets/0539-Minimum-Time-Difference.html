@@ -1,0 +1,154 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2024-09-16 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>0539. Minimum Time Difference</title>
+<meta name="author" content="d)zharii" />
+<meta name="generator" content="Org Mode" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/t.css"/>
+</head>
+<body>
+<nav><a href="/" tabindex="0">&larrhk; Back to Index</a></nav><div id="preamble" class="status">
+Published 2024-09-16
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">0539. Minimum Time Difference</h1>
+<p class="subtitle" role="doc-subtitle">leetcode</p>
+</header><nav id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgf54f814">Problem</a></li>
+<li><a href="#orgfa41ff7">Solution Description</a></li>
+<li><a href="#orge840448">Example</a></li>
+<li><a href="#org00cdeea">References</a></li>
+<li><a href="#orgaf4ece9">Solution</a></li>
+</ul>
+</div>
+</nav>
+
+<div id="outline-container-orgf54f814" class="outline-2">
+<h2 id="orgf54f814">Problem</h2>
+<div class="outline-text-2" id="text-orgf54f814">
+<p>
+Given a list of 24-hour clock times in the format "HH:MM", return the minimum difference in minutes between any two time points in the list.
+</p>
+
+<p>
+To make the problem clear, let's break down the requirements:
+</p>
+<ul class="org-ul">
+<li>We are given a list of time points in 24-hour format "HH:MM".</li>
+<li>We need to determine the minimum difference in minutes between any two different time points in the list.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgfa41ff7" class="outline-2">
+<h2 id="orgfa41ff7">Solution Description</h2>
+<div class="outline-text-2" id="text-orgfa41ff7">
+<p>
+To implement the solution, we need to take the following steps:
+</p>
+<ol class="org-ol">
+<li>Convert each time point into minutes from "00:00" for easier comparison.</li>
+<li>Sort the list of converted times.</li>
+<li>Compare the differences between consecutive times in the sorted list.</li>
+<li>Additionally, compare the difference between the first and last time point considering the circular nature (24-hour format).</li>
+</ol>
+
+<p>
+The expected time complexity will be O(n log n) because of the sorting step, where n is the number of time points. The space complexity will be O(n) to store the converted times.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge840448" class="outline-2">
+<h2 id="orge840448">Example</h2>
+<div class="outline-text-2" id="text-orge840448">
+<p>
+Given the list of time points: ["23:59", "00:00"]
+</p>
+<ol class="org-ol">
+<li>Convert times to minutes: [1439, 0]</li>
+<li>Sort the times: [0, 1439]</li>
+<li>Calculate consecutive differences: 1439 (0 to 1439) and 1 (1440 - 1439)</li>
+<li>Minimum difference is 1.</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org00cdeea" class="outline-2">
+<h2 id="org00cdeea">References</h2>
+<div class="outline-text-2" id="text-org00cdeea">
+<ul class="org-ul">
+<li>Known algorithms: Sorting</li>
+<li><a href="https://en.wikipedia.org/wiki/Sorting_algorithm">Sorting algorithms overview</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgaf4ece9" class="outline-2">
+<h2 id="orgaf4ece9">Solution</h2>
+<div class="outline-text-2" id="text-orgaf4ece9">
+<div class="org-src-container">
+<pre class="src src-js">
+// Main function to find minimum time difference
+/**
+ * @param {string[]} timePoints
+ * @returns {number}
+ */
+function findMinDifference(timePoints) {
+    /**
+     * Convert HH:MM format to minutes since "00:00"
+     *
+     * @param {string} time
+     * @returns {number}
+     */
+    function timeToMinutes(time) {
+        const [hours, minutes] = time.split(':').map(Number);
+        return hours * 60 + minutes;
+    }
+
+    const times = timePoints.map(time =&gt; timeToMinutes(time));
+
+    times.sort((a, b) =&gt; a - b);
+
+    let minDiff = 1440; // big value total minutes in a day
+
+    for (let i = 1; i &lt; times.length; i++) {
+        minDiff = Math.min(minDiff, times[i] - times[i - 1]);
+    }
+
+    const circularDiff = 1440 - (times[times.length - 1] - times[0]);
+    minDiff = Math.min(minDiff, circularDiff);
+
+    return minDiff;
+}
+
+// Test cases
+const testCases = [
+    { timePoints: ["23:59", "00:00"], expected: 1 },
+    { timePoints: ["00:00", "06:30", "12:45", "13:00"], expected: 15 },
+    { timePoints: ["14:20", "16:15", "14:35", "23:05"], expected: 15 },
+    { timePoints: ["01:10", "23:55"], expected: 75 },
+];
+
+testCases.forEach((test, index) =&gt; {
+    const result = findMinDifference(test.timePoints);
+    console.log(`Test Case ${index + 1}: ${result === test.expected ? 'Passed' : 'Failed'} (Expected: ${test.expected}, Got: ${result})`);
+});
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+&copy; d)zharii. <a href="/sitemap.html">sitemap</a>
+</div>
+</body>
+</html>

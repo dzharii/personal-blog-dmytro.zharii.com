@@ -1,0 +1,89 @@
+﻿#+title: 0539. Minimum Time Difference
+#+subtitle: leetcode
+#+date: <2024-09-16>
+#+language: en
+
+* Problem
+Given a list of 24-hour clock times in the format "HH:MM", return the minimum difference in minutes between any two time points in the list.
+
+To make the problem clear, let's break down the requirements:
+- We are given a list of time points in 24-hour format "HH:MM".
+- We need to determine the minimum difference in minutes between any two different time points in the list.
+
+* Solution Description
+To implement the solution, we need to take the following steps:
+1. Convert each time point into minutes from "00:00" for easier comparison.
+2. Sort the list of converted times.
+3. Compare the differences between consecutive times in the sorted list.
+4. Additionally, compare the difference between the first and last time point considering the circular nature (24-hour format).
+
+The expected time complexity will be O(n log n) because of the sorting step, where n is the number of time points. The space complexity will be O(n) to store the converted times.
+
+* Example
+Given the list of time points: ["23:59", "00:00"]
+1. Convert times to minutes: [1439, 0]
+2. Sort the times: [0, 1439]
+3. Calculate consecutive differences: 1439 (0 to 1439) and 1 (1440 - 1439)
+4. Minimum difference is 1.
+
+* References
+- Known algorithms: Sorting
+- [[https://en.wikipedia.org/wiki/Sorting_algorithm][Sorting algorithms overview]]
+
+* Solution
+
+#+begin_src js :tangle "leetcode_539_minimum_time_difference.js"
+
+// Main function to find minimum time difference
+/**
+ ,* @param {string[]} timePoints
+ ,* @returns {number}
+ ,*/
+function findMinDifference(timePoints) {
+    /**
+     ,* Convert HH:MM format to minutes since "00:00"
+     ,*
+     ,* @param {string} time
+     ,* @returns {number}
+     ,*/
+    function timeToMinutes(time) {
+        const [hours, minutes] = time.split(':').map(Number);
+        return hours * 60 + minutes;
+    }
+
+    const times = timePoints.map(time => timeToMinutes(time));
+
+    times.sort((a, b) => a - b);
+
+    let minDiff = 1440; // big value total minutes in a day
+
+    for (let i = 1; i < times.length; i++) {
+        minDiff = Math.min(minDiff, times[i] - times[i - 1]);
+    }
+
+    const circularDiff = 1440 - (times[times.length - 1] - times[0]);
+    minDiff = Math.min(minDiff, circularDiff);
+
+    return minDiff;
+}
+
+// Test cases
+const testCases = [
+    { timePoints: ["23:59", "00:00"], expected: 1 },
+    { timePoints: ["00:00", "06:30", "12:45", "13:00"], expected: 15 },
+    { timePoints: ["14:20", "16:15", "14:35", "23:05"], expected: 15 },
+    { timePoints: ["01:10", "23:55"], expected: 75 },
+];
+
+testCases.forEach((test, index) => {
+    const result = findMinDifference(test.timePoints);
+    console.log(`Test Case ${index + 1}: ${result === test.expected ? 'Passed' : 'Failed'} (Expected: ${test.expected}, Got: ${result})`);
+});
+#+end_src
+
+#+RESULTS:
+: Test Case 1: Passed (Expected: 1, Got: 1)
+: Test Case 2: Passed (Expected: 15, Got: 15)
+: Test Case 3: Passed (Expected: 15, Got: 15)
+: Test Case 4: Passed (Expected: 75, Got: 75)
+: undefined
