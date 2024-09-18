@@ -1,0 +1,82 @@
+﻿#+title: 0179. Largest Number
+#+subtitle: leetcode
+#+date: <2024-09-18>
+#+language: en
+
+* Problem
+Given a list of non-negative integers, you are required to arrange them such that they form the largest possible number.
+
+The result should be returned as a string. When the input list contains only zeros, the result should be "0".
+
+** Example 1:
+- Input: [10, 2]
+- Output: "210"
+
+** Example 2:
+- Input: [3, 30, 34, 5, 9]
+- Output: "9534330"
+
+Constraints:
+- All elements in the list are non-negative integers.
+
+* Solution Description
+To implement the solution for arranging the numbers to form the largest possible number, we need to:
+1. Convert the integers to strings to facilitate string comparison.
+2. Sort the array with a custom comparator. The comparator should decide the order based on which combination of two numbers results in a larger concatenated number.
+3. Concatenate the sorted numbers to form the final result.
+4. Handle the edge case where the sorted number might start with a '0'.
+
+The key insight is in the custom sorting comparator where for two numbers =a= and =b=, if =a + b= is greater than =b + a=, then =a= should come before =b=.
+
+** Time and Space Complexity:
+- Time Complexity: O(N log N) due to sorting. Here, N is the number of elements in the list.
+- Space Complexity: O(N) for the space required to store the strings and their sorted order.
+
+* Example
+Consider the input array: [3, 30, 34, 5, 9]
+Step-by-step:
+1. Convert to strings: ['3', '30', '34', '5', '9']
+2. Sort using custom comparator: ['9', '5', '34', '3', '30']
+3. Concatenate: "9534330"
+
+* References
+Refer to the sorting comparator concepts and how custom comparators work in modern JavaScript:
+- [[https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort][Array.prototype.sort() - MDN Web Docs]]
+
+* Solution
+[[https://leetcode.com/submissions/detail/1394872925/][2024-09-18 Largest Number - Submission Detail - LeetCode]] =leetcode.com=
+
+Below is the solution implementation with a comprehensive testing setup:
+
+#+begin_src js :tangle 179_largest_number.js
+/**
+ ,* Function to arrange numbers to form the largest number.
+ ,* @param {number[]} nums - An array of non-negative integers
+ ,* @returns {string} - The largest possible number in string format
+ ,*/
+function largestNumber(nums) {
+    const strs = nums.map(n => String(n));
+    strs.sort((a, b) => (b + a) - (a + b));
+    if (strs[0] === '0')  return '0';
+    return strs.join('');
+}
+
+// Helper functions for logging
+const log = typeof NestedInteger !== 'undefined' ? () => {} : console.log;
+const table = typeof NestedInteger!== 'undefined' ? () => {} : console.table;
+
+// Test cases
+const testCases = [
+    { nums: [10, 2], expected: "210" },
+    { nums: [3, 30, 34, 5, 9], expected: "9534330" },
+    { nums: [1], expected: "1" },
+    { nums: [10], expected: "10" },
+    { nums: [0, 0], expected: "0" }, // edge case
+    { nums: [999999998, 999999999, 999999997, 999999996], expected: "999999999999999999899999997999999996"}
+];
+
+testCases.forEach((test, index) => {
+    const result = largestNumber(test.nums);
+    console.log(`Test Case ${index + 1}: ${result === test.expected ? 'Passed' : 'Failed'} (Expected: ${test.expected}, Got: ${result})`);
+});
+#+end_src

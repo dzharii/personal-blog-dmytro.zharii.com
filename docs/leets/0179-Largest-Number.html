@@ -1,0 +1,190 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2024-09-18 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>0179. Largest Number</title>
+<meta name="author" content="d)zharii" />
+<meta name="generator" content="Org Mode" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/t.css"/>
+</head>
+<body>
+<nav><a href="/" tabindex="0">&larrhk; Back to Index</a></nav><div id="preamble" class="status">
+Published 2024-09-18
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">0179. Largest Number</h1>
+<p class="subtitle" role="doc-subtitle">leetcode</p>
+</header><nav id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org30ff66d">Problem</a>
+<ul>
+<li><a href="#org89ee901">Example 1:</a></li>
+<li><a href="#orgfc2bce0">Example 2:</a></li>
+</ul>
+</li>
+<li><a href="#orgcb13723">Solution Description</a>
+<ul>
+<li><a href="#orgc808b42">Time and Space Complexity:</a></li>
+</ul>
+</li>
+<li><a href="#org95ef823">Example</a></li>
+<li><a href="#org4f0beef">References</a></li>
+<li><a href="#orgcafc308">Solution</a></li>
+</ul>
+</div>
+</nav>
+
+<div id="outline-container-org30ff66d" class="outline-2">
+<h2 id="org30ff66d">Problem</h2>
+<div class="outline-text-2" id="text-org30ff66d">
+<p>
+Given a list of non-negative integers, you are required to arrange them such that they form the largest possible number.
+</p>
+
+<p>
+The result should be returned as a string. When the input list contains only zeros, the result should be "0".
+</p>
+</div>
+
+<div id="outline-container-org89ee901" class="outline-3">
+<h3 id="org89ee901">Example 1:</h3>
+<div class="outline-text-3" id="text-org89ee901">
+<ul class="org-ul">
+<li>Input: [10, 2]</li>
+<li>Output: "210"</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgfc2bce0" class="outline-3">
+<h3 id="orgfc2bce0">Example 2:</h3>
+<div class="outline-text-3" id="text-orgfc2bce0">
+<ul class="org-ul">
+<li>Input: [3, 30, 34, 5, 9]</li>
+<li>Output: "9534330"</li>
+</ul>
+
+<p>
+Constraints:
+</p>
+<ul class="org-ul">
+<li>All elements in the list are non-negative integers.</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgcb13723" class="outline-2">
+<h2 id="orgcb13723">Solution Description</h2>
+<div class="outline-text-2" id="text-orgcb13723">
+<p>
+To implement the solution for arranging the numbers to form the largest possible number, we need to:
+</p>
+<ol class="org-ol">
+<li>Convert the integers to strings to facilitate string comparison.</li>
+<li>Sort the array with a custom comparator. The comparator should decide the order based on which combination of two numbers results in a larger concatenated number.</li>
+<li>Concatenate the sorted numbers to form the final result.</li>
+<li>Handle the edge case where the sorted number might start with a '0'.</li>
+</ol>
+
+<p>
+The key insight is in the custom sorting comparator where for two numbers <code>a</code> and <code>b</code>, if <code>a + b</code> is greater than <code>b + a</code>, then <code>a</code> should come before <code>b</code>.
+</p>
+</div>
+
+<div id="outline-container-orgc808b42" class="outline-3">
+<h3 id="orgc808b42">Time and Space Complexity:</h3>
+<div class="outline-text-3" id="text-orgc808b42">
+<ul class="org-ul">
+<li>Time Complexity: O(N log N) due to sorting. Here, N is the number of elements in the list.</li>
+<li>Space Complexity: O(N) for the space required to store the strings and their sorted order.</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org95ef823" class="outline-2">
+<h2 id="org95ef823">Example</h2>
+<div class="outline-text-2" id="text-org95ef823">
+<p>
+Consider the input array: [3, 30, 34, 5, 9]
+Step-by-step:
+</p>
+<ol class="org-ol">
+<li>Convert to strings: ['3', '30', '34', '5', '9']</li>
+<li>Sort using custom comparator: ['9', '5', '34', '3', '30']</li>
+<li>Concatenate: "9534330"</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org4f0beef" class="outline-2">
+<h2 id="org4f0beef">References</h2>
+<div class="outline-text-2" id="text-org4f0beef">
+<p>
+Refer to the sorting comparator concepts and how custom comparators work in modern JavaScript:
+</p>
+<ul class="org-ul">
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort">Array.prototype.sort() - MDN Web Docs</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgcafc308" class="outline-2">
+<h2 id="orgcafc308">Solution</h2>
+<div class="outline-text-2" id="text-orgcafc308">
+<p>
+<a href="https://leetcode.com/submissions/detail/1394872925/">2024-09-18 Largest Number - Submission Detail - LeetCode</a> <code>leetcode.com</code>
+</p>
+
+<p>
+Below is the solution implementation with a comprehensive testing setup:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">/**
+ * Function to arrange numbers to form the largest number.
+ * @param {number[]} nums - An array of non-negative integers
+ * @returns {string} - The largest possible number in string format
+ */
+function largestNumber(nums) {
+    const strs = nums.map(n =&gt; String(n));
+    strs.sort((a, b) =&gt; (b + a) - (a + b));
+    if (strs[0] === '0')  return '0';
+    return strs.join('');
+}
+
+// Helper functions for logging
+const log = typeof NestedInteger !== 'undefined' ? () =&gt; {} : console.log;
+const table = typeof NestedInteger!== 'undefined' ? () =&gt; {} : console.table;
+
+// Test cases
+const testCases = [
+    { nums: [10, 2], expected: "210" },
+    { nums: [3, 30, 34, 5, 9], expected: "9534330" },
+    { nums: [1], expected: "1" },
+    { nums: [10], expected: "10" },
+    { nums: [0, 0], expected: "0" }, // edge case
+    { nums: [999999998, 999999999, 999999997, 999999996], expected: "999999999999999999899999997999999996"}
+];
+
+testCases.forEach((test, index) =&gt; {
+    const result = largestNumber(test.nums);
+    console.log(`Test Case ${index + 1}: ${result === test.expected ? 'Passed' : 'Failed'} (Expected: ${test.expected}, Got: ${result})`);
+});
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+&copy; d)zharii. <a href="/sitemap.html">sitemap</a>
+</div>
+</body>
+</html>

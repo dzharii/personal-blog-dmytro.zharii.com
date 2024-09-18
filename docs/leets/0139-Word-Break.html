@@ -1,0 +1,162 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2024-09-18 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>0139. Word Break</title>
+<meta name="author" content="d)zharii" />
+<meta name="generator" content="Org Mode" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/t.css"/>
+</head>
+<body>
+<nav><a href="/" tabindex="0">&larrhk; Back to Index</a></nav><div id="preamble" class="status">
+Published 2024-09-17
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">0139. Word Break</h1>
+<p class="subtitle" role="doc-subtitle">leetcode</p>
+</header><nav id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org650fd5a">Problem</a></li>
+<li><a href="#orgba9bf44">Solution Description</a></li>
+<li><a href="#orgbbaded6">Example</a></li>
+<li><a href="#org122282a">References</a></li>
+<li><a href="#orgd3ad002">Solution</a></li>
+</ul>
+</div>
+</nav>
+
+<div id="outline-container-org650fd5a" class="outline-2">
+<h2 id="org650fd5a">Problem</h2>
+<div class="outline-text-2" id="text-org650fd5a">
+<p>
+Given a string <code>s</code> and a dictionary of strings <code>wordDict</code>, return <code>true</code> if <code>s</code> can be segmented into a space-separated sequence of one or more dictionary words.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgba9bf44" class="outline-2">
+<h2 id="orgba9bf44">Solution Description</h2>
+<div class="outline-text-2" id="text-orgba9bf44">
+<p>
+To implement a solution for this problem, we need to use a dynamic programming approach. We will create a boolean array <code>dp</code> where <code>dp[i]</code> indicates whether the substring <code>s[0:i]</code> can be segmented into valid dictionary words. The array will be initialized with <code>false</code>, except for <code>dp[0]</code> which will be <code>true</code> since an empty string can always be segmented.
+</p>
+
+<ol class="org-ol">
+<li>Iterate over the string <code>s</code> with an index <code>i</code>.</li>
+<li>For each position <code>i</code>, iterate again with an index <code>j</code> such that <code>0 &lt;</code> j &lt; i=.</li>
+<li>Check if the substring <code>s[j:i]</code> exists in <code>wordDict</code> and <code>dp[j]</code> is <code>true</code>.
+If both conditions are satisfied, set <code>dp[i]</code> to <code>true</code>.</li>
+<li>Finally, return <code>dp[n]</code> where <code>n</code> is the length of the string <code>s</code>.</li>
+</ol>
+
+<p>
+The time complexity of this approach is <code>O(n * m)</code> where <code>n</code> is the length of the string <code>s</code> and <code>m</code> is the maximum length of the words in the dictionary. The space complexity is <code>O(n)</code> due to the <code>dp</code> array.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgbbaded6" class="outline-2">
+<h2 id="orgbbaded6">Example</h2>
+<div class="outline-text-2" id="text-orgbbaded6">
+<p>
+Let's assume <code>s</code> is "leetcode" and <code>wordDict</code> contains ["leet", "code"].
+</p>
+<ol class="org-ol">
+<li>Initialize <code>dp</code> as [true, false, false, false, false, false, false, false, false].</li>
+<li>Iterate over <code>s</code>:
+<ul class="org-ul">
+<li><code>i</code> = 1 to 8:
+<ul class="org-ul">
+<li>For <code>i</code> = 4: Substring = "leet" is in <code>wordDict</code> and <code>dp[0]</code> is true. So, <code>dp[4]</code> becomes true.</li>
+<li>For <code>i</code> = 8: Substring = "code" is in <code>wordDict</code> and <code>dp[4]</code> is true. So, <code>dp[8]</code> becomes true.</li>
+</ul></li>
+</ul></li>
+<li><code>dp[8]</code> is true, so the function returns true.</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org122282a" class="outline-2">
+<h2 id="org122282a">References</h2>
+<div class="outline-text-2" id="text-org122282a">
+<ul class="org-ul">
+<li>Dynamic Programming: <a href="https://en.wikipedia.org/wiki/Dynamic_programming">https://en.wikipedia.org/wiki/Dynamic_programming</a></li>
+<li>LeetCode problem description: <a href="https://leetcode.com/problems/word-break">139. Word Break</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgd3ad002" class="outline-2">
+<h2 id="orgd3ad002">Solution</h2>
+<div class="outline-text-2" id="text-orgd3ad002">
+<p>
+Submission: <a href="https://leetcode.com/submissions/detail/1394001578/">2024-09-18 Word Break - Submission Detail - LeetCode</a> <code>leetcode.com</code>
+</p>
+
+<p>
+Here’s the implementation of the solution along with the test cases:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">
+/**
+ * @param {string} s - The input string to be segmented.
+ * @param {string[]} wordDict - The dictionary containing valid words.
+ * @return {boolean} - Returns true if s can be segmented into a sequence of words in wordDict.
+ */
+function wordBreak(s, wordDict) {
+    const log = typeof NestedInteger !== 'undefined' ? () =&gt; {} : console.log;
+    const table = typeof NestedInteger !== 'undefined' ? () =&gt; {} : console.table;
+
+
+    const wordSet = new Set(wordDict);
+    const n = s.length;
+    const canBreak = Array(n + 1).fill(false);
+    canBreak[0] = true;
+
+    log(`s=${s}`);
+    log(`wordDict=${wordDict}`);
+
+    for (let wend = 1; wend &lt;= n; wend++) {
+        for (let wstart = 0; wstart &lt; wend; wstart++) {
+            const word = canBreak[wstart] &amp;&amp; s.substring(wstart, wend);
+            log(`#wstart='${wstart}'; #wend='${wend}'; #word='${word}'`);
+            if (wordSet.has(word)) {
+                canBreak[wend] = true;
+                break;
+            }
+        }
+    }
+
+    return canBreak[n];
+}
+
+// Test casesxo
+const testCases = [
+    { s: "leetcode", wordDict: ["leet", "code"], expected: true },
+    { s: "applepenapple", wordDict: ["apple", "pen"], expected: true },
+    { s: "catsandog", wordDict: ["cats", "dog", "sand", "and", "cat"], expected: false },
+    { s: "aaaaaaa", wordDict: ["aaaa","aaa"], expected: true },
+    { s: "abcd", wordDict: ["a","abc","b","cd"], expected: true },
+];
+
+testCases.forEach((test, index) =&gt; {
+    const result = wordBreak(test.s, test.wordDict);
+    console.log(`Test Case ${index + 1}: ${result === test.expected ? 'Passed' : 'Failed'} (Expected: ${test.expected}, Got: ${result})`);
+});
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+&copy; d)zharii. <a href="/sitemap.html">sitemap</a>
+</div>
+</body>
+</html>
