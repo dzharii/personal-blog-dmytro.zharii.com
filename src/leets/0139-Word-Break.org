@@ -1,0 +1,278 @@
+﻿#+title: 0139. Word Break
+#+subtitle: leetcode
+#+date: <2024-09-17>
+#+language: en
+
+** Problem
+Given a string =s= and a dictionary of strings =wordDict=, return =true= if =s= can be segmented into a space-separated sequence of one or more dictionary words.
+
+** Solution Description
+To implement a solution for this problem, we need to use a dynamic programming approach. We will create a boolean array =dp= where =dp[i]= indicates whether the substring =s[0:i]= can be segmented into valid dictionary words. The array will be initialized with =false=, except for =dp[0]= which will be =true= since an empty string can always be segmented.
+
+1. Iterate over the string =s= with an index =i=.
+2. For each position =i=, iterate again with an index =j= such that =0 <= j < i=.
+3. Check if the substring =s[j:i]= exists in =wordDict= and =dp[j]= is =true=.
+   If both conditions are satisfied, set =dp[i]= to =true=.
+4. Finally, return =dp[n]= where =n= is the length of the string =s=.
+
+The time complexity of this approach is =O(n * m)= where =n= is the length of the string =s= and =m= is the maximum length of the words in the dictionary. The space complexity is =O(n)= due to the =dp= array.
+
+** Example
+Let's assume =s= is "leetcode" and =wordDict= contains ["leet", "code"].
+1. Initialize =dp= as [true, false, false, false, false, false, false, false, false].
+2. Iterate over =s=:
+   - =i= = 1 to 8:
+     - For =i= = 4: Substring = "leet" is in =wordDict= and =dp[0]= is true. So, =dp[4]= becomes true.
+     - For =i= = 8: Substring = "code" is in =wordDict= and =dp[4]= is true. So, =dp[8]= becomes true.
+3. =dp[8]= is true, so the function returns true.
+
+** References
+- Dynamic Programming: https://en.wikipedia.org/wiki/Dynamic_programming
+- LeetCode problem description: [[https://leetcode.com/problems/word-break][139. Word Break]]
+
+** Solution
+Submission: [[https://leetcode.com/submissions/detail/1394001578/][2024-09-18 Word Break - Submission Detail - LeetCode]] =leetcode.com=
+
+Here’s the implementation of the solution along with the test cases:
+
+#+begin_src js :tangle "139_word_break_solution.js"
+
+/**
+ ,* @param {string} s - The input string to be segmented.
+ ,* @param {string[]} wordDict - The dictionary containing valid words.
+ ,* @return {boolean} - Returns true if s can be segmented into a sequence of words in wordDict.
+ ,*/
+function wordBreak(s, wordDict) {
+    const log = typeof NestedInteger !== 'undefined' ? () => {} : console.log;
+    const table = typeof NestedInteger !== 'undefined' ? () => {} : console.table;
+
+
+    const wordSet = new Set(wordDict);
+    const n = s.length;
+    const canBreak = Array(n + 1).fill(false);
+    canBreak[0] = true;
+
+    log(`s=${s}`);
+    log(`wordDict=${wordDict}`);
+
+    for (let wend = 1; wend <= n; wend++) {
+        for (let wstart = 0; wstart < wend; wstart++) {
+            const word = canBreak[wstart] && s.substring(wstart, wend);
+            log(`#wstart='${wstart}'; #wend='${wend}'; #word='${word}'`);
+            if (wordSet.has(word)) {
+                canBreak[wend] = true;
+                break;
+            }
+        }
+    }
+
+    return canBreak[n];
+}
+
+// Test casesxo
+const testCases = [
+    { s: "leetcode", wordDict: ["leet", "code"], expected: true },
+    { s: "applepenapple", wordDict: ["apple", "pen"], expected: true },
+    { s: "catsandog", wordDict: ["cats", "dog", "sand", "and", "cat"], expected: false },
+    { s: "aaaaaaa", wordDict: ["aaaa","aaa"], expected: true },
+    { s: "abcd", wordDict: ["a","abc","b","cd"], expected: true },
+];
+
+testCases.forEach((test, index) => {
+    const result = wordBreak(test.s, test.wordDict);
+    console.log(`Test Case ${index + 1}: ${result === test.expected ? 'Passed' : 'Failed'} (Expected: ${test.expected}, Got: ${result})`);
+});
+#+end_src
+
+#+RESULTS:
+#+begin_example
+s=leetcode
+wordDict=leet,code
+#wstart='0'; #wend='1'; #word='l'
+#wstart='0'; #wend='2'; #word='le'
+#wstart='1'; #wend='2'; #word='false'
+#wstart='0'; #wend='3'; #word='lee'
+#wstart='1'; #wend='3'; #word='false'
+#wstart='2'; #wend='3'; #word='false'
+#wstart='0'; #wend='4'; #word='leet'
+#wstart='0'; #wend='5'; #word='leetc'
+#wstart='1'; #wend='5'; #word='false'
+#wstart='2'; #wend='5'; #word='false'
+#wstart='3'; #wend='5'; #word='false'
+#wstart='4'; #wend='5'; #word='c'
+#wstart='0'; #wend='6'; #word='leetco'
+#wstart='1'; #wend='6'; #word='false'
+#wstart='2'; #wend='6'; #word='false'
+#wstart='3'; #wend='6'; #word='false'
+#wstart='4'; #wend='6'; #word='co'
+#wstart='5'; #wend='6'; #word='false'
+#wstart='0'; #wend='7'; #word='leetcod'
+#wstart='1'; #wend='7'; #word='false'
+#wstart='2'; #wend='7'; #word='false'
+#wstart='3'; #wend='7'; #word='false'
+#wstart='4'; #wend='7'; #word='cod'
+#wstart='5'; #wend='7'; #word='false'
+#wstart='6'; #wend='7'; #word='false'
+#wstart='0'; #wend='8'; #word='leetcode'
+#wstart='1'; #wend='8'; #word='false'
+#wstart='2'; #wend='8'; #word='false'
+#wstart='3'; #wend='8'; #word='false'
+#wstart='4'; #wend='8'; #word='code'
+Test Case 1: Passed (Expected: true, Got: true)
+s=applepenapple
+wordDict=apple,pen
+#wstart='0'; #wend='1'; #word='a'
+#wstart='0'; #wend='2'; #word='ap'
+#wstart='1'; #wend='2'; #word='false'
+#wstart='0'; #wend='3'; #word='app'
+#wstart='1'; #wend='3'; #word='false'
+#wstart='2'; #wend='3'; #word='false'
+#wstart='0'; #wend='4'; #word='appl'
+#wstart='1'; #wend='4'; #word='false'
+#wstart='2'; #wend='4'; #word='false'
+#wstart='3'; #wend='4'; #word='false'
+#wstart='0'; #wend='5'; #word='apple'
+#wstart='0'; #wend='6'; #word='applep'
+#wstart='1'; #wend='6'; #word='false'
+#wstart='2'; #wend='6'; #word='false'
+#wstart='3'; #wend='6'; #word='false'
+#wstart='4'; #wend='6'; #word='false'
+#wstart='5'; #wend='6'; #word='p'
+#wstart='0'; #wend='7'; #word='applepe'
+#wstart='1'; #wend='7'; #word='false'
+#wstart='2'; #wend='7'; #word='false'
+#wstart='3'; #wend='7'; #word='false'
+#wstart='4'; #wend='7'; #word='false'
+#wstart='5'; #wend='7'; #word='pe'
+#wstart='6'; #wend='7'; #word='false'
+#wstart='0'; #wend='8'; #word='applepen'
+#wstart='1'; #wend='8'; #word='false'
+#wstart='2'; #wend='8'; #word='false'
+#wstart='3'; #wend='8'; #word='false'
+#wstart='4'; #wend='8'; #word='false'
+#wstart='5'; #wend='8'; #word='pen'
+#wstart='0'; #wend='9'; #word='applepena'
+#wstart='1'; #wend='9'; #word='false'
+#wstart='2'; #wend='9'; #word='false'
+#wstart='3'; #wend='9'; #word='false'
+#wstart='4'; #wend='9'; #word='false'
+#wstart='5'; #wend='9'; #word='pena'
+#wstart='6'; #wend='9'; #word='false'
+#wstart='7'; #wend='9'; #word='false'
+#wstart='8'; #wend='9'; #word='a'
+#wstart='0'; #wend='10'; #word='applepenap'
+#wstart='1'; #wend='10'; #word='false'
+#wstart='2'; #wend='10'; #word='false'
+#wstart='3'; #wend='10'; #word='false'
+#wstart='4'; #wend='10'; #word='false'
+#wstart='5'; #wend='10'; #word='penap'
+#wstart='6'; #wend='10'; #word='false'
+#wstart='7'; #wend='10'; #word='false'
+#wstart='8'; #wend='10'; #word='ap'
+#wstart='9'; #wend='10'; #word='false'
+#wstart='0'; #wend='11'; #word='applepenapp'
+#wstart='1'; #wend='11'; #word='false'
+#wstart='2'; #wend='11'; #word='false'
+#wstart='3'; #wend='11'; #word='false'
+#wstart='4'; #wend='11'; #word='false'
+#wstart='5'; #wend='11'; #word='penapp'
+#wstart='6'; #wend='11'; #word='false'
+#wstart='7'; #wend='11'; #word='false'
+#wstart='8'; #wend='11'; #word='app'
+#wstart='9'; #wend='11'; #word='false'
+#wstart='10'; #wend='11'; #word='false'
+#wstart='0'; #wend='12'; #word='applepenappl'
+#wstart='1'; #wend='12'; #word='false'
+#wstart='2'; #wend='12'; #word='false'
+#wstart='3'; #wend='12'; #word='false'
+#wstart='4'; #wend='12'; #word='false'
+#wstart='5'; #wend='12'; #word='penappl'
+#wstart='6'; #wend='12'; #word='false'
+#wstart='7'; #wend='12'; #word='false'
+#wstart='8'; #wend='12'; #word='appl'
+#wstart='9'; #wend='12'; #word='false'
+#wstart='10'; #wend='12'; #word='false'
+#wstart='11'; #wend='12'; #word='false'
+#wstart='0'; #wend='13'; #word='applepenapple'
+#wstart='1'; #wend='13'; #word='false'
+#wstart='2'; #wend='13'; #word='false'
+#wstart='3'; #wend='13'; #word='false'
+#wstart='4'; #wend='13'; #word='false'
+#wstart='5'; #wend='13'; #word='penapple'
+#wstart='6'; #wend='13'; #word='false'
+#wstart='7'; #wend='13'; #word='false'
+#wstart='8'; #wend='13'; #word='apple'
+Test Case 2: Passed (Expected: true, Got: true)
+s=catsandog
+wordDict=cats,dog,sand,and,cat
+#wstart='0'; #wend='1'; #word='c'
+#wstart='0'; #wend='2'; #word='ca'
+#wstart='1'; #wend='2'; #word='false'
+#wstart='0'; #wend='3'; #word='cat'
+#wstart='0'; #wend='4'; #word='cats'
+#wstart='0'; #wend='5'; #word='catsa'
+#wstart='1'; #wend='5'; #word='false'
+#wstart='2'; #wend='5'; #word='false'
+#wstart='3'; #wend='5'; #word='sa'
+#wstart='4'; #wend='5'; #word='a'
+#wstart='0'; #wend='6'; #word='catsan'
+#wstart='1'; #wend='6'; #word='false'
+#wstart='2'; #wend='6'; #word='false'
+#wstart='3'; #wend='6'; #word='san'
+#wstart='4'; #wend='6'; #word='an'
+#wstart='5'; #wend='6'; #word='false'
+#wstart='0'; #wend='7'; #word='catsand'
+#wstart='1'; #wend='7'; #word='false'
+#wstart='2'; #wend='7'; #word='false'
+#wstart='3'; #wend='7'; #word='sand'
+#wstart='0'; #wend='8'; #word='catsando'
+#wstart='1'; #wend='8'; #word='false'
+#wstart='2'; #wend='8'; #word='false'
+#wstart='3'; #wend='8'; #word='sando'
+#wstart='4'; #wend='8'; #word='ando'
+#wstart='5'; #wend='8'; #word='false'
+#wstart='6'; #wend='8'; #word='false'
+#wstart='7'; #wend='8'; #word='o'
+#wstart='0'; #wend='9'; #word='catsandog'
+#wstart='1'; #wend='9'; #word='false'
+#wstart='2'; #wend='9'; #word='false'
+#wstart='3'; #wend='9'; #word='sandog'
+#wstart='4'; #wend='9'; #word='andog'
+#wstart='5'; #wend='9'; #word='false'
+#wstart='6'; #wend='9'; #word='false'
+#wstart='7'; #wend='9'; #word='og'
+#wstart='8'; #wend='9'; #word='false'
+Test Case 3: Passed (Expected: false, Got: false)
+s=aaaaaaa
+wordDict=aaaa,aaa
+#wstart='0'; #wend='1'; #word='a'
+#wstart='0'; #wend='2'; #word='aa'
+#wstart='1'; #wend='2'; #word='false'
+#wstart='0'; #wend='3'; #word='aaa'
+#wstart='0'; #wend='4'; #word='aaaa'
+#wstart='0'; #wend='5'; #word='aaaaa'
+#wstart='1'; #wend='5'; #word='false'
+#wstart='2'; #wend='5'; #word='false'
+#wstart='3'; #wend='5'; #word='aa'
+#wstart='4'; #wend='5'; #word='a'
+#wstart='0'; #wend='6'; #word='aaaaaa'
+#wstart='1'; #wend='6'; #word='false'
+#wstart='2'; #wend='6'; #word='false'
+#wstart='3'; #wend='6'; #word='aaa'
+#wstart='0'; #wend='7'; #word='aaaaaaa'
+#wstart='1'; #wend='7'; #word='false'
+#wstart='2'; #wend='7'; #word='false'
+#wstart='3'; #wend='7'; #word='aaaa'
+Test Case 4: Passed (Expected: true, Got: true)
+s=abcd
+wordDict=a,abc,b,cd
+#wstart='0'; #wend='1'; #word='a'
+#wstart='0'; #wend='2'; #word='ab'
+#wstart='1'; #wend='2'; #word='b'
+#wstart='0'; #wend='3'; #word='abc'
+#wstart='0'; #wend='4'; #word='abcd'
+#wstart='1'; #wend='4'; #word='bcd'
+#wstart='2'; #wend='4'; #word='cd'
+Test Case 5: Passed (Expected: true, Got: true)
+undefined
+#+end_example
