@@ -37,6 +37,8 @@ Consider the string "aaabaaaa":
 For a deeper understanding of string manipulation techniques, consider reviewing [[https://en.wikipedia.org/wiki/String_(computer_science)][String (Computer Science)]].
 
 * Solution
+[[https://leetcode.com/submissions/detail/1440181804/][2024-11-01 Delete Characters to Make Fancy String - Submission Detail - LeetCode]] =leetcode.com=
+
 Below is a JavaScript implementation of the solution complete with test cases:
 
 #+begin_src js :tangle "1957_delete_characters_make_fancy_string.js"
