@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2024-09-18 -->
+<!-- 2024-11-01 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>0394. Decode String</title>
@@ -22,22 +22,22 @@ Published 2024-05-24
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgd46ff74">Problem Overview</a></li>
-<li><a href="#orgac543d1">Solution Outline</a>
+<li><a href="#orgfd4a66f">Problem Overview</a></li>
+<li><a href="#orge5565a4">Solution Outline</a>
 <ul>
-<li><a href="#orgdd6518c">Preferred Structure</a></li>
-<li><a href="#org3fc680a">Brute Force vs Optimal Solution</a></li>
-<li><a href="#orgb592d04">Algorithm Choice</a></li>
+<li><a href="#org24c2605">Preferred Structure</a></li>
+<li><a href="#org1d2dc37">Brute Force vs Optimal Solution</a></li>
+<li><a href="#org8a37c64">Algorithm Choice</a></li>
 </ul>
 </li>
-<li><a href="#org29ad52c">Solution Implementation</a></li>
+<li><a href="#orga0a59f4">Solution Implementation</a></li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-orgd46ff74" class="outline-2">
-<h2 id="orgd46ff74">Problem Overview</h2>
-<div class="outline-text-2" id="text-orgd46ff74">
+<div id="outline-container-orgfd4a66f" class="outline-2">
+<h2 id="orgfd4a66f">Problem Overview</h2>
+<div class="outline-text-2" id="text-orgfd4a66f">
 <p>
 The problem involves decoding a given encoded string that follows a specific format: numbers followed by square brackets containing a substring. The numbers indicate how many times the substring within the brackets should be repeated. The string can be nested with multiple levels of encoding.
 </p>
@@ -52,13 +52,13 @@ Example:
 </div>
 </div>
 
-<div id="outline-container-orgac543d1" class="outline-2">
-<h2 id="orgac543d1">Solution Outline</h2>
-<div class="outline-text-2" id="text-orgac543d1">
+<div id="outline-container-orge5565a4" class="outline-2">
+<h2 id="orge5565a4">Solution Outline</h2>
+<div class="outline-text-2" id="text-orge5565a4">
 </div>
-<div id="outline-container-orgdd6518c" class="outline-3">
-<h3 id="orgdd6518c">Preferred Structure</h3>
-<div class="outline-text-3" id="text-orgdd6518c">
+<div id="outline-container-org24c2605" class="outline-3">
+<h3 id="org24c2605">Preferred Structure</h3>
+<div class="outline-text-3" id="text-org24c2605">
 <ul class="org-ul">
 <li>Use a stack to help with decoding, as it can handle nested patterns effectively.</li>
 <li>Utilize string operations to build the decoded result.</li>
@@ -66,9 +66,9 @@ Example:
 </div>
 </div>
 
-<div id="outline-container-org3fc680a" class="outline-3">
-<h3 id="org3fc680a">Brute Force vs Optimal Solution</h3>
-<div class="outline-text-3" id="text-org3fc680a">
+<div id="outline-container-org1d2dc37" class="outline-3">
+<h3 id="org1d2dc37">Brute Force vs Optimal Solution</h3>
+<div class="outline-text-3" id="text-org1d2dc37">
 <ul class="org-ul">
 <li><b><b>Brute Force Approach:</b></b> Recursively decode the string, which might be inefficient for deeply nested patterns due to call stack limitations.</li>
 <li><b><b>Optimal Solution:</b></b> Use an iterative approach with a stack to manage nested structures and avoid recursion depth issues.</li>
@@ -76,9 +76,9 @@ Example:
 </div>
 </div>
 
-<div id="outline-container-orgb592d04" class="outline-3">
-<h3 id="orgb592d04">Algorithm Choice</h3>
-<div class="outline-text-3" id="text-orgb592d04">
+<div id="outline-container-org8a37c64" class="outline-3">
+<h3 id="org8a37c64">Algorithm Choice</h3>
+<div class="outline-text-3" id="text-org8a37c64">
 <ul class="org-ul">
 <li><b><b>Stack-based Decoding:</b></b> This method iterates through the string, pushing numbers and current substrings onto the stack whenever a new bracket is encountered. When a closing bracket is found, it constructs the substring by popping from the stack, which ensures correct handling of nested patterns.</li>
 </ul>
@@ -86,9 +86,9 @@ Example:
 </div>
 </div>
 
-<div id="outline-container-org29ad52c" class="outline-2">
-<h2 id="org29ad52c">Solution Implementation</h2>
-<div class="outline-text-2" id="text-org29ad52c">
+<div id="outline-container-orga0a59f4" class="outline-2">
+<h2 id="orga0a59f4">Solution Implementation</h2>
+<div class="outline-text-2" id="text-orga0a59f4">
 <p>
 Here's the skeleton of the solution with test cases. The core implementation will follow in incremental steps.
 </p>

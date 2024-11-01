@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2024-09-18 -->
+<!-- 2024-11-01 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>1653. Minimum Deletions to Make String Balanced</title>
@@ -22,39 +22,39 @@ Published 2024-07-29
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgfa56e2b">Links</a></li>
-<li><a href="#org07978a0">Problem:</a></li>
-<li><a href="#org7ae3515">Solution Description:</a></li>
-<li><a href="#org34df981">Time Complexity: O(n), where n is the length of the string.</a></li>
-<li><a href="#orgef0651d">Space Complexity: O(1), as we use a constant amount of extra space.</a></li>
-<li><a href="#org9c84559">Example:</a></li>
-<li><a href="#org0368be0">Setup:</a></li>
-<li><a href="#org23abae3">Test Execution:</a></li>
+<li><a href="#orge8e0278">Links</a></li>
+<li><a href="#orgefffd0c">Problem:</a></li>
+<li><a href="#org3d6f1ff">Solution Description:</a></li>
+<li><a href="#org5ded2c4">Time Complexity: O(n), where n is the length of the string.</a></li>
+<li><a href="#orgaaec8f8">Space Complexity: O(1), as we use a constant amount of extra space.</a></li>
+<li><a href="#orgace1fd7">Example:</a></li>
+<li><a href="#org6f001b4">Setup:</a></li>
+<li><a href="#orgf76c5ce">Test Execution:</a></li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-orgfa56e2b" class="outline-2">
-<h2 id="orgfa56e2b">Links</h2>
-<div class="outline-text-2" id="text-orgfa56e2b">
+<div id="outline-container-orge8e0278" class="outline-2">
+<h2 id="orge8e0278">Links</h2>
+<div class="outline-text-2" id="text-orge8e0278">
 <ul class="org-ul">
 <li>Submission <a href="https://leetcode.com/submissions/detail/1337966430/">2024-07-30 Minimum Deletions to Make String Balanced - Submission Detail - LeetCode</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org07978a0" class="outline-2">
-<h2 id="org07978a0">Problem:</h2>
-<div class="outline-text-2" id="text-org07978a0">
+<div id="outline-container-orgefffd0c" class="outline-2">
+<h2 id="orgefffd0c">Problem:</h2>
+<div class="outline-text-2" id="text-orgefffd0c">
 <p>
 The problem "1653. Minimum Deletions to Make String Balanced" from LeetCode requires you to find the minimum number of deletions needed to make a given string `s`, which consists of characters 'a' and 'b', balanced. A string is considered balanced if there is no 'b' that appears before an 'a' in the string.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org7ae3515" class="outline-2">
-<h2 id="org7ae3515">Solution Description:</h2>
-<div class="outline-text-2" id="text-org7ae3515">
+<div id="outline-container-org3d6f1ff" class="outline-2">
+<h2 id="org3d6f1ff">Solution Description:</h2>
+<div class="outline-text-2" id="text-org3d6f1ff">
 <p>
 To implement the solution, we need to keep track of the prefixes of 'a' and 'b'. Specifically, we can calculate the minimum deletions required to balance the string using a single pass through the string, maintaining a count of 'b's seen before each 'a'. We achieve this by tracking cumulative counts of 'b's and calculating the minimum number of deletions at each step.
 </p>
@@ -72,16 +72,16 @@ To implement the solution, we need to keep track of the prefixes of 'a' and 'b'.
 </div>
 </div>
 
-<div id="outline-container-org34df981" class="outline-2">
-<h2 id="org34df981">Time Complexity: O(n), where n is the length of the string.</h2>
+<div id="outline-container-org5ded2c4" class="outline-2">
+<h2 id="org5ded2c4">Time Complexity: O(n), where n is the length of the string.</h2>
 </div>
-<div id="outline-container-orgef0651d" class="outline-2">
-<h2 id="orgef0651d">Space Complexity: O(1), as we use a constant amount of extra space.</h2>
+<div id="outline-container-orgaaec8f8" class="outline-2">
+<h2 id="orgaaec8f8">Space Complexity: O(1), as we use a constant amount of extra space.</h2>
 </div>
 
-<div id="outline-container-org9c84559" class="outline-2">
-<h2 id="org9c84559">Example:</h2>
-<div class="outline-text-2" id="text-org9c84559">
+<div id="outline-container-orgace1fd7" class="outline-2">
+<h2 id="orgace1fd7">Example:</h2>
+<div class="outline-text-2" id="text-orgace1fd7">
 <p>
 Let's consider the string "aababbab":
 </p>
@@ -96,18 +96,18 @@ Let's consider the string "aababbab":
 </div>
 </div>
 
-<div id="outline-container-org0368be0" class="outline-2">
-<h2 id="org0368be0">Setup:</h2>
-<div class="outline-text-2" id="text-org0368be0">
+<div id="outline-container-org6f001b4" class="outline-2">
+<h2 id="org6f001b4">Setup:</h2>
+<div class="outline-text-2" id="text-org6f001b4">
 <p>
 Here is the general framework of the solution in JavaScript. We'll include a testing setup using `console.log` statements to verify the correctness of our solution.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org23abae3" class="outline-2">
-<h2 id="org23abae3">Test Execution:</h2>
-<div class="outline-text-2" id="text-org23abae3">
+<div id="outline-container-orgf76c5ce" class="outline-2">
+<h2 id="orgf76c5ce">Test Execution:</h2>
+<div class="outline-text-2" id="text-orgf76c5ce">
 <p>
 We will define multiple test cases and verify if the implemented solution meets the expected output.
 </p>
@@ -159,7 +159,7 @@ testCases.forEach((test, index) =&gt; {
 </pre>
 </div>
 
-<pre class="example" id="org2425be6">
+<pre class="example" id="org4f6fbc2">
 Processing string: aababbab
 Test Case 1: Passed (Expected: 2, Got: 2)
 Processing string: bbaaaa

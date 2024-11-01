@@ -1,0 +1,163 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2024-11-01 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>1957. Delete Characters to Make Fancy String</title>
+<meta name="author" content="d)zharii" />
+<meta name="generator" content="Org Mode" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/t.css"/>
+</head>
+<body>
+<nav><a href="/" tabindex="0">&larrhk; Back to Index</a></nav><div id="preamble" class="status">
+Published 2024-11-01
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">1957. Delete Characters to Make Fancy String</h1>
+<p class="subtitle" role="doc-subtitle">leetcode</p>
+</header><nav id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgd62aaa1">Problem</a></li>
+<li><a href="#org332c42e">Solution Description</a></li>
+<li><a href="#org0c41b0b">Example</a></li>
+<li><a href="#org66204cf">References</a></li>
+<li><a href="#org55665b2">Solution</a></li>
+</ul>
+</div>
+</nav>
+
+<div id="outline-container-orgd62aaa1" class="outline-2">
+<h2 id="orgd62aaa1">Problem</h2>
+<div class="outline-text-2" id="text-orgd62aaa1">
+<p>
+Given a string, we need to delete characters to create a "fancy" string. A "fancy" string is defined as a string that does not have three consecutive identical characters. The task is to return the fanciest string we can possibly create by deleting some characters from the original string.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org332c42e" class="outline-2">
+<h2 id="org332c42e">Solution Description</h2>
+<div class="outline-text-2" id="text-org332c42e">
+<p>
+To implement a function that transforms a string into a fancy string, we need to traverse the string while maintaining a count of consecutive identical characters. The general idea is to iterate through the string character by character, keeping a count of consecutive occurrences of each character. If the count reaches three, we skip adding that character to the result. This ensures no three consecutive characters are present in the result.
+</p>
+
+<p>
+We can follow these steps:
+</p>
+<ol class="org-ol">
+<li>Initialize a result string and set the count of consecutive characters to zero.</li>
+<li>Iterate through the string.</li>
+<li>Compare the current character with the previous one.</li>
+<li>If it's the same, and the count is less than two, increment the count and add the character to the result.</li>
+<li>If it's different, reset the count and add the new character.</li>
+<li>Continue until the end of the string and return the result.</li>
+</ol>
+
+<p>
+Time Complexity: <code>O(n)</code>, where n is the number of characters in the string, as we iterate through the string once.
+Space Complexity: <code>O(n)</code>, mainly for storing the result.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0c41b0b" class="outline-2">
+<h2 id="org0c41b0b">Example</h2>
+<div class="outline-text-2" id="text-org0c41b0b">
+<p>
+Consider the string "aaabaaaa":
+</p>
+
+<ol class="org-ol">
+<li>Start with the empty result and count set to zero.</li>
+<li>Add 'a' to the result, count = 1: "a"</li>
+<li>Add 'a' to the result, count = 2: "aa"</li>
+<li>Skip 'a' since count would become 3.</li>
+<li>Add 'b' to the result, reset count: "aab"</li>
+<li>Add 'a' to the result, count = 1: "aaba"</li>
+<li>Add 'a' to the result, count = 2: "aabaa"</li>
+<li>Skip 'a' since count would become 3.</li>
+<li>Return "aabaa"</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org66204cf" class="outline-2">
+<h2 id="org66204cf">References</h2>
+<div class="outline-text-2" id="text-org66204cf">
+<p>
+For a deeper understanding of string manipulation techniques, consider reviewing <a href="https://en.wikipedia.org/wiki/String_(computer_science)">String (Computer Science)</a>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org55665b2" class="outline-2">
+<h2 id="org55665b2">Solution</h2>
+<div class="outline-text-2" id="text-org55665b2">
+<p>
+Below is a JavaScript implementation of the solution complete with test cases:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">
+// Function to make the string fancy by deleting characters
+/**
+ * Returns a "fancy" string by ensuring no three consecutive identical characters.
+ * @param {string} s - The input string.
+ * @returns {string} - The fancy string with no three consecutive identical characters.
+ */
+function makeFancyString(s) {
+    const log = typeof NestedInteger !== 'undefined' ? () =&gt; {} : console.log;
+    const table = typeof NestedInteger !== 'undefined' ? () =&gt; {} : console.table;
+
+    let result = '';
+    let lastCharCount = 0;
+    let lastChar = '';
+
+    for (const ch of s) {
+        if (ch === lastChar) {
+            lastCharCount += 1;
+        } else {
+            lastChar = ch;
+            lastCharCount = 1;
+        }
+
+        if (lastCharCount &lt; 3) {
+            result += ch;
+        }
+    }
+
+    return result;
+}
+
+
+// Test cases
+const testCases = [
+    { input: "aaabaaaa", expected: "aabaa" },
+    { input: "aabbcc", expected: "aabbcc" },
+    { input: "a", expected: "a" },
+    { input: "aa", expected: "aa" },
+    { input: "aaa", expected: "aa" },
+    { input: "aabaaa", expected: "aabaa" }
+];
+
+testCases.forEach((test, index) =&gt; {
+    const result = makeFancyString(test.input);
+    console.log(`Test Case ${index + 1}: ${result === test.expected ? 'Passed' : 'Failed'} (Expected: ${test.expected}, Got: ${result})`);
+});
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+&copy; d)zharii. <a href="/sitemap.html">sitemap</a>
+</div>
+</body>
+</html>
