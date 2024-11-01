@@ -1,0 +1,99 @@
+﻿#+title: 1957. Delete Characters to Make Fancy String
+#+subtitle: leetcode
+#+date: <2024-11-01>
+#+language: en
+
+* Problem
+Given a string, we need to delete characters to create a "fancy" string. A "fancy" string is defined as a string that does not have three consecutive identical characters. The task is to return the fanciest string we can possibly create by deleting some characters from the original string.
+
+* Solution Description
+To implement a function that transforms a string into a fancy string, we need to traverse the string while maintaining a count of consecutive identical characters. The general idea is to iterate through the string character by character, keeping a count of consecutive occurrences of each character. If the count reaches three, we skip adding that character to the result. This ensures no three consecutive characters are present in the result.
+
+We can follow these steps:
+1. Initialize a result string and set the count of consecutive characters to zero.
+2. Iterate through the string.
+3. Compare the current character with the previous one.
+4. If it's the same, and the count is less than two, increment the count and add the character to the result.
+5. If it's different, reset the count and add the new character.
+6. Continue until the end of the string and return the result.
+
+Time Complexity: ~O(n)~, where n is the number of characters in the string, as we iterate through the string once.
+Space Complexity: ~O(n)~, mainly for storing the result.
+
+* Example
+Consider the string "aaabaaaa":
+
+1. Start with the empty result and count set to zero.
+2. Add 'a' to the result, count = 1: "a"
+3. Add 'a' to the result, count = 2: "aa"
+4. Skip 'a' since count would become 3.
+5. Add 'b' to the result, reset count: "aab"
+6. Add 'a' to the result, count = 1: "aaba"
+7. Add 'a' to the result, count = 2: "aabaa"
+8. Skip 'a' since count would become 3.
+9. Return "aabaa"
+
+* References
+For a deeper understanding of string manipulation techniques, consider reviewing [[https://en.wikipedia.org/wiki/String_(computer_science)][String (Computer Science)]].
+
+* Solution
+Below is a JavaScript implementation of the solution complete with test cases:
+
+#+begin_src js :tangle "1957_delete_characters_make_fancy_string.js"
+
+// Function to make the string fancy by deleting characters
+/**
+ ,* Returns a "fancy" string by ensuring no three consecutive identical characters.
+ ,* @param {string} s - The input string.
+ ,* @returns {string} - The fancy string with no three consecutive identical characters.
+ ,*/
+function makeFancyString(s) {
+    const log = typeof NestedInteger !== 'undefined' ? () => {} : console.log;
+    const table = typeof NestedInteger !== 'undefined' ? () => {} : console.table;
+
+    let result = '';
+    let lastCharCount = 0;
+    let lastChar = '';
+
+    for (const ch of s) {
+        if (ch === lastChar) {
+            lastCharCount += 1;
+        } else {
+            lastChar = ch;
+            lastCharCount = 1;
+        }
+
+        if (lastCharCount < 3) {
+            result += ch;
+        }
+    }
+
+    return result;
+}
+
+
+// Test cases
+const testCases = [
+    { input: "aaabaaaa", expected: "aabaa" },
+    { input: "aabbcc", expected: "aabbcc" },
+    { input: "a", expected: "a" },
+    { input: "aa", expected: "aa" },
+    { input: "aaa", expected: "aa" },
+    { input: "aabaaa", expected: "aabaa" }
+];
+
+testCases.forEach((test, index) => {
+    const result = makeFancyString(test.input);
+    console.log(`Test Case ${index + 1}: ${result === test.expected ? 'Passed' : 'Failed'} (Expected: ${test.expected}, Got: ${result})`);
+});
+
+#+end_src
+
+#+RESULTS:
+: Test Case 1: Passed (Expected: aabaa, Got: aabaa)
+: Test Case 2: Passed (Expected: aabbcc, Got: aabbcc)
+: Test Case 3: Passed (Expected: a, Got: a)
+: Test Case 4: Passed (Expected: aa, Got: aa)
+: Test Case 5: Passed (Expected: aa, Got: aa)
+: Test Case 6: Passed (Expected: aabaa, Got: aabaa)
+: undefined
