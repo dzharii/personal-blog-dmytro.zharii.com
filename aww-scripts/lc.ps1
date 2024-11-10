@@ -8,7 +8,7 @@ $ErrorActionPreference = "Stop"
 $ThisScriptFolderPath = Split-Path -Parent $MyInvocation.MyCommand.Definition
 
 $COMMAND_HELP = "help"
-$COMMAND_NEW = "new"
+$COMMAND_NEW_JS = "new-js"
 
 $HELP_MESSAGE = @"
 Usage:
@@ -17,54 +17,14 @@ Usage:
 Commands:
     $($COMMAND_HELP):
       Shows this help message
-    $($COMMAND_NEW) """<number> <title>""":
+    $($COMMAND_NEW_JS) """<number> <title>""":
       Creates a .org file for a given problem number and title.
       E.g., lc.ps1 new 20 "Valid Parentheses"
 
 "@
 
-function New-ProblemFiles {
-    param(
-        [string]$Number,
-        [string]$Title,
-        [string]$Content
-    )
 
-    $sanitizedTitle = $Title -replace '[^a-zA-Z0-9]', '-'
-    $paddedNumber = $Number.PadLeft(4, '0')
-    $orgFileName = "$($paddedNumber)-$($sanitizedTitle).org"
-    $orgFilePath = [System.IO.Path]::Combine($ThisScriptFolderPath, "..", "src", "leets", $orgFileName)
-    $dateNow = Get-Date -Format "yyyy-MM-dd"
-
-    # ORG file creation
-    $orgContent = @"
-#+title: $($paddedNumber). $($Title)
-#+subtitle: leetcode
-#+date: <$($dateNow)>
-#+language: en
-
-$($Content)
-"@
-    $orgContent = $orgContent.Replace("`r", "").Trim() + "`n";
-    [System.IO.File]::WriteAllText($orgFilePath, $orgContent, [System.Text.Encoding]::UTF8)
-
-    Write-Host "Created ORG file: $($orgFilePath)"
-
-}
-
-function Invoke-GptCompletionContent {
-    param(
-        [string]$userPrompt
-    )
-
-    $apiKey = $env:OPEN_AI_KEY
-    if (-not $apiKey) {
-        throw "OPEN_AI_KEY environment variable is not set."
-    }
-
-    Write-Host "At Invoke-GptCompletionContent: GPT Call"
-
-    $systemPrompt = @'
+$SystemPromptJavaScript = @'
 !IMPORTANT: Every your reply must be inside the textblock. One huge text block with everything inside.
 !IMPORTANT: Use of Org Mode Syntax
 Always use Modern Emacs Org mode syntax in the replies, as responses will be saved as .org files and utilized as content for future articles. Ensure that each response adheres to Org mode conventions to facilitate seamless integration and usage.
@@ -179,10 +139,244 @@ Here's the corrected ruleset for Org mode formatting:
 13. **Tables:** Use | to separate columns.
     *Example:* | Header 1 | Header 2 |
 
-
-```
-
 '@
+
+## 2024-11-10
+$SystemPromptLua = @'
+**INSTRUCTION FOR LUA CODE FORMATTING IN EMACS ORG MODE**
+
+**GENERAL REPLY REQUIREMENTS**
+
+- **MUST** place every reply inside a single text block, with all content in one continuous text block.
+- **MUST** use Org Mode syntax consistently in all replies, aligning with content integration for future articles.
+- **MUST** follow modern Emacs Org Mode conventions to enable seamless usage in .org files.
+
+**CODE PROMPT RESPONSE REQUIREMENTS**
+
+- **MUST** provide more than just a hint for code problem URLs. **MUST** include a comprehensive interview and solution plan, covering:
+  - Clear problem restatement.
+  - Structured solution detailing the implementation approach, including time and space complexity.
+  - Step-by-step example demonstrating the solution.
+  - Essential references for frameworks or algorithms, including valid links if applicable.
+
+**CODE BLOCK FORMATTING**
+
+- **MUST** use =#+begin_example= and =#+end_example= blocks if source code outside =src= blocks conflicts with Org Mode syntax.
+
+**DETAILED RESPONSE STRUCTURE**
+
+- **Problem Restatement**: **MUST** rephrase the problem in a clear, well-formatted way, improving the description if necessary.
+
+- **Solution Description**: **MUST** describe the structure of an optimal solution with concise, descriptive language. Start with the template: "To implement ..., we need to ...". **MUST** provide hints for new users, explaining patterns and covering time and space complexity.
+
+- **Example**: **MUST** use a clear example that explains the algorithm step-by-step, offering sufficient context.
+
+- **References**: **MUST** name any frameworks or known algorithms used and provide valid links if needed.
+
+- **Solution Code**: **MUST** introduce a general solution skeleton. Use Lua for implementation, unless otherwise specified. **MUST** include a testing scaffold that displays input parameters, expected vs. actual results, and pass/fail status.
+
+- **Test Cases**: **MUST** begin each solution with helper definitions for logging. **MUST** include at least five test cases with full details (not placeholders).
+
+- **Code and Testing Blocks**: **MUST** use =#+begin_src lua :tangle "[problem number].twoSum.lua"= for Lua code blocks, consistently grouping code and tests in the same block. **MUST** ensure function and parameter documentation.
+
+---
+
+**REPLY FORMATTING**
+
+- **MUST** include every response inside markdown code blocks marked by triple backticks.
+- **MUST** use only Org Mode syntax inside the text block as markdown formatting is unsupported.
+
+**CODE BLOCK CONVENTIONS**
+
+- **MUST** use =#+begin_src lua= consistently and group code and tests in the same block.
+- **MUST** add essential comments and documentation.
+- **MUST** follow the :tangle rule, naming files with the LeetCode problem number and replacing spaces with underscores.
+- **MUST NOT** truncate responses.
+- **MUST** design test cases to ensure comprehensive testing, avoiding placeholders.
+
+**EXAMPLE CODE IN LUA**
+
+#+begin_src lua :tangle "[problem number].twoSum.lua"
+-- Two Sum solution in Lua
+
+function twoSum(nums, target)
+    local map = {}
+    for i = 1, #nums do
+        local complement = target - nums[i]
+        if map[complement] then
+            return {map[complement], i}
+        end
+        map[nums[i]] = i
+    end
+end
+
+-- Lightweight testing framework
+
+function assertEqualArrays(a, b)
+    if #a ~= #b then
+        error("Arrays are not equal in length")
+    end
+    for i = 1, #a do
+        if a[i] ~= b[i] then
+            error("Arrays differ at position "..i..": "..a[i].." ~= "..b[i])
+        end
+    end
+end
+
+-- Test cases as an array of objects
+
+local tests = {
+    {
+        title = "Test 1: Simple case",
+        test = function()
+            local nums = {2, 7, 11, 15}
+            local target = 9
+            local expected = {1, 2}
+            local result = twoSum(nums, target)
+            assertEqualArrays(result, expected)
+        end
+    },
+    {
+        title = "Test 2: Multiple solutions",
+        test = function()
+            local nums = {3, 2, 4}
+            local target = 6
+            local expected = {2, 3}
+            local result = twoSum(nums, target)
+            assertEqualArrays(result, expected)
+        end
+    },
+    {
+        title = "Test 3: Same number twice",
+        test = function()
+            local nums = {3, 3}
+            local target = 6
+            local expected = {1, 2}
+            local result = twoSum(nums, target)
+            assertEqualArrays(result, expected)
+        end
+    },
+    {
+        title = "Test 4: Negative numbers",
+        test = function()
+            local nums = {-1, -2, -3, -4, -5}
+            local target = -8
+            local expected = {3, 5}
+            local result = twoSum(nums, target)
+            assertEqualArrays(result, expected)
+        end
+    },
+    {
+        title = "Test 5: No solution",
+        test = function()
+            local nums = {1, 2, 3}
+            local target = 7
+            local result = twoSum(nums, target)
+            if result ~= nil then
+                error("Expected nil, got a result")
+            end
+        end
+    }
+}
+
+-- Test runner engine
+
+function runTests(tests)
+    local passed = 0
+    local failed = 0
+    for _, testCase in ipairs(tests) do
+        io.write(testCase.title .. " ... ")
+        local status, err = pcall(testCase.test)
+        if status then
+            print("Passed")
+            passed = passed + 1
+        else
+            print("Failed: " .. err)
+            failed = failed + 1
+        end
+    end
+    print("\nSummary:")
+    print("Passed: "..passed)
+    print("Failed: "..failed)
+end
+
+-- Execute tests
+
+runTests(tests)
+#+end_src
+'@
+
+
+function New-ProblemFiles {
+    param(
+        [string]$Number,
+        [string]$Title,
+        [string]$Content
+        [string]$Subfolder
+    )
+
+    if (-not $Number) {
+        Write-Host "New-ProblemFiles Argument Error: The problem number is required." -ForegroundColor Red
+        exit 1
+    }
+
+    if (-not $Title) {
+        Write-Host "New-ProblemFiles Argument Error: The problem title is required." -ForegroundColor Red
+        exit 1
+    }
+
+    if (-not $Content) {
+        Write-Host "New-ProblemFiles Argument Error: The problem content is required." -ForegroundColor Red
+        exit 1
+    }
+
+    if (-not $Subfolder) {
+        Write-Host "New-ProblemFiles Argument Error: The subfolder is required." -ForegroundColor Red
+        exit 1
+    }
+
+    $sanitizedTitle = $Title -replace '[^a-zA-Z0-9]', '-'
+    $paddedNumber = $Number.PadLeft(4, '0')
+    $orgFileName = "$($paddedNumber)-$($sanitizedTitle).org"
+    $orgFilePath = [System.IO.Path]::Combine($ThisScriptFolderPath, "..", "src", $Subfolder, $orgFileName)
+    $dateNow = Get-Date -Format "yyyy-MM-dd"
+
+    # ORG file creation
+    $orgContent = @"
+#+title: $($paddedNumber). $($Title)
+#+subtitle: leetcode
+#+date: <$($dateNow)>
+#+language: en
+
+$($Content)
+"@
+    $orgContent = $orgContent.Replace("`r", "").Trim() + "`n";
+    [System.IO.File]::WriteAllText($orgFilePath, $orgContent, [System.Text.Encoding]::UTF8)
+
+    Write-Host "Created ORG file: $($orgFilePath)"
+
+}
+
+function Invoke-GptCompletionContent {
+    param(
+        [string]$systemPrompt,
+        [string]$userPrompt
+    )
+
+    if (-not $systemPrompt) {
+        throw "Invoke-GptCompletionContent Argument Error: The system prompt is required."
+    }
+
+    if (-not $userPrompt) {
+        throw "Invoke-GptCompletionContent Argument Error: The user prompt is required."
+    }
+
+    $apiKey = $env:OPEN_AI_KEY
+    if (-not $apiKey) {
+        throw "Invoke-GptCompletionContent Configuration Error: OPEN_AI_KEY environment variable is not set."
+    }
+
+    Write-Host "At Invoke-GptCompletionContent: GPT Call"
 
     $body = @{
         model = "gpt-4o"
@@ -247,7 +441,7 @@ switch ($Command.ToLower()) {
         Write-Host $HELP_MESSAGE
     }
 
-    $COMMAND_NEW {
+    $COMMAND_NEW_JS {
         if (-not $Argument) {
             Write-Host "The 'new' command requires a number and title argument. E.g., lc.ps1 new 20 'Valid Parentheses'" -ForegroundColor Red
             exit 1
@@ -264,14 +458,14 @@ switch ($Command.ToLower()) {
         $problemTitle = $splitArgs[1]
 
         try {
-            $completionResponseContent = Invoke-GptCompletionContent -userPrompt "$problemNumber $problemTitle"
+            $completionResponseContent = Invoke-GptCompletionContent  -systemPrompt $SystemPromptJavaScript -userPrompt "$problemNumber $problemTitle"
             $gptContent = Get-GptCompletionResultContent -completionContent $completionResponseContent
         } catch {
             Write-Host "Error retrieving or processing GPT completion: $($_)" -ForegroundColor Red
             $gptContent = ""
         }
 
-        New-ProblemFiles -Number $problemNumber -Title $problemTitle -Content $gptContent
+        New-ProblemFiles -Number $problemNumber -Title $problemTitle -Content $gptContent -Subfolder "leets"
     }
 
     Default {
