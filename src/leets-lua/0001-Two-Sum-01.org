@@ -1,0 +1,132 @@
+﻿#+title: 0001. Two Sum
+#+subtitle: leetcode
+#+date: <2024-11-10>
+#+language: en
+
+**Problem Restatement**:  
+The problem is to find indices of the two numbers in an array, such that they add up to a specific target. The function should return a pair of indices of these two numbers. Assume that each input would have exactly one solution, and you may not use the same element twice. The array can contain both positive and negative integers, and indices must be returned in a 1-based format.
+
+**Solution Description**:  
+To implement the "Two Sum" function in Lua, we need to:
+1. Iterate over the array while maintaining a hashmap (dictionary) that keeps track of numbers we have seen and their indices.
+2. For each number `nums[i]`, calculate its complement with respect to the target (i.e., `target - nums[i]`).
+3. Check if this complement is already in the hashmap.
+   - If it exists, return the current index and the index stored in the hashmap as they form the required pair.
+   - If not, store the current number and its index in the hashmap.
+4. The algorithm complexity is O(n) for time, where n is the number of elements in the array since each element is processed at most twice. The space complexity is O(n) due to the hashmap storage.
+
+**Example**:  
+Consider `nums = [2, 7, 11, 15]` and `target = 9`.  
+- Start with an empty hashmap.
+- For `i = 1`, `nums[i] = 2`: complement is `7`. Store `2` in the map.
+- For `i = 2`, `nums[i] = 7`: complement is `2`. Since `2` is in the map, return `[1, 2]`.
+
+**References**:  
+- Lua Programming: https://www.lua.org/manual/5.3/  
+- Hashmaps: https://en.wikipedia.org/wiki/Hash_table
+
+**Solution Code**:
+#+begin_src lua :tangle "1_two_sum.lua"
+-- Function to find two indices with values adding up to the target
+function twoSum(nums, target)
+    local map = {}
+    for i = 1, #nums do
+        local complement = target - nums[i]
+        if map[complement] then
+            return {map[complement], i}
+        end
+        map[nums[i]] = i
+    end
+    return nil -- When no solution is found
+end
+
+-- Helper function to compare two tables (arrays in Lua)
+function assertEqualArrays(a, b)
+    if #a ~= #b then
+        error("Arrays are not equal in length")
+    end
+    for i = 1, #a do
+        if a[i] ~= b[i] then
+            error("Array elements differ at position " .. i .. ": " .. a[i] .. " ~= " .. b[i])
+        end
+    end
+end
+
+-- Test cases for the twoSum function
+local tests = {
+    {
+        title = "Test 1: Simple case",
+        test = function()
+            local nums = {2, 7, 11, 15}
+            local target = 9
+            local expected = {1, 2}
+            local result = twoSum(nums, target)
+            assertEqualArrays(result, expected)
+        end
+    },
+    {
+        title = "Test 2: Multiple solutions",
+        test = function()
+            local nums = {3, 2, 4}
+            local target = 6
+            local expected = {2, 3}
+            local result = twoSum(nums, target)
+            assertEqualArrays(result, expected)
+        end
+    },
+    {
+        title = "Test 3: Same number twice",
+        test = function()
+            local nums = {3, 3}
+            local target = 6
+            local expected = {1, 2}
+            local result = twoSum(nums, target)
+            assertEqualArrays(result, expected)
+        end
+    },
+    {
+        title = "Test 4: Negative numbers",
+        test = function()
+            local nums = {-1, -2, -3, -4, -5}
+            local target = -8
+            local expected = {3, 5}
+            local result = twoSum(nums, target)
+            assertEqualArrays(result, expected)
+        end
+    },
+    {
+        title = "Test 5: No solution",
+        test = function()
+            local nums = {1, 2, 3}
+            local target = 7
+            local result = twoSum(nums, target)
+            if result ~= nil then
+                error("Expected nil, got a result")
+            end
+        end
+    }
+}
+
+-- Test runner function
+function runTests(tests)
+    local passed = 0
+    local failed = 0
+    for _, testCase in ipairs(tests) do
+        io.write(testCase.title .. " ... ")
+        local status, err = pcall(testCase.test)
+        if status then
+            print("Passed")
+            passed = passed + 1
+        else
+            print("Failed: " .. err)
+            failed = failed + 1
+        end
+    end
+    print("\nSummary:")
+    print("Passed: " .. passed)
+    print("Failed: " .. failed)
+end
+
+-- Execute tests
+runTests(tests)
+#+end_src

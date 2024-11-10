@@ -1,0 +1,137 @@
+﻿#+title: 0001. Two Sum
+#+subtitle: leetcode
+#+date: <2024-11-10>
+#+language: en
+
+
+** Problem Restatement
+The "Two Sum" problem requires finding two distinct indices in a given list of numbers (an array) such that their values sum up to a target number. The function should return these indices. It's guaranteed that there is exactly one solution, and the same element cannot be used twice.
+
+** Solution Description
+To implement a solution that is both efficient and straightforward, we need to iterate through the array while using a hash map to store each number's index. For each element, we calculate the complement that would sum with the current element to reach the target. If this complement is already in the map, we have found our solution, and we return the indices. This implementation runs with a time complexity of O(n) and a space complexity of O(n) due to the hash map storage.
+
+** Example
+Consider the array nums = {2, 7, 11, 15} and target = 9. As we iterate:
+- At i=1, num=2, we calculate complement = 9 - 2 = 7. 7 is not in the map.
+- At i=2, num=7, we calculate complement = 9 - 7 = 2. 2 is in the map with index 1.
+
+Hence, the indices returned will be {1, 2}.
+
+** References
+- The algorithm utilizes hash maps for achieving efficient data retrieval.
+- Refer to Lua hash map documentation: https://www.lua.org/manual/5.1/manual.html#2.5
+
+** Solution Code
+
+#+begin_src lua :tangle "1_two_sum.lua"
+-- Two Sum solution in Lua
+
+function twoSum(nums, target)
+    local map = {}
+    for i = 1, #nums do
+        local complement = target - nums[i]
+        if map[complement] then
+            return {map[complement], i}
+        end
+        map[nums[i]] = i
+    end
+    error("No two sum solution found")
+end
+
+-- Lightweight testing framework
+
+function assertEqualArrays(a, b)
+    if #a ~= #b then
+        error("Arrays are not equal in length")
+    end
+    for i = 1, #a do
+        if a[i] ~= b[i] then
+            error("Arrays differ at position " .. i .. ": " .. a[i] .. " ~= " .. b[i])
+        end
+    end
+end
+
+-- Test cases
+
+local tests = {
+    {
+        title = "Test 1: Simple case",
+        test = function()
+            local nums = {2, 7, 11, 15}
+            local target = 9
+            local expected = {1, 2}
+            local result = twoSum(nums, target)
+            assertEqualArrays(result, expected)
+        end
+    },
+    {
+        title = "Test 2: Multiple solutions",
+        test = function()
+            local nums = {3, 2, 4}
+            local target = 6
+            local expected = {2, 3}
+            local result = twoSum(nums, target)
+            assertEqualArrays(result, expected)
+        end
+    },
+    {
+        title = "Test 3: Same number twice",
+        test = function()
+            local nums = {3, 3}
+            local target = 6
+            local expected = {1, 2}
+            local result = twoSum(nums, target)
+            assertEqualArrays(result, expected)
+        end
+    },
+    {
+        title = "Test 4: Negative numbers",
+        test = function()
+            local nums = {-1, -2, -3, -4, -5}
+            local target = -8
+            local expected = {3, 5}
+            local result = twoSum(nums, target)
+            assertEqualArrays(result, expected)
+        end
+    },
+    {
+        title = "Test 5: No solution",
+        test = function()
+            local nums = {1, 2, 3}
+            local target = 7
+            local result = twoSum(nums, target)
+            if result then
+                error("Expected nil, got a result")
+            end
+        end
+    }
+}
+
+-- Test runner engine
+
+function runTests(tests)
+    local passed = 0
+    local failed = 0
+    for _, testCase in ipairs(tests) do
+        io.write(testCase.title .. " ... ")
+        local status, err = pcall(testCase.test)
+        if status then
+            print("Passed")
+            passed = passed + 1
+        else
+            print("Failed: " .. err)
+            failed = failed + 1
+        end
+    end
+    print("\nSummary:")
+    print("Passed: " .. passed)
+    print("Failed: " .. failed)
+end
+
+-- Execute tests
+
+runTests(tests)
+
+#+end_src
+
+#+RESULTS:
