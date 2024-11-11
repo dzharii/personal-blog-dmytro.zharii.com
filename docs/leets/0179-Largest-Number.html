@@ -22,27 +22,27 @@ Published 2024-09-18
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org96561de">Problem</a>
+<li><a href="#org8b9ad79">Problem</a>
 <ul>
-<li><a href="#org94eabd0">Example 1:</a></li>
-<li><a href="#orga00130e">Example 2:</a></li>
+<li><a href="#org600aa37">Example 1:</a></li>
+<li><a href="#org33e326b">Example 2:</a></li>
 </ul>
 </li>
-<li><a href="#org107e5a7">Solution Description</a>
+<li><a href="#org3d0ffc2">Solution Description</a>
 <ul>
-<li><a href="#org1f014cb">Time and Space Complexity:</a></li>
+<li><a href="#org0b3f753">Time and Space Complexity:</a></li>
 </ul>
 </li>
-<li><a href="#org897b2ea">Example</a></li>
-<li><a href="#org4b0a23a">References</a></li>
-<li><a href="#org396bfe1">Solution</a></li>
+<li><a href="#org3b445db">Example</a></li>
+<li><a href="#org18f8d98">References</a></li>
+<li><a href="#org2309afc">Solution</a></li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-org96561de" class="outline-2">
-<h2 id="org96561de">Problem</h2>
-<div class="outline-text-2" id="text-org96561de">
+<div id="outline-container-org8b9ad79" class="outline-2">
+<h2 id="org8b9ad79">Problem</h2>
+<div class="outline-text-2" id="text-org8b9ad79">
 <p>
 Given a list of non-negative integers, you are required to arrange them such that they form the largest possible number.
 </p>
@@ -52,9 +52,9 @@ The result should be returned as a string. When the input list contains only zer
 </p>
 </div>
 
-<div id="outline-container-org94eabd0" class="outline-3">
-<h3 id="org94eabd0">Example 1:</h3>
-<div class="outline-text-3" id="text-org94eabd0">
+<div id="outline-container-org600aa37" class="outline-3">
+<h3 id="org600aa37">Example 1:</h3>
+<div class="outline-text-3" id="text-org600aa37">
 <ul class="org-ul">
 <li>Input: [10, 2]</li>
 <li>Output: "210"</li>
@@ -62,9 +62,9 @@ The result should be returned as a string. When the input list contains only zer
 </div>
 </div>
 
-<div id="outline-container-orga00130e" class="outline-3">
-<h3 id="orga00130e">Example 2:</h3>
-<div class="outline-text-3" id="text-orga00130e">
+<div id="outline-container-org33e326b" class="outline-3">
+<h3 id="org33e326b">Example 2:</h3>
+<div class="outline-text-3" id="text-org33e326b">
 <ul class="org-ul">
 <li>Input: [3, 30, 34, 5, 9]</li>
 <li>Output: "9534330"</li>
@@ -80,9 +80,9 @@ Constraints:
 </div>
 </div>
 
-<div id="outline-container-org107e5a7" class="outline-2">
-<h2 id="org107e5a7">Solution Description</h2>
-<div class="outline-text-2" id="text-org107e5a7">
+<div id="outline-container-org3d0ffc2" class="outline-2">
+<h2 id="org3d0ffc2">Solution Description</h2>
+<div class="outline-text-2" id="text-org3d0ffc2">
 <p>
 To implement the solution for arranging the numbers to form the largest possible number, we need to:
 </p>
@@ -98,9 +98,9 @@ The key insight is in the custom sorting comparator where for two numbers <code>
 </p>
 </div>
 
-<div id="outline-container-org1f014cb" class="outline-3">
-<h3 id="org1f014cb">Time and Space Complexity:</h3>
-<div class="outline-text-3" id="text-org1f014cb">
+<div id="outline-container-org0b3f753" class="outline-3">
+<h3 id="org0b3f753">Time and Space Complexity:</h3>
+<div class="outline-text-3" id="text-org0b3f753">
 <ul class="org-ul">
 <li>Time Complexity: O(N log N) due to sorting. Here, N is the number of elements in the list.</li>
 <li>Space Complexity: O(N) for the space required to store the strings and their sorted order.</li>
@@ -109,9 +109,9 @@ The key insight is in the custom sorting comparator where for two numbers <code>
 </div>
 </div>
 
-<div id="outline-container-org897b2ea" class="outline-2">
-<h2 id="org897b2ea">Example</h2>
-<div class="outline-text-2" id="text-org897b2ea">
+<div id="outline-container-org3b445db" class="outline-2">
+<h2 id="org3b445db">Example</h2>
+<div class="outline-text-2" id="text-org3b445db">
 <p>
 Consider the input array: [3, 30, 34, 5, 9]
 Step-by-step:
@@ -124,9 +124,9 @@ Step-by-step:
 </div>
 </div>
 
-<div id="outline-container-org4b0a23a" class="outline-2">
-<h2 id="org4b0a23a">References</h2>
-<div class="outline-text-2" id="text-org4b0a23a">
+<div id="outline-container-org18f8d98" class="outline-2">
+<h2 id="org18f8d98">References</h2>
+<div class="outline-text-2" id="text-org18f8d98">
 <p>
 Refer to the sorting comparator concepts and how custom comparators work in modern JavaScript:
 </p>
@@ -136,9 +136,9 @@ Refer to the sorting comparator concepts and how custom comparators work in mode
 </div>
 </div>
 
-<div id="outline-container-org396bfe1" class="outline-2">
-<h2 id="org396bfe1">Solution</h2>
-<div class="outline-text-2" id="text-org396bfe1">
+<div id="outline-container-org2309afc" class="outline-2">
+<h2 id="org2309afc">Solution</h2>
+<div class="outline-text-2" id="text-org2309afc">
 <p>
 <a href="https://leetcode.com/submissions/detail/1394872925/">2024-09-18 Largest Number - Submission Detail - LeetCode</a> <code>leetcode.com</code>
 </p>
