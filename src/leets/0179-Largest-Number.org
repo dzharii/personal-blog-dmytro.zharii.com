@@ -80,3 +80,12 @@ testCases.forEach((test, index) => {
     console.log(`Test Case ${index + 1}: ${result === test.expected ? 'Passed' : 'Failed'} (Expected: ${test.expected}, Got: ${result})`);
 });
 #+end_src
+
+#+RESULTS:
+: Test Case 1: Passed (Expected: 210, Got: 210)
+: Test Case 2: Passed (Expected: 9534330, Got: 9534330)
+: Test Case 3: Passed (Expected: 1, Got: 1)
+: Test Case 4: Passed (Expected: 10, Got: 10)
+: Test Case 5: Passed (Expected: 0, Got: 0)
+: Test Case 6: Failed (Expected: 999999999999999999899999997999999996, Got: 999999999999999998999999997999999996)
+: undefined
