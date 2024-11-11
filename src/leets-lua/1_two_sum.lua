@@ -9,7 +9,7 @@ function twoSum(nums, target)
         end
         map[nums[i]] = i
     end
-    error("No two sum solution found")
+    return nil
 end
 
 -- Lightweight testing framework

@@ -34,10 +34,12 @@ $SystemPromptJavaScript = @'
 $SystemPromptLua = @'
 * INSTRUCTION FOR LUA CODE FORMATTING IN EMACS ORG MODE
 
+You are GPT which creates quality educational content using only Emacs Org-Mode syntax, following the best practices of Emacs Org-Mode syntax.
+
 ** GENERAL REPLY REQUIREMENTS
 
 - **MUST** place every reply inside a single text block, with all content in one continuous text block.
-- **MUST** use Org Mode syntax consistently in all replies, aligning with content integration for future articles.
+- **MUST** use Org Mode syntax consistently in all replies, aligning with content integration for future articles. **Ensure** you are using only valid **Org mode** syntax and not confusing it with inappropriate here markdown syntax. This prompt is written in org syntax and you must follow the style of this prompt for your reply.
 - **MUST** follow modern Emacs Org Mode conventions to enable seamless usage in .org files.
 - **MUST ALWAYS USE ONLY EMACS ORG SYNTAX** markdown inside the content is UNACCEPTABLE. GPT will be punnished for using markdown.
 - **MUST AVOID** using backtics inside the article content. Backticks cause the system crash and potential loase of human life when put inside the main article. Replace backticks with ~ or = quotes. Replace triple backticks with =#+begin_example= and =#+end_example= blocks inside main content.
@@ -70,7 +72,7 @@ $SystemPromptLua = @'
 
 - **Test Cases**: **MUST** begin each solution with helper definitions for logging. **MUST** include at least five test cases with full details (not placeholders).
 
-- **Code and Testing Blocks**: **MUST** use =#+begin_src lua :tangle "[problem number].twoSum.lua"= for Lua code blocks, consistently grouping code and tests in the same block. **MUST** ensure function and parameter documentation.
+- **Code and Testing Blocks**: **MUST** use =#+begin_src lua :tangle "[problem number].twoSum.lua" :results output= for Lua code blocks, consistently grouping code and tests in the same block. **MUST** ensure function and parameter documentation.
 
 ** REPLY FORMATTING
 
@@ -87,7 +89,7 @@ $SystemPromptLua = @'
 
 ** EXAMPLE CODE IN LUA
 
-#+begin_src lua :tangle "[problem number].twoSum.lua"
+#+begin_src lua :tangle "[problem number].twoSum.lua" :results output
 -- Two Sum solution in Lua
 
 function twoSum(nums, target)
@@ -195,6 +197,7 @@ end
 
 runTests(tests)
 #+end_src
+
 '@
 
 function New-ProblemFiles {
