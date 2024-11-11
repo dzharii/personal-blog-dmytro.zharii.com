@@ -1,0 +1,133 @@
+﻿#+title: 0014. Longest Common Prefix
+#+subtitle: leetcode
+#+date: <2024-11-10>
+#+language: en
+
+org
+* Problem Restatement
+
+Given an array of strings, we need to find the longest common prefix among them. If there is no common prefix, the function should return an empty string.
+
+* Solution Description
+
+To implement the longest common prefix, we need to:
+
+1. Check if the list of strings is empty. If so, return an empty string.
+2. Assume the first string is the prefix we want to compare.
+3. Iterate through each string in the array, comparing the prefix with each string:
+   - For each character in the prefix, compare with the corresponding character in the current string.
+   - If characters are not the same, truncate the prefix to the matched length.
+4. If at any point the prefix becomes empty, return it immediately.
+5. Return the final version of the prefix after all strings have been processed.
+
+In terms of complexity, this solution is efficient. If `n` is the number of strings and `m` is the length of the shortest string, the time complexity is O(n * m).
+
+* Example
+
+Using the example array ~{"flower", "flow", "flight"}~, the step-by-step process would be:
+- Start with "flower" as the assumed prefix.
+- Compare with "flow": the common prefix is "flow".
+- Compare "flow" with "flight": the common prefix is "fl".
+- Thus, the longest common prefix is "fl".
+
+* References
+
+This problem can leverage fundamental string operations, and while it doesnât use advanced algorithms, it's a classic example of substring manipulation.
+
+* Solution Code
+
+#+begin_src lua :tangle "14_longest_common_prefix.lua" :results output
+-- Longest Common Prefix solution in Lua
+
+function longestCommonPrefix(strs)
+    if #strs == 0 then
+        return ""
+    end
+
+    local prefix = strs[1]
+    for i = 2, #strs do
+        local currentStr = strs[i]
+        local j, k = 0, 0
+        local commonLength = math.min(#prefix, #currentStr)
+        while j < commonLength and prefix:sub(j+1, j+1) == currentStr:sub(j+1, j+1) do
+            j = j + 1
+        end
+        prefix = prefix:sub(1, j)
+        if prefix == "" then
+            break
+        end
+    end
+
+    return prefix
+end
+
+-- Testing framework
+
+function assertEqual(actual, expected, testName)
+    if actual ~= expected then
+        error(testName .. " Failed: expected " .. expected .. ", got " .. actual)
+    end
+end
+
+local tests = {
+    {
+        name = "Test 1: General case with common prefix",
+        input = {"flower", "flow", "flight"},
+        expected = "fl",
+    },
+    {
+        name = "Test 2: No common prefix",
+        input = {"dog", "racecar", "car"},
+        expected = "",
+    },
+    {
+        name = "Test 3: Full match among all strings",
+        input = {"interspecies", "interstellar", "interstate"},
+        expected = "inters",
+    },
+    {
+        name = "Test 4: Single character match",
+        input = {"a", "a", "b"},
+        expected = "",
+    },
+    {
+        name = "Test 5: Empty string array",
+        input = {},
+        expected = "",
+    }
+}
+
+function runTests(tests)
+    local passed, failed = 0, 0
+    for _, testCase in ipairs(tests) do
+        io.write(testCase.name .. " ... ")
+        local status, err = pcall(function()
+            local result = longestCommonPrefix(testCase.input)
+            assertEqual(result, testCase.expected, testCase.name)
+        end)
+        if status then
+            print("Passed")
+            passed = passed + 1
+        else
+            print("Failed: " .. err)
+            failed = failed + 1
+        end
+    end
+    print("\nSummary:\nPassed: " .. passed .. "\nFailed: " .. failed)
+end
+
+-- Execute tests
+
+runTests(tests)
+#+end_src
+
+#+RESULTS:
+: Test 1: General case with common prefix ... Passed
+: Test 2: No common prefix ... Passed
+: Test 3: Full match among all strings ... Passed
+: Test 4: Single character match ... Passed
+: Test 5: Empty string array ... Passed
+:
+: Summary:
+: Passed: 5
+: Failed: 0
