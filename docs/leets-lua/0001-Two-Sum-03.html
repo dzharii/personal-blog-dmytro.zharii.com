@@ -1,0 +1,239 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2024-11-10 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>0001. Two Sum</title>
+<meta name="author" content="d)zharii" />
+<meta name="generator" content="Org Mode" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/t.css"/>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<nav><a href="/" tabindex="0">&larrhk; Back to Index</a></nav><div id="preamble" class="status">
+Published 2024-11-10
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">0001. Two Sum</h1>
+<p class="subtitle" role="doc-subtitle">leetcode</p>
+</header><nav id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org1b31110">Problem Restatement</a></li>
+<li><a href="#orgfa1df78">Solution Description</a></li>
+<li><a href="#orgd62fc33">Example</a></li>
+<li><a href="#orge7922ea">Solution Code</a></li>
+<li><a href="#org074ffd1">References</a></li>
+</ul>
+</div>
+</nav>
+<p>
+org
+</p>
+<div id="outline-container-org1b31110" class="outline-2">
+<h2 id="org1b31110">Problem Restatement</h2>
+<div class="outline-text-2" id="text-org1b31110">
+<p>
+The "Two Sum" problem requires finding two distinct indices in an array of integers where the associated numbers sum up to a given target value. Specifically, you need to find indices \(i\) and \(j\) such that \(nums[i] + nums[j] = \text{target}\).
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgfa1df78" class="outline-2">
+<h2 id="orgfa1df78">Solution Description</h2>
+<div class="outline-text-2" id="text-orgfa1df78">
+<p>
+To solve the "Two Sum" problem efficiently, we need to use a hash map (or table in Lua) to store the numbers as keys and their respective indices as values. This allows quick lookup for the complement of each number (i.e., \( \text{target} - \text{current number} \)). The algorithm can be implemented in one pass through the numbers, achieving a time complexity of \( O(n) \), where \( n \) is the number of elements in the array. The space complexity is also \( O(n) \) due to the space required for the hash map.
+</p>
+
+<ul class="org-ul">
+<li>Start with an empty table to store numbers and their indices.</li>
+<li>For each number in the array:
+<ul class="org-ul">
+<li>Compute its complement with respect to the target.</li>
+<li>If the complement is found in the table, return the stored index and the current index.</li>
+<li>Otherwise, store the current number with its index in the table.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgd62fc33" class="outline-2">
+<h2 id="orgd62fc33">Example</h2>
+<div class="outline-text-2" id="text-orgd62fc33">
+<p>
+Consider the array \([2, 7, 11, 15]\) and target \(9\):
+</p>
+<ul class="org-ul">
+<li>Initialize an empty table.</li>
+<li>For the first number \(2\), compute complement \(7\). It is not in the table.</li>
+<li>For the second number \(7\), compute complement \(2\). It is in the table, hence indices \([1, 2]\) are the solution.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orge7922ea" class="outline-2">
+<h2 id="orge7922ea">Solution Code</h2>
+<div class="outline-text-2" id="text-orge7922ea">
+<p>
+This solution uses Lua to implement the described approach, including a simple testing mechanism.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-lua">-- Two Sum solution in Lua
+
+function twoSum(nums, target)
+    local map = {}
+    for i = 1, #nums do
+        local complement = target - nums[i]
+        if map[complement] then
+            return {map[complement], i}
+        end
+        map[nums[i]] = i
+    end
+    return nil  -- In case no solution is found, handle accordingly.
+end
+
+-- Helper function to compare arrays
+function assertEqualArrays(a, b)
+    if #a ~= #b then
+        error("Arrays are not equal in length")
+    end
+    for i = 1, #a do
+        if a[i] ~= b[i] then
+            error("Arrays differ at position "..i..": "..a[i].." ~= "..b[i])
+        end
+    end
+end
+
+-- Test cases as an array of objects
+local tests = {
+    {
+        title = "Test 1: Simple case",
+        test = function()
+            local nums = {2, 7, 11, 15}
+            local target = 9
+            local expected = {1, 2}
+            local result = twoSum(nums, target)
+            assertEqualArrays(result, expected)
+        end
+    },
+    {
+        title = "Test 2: Multiple solutions",
+        test = function()
+            local nums = {3, 2, 4}
+            local target = 6
+            local expected = {2, 3}
+            local result = twoSum(nums, target)
+            assertEqualArrays(result, expected)
+        end
+    },
+    {
+        title = "Test 3: Same number twice",
+        test = function()
+            local nums = {3, 3}
+            local target = 6
+            local expected = {1, 2}
+            local result = twoSum(nums, target)
+            assertEqualArrays(result, expected)
+        end
+    },
+    {
+        title = "Test 4: Negative numbers",
+        test = function()
+            local nums = {-1, -2, -3, -4, -5}
+            local target = -8
+            local expected = {3, 5}
+            local result = twoSum(nums, target)
+            assertEqualArrays(result, expected)
+        end
+    },
+    {
+        title = "Test 5: No solution",
+        test = function()
+            local nums = {1, 2, 3}
+            local target = 7
+            local result = twoSum(nums, target)
+            if result then
+                error("Expected nil, got a result")
+            end
+        end
+    }
+}
+
+-- Test runner function
+function runTests(tests)
+    local passed = 0
+    local failed = 0
+    for _, testCase in ipairs(tests) do
+        io.write(testCase.title .. " ... ")
+        local status, err = pcall(testCase.test)
+        if status then
+            print("Passed")
+            passed = passed + 1
+        else
+            print("Failed: " .. err)
+            failed = failed + 1
+        end
+    end
+    print("\nSummary:")
+    print("Passed: "..passed)
+    print("Failed: "..failed)
+end
+
+-- Execute tests
+runTests(tests)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org074ffd1" class="outline-2">
+<h2 id="org074ffd1">References</h2>
+<div class="outline-text-2" id="text-org074ffd1">
+<p>
+This problem uses a hash map to solve the problem efficiently: for further reading on hash maps, see [Hash Map - Wikipedia](<a href="https://en.wikipedia.org/wiki/Hash_table">https://en.wikipedia.org/wiki/Hash_table</a>).
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+&copy; d)zharii. <a href="/sitemap.html">sitemap</a>
+</div>
+</body>
+</html>

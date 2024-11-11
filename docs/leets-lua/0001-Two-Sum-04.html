@@ -1,40 +1,81 @@
-﻿#+title: 0001. Two Sum
-#+subtitle: leetcode
-#+date: <2024-11-10>
-#+language: en
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2024-11-10 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>0001. Two Sum</title>
+<meta name="author" content="d)zharii" />
+<meta name="generator" content="Org Mode" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/t.css"/>
+</head>
+<body>
+<nav><a href="/" tabindex="0">&larrhk; Back to Index</a></nav><div id="preamble" class="status">
+Published 2024-11-10
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">0001. Two Sum</h1>
+<p class="subtitle" role="doc-subtitle">leetcode</p>
+</header><p>
+<b><b>Problem Restatement:</b></b>
+</p>
 
-**Problem Restatement:**
-
+<p>
 Given an array of integers `nums` and an integer `target`, you need to find two distinct numbers in the array that add up to the `target`. Return the indices of these two numbers. You can assume that each input would have exactly one solution, and you may not use the same element twice. Return the answer as an array in the format `[index1, index2]`.
+</p>
 
-**Solution Description:**
+<p>
+<b><b>Solution Description:</b></b>
+</p>
 
+<p>
 To implement a solution for the Two Sum problem, we need to use a hash table (or map) to keep track of the numbers we have seen and their respective indices. This approach allows us to check, in constant time, whether the complement of the current number (i.e., `target - nums[i]`) exists in the map. The solution involves iterating over the array once, which gives it a time complexity of O(n), where n is the number of elements in the array. The space complexity is also O(n) due to the additional storage required for the hash table.
+</p>
 
+<p>
 Steps:
-1. Initialize an empty hash table (or map).
-2. Iterate over the array `nums`:
-   - For each element `nums[i]`, calculate its complement by subtracting it from the target.
-   - Check if the complement exists in the hash table. If it does, return the current index and the index stored for the complement.
-   - If it does not exist, store the current number along with its index in the hash table.
+</p>
+<ol class="org-ol">
+<li>Initialize an empty hash table (or map).</li>
+<li>Iterate over the array `nums`:
+<ul class="org-ul">
+<li>For each element `nums[i]`, calculate its complement by subtracting it from the target.</li>
+<li>Check if the complement exists in the hash table. If it does, return the current index and the index stored for the complement.</li>
+<li>If it does not exist, store the current number along with its index in the hash table.</li>
+</ul></li>
+</ol>
 
-**Example:**
+<p>
+<b><b>Example:</b></b>
+</p>
 
+<p>
 Consider the array `nums = {2, 7, 11, 15}` with `target = 9`.
+</p>
 
-- Start with an empty map.
-- On the first iteration, the map is empty.
-- On the second iteration with `nums[2] = 7`, check if `9 - 7 = 2` is in the map, which it is.
-- Return the indices stored for `2` and `7`, which are `[1, 2]`.
+<ul class="org-ul">
+<li>Start with an empty map.</li>
+<li>On the first iteration, the map is empty.</li>
+<li>On the second iteration with `nums[2] = 7`, check if `9 - 7 = 2` is in the map, which it is.</li>
+<li>Return the indices stored for `2` and `7`, which are `[1, 2]`.</li>
+</ul>
 
-**References:**
+<p>
+<b><b>References:</b></b>
+</p>
 
-Understanding hash tables is key to this solution. You can learn more about hash tables from this Wikipedia article: https://en.wikipedia.org/wiki/Hash_table
+<p>
+Understanding hash tables is key to this solution. You can learn more about hash tables from this Wikipedia article: <a href="https://en.wikipedia.org/wiki/Hash_table">https://en.wikipedia.org/wiki/Hash_table</a>
+</p>
 
-**Solution Code:**
+<p>
+<b><b>Solution Code:</b></b>
+</p>
 
-#+begin_src lua :tangle "1_two_sum.lua"
--- Two Sum solution in Lua
+<div class="org-src-container">
+<pre class="src src-lua">-- Two Sum solution in Lua
 
 function twoSum(nums, target)
     local map = {}
@@ -140,4 +181,11 @@ end
 -- Execute tests
 
 runTests(tests)
-#+end_src
+</pre>
+</div>
+</div>
+<div id="postamble" class="status">
+&copy; d)zharii. <a href="/sitemap.html">sitemap</a>
+</div>
+</body>
+</html>

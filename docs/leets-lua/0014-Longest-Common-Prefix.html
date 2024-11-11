@@ -1,0 +1,189 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2024-11-10 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>0014. Longest Common Prefix</title>
+<meta name="author" content="d)zharii" />
+<meta name="generator" content="Org Mode" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/t.css"/>
+</head>
+<body>
+<nav><a href="/" tabindex="0">&larrhk; Back to Index</a></nav><div id="preamble" class="status">
+Published 2024-11-10
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">0014. Longest Common Prefix</h1>
+<p class="subtitle" role="doc-subtitle">leetcode</p>
+</header><nav id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org2b0943a">Problem Restatement</a></li>
+<li><a href="#org637c61c">Solution Description</a></li>
+<li><a href="#orgc02eec6">Example</a></li>
+<li><a href="#orgc64aac5">References</a></li>
+<li><a href="#org8b0f611">Solution Code</a></li>
+</ul>
+</div>
+</nav>
+<p>
+org
+</p>
+<div id="outline-container-org2b0943a" class="outline-2">
+<h2 id="org2b0943a">Problem Restatement</h2>
+<div class="outline-text-2" id="text-org2b0943a">
+<p>
+Given an array of strings, we need to find the longest common prefix among them. If there is no common prefix, the function should return an empty string.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org637c61c" class="outline-2">
+<h2 id="org637c61c">Solution Description</h2>
+<div class="outline-text-2" id="text-org637c61c">
+<p>
+To implement the longest common prefix, we need to:
+</p>
+
+<ol class="org-ol">
+<li>Check if the list of strings is empty. If so, return an empty string.</li>
+<li>Assume the first string is the prefix we want to compare.</li>
+<li>Iterate through each string in the array, comparing the prefix with each string:
+<ul class="org-ul">
+<li>For each character in the prefix, compare with the corresponding character in the current string.</li>
+<li>If characters are not the same, truncate the prefix to the matched length.</li>
+</ul></li>
+<li>If at any point the prefix becomes empty, return it immediately.</li>
+<li>Return the final version of the prefix after all strings have been processed.</li>
+</ol>
+
+<p>
+In terms of complexity, this solution is efficient. If `n` is the number of strings and `m` is the length of the shortest string, the time complexity is O(n * m).
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc02eec6" class="outline-2">
+<h2 id="orgc02eec6">Example</h2>
+<div class="outline-text-2" id="text-orgc02eec6">
+<p>
+Using the example array <code>{"flower", "flow", "flight"}</code>, the step-by-step process would be:
+</p>
+<ul class="org-ul">
+<li>Start with "flower" as the assumed prefix.</li>
+<li>Compare with "flow": the common prefix is "flow".</li>
+<li>Compare "flow" with "flight": the common prefix is "fl".</li>
+<li>Thus, the longest common prefix is "fl".</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgc64aac5" class="outline-2">
+<h2 id="orgc64aac5">References</h2>
+<div class="outline-text-2" id="text-orgc64aac5">
+<p>
+This problem can leverage fundamental string operations, and while it doesnât use advanced algorithms, it's a classic example of substring manipulation.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org8b0f611" class="outline-2">
+<h2 id="org8b0f611">Solution Code</h2>
+<div class="outline-text-2" id="text-org8b0f611">
+<div class="org-src-container">
+<pre class="src src-lua">-- Longest Common Prefix solution in Lua
+
+function longestCommonPrefix(strs)
+    if #strs == 0 then
+        return ""
+    end
+
+    local prefix = strs[1]
+    for i = 2, #strs do
+        local currentStr = strs[i]
+        local j, k = 0, 0
+        local commonLength = math.min(#prefix, #currentStr)
+        while j &lt; commonLength and prefix:sub(j+1, j+1) == currentStr:sub(j+1, j+1) do
+            j = j + 1
+        end
+        prefix = prefix:sub(1, j)
+        if prefix == "" then
+            break
+        end
+    end
+
+    return prefix
+end
+
+-- Testing framework
+
+function assertEqual(actual, expected, testName)
+    if actual ~= expected then
+        error(testName .. " Failed: expected " .. expected .. ", got " .. actual)
+    end
+end
+
+local tests = {
+    {
+        name = "Test 1: General case with common prefix",
+        input = {"flower", "flow", "flight"},
+        expected = "fl",
+    },
+    {
+        name = "Test 2: No common prefix",
+        input = {"dog", "racecar", "car"},
+        expected = "",
+    },
+    {
+        name = "Test 3: Full match among all strings",
+        input = {"interspecies", "interstellar", "interstate"},
+        expected = "inters",
+    },
+    {
+        name = "Test 4: Single character match",
+        input = {"a", "a", "b"},
+        expected = "",
+    },
+    {
+        name = "Test 5: Empty string array",
+        input = {},
+        expected = "",
+    }
+}
+
+function runTests(tests)
+    local passed, failed = 0, 0
+    for _, testCase in ipairs(tests) do
+        io.write(testCase.name .. " ... ")
+        local status, err = pcall(function()
+            local result = longestCommonPrefix(testCase.input)
+            assertEqual(result, testCase.expected, testCase.name)
+        end)
+        if status then
+            print("Passed")
+            passed = passed + 1
+        else
+            print("Failed: " .. err)
+            failed = failed + 1
+        end
+    end
+    print("\nSummary:\nPassed: " .. passed .. "\nFailed: " .. failed)
+end
+
+-- Execute tests
+
+runTests(tests)
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+&copy; d)zharii. <a href="/sitemap.html">sitemap</a>
+</div>
+</body>
+</html>

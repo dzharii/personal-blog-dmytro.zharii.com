@@ -1,0 +1,195 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2024-11-10 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>0001. Two Sum</title>
+<meta name="author" content="d)zharii" />
+<meta name="generator" content="Org Mode" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/t.css"/>
+</head>
+<body>
+<nav><a href="/" tabindex="0">&larrhk; Back to Index</a></nav><div id="preamble" class="status">
+Published 2024-11-10
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">0001. Two Sum</h1>
+<p class="subtitle" role="doc-subtitle">leetcode</p>
+</header><nav id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org30cb64f">Problem Restatement</a></li>
+<li><a href="#orgcadcae8">Solution Description</a></li>
+<li><a href="#orgfc552e4">Example</a></li>
+<li><a href="#org0b27bd4">References</a></li>
+<li><a href="#orga54b875">Solution Code</a></li>
+</ul>
+</div>
+</nav>
+<p>
+org
+</p>
+<div id="outline-container-org30cb64f" class="outline-2">
+<h2 id="org30cb64f">Problem Restatement</h2>
+<div class="outline-text-2" id="text-org30cb64f">
+<p>
+Given an array of integers `nums` and an integer `target`, return indices of the two numbers such that they add up to `target`. Each input has exactly one solution, and you cannot use the same element twice. You can return the answer in any order.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgcadcae8" class="outline-2">
+<h2 id="orgcadcae8">Solution Description</h2>
+<div class="outline-text-2" id="text-orgcadcae8">
+<p>
+To implement a solution for the Two Sum problem, we can use a hash table (dictionary) to store the numbers and their corresponding indices as we iterate through the list. This allows us to check in constant time whether the complementary number needed to reach the target has already been visited. If a complement is found, we retrieve the stored index and return both indices. This approach has a time complexity of O(n), where n is the number of elements in the list, and a space complexity of O(n) as well due to storing the elements in the hash table.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgfc552e4" class="outline-2">
+<h2 id="orgfc552e4">Example</h2>
+<div class="outline-text-2" id="text-orgfc552e4">
+<p>
+Consider the input list `nums = [2, 7, 11, 15]` and `target = 9`.
+</p>
+<ul class="org-ul">
+<li>Start with an empty map.</li>
+<li>For the first element (2), calculate `complement = 9 - 2 = 7`. Since 7 is not in the map, add 2 to the map with its index.</li>
+<li>For the second element (7), calculate `complement = 9 - 7 = 2`. Now, 2 is in the map, so return the index of 2 and the current index, i.e., [1, 2].</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org0b27bd4" class="outline-2">
+<h2 id="org0b27bd4">References</h2>
+<div class="outline-text-2" id="text-org0b27bd4">
+<ul class="org-ul">
+<li>For more details on hash tables: <a href="https://en.wikipedia.org/wiki/Hash_table">https://en.wikipedia.org/wiki/Hash_table</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orga54b875" class="outline-2">
+<h2 id="orga54b875">Solution Code</h2>
+<div class="outline-text-2" id="text-orga54b875">
+<div class="org-src-container">
+<pre class="src src-lua">-- Two Sum solution in Lua
+
+-- Function documentation 
+-- @param nums The list of numbers.
+-- @param target The target sum.
+-- @return The indices of the two numbers that add up to the target.
+
+function twoSum(nums, target)
+    local map = {}
+    for i = 1, #nums do
+        local complement = target - nums[i]
+        if map[complement] then
+            return {map[complement], i}
+        end
+        map[nums[i]] = i
+    end
+end
+
+-- Testing framework
+
+function assertEqualArrays(a, b)
+    if #a ~= #b then
+        error("Arrays are not equal in length")
+    end
+    for i = 1, #a do
+        if a[i] ~= b[i] then
+            error("Arrays differ at position "..i..": "..a[i].." ~= "..b[i])
+        end
+    end
+end
+
+local tests = {
+    {
+        title = "Test 1: Simple case",
+        test = function()
+            local nums = {2, 7, 11, 15}
+            local target = 9
+            local expected = {1, 2}
+            local result = twoSum(nums, target)
+            assertEqualArrays(result, expected)
+        end
+    },
+    {
+        title = "Test 2: Multiple solutions",
+        test = function()
+            local nums = {3, 2, 4}
+            local target = 6
+            local expected = {2, 3}
+            local result = twoSum(nums, target)
+            assertEqualArrays(result, expected)
+        end
+    },
+    {
+        title = "Test 3: Same number twice",
+        test = function()
+            local nums = {3, 3}
+            local target = 6
+            local expected = {1, 2}
+            local result = twoSum(nums, target)
+            assertEqualArrays(result, expected)
+        end
+    },
+    {
+        title = "Test 4: Negative numbers",
+        test = function()
+            local nums = {-1, -2, -3, -4, -5}
+            local target = -8
+            local expected = {3, 5}
+            local result = twoSum(nums, target)
+            assertEqualArrays(result, expected)
+        end
+    },
+    {
+        title = "Test 5: No solution",
+        test = function()
+            local nums = {1, 2, 3}
+            local target = 7
+            local result = twoSum(nums, target)
+            if result ~= nil then
+                error("Expected nil, got a result")
+            end
+        end
+    }
+}
+
+function runTests(tests)
+    local passed = 0
+    local failed = 0
+    for _, testCase in ipairs(tests) do
+        io.write(testCase.title .. " ... ")
+        local status, err = pcall(testCase.test)
+        if status then
+            print("Passed")
+            passed = passed + 1
+        else
+            print("Failed: " .. err)
+            failed = failed + 1
+        end
+    end
+    print("\nSummary:")
+    print("Passed: "..passed)
+    print("Failed: "..failed)
+end
+
+runTests(tests)
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+&copy; d)zharii. <a href="/sitemap.html">sitemap</a>
+</div>
+</body>
+</html>

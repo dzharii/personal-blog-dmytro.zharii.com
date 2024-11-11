@@ -1,33 +1,66 @@
-﻿#+title: 0001. Two Sum
-#+subtitle: leetcode
-#+date: <2024-11-10>
-#+language: en
-
-**Problem Restatement**:  
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2024-11-10 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>0001. Two Sum</title>
+<meta name="author" content="d)zharii" />
+<meta name="generator" content="Org Mode" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/t.css"/>
+</head>
+<body>
+<nav><a href="/" tabindex="0">&larrhk; Back to Index</a></nav><div id="preamble" class="status">
+Published 2024-11-10
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">0001. Two Sum</h1>
+<p class="subtitle" role="doc-subtitle">leetcode</p>
+</header><p>
+<b><b>Problem Restatement</b></b>:  
 The problem is to find indices of the two numbers in an array, such that they add up to a specific target. The function should return a pair of indices of these two numbers. Assume that each input would have exactly one solution, and you may not use the same element twice. The array can contain both positive and negative integers, and indices must be returned in a 1-based format.
+</p>
 
-**Solution Description**:  
+<p>
+<b><b>Solution Description</b></b>:  
 To implement the "Two Sum" function in Lua, we need to:
-1. Iterate over the array while maintaining a hashmap (dictionary) that keeps track of numbers we have seen and their indices.
-2. For each number `nums[i]`, calculate its complement with respect to the target (i.e., `target - nums[i]`).
-3. Check if this complement is already in the hashmap.
-   - If it exists, return the current index and the index stored in the hashmap as they form the required pair.
-   - If not, store the current number and its index in the hashmap.
-4. The algorithm complexity is O(n) for time, where n is the number of elements in the array since each element is processed at most twice. The space complexity is O(n) due to the hashmap storage.
+</p>
+<ol class="org-ol">
+<li>Iterate over the array while maintaining a hashmap (dictionary) that keeps track of numbers we have seen and their indices.</li>
+<li>For each number `nums[i]`, calculate its complement with respect to the target (i.e., `target - nums[i]`).</li>
+<li>Check if this complement is already in the hashmap.
+<ul class="org-ul">
+<li>If it exists, return the current index and the index stored in the hashmap as they form the required pair.</li>
+<li>If not, store the current number and its index in the hashmap.</li>
+</ul></li>
+<li>The algorithm complexity is O(n) for time, where n is the number of elements in the array since each element is processed at most twice. The space complexity is O(n) due to the hashmap storage.</li>
+</ol>
 
-**Example**:  
+<p>
+<b><b>Example</b></b>:  
 Consider `nums = [2, 7, 11, 15]` and `target = 9`.  
-- Start with an empty hashmap.
-- For `i = 1`, `nums[i] = 2`: complement is `7`. Store `2` in the map.
-- For `i = 2`, `nums[i] = 7`: complement is `2`. Since `2` is in the map, return `[1, 2]`.
+</p>
+<ul class="org-ul">
+<li>Start with an empty hashmap.</li>
+<li>For `i = 1`, `nums[i] = 2`: complement is `7`. Store `2` in the map.</li>
+<li>For `i = 2`, `nums[i] = 7`: complement is `2`. Since `2` is in the map, return `[1, 2]`.</li>
+</ul>
 
-**References**:  
-- Lua Programming: https://www.lua.org/manual/5.3/  
-- Hashmaps: https://en.wikipedia.org/wiki/Hash_table
+<p>
+<b><b>References</b></b>:  
+</p>
+<ul class="org-ul">
+<li>Lua Programming: <a href="https://www.lua.org/manual/5.3/">https://www.lua.org/manual/5.3/</a></li>
+<li>Hashmaps: <a href="https://en.wikipedia.org/wiki/Hash_table">https://en.wikipedia.org/wiki/Hash_table</a></li>
+</ul>
 
-**Solution Code**:
-#+begin_src lua :tangle "1_two_sum.lua"
--- Function to find two indices with values adding up to the target
+<p>
+<b><b>Solution Code</b></b>:
+</p>
+<div class="org-src-container">
+<pre class="src src-lua">-- Function to find two indices with values adding up to the target
 function twoSum(nums, target)
     local map = {}
     for i = 1, #nums do
@@ -129,4 +162,11 @@ end
 
 -- Execute tests
 runTests(tests)
-#+end_src
+</pre>
+</div>
+</div>
+<div id="postamble" class="status">
+&copy; d)zharii. <a href="/sitemap.html">sitemap</a>
+</div>
+</body>
+</html>

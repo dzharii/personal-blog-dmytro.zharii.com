@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2024-11-01 -->
+<!-- 2024-11-10 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Combination Sum Problem Overview and Solution Plan</title>
@@ -22,53 +22,53 @@ Published 2024-05-13
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org9d09134">Link</a></li>
-<li><a href="#org6087e00">Problem Overview:</a></li>
-<li><a href="#orgdcb9a5b">Solution Outline:</a>
+<li><a href="#org5571d69">Link</a></li>
+<li><a href="#orgc956887">Problem Overview:</a></li>
+<li><a href="#org4b4c450">Solution Outline:</a>
 <ul>
-<li><a href="#org84a6502">Preferred Structure:</a></li>
-<li><a href="#orgd9e015d">Brute Force vs Optimal Solution:</a></li>
-<li><a href="#org7ccedbd">Algorithm Choice:</a></li>
+<li><a href="#org1452111">Preferred Structure:</a></li>
+<li><a href="#org50135b6">Brute Force vs Optimal Solution:</a></li>
+<li><a href="#org9701a23">Algorithm Choice:</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-org9d09134" class="outline-2">
-<h2 id="org9d09134">Link</h2>
-<div class="outline-text-2" id="text-org9d09134">
+<div id="outline-container-org5571d69" class="outline-2">
+<h2 id="org5571d69">Link</h2>
+<div class="outline-text-2" id="text-org5571d69">
 <p>
 <a href="https://leetcode.com/problems/combination-sum/description/">2024-05-13 Combination Sum - LeetCode</a>
 </p>
 </div>
 </div>
 
-<div id="outline-container-org6087e00" class="outline-2">
-<h2 id="org6087e00">Problem Overview:</h2>
-<div class="outline-text-2" id="text-org6087e00">
+<div id="outline-container-orgc956887" class="outline-2">
+<h2 id="orgc956887">Problem Overview:</h2>
+<div class="outline-text-2" id="text-orgc956887">
 <p>
 The "Combination Sum" problem asks us to find all unique combinations in a given set of candidate numbers that sum up to a target number. The numbers in the candidates set can be used multiple times in the combination, and the solution set must not contain duplicate combinations.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgdcb9a5b" class="outline-2">
-<h2 id="orgdcb9a5b">Solution Outline:</h2>
-<div class="outline-text-2" id="text-orgdcb9a5b">
+<div id="outline-container-org4b4c450" class="outline-2">
+<h2 id="org4b4c450">Solution Outline:</h2>
+<div class="outline-text-2" id="text-org4b4c450">
 </div>
-<div id="outline-container-org84a6502" class="outline-3">
-<h3 id="org84a6502">Preferred Structure:</h3>
-<div class="outline-text-3" id="text-org84a6502">
+<div id="outline-container-org1452111" class="outline-3">
+<h3 id="org1452111">Preferred Structure:</h3>
+<div class="outline-text-3" id="text-org1452111">
 <p>
 Utilizing recursion for backtracking is highly effective here since we need to explore all possible combinations that sum up to the target. An array or list can be used to store the current combination of numbers being considered.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgd9e015d" class="outline-3">
-<h3 id="orgd9e015d">Brute Force vs Optimal Solution:</h3>
-<div class="outline-text-3" id="text-orgd9e015d">
+<div id="outline-container-org50135b6" class="outline-3">
+<h3 id="org50135b6">Brute Force vs Optimal Solution:</h3>
+<div class="outline-text-3" id="text-org50135b6">
 <ul class="org-ul">
 <li><b>Brute Force:</b> Try all possible combinations of numbers to see which ones meet the target sum. This would involve recursion or iteration over each number and is not efficient.</li>
 <li><b>Optimal Solution:</b> Use backtracking to build combinations efficiently. Only continue adding to the current combination if the sum has not exceeded the target.</li>
@@ -77,9 +77,9 @@ Utilizing recursion for backtracking is highly effective here since we need to e
 </div>
 </div>
 
-<div id="outline-container-org7ccedbd" class="outline-3">
-<h3 id="org7ccedbd">Algorithm Choice:</h3>
-<div class="outline-text-3" id="text-org7ccedbd">
+<div id="outline-container-org9701a23" class="outline-3">
+<h3 id="org9701a23">Algorithm Choice:</h3>
+<div class="outline-text-3" id="text-org9701a23">
 <ul class="org-ul">
 <li>The backtracking algorithm is ideal here due to its ability to eliminate many non-viable combinations early, especially when the current sum exceeds the target. This approach significantly reduces the number of combinations to check.</li>
 </ul>
