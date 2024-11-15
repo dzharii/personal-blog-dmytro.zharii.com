@@ -1,0 +1,185 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2024-11-15 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>1574. Shortest Subarray to be Removed to Make Array Sorted</title>
+<meta name="author" content="d)zharii" />
+<meta name="generator" content="Org Mode" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/t.css"/>
+</head>
+<body>
+<nav><a href="/" tabindex="0">&larrhk; Back to Index</a></nav><div id="preamble" class="status">
+Published 2024-11-14
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">1574. Shortest Subarray to be Removed to Make Array Sorted</h1>
+<p class="subtitle" role="doc-subtitle">leetcode</p>
+</header><nav id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgcb7e887">Problem Restatement</a></li>
+<li><a href="#org7c11db2">Solution Description</a></li>
+<li><a href="#org7d797c1">Example</a></li>
+<li><a href="#orgac013d5">References</a></li>
+<li><a href="#orga259eef">Solution Code</a></li>
+</ul>
+</div>
+</nav>
+
+<div id="outline-container-orgcb7e887" class="outline-2">
+<h2 id="orgcb7e887">Problem Restatement</h2>
+<div class="outline-text-2" id="text-orgcb7e887">
+<p>
+Given an integer array, you need to remove the shortest contiguous subarray such that the resulting array is in non-decreasing order. The aim is to find and return the length of such subarray. If the array is already sorted, you should return 0.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org7c11db2" class="outline-2">
+<h2 id="org7c11db2">Solution Description</h2>
+<div class="outline-text-2" id="text-org7c11db2">
+<p>
+To implement the solution, we need to identify the shortest subarray that can be removed to make the whole array ordered. This involves finding the furthest distance between the end of a non-decreasing prefix and the start of a non-decreasing suffix. The approach is as follows:
+</p>
+
+<ol class="org-ol">
+<li>Identify the longest non-decreasing prefix from the start of the array.</li>
+<li>Identify the longest non-decreasing suffix from the end of the array.</li>
+<li>Compute distances between every element in the prefix and possible starting elements in the suffix to find potential overlaps that can be removed.</li>
+<li>Return the shortest overlap length.</li>
+</ol>
+
+<p>
+This approach runs in O(n) time and ensures O(1) additional space.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org7d797c1" class="outline-2">
+<h2 id="org7d797c1">Example</h2>
+<div class="outline-text-2" id="text-org7d797c1">
+<p>
+Consider the array: [1, 3, 2, 3, 4]
+</p>
+<ul class="org-ul">
+<li>The longest prefix: [1, 3]</li>
+<li>The longest suffix: [3, 4]</li>
+<li>To make the array ordered, remove the subarray [2, 3]. The resulting array [1, 3, 3, 4] is non-decreasing.</li>
+<li>Length of the shortest subarray to remove is 2.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgac013d5" class="outline-2">
+<h2 id="orgac013d5">References</h2>
+<div class="outline-text-2" id="text-orgac013d5">
+<p>
+For advanced solutions, sliding window techniques and two-pointer methods can be explored: [Two-Pointer Technique](<a href="https://en.wikipedia.org/wiki/Two_pointers_technique">https://en.wikipedia.org/wiki/Two_pointers_technique</a>).
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga259eef" class="outline-2">
+<h2 id="orga259eef">Solution Code</h2>
+<div class="outline-text-2" id="text-orga259eef">
+<div class="org-src-container">
+<pre class="src src-lua">-- Lua solution for Shortest Subarray to be Removed to Make Array Sorted
+
+-- Function to find the length of the shortest subarray to remove
+function findShortestSubarray(nums)
+    local n = #nums
+
+    -- Find longest non-decreasing prefix
+    local left = 1
+    while left &lt; n and nums[left] &lt;= nums[left + 1] do
+        left = left + 1
+    end
+
+    -- If already sorted
+    if left == n then
+        return 0
+    end
+
+    -- Find longest non-decreasing suffix
+    local right = n
+    while right &gt; 1 and nums[right - 1] &lt;= nums[right] do
+        right = right - 1
+    end
+
+    -- Calculate shortest subarray length to remove
+    local shortest = math.min(n - left, right - 1)
+
+    -- Check overlaps of prefix and suffix
+    local j = right
+    for i = 1, left do
+        while j &lt;= n and nums[i] &gt; nums[j] do
+            j = j + 1
+        end
+        if j &lt;= n then
+            shortest = math.min(shortest, j - i - 1)
+        end
+    end
+
+    return shortest
+end
+
+-- Test Framework
+
+function assertEqual(actual, expected)
+    if actual ~= expected then
+        error("Expected: "..expected..", but got: "..actual)
+    end
+end
+
+-- Test Cases
+
+local tests = {
+    { title = "Test 1: Already sorted", input = {1, 2, 3, 4}, expected = 0 },
+    { title = "Test 2: Single element removal", input = {1, 3, 2, 3, 4}, expected = 2 },
+    { title = "Test 3: Inversions at start", input = {3, 1, 2, 4}, expected = 1 },
+    { title = "Test 4: Entire array", input = {4, 3, 2, 1}, expected = 3 },
+    { title = "Test 5: Partial removal", input = {1, 2, 5, 3, 4}, expected = 2 },
+}
+
+-- Test Runner
+
+function runTests()
+    local passed = 0
+    local failed = 0
+    for _, test in ipairs(tests) do
+        io.write(test.title .. " ... ")
+        local status, err = pcall(function()
+            local result = findShortestSubarray(test.input)
+            assertEqual(result, test.expected)
+        end)
+        if status then
+            print("Passed")
+            passed = passed + 1
+        else
+            print("Failed: " .. err)
+            failed = failed + 1
+        end
+    end
+    print("\nSummary:")
+    print("Passed: "..passed)
+    print("Failed: "..failed)
+end
+
+-- Execute Tests
+
+runTests()
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+&copy; d)zharii. <a href="/sitemap.html">sitemap</a>
+</div>
+</body>
+</html>

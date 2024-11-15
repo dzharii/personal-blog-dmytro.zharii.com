@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2024-11-14 -->
+<!-- 2024-11-15 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>1568. Minimum Number of Days to Disconnect Island</title>
@@ -22,22 +22,22 @@ Published 2024-08-11
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org9afd7d2">Problem</a></li>
-<li><a href="#org93035ba">Output: 2</a></li>
-<li><a href="#org78a62fe">Solution Description</a>
+<li><a href="#orgda9cc6b">Problem</a></li>
+<li><a href="#orgad76119">Output: 2</a></li>
+<li><a href="#org57cb640">Solution Description</a>
 <ul>
-<li><a href="#org409f6a2">Example</a></li>
-<li><a href="#orgf6563a3">References</a></li>
-<li><a href="#org63aaa0d">Solution</a></li>
+<li><a href="#org63cc433">Example</a></li>
+<li><a href="#org58fcfe5">References</a></li>
+<li><a href="#org31ed26b">Solution</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-org9afd7d2" class="outline-2">
-<h2 id="org9afd7d2">Problem</h2>
-<div class="outline-text-2" id="text-org9afd7d2">
+<div id="outline-container-orgda9cc6b" class="outline-2">
+<h2 id="orgda9cc6b">Problem</h2>
+<div class="outline-text-2" id="text-orgda9cc6b">
 <p>
 Given a 2D grid consists of 0s (water) and 1s (land), an island is a maximal 4-directionally (horizontal or vertical) connected group of 1s. The grid is said to be connected if we have exactly one island, otherwise, it is disconnected. We want to find the minimum number of days to disconnect the island.
 </p>
@@ -45,7 +45,7 @@ Given a 2D grid consists of 0s (water) and 1s (land), an island is a maximal 4-d
 <p>
 <b><b>Example</b></b>:
 </p>
-<pre class="example" id="org62f6b20">
+<pre class="example" id="org4b6a7ee">
 1 1 0 1 1
 1 1 0 1 1
 0 0 1 0 0
@@ -53,13 +53,13 @@ Given a 2D grid consists of 0s (water) and 1s (land), an island is a maximal 4-d
 </div>
 </div>
 
-<div id="outline-container-org93035ba" class="outline-2">
-<h2 id="org93035ba">Output: 2</h2>
+<div id="outline-container-orgad76119" class="outline-2">
+<h2 id="orgad76119">Output: 2</h2>
 </div>
 
-<div id="outline-container-org78a62fe" class="outline-2">
-<h2 id="org78a62fe">Solution Description</h2>
-<div class="outline-text-2" id="text-org78a62fe">
+<div id="outline-container-org57cb640" class="outline-2">
+<h2 id="org57cb640">Solution Description</h2>
+<div class="outline-text-2" id="text-org57cb640">
 <p>
 To implement the solution, we need to approach it with the following steps:
 </p>
@@ -75,13 +75,13 @@ We will use Depth-First Search (DFS) to count the number of connected components
 </p>
 </div>
 
-<div id="outline-container-org409f6a2" class="outline-3">
-<h3 id="org409f6a2">Example</h3>
-<div class="outline-text-3" id="text-org409f6a2">
+<div id="outline-container-org63cc433" class="outline-3">
+<h3 id="org63cc433">Example</h3>
+<div class="outline-text-3" id="text-org63cc433">
 <p>
 Grid:
 </p>
-<pre class="example" id="orge0769fa">
+<pre class="example" id="org53886a3">
 [[1, 1, 0, 1, 1],
  [1, 1, 0, 1, 1],
  [0, 0, 1, 0, 0]]
@@ -96,9 +96,9 @@ Grid:
 </div>
 </div>
 
-<div id="outline-container-orgf6563a3" class="outline-3">
-<h3 id="orgf6563a3">References</h3>
-<div class="outline-text-3" id="text-orgf6563a3">
+<div id="outline-container-org58fcfe5" class="outline-3">
+<h3 id="org58fcfe5">References</h3>
+<div class="outline-text-3" id="text-org58fcfe5">
 <ul class="org-ul">
 <li><a href="https://en.wikipedia.org/wiki/Depth-first_search">Depth-First Search</a></li>
 <li><a href="https://leetcode.com/problems/minimum-number-of-days-to-disconnect-island/">Leetcode Problem 1568</a></li>
@@ -110,9 +110,9 @@ The solution can be built using DFS to verify the connected components at each s
 </div>
 </div>
 
-<div id="outline-container-org63aaa0d" class="outline-3">
-<h3 id="org63aaa0d">Solution</h3>
-<div class="outline-text-3" id="text-org63aaa0d">
+<div id="outline-container-org31ed26b" class="outline-3">
+<h3 id="org31ed26b">Solution</h3>
+<div class="outline-text-3" id="text-org31ed26b">
 <div class="org-src-container">
 <pre class="src src-js">/**
  * Main solution function to determine the minimum number of days to disconnect the island.
