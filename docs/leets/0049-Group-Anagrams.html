@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2024-11-10 -->
+<!-- 2024-11-14 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>0049. Group Anagrams</title>
@@ -22,16 +22,16 @@ Published 2024-05-23
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org81830b6">Problem Overview</a></li>
-<li><a href="#org1f1fc4e">Solution Outline</a></li>
-<li><a href="#orge4db8b6">Implement the Solution</a></li>
+<li><a href="#org3cf403a">Problem Overview</a></li>
+<li><a href="#orgdb3b114">Solution Outline</a></li>
+<li><a href="#org9f3d6f6">Implement the Solution</a></li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-org81830b6" class="outline-2">
-<h2 id="org81830b6">Problem Overview</h2>
-<div class="outline-text-2" id="text-org81830b6">
+<div id="outline-container-org3cf403a" class="outline-2">
+<h2 id="org3cf403a">Problem Overview</h2>
+<div class="outline-text-2" id="text-org3cf403a">
 <p>
 The problem is to group anagrams from a list of strings. Anagrams are words or phrases made by rearranging the letters of another, such as "cinema" and "iceman". 
 </p>
@@ -42,9 +42,9 @@ Given an array of strings, you need to group the anagrams together. Each group o
 </div>
 </div>
 
-<div id="outline-container-org1f1fc4e" class="outline-2">
-<h2 id="org1f1fc4e">Solution Outline</h2>
-<div class="outline-text-2" id="text-org1f1fc4e">
+<div id="outline-container-orgdb3b114" class="outline-2">
+<h2 id="orgdb3b114">Solution Outline</h2>
+<div class="outline-text-2" id="text-orgdb3b114">
 <ul class="org-ul">
 <li><b><b>Preferred Structure:</b></b> Use a hash map (or object) where the key is a sorted version of the string, and the value is an array of strings (the anagrams).</li>
 <li><b><b>Brute Force vs Optimal Solution:</b></b> The brute force method would involve comparing each string with every other string, which is inefficient. The optimal solution sorts each string and uses it as a key in the hash map to group anagrams together.</li>
@@ -53,9 +53,9 @@ Given an array of strings, you need to group the anagrams together. Each group o
 </div>
 </div>
 
-<div id="outline-container-orge4db8b6" class="outline-2">
-<h2 id="orge4db8b6">Implement the Solution</h2>
-<div class="outline-text-2" id="text-orge4db8b6">
+<div id="outline-container-org9f3d6f6" class="outline-2">
+<h2 id="org9f3d6f6">Implement the Solution</h2>
+<div class="outline-text-2" id="text-org9f3d6f6">
 <div class="org-src-container">
 <pre class="src src-js">/**
  * Groups anagrams from a list of strings.

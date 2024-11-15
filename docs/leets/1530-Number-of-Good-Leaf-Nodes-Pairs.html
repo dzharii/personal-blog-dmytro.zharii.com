@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2024-11-10 -->
+<!-- 2024-11-14 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>1530. Number of Good Leaf Nodes Pairs</title>
@@ -22,26 +22,26 @@ Published 2024-07-17
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org32052e1">Problem:</a></li>
-<li><a href="#org8998d8d">Solution Description:</a></li>
-<li><a href="#org557d18c">Example:</a></li>
-<li><a href="#org5ef5953">Setup:</a></li>
+<li><a href="#orge0888b8">Problem:</a></li>
+<li><a href="#org1164233">Solution Description:</a></li>
+<li><a href="#orgd08c83a">Example:</a></li>
+<li><a href="#org3e293fe">Setup:</a></li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-org32052e1" class="outline-2">
-<h2 id="org32052e1">Problem:</h2>
-<div class="outline-text-2" id="text-org32052e1">
+<div id="outline-container-orge0888b8" class="outline-2">
+<h2 id="orge0888b8">Problem:</h2>
+<div class="outline-text-2" id="text-orge0888b8">
 <p>
 The problem is to find the number of good leaf node pairs in a binary tree. A pair of leaf nodes (leaf1, leaf2) is considered good if the distance between them is less than or equal to a given value `distance`. The distance between two nodes in a binary tree is the number of edges on the shortest path between them.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org8998d8d" class="outline-2">
-<h2 id="org8998d8d">Solution Description:</h2>
-<div class="outline-text-2" id="text-org8998d8d">
+<div id="outline-container-org1164233" class="outline-2">
+<h2 id="org1164233">Solution Description:</h2>
+<div class="outline-text-2" id="text-org1164233">
 <p>
 To implement the solution, we need to perform the following steps:
 </p>
@@ -61,13 +61,13 @@ Space Complexity: The space complexity is O(n) due to the recursion stack and st
 </div>
 </div>
 
-<div id="outline-container-org557d18c" class="outline-2">
-<h2 id="org557d18c">Example:</h2>
-<div class="outline-text-2" id="text-org557d18c">
+<div id="outline-container-orgd08c83a" class="outline-2">
+<h2 id="orgd08c83a">Example:</h2>
+<div class="outline-text-2" id="text-orgd08c83a">
 <p>
 Consider a binary tree:
 </p>
-<pre class="example" id="orgb06cbe0">
+<pre class="example" id="org33018c6">
     1
    / \
   2   3
@@ -85,9 +85,9 @@ For `distance = 3`, a possible solution:
 </div>
 </div>
 
-<div id="outline-container-org5ef5953" class="outline-2">
-<h2 id="org5ef5953">Setup:</h2>
-<div class="outline-text-2" id="text-org5ef5953">
+<div id="outline-container-org3e293fe" class="outline-2">
+<h2 id="org3e293fe">Setup:</h2>
+<div class="outline-text-2" id="text-org3e293fe">
 <p>
 Introduces the general framework of the solution.
 </p>
