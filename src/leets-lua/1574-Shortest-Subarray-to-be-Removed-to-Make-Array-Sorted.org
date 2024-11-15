@@ -1,0 +1,121 @@
+﻿#+title: 1574. Shortest Subarray to be Removed to Make Array Sorted
+#+subtitle: leetcode
+#+date: <2024-11-14>
+#+language: en
+
+* Problem Restatement
+
+Given an integer array, you need to remove the shortest contiguous subarray such that the resulting array is in non-decreasing order. The aim is to find and return the length of such subarray. If the array is already sorted, you should return 0.
+
+* Solution Description
+
+To implement the solution, we need to identify the shortest subarray that can be removed to make the whole array ordered. This involves finding the furthest distance between the end of a non-decreasing prefix and the start of a non-decreasing suffix. The approach is as follows:
+
+1. Identify the longest non-decreasing prefix from the start of the array.
+2. Identify the longest non-decreasing suffix from the end of the array.
+3. Compute distances between every element in the prefix and possible starting elements in the suffix to find potential overlaps that can be removed.
+4. Return the shortest overlap length.
+
+This approach runs in O(n) time and ensures O(1) additional space.
+
+* Example
+
+Consider the array: [1, 3, 2, 3, 4]
+- The longest prefix: [1, 3]
+- The longest suffix: [3, 4]
+- To make the array ordered, remove the subarray [2, 3]. The resulting array [1, 3, 3, 4] is non-decreasing.
+- Length of the shortest subarray to remove is 2.
+
+* References
+
+For advanced solutions, sliding window techniques and two-pointer methods can be explored: [Two-Pointer Technique](https://en.wikipedia.org/wiki/Two_pointers_technique).
+
+* Solution Code
+
+#+begin_src lua :tangle "1574.shortestSubarrayToRemove.lua" :results output
+-- Lua solution for Shortest Subarray to be Removed to Make Array Sorted
+
+-- Function to find the length of the shortest subarray to remove
+function findShortestSubarray(nums)
+    local n = #nums
+
+    -- Find longest non-decreasing prefix
+    local left = 1
+    while left < n and nums[left] <= nums[left + 1] do
+        left = left + 1
+    end
+
+    -- If already sorted
+    if left == n then
+        return 0
+    end
+
+    -- Find longest non-decreasing suffix
+    local right = n
+    while right > 1 and nums[right - 1] <= nums[right] do
+        right = right - 1
+    end
+
+    -- Calculate shortest subarray length to remove
+    local shortest = math.min(n - left, right - 1)
+
+    -- Check overlaps of prefix and suffix
+    local j = right
+    for i = 1, left do
+        while j <= n and nums[i] > nums[j] do
+            j = j + 1
+        end
+        if j <= n then
+            shortest = math.min(shortest, j - i - 1)
+        end
+    end
+
+    return shortest
+end
+
+-- Test Framework
+
+function assertEqual(actual, expected)
+    if actual ~= expected then
+        error("Expected: "..expected..", but got: "..actual)
+    end
+end
+
+-- Test Cases
+
+local tests = {
+    { title = "Test 1: Already sorted", input = {1, 2, 3, 4}, expected = 0 },
+    { title = "Test 2: Single element removal", input = {1, 3, 2, 3, 4}, expected = 2 },
+    { title = "Test 3: Inversions at start", input = {3, 1, 2, 4}, expected = 1 },
+    { title = "Test 4: Entire array", input = {4, 3, 2, 1}, expected = 3 },
+    { title = "Test 5: Partial removal", input = {1, 2, 5, 3, 4}, expected = 2 },
+}
+
+-- Test Runner
+
+function runTests()
+    local passed = 0
+    local failed = 0
+    for _, test in ipairs(tests) do
+        io.write(test.title .. " ... ")
+        local status, err = pcall(function()
+            local result = findShortestSubarray(test.input)
+            assertEqual(result, test.expected)
+        end)
+        if status then
+            print("Passed")
+            passed = passed + 1
+        else
+            print("Failed: " .. err)
+            failed = failed + 1
+        end
+    end
+    print("\nSummary:")
+    print("Passed: "..passed)
+    print("Failed: "..failed)
+end
+
+-- Execute Tests
+
+runTests()
+#+end_src
