@@ -22,18 +22,18 @@ Published 2024-08-19
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgc9aaed5">Problem</a></li>
-<li><a href="#orgc0dce5b">Solution Description</a></li>
-<li><a href="#org753e37b">Example</a></li>
-<li><a href="#orgefefba0">References</a></li>
-<li><a href="#org73a2e7c">Solution</a></li>
+<li><a href="#org53f19a0">Problem</a></li>
+<li><a href="#org6fb70ec">Solution Description</a></li>
+<li><a href="#org593d1b4">Example</a></li>
+<li><a href="#org069943b">References</a></li>
+<li><a href="#org5887167">Solution</a></li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-orgc9aaed5" class="outline-2">
-<h2 id="orgc9aaed5">Problem</h2>
-<div class="outline-text-2" id="text-orgc9aaed5">
+<div id="outline-container-org53f19a0" class="outline-2">
+<h2 id="org53f19a0">Problem</h2>
+<div class="outline-text-2" id="text-org53f19a0">
 <p>
 Given an array of integers representing the number of stones in piles, two players (Alice and Bob) play a game with the following rules:
 </p>
@@ -50,9 +50,9 @@ The goal is to determine the maximum stones Alice can get if both Alice and Bob 
 </div>
 </div>
 
-<div id="outline-container-orgc0dce5b" class="outline-2">
-<h2 id="orgc0dce5b">Solution Description</h2>
-<div class="outline-text-2" id="text-orgc0dce5b">
+<div id="outline-container-org6fb70ec" class="outline-2">
+<h2 id="org6fb70ec">Solution Description</h2>
+<div class="outline-text-2" id="text-org6fb70ec">
 <p>
 To implement the solution for the Stone Game II problem optimally, we need to use dynamic programming (DP). The key here is to simulate the game using a recursive DP approach with memoization to avoid recalculating results for the same states.
 </p>
@@ -75,9 +75,9 @@ Space Complexity: O(n<sup>2</sup>) for the memoization table.
 </div>
 </div>
 
-<div id="outline-container-org753e37b" class="outline-2">
-<h2 id="org753e37b">Example</h2>
-<div class="outline-text-2" id="text-org753e37b">
+<div id="outline-container-org593d1b4" class="outline-2">
+<h2 id="org593d1b4">Example</h2>
+<div class="outline-text-2" id="text-org593d1b4">
 <p>
 Consider the piles = [2, 7, 9, 4, 4]:
 </p>
@@ -91,9 +91,9 @@ Consider the piles = [2, 7, 9, 4, 4]:
 </div>
 </div>
 
-<div id="outline-container-orgefefba0" class="outline-2">
-<h2 id="orgefefba0">References</h2>
-<div class="outline-text-2" id="text-orgefefba0">
+<div id="outline-container-org069943b" class="outline-2">
+<h2 id="org069943b">References</h2>
+<div class="outline-text-2" id="text-org069943b">
 <ul class="org-ul">
 <li>Dynamic Programming: A method for solving complex problems by breaking them down into simpler subproblems and solving each of them just once and storing their solutions.</li>
 <li><a href="https://leetcode.com/problems/stone-game-ii/">Leetcode 1140 - Stone Game II</a></li>
@@ -101,9 +101,9 @@ Consider the piles = [2, 7, 9, 4, 4]:
 </div>
 </div>
 
-<div id="outline-container-org73a2e7c" class="outline-2">
-<h2 id="org73a2e7c">Solution</h2>
-<div class="outline-text-2" id="text-org73a2e7c">
+<div id="outline-container-org5887167" class="outline-2">
+<h2 id="org5887167">Solution</h2>
+<div class="outline-text-2" id="text-org5887167">
 <div class="org-src-container">
 <pre class="src src-js">/**
  * Calculate the maximum number of stones Alice can collect if both play optimally.

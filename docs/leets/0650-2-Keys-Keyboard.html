@@ -22,19 +22,19 @@ Published 2024-08-19
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgd3bb6dd">Problem</a></li>
-<li><a href="#org76cf63d">Solution Description</a></li>
-<li><a href="#org3dfaeae">Example</a></li>
-<li><a href="#org534ce95">References</a></li>
-<li><a href="#orgd54ac00">Solution</a></li>
+<li><a href="#org0a97656">Problem</a></li>
+<li><a href="#org18bcf30">Solution Description</a></li>
+<li><a href="#orgfc5885d">Example</a></li>
+<li><a href="#orgfc81363">References</a></li>
+<li><a href="#org719b04d">Solution</a></li>
 </ul>
 </div>
 </nav>
 
 
-<div id="outline-container-orgd3bb6dd" class="outline-2">
-<h2 id="orgd3bb6dd">Problem</h2>
-<div class="outline-text-2" id="text-orgd3bb6dd">
+<div id="outline-container-org0a97656" class="outline-2">
+<h2 id="org0a97656">Problem</h2>
+<div class="outline-text-2" id="text-org0a97656">
 <p>
 Given a single character 'A' initially displayed on a notepad, you can perform two operations on this notepad for any number of times:
 </p>
@@ -50,9 +50,9 @@ Now, you are given an integer n, which represents the target number of 'A' chara
 </div>
 </div>
 
-<div id="outline-container-org76cf63d" class="outline-2">
-<h2 id="org76cf63d">Solution Description</h2>
-<div class="outline-text-2" id="text-org76cf63d">
+<div id="outline-container-org18bcf30" class="outline-2">
+<h2 id="org18bcf30">Solution Description</h2>
+<div class="outline-text-2" id="text-org18bcf30">
 <p>
 To implement a solution, we need to use dynamic programming to break down the problem into smaller subproblems. We maintain an array where dp[i] represents the minimum number of operations required to get exactly i 'A's. We initialize dp[1] to 0 since no operations are needed to have one 'A'. For each number of 'A's, we try to find a divisor j which divides i. If j is a divisor, then the only way to produce i 'A's is by copying all from dp[j] and pasting (i/j) - 1 times.
 </p>
@@ -63,9 +63,9 @@ The time complexity of this approach is O(n log n) because for each number from 
 </div>
 </div>
 
-<div id="outline-container-org3dfaeae" class="outline-2">
-<h2 id="org3dfaeae">Example</h2>
-<div class="outline-text-2" id="text-org3dfaeae">
+<div id="outline-container-orgfc5885d" class="outline-2">
+<h2 id="orgfc5885d">Example</h2>
+<div class="outline-text-2" id="text-orgfc5885d">
 <p>
 Let's take n = 4:
 dp[1] = 0  (Initial 'A')
@@ -76,18 +76,18 @@ dp[4] = 4  (Copy -&gt; Paste -&gt; Copy -&gt; Paste)
 </div>
 </div>
 
-<div id="outline-container-org534ce95" class="outline-2">
-<h2 id="org534ce95">References</h2>
-<div class="outline-text-2" id="text-org534ce95">
+<div id="outline-container-orgfc81363" class="outline-2">
+<h2 id="orgfc81363">References</h2>
+<div class="outline-text-2" id="text-orgfc81363">
 <ul class="org-ul">
 <li>Dynamic Programming: <a href="https://en.wikipedia.org/wiki/Dynamic_programming">https://en.wikipedia.org/wiki/Dynamic_programming</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgd54ac00" class="outline-2">
-<h2 id="orgd54ac00">Solution</h2>
-<div class="outline-text-2" id="text-orgd54ac00">
+<div id="outline-container-org719b04d" class="outline-2">
+<h2 id="org719b04d">Solution</h2>
+<div class="outline-text-2" id="text-org719b04d">
 <div class="org-src-container">
 <pre class="src src-js">/**
  * @param {number} n - The target number of 'A' characters.
