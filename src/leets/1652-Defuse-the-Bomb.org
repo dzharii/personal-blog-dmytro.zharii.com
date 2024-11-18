@@ -1,0 +1,112 @@
+﻿#+title: 1652. Defuse the Bomb
+#+subtitle: leetcode
+#+date: <2024-11-18>
+#+language: en
+
+* Problem
+Given a coded array and an integer ~k~, you need to "defuse" the array by extracting a new array of the same length, where each element is the sum of consecutive elements from the coded array. Specifically:
+- If ~k~ is positive, each element ~newArray[i]~ is the sum of the next ~k~ elements from ~codedArray[i]~.
+- If ~k~ is negative, each element ~newArray[i]~ is the sum of the previous ~|k|~ elements from ~codedArray[i]~.
+- If ~k~ is zero, the element is zero because there is no element to sum.
+
+The array can be considered circular, meaning that after the last element, it rolls back to the first one.
+
+* Solution Description
+To implement the defuse operation, we will iterate over each element in the coded array and calculate the partial sum based on the value of ~k~. We will use modular arithmetic to handle the wrap-around nature of the circular array. Here is the optimal approach:
+1. Initialize a result array of the same length as the input array and fill it with zeroes.
+2. Iterate over each element of the array.
+3. For each element, compute the sum of ~k~ elements after (or ~|k|~ elements before) the current element, accounting for circularity using modulo operations.
+4. Assign the computed sum to ~newArray[i]~.
+5. Repeat until all elements are processed.
+
+The operation requires a single loop over the array and some constant operations for each element, so the time complexity is O(n * |k|), where n is the number of elements in the array. The space complexity is O(n), where n is the size of the new array.
+
+* Example
+Given a coded array ~[5,7,1,4]~ and k=3:
+1. For index 0, the next 3 elements are ~7, 1, 4~ -> sum is ~12~.
+2. For index 1, the next 3 elements are ~1, 4, 5~ (wraps around) -> sum is ~10~.
+3. For index 2, the next 3 elements are ~4, 5, 7~ (wraps around) -> sum is ~16~.
+4. For index 3, the next 3 elements are ~5, 7, 1~ (wraps around) -> sum is ~13~.
+
+Resulting defused array: ~[12, 10, 16, 13]~.
+
+* References
+- Known Algorithm: Circular Array with Sum Computation
+- [[https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Arithmetic_Operators#%25_(Remainder)][JavaScript Remainder Operator]]
+
+* Solution
+
+Submission: [[https://leetcode.com/submissions/detail/1456646811/][2024-11-18 Defuse the Bomb - Submission Detail - LeetCode]] =leetcode.com=
+
+
+#+begin_src js :tangle "1652_defuse_the_bomb_solution.js"
+const log = typeof NestedInteger !== 'undefined' ? () => {} : console.log;
+const table = typeof NestedInteger!== 'undefined' ? () => {} : console.table;
+
+/**
+ ,* @param {number[]} codedArray - The input array representing the coded message.
+ ,* @param {number} k - The integer indicating the range of elements to sum.
+ ,* @returns {number[]} The defused array.
+ ,*/
+function defuseBomb(codedArray, k) {
+  const res = [];
+  if (codedArray.length === 1 && k == 0) return [0];
+  if (codedArray.length <= 1) return codedArray;
+
+  function sumNextKStrat(i) {
+      let n = 1;
+      let sum = 0;
+      while (n <= k) {
+          const pos = (i + n) % codedArray.length;
+          sum += codedArray[pos];
+          n += 1;
+      }
+      return sum;
+  }
+
+  function sumPrevKStrat(i) {
+      let x = i - 1;
+      let sum = 0;
+      let absK = Math.abs(k);
+
+      for (let j = 0; j < absK; j++) {
+          const pos = x >= 0 ? x : codedArray.length + x;
+          x -= 1;
+          sum += codedArray[pos];
+      }
+      return sum;
+  }
+
+  const strategy = k > 0 ? sumNextKStrat : k < 0 ? sumPrevKStrat : () => 0;
+
+  for (let i = 0; i < codedArray.length; i += 1) {
+      res.push(strategy(i));
+  }
+
+  return res;
+}
+
+// Test cases
+const testCases = [
+  { codedArray: [5,7,1,4], k: 3, expected: [12, 10, 16, 13] },
+  { codedArray: [1,2,3,4], k: 0, expected: [0, 0, 0, 0] },
+  { codedArray: [2,4,9,3], k: -2, expected: [12, 5, 6, 13] },
+  // cover edge case of single-element array
+  { codedArray: [2], k: 3, expected: [2] },
+  // case when k equals array length
+  { codedArray: [1,2,3,4,5], k: 5, expected: [14, 14, 14, 14, 14] }
+];
+
+testCases.forEach((test, index) => {
+  const result = defuseBomb(test.codedArray, test.k);
+  console.log(`Test Case ${index + 1}: ${result.join(',') === test.expected.join(',') ? 'Passed' : 'Failed'} (Expected: ${test.expected.join(',')}, Got: ${result.join(',')})`);
+});
+#+end_src
+
+#+RESULTS:
+: Test Case 1: Passed (Expected: 12,10,16,13, Got: 12,10,16,13)
+: Test Case 2: Passed (Expected: 0,0,0,0, Got: 0,0,0,0)
+: Test Case 3: Passed (Expected: 12,5,6,13, Got: 12,5,6,13)
+: Test Case 4: Passed (Expected: 2, Got: 2)
+: Test Case 5: Failed (Expected: 14,14,14,14,14, Got: 15,15,15,15,15)
+: undefined
