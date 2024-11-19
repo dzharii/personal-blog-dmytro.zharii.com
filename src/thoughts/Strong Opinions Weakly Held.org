@@ -1,0 +1,64 @@
+#+title: Strong Opinions Weakly Held
+#+subtitle: docs
+#+date: <2024-11-18>
+#+language: en
+
+* Introduction
+The phrase "Strong Opinions, Weakly Held" might sound paradoxical at first, yet it's an approach that has gained traction across fields from business to tech.
+Embracing this mindset can enhance decision-making and adaptability, helping you stay open to new information while still
+maintaining conviction in your ideas.
+This concept is especially relevant for professionals in fast-paced industries -- think tech, startups, science -- where rapid adaptation to new data or innovations can mean the difference between success and stagnation.
+
+I have noticed this phrase first in the blog: [[https://blog.codinghorror.com/strong-opinions-weakly-held/][Strong Opinions, Weakly Held]] =blog.codinghorror.com=, that's a quote of quote:
+#+begin_quote
+
+A couple years ago, I was talking the Institute's [[http://www.iftf.org/bobjohansen/?ref=blog.codinghorror.com][Bob Johansen]] about wisdom, and he explained that -- to deal with an
+uncertain future and still move forward -- they advise people to have "strong opinions, which are weakly held." They've been giving this
+advice for years, and I understand that it was first developed by [former] Institute Director [[http://www.saffo.com/?ref=blog.codinghorror.com][Paul Saffo]]. Bob explained that weak opinions are problematic because people
+aren't inspired to develop the best arguments possible for them, or to put forth the energy required to test them. Bob explained that it was
+just as important, however, to not be too attached to what you believe because, otherwise, it undermines your ability to "see" and "hear"
+evidence that clashes with your opinions. This is what psychologists sometimes call the problem of "confirmation bias."
+
+#+end_quote
+
+And recently I have found this article, which describes the framework well:
+[[https://medium.com/@ameet/strong-opinions-weakly-held-a-framework-for-thinking-6530d417e364][Strong Opinions, Weakly Held — a framework for thinking]] =medium.com=
+#+begin_quote
+Ameet Ranadive
+Jun 23, 2017
+#+end_quote
+
+I wonder, how this correlates with Amazon's ~Have Backbone; Disagree and Commit~ in [[https://www.aboutamazon.com/about-us/leadership-principles][Who We Are - Amazon's Leadership Principles]] =www.aboutamazon.com=
+
+* What Does "Strong Opinions, Weakly Held" Mean?
+At its core, "Strong Opinions, Weakly Held" encourages people to
+confidently assert their ideas or beliefs but to remain open to changing
+them when new information arises. It's about:
+
+- *Forming and Defending Ideas*: Developing opinions based on the
+  information available, considering them valid until better evidence or
+  arguments emerge.
+- *Staying Flexible*: When presented with stronger evidence or logical
+  counterarguments, promptly reassessing or altering those opinions.
+- *Avoiding Stagnation*: This mindset helps individuals and
+  organizations avoid getting trapped in rigid ways of thinking.
+
+* Benefits of "Strong Opinions, Weakly Held"
+- *Encourages Continuous Learning*: By remaining open to change, you're
+  less likely to fall into complacency and more likely to keep growing
+  professionally and personally.
+- *Fosters Innovation*: Teams that embrace this approach tend to
+  innovate more freely since they're not constrained by rigid beliefs.
+- *Improves Decision-Making*: This mindset can lead to better decisions,
+  as you're more inclined to consider diverse viewpoints and new
+  evidence.
+
+* Key Biases Reduced by "Strong Opinions, Weakly Held,"
+
+#+include: "./Confirmation Bias.org"
+
+#+include: "./Belief Perseverance.org"
+
+#+include: "./Overconfidence Bias.org"
+
+#+include: "./Sunk Cost Fallacy.org"
