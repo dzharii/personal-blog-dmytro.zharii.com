@@ -1,0 +1,180 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2024-11-18 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>1652. Defuse the Bomb</title>
+<meta name="author" content="d)zharii" />
+<meta name="generator" content="Org Mode" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/t.css"/>
+</head>
+<body>
+<nav><a href="/" tabindex="0">&larrhk; Back to Index</a></nav><div id="preamble" class="status">
+Published 2024-11-18
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">1652. Defuse the Bomb</h1>
+<p class="subtitle" role="doc-subtitle">leetcode</p>
+</header><nav id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org058f8cc">Problem</a></li>
+<li><a href="#org7ee4ef4">Solution Description</a></li>
+<li><a href="#org2f86d53">Example</a></li>
+<li><a href="#org25ea7d3">References</a></li>
+<li><a href="#orgdead644">Solution</a></li>
+</ul>
+</div>
+</nav>
+
+<div id="outline-container-org058f8cc" class="outline-2">
+<h2 id="org058f8cc">Problem</h2>
+<div class="outline-text-2" id="text-org058f8cc">
+<p>
+Given a coded array and an integer <code>k</code>, you need to "defuse" the array by extracting a new array of the same length, where each element is the sum of consecutive elements from the coded array. Specifically:
+</p>
+<ul class="org-ul">
+<li>If <code>k</code> is positive, each element <code>newArray[i]</code> is the sum of the next <code>k</code> elements from <code>codedArray[i]</code>.</li>
+<li>If <code>k</code> is negative, each element <code>newArray[i]</code> is the sum of the previous <code>|k|</code> elements from <code>codedArray[i]</code>.</li>
+<li>If <code>k</code> is zero, the element is zero because there is no element to sum.</li>
+</ul>
+
+<p>
+The array can be considered circular, meaning that after the last element, it rolls back to the first one.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org7ee4ef4" class="outline-2">
+<h2 id="org7ee4ef4">Solution Description</h2>
+<div class="outline-text-2" id="text-org7ee4ef4">
+<p>
+To implement the defuse operation, we will iterate over each element in the coded array and calculate the partial sum based on the value of <code>k</code>. We will use modular arithmetic to handle the wrap-around nature of the circular array. Here is the optimal approach:
+</p>
+<ol class="org-ol">
+<li>Initialize a result array of the same length as the input array and fill it with zeroes.</li>
+<li>Iterate over each element of the array.</li>
+<li>For each element, compute the sum of <code>k</code> elements after (or <code>|k|</code> elements before) the current element, accounting for circularity using modulo operations.</li>
+<li>Assign the computed sum to <code>newArray[i]</code>.</li>
+<li>Repeat until all elements are processed.</li>
+</ol>
+
+<p>
+The operation requires a single loop over the array and some constant operations for each element, so the time complexity is O(n * |k|), where n is the number of elements in the array. The space complexity is O(n), where n is the size of the new array.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org2f86d53" class="outline-2">
+<h2 id="org2f86d53">Example</h2>
+<div class="outline-text-2" id="text-org2f86d53">
+<p>
+Given a coded array <code>[5,7,1,4]</code> and k=3:
+</p>
+<ol class="org-ol">
+<li>For index 0, the next 3 elements are <code>7, 1, 4</code> -&gt; sum is <code>12</code>.</li>
+<li>For index 1, the next 3 elements are <code>1, 4, 5</code> (wraps around) -&gt; sum is <code>10</code>.</li>
+<li>For index 2, the next 3 elements are <code>4, 5, 7</code> (wraps around) -&gt; sum is <code>16</code>.</li>
+<li>For index 3, the next 3 elements are <code>5, 7, 1</code> (wraps around) -&gt; sum is <code>13</code>.</li>
+</ol>
+
+<p>
+Resulting defused array: <code>[12, 10, 16, 13]</code>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org25ea7d3" class="outline-2">
+<h2 id="org25ea7d3">References</h2>
+<div class="outline-text-2" id="text-org25ea7d3">
+<ul class="org-ul">
+<li>Known Algorithm: Circular Array with Sum Computation</li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Arithmetic_Operators#%25_(Remainder)">JavaScript Remainder Operator</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgdead644" class="outline-2">
+<h2 id="orgdead644">Solution</h2>
+<div class="outline-text-2" id="text-orgdead644">
+<p>
+Submission: <a href="https://leetcode.com/submissions/detail/1456646811/">2024-11-18 Defuse the Bomb - Submission Detail - LeetCode</a> <code>leetcode.com</code>
+</p>
+
+
+<div class="org-src-container">
+<pre class="src src-js">const log = typeof NestedInteger !== 'undefined' ? () =&gt; {} : console.log;
+const table = typeof NestedInteger!== 'undefined' ? () =&gt; {} : console.table;
+
+/**
+ * @param {number[]} codedArray - The input array representing the coded message.
+ * @param {number} k - The integer indicating the range of elements to sum.
+ * @returns {number[]} The defused array.
+ */
+function defuseBomb(codedArray, k) {
+  const res = [];
+  if (codedArray.length === 1 &amp;&amp; k == 0) return [0];
+  if (codedArray.length &lt;= 1) return codedArray;
+
+  function sumNextKStrat(i) {
+      let n = 1;
+      let sum = 0;
+      while (n &lt;= k) {
+          const pos = (i + n) % codedArray.length;
+          sum += codedArray[pos];
+          n += 1;
+      }
+      return sum;
+  }
+
+  function sumPrevKStrat(i) {
+      let x = i - 1;
+      let sum = 0;
+      let absK = Math.abs(k);
+
+      for (let j = 0; j &lt; absK; j++) {
+          const pos = x &gt;= 0 ? x : codedArray.length + x;
+          x -= 1;
+          sum += codedArray[pos];
+      }
+      return sum;
+  }
+
+  const strategy = k &gt; 0 ? sumNextKStrat : k &lt; 0 ? sumPrevKStrat : () =&gt; 0;
+
+  for (let i = 0; i &lt; codedArray.length; i += 1) {
+      res.push(strategy(i));
+  }
+
+  return res;
+}
+
+// Test cases
+const testCases = [
+  { codedArray: [5,7,1,4], k: 3, expected: [12, 10, 16, 13] },
+  { codedArray: [1,2,3,4], k: 0, expected: [0, 0, 0, 0] },
+  { codedArray: [2,4,9,3], k: -2, expected: [12, 5, 6, 13] },
+  // cover edge case of single-element array
+  { codedArray: [2], k: 3, expected: [2] },
+  // case when k equals array length
+  { codedArray: [1,2,3,4,5], k: 5, expected: [14, 14, 14, 14, 14] }
+];
+
+testCases.forEach((test, index) =&gt; {
+  const result = defuseBomb(test.codedArray, test.k);
+  console.log(`Test Case ${index + 1}: ${result.join(',') === test.expected.join(',') ? 'Passed' : 'Failed'} (Expected: ${test.expected.join(',')}, Got: ${result.join(',')})`);
+});
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+&copy; d)zharii. <a href="/sitemap.html">sitemap</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,192 @@
+﻿#+title: 1652. Defuse the Bomb
+#+subtitle: leetcode
+#+date: <2024-11-18>
+#+language: en
+
+* Problem Restatement
+
+Given an array called ~code~ where each element represents a part of a bomb and an integer ~k~, we need to create a new array of the same size where each element at index ~i~ is the sum of the next ~k~ elements from the original array in circular fashion. If ~k~ is zero, the new array should be filled with zeros. If ~k~ is negative, it should sum up the previous ~|k|~ elements in a circular fashion.
+
+* Solution Description
+
+To implement the solution, we will consider different cases based on the value of ~k~:
+
+1. If ~k~ is zero, fill the resulting array with zeros.
+2. If ~k~ is positive, calculate the sum of the next ~k~ elements using modulo to handle wrapping.
+3. If ~k~ is negative, compute the sum of the previous ~|k|~ elements using modulo.
+
+We need to precompute cumulative sums to optimize window slicing operations. Using modular arithmetic allows efficient handling of circular indexing.
+
+Time Complexity: ~O(n), where ~n~ is the length of the array, due to single pass summation.
+Space Complexity: ~O(n), as we are creating a new array of length ~n~.
+
+* Example
+
+Consider the array ~code = {5, 7, 1, 4}~ and ~k = 3~:
+
+- For index ~0~, sum the next ~3~ elements: ~7 + 1 + 4 = 12~.
+- For index ~1~, loop around for the sum: ~1 + 4 + 5 = 10~.
+- For index ~2~, loop around for the sum: ~4 + 5 + 7 = 16~.
+- For index ~3~, loop around for the sum: ~5 + 7 + 1 = 13~.
+
+The resulting array is ~{12, 10, 16, 13}~.
+
+* References
+
+- Circular Array Traversal: https://en.wikipedia.org/wiki/Circular_buffer
+
+* Solution Code
+
+#+begin_src lua :tangle "1652_defuse_the_bomb.lua" :results output
+-- Defuse the Bomb solution in Lua
+
+function defuseBomb(code, k)
+  local codeLen = #code
+  local result = {}
+
+  print("")
+
+  if k == 0 then
+    for i = 1, codeLen do result[i] = 0 end
+    return result
+  end
+
+  if codeLen == 1 then
+    return code
+  end
+
+  local moves = math.abs(k)
+  moves = math.min(codeLen - 1, moves)
+
+  for i = 1, codeLen do
+    if k > 0 then
+      local sum = 0;
+      for m =1,moves  do
+      	local idx = ((i + m - 1) % codeLen) + 1
+        sum = sum + code[idx]
+        -- print("i = ", i, "; k =", k, "; idx=", idx, "; code[idx]=", code[idx], "; m=", m)
+      end
+      result[i] = sum
+    else
+      local sum = 0;
+      for m =1,moves  do
+        local idx = ((i - m - 1 + codeLen) % codeLen) + 1
+        sum = sum + code[idx]
+        -- print("i = ", i, "; k =", k, "; idx=", idx, "; code[idx]=", code[idx], "; m=", m)
+      end
+      result[i] = sum
+    end
+  end
+
+  return result
+end
+
+-- Test helper
+
+function assertEqualArrays(a, b)
+  if #a ~= #b then
+    error("Arrays are not equal in length")
+  end
+  for i = 1, #a do
+    if a[i] ~= b[i] then
+      error("Arrays differ at position "..i..": "..a[i].." ~= "..b[i])
+    end
+  end
+end
+
+-- Test cases
+
+local tests = {
+  {
+    title = "Test 1: Simple case",
+    test = function()
+      local code = {5, 7, 1, 4}
+      local k = 3
+      local expected = {12, 10, 16, 13}
+      local result = defuseBomb(code, k)
+      assertEqualArrays(result, expected)
+    end
+  },
+  {
+    title = "Test 2: Negative k",
+    test = function()
+      local code = {2, 4, 9, 3}
+      local k = -2
+      local expected = {12, 5, 6, 13}
+      local result = defuseBomb(code, k)
+      assertEqualArrays(result, expected)
+    end
+  },
+  {
+    title = "Test 3: Zero k",
+    test = function()
+      local code = {10, 5, 7, 8}
+      local k = 0
+      local expected = {0, 0, 0, 0}
+      local result = defuseBomb(code, k)
+      assertEqualArrays(result, expected)
+    end
+  },
+  {
+    title = "Test 4: Large k",
+    test = function()
+      local code = {1, 2, 3, 4}
+      local k = 100
+      local expected = {9, 8, 7, 6}
+      local result = defuseBomb(code, k)
+      assertEqualArrays(result, expected)
+    end
+  },
+  {
+    title = "Test 5: Single element array",
+    test = function()
+      local code = {6}
+      local k = 1
+      local expected = {6}
+      local result = defuseBomb(code, k)
+      assertEqualArrays(result, expected)
+    end
+  }
+}
+
+-- Test runner
+
+function runTests(tests)
+  local passed = 0
+  local failed = 0
+  for _, testCase in ipairs(tests) do
+    io.write(testCase.title .. " ... ")
+    local status, err = pcall(testCase.test)
+    if status then
+      print("Passed")
+      passed = passed + 1
+    else
+      print("Failed: " .. err)
+      failed = failed + 1
+    end
+  end
+  print("\nSummary:")
+  print("Passed: "..passed)
+  print("Failed: "..failed)
+end
+
+runTests(tests)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+Test 1: Simple case ...
+Passed
+Test 2: Negative k ...
+Passed
+Test 3: Zero k ...
+Passed
+Test 4: Large k ...
+Passed
+Test 5: Single element array ...
+Passed
+
+Summary:
+Passed: 5
+Failed: 0
+#+end_example

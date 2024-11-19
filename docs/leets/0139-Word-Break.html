@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2024-11-15 -->
+<!-- 2024-11-18 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>0139. Word Break</title>
@@ -22,27 +22,27 @@ Published 2024-09-17
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org006bdf9">Problem</a></li>
-<li><a href="#orgd811956">Solution Description</a></li>
-<li><a href="#org24073fa">Example</a></li>
-<li><a href="#org421d38e">References</a></li>
-<li><a href="#org6bf3304">Solution</a></li>
+<li><a href="#orgd21f549">Problem</a></li>
+<li><a href="#org7c2c483">Solution Description</a></li>
+<li><a href="#org3898c4f">Example</a></li>
+<li><a href="#org79b577b">References</a></li>
+<li><a href="#orgcad9b6f">Solution</a></li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-org006bdf9" class="outline-2">
-<h2 id="org006bdf9">Problem</h2>
-<div class="outline-text-2" id="text-org006bdf9">
+<div id="outline-container-orgd21f549" class="outline-2">
+<h2 id="orgd21f549">Problem</h2>
+<div class="outline-text-2" id="text-orgd21f549">
 <p>
 Given a string <code>s</code> and a dictionary of strings <code>wordDict</code>, return <code>true</code> if <code>s</code> can be segmented into a space-separated sequence of one or more dictionary words.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgd811956" class="outline-2">
-<h2 id="orgd811956">Solution Description</h2>
-<div class="outline-text-2" id="text-orgd811956">
+<div id="outline-container-org7c2c483" class="outline-2">
+<h2 id="org7c2c483">Solution Description</h2>
+<div class="outline-text-2" id="text-org7c2c483">
 <p>
 To implement a solution for this problem, we need to use a dynamic programming approach. We will create a boolean array <code>dp</code> where <code>dp[i]</code> indicates whether the substring <code>s[0:i]</code> can be segmented into valid dictionary words. The array will be initialized with <code>false</code>, except for <code>dp[0]</code> which will be <code>true</code> since an empty string can always be segmented.
 </p>
@@ -61,9 +61,9 @@ The time complexity of this approach is <code>O(n * m)</code> where <code>n</cod
 </div>
 </div>
 
-<div id="outline-container-org24073fa" class="outline-2">
-<h2 id="org24073fa">Example</h2>
-<div class="outline-text-2" id="text-org24073fa">
+<div id="outline-container-org3898c4f" class="outline-2">
+<h2 id="org3898c4f">Example</h2>
+<div class="outline-text-2" id="text-org3898c4f">
 <p>
 Let's assume <code>s</code> is "leetcode" and <code>wordDict</code> contains ["leet", "code"].
 </p>
@@ -82,9 +82,9 @@ Let's assume <code>s</code> is "leetcode" and <code>wordDict</code> contains ["l
 </div>
 </div>
 
-<div id="outline-container-org421d38e" class="outline-2">
-<h2 id="org421d38e">References</h2>
-<div class="outline-text-2" id="text-org421d38e">
+<div id="outline-container-org79b577b" class="outline-2">
+<h2 id="org79b577b">References</h2>
+<div class="outline-text-2" id="text-org79b577b">
 <ul class="org-ul">
 <li>Dynamic Programming: <a href="https://en.wikipedia.org/wiki/Dynamic_programming">https://en.wikipedia.org/wiki/Dynamic_programming</a></li>
 <li>LeetCode problem description: <a href="https://leetcode.com/problems/word-break">139. Word Break</a></li>
@@ -92,9 +92,9 @@ Let's assume <code>s</code> is "leetcode" and <code>wordDict</code> contains ["l
 </div>
 </div>
 
-<div id="outline-container-org6bf3304" class="outline-2">
-<h2 id="org6bf3304">Solution</h2>
-<div class="outline-text-2" id="text-org6bf3304">
+<div id="outline-container-orgcad9b6f" class="outline-2">
+<h2 id="orgcad9b6f">Solution</h2>
+<div class="outline-text-2" id="text-orgcad9b6f">
 <p>
 Submission: <a href="https://leetcode.com/submissions/detail/1394001578/">2024-09-18 Word Break - Submission Detail - LeetCode</a> <code>leetcode.com</code>
 </p>
