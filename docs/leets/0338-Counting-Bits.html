@@ -22,17 +22,17 @@ Published 2024-05-17
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org408c0f1">Problem Overview</a></li>
-<li><a href="#org89a9b9f">Solution Outline</a></li>
-<li><a href="#org87f308a">Implementation Plan</a></li>
-<li><a href="#org998f42c">Solution Analysis</a></li>
+<li><a href="#orgd0febe4">Problem Overview</a></li>
+<li><a href="#org937f881">Solution Outline</a></li>
+<li><a href="#org4138618">Implementation Plan</a></li>
+<li><a href="#orgead53ed">Solution Analysis</a></li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-org408c0f1" class="outline-2">
-<h2 id="org408c0f1">Problem Overview</h2>
-<div class="outline-text-2" id="text-org408c0f1">
+<div id="outline-container-orgd0febe4" class="outline-2">
+<h2 id="orgd0febe4">Problem Overview</h2>
+<div class="outline-text-2" id="text-orgd0febe4">
 <p>
 The problem "Counting Bits" requires us to return an array `ans` where `ans[i]` is the number of 1's in the binary representation of the number `i` for all `i` in the range 0 to `n` inclusive.
 </p>
@@ -47,9 +47,9 @@ Key Points:
 </div>
 </div>
 
-<div id="outline-container-org89a9b9f" class="outline-2">
-<h2 id="org89a9b9f">Solution Outline</h2>
-<div class="outline-text-2" id="text-org89a9b9f">
+<div id="outline-container-org937f881" class="outline-2">
+<h2 id="org937f881">Solution Outline</h2>
+<div class="outline-text-2" id="text-org937f881">
 <ol class="org-ol">
 <li><b><b>Preferred Structure:</b></b> 
 <ul class="org-ul">
@@ -68,9 +68,9 @@ Key Points:
 </div>
 </div>
 
-<div id="outline-container-org87f308a" class="outline-2">
-<h2 id="org87f308a">Implementation Plan</h2>
-<div class="outline-text-2" id="text-org87f308a">
+<div id="outline-container-org4138618" class="outline-2">
+<h2 id="org4138618">Implementation Plan</h2>
+<div class="outline-text-2" id="text-org4138618">
 <ol class="org-ol">
 <li>Initialize an array `result` of length `n + 1` with all elements set to 0.</li>
 <li>Iterate from 1 to `n`, updating each entry based on the relation `result[i] = result[i &gt;&gt; 1] + (i &amp; 1)`.</li>
@@ -120,9 +120,9 @@ testCases.forEach((test, index) =&gt; {
 </div>
 </div>
 
-<div id="outline-container-org998f42c" class="outline-2">
-<h2 id="org998f42c">Solution Analysis</h2>
-<div class="outline-text-2" id="text-org998f42c">
+<div id="outline-container-orgead53ed" class="outline-2">
+<h2 id="orgead53ed">Solution Analysis</h2>
+<div class="outline-text-2" id="text-orgead53ed">
 <ul class="org-ul">
 <li><b><b>Time Complexity:</b></b> O(n). Each number from 0 to `n` is processed exactly once.</li>
 <li><b><b>Space Complexity:</b></b> O(n). We use an array of size `n + 1` to store the result.</li>

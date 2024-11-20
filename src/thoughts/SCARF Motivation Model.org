@@ -128,3 +128,61 @@ structure, allowing Chris to feel fairly treated and motivated to engage fully.
 
 For Chris, understanding the rationale behind the commission model helped him feel valued and respected, motivating him to
 continue contributing. Fairness is foundational for trust, helping team members feel secure in their roles.
+
+* Sources
+The SCARF model, developed by David Rock in 2008, is a framework that identifies five key domains influencing human social
+behavior: Status, Certainty, Autonomy, Relatedness, and Fairness. These domains are deeply rooted in the brain's reward and threat
+systems, meaning that experiences that positively impact these areas tend to enhance engagement and motivation, while negative
+impacts can trigger stress and disengagement.
+
+** Historical Context and Research on the SCARF Model
+David Rock introduced the SCARF model in his paper
+"[[https://schoolguide.casel.org/uploads/sites/2/2018/12/SCARF-NeuroleadershipArticle.pdf][SCARF: A Brain-Based Model for
+Collaborating with and Influencing Others]]," published in the /NeuroLeadership Journal/ in 2008. The model draws on principles of
+social neuroscience, which examines how human brain functions influence social behavior and interpersonal interactions.
+
+** Applications of the SCARF Model
+
+Since its introduction, the SCARF model has been widely adopted in organizational leadership and team management strategies. Many
+companies, including Fortune 500 firms, have used the model to improve leadership practices, foster employee engagement, and
+enhance team collaboration. It has been applied in:
+
+- *Leadership Training*: Helping managers understand how their actions and feedback affect employee motivation.
+- *Team Dynamics*: Enhancing team collaboration by creating an environment where SCARF domains are prioritized.
+- *Change Management*: Reducing resistance to organizational change by addressing Certainty, Autonomy, and Fairness.
+
+** Research Supporting the SCARF Model
+
+The SCARF model is supported by research in neuroscience and psychology that underscores the importance of these social domains:
+
+- *Social Threats in the Brain*: Research by Matthew Lieberman and Naomi Eisenberger has shown that social pain, such as being
+  excluded or undervalued, activates the same neural pathways as physical pain. This supports the SCARF models emphasis on
+  addressing threats to Status, Relatedness, and Fairness.
+  [[https://schoolguide.casel.org/uploads/sites/2/2018/12/SCARF-NeuroleadershipArticle.pdf][Source]]
+- *Autonomy and Decision-Making*: Studies have demonstrated that a sense of control (Autonomy) activates the brains reward
+  centers, improving decision-making and reducing stress.
+  [[https://schoolguide.casel.org/uploads/sites/2/2018/12/SCARF-NeuroleadershipArticle.pdf][Source]]
+- *Certainty and Predictability*: Neuroscience research highlights that the brain is a "prediction machine," with uncertainty
+  triggering the amygdala and stress responses. Providing clear goals and expectations (Certainty) helps reduce these threats.
+  [[https://schoolguide.casel.org/uploads/sites/2/2018/12/SCARF-NeuroleadershipArticle.pdf][Source]]
+- *The Importance of Fairness*: Research by Tania Singer and colleagues has shown that unfair treatment activates regions of the
+  brain associated with distress and anger, reinforcing the need to ensure transparency and equity.
+  [[https://schoolguide.casel.org/uploads/sites/2/2018/12/SCARF-NeuroleadershipArticle.pdf][Source]]
+
+** Effectiveness of the SCARF Model
+
+Studies and organizational case studies have highlighted the success of the SCARF model in improving workplace dynamics:
+
+1. *Case Study: Deloitte*  Deloitte used the SCARF model to train its leaders, focusing on creating environments that minimized
+   social threats and enhanced employee engagement. They reported improved communication and trust within teams.
+   [[https://schoolguide.casel.org/uploads/sites/2/2018/12/SCARF-NeuroleadershipArticle.pdf][Read more]]
+2. *Application in Change Management*  Organizations undergoing significant restructuring have used the model to mitigate employee
+   resistance, with leaders addressing Certainty and Fairness to reduce anxiety and build trust.
+   [[https://neuroleadership.fi/wp/blog/understand-your-social-brain-the-scarf-model/][Read more]]
+3. *Increased Engagement*  Surveys from companies implementing SCARF-based leadership strategies have consistently reported higher
+   employee satisfaction and retention rates, as well as measurable increases in productivity.
+   [[https://neuroleadership.fi/wp/blog/understand-your-social-brain-the-scarf-model/][Read more]]
+
+The SCARF model remains a foundational tool in modern leadership and organizational psychology, bridging the gap between
+neuroscience and practical workplace application. Its evidence-based approach has made it a reliable method for fostering
+motivation, collaboration, and overall workplace well-being.
