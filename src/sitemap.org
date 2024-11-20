@@ -80,3 +80,4 @@
   - [[file:thoughts/Belief Perseverance.org][Belief Perseverance]]
   - [[file:thoughts/Overconfidence Bias.org][Overconfidence Bias]]
   - [[file:thoughts/Sunk Cost Fallacy.org][Sunk Cost Fallacy]]
+  - [[file:thoughts/SCARF Motivation Model.org][SCARF Motivation Model]]

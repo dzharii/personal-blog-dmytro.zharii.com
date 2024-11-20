@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2024-11-18 -->
+<!-- 2024-11-20 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>0001. Two Sum</title>
@@ -22,37 +22,37 @@ Published 2024-11-10
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org682bdbc">Problem Restatement</a></li>
-<li><a href="#org8c504d5">Solution Description</a></li>
-<li><a href="#orga84b965">Example</a></li>
-<li><a href="#orgb0a1441">References</a></li>
-<li><a href="#org0b8ff7f">Solution Code</a></li>
+<li><a href="#org68676ae">Problem Restatement</a></li>
+<li><a href="#orgd33dd72">Solution Description</a></li>
+<li><a href="#orgb7e0a79">Example</a></li>
+<li><a href="#org11348ab">References</a></li>
+<li><a href="#org12d829f">Solution Code</a></li>
 </ul>
 </div>
 </nav>
 
 
-<div id="outline-container-org682bdbc" class="outline-2">
-<h2 id="org682bdbc">Problem Restatement</h2>
-<div class="outline-text-2" id="text-org682bdbc">
+<div id="outline-container-org68676ae" class="outline-2">
+<h2 id="org68676ae">Problem Restatement</h2>
+<div class="outline-text-2" id="text-org68676ae">
 <p>
 The "Two Sum" problem requires finding two distinct indices in a given list of numbers (an array) such that their values sum up to a target number. The function should return these indices. It's guaranteed that there is exactly one solution, and the same element cannot be used twice.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org8c504d5" class="outline-2">
-<h2 id="org8c504d5">Solution Description</h2>
-<div class="outline-text-2" id="text-org8c504d5">
+<div id="outline-container-orgd33dd72" class="outline-2">
+<h2 id="orgd33dd72">Solution Description</h2>
+<div class="outline-text-2" id="text-orgd33dd72">
 <p>
 To implement a solution that is both efficient and straightforward, we need to iterate through the array while using a hash map to store each number's index. For each element, we calculate the complement that would sum with the current element to reach the target. If this complement is already in the map, we have found our solution, and we return the indices. This implementation runs with a time complexity of O(n) and a space complexity of O(n) due to the hash map storage.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orga84b965" class="outline-2">
-<h2 id="orga84b965">Example</h2>
-<div class="outline-text-2" id="text-orga84b965">
+<div id="outline-container-orgb7e0a79" class="outline-2">
+<h2 id="orgb7e0a79">Example</h2>
+<div class="outline-text-2" id="text-orgb7e0a79">
 <p>
 Consider the array nums = {2, 7, 11, 15} and target = 9. As we iterate:
 </p>
@@ -67,9 +67,9 @@ Hence, the indices returned will be {1, 2}.
 </div>
 </div>
 
-<div id="outline-container-orgb0a1441" class="outline-2">
-<h2 id="orgb0a1441">References</h2>
-<div class="outline-text-2" id="text-orgb0a1441">
+<div id="outline-container-org11348ab" class="outline-2">
+<h2 id="org11348ab">References</h2>
+<div class="outline-text-2" id="text-org11348ab">
 <ul class="org-ul">
 <li>The algorithm utilizes hash maps for achieving efficient data retrieval.</li>
 <li>Refer to Lua hash map documentation: <a href="https://www.lua.org/manual/5.1/manual.html#2.5">https://www.lua.org/manual/5.1/manual.html#2.5</a></li>
@@ -77,9 +77,9 @@ Hence, the indices returned will be {1, 2}.
 </div>
 </div>
 
-<div id="outline-container-org0b8ff7f" class="outline-2">
-<h2 id="org0b8ff7f">Solution Code</h2>
-<div class="outline-text-2" id="text-org0b8ff7f">
+<div id="outline-container-org12d829f" class="outline-2">
+<h2 id="org12d829f">Solution Code</h2>
+<div class="outline-text-2" id="text-org12d829f">
 <div class="org-src-container">
 <pre class="src src-lua">-- Two Sum solution in Lua
 
