@@ -22,22 +22,22 @@ Published 2024-06-21
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org9dd5ba5">Problem:</a></li>
-<li><a href="#org40c7980">Solution Description:</a></li>
+<li><a href="#org4de375f">Problem:</a></li>
+<li><a href="#orge89aadf">Solution Description:</a></li>
 </ul>
 </li>
-<li><a href="#org90b1dc3">Time Complexity: O(1), because there are a fixed number of hours (12) and minutes (60), resulting in a constant time complexity regardless of input size.</a></li>
-<li><a href="#orgb912fd7">Space Complexity: O(1) for the variables and result storage, which does not grow with input size.</a>
+<li><a href="#org80cdde2">Time Complexity: O(1), because there are a fixed number of hours (12) and minutes (60), resulting in a constant time complexity regardless of input size.</a></li>
+<li><a href="#org14d8ff5">Space Complexity: O(1) for the variables and result storage, which does not grow with input size.</a>
 <ul>
-<li><a href="#org2adb406">Example:</a></li>
-<li><a href="#org8b8bbf4">Setup:</a></li>
+<li><a href="#orga023a42">Example:</a></li>
+<li><a href="#org6f02520">Setup:</a></li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-org9dd5ba5" class="outline-3">
-<h3 id="org9dd5ba5">Problem:</h3>
-<div class="outline-text-3" id="text-org9dd5ba5">
+<div id="outline-container-org4de375f" class="outline-3">
+<h3 id="org4de375f">Problem:</h3>
+<div class="outline-text-3" id="text-org4de375f">
 <p>
 A binary watch has 4 LEDs on the top that represent the hours (0-11), and the 6 LEDs on the bottom represent the minutes (0-59). Each LED represents a zero or one, with the least significant bit on the right.
 </p>
@@ -48,25 +48,25 @@ Given a non-negative integer n which represents the number of LEDs that are curr
 </div>
 </div>
 
-<div id="outline-container-org40c7980" class="outline-3">
-<h3 id="org40c7980">Solution Description:</h3>
-<div class="outline-text-3" id="text-org40c7980">
+<div id="outline-container-orge89aadf" class="outline-3">
+<h3 id="orge89aadf">Solution Description:</h3>
+<div class="outline-text-3" id="text-orge89aadf">
 <p>
 To implement the solution, we need to generate all possible combinations of hour and minute counts where the total number of bits is equal to n. This can be achieved by iterating through all possible hours (0-11) and minutes (0-59) and counting their respective bits. If the sum of the bits equals n, we format the time as a string and store it.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org90b1dc3" class="outline-2">
-<h2 id="org90b1dc3">Time Complexity: O(1), because there are a fixed number of hours (12) and minutes (60), resulting in a constant time complexity regardless of input size.</h2>
+<div id="outline-container-org80cdde2" class="outline-2">
+<h2 id="org80cdde2">Time Complexity: O(1), because there are a fixed number of hours (12) and minutes (60), resulting in a constant time complexity regardless of input size.</h2>
 </div>
-<div id="outline-container-orgb912fd7" class="outline-2">
-<h2 id="orgb912fd7">Space Complexity: O(1) for the variables and result storage, which does not grow with input size.</h2>
-<div class="outline-text-2" id="text-orgb912fd7">
+<div id="outline-container-org14d8ff5" class="outline-2">
+<h2 id="org14d8ff5">Space Complexity: O(1) for the variables and result storage, which does not grow with input size.</h2>
+<div class="outline-text-2" id="text-org14d8ff5">
 </div>
-<div id="outline-container-org2adb406" class="outline-3">
-<h3 id="org2adb406">Example:</h3>
-<div class="outline-text-3" id="text-org2adb406">
+<div id="outline-container-orga023a42" class="outline-3">
+<h3 id="orga023a42">Example:</h3>
+<div class="outline-text-3" id="text-orga023a42">
 <p>
 For example, if n = 1, should return ['0:01', '0:02', '0:04', '0:08', '0:16', '0:32', '1:00', '2:00', '4:00', '8:00'] because each of these times has exactly one LED on.
 </p>
@@ -84,9 +84,9 @@ Here's how the algorithm will work step-by-step:
 </div>
 </div>
 
-<div id="outline-container-org8b8bbf4" class="outline-3">
-<h3 id="org8b8bbf4">Setup:</h3>
-<div class="outline-text-3" id="text-org8b8bbf4">
+<div id="outline-container-org6f02520" class="outline-3">
+<h3 id="org6f02520">Setup:</h3>
+<div class="outline-text-3" id="text-org6f02520">
 <p>
 Here's the general framework for the solution implementation:
 </p>

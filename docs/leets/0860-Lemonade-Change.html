@@ -22,37 +22,37 @@ Published 2024-08-14
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org05ba10c">Problem</a></li>
-<li><a href="#orge96a2d2">If the customer pays with a `$5` bill, you just take it.</a></li>
-<li><a href="#org3f30591">If the customer pays with a `$10` bill, you give them one `$5` bill if you have one.</a></li>
-<li><a href="#orga9d9a83">If the customer pays with a `$20` bill, you give them either:</a></li>
-<li><a href="#orgf0a7d46">Solution Description</a></li>
-<li><a href="#org70b906d">Example</a></li>
-<li><a href="#org70e0180">References</a></li>
-<li><a href="#org806f9ef">Submissions</a></li>
-<li><a href="#org43cfd1c">Solution</a></li>
+<li><a href="#org8ffec90">Problem</a></li>
+<li><a href="#org1006551">If the customer pays with a `$5` bill, you just take it.</a></li>
+<li><a href="#org3c46af4">If the customer pays with a `$10` bill, you give them one `$5` bill if you have one.</a></li>
+<li><a href="#org3cf29ee">If the customer pays with a `$20` bill, you give them either:</a></li>
+<li><a href="#org9296f23">Solution Description</a></li>
+<li><a href="#org4e9aec9">Example</a></li>
+<li><a href="#orgf8832fc">References</a></li>
+<li><a href="#org30d73b5">Submissions</a></li>
+<li><a href="#org78147ce">Solution</a></li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-org05ba10c" class="outline-2">
-<h2 id="org05ba10c">Problem</h2>
-<div class="outline-text-2" id="text-org05ba10c">
+<div id="outline-container-org8ffec90" class="outline-2">
+<h2 id="org8ffec90">Problem</h2>
+<div class="outline-text-2" id="text-org8ffec90">
 <p>
 Given an integer array <code>bills</code> where <code>bills[i]</code> is the amount of money the i-th customer pays with, you must determine if you can provide every customer with correct change. Initially, you start with an empty cash register.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orge96a2d2" class="outline-2">
-<h2 id="orge96a2d2">If the customer pays with a `$5` bill, you just take it.</h2>
+<div id="outline-container-org1006551" class="outline-2">
+<h2 id="org1006551">If the customer pays with a `$5` bill, you just take it.</h2>
 </div>
-<div id="outline-container-org3f30591" class="outline-2">
-<h2 id="org3f30591">If the customer pays with a `$10` bill, you give them one `$5` bill if you have one.</h2>
+<div id="outline-container-org3c46af4" class="outline-2">
+<h2 id="org3c46af4">If the customer pays with a `$10` bill, you give them one `$5` bill if you have one.</h2>
 </div>
-<div id="outline-container-orga9d9a83" class="outline-2">
-<h2 id="orga9d9a83">If the customer pays with a `$20` bill, you give them either:</h2>
-<div class="outline-text-2" id="text-orga9d9a83">
+<div id="outline-container-org3cf29ee" class="outline-2">
+<h2 id="org3cf29ee">If the customer pays with a `$20` bill, you give them either:</h2>
+<div class="outline-text-2" id="text-org3cf29ee">
 <ul class="org-ul">
 <li>one <code>$10</code> bill and one <code>$5</code> bill if you have them.</li>
 <li>or three <code>$5</code> bills if you don't have a <code>$10</code> bill.</li>
@@ -64,9 +64,9 @@ Return <code>true</code> if you can provide the correct change to every customer
 </div>
 </div>
 
-<div id="outline-container-orgf0a7d46" class="outline-2">
-<h2 id="orgf0a7d46">Solution Description</h2>
-<div class="outline-text-2" id="text-orgf0a7d46">
+<div id="outline-container-org9296f23" class="outline-2">
+<h2 id="org9296f23">Solution Description</h2>
+<div class="outline-text-2" id="text-org9296f23">
 <p>
 To implement the optimal solution for the problem, we need to:
 </p>
@@ -89,9 +89,9 @@ The time complexity of this approach is <code>O(n)</code> because we process eac
 </div>
 </div>
 
-<div id="outline-container-org70b906d" class="outline-2">
-<h2 id="org70b906d">Example</h2>
-<div class="outline-text-2" id="text-org70b906d">
+<div id="outline-container-org4e9aec9" class="outline-2">
+<h2 id="org4e9aec9">Example</h2>
+<div class="outline-text-2" id="text-org4e9aec9">
 <p>
 Consider the array of bills: <code>[5, 5, 5, 10, 20]</code>:
 </p>
@@ -110,18 +110,18 @@ All customers receive correct change, and the function returns <code>true</code>
 </div>
 </div>
 
-<div id="outline-container-org70e0180" class="outline-2">
-<h2 id="org70e0180">References</h2>
-<div class="outline-text-2" id="text-org70e0180">
+<div id="outline-container-orgf8832fc" class="outline-2">
+<h2 id="orgf8832fc">References</h2>
+<div class="outline-text-2" id="text-orgf8832fc">
 <p>
 N/A
 </p>
 </div>
 </div>
 
-<div id="outline-container-org806f9ef" class="outline-2">
-<h2 id="org806f9ef">Submissions</h2>
-<div class="outline-text-2" id="text-org806f9ef">
+<div id="outline-container-org30d73b5" class="outline-2">
+<h2 id="org30d73b5">Submissions</h2>
+<div class="outline-text-2" id="text-org30d73b5">
 <ul class="org-ul">
 <li><a href="https://leetcode.com/problems/lemonade-change/submissions/">2024-08-15 Lemonade Change - LeetCode</a></li>
 <li><a href="https://leetcode.com/submissions/detail/1356089435/">2024-08-15 Lemonade Change - Submission Detail - LeetCode</a></li>
@@ -129,9 +129,9 @@ N/A
 </div>
 </div>
 
-<div id="outline-container-org43cfd1c" class="outline-2">
-<h2 id="org43cfd1c">Solution</h2>
-<div class="outline-text-2" id="text-org43cfd1c">
+<div id="outline-container-org78147ce" class="outline-2">
+<h2 id="org78147ce">Solution</h2>
+<div class="outline-text-2" id="text-org78147ce">
 <p>
 Below is the implementation of the solution in JavaScript along with test cases.
 </p>

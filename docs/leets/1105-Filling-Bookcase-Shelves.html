@@ -22,14 +22,14 @@ Published 2024-07-30
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org526e3c3">Submission</a></li>
-<li><a href="#org8de16b1">Problem:</a></li>
-<li><a href="#org540ad99">The task is to design an algorithm that minimizes the total height of the bookcase by optimally placing books on the shelves.</a></li>
-<li><a href="#orgbd28175">Example Test Case:</a></li>
-<li><a href="#org57712e0">Solution Description:</a></li>
-<li><a href="#orgf30a553">Example:</a>
+<li><a href="#orgeef71a7">Submission</a></li>
+<li><a href="#orge49e196">Problem:</a></li>
+<li><a href="#org28e0aab">The task is to design an algorithm that minimizes the total height of the bookcase by optimally placing books on the shelves.</a></li>
+<li><a href="#org3cf76fb">Example Test Case:</a></li>
+<li><a href="#orgeeb7850">Solution Description:</a></li>
+<li><a href="#orgcc5c74d">Example:</a>
 <ul>
-<li><a href="#org71b7105">Code Implementation</a></li>
+<li><a href="#org0effa69">Code Implementation</a></li>
 </ul>
 </li>
 </ul>
@@ -37,31 +37,31 @@ Published 2024-07-30
 </nav>
 
 
-<div id="outline-container-org526e3c3" class="outline-2">
-<h2 id="org526e3c3">Submission</h2>
-<div class="outline-text-2" id="text-org526e3c3">
+<div id="outline-container-orgeef71a7" class="outline-2">
+<h2 id="orgeef71a7">Submission</h2>
+<div class="outline-text-2" id="text-orgeef71a7">
 <ul class="org-ul">
 <li><a href="https://leetcode.com/submissions/detail/1339094172/">2024-07-31 Filling Bookcase Shelves - Submission Detail - LeetCode</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org8de16b1" class="outline-2">
-<h2 id="org8de16b1">Problem:</h2>
-<div class="outline-text-2" id="text-org8de16b1">
+<div id="outline-container-orge49e196" class="outline-2">
+<h2 id="orge49e196">Problem:</h2>
+<div class="outline-text-2" id="text-orge49e196">
 <p>
 The problem is to fill a bookcase with books, each with a given width and height, such that the total height of the shelves is minimized. We are given a list `books` where `books[i] = [width<sub>i</sub>, height<sub>i</sub>]` represents the width and height of the i-th book. The books must be placed in the order given. The width of each shelf is fixed and given by an integer `shelf<sub>width</sub>`. Books can be placed on multiple shelves, but their relative ordering must stay the same.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org540ad99" class="outline-2">
-<h2 id="org540ad99">The task is to design an algorithm that minimizes the total height of the bookcase by optimally placing books on the shelves.</h2>
+<div id="outline-container-org28e0aab" class="outline-2">
+<h2 id="org28e0aab">The task is to design an algorithm that minimizes the total height of the bookcase by optimally placing books on the shelves.</h2>
 </div>
 
-<div id="outline-container-orgbd28175" class="outline-2">
-<h2 id="orgbd28175">Example Test Case:</h2>
-<div class="outline-text-2" id="text-orgbd28175">
+<div id="outline-container-org3cf76fb" class="outline-2">
+<h2 id="org3cf76fb">Example Test Case:</h2>
+<div class="outline-text-2" id="text-org3cf76fb">
 <ul class="org-ul">
 <li>Example 1:
 Input: `books = [[1, 3], [2, 4], [2, 2]]`, `shelf<sub>width</sub> = 4`
@@ -76,9 +76,9 @@ Explanation:
 </div>
 </div>
 
-<div id="outline-container-org57712e0" class="outline-2">
-<h2 id="org57712e0">Solution Description:</h2>
-<div class="outline-text-2" id="text-org57712e0">
+<div id="outline-container-orgeeb7850" class="outline-2">
+<h2 id="orgeeb7850">Solution Description:</h2>
+<div class="outline-text-2" id="text-orgeeb7850">
 <p>
 To implement the solution optimally, we need to use dynamic programming. We will create a DP array where dp[i] represents the minimum possible height to arrange the first i books. For each book, we will iterate backward to check the possibility of placing the book on the current shelf or moving it to a new shelf. By doing this, we ensure we are considering all possible configurations and thus finding the minimal height configuration.
 </p>
@@ -90,9 +90,9 @@ To implement the solution optimally, we need to use dynamic programming. We will
 </div>
 </div>
 
-<div id="outline-container-orgf30a553" class="outline-2">
-<h2 id="orgf30a553">Example:</h2>
-<div class="outline-text-2" id="text-orgf30a553">
+<div id="outline-container-orgcc5c74d" class="outline-2">
+<h2 id="orgcc5c74d">Example:</h2>
+<div class="outline-text-2" id="text-orgcc5c74d">
 <p>
 Consider `books = [[1, 3], [2, 4], [2, 2]]` and `shelf<sub>width</sub> = 4`.
 </p>
@@ -103,9 +103,9 @@ Consider `books = [[1, 3], [2, 4], [2, 2]]` and `shelf<sub>width</sub> = 4`.
 </ul>
 </div>
 
-<div id="outline-container-org71b7105" class="outline-3">
-<h3 id="org71b7105">Code Implementation</h3>
-<div class="outline-text-3" id="text-org71b7105">
+<div id="outline-container-org0effa69" class="outline-3">
+<h3 id="org0effa69">Code Implementation</h3>
+<div class="outline-text-3" id="text-org0effa69">
 <p>
 Below is the framework of the solution:
 </p>

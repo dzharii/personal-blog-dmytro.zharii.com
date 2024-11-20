@@ -156,10 +156,10 @@ enhance team collaboration. It has been applied in:
 The SCARF model is supported by research in neuroscience and psychology that underscores the importance of these social domains:
 
 - *Social Threats in the Brain*: Research by Matthew Lieberman and Naomi Eisenberger has shown that social pain, such as being
-  excluded or undervalued, activates the same neural pathways as physical pain. This supports the SCARF models emphasis on
+  excluded or undervalued, activates the same neural pathways as physical pain. This supports the SCARF model's emphasis on
   addressing threats to Status, Relatedness, and Fairness.
   [[https://schoolguide.casel.org/uploads/sites/2/2018/12/SCARF-NeuroleadershipArticle.pdf][Source]]
-- *Autonomy and Decision-Making*: Studies have demonstrated that a sense of control (Autonomy) activates the brains reward
+- *Autonomy and Decision-Making*: Studies have demonstrated that a sense of control (Autonomy) activates the brain's reward
   centers, improving decision-making and reducing stress.
   [[https://schoolguide.casel.org/uploads/sites/2/2018/12/SCARF-NeuroleadershipArticle.pdf][Source]]
 - *Certainty and Predictability*: Neuroscience research highlights that the brain is a "prediction machine," with uncertainty
@@ -173,13 +173,13 @@ The SCARF model is supported by research in neuroscience and psychology that und
 
 Studies and organizational case studies have highlighted the success of the SCARF model in improving workplace dynamics:
 
-1. *Case Study: Deloitte*  Deloitte used the SCARF model to train its leaders, focusing on creating environments that minimized
+1. *Case Study: Deloitte*: Deloitte used the SCARF model to train its leaders, focusing on creating environments that minimized
    social threats and enhanced employee engagement. They reported improved communication and trust within teams.
    [[https://schoolguide.casel.org/uploads/sites/2/2018/12/SCARF-NeuroleadershipArticle.pdf][Read more]]
-2. *Application in Change Management*  Organizations undergoing significant restructuring have used the model to mitigate employee
+2. *Application in Change Management*: Organizations undergoing significant restructuring have used the model to mitigate employee
    resistance, with leaders addressing Certainty and Fairness to reduce anxiety and build trust.
    [[https://neuroleadership.fi/wp/blog/understand-your-social-brain-the-scarf-model/][Read more]]
-3. *Increased Engagement*  Surveys from companies implementing SCARF-based leadership strategies have consistently reported higher
+3. *Increased Engagement*: Surveys from companies implementing SCARF-based leadership strategies have consistently reported higher
    employee satisfaction and retention rates, as well as measurable increases in productivity.
    [[https://neuroleadership.fi/wp/blog/understand-your-social-brain-the-scarf-model/][Read more]]
 
