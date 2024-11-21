@@ -1,0 +1,356 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2024-11-20 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>2257. Count Unguarded Cells in the Grid</title>
+<meta name="author" content="d)zharii" />
+<meta name="generator" content="Org Mode" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/t.css"/>
+</head>
+<body>
+<nav><a href="/" tabindex="0">&larrhk; Back to Index</a></nav><div id="preamble" class="status">
+Published 2024-11-20
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">2257. Count Unguarded Cells in the Grid</h1>
+<p class="subtitle" role="doc-subtitle">leetcode</p>
+</header><nav id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgdb8b60d">Problem</a></li>
+<li><a href="#org59a2dac">Solution Description</a></li>
+<li><a href="#orgf93e437">Example</a></li>
+<li><a href="#org0d6ea8c">References</a></li>
+<li><a href="#org4f98adb">Solution</a></li>
+</ul>
+</div>
+</nav>
+
+<div id="outline-container-orgdb8b60d" class="outline-2">
+<h2 id="orgdb8b60d">Problem</h2>
+<div class="outline-text-2" id="text-orgdb8b60d">
+<p>
+Given a grid of size m x n, with guards and walls distributed throughout, your task is to count the number of cells in the grid that are not guarded. A guard observes the cells in all four perpendicular directions: left, right, up, and down. However, it cannot see through walls and doesn't protect the cell it directly occupies.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org59a2dac" class="outline-2">
+<h2 id="org59a2dac">Solution Description</h2>
+<div class="outline-text-2" id="text-org59a2dac">
+<p>
+To implement counting unguarded cells in the grid, we need to first mark all cells that are guarded. This involves two main steps:
+</p>
+<ol class="org-ol">
+<li>Traverse the grid: For each guard, mark all directly observable cells in the four perpendicular directions until a wall or the edge of the grid is encountered.</li>
+<li>Count unguarded cells: After marking all cells that are guarded, iterate through the grid again and count how many cells are neither walls nor marked as guarded.</li>
+</ol>
+
+<p>
+Time Complexity:
+</p>
+<ul class="org-ul">
+<li>The solution involves traversing the entire grid and possibly extending from each guard position to other cells, leading to a complexity of O(m * n), where m is the number of rows and n is the number of columns.</li>
+</ul>
+
+<p>
+Space Complexity:
+</p>
+<ul class="org-ul">
+<li>Additional space for a boolean matrix of size m * n to mark guarded cells.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgf93e437" class="outline-2">
+<h2 id="orgf93e437">Example</h2>
+<div class="outline-text-2" id="text-orgf93e437">
+<p>
+Consider a 3x3 grid where G represents guards, W represents walls, and . represents empty cells:
+#+being<sub>example</sub>
+G . .
+. W .
+. . G
+#+end<sub>example</sub>
+</p>
+
+<ul class="org-ul">
+<li>The guard at (0,0) observes cells (0,1), (0,2), and cell (1,0).</li>
+<li>The guard at (2,2) observes cells (2,1), (1,2), and cell (2,0).</li>
+<li>The cell at (1,1) is a wall and blocks the view.</li>
+<li>The count of unguarded cells is 2: (1,2) and (2,0).</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org0d6ea8c" class="outline-2">
+<h2 id="org0d6ea8c">References</h2>
+<div class="outline-text-2" id="text-org0d6ea8c">
+<p>
+For more details on guarding strategies and obstacle handling in grids, see Depth First Search (DFS) techniques and Breadth First Search (BFS) patterns, which can be used in variations of this problem.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org4f98adb" class="outline-2">
+<h2 id="org4f98adb">Solution</h2>
+<div class="outline-text-2" id="text-org4f98adb">
+<p>
+<a href="https://leetcode.com/submissions/detail/1458762389/">2024-11-21 Count Unguarded Cells in the Grid - Submission Detail - LeetCode</a> <code>leetcode.com</code>
+</p>
+
+<p>
+Below is the skeletal code setup for solving the problem. Relevant test cases are provided.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">/**
+ * Main solution function
+ * @param {number} m - Number of rows
+ * @param {number} n - Number of columns
+ * @param {number[][]} guards - Array of guards' positions
+ * @param {number[][]} walls - Array of walls' positions
+ * @returns {number} - Count of unguarded cells
+ */
+function countUnguardedCells(m, n, guards, walls) {
+    const log = typeof NestedInteger !== 'undefined' ? () =&gt; {} : console.log;
+    const table = typeof NestedInteger !== 'undefined' ? () =&gt; {} : console.table;
+
+    const coordToString = ([y, x]) =&gt; `${y},${x}`;
+    const gset = new Set(guards.map(coordToString));
+    const wset = new Set(walls.map(coordToString));
+
+    const board = Array.from({ length: m }, () =&gt; Array(n).fill(1));
+
+    log('Guards');
+    table(Array.from(gset));
+
+    log('Walls');
+    table(Array.from(wset));
+
+    function markGuardFov(board, y, x) {
+        board[y][x] = 0;
+
+        const directions = [[0, 1], [0, -1], [1, 0], [-1, 0]]; // Right, Left, Down, Up
+        for (const [dy, dx] of directions) {
+            let ny = y + dy, nx = x + dx;
+            while (ny &gt;= 0 &amp;&amp; ny &lt; m &amp;&amp; nx &gt;= 0 &amp;&amp; nx &lt; n) {
+                const coord = coordToString([ny, nx]);
+                if (wset.has(coord) || gset.has(coord)) break;
+                board[ny][nx] = 0;
+                ny += dy;
+                nx += dx;
+            }
+        }
+    }
+
+    // update board for guards and walls,
+    // SMART: cuz we have the list of guard coords already
+    for (const [y, x] of guards) markGuardFov(board, y, x);
+    for (const [y, x] of walls) board[y][x] = 0;
+
+    table(board);
+
+    // count remaining unguarded cells
+    let unguardedCount = 0;
+    for (let y = 0; y &lt; m; y++) {
+        for (let x = 0; x &lt; n; x++) {
+            if (board[y][x] === 1) unguardedCount++;
+        }
+    }
+
+    return unguardedCount;
+}
+
+
+// Test cases
+const testCases = [
+    {
+        m: 1, n: 7,
+        guards: [[0,0]],
+        walls: [[0,6]],
+        expected: 1
+    },
+    {
+        m: 4, n: 6,
+        guards: [[0,0], [1,1], [2,3]],
+        walls: [[0,1], [2,2], [1,4]],
+        expected: 7
+    },
+    {
+        m: 4, n: 4,
+        guards: [[0,0], [1,1], [3,3]],
+        walls: [[0,1], [2,2]],
+        expected: 6
+    },
+    {
+        m: 3, n: 3,
+        guards: [[0,0], [2,2]],
+        walls: [[1,1]],
+        expected: 2
+    },
+    {
+        m: 5, n: 5,
+        guards: [],
+        walls: [[0,0], [4,4]],
+        expected: 23
+    },
+    {
+        m: 1, n: 1,
+        guards: [[0,0]],
+        walls: [],
+        expected: 0
+    },
+];
+
+testCases.forEach((test, index) =&gt; {
+    const result = countUnguardedCells(test.m, test.n, test.guards, test.walls);
+    console.log(`Test Case ${index + 1}: ${result === test.expected ? 'Passed' : 'Failed'} (Expected: ${test.expected}, Got: ${result})`);
+});
+</pre>
+</div>
+
+
+<pre class="example" id="orgaf8e22c">
+Guards
+┌─────────┬────────┐
+│ (index) │ Values │
+├─────────┼────────┤
+│ 0       │ '0,0'  │
+└─────────┴────────┘
+Walls
+┌─────────┬────────┐
+│ (index) │ Values │
+├─────────┼────────┤
+│ 0       │ '0,6'  │
+└─────────┴────────┘
+┌─────────┬───┬───┬───┬───┬───┬───┬───┐
+│ (index) │ 0 │ 1 │ 2 │ 3 │ 4 │ 5 │ 6 │
+├─────────┼───┼───┼───┼───┼───┼───┼───┤
+│ 0       │ 0 │ 0 │ 0 │ 0 │ 0 │ 0 │ 0 │
+└─────────┴───┴───┴───┴───┴───┴───┴───┘
+Test Case 1: Failed (Expected: 1, Got: 0)
+Guards
+┌─────────┬────────┐
+│ (index) │ Values │
+├─────────┼────────┤
+│ 0       │ '0,0'  │
+│ 1       │ '1,1'  │
+│ 2       │ '2,3'  │
+└─────────┴────────┘
+Walls
+┌─────────┬────────┐
+│ (index) │ Values │
+├─────────┼────────┤
+│ 0       │ '0,1'  │
+│ 1       │ '2,2'  │
+│ 2       │ '1,4'  │
+└─────────┴────────┘
+┌─────────┬───┬───┬───┬───┬───┬───┐
+│ (index) │ 0 │ 1 │ 2 │ 3 │ 4 │ 5 │
+├─────────┼───┼───┼───┼───┼───┼───┤
+│ 0       │ 0 │ 0 │ 1 │ 0 │ 1 │ 1 │
+│ 1       │ 0 │ 0 │ 0 │ 0 │ 0 │ 1 │
+│ 2       │ 0 │ 0 │ 0 │ 0 │ 0 │ 0 │
+│ 3       │ 0 │ 0 │ 1 │ 0 │ 1 │ 1 │
+└─────────┴───┴───┴───┴───┴───┴───┘
+Test Case 2: Passed (Expected: 7, Got: 7)
+Guards
+┌─────────┬────────┐
+│ (index) │ Values │
+├─────────┼────────┤
+│ 0       │ '0,0'  │
+│ 1       │ '1,1'  │
+│ 2       │ '3,3'  │
+└─────────┴────────┘
+Walls
+┌─────────┬────────┐
+│ (index) │ Values │
+├─────────┼────────┤
+│ 0       │ '0,1'  │
+│ 1       │ '2,2'  │
+└─────────┴────────┘
+┌─────────┬───┬───┬───┬───┐
+│ (index) │ 0 │ 1 │ 2 │ 3 │
+├─────────┼───┼───┼───┼───┤
+│ 0       │ 0 │ 0 │ 1 │ 0 │
+│ 1       │ 0 │ 0 │ 0 │ 0 │
+│ 2       │ 0 │ 0 │ 0 │ 0 │
+│ 3       │ 0 │ 0 │ 0 │ 0 │
+└─────────┴───┴───┴───┴───┘
+Test Case 3: Failed (Expected: 6, Got: 1)
+Guards
+┌─────────┬────────┐
+│ (index) │ Values │
+├─────────┼────────┤
+│ 0       │ '0,0'  │
+│ 1       │ '2,2'  │
+└─────────┴────────┘
+Walls
+┌─────────┬────────┐
+│ (index) │ Values │
+├─────────┼────────┤
+│ 0       │ '1,1'  │
+└─────────┴────────┘
+┌─────────┬───┬───┬───┐
+│ (index) │ 0 │ 1 │ 2 │
+├─────────┼───┼───┼───┤
+│ 0       │ 0 │ 0 │ 0 │
+│ 1       │ 0 │ 0 │ 0 │
+│ 2       │ 0 │ 0 │ 0 │
+└─────────┴───┴───┴───┘
+Test Case 4: Failed (Expected: 2, Got: 0)
+Guards
+┌─────────┐
+│ (index) │
+├─────────┤
+└─────────┘
+Walls
+┌─────────┬────────┐
+│ (index) │ Values │
+├─────────┼────────┤
+│ 0       │ '0,0'  │
+│ 1       │ '4,4'  │
+└─────────┴────────┘
+┌─────────┬───┬───┬───┬───┬───┐
+│ (index) │ 0 │ 1 │ 2 │ 3 │ 4 │
+├─────────┼───┼───┼───┼───┼───┤
+│ 0       │ 0 │ 1 │ 1 │ 1 │ 1 │
+│ 1       │ 1 │ 1 │ 1 │ 1 │ 1 │
+│ 2       │ 1 │ 1 │ 1 │ 1 │ 1 │
+│ 3       │ 1 │ 1 │ 1 │ 1 │ 1 │
+│ 4       │ 1 │ 1 │ 1 │ 1 │ 0 │
+└─────────┴───┴───┴───┴───┴───┘
+Test Case 5: Passed (Expected: 23, Got: 23)
+Guards
+┌─────────┬────────┐
+│ (index) │ Values │
+├─────────┼────────┤
+│ 0       │ '0,0'  │
+└─────────┴────────┘
+Walls
+┌─────────┐
+│ (index) │
+├─────────┤
+└─────────┘
+┌─────────┬───┐
+│ (index) │ 0 │
+├─────────┼───┤
+│ 0       │ 0 │
+└─────────┴───┘
+Test Case 6: Passed (Expected: 0, Got: 0)
+undefined
+</pre>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+&copy; d)zharii. <a href="/sitemap.html">sitemap</a>
+</div>
+</body>
+</html>

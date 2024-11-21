@@ -22,16 +22,16 @@ Published 2024-05-23
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgfeb56f4">Problem Overview</a></li>
-<li><a href="#org39ca752">Solution Outline</a></li>
-<li><a href="#orgc86d065">Implement the Solution</a></li>
+<li><a href="#org40b9b2d">Problem Overview</a></li>
+<li><a href="#org86b1a58">Solution Outline</a></li>
+<li><a href="#orgb51efca">Implement the Solution</a></li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-orgfeb56f4" class="outline-2">
-<h2 id="orgfeb56f4">Problem Overview</h2>
-<div class="outline-text-2" id="text-orgfeb56f4">
+<div id="outline-container-org40b9b2d" class="outline-2">
+<h2 id="org40b9b2d">Problem Overview</h2>
+<div class="outline-text-2" id="text-org40b9b2d">
 <p>
 The problem is to group anagrams from a list of strings. Anagrams are words or phrases made by rearranging the letters of another, such as "cinema" and "iceman". 
 </p>
@@ -42,9 +42,9 @@ Given an array of strings, you need to group the anagrams together. Each group o
 </div>
 </div>
 
-<div id="outline-container-org39ca752" class="outline-2">
-<h2 id="org39ca752">Solution Outline</h2>
-<div class="outline-text-2" id="text-org39ca752">
+<div id="outline-container-org86b1a58" class="outline-2">
+<h2 id="org86b1a58">Solution Outline</h2>
+<div class="outline-text-2" id="text-org86b1a58">
 <ul class="org-ul">
 <li><b><b>Preferred Structure:</b></b> Use a hash map (or object) where the key is a sorted version of the string, and the value is an array of strings (the anagrams).</li>
 <li><b><b>Brute Force vs Optimal Solution:</b></b> The brute force method would involve comparing each string with every other string, which is inefficient. The optimal solution sorts each string and uses it as a key in the hash map to group anagrams together.</li>
@@ -53,9 +53,9 @@ Given an array of strings, you need to group the anagrams together. Each group o
 </div>
 </div>
 
-<div id="outline-container-orgc86d065" class="outline-2">
-<h2 id="orgc86d065">Implement the Solution</h2>
-<div class="outline-text-2" id="text-orgc86d065">
+<div id="outline-container-orgb51efca" class="outline-2">
+<h2 id="orgb51efca">Implement the Solution</h2>
+<div class="outline-text-2" id="text-orgb51efca">
 <div class="org-src-container">
 <pre class="src src-js">/**
  * Groups anagrams from a list of strings.

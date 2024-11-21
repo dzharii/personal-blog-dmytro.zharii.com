@@ -22,39 +22,39 @@ Published 2024-07-29
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org87d9847">Links</a></li>
-<li><a href="#org6c18da1">Problem:</a></li>
-<li><a href="#orgd9c9778">Solution Description:</a></li>
-<li><a href="#orgd76e98c">Time Complexity: O(n), where n is the length of the string.</a></li>
-<li><a href="#orge1ff4d5">Space Complexity: O(1), as we use a constant amount of extra space.</a></li>
-<li><a href="#orge766015">Example:</a></li>
-<li><a href="#org705cf92">Setup:</a></li>
-<li><a href="#org4a73b0c">Test Execution:</a></li>
+<li><a href="#org1922513">Links</a></li>
+<li><a href="#orga56a5d2">Problem:</a></li>
+<li><a href="#org06a9cd4">Solution Description:</a></li>
+<li><a href="#orgac7023f">Time Complexity: O(n), where n is the length of the string.</a></li>
+<li><a href="#org42c85a1">Space Complexity: O(1), as we use a constant amount of extra space.</a></li>
+<li><a href="#orgc6dff79">Example:</a></li>
+<li><a href="#orga961041">Setup:</a></li>
+<li><a href="#orgcd7268c">Test Execution:</a></li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-org87d9847" class="outline-2">
-<h2 id="org87d9847">Links</h2>
-<div class="outline-text-2" id="text-org87d9847">
+<div id="outline-container-org1922513" class="outline-2">
+<h2 id="org1922513">Links</h2>
+<div class="outline-text-2" id="text-org1922513">
 <ul class="org-ul">
 <li>Submission <a href="https://leetcode.com/submissions/detail/1337966430/">2024-07-30 Minimum Deletions to Make String Balanced - Submission Detail - LeetCode</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org6c18da1" class="outline-2">
-<h2 id="org6c18da1">Problem:</h2>
-<div class="outline-text-2" id="text-org6c18da1">
+<div id="outline-container-orga56a5d2" class="outline-2">
+<h2 id="orga56a5d2">Problem:</h2>
+<div class="outline-text-2" id="text-orga56a5d2">
 <p>
 The problem "1653. Minimum Deletions to Make String Balanced" from LeetCode requires you to find the minimum number of deletions needed to make a given string `s`, which consists of characters 'a' and 'b', balanced. A string is considered balanced if there is no 'b' that appears before an 'a' in the string.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgd9c9778" class="outline-2">
-<h2 id="orgd9c9778">Solution Description:</h2>
-<div class="outline-text-2" id="text-orgd9c9778">
+<div id="outline-container-org06a9cd4" class="outline-2">
+<h2 id="org06a9cd4">Solution Description:</h2>
+<div class="outline-text-2" id="text-org06a9cd4">
 <p>
 To implement the solution, we need to keep track of the prefixes of 'a' and 'b'. Specifically, we can calculate the minimum deletions required to balance the string using a single pass through the string, maintaining a count of 'b's seen before each 'a'. We achieve this by tracking cumulative counts of 'b's and calculating the minimum number of deletions at each step.
 </p>
@@ -72,16 +72,16 @@ To implement the solution, we need to keep track of the prefixes of 'a' and 'b'.
 </div>
 </div>
 
-<div id="outline-container-orgd76e98c" class="outline-2">
-<h2 id="orgd76e98c">Time Complexity: O(n), where n is the length of the string.</h2>
+<div id="outline-container-orgac7023f" class="outline-2">
+<h2 id="orgac7023f">Time Complexity: O(n), where n is the length of the string.</h2>
 </div>
-<div id="outline-container-orge1ff4d5" class="outline-2">
-<h2 id="orge1ff4d5">Space Complexity: O(1), as we use a constant amount of extra space.</h2>
+<div id="outline-container-org42c85a1" class="outline-2">
+<h2 id="org42c85a1">Space Complexity: O(1), as we use a constant amount of extra space.</h2>
 </div>
 
-<div id="outline-container-orge766015" class="outline-2">
-<h2 id="orge766015">Example:</h2>
-<div class="outline-text-2" id="text-orge766015">
+<div id="outline-container-orgc6dff79" class="outline-2">
+<h2 id="orgc6dff79">Example:</h2>
+<div class="outline-text-2" id="text-orgc6dff79">
 <p>
 Let's consider the string "aababbab":
 </p>
@@ -96,18 +96,18 @@ Let's consider the string "aababbab":
 </div>
 </div>
 
-<div id="outline-container-org705cf92" class="outline-2">
-<h2 id="org705cf92">Setup:</h2>
-<div class="outline-text-2" id="text-org705cf92">
+<div id="outline-container-orga961041" class="outline-2">
+<h2 id="orga961041">Setup:</h2>
+<div class="outline-text-2" id="text-orga961041">
 <p>
 Here is the general framework of the solution in JavaScript. We'll include a testing setup using `console.log` statements to verify the correctness of our solution.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org4a73b0c" class="outline-2">
-<h2 id="org4a73b0c">Test Execution:</h2>
-<div class="outline-text-2" id="text-org4a73b0c">
+<div id="outline-container-orgcd7268c" class="outline-2">
+<h2 id="orgcd7268c">Test Execution:</h2>
+<div class="outline-text-2" id="text-orgcd7268c">
 <p>
 We will define multiple test cases and verify if the implemented solution meets the expected output.
 </p>
@@ -159,7 +159,7 @@ testCases.forEach((test, index) =&gt; {
 </pre>
 </div>
 
-<pre class="example" id="orgc1e6cc5">
+<pre class="example" id="orgff2bb8c">
 Processing string: aababbab
 Test Case 1: Passed (Expected: 2, Got: 2)
 Processing string: bbaaaa

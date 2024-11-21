@@ -1,0 +1,280 @@
+﻿#+title: 2257. Count Unguarded Cells in the Grid
+#+subtitle: leetcode
+#+date: <2024-11-20>
+#+language: en
+
+* Problem
+Given a grid of size m x n, with guards and walls distributed throughout, your task is to count the number of cells in the grid that are not guarded. A guard observes the cells in all four perpendicular directions: left, right, up, and down. However, it cannot see through walls and doesn't protect the cell it directly occupies.
+
+* Solution Description
+To implement counting unguarded cells in the grid, we need to first mark all cells that are guarded. This involves two main steps:
+ 1. Traverse the grid: For each guard, mark all directly observable cells in the four perpendicular directions until a wall or the edge of the grid is encountered.
+ 2. Count unguarded cells: After marking all cells that are guarded, iterate through the grid again and count how many cells are neither walls nor marked as guarded.
+
+Time Complexity:
+- The solution involves traversing the entire grid and possibly extending from each guard position to other cells, leading to a complexity of O(m * n), where m is the number of rows and n is the number of columns.
+
+Space Complexity:
+- Additional space for a boolean matrix of size m * n to mark guarded cells.
+
+* Example
+Consider a 3x3 grid where G represents guards, W represents walls, and . represents empty cells:
+#+being_example
+G . .
+. W .
+. . G
+#+end_example
+
+- The guard at (0,0) observes cells (0,1), (0,2), and cell (1,0).
+- The guard at (2,2) observes cells (2,1), (1,2), and cell (2,0).
+- The cell at (1,1) is a wall and blocks the view.
+- The count of unguarded cells is 2: (1,2) and (2,0).
+
+* References
+For more details on guarding strategies and obstacle handling in grids, see Depth First Search (DFS) techniques and Breadth First Search (BFS) patterns, which can be used in variations of this problem.
+
+* Solution
+
+[[https://leetcode.com/submissions/detail/1458762389/][2024-11-21 Count Unguarded Cells in the Grid - Submission Detail - LeetCode]] =leetcode.com=
+
+Below is the skeletal code setup for solving the problem. Relevant test cases are provided.
+
+#+begin_src js :tangle "2257_count_unguarded_cells_in_the_grid.js"
+/**
+ ,* Main solution function
+ ,* @param {number} m - Number of rows
+ ,* @param {number} n - Number of columns
+ ,* @param {number[][]} guards - Array of guards' positions
+ ,* @param {number[][]} walls - Array of walls' positions
+ ,* @returns {number} - Count of unguarded cells
+ ,*/
+function countUnguardedCells(m, n, guards, walls) {
+    const log = typeof NestedInteger !== 'undefined' ? () => {} : console.log;
+    const table = typeof NestedInteger !== 'undefined' ? () => {} : console.table;
+
+    const coordToString = ([y, x]) => `${y},${x}`;
+    const gset = new Set(guards.map(coordToString));
+    const wset = new Set(walls.map(coordToString));
+
+    const board = Array.from({ length: m }, () => Array(n).fill(1));
+
+    log('Guards');
+    table(Array.from(gset));
+
+    log('Walls');
+    table(Array.from(wset));
+
+    function markGuardFov(board, y, x) {
+        board[y][x] = 0;
+
+        const directions = [[0, 1], [0, -1], [1, 0], [-1, 0]]; // Right, Left, Down, Up
+        for (const [dy, dx] of directions) {
+            let ny = y + dy, nx = x + dx;
+            while (ny >= 0 && ny < m && nx >= 0 && nx < n) {
+                const coord = coordToString([ny, nx]);
+                if (wset.has(coord) || gset.has(coord)) break;
+                board[ny][nx] = 0;
+                ny += dy;
+                nx += dx;
+            }
+        }
+    }
+
+    // update board for guards and walls,
+    // SMART: cuz we have the list of guard coords already
+    for (const [y, x] of guards) markGuardFov(board, y, x);
+    for (const [y, x] of walls) board[y][x] = 0;
+
+    table(board);
+
+    // count remaining unguarded cells
+    let unguardedCount = 0;
+    for (let y = 0; y < m; y++) {
+        for (let x = 0; x < n; x++) {
+            if (board[y][x] === 1) unguardedCount++;
+        }
+    }
+
+    return unguardedCount;
+}
+
+
+// Test cases
+const testCases = [
+    {
+        m: 1, n: 7,
+        guards: [[0,0]],
+        walls: [[0,6]],
+        expected: 1
+    },
+    {
+        m: 4, n: 6,
+        guards: [[0,0], [1,1], [2,3]],
+        walls: [[0,1], [2,2], [1,4]],
+        expected: 7
+    },
+    {
+        m: 4, n: 4,
+        guards: [[0,0], [1,1], [3,3]],
+        walls: [[0,1], [2,2]],
+        expected: 6
+    },
+    {
+        m: 3, n: 3,
+        guards: [[0,0], [2,2]],
+        walls: [[1,1]],
+        expected: 2
+    },
+    {
+        m: 5, n: 5,
+        guards: [],
+        walls: [[0,0], [4,4]],
+        expected: 23
+    },
+    {
+        m: 1, n: 1,
+        guards: [[0,0]],
+        walls: [],
+        expected: 0
+    },
+];
+
+testCases.forEach((test, index) => {
+    const result = countUnguardedCells(test.m, test.n, test.guards, test.walls);
+    console.log(`Test Case ${index + 1}: ${result === test.expected ? 'Passed' : 'Failed'} (Expected: ${test.expected}, Got: ${result})`);
+});
+#+end_src
+
+#+RESULTS:
+
+
+#+begin_example
+Guards
+┌─────────┬────────┐
+│ (index) │ Values │
+├─────────┼────────┤
+│ 0       │ '0,0'  │
+└─────────┴────────┘
+Walls
+┌─────────┬────────┐
+│ (index) │ Values │
+├─────────┼────────┤
+│ 0       │ '0,6'  │
+└─────────┴────────┘
+┌─────────┬───┬───┬───┬───┬───┬───┬───┐
+│ (index) │ 0 │ 1 │ 2 │ 3 │ 4 │ 5 │ 6 │
+├─────────┼───┼───┼───┼───┼───┼───┼───┤
+│ 0       │ 0 │ 0 │ 0 │ 0 │ 0 │ 0 │ 0 │
+└─────────┴───┴───┴───┴───┴───┴───┴───┘
+Test Case 1: Failed (Expected: 1, Got: 0)
+Guards
+┌─────────┬────────┐
+│ (index) │ Values │
+├─────────┼────────┤
+│ 0       │ '0,0'  │
+│ 1       │ '1,1'  │
+│ 2       │ '2,3'  │
+└─────────┴────────┘
+Walls
+┌─────────┬────────┐
+│ (index) │ Values │
+├─────────┼────────┤
+│ 0       │ '0,1'  │
+│ 1       │ '2,2'  │
+│ 2       │ '1,4'  │
+└─────────┴────────┘
+┌─────────┬───┬───┬───┬───┬───┬───┐
+│ (index) │ 0 │ 1 │ 2 │ 3 │ 4 │ 5 │
+├─────────┼───┼───┼───┼───┼───┼───┤
+│ 0       │ 0 │ 0 │ 1 │ 0 │ 1 │ 1 │
+│ 1       │ 0 │ 0 │ 0 │ 0 │ 0 │ 1 │
+│ 2       │ 0 │ 0 │ 0 │ 0 │ 0 │ 0 │
+│ 3       │ 0 │ 0 │ 1 │ 0 │ 1 │ 1 │
+└─────────┴───┴───┴───┴───┴───┴───┘
+Test Case 2: Passed (Expected: 7, Got: 7)
+Guards
+┌─────────┬────────┐
+│ (index) │ Values │
+├─────────┼────────┤
+│ 0       │ '0,0'  │
+│ 1       │ '1,1'  │
+│ 2       │ '3,3'  │
+└─────────┴────────┘
+Walls
+┌─────────┬────────┐
+│ (index) │ Values │
+├─────────┼────────┤
+│ 0       │ '0,1'  │
+│ 1       │ '2,2'  │
+└─────────┴────────┘
+┌─────────┬───┬───┬───┬───┐
+│ (index) │ 0 │ 1 │ 2 │ 3 │
+├─────────┼───┼───┼───┼───┤
+│ 0       │ 0 │ 0 │ 1 │ 0 │
+│ 1       │ 0 │ 0 │ 0 │ 0 │
+│ 2       │ 0 │ 0 │ 0 │ 0 │
+│ 3       │ 0 │ 0 │ 0 │ 0 │
+└─────────┴───┴───┴───┴───┘
+Test Case 3: Failed (Expected: 6, Got: 1)
+Guards
+┌─────────┬────────┐
+│ (index) │ Values │
+├─────────┼────────┤
+│ 0       │ '0,0'  │
+│ 1       │ '2,2'  │
+└─────────┴────────┘
+Walls
+┌─────────┬────────┐
+│ (index) │ Values │
+├─────────┼────────┤
+│ 0       │ '1,1'  │
+└─────────┴────────┘
+┌─────────┬───┬───┬───┐
+│ (index) │ 0 │ 1 │ 2 │
+├─────────┼───┼───┼───┤
+│ 0       │ 0 │ 0 │ 0 │
+│ 1       │ 0 │ 0 │ 0 │
+│ 2       │ 0 │ 0 │ 0 │
+└─────────┴───┴───┴───┘
+Test Case 4: Failed (Expected: 2, Got: 0)
+Guards
+┌─────────┐
+│ (index) │
+├─────────┤
+└─────────┘
+Walls
+┌─────────┬────────┐
+│ (index) │ Values │
+├─────────┼────────┤
+│ 0       │ '0,0'  │
+│ 1       │ '4,4'  │
+└─────────┴────────┘
+┌─────────┬───┬───┬───┬───┬───┐
+│ (index) │ 0 │ 1 │ 2 │ 3 │ 4 │
+├─────────┼───┼───┼───┼───┼───┤
+│ 0       │ 0 │ 1 │ 1 │ 1 │ 1 │
+│ 1       │ 1 │ 1 │ 1 │ 1 │ 1 │
+│ 2       │ 1 │ 1 │ 1 │ 1 │ 1 │
+│ 3       │ 1 │ 1 │ 1 │ 1 │ 1 │
+│ 4       │ 1 │ 1 │ 1 │ 1 │ 0 │
+└─────────┴───┴───┴───┴───┴───┘
+Test Case 5: Passed (Expected: 23, Got: 23)
+Guards
+┌─────────┬────────┐
+│ (index) │ Values │
+├─────────┼────────┤
+│ 0       │ '0,0'  │
+└─────────┴────────┘
+Walls
+┌─────────┐
+│ (index) │
+├─────────┤
+└─────────┘
+┌─────────┬───┐
+│ (index) │ 0 │
+├─────────┼───┤
+│ 0       │ 0 │
+└─────────┴───┘
+Test Case 6: Passed (Expected: 0, Got: 0)
+undefined
+#+end_example
