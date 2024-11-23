@@ -1,0 +1,51 @@
+#+title: Conflict-handling Avoiding Competing Accommodating Compromising Collaborating
+#+subtitle: docs
+#+date: <2024-11-23>
+#+language: en
+
+* Summary
+
+#+caption: Avoiding Competing Accommodating Compromising Collaborating
+[[file:conflict.assets/image-20241123124456639.png]]
+
+In conflict situations, individuals often exhibit different *behavioral strategies* based on their approach to managing
+disagreements. Avoiding is one strategy, and here are four others, alongside avoiding, commonly identified within conflict
+management models like the *Thomas-Kilmann Conflict Mode Instrument (TKI):*
+
+* Avoiding
+
+- *Behavior:* The individual sidesteps or withdraws from the conflict, neither pursuing their own concerns nor those of the other
+  party.
+- *When it's useful:* When the conflict is trivial, emotions are too high for constructive dialogue, or more time is needed to
+  gather information.
+- *Risk:* Prolonging the issue may lead to unresolved tensions or escalation.
+
+* Competing
+
+- *Behavior:* The individual seeks to win the conflict by asserting their own position, often at the expense of the other party.
+- *When it's useful:* When quick, decisive action is needed (e.g., in emergencies) or in matters of principle.
+- *Risk:* Can damage relationships and lead to resentment if overused or applied inappropriately.
+
+* Accommodating
+
+- *Behavior:* The individual prioritizes the concerns of the other party over their own, often sacrificing their own needs to
+  maintain harmony.
+- *When it's useful:* To preserve relationships, resolve minor issues quickly, or demonstrate goodwill.
+- *Risk:* May lead to feelings of frustration or being undervalued if used excessively.
+
+* Compromising
+
+- *Behavior:* Both parties make concessions to reach a mutually acceptable solution, often splitting the difference.
+- *When it's useful:* When a quick resolution is needed and both parties are willing to make sacrifices.
+- *Risk:* May result in a suboptimal solution where neither party is fully satisfied.
+
+* Collaborating
+
+- *Behavior:* The individual works with the other party to find a win-win solution that fully satisfies the needs of both.
+- *When it's useful:* When the issue is important to both parties and requires creative problem-solving to achieve the best
+  outcome.
+- *Risk:* Requires time and effort, which may not always be feasible in time-sensitive situations.
+
+
+Each of these strategies has its strengths and limitations, and the choice of approach often depends on the context of the
+conflict, the relationship between the parties, and the desired outcomes.

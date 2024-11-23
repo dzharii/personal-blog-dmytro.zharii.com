@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2024-11-20 -->
+<!-- 2024-11-23 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>0015. 3Sum</title>
@@ -22,32 +22,32 @@ Published 2024-07-02
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org372f25f">Problem:</a>
+<li><a href="#orgb3579df">Problem:</a>
 <ul>
-<li><a href="#org397e8a7">Solution Description:</a></li>
+<li><a href="#orgad1d715">Solution Description:</a></li>
 </ul>
 </li>
-<li><a href="#orgfb8d04c">Note:-</a>
+<li><a href="#org777823f">Note:-</a>
 <ul>
-<li><a href="#org403bfc1">Example:</a></li>
-<li><a href="#orgbc9b329">Setup:</a></li>
+<li><a href="#org2d9b8e9">Example:</a></li>
+<li><a href="#org15a9028">Setup:</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-org372f25f" class="outline-2">
-<h2 id="org372f25f">Problem:</h2>
-<div class="outline-text-2" id="text-org372f25f">
+<div id="outline-container-orgb3579df" class="outline-2">
+<h2 id="orgb3579df">Problem:</h2>
+<div class="outline-text-2" id="text-orgb3579df">
 <p>
 Find all unique triplets in the array which gives the sum of zero. The solution set must not contain duplicate triplets.
 </p>
 </div>
 
-<div id="outline-container-org397e8a7" class="outline-3">
-<h3 id="org397e8a7">Solution Description:</h3>
-<div class="outline-text-3" id="text-org397e8a7">
+<div id="outline-container-orgad1d715" class="outline-3">
+<h3 id="orgad1d715">Solution Description:</h3>
+<div class="outline-text-3" id="text-orgad1d715">
 <p>
 To implement a solution for the 3Sum problem, we need to:
 </p>
@@ -63,18 +63,18 @@ To implement a solution for the 3Sum problem, we need to:
 </div>
 </div>
 
-<div id="outline-container-orgfb8d04c" class="outline-2">
-<h2 id="orgfb8d04c">Note:-</h2>
-<div class="outline-text-2" id="text-orgfb8d04c">
+<div id="outline-container-org777823f" class="outline-2">
+<h2 id="org777823f">Note:-</h2>
+<div class="outline-text-2" id="text-org777823f">
 <p>
 Time Complexity: O(n<sup>2</sup>) â Sorting the array takes O(n log n) time and the two-pointer strategy takes O(n) time for each element, resulting in O(n<sup>2</sup>) overall.
 Space Complexity: O(1) â aside from the space required for the output list, the solution uses a constant amount of space.
 </p>
 </div>
 
-<div id="outline-container-org403bfc1" class="outline-3">
-<h3 id="org403bfc1">Example:</h3>
-<div class="outline-text-3" id="text-org403bfc1">
+<div id="outline-container-org2d9b8e9" class="outline-3">
+<h3 id="org2d9b8e9">Example:</h3>
+<div class="outline-text-3" id="text-org2d9b8e9">
 <p>
 Given array nums = [-1, 0, 1, 2, -1, -4],
 A solution set is: [[-1, 0, 1], [-1, -1, 2]]
@@ -93,9 +93,9 @@ The algorithm starts by sorting the array: [-4, -1, -1, 0, 1, 2]
 </div>
 </div>
 
-<div id="outline-container-orgbc9b329" class="outline-3">
-<h3 id="orgbc9b329">Setup:</h3>
-<div class="outline-text-3" id="text-orgbc9b329">
+<div id="outline-container-org15a9028" class="outline-3">
+<h3 id="org15a9028">Setup:</h3>
+<div class="outline-text-3" id="text-org15a9028">
 <p>
 Here is the general framework in which we will plug our code blocks. We will use modern JavaScript and include a testing setup to verify our solution.
 </p>

@@ -1,0 +1,76 @@
+#+title: SCARF Motivation Model
+#+subtitle: docs
+#+date: <2024-11-23>
+#+language: en
+
+Working with people is something you can't fully delegate to algorithms or machines. Even as processes become increasingly
+automated, leadership remains the art of human connection, not just a checklist of tasks. When I think about my role as a manager,
+I often return to one essential question: how can I be most effective for my team and each individual in it? This question feels
+especially relevant when it comes to one-on-one meetings---a tool that's both simple and intricate.
+
+* Why One-on-One Meetings Matter
+I've come to understand that one-on-one meetings are more than just task discussions. They're opportunities to establish a
+connection with team members on a deeper level---something that's nearly impossible to achieve in group settings. As leaders, we
+don't just manage people; we create environments where they feel valued, understood, and heard. These meetings are a space to
+individualize your approach and uncover issues before they escalate into major problems.
+
+During one meeting with a colleague---let's call him Andrew---I realized how asking the right questions can reveal underlying
+challenges. We began with a straightforward question: "How are you feeling this week?" Andrew opened up about not seeing the point
+in his current assignment. My earlier self might have redirected the conversation toward deadlines or productivity. But this time,
+I chose to dig deeper: "What exactly feels demotivating? What would you prefer to be working on?" After 20 minutes of discussion,
+it became clear that Andrew felt his skills would be better utilized on another project. That conversation became a turning point.
+Andrew felt seen, and I learned that a well-timed question can rescue a valuable working relationship.
+
+* How to Conduct Effective One-on-One Meetings
+** The Purpose of the Meeting
+The main goal of one-on-one meetings is to create a space for open dialogue. This isn't about status updates or task reports; it's
+about understanding how the employee feels within the team, what inspires them, and what's holding them back.
+
+** Preparation
+One key lesson I've learned is to always prepare for these meetings. Even five minutes of review before the
+conversation---remembering recent achievements or personal details---can make the interaction more meaningful. Employees
+appreciate it when you recall what matters to them.
+
+** Structure
+Over the years, I've developed a structure for these conversations that I find highly effective. It revolves around three main
+components:
+
+1. *Personal Well-Being:* Start with questions like, "What's been bringing you joy lately? What's been stressing you out?" These
+   help establish the emotional baseline.
+2. *Work Processes:* Next, delve into their work: "What excites or frustrates you about your current tasks?" This opens the door
+   for honest feedback.
+3. *Growth and Development:* Finally, explore their future: "What skills do you want to build? What would you like to change in
+   your role?" This segment helps align their aspirations with team goals.
+
+** Examples from conversations
+One of my most memorable one-on-one meetings was with a colleague who always seemed distant. We'd never talked about his career
+ambitions, and I assumed he was content in his role. During our meeting, I asked, "Do you see yourself in this position a year
+from now?" His response stunned me: not only was he considering a role change, but he also felt that his current position wasn't
+playing to his strengths. We spent the rest of the meeting mapping out areas he found interesting and creating a plan for gradual
+transition. That conversation changed the way I view one-on-ones. They're not about managing people; they're about helping people
+find their path.
+
+In another instance, I learned the importance of checking in on engagement. A team member had been missing deadlines, and instead
+of focusing on his productivity, I started by asking what was going on. It turned out he was experiencing burnout and felt like
+his contributions weren't being recognized. Together, we worked out a plan to prioritize high-impact tasks and reduce unnecessary
+workload. Within a month, his engagement and output improved significantly.
+
+** Tips from the Speaker
+1. *Ask simple but meaningful questions:* "What's inspiring you? What's discouraging you?" These questions aren't for
+   formality---they're meant to spark real dialogue.
+2. *Embrace silence:* Sometimes people need time to think before they answer.
+3. *Don't try to fix everything at once:* Often, the best way to help is simply to listen.
+4. *Take notes:* Jotting down key takeaways ensures you can follow up on important points later.
+
+** Takeaways
+One-on-one meetings are not just a management tool---they're an opportunity to become a better leader. They teach you to listen,
+understand, and act thoughtfully. I often remind myself that leadership is, first and foremost, about working with people, not
+processes. And every "How are you feeling?" brings us closer to building a team where everyone feels valued.
+
+This approach doesn't just help solve current issues; it prepares us for a future where leadership is less about giving orders and
+more about fostering growth and connection.
+
+** Credits
+[[https://www.youtube.com/watch?v=9SRJZWAGYnM][2024-11-23 Kak rabotat' s lyud'mi]] Anton Korchinskiy, Aleksandr Orlov  =www.youtube.com=
+
+This text is based on the content and recommendations from this video.

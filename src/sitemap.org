@@ -16,13 +16,6 @@
   - [[file:leets-lua/0001-Two-Sum.org][0001. Two Sum]]
   - [[file:leets-lua/1574-Shortest-Subarray-to-be-Removed-to-Make-Array-Sorted.org][1574. Shortest Subarray to be Removed to Make Array Sorted]]
   - [[file:leets-lua/1652-Defuse-the-Bomb.org][1652. Defuse the Bomb]]
-- thoughts
-  - [[file:thoughts/Strong Opinions Weakly Held.org][Strong Opinions Weakly Held]]
-  - [[file:thoughts/Confirmation Bias.org][Confirmation Bias]]
-  - [[file:thoughts/Belief Perseverance.org][Belief Perseverance]]
-  - [[file:thoughts/Overconfidence Bias.org][Overconfidence Bias]]
-  - [[file:thoughts/Sunk Cost Fallacy.org][Sunk Cost Fallacy]]
-  - [[file:thoughts/SCARF Motivation Model.org][SCARF Motivation Model]]
 - leets
   - [[file:leets/0039-Combination-Sum.org][Combination Sum Problem Overview and Solution Plan]]
   - [[file:leets/0338-Counting-Bits.org][0338. Counting Bits]]
@@ -82,3 +75,13 @@
   - [[file:leets/1574-Shortest-Subarray-to-be-Removed-to-Make-Array-Sorted.org][1574. Shortest Subarray to be Removed to Make Array Sorted]]
   - [[file:leets/1652-Defuse-the-Bomb.org][1652. Defuse the Bomb]]
   - [[file:leets/2257-Count-Unguarded-Cells-in-the-Grid.org][2257. Count Unguarded Cells in the Grid]]
+- thoughts
+  - [[file:thoughts/Strong Opinions Weakly Held.org][Strong Opinions Weakly Held]]
+  - [[file:thoughts/Confirmation Bias.org][Confirmation Bias]]
+  - [[file:thoughts/Belief Perseverance.org][Belief Perseverance]]
+  - [[file:thoughts/Overconfidence Bias.org][Overconfidence Bias]]
+  - [[file:thoughts/Sunk Cost Fallacy.org][Sunk Cost Fallacy]]
+  - [[file:thoughts/SCARF Motivation Model.org][SCARF Motivation Model]]
+  - [[file:thoughts/Thoughts disclaimer read this.org][Thoughts disclaimer READ THIS]]
+  - [[file:thoughts/Management One on One meetings.org][SCARF Motivation Model]]
+  - [[file:thoughts/Conflict-handling Avoiding Competing Accommodating Compromising Collaborating.org][Conflict-handling Avoiding Competing Accommodating Compromising Collaborating]]

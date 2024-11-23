@@ -1,0 +1,8 @@
+#+title: Thoughts disclaimer READ THIS
+#+subtitle: docs
+#+date: <2024-11-23>
+#+language: en
+
+* Disclaimer
+
+This category "thoughts" contains not just my thoughts, but just thoughts, from many different people... and ChatGPT...

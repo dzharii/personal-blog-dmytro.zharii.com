@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2024-11-20 -->
+<!-- 2024-11-23 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>1717. Maximum Score From Removing Substrings</title>
@@ -22,30 +22,30 @@ Published 2024-07-11
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org76ef3c1">Links</a></li>
-<li><a href="#org2d4feec">Problem:</a>
+<li><a href="#org2aea4ad">Links</a></li>
+<li><a href="#orgb40e505">Problem:</a>
 <ul>
-<li><a href="#org108d70e">Solution Description:</a></li>
-<li><a href="#org3533788">Example:</a></li>
-<li><a href="#orga70eadf">Setup:</a></li>
+<li><a href="#org352a459">Solution Description:</a></li>
+<li><a href="#orgfc4dcf0">Example:</a></li>
+<li><a href="#org41a4742">Setup:</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-org76ef3c1" class="outline-2">
-<h2 id="org76ef3c1">Links</h2>
-<div class="outline-text-2" id="text-org76ef3c1">
+<div id="outline-container-org2aea4ad" class="outline-2">
+<h2 id="org2aea4ad">Links</h2>
+<div class="outline-text-2" id="text-org2aea4ad">
 <ul class="org-ul">
 <li><a href="https://leetcode.com/submissions/detail/1318218623/">Submission</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org2d4feec" class="outline-2">
-<h2 id="org2d4feec">Problem:</h2>
-<div class="outline-text-2" id="text-org2d4feec">
+<div id="outline-container-orgb40e505" class="outline-2">
+<h2 id="orgb40e505">Problem:</h2>
+<div class="outline-text-2" id="text-orgb40e505">
 <p>
 1717 Maximum Score From Removing Substrings
 </p>
@@ -73,9 +73,9 @@ Constraints:
 </ul>
 </div>
 
-<div id="outline-container-org108d70e" class="outline-3">
-<h3 id="org108d70e">Solution Description:</h3>
-<div class="outline-text-3" id="text-org108d70e">
+<div id="outline-container-org352a459" class="outline-3">
+<h3 id="org352a459">Solution Description:</h3>
+<div class="outline-text-3" id="text-org352a459">
 <p>
 To implement the solution, we need to simulate the characters removal process in an optimal way. We should perform the removal of the higher score substring first. This helps in maximizing the score at each step.
 </p>
@@ -99,9 +99,9 @@ By processing characters in the optimal removal order and utilising a stack, we 
 </div>
 </div>
 
-<div id="outline-container-org3533788" class="outline-3">
-<h3 id="org3533788">Example:</h3>
-<div class="outline-text-3" id="text-org3533788">
+<div id="outline-container-orgfc4dcf0" class="outline-3">
+<h3 id="orgfc4dcf0">Example:</h3>
+<div class="outline-text-3" id="text-orgfc4dcf0">
 <p>
 Suppose `s = "aabbaaxybbaabb"`, `x = 5`, and `y = 3`.
 </p>
@@ -113,9 +113,9 @@ Suppose `s = "aabbaaxybbaabb"`, `x = 5`, and `y = 3`.
 </div>
 </div>
 
-<div id="outline-container-orga70eadf" class="outline-3">
-<h3 id="orga70eadf">Setup:</h3>
-<div class="outline-text-3" id="text-orga70eadf">
+<div id="outline-container-org41a4742" class="outline-3">
+<h3 id="org41a4742">Setup:</h3>
+<div class="outline-text-3" id="text-org41a4742">
 <p>
 Below is the skeleton of the solution using modern JavaScript:
 </p>
