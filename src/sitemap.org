@@ -85,3 +85,5 @@
   - [[file:thoughts/Thoughts disclaimer read this.org][Thoughts disclaimer READ THIS]]
   - [[file:thoughts/Management One on One meetings.org][SCARF Motivation Model]]
   - [[file:thoughts/Conflict-handling Avoiding Competing Accommodating Compromising Collaborating.org][Conflict-handling Avoiding Competing Accommodating Compromising Collaborating]]
+- adventofcode-2024-lua
+  - [[file:adventofcode-2024-lua/puzzle01b.org][Day 1: Historian Hysteria (Part 2)]]

@@ -1,0 +1,172 @@
+#+title: Day 1: Historian Hysteria (Part 2)
+#+subtitle: docs
+#+date: <2024-12-08>
+#+language: en
+
+
+* Day 1: Historian Hysteria (Part 2) - Calculating the Similarity Score
+
+[[https://adventofcode.com/2024/day/1][2024-12-14 Day 1 - Advent of Code 2024]] =adventofcode.com=
+
+The search for the Chief Historian continues with a new challenge involving two lists of location IDs.
+This time, the Elvish Senior Historians aim to compute a *similarity score* between the two lists.
+
+** Problem Analysis
+
+Given two lists of numbers (left list and right list), the goal is to calculate a *similarity score*
+by following these rules:
+
+1. For each number in the **left list**, count how many times that number appears in the **right list**.
+2. Multiply the number from the **left list** by the count from the **right list**.
+3. Sum all these products to get the final *similarity score*.
+
+** Example:
+Left List:  [3, 4, 2, 1, 3, 3]
+Right List: [4, 3, 5, 3, 9, 3]
+
+To calculate the similarity score:
+- **3** appears 3 times in the right list, so the contribution is 3 * 3 = 9
+- **4** appears 1 time in the right list, so the contribution is 4 * 1 = 4
+- **2** appears 0 times in the right list, so the contribution is 2 * 0 = 0
+- **1** appears 0 times in the right list, so the contribution is 1 * 0 = 0
+- **3** appears 3 times in the right list, so the contribution is 3 * 3 = 9
+- **3** appears 3 times in the right list, so the contribution is 3 * 3 = 9
+
+The total similarity score = 9 + 4 + 0 + 0 + 9 + 9 = 31
+
+** Solution Description
+
+To compute the similarity score, follow these steps:
+
+1. **Count occurrences**: Count how often each number appears in the **right list**.
+   This can be done using a frequency table (like a table in Lua).
+2. **Calculate score**: For each number in the **left list**, use the frequency table to get the count
+   of how often it appears in the **right list**. Multiply this by the number from the left list and
+   sum the results.
+3. **Return total**: Return the final similarity score as the result.
+
+**Time Complexity:**
+- Building the frequency map takes O(n), where n is the length of the **right list**.
+- Calculating the score requires O(m) iterations for the **left list**.
+- The total time complexity is O(n + m).
+
+**Space Complexity:**
+- We store the frequency map, which can take up to O(n) space.
+
+
+**Step-by-Step Example**
+
+Let's take the input:
+Left List:  [3, 4, 2, 1, 3, 3]
+Right List: [4, 3, 5, 3, 9, 3]
+
+1. **Build frequency map** of the right list:
+   {
+     3: 3,
+     4: 1,
+     5: 1,
+     9: 1
+   }
+
+2. **Calculate the similarity score** for each number in the left list:
+   - For 3, frequency is 3 → score = 3 * 3 = 9
+   - For 4, frequency is 1 → score = 4 * 1 = 4
+   - For 2, frequency is 0 → score = 2 * 0 = 0
+   - For 1, frequency is 0 → score = 1 * 0 = 0
+   - For 3, frequency is 3 → score = 3 * 3 = 9
+   - For 3, frequency is 3 → score = 3 * 3 = 9
+
+3. **Total score** = 9 + 4 + 0 + 0 + 9 + 9 = **31**
+
+
+** Implementation
+
+#+begin_src lua :tangle "Day_1_Historian_Hysteria_Part 2.lua" :results output
+
+--- Calculates the similarity score between two lists of numbers.
+-- @param left_list The list of location IDs on the left.
+-- @param right_list The list of location IDs on the right.
+-- @return The total similarity score.
+local function calculate_similarity_score(left_list, right_list)
+  -- Step 1: Count occurrences of each number in the right list
+  local frequency_map = {}
+  for _, num in ipairs(right_list) do
+    frequency_map[num] = (frequency_map[num] or 0) + 1
+  end
+
+  -- Step 2: Calculate similarity score for each number in the left list
+  local similarity_score = 0
+  for _, num in ipairs(left_list) do
+    local count_in_right = frequency_map[num] or 0
+    similarity_score = similarity_score + (num * count_in_right)
+  end
+
+  return similarity_score
+end
+
+-- read file
+
+local is_unit_test_mode = false
+
+if not is_unit_test_mode then
+  -- Open the file in read mode
+  local file = io.open("puzzle01b-data.txt", "r") -- Replace 'filename.txt' with the name of your file
+
+  -- Check if the file was opened successfully
+  if not file then
+    error("Could not open file!")
+  end
+
+  -- Initialize empty lists for the left and right columns
+  local left_list = {}
+  local right_list = {}
+
+  -- Loop through each line in the file
+  for line in file:lines() do
+    -- Split the line into two numbers using pattern matching
+    local left_num, right_num = line:match("(%d+)%s+(%d+)")
+
+    -- Convert the extracted numbers from strings to numbers
+    left_num = tonumber(left_num)
+    right_num = tonumber(right_num)
+
+    -- Add the numbers to their respective lists
+    if left_num and right_num then
+      table.insert(left_list, left_num)
+      table.insert(right_list, right_num)
+    end
+  end
+
+  -- Close the file
+  file:close()
+
+  local similarity = calculate_similarity_score(left_list, right_list)
+  print("Similarity score: " .. tostring(similarity))
+
+
+else
+
+  -- Test cases
+  local test_cases = {
+    { left_list = {3, 4, 2, 1, 3, 3}, right_list = {4, 3, 5, 3, 9, 3}, expected = 31 },
+  }
+
+  for index, test in ipairs(test_cases) do
+    local result = calculate_similarity_score(test.left_list, test.right_list)
+    if result == test.expected then
+      print("Test Case " .. index .. ": Passed")
+    else
+      print("Test Case " .. index .. ": Failed (Expected: " .. test.expected .. ", Got: " .. result .. ")")
+    end
+  end
+end
+
+#+end_src
+
+#+RESULTS:
+: Similarity score: 23046913
+
+
+#+begin_example
+: Similarity score: 23046913
+#+end_example

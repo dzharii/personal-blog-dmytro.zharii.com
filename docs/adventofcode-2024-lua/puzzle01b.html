@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2024-12-14 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Day 1: Historian Hysteria (Part 2)</title>
+<meta name="author" content="d)zharii" />
+<meta name="generator" content="Org Mode" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/t.css"/>
+</head>
+<body>
+<nav><a href="/" tabindex="0">&larrhk; Back to Index</a></nav><div id="preamble" class="status">
+Published 2024-12-08
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">Day 1: Historian Hysteria (Part 2)</h1>
+<p class="subtitle" role="doc-subtitle">docs</p>
+</header><nav id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgc22f9b2">Day 1: Historian Hysteria (Part 2) - Calculating the Similarity Score</a>
+<ul>
+<li><a href="#org1ed071a">Problem Analysis</a></li>
+<li><a href="#orgfddedbe">Example:</a></li>
+<li><a href="#org090372e">Solution Description</a></li>
+<li><a href="#org4a18060">Implementation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</nav>
+
+
+<div id="outline-container-orgc22f9b2" class="outline-2">
+<h2 id="orgc22f9b2">Day 1: Historian Hysteria (Part 2) - Calculating the Similarity Score</h2>
+<div class="outline-text-2" id="text-orgc22f9b2">
+<p>
+<a href="https://adventofcode.com/2024/day/1">2024-12-14 Day 1 - Advent of Code 2024</a> <code>adventofcode.com</code>
+</p>
+
+<p>
+The search for the Chief Historian continues with a new challenge involving two lists of location IDs.
+This time, the Elvish Senior Historians aim to compute a <b>similarity score</b> between the two lists.
+</p>
+</div>
+
+<div id="outline-container-org1ed071a" class="outline-3">
+<h3 id="org1ed071a">Problem Analysis</h3>
+<div class="outline-text-3" id="text-org1ed071a">
+<p>
+Given two lists of numbers (left list and right list), the goal is to calculate a <b>similarity score</b>
+by following these rules:
+</p>
+
+<ol class="org-ol">
+<li>For each number in the <b><b>left list</b></b>, count how many times that number appears in the <b><b>right list</b></b>.</li>
+<li>Multiply the number from the <b><b>left list</b></b> by the count from the <b><b>right list</b></b>.</li>
+<li>Sum all these products to get the final <b>similarity score</b>.</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-orgfddedbe" class="outline-3">
+<h3 id="orgfddedbe">Example:</h3>
+<div class="outline-text-3" id="text-orgfddedbe">
+<p>
+Left List:  [3, 4, 2, 1, 3, 3]
+Right List: [4, 3, 5, 3, 9, 3]
+</p>
+
+<p>
+To calculate the similarity score:
+</p>
+<ul class="org-ul">
+<li><b><b>3</b></b> appears 3 times in the right list, so the contribution is 3 * 3 = 9</li>
+<li><b><b>4</b></b> appears 1 time in the right list, so the contribution is 4 * 1 = 4</li>
+<li><b><b>2</b></b> appears 0 times in the right list, so the contribution is 2 * 0 = 0</li>
+<li><b><b>1</b></b> appears 0 times in the right list, so the contribution is 1 * 0 = 0</li>
+<li><b><b>3</b></b> appears 3 times in the right list, so the contribution is 3 * 3 = 9</li>
+<li><b><b>3</b></b> appears 3 times in the right list, so the contribution is 3 * 3 = 9</li>
+</ul>
+
+<p>
+The total similarity score = 9 + 4 + 0 + 0 + 9 + 9 = 31
+</p>
+</div>
+</div>
+
+<div id="outline-container-org090372e" class="outline-3">
+<h3 id="org090372e">Solution Description</h3>
+<div class="outline-text-3" id="text-org090372e">
+<p>
+To compute the similarity score, follow these steps:
+</p>
+
+<ol class="org-ol">
+<li><b><b>Count occurrences</b></b>: Count how often each number appears in the <b><b>right list</b></b>.
+This can be done using a frequency table (like a table in Lua).</li>
+<li><b><b>Calculate score</b></b>: For each number in the <b><b>left list</b></b>, use the frequency table to get the count
+of how often it appears in the <b><b>right list</b></b>. Multiply this by the number from the left list and
+sum the results.</li>
+<li><b><b>Return total</b></b>: Return the final similarity score as the result.</li>
+</ol>
+
+<p>
+<b><b>Time Complexity:</b></b>
+</p>
+<ul class="org-ul">
+<li>Building the frequency map takes O(n), where n is the length of the <b><b>right list</b></b>.</li>
+<li>Calculating the score requires O(m) iterations for the <b><b>left list</b></b>.</li>
+<li>The total time complexity is O(n + m).</li>
+</ul>
+
+<p>
+<b><b>Space Complexity:</b></b>
+</p>
+<ul class="org-ul">
+<li>We store the frequency map, which can take up to O(n) space.</li>
+</ul>
+
+
+<p>
+<b><b>Step-by-Step Example</b></b>
+</p>
+
+<p>
+Let's take the input:
+Left List:  [3, 4, 2, 1, 3, 3]
+Right List: [4, 3, 5, 3, 9, 3]
+</p>
+
+<ol class="org-ol">
+<li><b><b>Build frequency map</b></b> of the right list:
+{
+  3: 3,
+  4: 1,
+  5: 1,
+  9: 1
+}</li>
+
+<li><b><b>Calculate the similarity score</b></b> for each number in the left list:
+<ul class="org-ul">
+<li>For 3, frequency is 3 → score = 3 * 3 = 9</li>
+<li>For 4, frequency is 1 → score = 4 * 1 = 4</li>
+<li>For 2, frequency is 0 → score = 2 * 0 = 0</li>
+<li>For 1, frequency is 0 → score = 1 * 0 = 0</li>
+<li>For 3, frequency is 3 → score = 3 * 3 = 9</li>
+<li>For 3, frequency is 3 → score = 3 * 3 = 9</li>
+</ul></li>
+
+<li><b><b>Total score</b></b> = 9 + 4 + 0 + 0 + 9 + 9 = <b><b>31</b></b></li>
+</ol>
+</div>
+</div>
+
+
+<div id="outline-container-org4a18060" class="outline-3">
+<h3 id="org4a18060">Implementation</h3>
+<div class="outline-text-3" id="text-org4a18060">
+<div class="org-src-container">
+<pre class="src src-lua">
+--- Calculates the similarity score between two lists of numbers.
+-- @param left_list The list of location IDs on the left.
+-- @param right_list The list of location IDs on the right.
+-- @return The total similarity score.
+local function calculate_similarity_score(left_list, right_list)
+  -- Step 1: Count occurrences of each number in the right list
+  local frequency_map = {}
+  for _, num in ipairs(right_list) do
+    frequency_map[num] = (frequency_map[num] or 0) + 1
+  end
+
+  -- Step 2: Calculate similarity score for each number in the left list
+  local similarity_score = 0
+  for _, num in ipairs(left_list) do
+    local count_in_right = frequency_map[num] or 0
+    similarity_score = similarity_score + (num * count_in_right)
+  end
+
+  return similarity_score
+end
+
+-- read file
+
+local is_unit_test_mode = false
+
+if not is_unit_test_mode then
+  -- Open the file in read mode
+  local file = io.open("puzzle01b-data.txt", "r") -- Replace 'filename.txt' with the name of your file
+
+  -- Check if the file was opened successfully
+  if not file then
+    error("Could not open file!")
+  end
+
+  -- Initialize empty lists for the left and right columns
+  local left_list = {}
+  local right_list = {}
+
+  -- Loop through each line in the file
+  for line in file:lines() do
+    -- Split the line into two numbers using pattern matching
+    local left_num, right_num = line:match("(%d+)%s+(%d+)")
+
+    -- Convert the extracted numbers from strings to numbers
+    left_num = tonumber(left_num)
+    right_num = tonumber(right_num)
+
+    -- Add the numbers to their respective lists
+    if left_num and right_num then
+      table.insert(left_list, left_num)
+      table.insert(right_list, right_num)
+    end
+  end
+
+  -- Close the file
+  file:close()
+
+  local similarity = calculate_similarity_score(left_list, right_list)
+  print("Similarity score: " .. tostring(similarity))
+
+
+else
+
+  -- Test cases
+  local test_cases = {
+    { left_list = {3, 4, 2, 1, 3, 3}, right_list = {4, 3, 5, 3, 9, 3}, expected = 31 },
+  }
+
+  for index, test in ipairs(test_cases) do
+    local result = calculate_similarity_score(test.left_list, test.right_list)
+    if result == test.expected then
+      print("Test Case " .. index .. ": Passed")
+    else
+      print("Test Case " .. index .. ": Failed (Expected: " .. test.expected .. ", Got: " .. result .. ")")
+    end
+  end
+end
+
+</pre>
+</div>
+
+
+<pre class="example" id="org0121e65">
+: Similarity score: 23046913
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+&copy; d)zharii. <a href="/sitemap.html">sitemap</a>
+</div>
+</body>
+</html>
