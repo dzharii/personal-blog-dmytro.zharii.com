@@ -22,27 +22,27 @@ Published 2024-11-14
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org3c7150e">Problem Restatement</a></li>
-<li><a href="#orgf62de45">Solution Description</a></li>
-<li><a href="#org6f0ec6e">Example</a></li>
-<li><a href="#orga0d9987">References</a></li>
-<li><a href="#org7ffeff4">Solution Code</a></li>
+<li><a href="#org3733649">Problem Restatement</a></li>
+<li><a href="#org697aac9">Solution Description</a></li>
+<li><a href="#org68b75c1">Example</a></li>
+<li><a href="#org12c4902">References</a></li>
+<li><a href="#org0c4a776">Solution Code</a></li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-org3c7150e" class="outline-2">
-<h2 id="org3c7150e">Problem Restatement</h2>
-<div class="outline-text-2" id="text-org3c7150e">
+<div id="outline-container-org3733649" class="outline-2">
+<h2 id="org3733649">Problem Restatement</h2>
+<div class="outline-text-2" id="text-org3733649">
 <p>
 Given an integer array, you need to remove the shortest contiguous subarray such that the resulting array is in non-decreasing order. The aim is to find and return the length of such subarray. If the array is already sorted, you should return 0.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgf62de45" class="outline-2">
-<h2 id="orgf62de45">Solution Description</h2>
-<div class="outline-text-2" id="text-orgf62de45">
+<div id="outline-container-org697aac9" class="outline-2">
+<h2 id="org697aac9">Solution Description</h2>
+<div class="outline-text-2" id="text-org697aac9">
 <p>
 To implement the solution, we need to identify the shortest subarray that can be removed to make the whole array ordered. This involves finding the furthest distance between the end of a non-decreasing prefix and the start of a non-decreasing suffix. The approach is as follows:
 </p>
@@ -60,9 +60,9 @@ This approach runs in O(n) time and ensures O(1) additional space.
 </div>
 </div>
 
-<div id="outline-container-org6f0ec6e" class="outline-2">
-<h2 id="org6f0ec6e">Example</h2>
-<div class="outline-text-2" id="text-org6f0ec6e">
+<div id="outline-container-org68b75c1" class="outline-2">
+<h2 id="org68b75c1">Example</h2>
+<div class="outline-text-2" id="text-org68b75c1">
 <p>
 Consider the array: [1, 3, 2, 3, 4]
 </p>
@@ -75,18 +75,18 @@ Consider the array: [1, 3, 2, 3, 4]
 </div>
 </div>
 
-<div id="outline-container-orga0d9987" class="outline-2">
-<h2 id="orga0d9987">References</h2>
-<div class="outline-text-2" id="text-orga0d9987">
+<div id="outline-container-org12c4902" class="outline-2">
+<h2 id="org12c4902">References</h2>
+<div class="outline-text-2" id="text-org12c4902">
 <p>
 For advanced solutions, sliding window techniques and two-pointer methods can be explored: [Two-Pointer Technique](<a href="https://en.wikipedia.org/wiki/Two_pointers_technique">https://en.wikipedia.org/wiki/Two_pointers_technique</a>).
 </p>
 </div>
 </div>
 
-<div id="outline-container-org7ffeff4" class="outline-2">
-<h2 id="org7ffeff4">Solution Code</h2>
-<div class="outline-text-2" id="text-org7ffeff4">
+<div id="outline-container-org0c4a776" class="outline-2">
+<h2 id="org0c4a776">Solution Code</h2>
+<div class="outline-text-2" id="text-org0c4a776">
 <div class="org-src-container">
 <pre class="src src-lua">-- Lua solution for Shortest Subarray to be Removed to Make Array Sorted
 

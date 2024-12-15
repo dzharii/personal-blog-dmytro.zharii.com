@@ -75,6 +75,8 @@
   - [[file:leets/1574-Shortest-Subarray-to-be-Removed-to-Make-Array-Sorted.org][1574. Shortest Subarray to be Removed to Make Array Sorted]]
   - [[file:leets/1652-Defuse-the-Bomb.org][1652. Defuse the Bomb]]
   - [[file:leets/2257-Count-Unguarded-Cells-in-the-Grid.org][2257. Count Unguarded Cells in the Grid]]
+- adventofcode-2024-lua
+  - [[file:adventofcode-2024-lua/puzzle01b.org][Day 1: Historian Hysteria (Part 2)]]
 - thoughts
   - [[file:thoughts/Strong Opinions Weakly Held.org][Strong Opinions Weakly Held]]
   - [[file:thoughts/Confirmation Bias.org][Confirmation Bias]]
@@ -85,5 +87,4 @@
   - [[file:thoughts/Thoughts disclaimer read this.org][Thoughts disclaimer READ THIS]]
   - [[file:thoughts/Management One on One meetings.org][SCARF Motivation Model]]
   - [[file:thoughts/Conflict-handling Avoiding Competing Accommodating Compromising Collaborating.org][Conflict-handling Avoiding Competing Accommodating Compromising Collaborating]]
-- adventofcode-2024-lua
-  - [[file:adventofcode-2024-lua/puzzle01b.org][Day 1: Historian Hysteria (Part 2)]]
+  - [[file:thoughts/Gaslighting at Work.org][Gaslighting at Work]]
