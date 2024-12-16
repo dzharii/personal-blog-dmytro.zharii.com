@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2024-12-14 -->
+<!-- 2024-12-15 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>0719. Find K-th Smallest Pair Distance</title>
@@ -22,27 +22,27 @@ Published 2024-08-14
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org81ac2a1">Problem</a></li>
-<li><a href="#orgb83a365">Solution Description</a></li>
-<li><a href="#org864e679">Example</a></li>
-<li><a href="#orgdbbee6b">References</a></li>
-<li><a href="#org183f28e">Solution</a></li>
+<li><a href="#orgc710c74">Problem</a></li>
+<li><a href="#orgd70d344">Solution Description</a></li>
+<li><a href="#orgdf5b72f">Example</a></li>
+<li><a href="#org33bc245">References</a></li>
+<li><a href="#orgd0d603a">Solution</a></li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-org81ac2a1" class="outline-2">
-<h2 id="org81ac2a1">Problem</h2>
-<div class="outline-text-2" id="text-org81ac2a1">
+<div id="outline-container-orgc710c74" class="outline-2">
+<h2 id="orgc710c74">Problem</h2>
+<div class="outline-text-2" id="text-orgc710c74">
 <p>
 Given an integer array <code>nums</code> and an integer <code>k</code>, return the k-th smallest distance among all the pairs in the array. The distance between a pair (i, j) is defined as <code>|nums[i] - nums[j]|</code>. The problem in simpler terms is to find the k-th smallest absolute difference in any two elements in the array <code>nums</code>.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgb83a365" class="outline-2">
-<h2 id="orgb83a365">Solution Description</h2>
-<div class="outline-text-2" id="text-orgb83a365">
+<div id="outline-container-orgd70d344" class="outline-2">
+<h2 id="orgd70d344">Solution Description</h2>
+<div class="outline-text-2" id="text-orgd70d344">
 <p>
 To solve this problem efficiently, we need to use a combination of sorting and binary search on the possible distance values:
 </p>
@@ -90,9 +90,9 @@ Thus, the overall time complexity is O(n log n + n log(max-min)).
 </div>
 
 
-<div id="outline-container-org864e679" class="outline-2">
-<h2 id="org864e679">Example</h2>
-<div class="outline-text-2" id="text-org864e679">
+<div id="outline-container-orgdf5b72f" class="outline-2">
+<h2 id="orgdf5b72f">Example</h2>
+<div class="outline-text-2" id="text-orgdf5b72f">
 <p>
 Consider an array [1, 3, 1] and k = 1. The sorted array is [1, 1, 3]. The possible pairs and their distances are:
 </p>
@@ -123,9 +123,9 @@ Since we are looking for the 1st smallest distance, the answer is 0.
 </div>
 
 
-<div id="outline-container-orgdbbee6b" class="outline-2">
-<h2 id="orgdbbee6b">References</h2>
-<div class="outline-text-2" id="text-orgdbbee6b">
+<div id="outline-container-org33bc245" class="outline-2">
+<h2 id="org33bc245">References</h2>
+<div class="outline-text-2" id="text-org33bc245">
 <ul class="org-ul">
 <li>[Binary Search](<a href="https://en.wikipedia.org/wiki/Binary_search_algorithm">https://en.wikipedia.org/wiki/Binary_search_algorithm</a>): A method used to find a specific value or its location within a sorted array efficiently.</li>
 <li>[Two-pointer technique](<a href="https://www.geeksforgeeks.org/two-pointers-technique/">https://www.geeksforgeeks.org/two-pointers-technique/</a>): A useful method for solving problems that involve pairs or subarrays in a sorted list.</li>
@@ -133,9 +133,9 @@ Since we are looking for the 1st smallest distance, the answer is 0.
 </div>
 </div>
 
-<div id="outline-container-org183f28e" class="outline-2">
-<h2 id="org183f28e">Solution</h2>
-<div class="outline-text-2" id="text-org183f28e">
+<div id="outline-container-orgd0d603a" class="outline-2">
+<h2 id="orgd0d603a">Solution</h2>
+<div class="outline-text-2" id="text-orgd0d603a">
 <div class="org-src-container">
 <pre class="src src-js">// Helper functions to add logs and tables
 const log = typeof NestedInteger !== 'undefined' ? () =&gt; {} : console.log;

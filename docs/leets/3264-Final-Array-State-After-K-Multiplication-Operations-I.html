@@ -1,0 +1,238 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2024-12-15 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>3264. Final Array State After K Multiplication Operations I</title>
+<meta name="author" content="d)zharii" />
+<meta name="generator" content="Org Mode" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/t.css"/>
+</head>
+<body>
+<nav><a href="/" tabindex="0">&larrhk; Back to Index</a></nav><div id="preamble" class="status">
+Published 2024-12-15
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">3264. Final Array State After K Multiplication Operations I</h1>
+<p class="subtitle" role="doc-subtitle">leetcode</p>
+</header><nav id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgc8bbca2">Problem</a></li>
+<li><a href="#orgd3433f7">Solution Description</a></li>
+<li><a href="#orgce38328">Example</a></li>
+<li><a href="#org1bfe7d8">Solution</a>
+<ul>
+<li><a href="#org8022add">References</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</nav>
+
+<div id="outline-container-orgc8bbca2" class="outline-2">
+<h2 id="orgc8bbca2">Problem</h2>
+<div class="outline-text-2" id="text-orgc8bbca2">
+<p>
+You are given an array of size n, consisting of integers, and an integer K. You have to perform K multiplication operations on the array. In each operation, choose the element that can be increased the least by multiplying it by a constant factor greater than 1. After performing K such operations, your task is to find the final state of the array.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgd3433f7" class="outline-2">
+<h2 id="orgd3433f7">Solution Description</h2>
+<div class="outline-text-2" id="text-orgd3433f7">
+<p>
+To implement the solution, we need to identify the smallest element in the array multiple times, as that is the element which will benefit the least from a multiplication operation. By focusing on the smallest elements, we ensure that overall growth is minimized. This requires:
+</p>
+<ul class="org-ul">
+<li>Using a data structure that allows for efficient retrieval and updating of the smallest element, like a min-heap.</li>
+<li>We will pop the smallest element from the heap, apply the multiplication, and then push it back.</li>
+<li>After processing K operations, the heap will contain the modified elements which represent the final array state.</li>
+</ul>
+
+<p>
+The time complexity is <b>O(K log n)</b> because we perform K operations and obtaining the smallest element from the heap is logarithmic in terms of the number of elements, <b>n</b>. The space complexity is <b>O(n)</b> due to storing all elements in the heap.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgce38328" class="outline-2">
+<h2 id="orgce38328">Example</h2>
+<div class="outline-text-2" id="text-orgce38328">
+<p>
+Suppose we have an array [4, 2, 5] and K = 3, and a constant multiplication factor, say 2.
+</p>
+<ul class="org-ul">
+<li>Initially, the smallest element is 2, which is multiplied by 2, making the array [4, 4, 5].</li>
+<li>The smallest element is now 4, multiply by 2, and the array changes to [8, 4, 5].</li>
+<li>Again, the smallest remains 4. Multiply by 2, resulting in [8, 8, 5].</li>
+<li>Final state is [8, 8, 5] after 3 operations.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org1bfe7d8" class="outline-2">
+<h2 id="org1bfe7d8">Solution</h2>
+<div class="outline-text-2" id="text-org1bfe7d8">
+<p>
+<a href="https://leetcode.com/submissions/detail/1479817779/">2024-12-16 Final Array State After K Multiplication Operations I - Submission Detail - LeetCode</a> <code>leetcode.com</code>
+</p>
+
+<p>
+Introduce the solution framework incorporating tests:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">class MinHeap {
+    constructor() {
+        this.heap = [];
+    }
+
+    getParentIndex(i) { return Math.floor((i - 1) / 2); }
+    getLeftChildIndex(i) { return 2 * i + 1; }
+    getRightChildIndex(i) { return 2 * i + 2; }
+
+    swap(i, j) {
+        [this.heap[i], this.heap[j]] = [this.heap[j], this.heap[i]];
+    }
+
+    // Insert an element as {value, index} to maintain stable priority
+    insert(value, index) {
+        this.heap.push({ value, index });
+        let i = this.heap.length - 1;
+        // Move up while the parent is greater or if tie on value, the parent's index is greater
+        while (
+            i !== 0 &amp;&amp;
+            (this.heap[this.getParentIndex(i)].value &gt; this.heap[i].value ||
+            (this.heap[this.getParentIndex(i)].value === this.heap[i].value &amp;&amp;
+             this.heap[this.getParentIndex(i)].index &gt; this.heap[i].index))
+        ) {
+            this.swap(i, this.getParentIndex(i));
+            i = this.getParentIndex(i);
+        }
+    }
+
+    extractMin() {
+        if (this.heap.length === 0) return null;
+        if (this.heap.length === 1) return this.heap.pop();
+
+        const min = this.heap[0];
+        this.heap[0] = this.heap.pop();
+        this.heapify(0);
+        return min;
+    }
+
+    heapify(i) {
+        const left = this.getLeftChildIndex(i);
+        const right = this.getRightChildIndex(i);
+        let smallest = i;
+
+        if (left &lt; this.heap.length) {
+            if (
+                this.heap[left].value &lt; this.heap[smallest].value ||
+                (this.heap[left].value === this.heap[smallest].value &amp;&amp;
+                 this.heap[left].index &lt; this.heap[smallest].index)
+            ) {
+                smallest = left;
+            }
+        }
+
+        if (right &lt; this.heap.length) {
+            if (
+                this.heap[right].value &lt; this.heap[smallest].value ||
+                (this.heap[right].value === this.heap[smallest].value &amp;&amp;
+                 this.heap[right].index &lt; this.heap[smallest].index)
+            ) {
+                smallest = right;
+            }
+        }
+
+        if (smallest !== i) {
+            this.swap(i, smallest);
+            this.heapify(smallest);
+        }
+    }
+
+    peek() {
+        return this.heap[0] || null;
+    }
+}
+
+/**
+ * Multiplies elements of the array K times based on the described operations.
+ * @param {number[]} arr - The input array of integers.
+ * @param {number} k - The number of multiplication operations to perform.
+ * @param {number} factor - The multiplication factor greater than 1.
+ * @returns {number[]} The final state of the array after K operations.
+ */
+function getFinalState(arr, k, factor) {
+    if (arr.length === 0) return [];
+
+    const minHeap = new MinHeap();
+
+    // Insert elements with their original indices
+    arr.forEach((val, idx) =&gt; {
+        minHeap.insert(val, idx);
+    });
+
+    // Perform k operations
+    for (let i = 0; i &lt; k; i++) {
+        const minElement = minHeap.extractMin();
+        const newVal = minElement.value * factor;
+        minHeap.insert(newVal, minElement.index);
+    }
+
+    // Now extract all elements and place them in the correct positions
+    const finalArray = new Array(arr.length);
+    // Extract all elements from the heap
+    const extractedElements = [];
+    while (true) {
+        const minElement = minHeap.extractMin();
+        if (!minElement) break;
+        extractedElements.push(minElement);
+    }
+
+    // Place them back according to their original indices
+    for (const { value, index } of extractedElements) {
+        finalArray[index] = value;
+    }
+
+    return finalArray;
+}
+
+// Test cases for the solution function
+const testCases = [
+    { arr: [2,1,3,5,6], k: 5, factor: 2, expected: [8,4,6,5,6] },
+    { arr: [1,2], k: 3, factor: 4, expected: [16,8] },
+    { arr: [5], k: 5, factor: 2, expected: [160] },
+];
+
+testCases.forEach((test, index) =&gt; {
+    const result = getFinalState(test.arr, test.k, test.factor);
+    console.log(`Test Case ${index + 1}: ${JSON.stringify(result) === JSON.stringify(test.expected) ? 'Passed' : 'Failed'} (Expected: ${test.expected}, Got: ${result})`);
+});
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org8022add" class="outline-3">
+<h3 id="org8022add">References</h3>
+<div class="outline-text-3" id="text-org8022add">
+<ul class="org-ul">
+<li>Min-Heap data structure is useful when operations require minimum element extraction: <a href="https://en.wikipedia.org/wiki/Binary_heap">Binary Heap</a></li>
+<li>Heaps in JavaScript can be implemented using arrays with libraries like Heap.js.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+&copy; d)zharii. <a href="/sitemap.html">sitemap</a>
+</div>
+</body>
+</html>
