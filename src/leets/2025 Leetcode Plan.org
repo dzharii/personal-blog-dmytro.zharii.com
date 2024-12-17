@@ -1,0 +1,154 @@
+#+title: 2025 Leetcode Plan
+#+subtitle: docs
+#+date: <2024-12-16>
+#+language: en
+
+** Goal
+:PROPERTIES:
+:CUSTOM_ID: goal
+:END:
+The goal is to prepare for the interview with the full text search team. The team uses Lucene as the engine.
+
+** Topics
+:PROPERTIES:
+:CUSTOM_ID: topics
+:END:
+Below is a structured approach to preparing for interview questions related to full-text search---particularly as seen in systems
+like Apache Lucene. First, we identify 10 core topics relevant to full-text search and indexing. Then, under each topic, we list
+LeetCode problems whose techniques, data structures, or patterns can be conceptually applied or adapted when thinking about
+full-text search, indexing, or query processing.
+
+*** 10 Main Topics Related to Full-Text Search and Indexing (inspired by Apache Lucene concepts)
+:PROPERTIES:
+:CUSTOM_ID: main-topics-related-to-full-text-search-and-indexing-inspired-by-apache-lucene-concepts
+:END:
+1. *Inverted Index* Construction: how documents are tokenized and terms mapped to their posting lists.
+2. *Tokenization and Normalization*: splitting text into tokens (words, terms), lowercasing, removing punctuation, and normalizing
+   text.
+3. *Ranking and Scoring* (e.g., TF-IDF, BM25): prioritizing search results by relevance scores.
+4. *Query Parsing* and Expansion: converting user input into structured queries, handling boolean logic, phrase queries, and
+   synonyms.
+5. *Fuzzy Search* and Edit Distance: handling misspellings and approximate matches, often via edit distance thresholds.
+6. *Prefix Trees (Tries)* and Autocompletion: data structures to quickly retrieve terms with certain prefixes, supporting
+   auto-suggest functionality.
+7. *Suffix Arrays / Suffix Trees* and Advanced String Indexing: indexing substrings at scale to quickly answer complex substring
+   queries.
+8. *N-gram Indexing*: splitting text into sequences of n-grams for partial matches, suggestions, and language modeling.
+9. *Efficient Substring Search Algorithms* (e.g., KMP, Rabin-Karp): core string search algorithms that inform how indexing and
+   query-time lookups can be optimized.
+10. *Phrase Queries and Proximity Search*: finding sequences of words that appear close together, supporting phrase and
+    proximity-based queries.
+
+** DONE Plan
+:PROPERTIES:
+:CUSTOM_ID: plan
+:END:
+*Relevant LeetCode Problems by Topic:*
+
+/(Note: LeetCode doesn't have direct "build an inverted index" problems, but the following problems involve data structures,
+string manipulation, and pattern searching that mirror concepts in search and indexing.)/
+
+1. Inverted Index & Frequency Mapping
+   - /Conceptual match:/ Creating structures to quickly find occurrences of words.
+   - Problems:
+     - [ ] [[https://leetcode.com/problems/index-pairs-of-a-string/][#1065. Index Pairs of a String]] -- Finding all index pairs matching words in a dictionary simulates how an inverted
+       index might point back to positions of terms.
+     - [ ] [[https://leetcode.com/problems/top-k-frequent-elements/][#347. Top K Frequent Elements]] -- Although about integers, it's a canonical frequency-based problem.
+     - [ ] [[https://leetcode.com/problems/intersection-of-two-arrays-ii/][#350. Intersection of Two Arrays II]] -- Frequency counting and intersection logic can inform how posting lists
+       intersect in inverted indexes.
+
+2. Tokenization and Normalization
+   - /Conceptual match:/ Splitting and cleaning input text before searching.
+   - Problems:
+     - [ ] [[https://leetcode.com/problems/most-common-word/][#819. Most Common Word]] -- Involves tokenizing and normalizing text input by removing punctuation, lowercasing, and
+       counting words.
+     - [ ] [[https://leetcode.com/problems/reverse-words-in-a-string/][#151. Reverse Words in a String]] -- Requires careful splitting and trimming, similar to text normalization.
+     - [ ] [[https://leetcode.com/problems/reorder-data-in-log-files/][#937. Reorder Data in Log Files]] -- Parsing and classifying strings into different categories.
+
+3. Ranking and Scoring
+   - /Conceptual match:/ Prioritizing results by frequency or relevance.
+   - Problems:
+     - [ ] [[https://leetcode.com/problems/top-k-frequent-words/][#692. Top K Frequent Words]] -- Selecting top terms by frequency mimics the idea of ranking documents by term
+       frequency.
+     - [ ] [[https://leetcode.com/problems/most-common-word/][#819. Most Common Word]] -- Also demonstrates frequency-based selection.
+     - [ ] [[https://leetcode.com/problems/sort-characters-by-frequency/][#451. Sort Characters By Frequency]] -- Similar principle to ranking terms by their counts.
+     - [ ] [[https://leetcode.com/problems/group-anagrams/][#49. Group Anagrams]] -- Grouping and categorizing words hints at organizing documents by shared characteristics.
+
+4. Query Parsing and Expansion
+
+   - /Conceptual match:/ Interpreting user queries and potentially expanding them.
+   - Problems:
+     - [ ] [[https://leetcode.com/problems/design-add-and-search-words-data-structure/][#211. Design Add and Search Words Data Structure]] -- Supports regex-like queries (e.g., wildcard '.'), illustrating
+       query expansion/interpretation.
+     - [ ] [[https://leetcode.com/problems/word-break/][#139. Word Break]] -- Parsing a string into valid words is analogous to query decomposition.
+     - [ ] [[https://leetcode.com/problems/replace-words/][#648. Replace Words]] -- Uses a trie to replace words efficiently, resembling how a query might be expanded using a
+       dictionary.
+     - [ ] [[https://leetcode.com/problems/word-break/][#139. Word Break]] -- Segmenting a query into known words, analogous to parsing a complex query string.
+
+5. Fuzzy Search and Edit Distance
+
+   - /Conceptual match:/ Handling approximate matches.
+   - Problems:
+     - [ ] [[https://leetcode.com/problems/edit-distance/description/][#72. Edit Distance]] -- Core fuzzy matching metric.
+     - [ ] [[https://leetcode.com/problems/one-edit-distance/][#161. One Edit Distance]] -- Simplified edit distance scenario. Useful to understand fuzzy matching logic.
+     - [ ] [[https://leetcode.com/problems/wildcard-matching/][#44. Wildcard Matching]] -- Pattern matching with wildcards, similar to fuzzy queries.
+     - [ ] [[https://leetcode.com/problems/implement-magic-dictionary/][#676. Implement Magic Dictionary]] -- Checks if altering one character can form a dictionary word, approximating fuzzy
+       lookups.
+
+6. *Prefix Trees (Tries) and Autocompletion*
+
+   - /Conceptual match:/ Trie-based indexes are common for prefix searches and suggestions.
+   - Problems:
+     - [ ] *#208. Implement Trie (Prefix Tree)* -- Core structure for prefix indexing.
+     - [ ] *#211. Add and Search Word* -- Extends trie concept to handle wildcard queries.
+     - [ ] *#642. Design Search Autocomplete System* -- Autocomplete functionality using trie and frequency counts.
+     - [ ] *#212. Word Search II* -- Uses a trie to efficiently find multiple words in a grid.
+     - [ ] *#677. Map Sum Pairs* -- A trie-based approach to sum values for keys with shared prefixes.
+     - [ ] *#745. Prefix and Suffix Search* -- Advanced trie usage combining prefix and suffix queries.
+
+7. *Suffix Arrays / Suffix Trees and Advanced String Indexing*
+
+   - /Conceptual match:/ Data structures for fast substring queries.
+   - Problems:
+     - [ ] *#28. Implement strStr()* -- Basic substring search. Solutions often mention KMP or other efficient substring search
+       methods.
+     - [ ] *#1062. Longest Repeating Substring* -- Suffix array or suffix tree approaches can solve this efficiently.
+     - [ ] *#30. Substring with Concatenation of All Words* -- Complex substring search problem mimicking multi-term indexing.
+     - [ ] *#1044. Longest Duplicate Substring* -- Often solved with suffix arrays or suffix trees, mirroring complex indexing.
+     - [ ] *#718. Maximum Length of Repeated Subarray* -- Another substring-related challenge, can be approached with advanced
+       string structures.
+
+8. *N-gram Indexing*
+
+   - /Conceptual match:/ Breaking text into chunks can mirror indexing terms in multi-word sequences.
+   - Problems:
+     - [ ] *#30. Substring with Concatenation of All Words* -- Searching for multiple words back-to-back is analogous to detecting
+       n-grams.
+     - [ ] *#472. Concatenated Words* -- Identifying words formed by concatenating other words (akin to multi-gram analysis).
+     - [ ] *#336. Palindrome Pairs* -- Involves complex substring checks and could be approached by indexing substrings or parts
+       of words.
+     - [ ] *#758. Bold Words in String* -- Highlighting occurrences of words can conceptually relate to identifying n-grams within
+       text.
+
+9. *Efficient Substring Search (KMP, Rabin-Karp)*
+
+   - /Conceptual match:/ Core algorithms that can inspire indexing and retrieval strategies.
+   - Problems:
+     - [ ] *#28. Implement strStr()* -- Encourages knowledge of KMP or Rabin-Karp for efficient substring search.
+     - [ ] *#438. Find All Anagrams in a String* -- Sliding window pattern matching, conceptually similar to scanning indexes.
+     - [ ] *#28. Implement strStr()* -- Classic substring search with possible KMP or Rabin-Karp approaches.
+     - [ ] *#459. Repeated Substring Pattern* -- Examines the internal structure of strings, training one's intuition on substring
+       patterns.
+
+10. *Phrase Queries and Proximity Search*
+
+    - /Conceptual match:/ Finding sequences of terms close together.
+    - Problems:
+      - [ ] *#79. Word Search* -- Searching for a phrase (word) in a grid, akin to proximity search in a corpus.
+      - [ ] *#212. Word Search II* -- Multiple word searches; tries can handle phrase-like queries efficiently.
+      - [ ] *#76. Minimum Window Substring* -- Finding the smallest substring containing all required characters parallels
+        proximity queries.
+      - [ ] *#243. Shortest Word Distance* -- Compute minimal distance between words, analogous to checking proximity within text.
+      - [ ] *#244. Shortest Word Distance II* -- Data structure design to quickly answer proximity queries between words.
+
+Let's go!

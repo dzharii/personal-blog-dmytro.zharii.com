@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2024-12-15 -->
+<!-- 2024-12-16 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>2257. Count Unguarded Cells in the Grid</title>
@@ -22,27 +22,27 @@ Published 2024-11-20
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org416bd92">Problem</a></li>
-<li><a href="#orge944eb5">Solution Description</a></li>
-<li><a href="#orgdd778f5">Example</a></li>
-<li><a href="#orgeab5bcb">References</a></li>
-<li><a href="#org519d105">Solution</a></li>
+<li><a href="#org55655c2">Problem</a></li>
+<li><a href="#org7f6e130">Solution Description</a></li>
+<li><a href="#org2f53804">Example</a></li>
+<li><a href="#org055221f">References</a></li>
+<li><a href="#org1e4ca87">Solution</a></li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-org416bd92" class="outline-2">
-<h2 id="org416bd92">Problem</h2>
-<div class="outline-text-2" id="text-org416bd92">
+<div id="outline-container-org55655c2" class="outline-2">
+<h2 id="org55655c2">Problem</h2>
+<div class="outline-text-2" id="text-org55655c2">
 <p>
 Given a grid of size m x n, with guards and walls distributed throughout, your task is to count the number of cells in the grid that are not guarded. A guard observes the cells in all four perpendicular directions: left, right, up, and down. However, it cannot see through walls and doesn't protect the cell it directly occupies.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orge944eb5" class="outline-2">
-<h2 id="orge944eb5">Solution Description</h2>
-<div class="outline-text-2" id="text-orge944eb5">
+<div id="outline-container-org7f6e130" class="outline-2">
+<h2 id="org7f6e130">Solution Description</h2>
+<div class="outline-text-2" id="text-org7f6e130">
 <p>
 To implement counting unguarded cells in the grid, we need to first mark all cells that are guarded. This involves two main steps:
 </p>
@@ -67,9 +67,9 @@ Space Complexity:
 </div>
 </div>
 
-<div id="outline-container-orgdd778f5" class="outline-2">
-<h2 id="orgdd778f5">Example</h2>
-<div class="outline-text-2" id="text-orgdd778f5">
+<div id="outline-container-org2f53804" class="outline-2">
+<h2 id="org2f53804">Example</h2>
+<div class="outline-text-2" id="text-org2f53804">
 <p>
 Consider a 3x3 grid where G represents guards, W represents walls, and . represents empty cells:
 #+being<sub>example</sub>
@@ -88,18 +88,18 @@ G . .
 </div>
 </div>
 
-<div id="outline-container-orgeab5bcb" class="outline-2">
-<h2 id="orgeab5bcb">References</h2>
-<div class="outline-text-2" id="text-orgeab5bcb">
+<div id="outline-container-org055221f" class="outline-2">
+<h2 id="org055221f">References</h2>
+<div class="outline-text-2" id="text-org055221f">
 <p>
 For more details on guarding strategies and obstacle handling in grids, see Depth First Search (DFS) techniques and Breadth First Search (BFS) patterns, which can be used in variations of this problem.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org519d105" class="outline-2">
-<h2 id="org519d105">Solution</h2>
-<div class="outline-text-2" id="text-org519d105">
+<div id="outline-container-org1e4ca87" class="outline-2">
+<h2 id="org1e4ca87">Solution</h2>
+<div class="outline-text-2" id="text-org1e4ca87">
 <p>
 <a href="https://leetcode.com/submissions/detail/1458762389/">2024-11-21 Count Unguarded Cells in the Grid - Submission Detail - LeetCode</a> <code>leetcode.com</code>
 </p>
@@ -216,7 +216,7 @@ testCases.forEach((test, index) =&gt; {
 </div>
 
 
-<pre class="example" id="org5351d59">
+<pre class="example" id="orgc04736e">
 Guards
 ┌─────────┬────────┐
 │ (index) │ Values │

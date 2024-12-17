@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2024-12-16 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>2025 Leetcode Plan</title>
+<meta name="author" content="d)zharii" />
+<meta name="generator" content="Org Mode" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/t.css"/>
+</head>
+<body>
+<nav><a href="/" tabindex="0">&larrhk; Back to Index</a></nav><div id="preamble" class="status">
+Published 2024-12-16
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">2025 Leetcode Plan</h1>
+<p class="subtitle" role="doc-subtitle">docs</p>
+</header><nav id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#goal">Goal</a></li>
+<li><a href="#topics">Topics</a>
+<ul>
+<li><a href="#main-topics-related-to-full-text-search-and-indexing-inspired-by-apache-lucene-concepts">10 Main Topics Related to Full-Text Search and Indexing (inspired by Apache Lucene concepts)</a></li>
+</ul>
+</li>
+<li><a href="#plan"><span class="done DONE">DONE</span> Plan</a></li>
+</ul>
+</div>
+</nav>
+
+<div id="outline-container-goal" class="outline-2">
+<h2 id="goal">Goal</h2>
+<div class="outline-text-2" id="text-goal">
+<p>
+The goal is to prepare for the interview with the full text search team. The team uses Lucene as the engine.
+</p>
+</div>
+</div>
+
+<div id="outline-container-topics" class="outline-2">
+<h2 id="topics">Topics</h2>
+<div class="outline-text-2" id="text-topics">
+<p>
+Below is a structured approach to preparing for interview questions related to full-text search&#x2014;particularly as seen in systems
+like Apache Lucene. First, we identify 10 core topics relevant to full-text search and indexing. Then, under each topic, we list
+LeetCode problems whose techniques, data structures, or patterns can be conceptually applied or adapted when thinking about
+full-text search, indexing, or query processing.
+</p>
+</div>
+
+<div id="outline-container-main-topics-related-to-full-text-search-and-indexing-inspired-by-apache-lucene-concepts" class="outline-3">
+<h3 id="main-topics-related-to-full-text-search-and-indexing-inspired-by-apache-lucene-concepts">10 Main Topics Related to Full-Text Search and Indexing (inspired by Apache Lucene concepts)</h3>
+<div class="outline-text-3" id="text-main-topics-related-to-full-text-search-and-indexing-inspired-by-apache-lucene-concepts">
+<ol class="org-ol">
+<li><b>Inverted Index</b> Construction: how documents are tokenized and terms mapped to their posting lists.</li>
+<li><b>Tokenization and Normalization</b>: splitting text into tokens (words, terms), lowercasing, removing punctuation, and normalizing
+text.</li>
+<li><b>Ranking and Scoring</b> (e.g., TF-IDF, BM25): prioritizing search results by relevance scores.</li>
+<li><b>Query Parsing</b> and Expansion: converting user input into structured queries, handling boolean logic, phrase queries, and
+synonyms.</li>
+<li><b>Fuzzy Search</b> and Edit Distance: handling misspellings and approximate matches, often via edit distance thresholds.</li>
+<li><b>Prefix Trees (Tries)</b> and Autocompletion: data structures to quickly retrieve terms with certain prefixes, supporting
+auto-suggest functionality.</li>
+<li><b>Suffix Arrays / Suffix Trees</b> and Advanced String Indexing: indexing substrings at scale to quickly answer complex substring
+queries.</li>
+<li><b>N-gram Indexing</b>: splitting text into sequences of n-grams for partial matches, suggestions, and language modeling.</li>
+<li><b>Efficient Substring Search Algorithms</b> (e.g., KMP, Rabin-Karp): core string search algorithms that inform how indexing and
+query-time lookups can be optimized.</li>
+<li><b>Phrase Queries and Proximity Search</b>: finding sequences of words that appear close together, supporting phrase and
+proximity-based queries.</li>
+</ol>
+</div>
+</div>
+</div>
+
+<div id="outline-container-plan" class="outline-2">
+<h2 id="plan"><span class="done DONE">DONE</span> Plan</h2>
+<div class="outline-text-2" id="text-plan">
+<p>
+<b>Relevant LeetCode Problems by Topic:</b>
+</p>
+
+<p>
+<i>(Note: LeetCode doesn't have direct "build an inverted index" problems, but the following problems involve data structures,
+string manipulation, and pattern searching that mirror concepts in search and indexing.)</i>
+</p>
+
+<ol class="org-ol">
+<li>Inverted Index &amp; Frequency Mapping
+<ul class="org-ul">
+<li><i>Conceptual match:</i> Creating structures to quickly find occurrences of words.</li>
+<li>Problems:
+<ul class="org-ul">
+<li class="off"><code>[&#xa0;]</code> <a href="https://leetcode.com/problems/index-pairs-of-a-string/">#1065. Index Pairs of a String</a> &#x2013; Finding all index pairs matching words in a dictionary simulates how an inverted
+index might point back to positions of terms.</li>
+<li class="off"><code>[&#xa0;]</code> <a href="https://leetcode.com/problems/top-k-frequent-elements/">#347. Top K Frequent Elements</a> &#x2013; Although about integers, it's a canonical frequency-based problem.</li>
+<li class="off"><code>[&#xa0;]</code> <a href="https://leetcode.com/problems/intersection-of-two-arrays-ii/">#350. Intersection of Two Arrays II</a> &#x2013; Frequency counting and intersection logic can inform how posting lists
+intersect in inverted indexes.</li>
+</ul></li>
+</ul></li>
+
+<li>Tokenization and Normalization
+<ul class="org-ul">
+<li><i>Conceptual match:</i> Splitting and cleaning input text before searching.</li>
+<li>Problems:
+<ul class="org-ul">
+<li class="off"><code>[&#xa0;]</code> <a href="https://leetcode.com/problems/most-common-word/">#819. Most Common Word</a> &#x2013; Involves tokenizing and normalizing text input by removing punctuation, lowercasing, and
+counting words.</li>
+<li class="off"><code>[&#xa0;]</code> <a href="https://leetcode.com/problems/reverse-words-in-a-string/">#151. Reverse Words in a String</a> &#x2013; Requires careful splitting and trimming, similar to text normalization.</li>
+<li class="off"><code>[&#xa0;]</code> <a href="https://leetcode.com/problems/reorder-data-in-log-files/">#937. Reorder Data in Log Files</a> &#x2013; Parsing and classifying strings into different categories.</li>
+</ul></li>
+</ul></li>
+
+<li>Ranking and Scoring
+<ul class="org-ul">
+<li><i>Conceptual match:</i> Prioritizing results by frequency or relevance.</li>
+<li>Problems:
+<ul class="org-ul">
+<li class="off"><code>[&#xa0;]</code> <a href="https://leetcode.com/problems/top-k-frequent-words/">#692. Top K Frequent Words</a> &#x2013; Selecting top terms by frequency mimics the idea of ranking documents by term
+frequency.</li>
+<li class="off"><code>[&#xa0;]</code> <a href="https://leetcode.com/problems/most-common-word/">#819. Most Common Word</a> &#x2013; Also demonstrates frequency-based selection.</li>
+<li class="off"><code>[&#xa0;]</code> <a href="https://leetcode.com/problems/sort-characters-by-frequency/">#451. Sort Characters By Frequency</a> &#x2013; Similar principle to ranking terms by their counts.</li>
+<li class="off"><code>[&#xa0;]</code> <a href="https://leetcode.com/problems/group-anagrams/">#49. Group Anagrams</a> &#x2013; Grouping and categorizing words hints at organizing documents by shared characteristics.</li>
+</ul></li>
+</ul></li>
+
+<li>Query Parsing and Expansion
+
+<ul class="org-ul">
+<li><i>Conceptual match:</i> Interpreting user queries and potentially expanding them.</li>
+<li>Problems:
+<ul class="org-ul">
+<li class="off"><code>[&#xa0;]</code> <a href="https://leetcode.com/problems/design-add-and-search-words-data-structure/">#211. Design Add and Search Words Data Structure</a> &#x2013; Supports regex-like queries (e.g., wildcard '.'), illustrating
+query expansion/interpretation.</li>
+<li class="off"><code>[&#xa0;]</code> <a href="https://leetcode.com/problems/word-break/">#139. Word Break</a> &#x2013; Parsing a string into valid words is analogous to query decomposition.</li>
+<li class="off"><code>[&#xa0;]</code> <a href="https://leetcode.com/problems/replace-words/">#648. Replace Words</a> &#x2013; Uses a trie to replace words efficiently, resembling how a query might be expanded using a
+dictionary.</li>
+<li class="off"><code>[&#xa0;]</code> <a href="https://leetcode.com/problems/word-break/">#139. Word Break</a> &#x2013; Segmenting a query into known words, analogous to parsing a complex query string.</li>
+</ul></li>
+</ul></li>
+
+<li>Fuzzy Search and Edit Distance
+
+<ul class="org-ul">
+<li><i>Conceptual match:</i> Handling approximate matches.</li>
+<li>Problems:
+<ul class="org-ul">
+<li class="off"><code>[&#xa0;]</code> <a href="https://leetcode.com/problems/edit-distance/description/">#72. Edit Distance</a> &#x2013; Core fuzzy matching metric.</li>
+<li class="off"><code>[&#xa0;]</code> <a href="https://leetcode.com/problems/one-edit-distance/">#161. One Edit Distance</a> &#x2013; Simplified edit distance scenario. Useful to understand fuzzy matching logic.</li>
+<li class="off"><code>[&#xa0;]</code> <a href="https://leetcode.com/problems/wildcard-matching/">#44. Wildcard Matching</a> &#x2013; Pattern matching with wildcards, similar to fuzzy queries.</li>
+<li class="off"><code>[&#xa0;]</code> <a href="https://leetcode.com/problems/implement-magic-dictionary/">#676. Implement Magic Dictionary</a> &#x2013; Checks if altering one character can form a dictionary word, approximating fuzzy
+lookups.</li>
+</ul></li>
+</ul></li>
+
+<li><b>Prefix Trees (Tries) and Autocompletion</b>
+
+<ul class="org-ul">
+<li><i>Conceptual match:</i> Trie-based indexes are common for prefix searches and suggestions.</li>
+<li>Problems:
+<ul class="org-ul">
+<li class="off"><code>[&#xa0;]</code> <b>#208. Implement Trie (Prefix Tree)</b> &#x2013; Core structure for prefix indexing.</li>
+<li class="off"><code>[&#xa0;]</code> <b>#211. Add and Search Word</b> &#x2013; Extends trie concept to handle wildcard queries.</li>
+<li class="off"><code>[&#xa0;]</code> <b>#642. Design Search Autocomplete System</b> &#x2013; Autocomplete functionality using trie and frequency counts.</li>
+<li class="off"><code>[&#xa0;]</code> <b>#212. Word Search II</b> &#x2013; Uses a trie to efficiently find multiple words in a grid.</li>
+<li class="off"><code>[&#xa0;]</code> <b>#677. Map Sum Pairs</b> &#x2013; A trie-based approach to sum values for keys with shared prefixes.</li>
+<li class="off"><code>[&#xa0;]</code> <b>#745. Prefix and Suffix Search</b> &#x2013; Advanced trie usage combining prefix and suffix queries.</li>
+</ul></li>
+</ul></li>
+
+<li><b>Suffix Arrays / Suffix Trees and Advanced String Indexing</b>
+
+<ul class="org-ul">
+<li><i>Conceptual match:</i> Data structures for fast substring queries.</li>
+<li>Problems:
+<ul class="org-ul">
+<li class="off"><code>[&#xa0;]</code> <b>#28. Implement strStr()</b> &#x2013; Basic substring search. Solutions often mention KMP or other efficient substring search
+methods.</li>
+<li class="off"><code>[&#xa0;]</code> <b>#1062. Longest Repeating Substring</b> &#x2013; Suffix array or suffix tree approaches can solve this efficiently.</li>
+<li class="off"><code>[&#xa0;]</code> <b>#30. Substring with Concatenation of All Words</b> &#x2013; Complex substring search problem mimicking multi-term indexing.</li>
+<li class="off"><code>[&#xa0;]</code> <b>#1044. Longest Duplicate Substring</b> &#x2013; Often solved with suffix arrays or suffix trees, mirroring complex indexing.</li>
+<li class="off"><code>[&#xa0;]</code> <b>#718. Maximum Length of Repeated Subarray</b> &#x2013; Another substring-related challenge, can be approached with advanced
+string structures.</li>
+</ul></li>
+</ul></li>
+
+<li><b>N-gram Indexing</b>
+
+<ul class="org-ul">
+<li><i>Conceptual match:</i> Breaking text into chunks can mirror indexing terms in multi-word sequences.</li>
+<li>Problems:
+<ul class="org-ul">
+<li class="off"><code>[&#xa0;]</code> <b>#30. Substring with Concatenation of All Words</b> &#x2013; Searching for multiple words back-to-back is analogous to detecting
+n-grams.</li>
+<li class="off"><code>[&#xa0;]</code> <b>#472. Concatenated Words</b> &#x2013; Identifying words formed by concatenating other words (akin to multi-gram analysis).</li>
+<li class="off"><code>[&#xa0;]</code> <b>#336. Palindrome Pairs</b> &#x2013; Involves complex substring checks and could be approached by indexing substrings or parts
+of words.</li>
+<li class="off"><code>[&#xa0;]</code> <b>#758. Bold Words in String</b> &#x2013; Highlighting occurrences of words can conceptually relate to identifying n-grams within
+text.</li>
+</ul></li>
+</ul></li>
+
+<li><b>Efficient Substring Search (KMP, Rabin-Karp)</b>
+
+<ul class="org-ul">
+<li><i>Conceptual match:</i> Core algorithms that can inspire indexing and retrieval strategies.</li>
+<li>Problems:
+<ul class="org-ul">
+<li class="off"><code>[&#xa0;]</code> <b>#28. Implement strStr()</b> &#x2013; Encourages knowledge of KMP or Rabin-Karp for efficient substring search.</li>
+<li class="off"><code>[&#xa0;]</code> <b>#438. Find All Anagrams in a String</b> &#x2013; Sliding window pattern matching, conceptually similar to scanning indexes.</li>
+<li class="off"><code>[&#xa0;]</code> <b>#28. Implement strStr()</b> &#x2013; Classic substring search with possible KMP or Rabin-Karp approaches.</li>
+<li class="off"><code>[&#xa0;]</code> <b>#459. Repeated Substring Pattern</b> &#x2013; Examines the internal structure of strings, training one's intuition on substring
+patterns.</li>
+</ul></li>
+</ul></li>
+
+<li><b>Phrase Queries and Proximity Search</b>
+
+<ul class="org-ul">
+<li><i>Conceptual match:</i> Finding sequences of terms close together.</li>
+<li>Problems:
+<ul class="org-ul">
+<li class="off"><code>[&#xa0;]</code> <b>#79. Word Search</b> &#x2013; Searching for a phrase (word) in a grid, akin to proximity search in a corpus.</li>
+<li class="off"><code>[&#xa0;]</code> <b>#212. Word Search II</b> &#x2013; Multiple word searches; tries can handle phrase-like queries efficiently.</li>
+<li class="off"><code>[&#xa0;]</code> <b>#76. Minimum Window Substring</b> &#x2013; Finding the smallest substring containing all required characters parallels
+proximity queries.</li>
+<li class="off"><code>[&#xa0;]</code> <b>#243. Shortest Word Distance</b> &#x2013; Compute minimal distance between words, analogous to checking proximity within text.</li>
+<li class="off"><code>[&#xa0;]</code> <b>#244. Shortest Word Distance II</b> &#x2013; Data structure design to quickly answer proximity queries between words.</li>
+</ul></li>
+</ul></li>
+</ol>
+
+<p>
+Let's go!
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+&copy; d)zharii. <a href="/sitemap.html">sitemap</a>
+</div>
+</body>
+</html>

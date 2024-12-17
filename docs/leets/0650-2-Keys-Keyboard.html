@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2024-12-15 -->
+<!-- 2024-12-16 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>0650. 2 Keys Keyboard</title>
@@ -22,19 +22,19 @@ Published 2024-08-19
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgcfec15a">Problem</a></li>
-<li><a href="#orgbca5caa">Solution Description</a></li>
-<li><a href="#org148d573">Example</a></li>
-<li><a href="#orgd769ef9">References</a></li>
-<li><a href="#org4a5cdea">Solution</a></li>
+<li><a href="#org37a9b39">Problem</a></li>
+<li><a href="#org3a5dcfa">Solution Description</a></li>
+<li><a href="#orge37f776">Example</a></li>
+<li><a href="#org12023f9">References</a></li>
+<li><a href="#org3e899c9">Solution</a></li>
 </ul>
 </div>
 </nav>
 
 
-<div id="outline-container-orgcfec15a" class="outline-2">
-<h2 id="orgcfec15a">Problem</h2>
-<div class="outline-text-2" id="text-orgcfec15a">
+<div id="outline-container-org37a9b39" class="outline-2">
+<h2 id="org37a9b39">Problem</h2>
+<div class="outline-text-2" id="text-org37a9b39">
 <p>
 Given a single character 'A' initially displayed on a notepad, you can perform two operations on this notepad for any number of times:
 </p>
@@ -50,9 +50,9 @@ Now, you are given an integer n, which represents the target number of 'A' chara
 </div>
 </div>
 
-<div id="outline-container-orgbca5caa" class="outline-2">
-<h2 id="orgbca5caa">Solution Description</h2>
-<div class="outline-text-2" id="text-orgbca5caa">
+<div id="outline-container-org3a5dcfa" class="outline-2">
+<h2 id="org3a5dcfa">Solution Description</h2>
+<div class="outline-text-2" id="text-org3a5dcfa">
 <p>
 To implement a solution, we need to use dynamic programming to break down the problem into smaller subproblems. We maintain an array where dp[i] represents the minimum number of operations required to get exactly i 'A's. We initialize dp[1] to 0 since no operations are needed to have one 'A'. For each number of 'A's, we try to find a divisor j which divides i. If j is a divisor, then the only way to produce i 'A's is by copying all from dp[j] and pasting (i/j) - 1 times.
 </p>
@@ -63,9 +63,9 @@ The time complexity of this approach is O(n log n) because for each number from 
 </div>
 </div>
 
-<div id="outline-container-org148d573" class="outline-2">
-<h2 id="org148d573">Example</h2>
-<div class="outline-text-2" id="text-org148d573">
+<div id="outline-container-orge37f776" class="outline-2">
+<h2 id="orge37f776">Example</h2>
+<div class="outline-text-2" id="text-orge37f776">
 <p>
 Let's take n = 4:
 dp[1] = 0  (Initial 'A')
@@ -76,18 +76,18 @@ dp[4] = 4  (Copy -&gt; Paste -&gt; Copy -&gt; Paste)
 </div>
 </div>
 
-<div id="outline-container-orgd769ef9" class="outline-2">
-<h2 id="orgd769ef9">References</h2>
-<div class="outline-text-2" id="text-orgd769ef9">
+<div id="outline-container-org12023f9" class="outline-2">
+<h2 id="org12023f9">References</h2>
+<div class="outline-text-2" id="text-org12023f9">
 <ul class="org-ul">
 <li>Dynamic Programming: <a href="https://en.wikipedia.org/wiki/Dynamic_programming">https://en.wikipedia.org/wiki/Dynamic_programming</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org4a5cdea" class="outline-2">
-<h2 id="org4a5cdea">Solution</h2>
-<div class="outline-text-2" id="text-org4a5cdea">
+<div id="outline-container-org3e899c9" class="outline-2">
+<h2 id="org3e899c9">Solution</h2>
+<div class="outline-text-2" id="text-org3e899c9">
 <div class="org-src-container">
 <pre class="src src-js">/**
  * @param {number} n - The target number of 'A' characters.

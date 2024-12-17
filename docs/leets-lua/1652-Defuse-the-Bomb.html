@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2024-12-15 -->
+<!-- 2024-12-16 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>1652. Defuse the Bomb</title>
@@ -22,27 +22,27 @@ Published 2024-11-18
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orga0184aa">Problem Restatement</a></li>
-<li><a href="#org3ca7cb3">Solution Description</a></li>
-<li><a href="#org7dd42dc">Example</a></li>
-<li><a href="#org7d9067b">References</a></li>
-<li><a href="#org1e47658">Solution Code</a></li>
+<li><a href="#orge88ae46">Problem Restatement</a></li>
+<li><a href="#org3e21d5e">Solution Description</a></li>
+<li><a href="#orgc1144d7">Example</a></li>
+<li><a href="#orgb6bab5f">References</a></li>
+<li><a href="#org3b46bae">Solution Code</a></li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-orga0184aa" class="outline-2">
-<h2 id="orga0184aa">Problem Restatement</h2>
-<div class="outline-text-2" id="text-orga0184aa">
+<div id="outline-container-orge88ae46" class="outline-2">
+<h2 id="orge88ae46">Problem Restatement</h2>
+<div class="outline-text-2" id="text-orge88ae46">
 <p>
 Given an array called <code>code</code> where each element represents a part of a bomb and an integer <code>k</code>, we need to create a new array of the same size where each element at index <code>i</code> is the sum of the next <code>k</code> elements from the original array in circular fashion. If <code>k</code> is zero, the new array should be filled with zeros. If <code>k</code> is negative, it should sum up the previous <code>|k|</code> elements in a circular fashion.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org3ca7cb3" class="outline-2">
-<h2 id="org3ca7cb3">Solution Description</h2>
-<div class="outline-text-2" id="text-org3ca7cb3">
+<div id="outline-container-org3e21d5e" class="outline-2">
+<h2 id="org3e21d5e">Solution Description</h2>
+<div class="outline-text-2" id="text-org3e21d5e">
 <p>
 To implement the solution, we will consider different cases based on the value of <code>k</code>:
 </p>
@@ -64,9 +64,9 @@ Space Complexity: <code>O(n), as we are creating a new array of length ~n</code>
 </div>
 </div>
 
-<div id="outline-container-org7dd42dc" class="outline-2">
-<h2 id="org7dd42dc">Example</h2>
-<div class="outline-text-2" id="text-org7dd42dc">
+<div id="outline-container-orgc1144d7" class="outline-2">
+<h2 id="orgc1144d7">Example</h2>
+<div class="outline-text-2" id="text-orgc1144d7">
 <p>
 Consider the array <code>code = {5, 7, 1, 4}</code> and <code>k = 3</code>:
 </p>
@@ -84,18 +84,18 @@ The resulting array is <code>{12, 10, 16, 13}</code>.
 </div>
 </div>
 
-<div id="outline-container-org7d9067b" class="outline-2">
-<h2 id="org7d9067b">References</h2>
-<div class="outline-text-2" id="text-org7d9067b">
+<div id="outline-container-orgb6bab5f" class="outline-2">
+<h2 id="orgb6bab5f">References</h2>
+<div class="outline-text-2" id="text-orgb6bab5f">
 <ul class="org-ul">
 <li>Circular Array Traversal: <a href="https://en.wikipedia.org/wiki/Circular_buffer">https://en.wikipedia.org/wiki/Circular_buffer</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org1e47658" class="outline-2">
-<h2 id="org1e47658">Solution Code</h2>
-<div class="outline-text-2" id="text-org1e47658">
+<div id="outline-container-org3b46bae" class="outline-2">
+<h2 id="org3b46bae">Solution Code</h2>
+<div class="outline-text-2" id="text-org3b46bae">
 <div class="org-src-container">
 <pre class="src src-lua">-- Defuse the Bomb solution in Lua
 
