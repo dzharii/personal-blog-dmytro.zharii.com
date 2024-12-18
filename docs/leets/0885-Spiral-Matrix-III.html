@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2024-12-16 -->
+<!-- 2024-12-17 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>0885. Spiral Matrix III</title>
@@ -22,39 +22,39 @@ Published 2024-08-08
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org09cc67d">Problem</a>
+<li><a href="#orgf77cfe5">Problem</a>
 <ul>
-<li><a href="#orgb4f93dd">Submission</a></li>
-<li><a href="#orge948ad7">Solution Description</a></li>
-<li><a href="#org50a8a65">Example</a></li>
-<li><a href="#org91d2265">References</a></li>
-<li><a href="#orga9ce22a">Solution</a></li>
+<li><a href="#org57880ab">Submission</a></li>
+<li><a href="#org2f0fa16">Solution Description</a></li>
+<li><a href="#orgd94a9a5">Example</a></li>
+<li><a href="#org9b1b38a">References</a></li>
+<li><a href="#org70f31b9">Solution</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-org09cc67d" class="outline-2">
-<h2 id="org09cc67d">Problem</h2>
-<div class="outline-text-2" id="text-org09cc67d">
+<div id="outline-container-orgf77cfe5" class="outline-2">
+<h2 id="orgf77cfe5">Problem</h2>
+<div class="outline-text-2" id="text-orgf77cfe5">
 <p>
 The problem 885 (Spiral Matrix III) asks us to start at a certain coordinate in a grid and traverse the matrix in a spiral order, collecting the coordinates until all the cells in the matrix have been visited. It is essential that we collect the cells in the correct sequence to form a "spiral" around the starting point.
 </p>
 </div>
 
-<div id="outline-container-orgb4f93dd" class="outline-3">
-<h3 id="orgb4f93dd">Submission</h3>
-<div class="outline-text-3" id="text-orgb4f93dd">
+<div id="outline-container-org57880ab" class="outline-3">
+<h3 id="org57880ab">Submission</h3>
+<div class="outline-text-3" id="text-org57880ab">
 <ul class="org-ul">
 <li><a href="https://leetcode.com/submissions/detail/1349086872/">2024-08-08 Spiral Matrix III - Submission Detail - LeetCode</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orge948ad7" class="outline-3">
-<h3 id="orge948ad7">Solution Description</h3>
-<div class="outline-text-3" id="text-orge948ad7">
+<div id="outline-container-org2f0fa16" class="outline-3">
+<h3 id="org2f0fa16">Solution Description</h3>
+<div class="outline-text-3" id="text-org2f0fa16">
 <p>
 To implement the solution, we need to start at the given (rStart, cStart) and then move in a spiral pattern. We can achieve this by:
 </p>
@@ -77,9 +77,9 @@ Space Complexity: O(n), for storing the result coordinates.
 </div>
 </div>
 
-<div id="outline-container-org50a8a65" class="outline-3">
-<h3 id="org50a8a65">Example</h3>
-<div class="outline-text-3" id="text-org50a8a65">
+<div id="outline-container-orgd94a9a5" class="outline-3">
+<h3 id="orgd94a9a5">Example</h3>
+<div class="outline-text-3" id="text-orgd94a9a5">
 <p>
 Consider a grid with rows=5 and cols=6, and starting coordinates rStart=1, cStart=4.
 </p>
@@ -92,18 +92,18 @@ Consider a grid with rows=5 and cols=6, and starting coordinates rStart=1, cStar
 </div>
 </div>
 
-<div id="outline-container-org91d2265" class="outline-3">
-<h3 id="org91d2265">References</h3>
-<div class="outline-text-3" id="text-org91d2265">
+<div id="outline-container-org9b1b38a" class="outline-3">
+<h3 id="org9b1b38a">References</h3>
+<div class="outline-text-3" id="text-org9b1b38a">
 <p>
 The problem uses the concept of traversing a grid or matrix in a specific pattern, often used in problems related to grid/array traversal.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orga9ce22a" class="outline-3">
-<h3 id="orga9ce22a">Solution</h3>
-<div class="outline-text-3" id="text-orga9ce22a">
+<div id="outline-container-org70f31b9" class="outline-3">
+<h3 id="org70f31b9">Solution</h3>
+<div class="outline-text-3" id="text-org70f31b9">
 <p>
 We use arrays for direction vectors and a loop to incrementally build the spiral matrix.
 </p>
@@ -171,7 +171,7 @@ testCases.forEach((test, index) =&gt; {
 <p>
 <code>=</code>
 </p>
-<pre class="example" id="orgd9c08ef">
+<pre class="example" id="org4a6db78">
 : Test Case 1: Passed (Expected: [[0,0],[0,1],[0,2],[0,3]], Got: [[0,0],[0,1],[0,2],[0,3]])
 : Test Case 2: Passed (Expected: [[1,4],[1,5],[2,5],[2,4],[2,3],[1,3],[0,3],[0,4],[0,5],[3,5],[3,4],[3,3],[3,2],[2,2],[1,2],[0,2],[4,5],[4,4],[4,3],[4,2],[4,1],[3,1],[2,1],[1,1],[0,1],[4,0],[3,0],[2,0],[1,0],[0,0]], Got: [[1,4],[1,5],[2,5],[2,4],[2,3],[1,3],[0,3],[0,4],[0,5],[3,5],[3,4],[3,3],[3,2],[2,2],[1,2],[0,2],[4,5],[4,4],[4,3],[4,2],[4,1],[3,1],[2,1],[1,1],[0,1],[4,0],[3,0],[2,0],[1,0],[0,0]])
 : undefined

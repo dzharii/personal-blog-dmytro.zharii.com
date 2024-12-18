@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2024-12-16 -->
+<!-- 2024-12-17 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>0518. Coin Change II</title>
@@ -22,30 +22,30 @@ Published 2024-08-23
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org7430682">Problem</a>
+<li><a href="#orgb85e5fc">Problem</a>
 <ul>
-<li><a href="#orgfa5388b">Solution Description</a></li>
-<li><a href="#orgf09c399">Example</a></li>
-<li><a href="#org52f94ca">References</a></li>
-<li><a href="#org3a4f69b">Solution</a></li>
+<li><a href="#org122d0bb">Solution Description</a></li>
+<li><a href="#org083884a">Example</a></li>
+<li><a href="#org0ada7d4">References</a></li>
+<li><a href="#org67cb775">Solution</a></li>
 </ul>
 </li>
-<li><a href="#org1ffd01f">Results</a></li>
+<li><a href="#org7a3d2c7">Results</a></li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-org7430682" class="outline-2">
-<h2 id="org7430682">Problem</h2>
-<div class="outline-text-2" id="text-org7430682">
+<div id="outline-container-orgb85e5fc" class="outline-2">
+<h2 id="orgb85e5fc">Problem</h2>
+<div class="outline-text-2" id="text-orgb85e5fc">
 <p>
 We are given an array of distinct integers <code>coins</code> and an integer <code>amount</code>. Our task is to return the number of combinations that make up that amount. If that amount of money cannot be made up by any combination of the coins, return 0. Assume that we have an infinite number of each kind of coin.
 </p>
 </div>
 
-<div id="outline-container-orgfa5388b" class="outline-3">
-<h3 id="orgfa5388b">Solution Description</h3>
-<div class="outline-text-3" id="text-orgfa5388b">
+<div id="outline-container-org122d0bb" class="outline-3">
+<h3 id="org122d0bb">Solution Description</h3>
+<div class="outline-text-3" id="text-org122d0bb">
 <p>
 To implement the solution, we need to use a dynamic programming (DP) approach. We will create an array <code>dp</code> where <code>dp[i]</code> represents the number of ways to make the amount <code>i</code> using the given coins. We will initialize =dp[0] to 1 because there is one way to make the amount 0 (with no coins).
 </p>
@@ -60,9 +60,9 @@ This solution has a time complexity of <code>O(n * amount)</code> where <code>n<
 </div>
 </div>
 
-<div id="outline-container-orgf09c399" class="outline-3">
-<h3 id="orgf09c399">Example</h3>
-<div class="outline-text-3" id="text-orgf09c399">
+<div id="outline-container-org083884a" class="outline-3">
+<h3 id="org083884a">Example</h3>
+<div class="outline-text-3" id="text-org083884a">
 <p>
 Given <code>coins = [1, 2, 5]</code> and <code>amount = 5</code>.
 </p>
@@ -83,9 +83,9 @@ The number of ways to make the amount 5 is 4.
 </div>
 </div>
 
-<div id="outline-container-org52f94ca" class="outline-3">
-<h3 id="org52f94ca">References</h3>
-<div class="outline-text-3" id="text-org52f94ca">
+<div id="outline-container-org0ada7d4" class="outline-3">
+<h3 id="org0ada7d4">References</h3>
+<div class="outline-text-3" id="text-org0ada7d4">
 <ul class="org-ul">
 <li>Dynamic Programming: <a href="https://en.wikipedia.org/wiki/Dynamic_programming">Dynamic Programming - Wikipedia</a></li>
 <li>LeetCode Problem: <a href="https://leetcode.com/problems/coin-change-ii/">LeetCode Coin Change II</a></li>
@@ -104,9 +104,9 @@ This course was developed by Alvin Zablan from Coderbyte. Coderbyte is one of th
 </div>
 </div>
 
-<div id="outline-container-org3a4f69b" class="outline-3">
-<h3 id="org3a4f69b">Solution</h3>
-<div class="outline-text-3" id="text-org3a4f69b">
+<div id="outline-container-org67cb775" class="outline-3">
+<h3 id="org67cb775">Solution</h3>
+<div class="outline-text-3" id="text-org67cb775">
 <ul class="org-ul">
 <li><a href="https://leetcode.com/submissions/detail/1366207757/">2024-08-24 Coin Change II - Submission Detail - LeetCode</a> <code>leetcode.com</code></li>
 </ul>
@@ -173,10 +173,10 @@ testCases.forEach((test, index) =&gt; {
 </div>
 
 
-<div id="outline-container-org1ffd01f" class="outline-2">
-<h2 id="org1ffd01f">Results</h2>
-<div class="outline-text-2" id="text-org1ffd01f">
-<pre class="example" id="orgdb90240">
+<div id="outline-container-org7a3d2c7" class="outline-2">
+<h2 id="org7a3d2c7">Results</h2>
+<div class="outline-text-2" id="text-org7a3d2c7">
+<pre class="example" id="org97373ba">
 coins = [1,2,5]; amount='5'
 Initial dp:
 ┌─────────┬────────┐

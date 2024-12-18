@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2024-12-16 -->
+<!-- 2024-12-17 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>2025 Leetcode Plan</title>
@@ -28,7 +28,7 @@ Published 2024-12-16
 <li><a href="#main-topics-related-to-full-text-search-and-indexing-inspired-by-apache-lucene-concepts">10 Main Topics Related to Full-Text Search and Indexing (inspired by Apache Lucene concepts)</a></li>
 </ul>
 </li>
-<li><a href="#plan"><span class="done DONE">DONE</span> Plan</a></li>
+<li><a href="#plan">Plan</a></li>
 </ul>
 </div>
 </nav>
@@ -79,7 +79,7 @@ proximity-based queries.</li>
 </div>
 
 <div id="outline-container-plan" class="outline-2">
-<h2 id="plan"><span class="done DONE">DONE</span> Plan</h2>
+<h2 id="plan">Plan</h2>
 <div class="outline-text-2" id="text-plan">
 <p>
 <b>Relevant LeetCode Problems by Topic:</b>
@@ -130,7 +130,6 @@ frequency.</li>
 </ul></li>
 
 <li>Query Parsing and Expansion
-
 <ul class="org-ul">
 <li><i>Conceptual match:</i> Interpreting user queries and potentially expanding them.</li>
 <li>Problems:
@@ -145,7 +144,6 @@ dictionary.</li>
 </ul></li>
 
 <li>Fuzzy Search and Edit Distance
-
 <ul class="org-ul">
 <li><i>Conceptual match:</i> Handling approximate matches.</li>
 <li>Problems:
@@ -158,79 +156,71 @@ lookups.</li>
 </ul></li>
 </ul></li>
 
-<li><b>Prefix Trees (Tries) and Autocompletion</b>
-
+<li>Prefix Trees (Tries) and Autocompletion
 <ul class="org-ul">
 <li><i>Conceptual match:</i> Trie-based indexes are common for prefix searches and suggestions.</li>
 <li>Problems:
 <ul class="org-ul">
-<li class="off"><code>[&#xa0;]</code> <b>#208. Implement Trie (Prefix Tree)</b> &#x2013; Core structure for prefix indexing.</li>
-<li class="off"><code>[&#xa0;]</code> <b>#211. Add and Search Word</b> &#x2013; Extends trie concept to handle wildcard queries.</li>
-<li class="off"><code>[&#xa0;]</code> <b>#642. Design Search Autocomplete System</b> &#x2013; Autocomplete functionality using trie and frequency counts.</li>
-<li class="off"><code>[&#xa0;]</code> <b>#212. Word Search II</b> &#x2013; Uses a trie to efficiently find multiple words in a grid.</li>
-<li class="off"><code>[&#xa0;]</code> <b>#677. Map Sum Pairs</b> &#x2013; A trie-based approach to sum values for keys with shared prefixes.</li>
-<li class="off"><code>[&#xa0;]</code> <b>#745. Prefix and Suffix Search</b> &#x2013; Advanced trie usage combining prefix and suffix queries.</li>
+<li class="off"><code>[&#xa0;]</code> <a href="https://leetcode.com/problems/implement-trie-prefix-tree/description/">#208. Implement Trie (Prefix Tree)</a> &#x2013; Core structure for prefix indexing.</li>
+<li class="off"><code>[&#xa0;]</code> <a href="https://leetcode.com/problems/design-add-and-search-words-data-structure/description/">#211. Add and Search Word</a> &#x2013; Extends trie concept to handle wildcard queries.</li>
+<li class="off"><code>[&#xa0;]</code> <a href="https://algo.monster/liteproblems/642">#642. Design Search Autocomplete System</a> &#x2013; Autocomplete functionality using trie and frequency counts.</li>
+<li class="off"><code>[&#xa0;]</code> <a href="https://leetcode.com/problems/word-search-ii/description/">#212. Word Search II</a> &#x2013; Uses a trie to efficiently find multiple words in a grid.</li>
+<li class="off"><code>[&#xa0;]</code> <a href="https://leetcode.com/problems/map-sum-pairs/description/">#677. Map Sum Pairs</a> &#x2013; A trie-based approach to sum values for keys with shared prefixes.</li>
+<li class="off"><code>[&#xa0;]</code> <a href="https://leetcode.com/problems/prefix-and-suffix-search/description/">#745. Prefix and Suffix Search</a> &#x2013; Advanced trie usage combining prefix and suffix queries.</li>
 </ul></li>
 </ul></li>
 
-<li><b>Suffix Arrays / Suffix Trees and Advanced String Indexing</b>
-
+<li>Suffix Arrays / Suffix Trees and Advanced String Indexing
 <ul class="org-ul">
 <li><i>Conceptual match:</i> Data structures for fast substring queries.</li>
 <li>Problems:
 <ul class="org-ul">
-<li class="off"><code>[&#xa0;]</code> <b>#28. Implement strStr()</b> &#x2013; Basic substring search. Solutions often mention KMP or other efficient substring search
+<li class="off"><code>[&#xa0;]</code> <a href="https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/description/">#28. Implement strStr; Find the Index of the First Occurrence in a String</a> &#x2013; Basic substring search. Solutions often mention KMP or other efficient substring search
 methods.</li>
-<li class="off"><code>[&#xa0;]</code> <b>#1062. Longest Repeating Substring</b> &#x2013; Suffix array or suffix tree approaches can solve this efficiently.</li>
-<li class="off"><code>[&#xa0;]</code> <b>#30. Substring with Concatenation of All Words</b> &#x2013; Complex substring search problem mimicking multi-term indexing.</li>
-<li class="off"><code>[&#xa0;]</code> <b>#1044. Longest Duplicate Substring</b> &#x2013; Often solved with suffix arrays or suffix trees, mirroring complex indexing.</li>
-<li class="off"><code>[&#xa0;]</code> <b>#718. Maximum Length of Repeated Subarray</b> &#x2013; Another substring-related challenge, can be approached with advanced
+<li class="off"><code>[&#xa0;]</code> <a href="https://leetcode.com/problems/longest-repeating-substring/description/">#1062. Longest Repeating Substring</a> &#x2013; Suffix array or suffix tree approaches can solve this efficiently.</li>
+<li class="off"><code>[&#xa0;]</code> <a href="https://leetcode.com/problems/substring-with-concatenation-of-all-words/description/">#30. Substring with Concatenation of All Words</a> &#x2013; Complex substring search problem mimicking multi-term indexing.</li>
+<li class="off"><code>[&#xa0;]</code> <a href="https://leetcode.com/problems/longest-duplicate-substring/description/">#1044. Longest Duplicate Substring</a> &#x2013; Often solved with suffix arrays or suffix trees, mirroring complex indexing.</li>
+<li class="off"><code>[&#xa0;]</code> <a href="https://leetcode.com/problems/maximum-length-of-repeated-subarray/description/">#718. Maximum Length of Repeated Subarray</a> &#x2013; Another substring-related challenge, can be approached with advanced
 string structures.</li>
 </ul></li>
 </ul></li>
 
-<li><b>N-gram Indexing</b>
-
+<li>N-gram Indexing
 <ul class="org-ul">
 <li><i>Conceptual match:</i> Breaking text into chunks can mirror indexing terms in multi-word sequences.</li>
 <li>Problems:
 <ul class="org-ul">
-<li class="off"><code>[&#xa0;]</code> <b>#30. Substring with Concatenation of All Words</b> &#x2013; Searching for multiple words back-to-back is analogous to detecting
+<li class="off"><code>[&#xa0;]</code> <a href="https://leetcode.com/problems/substring-with-concatenation-of-all-words/description/">#30. Substring with Concatenation of All Words</a> &#x2013; Searching for multiple words back-to-back is analogous to detecting
 n-grams.</li>
-<li class="off"><code>[&#xa0;]</code> <b>#472. Concatenated Words</b> &#x2013; Identifying words formed by concatenating other words (akin to multi-gram analysis).</li>
-<li class="off"><code>[&#xa0;]</code> <b>#336. Palindrome Pairs</b> &#x2013; Involves complex substring checks and could be approached by indexing substrings or parts
+<li class="off"><code>[&#xa0;]</code> <a href="https://leetcode.com/problems/concatenated-words/description/">#472. Concatenated Words</a> &#x2013; Identifying words formed by concatenating other words (akin to multi-gram analysis).</li>
+<li class="off"><code>[&#xa0;]</code> <a href="https://leetcode.com/problems/palindrome-pairs/description/">#336. Palindrome Pairs</a> &#x2013; Involves complex substring checks and could be approached by indexing substrings or parts
 of words.</li>
-<li class="off"><code>[&#xa0;]</code> <b>#758. Bold Words in String</b> &#x2013; Highlighting occurrences of words can conceptually relate to identifying n-grams within
+<li class="off"><code>[&#xa0;]</code> <a href="https://leetcode.com/problems/bold-words-in-string/description/">#758. Bold Words in String</a> &#x2013; Highlighting occurrences of words can conceptually relate to identifying n-grams within
 text.</li>
 </ul></li>
 </ul></li>
 
-<li><b>Efficient Substring Search (KMP, Rabin-Karp)</b>
-
+<li>Efficient Substring Search (KMP, Rabin-Karp)
 <ul class="org-ul">
 <li><i>Conceptual match:</i> Core algorithms that can inspire indexing and retrieval strategies.</li>
 <li>Problems:
 <ul class="org-ul">
-<li class="off"><code>[&#xa0;]</code> <b>#28. Implement strStr()</b> &#x2013; Encourages knowledge of KMP or Rabin-Karp for efficient substring search.</li>
-<li class="off"><code>[&#xa0;]</code> <b>#438. Find All Anagrams in a String</b> &#x2013; Sliding window pattern matching, conceptually similar to scanning indexes.</li>
-<li class="off"><code>[&#xa0;]</code> <b>#28. Implement strStr()</b> &#x2013; Classic substring search with possible KMP or Rabin-Karp approaches.</li>
-<li class="off"><code>[&#xa0;]</code> <b>#459. Repeated Substring Pattern</b> &#x2013; Examines the internal structure of strings, training one's intuition on substring
+<li class="off"><code>[&#xa0;]</code> <a href="https://leetcode.com/problems/find-all-anagrams-in-a-string/description/">#438. Find All Anagrams in a String</a> &#x2013; Sliding window pattern matching, conceptually similar to scanning indexes.</li>
+<li class="off"><code>[&#xa0;]</code> <a href="https://leetcode.com/problems/repeated-substring-pattern/description/">#459. Repeated Substring Pattern</a> &#x2013; Examines the internal structure of strings, training one's intuition on substring
 patterns.</li>
 </ul></li>
 </ul></li>
 
-<li><b>Phrase Queries and Proximity Search</b>
-
+<li>Phrase Queries and Proximity Search
 <ul class="org-ul">
 <li><i>Conceptual match:</i> Finding sequences of terms close together.</li>
 <li>Problems:
 <ul class="org-ul">
-<li class="off"><code>[&#xa0;]</code> <b>#79. Word Search</b> &#x2013; Searching for a phrase (word) in a grid, akin to proximity search in a corpus.</li>
-<li class="off"><code>[&#xa0;]</code> <b>#212. Word Search II</b> &#x2013; Multiple word searches; tries can handle phrase-like queries efficiently.</li>
-<li class="off"><code>[&#xa0;]</code> <b>#76. Minimum Window Substring</b> &#x2013; Finding the smallest substring containing all required characters parallels
-proximity queries.</li>
-<li class="off"><code>[&#xa0;]</code> <b>#243. Shortest Word Distance</b> &#x2013; Compute minimal distance between words, analogous to checking proximity within text.</li>
-<li class="off"><code>[&#xa0;]</code> <b>#244. Shortest Word Distance II</b> &#x2013; Data structure design to quickly answer proximity queries between words.</li>
+<li class="off"><code>[&#xa0;]</code> <a href="https://leetcode.com/problems/word-search">#79. Word Search</a> &#x2013; Searching for a phrase (word) in a grid, akin to proximity search in a corpus.</li>
+<li class="off"><code>[&#xa0;]</code> <a href="https://leetcode.com/problems/word-search-ii">#212. Word Search II</a> &#x2013; Multiple word searches; tries can handle phrase-like queries efficiently.</li>
+<li class="off"><code>[&#xa0;]</code> <a href="https://leetcode.com/problems/minimum-window-substring">#76. Minimum Window Substring</a> &#x2013; Finding the smallest substring containing all required characters parallels proximity queries.</li>
+<li class="off"><code>[&#xa0;]</code> <a href="https://leetcode.com/problems/shortest-word-distance">#243. Shortest Word Distance</a> &#x2013; Compute minimal distance between words, analogous to checking proximity within text.</li>
+<li class="off"><code>[&#xa0;]</code> <a href="https://leetcode.com/problems/shortest-word-distance-ii">#244. Shortest Word Distance II</a> &#x2013; Data structure design to quickly answer proximity queries between words.</li>
 </ul></li>
 </ul></li>
 </ol>

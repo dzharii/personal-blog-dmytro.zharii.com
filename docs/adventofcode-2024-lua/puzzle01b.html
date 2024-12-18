@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2024-12-16 -->
+<!-- 2024-12-17 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Day 1: Historian Hysteria (Part 2)</title>
@@ -22,12 +22,12 @@ Published 2024-12-08
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgf5528fc">Day 1: Historian Hysteria (Part 2) - Calculating the Similarity Score</a>
+<li><a href="#org62a4e88">Day 1: Historian Hysteria (Part 2) - Calculating the Similarity Score</a>
 <ul>
-<li><a href="#orgc47672e">Problem Analysis</a></li>
-<li><a href="#orgbe30c0a">Example:</a></li>
-<li><a href="#org590704c">Solution Description</a></li>
-<li><a href="#org100cf3a">Implementation</a></li>
+<li><a href="#orgd05c76a">Problem Analysis</a></li>
+<li><a href="#orgb8317fd">Example:</a></li>
+<li><a href="#org71d05d7">Solution Description</a></li>
+<li><a href="#org6e6ac04">Implementation</a></li>
 </ul>
 </li>
 </ul>
@@ -35,9 +35,9 @@ Published 2024-12-08
 </nav>
 
 
-<div id="outline-container-orgf5528fc" class="outline-2">
-<h2 id="orgf5528fc">Day 1: Historian Hysteria (Part 2) - Calculating the Similarity Score</h2>
-<div class="outline-text-2" id="text-orgf5528fc">
+<div id="outline-container-org62a4e88" class="outline-2">
+<h2 id="org62a4e88">Day 1: Historian Hysteria (Part 2) - Calculating the Similarity Score</h2>
+<div class="outline-text-2" id="text-org62a4e88">
 <p>
 <a href="https://adventofcode.com/2024/day/1">2024-12-14 Day 1 - Advent of Code 2024</a> <code>adventofcode.com</code>
 </p>
@@ -48,9 +48,9 @@ This time, the Elvish Senior Historians aim to compute a <b>similarity score</b>
 </p>
 </div>
 
-<div id="outline-container-orgc47672e" class="outline-3">
-<h3 id="orgc47672e">Problem Analysis</h3>
-<div class="outline-text-3" id="text-orgc47672e">
+<div id="outline-container-orgd05c76a" class="outline-3">
+<h3 id="orgd05c76a">Problem Analysis</h3>
+<div class="outline-text-3" id="text-orgd05c76a">
 <p>
 Given two lists of numbers (left list and right list), the goal is to calculate a <b>similarity score</b>
 by following these rules:
@@ -64,9 +64,9 @@ by following these rules:
 </div>
 </div>
 
-<div id="outline-container-orgbe30c0a" class="outline-3">
-<h3 id="orgbe30c0a">Example:</h3>
-<div class="outline-text-3" id="text-orgbe30c0a">
+<div id="outline-container-orgb8317fd" class="outline-3">
+<h3 id="orgb8317fd">Example:</h3>
+<div class="outline-text-3" id="text-orgb8317fd">
 <p>
 Left List:  [3, 4, 2, 1, 3, 3]
 Right List: [4, 3, 5, 3, 9, 3]
@@ -90,9 +90,9 @@ The total similarity score = 9 + 4 + 0 + 0 + 9 + 9 = 31
 </div>
 </div>
 
-<div id="outline-container-org590704c" class="outline-3">
-<h3 id="org590704c">Solution Description</h3>
-<div class="outline-text-3" id="text-org590704c">
+<div id="outline-container-org71d05d7" class="outline-3">
+<h3 id="org71d05d7">Solution Description</h3>
+<div class="outline-text-3" id="text-org71d05d7">
 <p>
 To compute the similarity score, follow these steps:
 </p>
@@ -158,9 +158,9 @@ Right List: [4, 3, 5, 3, 9, 3]
 </div>
 
 
-<div id="outline-container-org100cf3a" class="outline-3">
-<h3 id="org100cf3a">Implementation</h3>
-<div class="outline-text-3" id="text-org100cf3a">
+<div id="outline-container-org6e6ac04" class="outline-3">
+<h3 id="org6e6ac04">Implementation</h3>
+<div class="outline-text-3" id="text-org6e6ac04">
 <div class="org-src-container">
 <pre class="src src-lua">
 --- Calculates the similarity score between two lists of numbers.
@@ -245,7 +245,7 @@ end
 </div>
 
 
-<pre class="example" id="orgf02290d">
+<pre class="example" id="org8c64a92">
 : Similarity score: 23046913
 </pre>
 </div>
