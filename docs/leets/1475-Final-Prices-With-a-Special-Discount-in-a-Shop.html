@@ -1,0 +1,159 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2024-12-17 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>1475. Final Prices With a Special Discount in a Shop</title>
+<meta name="author" content="d)zharii" />
+<meta name="generator" content="Org Mode" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/t.css"/>
+</head>
+<body>
+<nav><a href="/" tabindex="0">&larrhk; Back to Index</a></nav><div id="preamble" class="status">
+Published 2024-12-17
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">1475. Final Prices With a Special Discount in a Shop</h1>
+<p class="subtitle" role="doc-subtitle">leetcode</p>
+</header><nav id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orge1ce6dc">Problem</a></li>
+<li><a href="#org4b4391f">Solution Description</a></li>
+<li><a href="#org4362c0d">Example</a></li>
+<li><a href="#orga33897e">References</a></li>
+<li><a href="#orgc595eed">Solution</a></li>
+</ul>
+</div>
+</nav>
+
+<div id="outline-container-orge1ce6dc" class="outline-2">
+<h2 id="orge1ce6dc">Problem</h2>
+<div class="outline-text-2" id="text-orge1ce6dc">
+<p>
+Given an array <code>prices</code> where <code>prices[i]</code> is the price of the <code>i</code>-th item in a shop. There's a special discount for the item, which you will receive when you buy it: the discount will be equal to the cost of the next item later in the line which has a smaller or equal price than the current item. If there is no such item, you will not receive any discount at that time. Return an array where the <code>i</code>-th element is the final price you will pay for the <code>i</code>-th item of the shop considering the special discount.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org4b4391f" class="outline-2">
+<h2 id="org4b4391f">Solution Description</h2>
+<div class="outline-text-2" id="text-org4b4391f">
+<p>
+To implement the solution, we need to iterate over each item in the <code>prices</code> array and for each item, check the subsequent items to find the first one that has a price less than or equal to the current item's price. The difference between the current item's price and this found price will be the discounted price. If no such item is found, the item price remains unaffected. We can achieve this with a simple nested loop:
+</p>
+
+<ol class="org-ol">
+<li>Loop through each item in the <code>prices</code> array using a variable <code>i</code>.</li>
+<li>For each <code>i</code>, loop through the subsequent items using another variable <code>j</code>.</li>
+<li>If <code>prices[j] &lt;</code> prices[i]=, apply the discount by setting <code>finalPrices[i]</code> to <code>prices[i] - prices[j]</code> and break the inner loop.</li>
+<li>If no such <code>j</code> is found, <code>finalPrices[i]</code> remains <code>prices[i]</code>.</li>
+<li>Return the computed <code>finalPrices</code> array.</li>
+</ol>
+
+<p>
+The time complexity of this solution is O(n<sup>2</sup>) where <code>n</code> is the number of items because, in the worst case, for each item, we might have to look at all remaining items. The space complexity is O(1) if we modify the prices array in place to save space, otherwise it is O(n) for storing the result in a new array.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org4362c0d" class="outline-2">
+<h2 id="org4362c0d">Example</h2>
+<div class="outline-text-2" id="text-org4362c0d">
+<p>
+Consider the array of prices = [8, 4, 6, 2, 3].
+</p>
+<ul class="org-ul">
+<li>For the price <code>8</code> at the first position, the first smaller price is <code>4</code> (at the second position), so the discounted price is <code>8-4</code> which is <code>4</code>.</li>
+<li>For the price <code>4</code>, the first smaller price is <code>2</code>, so the discounted price is <code>4-2</code> which is <code>2</code>.</li>
+<li>For the price <code>6</code>, the first smaller price is <code>2</code>, so the discounted price is <code>6-2</code> which is <code>4</code>.</li>
+<li>For the price <code>2</code>, there are no smaller prices later, so the price remains <code>2</code>.</li>
+<li>For the price <code>3</code>, there are no smaller prices later, so the price remains <code>3</code>.</li>
+</ul>
+<p>
+Thus, the final prices to be returned are = [4, 2, 4, 2, 3] =.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga33897e" class="outline-2">
+<h2 id="orga33897e">References</h2>
+<div class="outline-text-2" id="text-orga33897e">
+<p>
+For this problem, no specific frameworks or well-known algorithms are directly applicable. However, similar techniques for optimizing array traversals like using stacks can be explored for related problems. See also stack-based solutions for "next greater element" problems in coding platforms.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc595eed" class="outline-2">
+<h2 id="orgc595eed">Solution</h2>
+<div class="outline-text-2" id="text-orgc595eed">
+<p>
+<a href="https://leetcode.com/submissions/detail/1481723432/">2024-12-18 Final Prices With a Special Discount in a Shop - Submission Detail - LeetCode</a> <code>leetcode.com</code>
+</p>
+
+<p>
+Below is a general framework to solve the problem and a setup for unit testing using JavaScript.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">
+/**
+ * Computes the final prices with special discount.
+ * @param {number[]} prices - Array of prices.
+ * @return {number[]} Final prices taking into account the special discount.
+ */
+function finalPrices(prices) {
+    // Helper function to display logs and tables if not in a restricted environment
+    const log = typeof NestedInteger !== 'undefined' ? () =&gt; {} : console.log;
+    const table = typeof NestedInteger!== 'undefined' ? () =&gt; {} : console.table;
+
+    if (prices.length &lt; 2) return prices;
+
+    const result = [];
+    for (let i = 0; i &lt; prices.length - 1; i++) {
+        let hasDiscount = false;
+        for (let j = i + 1; j &lt; prices.length; j++) {
+            if (prices[i] &gt;= prices[j]) {
+                result.push(prices[i] - prices[j]);
+                hasDiscount = true;
+                break;
+            }
+        }
+        if (!hasDiscount) {
+            result.push(prices[i]);
+        }
+    }
+    result.push(prices[prices.length - 1]);
+    table(result);
+    return result;
+}
+
+// Test cases
+const testCases = [
+    { prices: [8, 4, 6, 2, 3], expected: [4, 2, 4, 2, 3] },
+    { prices: [1, 2, 3, 4, 5], expected: [1, 2, 3, 4, 5] },
+    { prices: [10, 1, 1, 6], expected: [9, 0, 1, 6] },
+    { prices: [5, 8, 3, 10, 1], expected: [2,5,2,9,1] },
+    { prices: [9, 4, 9, 1, 3], expected: [5, 3, 8, 1, 3] }
+];
+
+testCases.forEach((test, index) =&gt; {
+    const result = finalPrices(test.prices);
+    console.log(`Test Case ${index + 1}: ${result.toString() === test.expected.toString() ? 'Passed' : 'Failed'}` +
+    ` (Expected: [${test.expected}], Got: [${result}])`);
+});
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+&copy; d)zharii. <a href="/sitemap.html">sitemap</a>
+</div>
+</body>
+</html>

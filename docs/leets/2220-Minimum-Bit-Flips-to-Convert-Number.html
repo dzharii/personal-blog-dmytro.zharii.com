@@ -22,18 +22,18 @@ Published 2024-09-16
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org84550c2">Problem</a></li>
-<li><a href="#orge4cf40f">Solution Description</a></li>
-<li><a href="#org8746e01">Example</a></li>
-<li><a href="#orgf0385f2">References</a></li>
-<li><a href="#orga539d08">Solution</a></li>
+<li><a href="#org2abcca0">Problem</a></li>
+<li><a href="#org6c58e17">Solution Description</a></li>
+<li><a href="#orgc01e1ff">Example</a></li>
+<li><a href="#org787eac6">References</a></li>
+<li><a href="#org98c8405">Solution</a></li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-org84550c2" class="outline-2">
-<h2 id="org84550c2">Problem</h2>
-<div class="outline-text-2" id="text-org84550c2">
+<div id="outline-container-org2abcca0" class="outline-2">
+<h2 id="org2abcca0">Problem</h2>
+<div class="outline-text-2" id="text-org2abcca0">
 <p>
 Given two integers start and goal, return the minimum number of bit flips to convert start to goal.
 </p>
@@ -45,9 +45,9 @@ Submission:
 </div>
 </div>
 
-<div id="outline-container-orge4cf40f" class="outline-2">
-<h2 id="orge4cf40f">Solution Description</h2>
-<div class="outline-text-2" id="text-orge4cf40f">
+<div id="outline-container-org6c58e17" class="outline-2">
+<h2 id="org6c58e17">Solution Description</h2>
+<div class="outline-text-2" id="text-org6c58e17">
 <p>
 To implement the solution, we need to determine the number of differing bits (i.e., bit flips) between the binary representations of `start` and `goal`. We can achieve this as follows:
 </p>
@@ -67,9 +67,9 @@ The overall approach is efficient:
 </div>
 </div>
 
-<div id="outline-container-org8746e01" class="outline-2">
-<h2 id="org8746e01">Example</h2>
-<div class="outline-text-2" id="text-org8746e01">
+<div id="outline-container-orgc01e1ff" class="outline-2">
+<h2 id="orgc01e1ff">Example</h2>
+<div class="outline-text-2" id="text-orgc01e1ff">
 <p>
 Let's take the example:
 </p>
@@ -92,9 +92,9 @@ Thus, the minimum number of bit flips needed is 3.
 </div>
 </div>
 
-<div id="outline-container-orgf0385f2" class="outline-2">
-<h2 id="orgf0385f2">References</h2>
-<div class="outline-text-2" id="text-orgf0385f2">
+<div id="outline-container-org787eac6" class="outline-2">
+<h2 id="org787eac6">References</h2>
+<div class="outline-text-2" id="text-org787eac6">
 <ul class="org-ul">
 <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_AND">Bit Manipulation in JavaScript</a></li>
 <li><a href="https://en.wikipedia.org/wiki/Hamming_weight">Counting Bits Hack</a></li>
@@ -102,9 +102,9 @@ Thus, the minimum number of bit flips needed is 3.
 </div>
 </div>
 
-<div id="outline-container-orga539d08" class="outline-2">
-<h2 id="orga539d08">Solution</h2>
-<div class="outline-text-2" id="text-orga539d08">
+<div id="outline-container-org98c8405" class="outline-2">
+<h2 id="org98c8405">Solution</h2>
+<div class="outline-text-2" id="text-org98c8405">
 <div class="org-src-container">
 <pre class="src src-js">/**
  * Calculate the minimum number of bit flips to convert one number to another.

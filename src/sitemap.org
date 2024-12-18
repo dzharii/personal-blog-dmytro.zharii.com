@@ -90,3 +90,4 @@
   - [[file:leets/2257-Count-Unguarded-Cells-in-the-Grid.org][2257. Count Unguarded Cells in the Grid]]
   - [[file:leets/3264-Final-Array-State-After-K-Multiplication-Operations-I.org][3264. Final Array State After K Multiplication Operations I]]
   - [[file:leets/2025 Leetcode Plan.org][2025 Leetcode Plan]]
+  - [[file:leets/1475-Final-Prices-With-a-Special-Discount-in-a-Shop.org][1475. Final Prices With a Special Discount in a Shop]]
