@@ -1,0 +1,245 @@
+#+title: Mastering the Min-Heap: How to Implement One in JavaScript
+#+subtitle: docs
+#+date: <2024-12-28>
+#+language: en
+
+
+** Intro
+:PROPERTIES:
+:CUSTOM_ID: intro-mastering-the-min-heap-how-to-implement-one-in-javascript
+:END:
+Imagine you're tasked with sorting tasks by priority -- always handling the smallest one first. This scenario is the essence of a
+*min-heap*, a powerful data structure used in scheduling, priority queues, and algorithms like Dijkstra's and A*. If you're
+tackling coding problems like "Top K Frequent Elements" or "Kth Smallest Element in a Sorted Matrix," mastering the min-heap is a
+must.
+
+This article walks you step by step through implementing a min-heap in JavaScript, breaking it into simple, digestible parts to
+help you *memorize and truly understand* the solution.
+
+
+** *What is a Min-Heap?*
+:PROPERTIES:
+:CUSTOM_ID: what-is-a-min-heap
+:END:
+A *min-heap* is a binary tree where: 1. *Parent nodes are smaller than their children.* 2. The smallest element is always at the
+root.
+
+Min-heaps are often implemented using arrays for efficiency, and their structure ensures: - *Insertion*: (O(\log n)) - *Removal
+(extract min)*: (O(\log n)) - *Accessing the min*: (O(1))
+
+*** Real-World Analogy:
+:PROPERTIES:
+:CUSTOM_ID: real-world-analogy
+:END:
+Think of a min-heap as a to-do list where the highest-priority task (smallest value) is always on top. As tasks are added and
+completed, the list reorganizes itself to keep priorities straight.
+
+
+** *Step-by-Step Implementation*
+:PROPERTIES:
+:CUSTOM_ID: step-by-step-implementation
+:END:
+Let's build a =MinHeap= class in JavaScript.
+
+*** *1. Representing the Heap with an Array*
+:PROPERTIES:
+:CUSTOM_ID: representing-the-heap-with-an-array
+:END:
+We use an array to store the heap: - For a node at index =i=: - *Left child*: (2i + 1) - *Right child*: (2i + 2) - *Parent*:
+(\lfloor(i - 1) / 2\rfloor)
+
+*** *2. Core Operations*
+:PROPERTIES:
+:CUSTOM_ID: core-operations
+:END:
+A min-heap supports three main operations: 1. *Insert*: Add an element to the heap and "bubble it up" to maintain the min-heap
+property. 2. *Extract Min*: Remove the smallest element (root) and reorganize the heap by "bubbling down." 3. *Peek*: Return the
+smallest element without removing it.
+
+
+*** Full Code Implementation
+:PROPERTIES:
+:CUSTOM_ID: full-code-implementation
+:END:
+Here's the complete implementation:
+
+#+begin_src js :tangle "min-heap-org-MinHeap.js"
+class MinHeap {
+  constructor() {
+    this.heap = []; // Array to store heap elements
+  }
+
+  // Get the size of the heap
+  size() {
+    return this.heap.length;
+  }
+
+  // Peek at the smallest element
+  peek() {
+    return this.heap[0];
+  }
+
+  // Insert a new element into the heap
+  insert(val) {
+    this.heap.push(val); // Add the value to the end
+    this.bubbleUp(); // Restore heap property
+  }
+
+  // Remove and return the smallest element
+  extractMin() {
+    if (this.size() === 0) return null;
+    if (this.size() === 1) return this.heap.pop();
+
+    const min = this.heap[0]; // The root (smallest element)
+    this.heap[0] = this.heap.pop(); // Replace root with last element
+    this.bubbleDown(); // Restore heap property
+    return min;
+  }
+
+  // Restore heap property by bubbling up
+  bubbleUp() {
+    let index = this.heap.length - 1; // Start at the last element
+    const current = this.heap[index];
+
+    while (index > 0) {
+      const parentIndex = Math.floor((index - 1) / 2);
+      const parent = this.heap[parentIndex];
+
+      if (current >= parent) break; // If heap property is satisfied, stop
+
+      // Swap current and parent
+      this.heap[index] = parent;
+      index = parentIndex;
+    }
+
+    this.heap[index] = current; // Place the current value in its final position
+  }
+
+  // Restore heap property by bubbling down
+  bubbleDown() {
+    let index = 0; // Start at the root
+    const length = this.heap.length;
+    const current = this.heap[index];
+
+    while (true) {
+      const leftIndex = 2 * index + 1;
+      const rightIndex = 2 * index + 2;
+      let smallest = index;
+
+      // Check if the left child is smaller
+      if (leftIndex < length && this.heap[leftIndex] < this.heap[smallest]) {
+        smallest = leftIndex;
+      }
+
+      // Check if the right child is smaller
+      if (rightIndex < length && this.heap[rightIndex] < this.heap[smallest]) {
+        smallest = rightIndex;
+      }
+
+      if (smallest === index) break; // If no swaps are needed, stop
+
+      // Swap current and smallest
+      this.heap[index] = this.heap[smallest];
+      index = smallest;
+    }
+
+    this.heap[index] = current; // Place the current value in its final position
+  }
+}
+#+end_src
+
+
+** *Breaking Down the Key Methods*
+:PROPERTIES:
+:CUSTOM_ID: breaking-down-the-key-methods
+:END:
+*** *1. =insert(val)=*
+:PROPERTIES:
+:CUSTOM_ID: insertval
+:END:
+1. Add the new value to the end of the array.
+2. Restore the min-heap property by *bubbling up*:
+   - Compare the new value with its parent.
+   - Swap if necessary.
+   - Repeat until the value is in the correct position.
+
+*** *2. =extractMin()=*
+:PROPERTIES:
+:CUSTOM_ID: extractmin
+:END:
+1. Replace the root with the last element in the array.
+2. Remove the last element.
+3. Restore the min-heap property by *bubbling down*:
+   - Compare the new root with its children.
+   - Swap with the smaller child if necessary.
+   - Repeat until the root is in the correct position.
+
+*** *3. =bubbleUp()=*
+:PROPERTIES:
+:CUSTOM_ID: bubbleup
+:END:
+Ensures the new element at the end of the array is in the correct position: - Traverse up the tree by repeatedly swapping with the
+parent if the child is smaller.
+
+*** *4. =bubbleDown()=*
+:PROPERTIES:
+:CUSTOM_ID: bubbledown
+:END:
+Ensures the root element is in the correct position: - Traverse down the tree by repeatedly swapping with the smaller child if the
+parent is larger.
+
+
+** *Example Usage*
+:PROPERTIES:
+:CUSTOM_ID: example-usage
+:END:
+#+begin_src js :tangle "min-heap-org-MinHeap-sample.js"
+const minHeap = new MinHeap();
+
+minHeap.insert(10);
+minHeap.insert(15);
+minHeap.insert(20);
+minHeap.insert(17);
+
+console.log(minHeap.peek()); // Output: 10
+
+console.log(minHeap.extractMin()); // Output: 10
+console.log(minHeap.peek()); // Output: 15
+
+minHeap.insert(5);
+console.log(minHeap.peek()); // Output: 5
+#+end_src
+
+
+** *Tips for Memorizing and Understanding*
+:PROPERTIES:
+:CUSTOM_ID: tips-for-memorizing-and-understanding
+:END:
+1. Visualize:
+   - Draw the binary tree representation of the heap as you perform insertions and extractions.
+   - Use the array indices to understand parent-child relationships.
+2. Practice Step-by-Step:
+   - Manually walk through =insert= and =extractMin= for small arrays to see how the heap reorganizes.
+3. Key Patterns to Remember:
+   - Parent-child relationships: ( \text{Parent} = \lfloor(i - 1) / 2\rfloor ), ( \text{Left} = 2i + 1 ), ( \text{Right} = 2i + 2 ).
+   - Bubbling up: Compare child with parent.
+   - Bubbling down: Compare parent with children.
+4. Understand Applications:
+   - Recognize scenarios where a min-heap is useful, such as finding the smallest element in dynamic datasets or implementing
+     priority queues.
+
+
+** *Conclusion*
+:PROPERTIES:
+:CUSTOM_ID: conclusion
+:END:
+A min-heap is a versatile data structure that is invaluable for solving numerous algorithmic problems. By understanding the core
+operations -- =insert=, =extractMin=, and =peek= -- and practicing the implementation, you'll gain confidence in applying it to
+real-world coding challenges.
+
+Now, implement your own min-heap and test it on problems like: 
+
+- "Kth Smallest Element in a Sorted Matrix" (LeetCode #378) 
+- "Top K Frequent Elements" (LeetCode #347)
+
+Happy coding!
