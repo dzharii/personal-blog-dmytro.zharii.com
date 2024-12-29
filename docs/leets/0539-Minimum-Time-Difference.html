@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2024-12-17 -->
+<!-- 2024-12-28 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>0539. Minimum Time Difference</title>
@@ -22,18 +22,18 @@ Published 2024-09-16
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org44e403e">Problem</a></li>
-<li><a href="#orge761d5d">Solution Description</a></li>
-<li><a href="#org9f53ecb">Example</a></li>
-<li><a href="#org49825ca">References</a></li>
-<li><a href="#org099cdae">Solution</a></li>
+<li><a href="#org3bab541">Problem</a></li>
+<li><a href="#org29979b3">Solution Description</a></li>
+<li><a href="#orge9b826f">Example</a></li>
+<li><a href="#orgec42aff">References</a></li>
+<li><a href="#org9081476">Solution</a></li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-org44e403e" class="outline-2">
-<h2 id="org44e403e">Problem</h2>
-<div class="outline-text-2" id="text-org44e403e">
+<div id="outline-container-org3bab541" class="outline-2">
+<h2 id="org3bab541">Problem</h2>
+<div class="outline-text-2" id="text-org3bab541">
 <p>
 Given a list of 24-hour clock times in the format "HH:MM", return the minimum difference in minutes between any two time points in the list.
 </p>
@@ -48,9 +48,9 @@ To make the problem clear, let's break down the requirements:
 </div>
 </div>
 
-<div id="outline-container-orge761d5d" class="outline-2">
-<h2 id="orge761d5d">Solution Description</h2>
-<div class="outline-text-2" id="text-orge761d5d">
+<div id="outline-container-org29979b3" class="outline-2">
+<h2 id="org29979b3">Solution Description</h2>
+<div class="outline-text-2" id="text-org29979b3">
 <p>
 To implement the solution, we need to take the following steps:
 </p>
@@ -67,9 +67,9 @@ The expected time complexity will be O(n log n) because of the sorting step, whe
 </div>
 </div>
 
-<div id="outline-container-org9f53ecb" class="outline-2">
-<h2 id="org9f53ecb">Example</h2>
-<div class="outline-text-2" id="text-org9f53ecb">
+<div id="outline-container-orge9b826f" class="outline-2">
+<h2 id="orge9b826f">Example</h2>
+<div class="outline-text-2" id="text-orge9b826f">
 <p>
 Given the list of time points: ["23:59", "00:00"]
 </p>
@@ -82,9 +82,9 @@ Given the list of time points: ["23:59", "00:00"]
 </div>
 </div>
 
-<div id="outline-container-org49825ca" class="outline-2">
-<h2 id="org49825ca">References</h2>
-<div class="outline-text-2" id="text-org49825ca">
+<div id="outline-container-orgec42aff" class="outline-2">
+<h2 id="orgec42aff">References</h2>
+<div class="outline-text-2" id="text-orgec42aff">
 <ul class="org-ul">
 <li>Known algorithms: Sorting</li>
 <li><a href="https://en.wikipedia.org/wiki/Sorting_algorithm">Sorting algorithms overview</a></li>
@@ -92,9 +92,9 @@ Given the list of time points: ["23:59", "00:00"]
 </div>
 </div>
 
-<div id="outline-container-org099cdae" class="outline-2">
-<h2 id="org099cdae">Solution</h2>
-<div class="outline-text-2" id="text-org099cdae">
+<div id="outline-container-org9081476" class="outline-2">
+<h2 id="org9081476">Solution</h2>
+<div class="outline-text-2" id="text-org9081476">
 <div class="org-src-container">
 <pre class="src src-js">
 // Main function to find minimum time difference

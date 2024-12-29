@@ -1,0 +1,304 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2024-12-28 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>0347. Top K Frequent Elements</title>
+<meta name="author" content="d)zharii" />
+<meta name="generator" content="Org Mode" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/t.css"/>
+</head>
+<body>
+<nav><a href="/" tabindex="0">&larrhk; Back to Index</a></nav><div id="preamble" class="status">
+Published 2024-12-28
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">0347. Top K Frequent Elements</h1>
+<p class="subtitle" role="doc-subtitle">leetcode</p>
+</header><nav id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org31d165d">Problem</a>
+<ul>
+<li><a href="#orge4e93f9">Solution Description</a></li>
+<li><a href="#org312baa3">Example</a></li>
+<li><a href="#orgd2134d7">References</a></li>
+<li><a href="#org8d77138">Solution</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</nav>
+
+<div id="outline-container-org31d165d" class="outline-2">
+<h2 id="org31d165d">Problem</h2>
+<div class="outline-text-2" id="text-org31d165d">
+<p>
+Given an integer array <code>nums</code> and an integer <code>k</code>, return the <code>k</code> most frequent elements.
+You may assume that the answer is unique, and you may return the answer in any order.
+</p>
+
+<ul class="org-ul">
+<li>For example:
+<ul class="org-ul">
+<li>Input: <code>nums = [1,1,1,2,2,3]</code>, <code>k = 2</code></li>
+<li>Output: <code>[1,2]</code></li>
+</ul></li>
+</ul>
+</div>
+
+<div id="outline-container-orge4e93f9" class="outline-3">
+<h3 id="orge4e93f9">Solution Description</h3>
+<div class="outline-text-3" id="text-orge4e93f9">
+<p>
+To implement the solution to this problem, we need to follow these steps:
+</p>
+
+<ul class="org-ul">
+<li>First, count the frequency of each element in the array; this can be efficiently done using a JavaScript <code>Map</code> or <code>Object</code>.</li>
+<li>Create an array of numbers frequency entries, which will store numbers of similar frequency together.</li>
+<li>Iterate over the frequency count and populate the frequency array.</li>
+<li>Make use of a heap (priority queue) that enables us to keep track of the top <code>k</code> elements with greatest frequency efficiently.</li>
+<li>Use this heap to determine the <code>k</code> most frequent elements, and return them as a result.</li>
+<li>Time Complexity: <code>O(N log k)</code>, where <code>N</code> is the number of elements in <code>nums</code>. We iterate <code>nums</code> once to populate the frequency map, then we perform <code>k</code> operations.</li>
+<li>Space Complexity: <code>O(N)</code>, storing frequency counts and heap of <code>k</code> elements.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org312baa3" class="outline-3">
+<h3 id="org312baa3">Example</h3>
+<div class="outline-text-3" id="text-org312baa3">
+<p>
+Consider <code>nums = [1,1,1,2,2,3]</code> and <code>k=2</code>.
+</p>
+<ul class="org-ul">
+<li>Count frequencies: <code>1: 3</code>, <code>2: 2</code>, <code>3: 1</code></li>
+<li>Use the bucket sort principle to arrange based on occurrence frequency.</li>
+<li>Select the top <code>k=2</code> elements from the most frequent to least in the list: they are <code>1</code> and <code>2</code>.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgd2134d7" class="outline-3">
+<h3 id="orgd2134d7">References</h3>
+<div class="outline-text-3" id="text-orgd2134d7">
+<ul class="org-ul">
+<li>Map data structure: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">MDN Map Documentation</a></li>
+<li>Heap data structure: See <a href="https://en.wikipedia.org/wiki/Heap_(data_structure)">https://en.wikipedia.org/wiki/Heap_(data_structure)</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org8d77138" class="outline-3">
+<h3 id="org8d77138">Solution</h3>
+<div class="outline-text-3" id="text-org8d77138">
+<p>
+Here is the skeleton of the solution with the helper functions that are necessary to approach the problem:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">/**
+ * BoundedMaxHeap - A data structure that maintains the largest element at the root.
+ * Enforces a maximum size, discarding smaller elements when full.
+ */
+class BoundedMaxHeap {
+    /**
+     * Creates a MaxHeap instance.
+     * @param {number} maxHeapSize - Maximum number of elements the heap can hold.
+     * @param {function} cmp - Comparison function to determine the heap order. Should return a positive number if the first argument is larger, 0 if equal, and a negative number if smaller.
+     * @throws {Error} If maxHeapSize is not greater than 0.
+     */
+    constructor(maxHeapSize, cmp) {
+        if (maxHeapSize &lt;= 0) {
+            throw new Error('MaxHeap maxHeapSize must be greater than 0.');
+        }
+        if (typeof cmp !== 'function') {
+            throw new Error('A valid comparison function must be provided.');
+        }
+        this.heap = []; // Array to store heap elements
+        this.maxHeapSize = maxHeapSize;
+        this.cmp = cmp; // Comparison function for ordering
+    }
+
+    /**
+     * Gets the current size of the heap.
+     * @returns {number} - The number of elements in the heap.
+     */
+    size() {
+        return this.heap.length;
+    }
+
+    /**
+     * Returns the largest element in the heap without removing it.
+     * @returns {*} - The largest element, or null if the heap is empty.
+     */
+    peek() {
+        return this.heap.length &gt; 0 ? this.heap[0] : null;
+    }
+
+    /**
+     * Inserts a new value into the heap. If the heap is full and the new value
+     * is larger than the smallest element, it replaces the smallest element.
+     * @param {*} val - The value to insert.
+     */
+    insert(val) {
+        if (this.size() &lt; this.maxHeapSize) {
+            this.heap.push(val);
+            this.bubbleUp();
+        } else if (this.cmp(val, this.heap[0]) &gt; 0) {
+            this.heap[0] = val;
+            this.bubbleDown();
+        }
+    }
+
+    /**
+     * Removes and returns the largest element from the heap.
+     * @returns {*} - The largest element, or null if the heap is empty.
+     */
+    extractMax() {
+        if (this.size() === 0) return null;
+        if (this.size() === 1) return this.heap.pop();
+
+        const max = this.heap[0];
+        this.heap[0] = this.heap.pop();
+        this.bubbleDown();
+        return max;
+    }
+
+    /**
+     * Restores the heap property by moving the last inserted element upwards
+     * until the heap condition is satisfied.
+     * @private
+     */
+    bubbleUp() {
+        let index = this.heap.length - 1;
+        const currentValue = this.heap[index];
+
+        while (index &gt; 0) {
+            const parentIndex = Math.floor((index - 1) / 2);
+            const parentValue = this.heap[parentIndex];
+
+            if (this.cmp(currentValue, parentValue) &lt;= 0) break;
+
+            this.heap[index] = parentValue;
+            index = parentIndex;
+        }
+
+        this.heap[index] = currentValue;
+    }
+
+    /**
+     * Restores the heap property by moving the root element downwards
+     * until the heap condition is satisfied.
+     * @private
+     */
+    bubbleDown() {
+        let index = 0;
+        const length = this.heap.length;
+        const current = this.heap[index];
+
+        while (true) {
+            const leftIndex = 2 * index + 1;
+            const rightIndex = 2 * index + 2;
+            let largestIndex = index;
+
+            if (leftIndex &lt; length &amp;&amp; this.cmp(this.heap[leftIndex], this.heap[largestIndex]) &gt; 0) {
+                largestIndex = leftIndex;
+            }
+
+            if (rightIndex &lt; length &amp;&amp; this.cmp(this.heap[rightIndex], this.heap[largestIndex]) &gt; 0) {
+                largestIndex = rightIndex;
+            }
+
+            if (largestIndex === index) break;
+
+            this.heap[index] = this.heap[largestIndex];
+            index = largestIndex;
+        }
+
+        this.heap[index] = current;
+    }
+}
+
+/**
+ * Main function to find the top k frequent elements.
+ * @param {number[]} nums - An array of integers.
+ * @param {number} k - Number of top elements to return.
+ * @return {number[]} Top k frequent elements.
+ */
+function topKFrequent(nums, k) {
+    const log = typeof NestedInteger !== 'undefined' ? () =&gt; {} : console.log;
+    const table = typeof NestedInteger !== 'undefined' ? () =&gt; {} : console.table;
+
+    log(`Input nums: ${nums}, k: ${k}`);
+
+    // build num frequency histogram
+    const freq = {};
+
+    for (const el of nums) {
+        freq[el] = el in freq ? freq[el] + 1 : 1;
+    }
+
+    log('frequency map:')
+    table(freq);
+
+    // push to the heap
+
+    const freqValueIndex = 1;
+    const freqKeyIndex = 0;
+
+    const freqCompare = (pairA, pairB) =&gt; pairA[freqValueIndex] - pairB[freqValueIndex];
+
+    const maxHeap = new BoundedMaxHeap(k, freqCompare);
+
+    for (const freqKey of Object.keys(freq)) {
+        const item = [Number(freqKey), freq[freqKey]];
+        maxHeap.insert(item);
+    }
+
+    log(`maxHeap = ${JSON.stringify(maxHeap, null, 4)}`);
+
+    const result = [];
+
+    {
+        let item;
+        while (item = maxHeap.extractMax()) {
+            result.push(item[freqKeyIndex]);
+        }
+    }
+
+    log(`result = ${result}`);
+
+    return result;
+}
+
+// Test cases to verify the solution
+const testCases = [
+    { nums: [1,1,1,2,2,3], k: 2, expected: [1, 2] },
+    { nums: [1], k: 1, expected: [1] },
+    { nums: [1,2,3,1,2,4,4,4,4], k: 1, expected: [4] },
+    { nums: [1,2,3,4,4,5,6,7,8,9,9,9,9], k: 2, expected: [9, 4] },
+    { nums: [4,5,6,7,7,7,8,8,9,9,9,9], k: 3, expected: [9, 7, 8] }
+];
+
+testCases.forEach((test, index) =&gt; {
+    console.log(`\nTest Case ${index + 1}: STARTED`);
+    const result = topKFrequent(test.nums, test.k);
+    console.log(`Test Case ${index + 1}: ${result.sort().toString() === test.expected.sort().toString() ? 'Passed' : 'Failed'} (Expected: ${test.expected}, Got: ${result})`);
+});
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+&copy; d)zharii. <a href="/sitemap.html">sitemap</a>
+</div>
+</body>
+</html>

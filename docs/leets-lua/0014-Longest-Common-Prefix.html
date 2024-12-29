@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2024-12-17 -->
+<!-- 2024-12-28 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>0014. Longest Common Prefix</title>
@@ -22,29 +22,29 @@ Published 2024-11-10
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgbb7de53">Problem Restatement</a></li>
-<li><a href="#orgd1f7ca3">Solution Description</a></li>
-<li><a href="#org0a2839b">Example</a></li>
-<li><a href="#org9f26a2b">References</a></li>
-<li><a href="#org73106fb">Solution Code</a></li>
+<li><a href="#org13071cd">Problem Restatement</a></li>
+<li><a href="#org2dfebfe">Solution Description</a></li>
+<li><a href="#org295a901">Example</a></li>
+<li><a href="#org2482cac">References</a></li>
+<li><a href="#org26b297f">Solution Code</a></li>
 </ul>
 </div>
 </nav>
 <p>
 org
 </p>
-<div id="outline-container-orgbb7de53" class="outline-2">
-<h2 id="orgbb7de53">Problem Restatement</h2>
-<div class="outline-text-2" id="text-orgbb7de53">
+<div id="outline-container-org13071cd" class="outline-2">
+<h2 id="org13071cd">Problem Restatement</h2>
+<div class="outline-text-2" id="text-org13071cd">
 <p>
 Given an array of strings, we need to find the longest common prefix among them. If there is no common prefix, the function should return an empty string.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgd1f7ca3" class="outline-2">
-<h2 id="orgd1f7ca3">Solution Description</h2>
-<div class="outline-text-2" id="text-orgd1f7ca3">
+<div id="outline-container-org2dfebfe" class="outline-2">
+<h2 id="org2dfebfe">Solution Description</h2>
+<div class="outline-text-2" id="text-org2dfebfe">
 <p>
 To implement the longest common prefix, we need to:
 </p>
@@ -67,9 +67,9 @@ In terms of complexity, this solution is efficient. If `n` is the number of stri
 </div>
 </div>
 
-<div id="outline-container-org0a2839b" class="outline-2">
-<h2 id="org0a2839b">Example</h2>
-<div class="outline-text-2" id="text-org0a2839b">
+<div id="outline-container-org295a901" class="outline-2">
+<h2 id="org295a901">Example</h2>
+<div class="outline-text-2" id="text-org295a901">
 <p>
 Using the example array <code>{"flower", "flow", "flight"}</code>, the step-by-step process would be:
 </p>
@@ -82,18 +82,18 @@ Using the example array <code>{"flower", "flow", "flight"}</code>, the step-by-s
 </div>
 </div>
 
-<div id="outline-container-org9f26a2b" class="outline-2">
-<h2 id="org9f26a2b">References</h2>
-<div class="outline-text-2" id="text-org9f26a2b">
+<div id="outline-container-org2482cac" class="outline-2">
+<h2 id="org2482cac">References</h2>
+<div class="outline-text-2" id="text-org2482cac">
 <p>
 This problem can leverage fundamental string operations, and while it doesnât use advanced algorithms, it's a classic example of substring manipulation.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org73106fb" class="outline-2">
-<h2 id="org73106fb">Solution Code</h2>
-<div class="outline-text-2" id="text-org73106fb">
+<div id="outline-container-org26b297f" class="outline-2">
+<h2 id="org26b297f">Solution Code</h2>
+<div class="outline-text-2" id="text-org26b297f">
 <div class="org-src-container">
 <pre class="src src-lua">-- Longest Common Prefix solution in Lua
 

@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2024-12-17 -->
+<!-- 2024-12-28 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>543. Diameter of Binary Tree</title>
@@ -22,36 +22,36 @@ Published 2024-07-07
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org24b3296"></a>
+<li><a href="#org71ee1e8"></a>
 <ul>
-<li><a href="#org5a5db6e">Problem:</a></li>
-<li><a href="#orgeda737e">Prerequsite</a></li>
-<li><a href="#orga3119be">Solution Description:</a></li>
-<li><a href="#orge60c250">Example:</a></li>
-<li><a href="#orgd8109a5">Setup:</a></li>
+<li><a href="#org46b1bd5">Problem:</a></li>
+<li><a href="#orgf664c6d">Prerequsite</a></li>
+<li><a href="#orgd702a86">Solution Description:</a></li>
+<li><a href="#org44e8a88">Example:</a></li>
+<li><a href="#orga84466a">Setup:</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-org24b3296" class="outline-2">
-<h2 id="org24b3296"></h2>
-<div class="outline-text-2" id="text-org24b3296">
+<div id="outline-container-org71ee1e8" class="outline-2">
+<h2 id="org71ee1e8"></h2>
+<div class="outline-text-2" id="text-org71ee1e8">
 </div>
 
-<div id="outline-container-org5a5db6e" class="outline-3">
-<h3 id="org5a5db6e">Problem:</h3>
-<div class="outline-text-3" id="text-org5a5db6e">
+<div id="outline-container-org46b1bd5" class="outline-3">
+<h3 id="org46b1bd5">Problem:</h3>
+<div class="outline-text-3" id="text-org46b1bd5">
 <p>
 The problem is to determine the diameter of a binary tree. The diameter of a binary tree is defined as the length of the longest path between any two nodes in a tree. This path may or may not pass through the root.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgeda737e" class="outline-3">
-<h3 id="orgeda737e">Prerequsite</h3>
-<div class="outline-text-3" id="text-orgeda737e">
+<div id="outline-container-orgf664c6d" class="outline-3">
+<h3 id="orgf664c6d">Prerequsite</h3>
+<div class="outline-text-3" id="text-orgf664c6d">
 <p>
 To solve this problem, work on the <a href="https://leetcode.com/problems/maximum-depth-of-binary-tree/">104. Maximum Depth of Binary Tree</a> first.
 <a href="https://leetcode.com/problems/diameter-of-n-ary-tree/">Diameter of N-Ary Tree</a>
@@ -60,9 +60,9 @@ To solve this problem, work on the <a href="https://leetcode.com/problems/maximu
 </div>
 
 
-<div id="outline-container-orga3119be" class="outline-3">
-<h3 id="orga3119be">Solution Description:</h3>
-<div class="outline-text-3" id="text-orga3119be">
+<div id="outline-container-orgd702a86" class="outline-3">
+<h3 id="orgd702a86">Solution Description:</h3>
+<div class="outline-text-3" id="text-orgd702a86">
 <p>
 To implement the solution, we need to use a recursive Depth-First Search (DFS) approach. The main idea is to calculate the depth of the left subtree and the right subtree for each node, and track the maximum diameter found at each step.
 </p>
@@ -83,13 +83,13 @@ The time complexity of this approach is O(n) because each node is visited once. 
 </div>
 </div>
 
-<div id="outline-container-orge60c250" class="outline-3">
-<h3 id="orge60c250">Example:</h3>
-<div class="outline-text-3" id="text-orge60c250">
+<div id="outline-container-org44e8a88" class="outline-3">
+<h3 id="org44e8a88">Example:</h3>
+<div class="outline-text-3" id="text-org44e8a88">
 <p>
 Consider a binary tree:
 </p>
-<pre class="example" id="org48dd213">
+<pre class="example" id="org2a3e19f">
     1
    / \
   2   3
@@ -103,9 +103,9 @@ The longest path goes from node 4 to node 5 through nodes 2 and 1, so the diamet
 </div>
 </div>
 
-<div id="outline-container-orgd8109a5" class="outline-3">
-<h3 id="orgd8109a5">Setup:</h3>
-<div class="outline-text-3" id="text-orgd8109a5">
+<div id="outline-container-orga84466a" class="outline-3">
+<h3 id="orga84466a">Setup:</h3>
+<div class="outline-text-3" id="text-orga84466a">
 <p>
 We'll define a helper function to recursively calculate the depth of the tree and update the diameter. We'll use modern JavaScript to implement this.
 </p>

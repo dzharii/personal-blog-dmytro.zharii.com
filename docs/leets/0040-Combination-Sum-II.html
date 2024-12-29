@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2024-12-17 -->
+<!-- 2024-12-28 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>0040. Combination Sum II</title>
@@ -22,18 +22,18 @@ Published 2024-08-12
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org57a8449">Problem</a></li>
-<li><a href="#orgbb67f8c">Solution Description</a></li>
-<li><a href="#orgf21524f">Example</a></li>
-<li><a href="#org42c83b7">References</a></li>
-<li><a href="#org34521d0">Solution</a></li>
+<li><a href="#org3a6860b">Problem</a></li>
+<li><a href="#org9b069da">Solution Description</a></li>
+<li><a href="#orgfccb225">Example</a></li>
+<li><a href="#org3328c23">References</a></li>
+<li><a href="#org2a5980d">Solution</a></li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-org57a8449" class="outline-2">
-<h2 id="org57a8449">Problem</h2>
-<div class="outline-text-2" id="text-org57a8449">
+<div id="outline-container-org3a6860b" class="outline-2">
+<h2 id="org3a6860b">Problem</h2>
+<div class="outline-text-2" id="text-org3a6860b">
 <p>
 Given a collection of candidate numbers (candidates) and a target number (target), find all unique combinations in candidates where the candidate numbers sum to target. Each number in candidates may only be used once in the combination.
 </p>
@@ -45,7 +45,7 @@ Each combination should be a unique set of candidate numbers, and the order of c
 <p>
 Example:
 </p>
-<pre class="example" id="org165472c">
+<pre class="example" id="orgd3d9abd">
 Input: candidates = [10,1,2,7,6,1,5], target = 8
 Output:
 [
@@ -58,9 +58,9 @@ Output:
 </div>
 </div>
 
-<div id="outline-container-orgbb67f8c" class="outline-2">
-<h2 id="orgbb67f8c">Solution Description</h2>
-<div class="outline-text-2" id="text-orgbb67f8c">
+<div id="outline-container-org9b069da" class="outline-2">
+<h2 id="org9b069da">Solution Description</h2>
+<div class="outline-text-2" id="text-org9b069da">
 <p>
 To implement the solution for finding all unique combinations of candidate numbers that sum to the target, we need to use a backtracking approach:
 </p>
@@ -90,9 +90,9 @@ The backtracking approach ensures that all possible combinations are explored ef
 </div>
 </div>
 
-<div id="outline-container-orgf21524f" class="outline-2">
-<h2 id="orgf21524f">Example</h2>
-<div class="outline-text-2" id="text-orgf21524f">
+<div id="outline-container-orgfccb225" class="outline-2">
+<h2 id="orgfccb225">Example</h2>
+<div class="outline-text-2" id="text-orgfccb225">
 <p>
 Let's take an example with candidates = [10,1,2,7,6,1,5] and target = 8. Here's how the algorithm would work:
 </p>
@@ -105,9 +105,9 @@ Let's take an example with candidates = [10,1,2,7,6,1,5] and target = 8. Here's 
 </div>
 </div>
 
-<div id="outline-container-org42c83b7" class="outline-2">
-<h2 id="org42c83b7">References</h2>
-<div class="outline-text-2" id="text-org42c83b7">
+<div id="outline-container-org3328c23" class="outline-2">
+<h2 id="org3328c23">References</h2>
+<div class="outline-text-2" id="text-org3328c23">
 <ul class="org-ul">
 <li>Backtracking Algorithm: <a href="https://en.wikipedia.org/wiki/Backtracking">Backtracking on Wikipedia</a></li>
 <li>Combination Sum Problem: <a href="https://leetcode.com/problems/combination-sum-ii/">LeetCode Problem</a></li>
@@ -118,9 +118,9 @@ Let's take an example with candidates = [10,1,2,7,6,1,5] and target = 8. Here's 
 </ul>
 </div>
 </div>
-<div id="outline-container-org34521d0" class="outline-2">
-<h2 id="org34521d0">Solution</h2>
-<div class="outline-text-2" id="text-org34521d0">
+<div id="outline-container-org2a5980d" class="outline-2">
+<h2 id="org2a5980d">Solution</h2>
+<div class="outline-text-2" id="text-org2a5980d">
 <p>
 Here's the skeleton for the solution function in JavaScript. Feel free to fill in the logic.
 </p>

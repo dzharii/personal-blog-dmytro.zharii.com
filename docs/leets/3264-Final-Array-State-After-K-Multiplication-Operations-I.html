@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2024-12-17 -->
+<!-- 2024-12-28 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>3264. Final Array State After K Multiplication Operations I</title>
@@ -22,30 +22,30 @@ Published 2024-12-15
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org504abac">Problem</a></li>
-<li><a href="#org7a0ecfa">Solution Description</a></li>
-<li><a href="#org55f213c">Example</a></li>
-<li><a href="#org454702c">Solution</a>
+<li><a href="#orgd0e7b2e">Problem</a></li>
+<li><a href="#org7b34f3a">Solution Description</a></li>
+<li><a href="#orgc22865e">Example</a></li>
+<li><a href="#org40891e0">Solution</a>
 <ul>
-<li><a href="#org19a3db0">References</a></li>
+<li><a href="#org492b790">References</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-org504abac" class="outline-2">
-<h2 id="org504abac">Problem</h2>
-<div class="outline-text-2" id="text-org504abac">
+<div id="outline-container-orgd0e7b2e" class="outline-2">
+<h2 id="orgd0e7b2e">Problem</h2>
+<div class="outline-text-2" id="text-orgd0e7b2e">
 <p>
 You are given an array of size n, consisting of integers, and an integer K. You have to perform K multiplication operations on the array. In each operation, choose the element that can be increased the least by multiplying it by a constant factor greater than 1. After performing K such operations, your task is to find the final state of the array.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org7a0ecfa" class="outline-2">
-<h2 id="org7a0ecfa">Solution Description</h2>
-<div class="outline-text-2" id="text-org7a0ecfa">
+<div id="outline-container-org7b34f3a" class="outline-2">
+<h2 id="org7b34f3a">Solution Description</h2>
+<div class="outline-text-2" id="text-org7b34f3a">
 <p>
 To implement the solution, we need to identify the smallest element in the array multiple times, as that is the element which will benefit the least from a multiplication operation. By focusing on the smallest elements, we ensure that overall growth is minimized. This requires:
 </p>
@@ -61,9 +61,9 @@ The time complexity is <b>O(K log n)</b> because we perform K operations and obt
 </div>
 </div>
 
-<div id="outline-container-org55f213c" class="outline-2">
-<h2 id="org55f213c">Example</h2>
-<div class="outline-text-2" id="text-org55f213c">
+<div id="outline-container-orgc22865e" class="outline-2">
+<h2 id="orgc22865e">Example</h2>
+<div class="outline-text-2" id="text-orgc22865e">
 <p>
 Suppose we have an array [4, 2, 5] and K = 3, and a constant multiplication factor, say 2.
 </p>
@@ -76,9 +76,9 @@ Suppose we have an array [4, 2, 5] and K = 3, and a constant multiplication fact
 </div>
 </div>
 
-<div id="outline-container-org454702c" class="outline-2">
-<h2 id="org454702c">Solution</h2>
-<div class="outline-text-2" id="text-org454702c">
+<div id="outline-container-org40891e0" class="outline-2">
+<h2 id="org40891e0">Solution</h2>
+<div class="outline-text-2" id="text-org40891e0">
 <p>
 <a href="https://leetcode.com/submissions/detail/1479817779/">2024-12-16 Final Array State After K Multiplication Operations I - Submission Detail - LeetCode</a> <code>leetcode.com</code>
 </p>
@@ -220,9 +220,9 @@ testCases.forEach((test, index) =&gt; {
 </div>
 </div>
 
-<div id="outline-container-org19a3db0" class="outline-3">
-<h3 id="org19a3db0">References</h3>
-<div class="outline-text-3" id="text-org19a3db0">
+<div id="outline-container-org492b790" class="outline-3">
+<h3 id="org492b790">References</h3>
+<div class="outline-text-3" id="text-org492b790">
 <ul class="org-ul">
 <li>Min-Heap data structure is useful when operations require minimum element extraction: <a href="https://en.wikipedia.org/wiki/Binary_heap">Binary Heap</a></li>
 <li>Heaps in JavaScript can be implemented using arrays with libraries like Heap.js.</li>
