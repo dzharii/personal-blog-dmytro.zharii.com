@@ -1,0 +1,155 @@
+﻿#+title: 0819. Most Common Word
+#+subtitle: leetcode
+#+date: <2024-12-28>
+#+language: en
+
+* Problem
+
+Given a paragraph and a list of banned words, your task is to find the most frequently occurring word that is not in the list of banned words. The word must be considered independently of punctuation and case.
+
+Assume:
+- The paragraph will consist of English letters, space, or punctuation marks.
+- There will be no words longer than 10 characters.
+- The paragraph will be non-empty.
+
+* Solution Description
+
+To implement this solution, we need to:
+
+1. Normalize the input by converting all characters in the paragraph to lower case and replacing punctuation with spaces.
+2. Split the normalized paragraph into individual words.
+3. Use an object or Map to count occurrences of each word, ignoring any word that is in the list of banned words.
+4. Determine the word with the maximum count that is not banned.
+
+- Time Complexity: O(n + m) where n is the length of the paragraph and m is the number of words in the banned list, as parsing the paragraph and looking up the banned list is linear.
+- Space Complexity: O(k) where k is the number of unique words in the paragraph minus banned words, to store the count of each word.
+
+* Example
+
+For a paragraph ~"Bob hit a ball, the hit BALL flew far after it was hit."~ and a banned list ~["hit"]~,
+- Normalize into ~["bob", "hit", "a", "ball", "the", "hit", "ball", "flew", "far", "after", "it", "was", "hit"]~.
+- Exclude ~"hit"~ from counting.
+- Count the occurrences: ~{"bob": 1, "a": 1, "ball": 2, "the": 1, "flew": 1, "far": 1, "after": 1, "it": 1, "was": 1}~.
+- Determine that "ball" with a count of 2 is the most frequent.
+
+* References
+
+For parsing and filtering words, you might look into JavaScript's ~String~ and ~RegExp~ methods for processing strings, and ~Map~ or objects for counting.
+
+* Solution
+
+[[https://leetcode.com/problems/most-common-word/submissions/1491292912/][2024-12-29 Most Common Word - LeetCode]] =leetcode.com=
+
+#+begin_src js :tangle "819_most_common_word.js"
+
+/**
+ ,* Returns the most common word in the paragraph that is not banned.
+ ,* @param {string} paragraph - The input paragraph.
+ ,* @param {string[]} banned - List of banned words.
+ ,* @return {string} The most frequent non-banned word.
+ ,*/
+function mostCommonWord(paragraph, banned) {
+    const log = typeof NestedInteger !== 'undefined' ? () => {} : console.log;
+    const table = typeof NestedInteger!== 'undefined' ? () => {} : console.table;
+
+    /**
+     ,* Creates a histogram (word frequency count) from a given text,
+     ,* excluding any words present in a banned set.
+     ,*
+     ,* @param {string} text - The input text from which to create the histogram.
+     ,* @param {Set<string>} bannedSet - A set of words to be excluded from the histogram.
+     ,* @returns {Object} An object representing the histogram where keys are words
+     ,* and values are their respective counts.
+     ,*/
+    function makeHistogram(text, bannedSet) {
+        const lower = (text || '').toLowerCase();
+        const histogram = {};
+        const words = lower.split(/[^a-zA-Z]+/);
+        // table(words);
+        for (const word of words) {
+            if (!word) continue;
+            if (bannedSet.has(word)) continue;
+
+            histogram[word] = word in histogram ? histogram[word] + 1 : 1;
+        }
+        return histogram;
+    }
+
+    const bannedSet = new Set(banned.map(word => word.toLowerCase()));
+    const histogram = makeHistogram(paragraph, bannedSet);
+
+    let maxWord = null;
+    let maxFreq = 0;
+
+    for (const [word, freq] of Object.entries(histogram)) {
+        if (maxFreq < freq) {
+
+            maxFreq = freq;
+            maxWord = word;
+        }
+    }
+
+
+    return maxWord;
+}
+
+// Test cases
+const testCases = [
+    {
+        paragraph: "..Bob hit a ball, the hit BALL flew far after it was hit.",
+        banned: ["hit"],
+        expected: "ball"
+    },
+    {
+        paragraph: "Bob hit a ball, the hit BALL flew far after it was hit.",
+        banned: ["hit"],
+        expected: "ball"
+    },
+    {
+        paragraph: "a.",
+        banned: [],
+        expected: "a"
+    },
+    {
+        paragraph: "a, a, a, a, b,b,b,c, c",
+        banned: ["a"],
+        expected: "b"
+    },
+    {
+        paragraph: "It was the best of times, it was the worst of times, it was the age of wisdom.",
+        banned: ["the", "of"],
+        expected: "it"
+    },
+    {
+        paragraph: "apple apple banana, banana ban apple.",
+        banned: ["banana"],
+        expected: "apple"
+    }
+];
+
+testCases.forEach((test, index) => {
+    const result = mostCommonWord(test.paragraph, test.banned);
+    console.log(`Test Case ${index + 1}: ${result === test.expected ? 'Passed' : 'Failed'} (Expected: '${test.expected}', Got: '${result})'`);
+});
+
+#+end_src
+
+#+RESULTS:
+: Test Case 1: Passed (Expected: 'ball', Got: 'ball)'
+: Test Case 2: Passed (Expected: 'ball', Got: 'ball)'
+: Test Case 3: Passed (Expected: 'a', Got: 'a)'
+: Test Case 4: Passed (Expected: 'b', Got: 'b)'
+: Test Case 5: Passed (Expected: 'it', Got: 'it)'
+: Test Case 6: Passed (Expected: 'apple', Got: 'apple)'
+: undefined
+
+
+#+begin_example
+#+RESULTS:
+: Test Case 1: Passed (Expected: ball, Got: ball)
+: Test Case 2: Passed (Expected: a, Got: a)
+: Test Case 3: Passed (Expected: b, Got: b)
+: Test Case 4: Passed (Expected: it, Got: it)
+: Test Case 5: Passed (Expected: apple, Got: apple)
+: undefined
+#+end_example

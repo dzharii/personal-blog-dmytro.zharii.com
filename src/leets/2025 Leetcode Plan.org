@@ -60,8 +60,8 @@ string manipulation, and pattern searching that mirror concepts in search and in
 2. Tokenization and Normalization
    - /Conceptual match:/ Splitting and cleaning input text before searching.
    - Problems:
-     - [ ] [[https://leetcode.com/problems/most-common-word/][#819. Most Common Word]] -- Involves tokenizing and normalizing text input by removing punctuation, lowercasing, and
-       counting words.
+     - [X] [[https://leetcode.com/problems/most-common-word/][#819. Most Common Word]] -- Involves tokenizing and normalizing text input by removing punctuation, lowercasing, and
+       counting words. [[file:0819-Most-Common-Word.org][Solution #0819 Most Common Word]]
      - [ ] [[https://leetcode.com/problems/reverse-words-in-a-string/][#151. Reverse Words in a String]] -- Requires careful splitting and trimming, similar to text normalization.
      - [ ] [[https://leetcode.com/problems/reorder-data-in-log-files/][#937. Reorder Data in Log Files]] -- Parsing and classifying strings into different categories.
 
