@@ -36,7 +36,6 @@ Consider ~nums = [1,1,1,2,2,3]~ and ~k=2~.
 Here is the skeleton of the solution with the helper functions that are necessary to approach the problem:
 
 #+begin_src js :tangle "347_top_k_frequent_elements.js"
-
 /**
  ,* BoundedMaxHeap - A data structure that maintains the largest element at the root.
  ,* Enforces a maximum size, discarding smaller elements when full.
