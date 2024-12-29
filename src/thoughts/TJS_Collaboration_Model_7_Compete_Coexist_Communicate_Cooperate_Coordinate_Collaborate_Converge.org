@@ -1,0 +1,29 @@
+#+title: TJS Collaboration Model 7: Compete, Coexist, Communicate, Cooperate, Coordinate, Collaborate, Converge
+#+subtitle: docs
+#+date: <2024-12-29>
+#+language: en
+
+[[https://tej.as/blog/how-to-grow-professional-relationships-tjs-model][2024-12-29 How to Grow Professional Relationships | Tejas Kumar]] =tej.as=
+
+#+DOWNLOADED: screenshot @ 2024-12-29 14:44:17
+#+attr_org: :width 1024px
+[[file:2024-12-29_14-44-17_screenshot.png]]
+
+
+The TJS Collaboration Model outlines seven stages of relationships that progress from a zero-sum mindset to collaboration and, ultimately, to an unhealthy state of shared identity. Below are the stages and their key characteristics:
+
+1. **Everything is a competition**: Relationships are marked by gatekeeping, exclusion, and a zero-sum mentality. This state assumes that for one person to succeed, another must fail. It's characterized by behaviors like ghosting or outright refusal to engage.
+
+2. **Coexist**: Parties acknowledge each other’s existence but maintain minimal interaction. Mutual respect exists, but personal, professional, or values differences create distance. This stage is neutral, with neither positive nor negative collaboration taking place.
+
+3. **Communicate**: Basic information exchange occurs without deeper relationship development. Examples include shallow plans like “let’s get coffee” that rarely materialize. Most western relationships fall into this state.
+
+4. **Cooperate**: Parties engage in a neutral task with low stakes, contributing toward a shared goal. Relationships are still transactional but may transition to deeper stages if the cooperation is positive.
+
+5. **Coordinate**: One or both parties adopt and support the other's goals, leading to deliberate joint efforts. Trust and alignment play a significant role here, and this stage acts as an inflection point toward either deeper collaboration or regression.
+
+6. **Collaborate**: Marked by repeated successful efforts toward a common goal. Here, the synergy creates outcomes greater than the sum of individual contributions. Parties have mutual trust, understanding, and the ability to challenge each other respectfully.
+
+7. **We are the same**: An unhealthy state where individuality dissolves into co-dependence. Boundaries blur, leading to burnout, exploitation, and loss of personal identity. This state is not ideal and should be avoided.
+
+This progression provides a framework for assessing and improving professional and personal relationships by identifying where they stand and taking deliberate actions to evolve them, as appropriate.
