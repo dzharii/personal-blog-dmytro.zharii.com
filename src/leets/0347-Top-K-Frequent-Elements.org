@@ -1,0 +1,368 @@
+﻿#+title: 0347. Top K Frequent Elements
+#+subtitle: leetcode
+#+date: <2024-12-28>
+#+language: en
+
+* Problem
+Given an integer array ~nums~ and an integer ~k~, return the ~k~ most frequent elements.
+You may assume that the answer is unique, and you may return the answer in any order.
+
+- For example:
+  - Input: ~nums = [1,1,1,2,2,3]~, ~k = 2~
+  - Output: ~[1,2]~
+
+** Solution Description
+To implement the solution to this problem, we need to follow these steps:
+
+- First, count the frequency of each element in the array; this can be efficiently done using a JavaScript ~Map~ or ~Object~.
+- Create an array of numbers frequency entries, which will store numbers of similar frequency together.
+- Iterate over the frequency count and populate the frequency array.
+- Make use of a heap (priority queue) that enables us to keep track of the top ~k~ elements with greatest frequency efficiently.
+- Use this heap to determine the ~k~ most frequent elements, and return them as a result.
+- Time Complexity: ~O(N log k)~, where ~N~ is the number of elements in ~nums~. We iterate ~nums~ once to populate the frequency map, then we perform ~k~ operations.
+- Space Complexity: ~O(N)~, storing frequency counts and heap of ~k~ elements.
+
+** Example
+Consider ~nums = [1,1,1,2,2,3]~ and ~k=2~.
+- Count frequencies: ~1: 3~, ~2: 2~, ~3: 1~
+- Use the bucket sort principle to arrange based on occurrence frequency.
+- Select the top ~k=2~ elements from the most frequent to least in the list: they are ~1~ and ~2~.
+
+** References
+- Map data structure: [[https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map][MDN Map Documentation]]
+- Heap data structure: See [[https://en.wikipedia.org/wiki/Heap_(data_structure)]]
+
+** Solution
+Here is the skeleton of the solution with the helper functions that are necessary to approach the problem:
+
+#+begin_src js :tangle "347_top_k_frequent_elements.js"
+
+/**
+ ,* BoundedMaxHeap - A data structure that maintains the largest element at the root.
+ ,* Enforces a maximum size, discarding smaller elements when full.
+ ,*/
+class BoundedMaxHeap {
+    /**
+     ,* Creates a MaxHeap instance.
+     ,* @param {number} maxHeapSize - Maximum number of elements the heap can hold.
+     ,* @param {function} cmp - Comparison function to determine the heap order. Should return a positive number if the first argument is larger, 0 if equal, and a negative number if smaller.
+     ,* @throws {Error} If maxHeapSize is not greater than 0.
+     ,*/
+    constructor(maxHeapSize, cmp) {
+        if (maxHeapSize <= 0) {
+            throw new Error('MaxHeap maxHeapSize must be greater than 0.');
+        }
+        if (typeof cmp !== 'function') {
+            throw new Error('A valid comparison function must be provided.');
+        }
+        this.heap = []; // Array to store heap elements
+        this.maxHeapSize = maxHeapSize;
+        this.cmp = cmp; // Comparison function for ordering
+    }
+
+    /**
+     ,* Gets the current size of the heap.
+     ,* @returns {number} - The number of elements in the heap.
+     ,*/
+    size() {
+        return this.heap.length;
+    }
+
+    /**
+     ,* Returns the largest element in the heap without removing it.
+     ,* @returns {*} - The largest element, or null if the heap is empty.
+     ,*/
+    peek() {
+        return this.heap.length > 0 ? this.heap[0] : null;
+    }
+
+    /**
+     ,* Inserts a new value into the heap. If the heap is full and the new value
+     ,* is larger than the smallest element, it replaces the smallest element.
+     ,* @param {*} val - The value to insert.
+     ,*/
+    insert(val) {
+        if (this.size() < this.maxHeapSize) {
+            this.heap.push(val);
+            this.bubbleUp();
+        } else if (this.cmp(val, this.heap[0]) > 0) {
+            this.heap[0] = val;
+            this.bubbleDown();
+        }
+    }
+
+    /**
+     ,* Removes and returns the largest element from the heap.
+     ,* @returns {*} - The largest element, or null if the heap is empty.
+     ,*/
+    extractMax() {
+        if (this.size() === 0) return null;
+        if (this.size() === 1) return this.heap.pop();
+
+        const max = this.heap[0];
+        this.heap[0] = this.heap.pop();
+        this.bubbleDown();
+        return max;
+    }
+
+    /**
+     ,* Restores the heap property by moving the last inserted element upwards
+     ,* until the heap condition is satisfied.
+     ,* @private
+     ,*/
+    bubbleUp() {
+        let index = this.heap.length - 1;
+        const currentValue = this.heap[index];
+
+        while (index > 0) {
+            const parentIndex = Math.floor((index - 1) / 2);
+            const parentValue = this.heap[parentIndex];
+
+            if (this.cmp(currentValue, parentValue) <= 0) break;
+
+            this.heap[index] = parentValue;
+            index = parentIndex;
+        }
+
+        this.heap[index] = currentValue;
+    }
+
+    /**
+     ,* Restores the heap property by moving the root element downwards
+     ,* until the heap condition is satisfied.
+     ,* @private
+     ,*/
+    bubbleDown() {
+        let index = 0;
+        const length = this.heap.length;
+        const current = this.heap[index];
+
+        while (true) {
+            const leftIndex = 2 * index + 1;
+            const rightIndex = 2 * index + 2;
+            let largestIndex = index;
+
+            if (leftIndex < length && this.cmp(this.heap[leftIndex], this.heap[largestIndex]) > 0) {
+                largestIndex = leftIndex;
+            }
+
+            if (rightIndex < length && this.cmp(this.heap[rightIndex], this.heap[largestIndex]) > 0) {
+                largestIndex = rightIndex;
+            }
+
+            if (largestIndex === index) break;
+
+            this.heap[index] = this.heap[largestIndex];
+            index = largestIndex;
+        }
+
+        this.heap[index] = current;
+    }
+}
+
+/**
+ ,* Main function to find the top k frequent elements.
+ ,* @param {number[]} nums - An array of integers.
+ ,* @param {number} k - Number of top elements to return.
+ ,* @return {number[]} Top k frequent elements.
+ ,*/
+function topKFrequent(nums, k) {
+    const log = typeof NestedInteger !== 'undefined' ? () => {} : console.log;
+    const table = typeof NestedInteger !== 'undefined' ? () => {} : console.table;
+
+    log(`Input nums: ${nums}, k: ${k}`);
+
+    // build num frequency histogram
+    const freq = {};
+
+    for (const el of nums) {
+        freq[el] = el in freq ? freq[el] + 1 : 1;
+    }
+
+    log('frequency map:')
+    table(freq);
+
+    // push to the heap
+
+    const freqValueIndex = 1;
+    const freqKeyIndex = 0;
+
+    const freqCompare = (pairA, pairB) => pairA[freqValueIndex] - pairB[freqValueIndex];
+
+    const maxHeap = new BoundedMaxHeap(k, freqCompare);
+
+    for (const freqKey of Object.keys(freq)) {
+        const item = [Number(freqKey), freq[freqKey]];
+        maxHeap.insert(item);
+    }
+
+    log(`maxHeap = ${JSON.stringify(maxHeap, null, 4)}`);
+
+    const result = [];
+
+    {
+        let item;
+        while (item = maxHeap.extractMax()) {
+            result.push(item[freqKeyIndex]);
+        }
+    }
+
+    log(`result = ${result}`);
+
+    return result;
+}
+
+// Test cases to verify the solution
+const testCases = [
+    { nums: [1,1,1,2,2,3], k: 2, expected: [1, 2] },
+    { nums: [1], k: 1, expected: [1] },
+    { nums: [1,2,3,1,2,4,4,4,4], k: 1, expected: [4] },
+    { nums: [1,2,3,4,4,5,6,7,8,9,9,9,9], k: 2, expected: [9, 4] },
+    { nums: [4,5,6,7,7,7,8,8,9,9,9,9], k: 3, expected: [9, 7, 8] }
+];
+
+testCases.forEach((test, index) => {
+    console.log(`\nTest Case ${index + 1}: STARTED`);
+    const result = topKFrequent(test.nums, test.k);
+    console.log(`Test Case ${index + 1}: ${result.sort().toString() === test.expected.sort().toString() ? 'Passed' : 'Failed'} (Expected: ${test.expected}, Got: ${result})`);
+});
+#+end_src
+
+#+RESULTS:
+#+begin_example
+
+Test Case 1: STARTED
+Input nums: 1,1,1,2,2,3, k: 2
+frequency map:
+┌─────────┬────────┐
+│ (index) │ Values │
+├─────────┼────────┤
+│ 1       │ 3      │
+│ 2       │ 2      │
+│ 3       │ 1      │
+└─────────┴────────┘
+maxHeap = {
+    "heap": [
+        [
+            1,
+            3
+        ],
+        [
+            2,
+            2
+        ]
+    ],
+    "maxHeapSize": 2
+}
+result = 1,2
+Test Case 1: Passed (Expected: 1,2, Got: 1,2)
+
+Test Case 2: STARTED
+Input nums: 1, k: 1
+frequency map:
+┌─────────┬────────┐
+│ (index) │ Values │
+├─────────┼────────┤
+│ 1       │ 1      │
+└─────────┴────────┘
+maxHeap = {
+    "heap": [
+        [
+            1,
+            1
+        ]
+    ],
+    "maxHeapSize": 1
+}
+result = 1
+Test Case 2: Passed (Expected: 1, Got: 1)
+
+Test Case 3: STARTED
+Input nums: 1,2,3,1,2,4,4,4,4, k: 1
+frequency map:
+┌─────────┬────────┐
+│ (index) │ Values │
+├─────────┼────────┤
+│ 1       │ 2      │
+│ 2       │ 2      │
+│ 3       │ 1      │
+│ 4       │ 4      │
+└─────────┴────────┘
+maxHeap = {
+    "heap": [
+        [
+            4,
+            4
+        ]
+    ],
+    "maxHeapSize": 1
+}
+result = 4
+Test Case 3: Passed (Expected: 4, Got: 4)
+
+Test Case 4: STARTED
+Input nums: 1,2,3,4,4,5,6,7,8,9,9,9,9, k: 2
+frequency map:
+┌─────────┬────────┐
+│ (index) │ Values │
+├─────────┼────────┤
+│ 1       │ 1      │
+│ 2       │ 1      │
+│ 3       │ 1      │
+│ 4       │ 2      │
+│ 5       │ 1      │
+│ 6       │ 1      │
+│ 7       │ 1      │
+│ 8       │ 1      │
+│ 9       │ 4      │
+└─────────┴────────┘
+maxHeap = {
+    "heap": [
+        [
+            9,
+            4
+        ],
+        [
+            2,
+            1
+        ]
+    ],
+    "maxHeapSize": 2
+}
+result = 9,2
+Test Case 4: Failed (Expected: 4,9, Got: 2,9)
+
+Test Case 5: STARTED
+Input nums: 4,5,6,7,7,7,8,8,9,9,9,9, k: 3
+frequency map:
+┌─────────┬────────┐
+│ (index) │ Values │
+├─────────┼────────┤
+│ 4       │ 1      │
+│ 5       │ 1      │
+│ 6       │ 1      │
+│ 7       │ 3      │
+│ 8       │ 2      │
+│ 9       │ 4      │
+└─────────┴────────┘
+maxHeap = {
+    "heap": [
+        [
+            9,
+            4
+        ],
+        [
+            5,
+            1
+        ],
+        [
+            6,
+            1
+        ]
+    ],
+    "maxHeapSize": 3
+}
+result = 9,6,5
+Test Case 5: Failed (Expected: 7,8,9, Got: 5,6,9)
+undefined
+#+end_example
