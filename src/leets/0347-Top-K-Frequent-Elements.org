@@ -38,8 +38,7 @@ My custom tests are failing, but the solution was accepted. I have failed to
 implement my own MaxQueue.
 So painful ;)
 
-2024-12-30 [Top K Frequent Elements - LeetCode](https://leetcode.com/problems/top-k-frequent-elements/submissions/1492189838/) { leetcode.com }
-
+[[https://leetcode.com/problems/top-k-frequent-elements/submissions/1492189838/][2024-12-30 Top K Frequent Elements - LeetCode]] =leetcode.com=
 
 #+begin_src js :tangle "347_top_k_frequent_elements.js"
 

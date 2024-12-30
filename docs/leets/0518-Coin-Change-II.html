@@ -22,30 +22,30 @@ Published 2024-08-23
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org50ebc36">Problem</a>
+<li><a href="#orga3de658">Problem</a>
 <ul>
-<li><a href="#orgffd0d42">Solution Description</a></li>
-<li><a href="#orgea53edc">Example</a></li>
-<li><a href="#org65a027f">References</a></li>
-<li><a href="#org7575089">Solution</a></li>
+<li><a href="#org584ba9c">Solution Description</a></li>
+<li><a href="#orgde0439a">Example</a></li>
+<li><a href="#org054693f">References</a></li>
+<li><a href="#orgf3fc10f">Solution</a></li>
 </ul>
 </li>
-<li><a href="#org39a6f9b">Results</a></li>
+<li><a href="#orge3bf738">Results</a></li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-org50ebc36" class="outline-2">
-<h2 id="org50ebc36">Problem</h2>
-<div class="outline-text-2" id="text-org50ebc36">
+<div id="outline-container-orga3de658" class="outline-2">
+<h2 id="orga3de658">Problem</h2>
+<div class="outline-text-2" id="text-orga3de658">
 <p>
 We are given an array of distinct integers <code>coins</code> and an integer <code>amount</code>. Our task is to return the number of combinations that make up that amount. If that amount of money cannot be made up by any combination of the coins, return 0. Assume that we have an infinite number of each kind of coin.
 </p>
 </div>
 
-<div id="outline-container-orgffd0d42" class="outline-3">
-<h3 id="orgffd0d42">Solution Description</h3>
-<div class="outline-text-3" id="text-orgffd0d42">
+<div id="outline-container-org584ba9c" class="outline-3">
+<h3 id="org584ba9c">Solution Description</h3>
+<div class="outline-text-3" id="text-org584ba9c">
 <p>
 To implement the solution, we need to use a dynamic programming (DP) approach. We will create an array <code>dp</code> where <code>dp[i]</code> represents the number of ways to make the amount <code>i</code> using the given coins. We will initialize =dp[0] to 1 because there is one way to make the amount 0 (with no coins).
 </p>
@@ -60,9 +60,9 @@ This solution has a time complexity of <code>O(n * amount)</code> where <code>n<
 </div>
 </div>
 
-<div id="outline-container-orgea53edc" class="outline-3">
-<h3 id="orgea53edc">Example</h3>
-<div class="outline-text-3" id="text-orgea53edc">
+<div id="outline-container-orgde0439a" class="outline-3">
+<h3 id="orgde0439a">Example</h3>
+<div class="outline-text-3" id="text-orgde0439a">
 <p>
 Given <code>coins = [1, 2, 5]</code> and <code>amount = 5</code>.
 </p>
@@ -83,9 +83,9 @@ The number of ways to make the amount 5 is 4.
 </div>
 </div>
 
-<div id="outline-container-org65a027f" class="outline-3">
-<h3 id="org65a027f">References</h3>
-<div class="outline-text-3" id="text-org65a027f">
+<div id="outline-container-org054693f" class="outline-3">
+<h3 id="org054693f">References</h3>
+<div class="outline-text-3" id="text-org054693f">
 <ul class="org-ul">
 <li>Dynamic Programming: <a href="https://en.wikipedia.org/wiki/Dynamic_programming">Dynamic Programming - Wikipedia</a></li>
 <li>LeetCode Problem: <a href="https://leetcode.com/problems/coin-change-ii/">LeetCode Coin Change II</a></li>
@@ -104,9 +104,9 @@ This course was developed by Alvin Zablan from Coderbyte. Coderbyte is one of th
 </div>
 </div>
 
-<div id="outline-container-org7575089" class="outline-3">
-<h3 id="org7575089">Solution</h3>
-<div class="outline-text-3" id="text-org7575089">
+<div id="outline-container-orgf3fc10f" class="outline-3">
+<h3 id="orgf3fc10f">Solution</h3>
+<div class="outline-text-3" id="text-orgf3fc10f">
 <ul class="org-ul">
 <li><a href="https://leetcode.com/submissions/detail/1366207757/">2024-08-24 Coin Change II - Submission Detail - LeetCode</a> <code>leetcode.com</code></li>
 </ul>
@@ -173,10 +173,10 @@ testCases.forEach((test, index) =&gt; {
 </div>
 
 
-<div id="outline-container-org39a6f9b" class="outline-2">
-<h2 id="org39a6f9b">Results</h2>
-<div class="outline-text-2" id="text-org39a6f9b">
-<pre class="example" id="orgd262399">
+<div id="outline-container-orge3bf738" class="outline-2">
+<h2 id="orge3bf738">Results</h2>
+<div class="outline-text-2" id="text-orge3bf738">
+<pre class="example" id="org1fc6b7b">
 coins = [1,2,5]; amount='5'
 Initial dp:
 ┌─────────┬────────┐

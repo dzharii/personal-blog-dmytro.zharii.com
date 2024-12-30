@@ -22,18 +22,18 @@ Published 2024-11-18
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org653f0e0">Problem</a></li>
-<li><a href="#orgb5f2f61">Solution Description</a></li>
-<li><a href="#org21e4ae3">Example</a></li>
-<li><a href="#orgde31083">References</a></li>
-<li><a href="#orgad72646">Solution</a></li>
+<li><a href="#orgf5beb41">Problem</a></li>
+<li><a href="#org724c4f2">Solution Description</a></li>
+<li><a href="#org63b2161">Example</a></li>
+<li><a href="#org8edcbfe">References</a></li>
+<li><a href="#org4e25226">Solution</a></li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-org653f0e0" class="outline-2">
-<h2 id="org653f0e0">Problem</h2>
-<div class="outline-text-2" id="text-org653f0e0">
+<div id="outline-container-orgf5beb41" class="outline-2">
+<h2 id="orgf5beb41">Problem</h2>
+<div class="outline-text-2" id="text-orgf5beb41">
 <p>
 Given a coded array and an integer <code>k</code>, you need to "defuse" the array by extracting a new array of the same length, where each element is the sum of consecutive elements from the coded array. Specifically:
 </p>
@@ -49,9 +49,9 @@ The array can be considered circular, meaning that after the last element, it ro
 </div>
 </div>
 
-<div id="outline-container-orgb5f2f61" class="outline-2">
-<h2 id="orgb5f2f61">Solution Description</h2>
-<div class="outline-text-2" id="text-orgb5f2f61">
+<div id="outline-container-org724c4f2" class="outline-2">
+<h2 id="org724c4f2">Solution Description</h2>
+<div class="outline-text-2" id="text-org724c4f2">
 <p>
 To implement the defuse operation, we will iterate over each element in the coded array and calculate the partial sum based on the value of <code>k</code>. We will use modular arithmetic to handle the wrap-around nature of the circular array. Here is the optimal approach:
 </p>
@@ -69,9 +69,9 @@ The operation requires a single loop over the array and some constant operations
 </div>
 </div>
 
-<div id="outline-container-org21e4ae3" class="outline-2">
-<h2 id="org21e4ae3">Example</h2>
-<div class="outline-text-2" id="text-org21e4ae3">
+<div id="outline-container-org63b2161" class="outline-2">
+<h2 id="org63b2161">Example</h2>
+<div class="outline-text-2" id="text-org63b2161">
 <p>
 Given a coded array <code>[5,7,1,4]</code> and k=3:
 </p>
@@ -88,9 +88,9 @@ Resulting defused array: <code>[12, 10, 16, 13]</code>.
 </div>
 </div>
 
-<div id="outline-container-orgde31083" class="outline-2">
-<h2 id="orgde31083">References</h2>
-<div class="outline-text-2" id="text-orgde31083">
+<div id="outline-container-org8edcbfe" class="outline-2">
+<h2 id="org8edcbfe">References</h2>
+<div class="outline-text-2" id="text-org8edcbfe">
 <ul class="org-ul">
 <li>Known Algorithm: Circular Array with Sum Computation</li>
 <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Arithmetic_Operators#%25_(Remainder)">JavaScript Remainder Operator</a></li>
@@ -98,9 +98,9 @@ Resulting defused array: <code>[12, 10, 16, 13]</code>.
 </div>
 </div>
 
-<div id="outline-container-orgad72646" class="outline-2">
-<h2 id="orgad72646">Solution</h2>
-<div class="outline-text-2" id="text-orgad72646">
+<div id="outline-container-org4e25226" class="outline-2">
+<h2 id="org4e25226">Solution</h2>
+<div class="outline-text-2" id="text-org4e25226">
 <p>
 Submission: <a href="https://leetcode.com/submissions/detail/1456646811/">2024-11-18 Defuse the Bomb - Submission Detail - LeetCode</a> <code>leetcode.com</code>
 </p>
