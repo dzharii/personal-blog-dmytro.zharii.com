@@ -2,23 +2,18 @@
  * BoundedMaxHeap - A data structure that maintains the largest element at the root.
  * Enforces a maximum size, discarding smaller elements when full.
  */
-class BoundedMaxHeap {
+class Heap {
     /**
      * Creates a MaxHeap instance.
-     * @param {number} maxHeapSize - Maximum number of elements the heap can hold.
-     * @param {function} cmp - Comparison function to determine the heap order. Should return a positive number if the first argument is larger, 0 if equal, and a negative number if smaller.
+     * @param {function} largest - Comparison function to determine the heap order. Should return a positive number if the first argument is larger, 0 if equal, and a negative number if smaller. Trick: imagine a stone heap, the largest stones should siff down. For maxHeap use [a - b], for minHeap use [b - a]
      * @throws {Error} If maxHeapSize is not greater than 0.
      */
-    constructor(maxHeapSize, cmp) {
-        if (maxHeapSize <= 0) {
-            throw new Error('MaxHeap maxHeapSize must be greater than 0.');
-        }
-        if (typeof cmp !== 'function') {
+    constructor(largest) {
+        if (typeof largest !== 'function') {
             throw new Error('A valid comparison function must be provided.');
         }
         this.heap = []; // Array to store heap elements
-        this.maxHeapSize = maxHeapSize;
-        this.cmp = cmp; // Comparison function for ordering
+        this.cmp = largest; // Comparison function for ordering
     }
 
     /**
@@ -43,20 +38,17 @@ class BoundedMaxHeap {
      * @param {*} val - The value to insert.
      */
     insert(val) {
-        if (this.size() < this.maxHeapSize) {
-            this.heap.push(val);
-            this.bubbleUp();
-        } else if (this.cmp(val, this.heap[0]) > 0) {
-            this.heap[0] = val;
-            this.bubbleDown();
-        }
+        if (typeof val === 'undefined') throw 'Heap::insert: val cannot be undefined';
+        if (val === null) throw 'Heap::insert: val cannot be  null';
+        this.heap.push(val);
+        this.bubbleUp();
     }
 
     /**
      * Removes and returns the largest element from the heap.
      * @returns {*} - The largest element, or null if the heap is empty.
      */
-    extractMax() {
+    extractTop() {
         if (this.size() === 0) return null;
         if (this.size() === 1) return this.heap.pop();
 
@@ -148,9 +140,9 @@ function topKFrequent(nums, k) {
     const freqValueIndex = 1;
     const freqKeyIndex = 0;
 
-    const freqCompare = (pairA, pairB) => pairA[freqValueIndex] - pairB[freqValueIndex];
+    const maxHeapCompare = (pairA, pairB) => pairA[freqValueIndex] - pairB[freqValueIndex];
 
-    const maxHeap = new BoundedMaxHeap(k, freqCompare);
+    const maxHeap = new Heap(maxHeapCompare);
 
     for (const freqKey of Object.keys(freq)) {
         const item = [Number(freqKey), freq[freqKey]];
@@ -161,10 +153,12 @@ function topKFrequent(nums, k) {
 
     const result = [];
 
-    {
-        let item;
-        while (item = maxHeap.extractMax()) {
+    for (let i = 0; i < k; i++) {
+        const item = maxHeap.extractTop();
+        if (item) {
             result.push(item[freqKeyIndex]);
+        } else {
+            break;
         }
     }
 
@@ -175,6 +169,7 @@ function topKFrequent(nums, k) {
 
 // Test cases to verify the solution
 const testCases = [
+    { nums: [6,0,1,4,9,7,-3,1,-4,-8,4,-7,-3,3,2,-3,9,5,-4,0], k: 2, expected: [-3,0,1,4,9,-4] },
     { nums: [1,1,1,2,2,3], k: 2, expected: [1, 2] },
     { nums: [1], k: 1, expected: [1] },
     { nums: [1,2,3,1,2,4,4,4,4], k: 1, expected: [4] },
