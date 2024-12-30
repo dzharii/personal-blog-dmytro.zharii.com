@@ -22,21 +22,21 @@ Published 2024-12-28
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org2a41ce2">Problem</a>
+<li><a href="#org286ad9c">Problem</a>
 <ul>
-<li><a href="#orgbfd84ea">Solution Description</a></li>
-<li><a href="#org367ce8a">Example</a></li>
-<li><a href="#org08968d2">References</a></li>
-<li><a href="#orgfebface">Solution</a></li>
+<li><a href="#org9e49258">Solution Description</a></li>
+<li><a href="#org708c5fa">Example</a></li>
+<li><a href="#orgf2be79c">References</a></li>
+<li><a href="#org6beca00">Solution</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-org2a41ce2" class="outline-2">
-<h2 id="org2a41ce2">Problem</h2>
-<div class="outline-text-2" id="text-org2a41ce2">
+<div id="outline-container-org286ad9c" class="outline-2">
+<h2 id="org286ad9c">Problem</h2>
+<div class="outline-text-2" id="text-org286ad9c">
 <p>
 Given an integer array <code>nums</code> and an integer <code>k</code>, return the <code>k</code> most frequent elements.
 You may assume that the answer is unique, and you may return the answer in any order.
@@ -51,9 +51,9 @@ You may assume that the answer is unique, and you may return the answer in any o
 </ul>
 </div>
 
-<div id="outline-container-orgbfd84ea" class="outline-3">
-<h3 id="orgbfd84ea">Solution Description</h3>
-<div class="outline-text-3" id="text-orgbfd84ea">
+<div id="outline-container-org9e49258" class="outline-3">
+<h3 id="org9e49258">Solution Description</h3>
+<div class="outline-text-3" id="text-org9e49258">
 <p>
 To implement the solution to this problem, we need to follow these steps:
 </p>
@@ -70,9 +70,9 @@ To implement the solution to this problem, we need to follow these steps:
 </div>
 </div>
 
-<div id="outline-container-org367ce8a" class="outline-3">
-<h3 id="org367ce8a">Example</h3>
-<div class="outline-text-3" id="text-org367ce8a">
+<div id="outline-container-org708c5fa" class="outline-3">
+<h3 id="org708c5fa">Example</h3>
+<div class="outline-text-3" id="text-org708c5fa">
 <p>
 Consider <code>nums = [1,1,1,2,2,3]</code> and <code>k=2</code>.
 </p>
@@ -84,9 +84,9 @@ Consider <code>nums = [1,1,1,2,2,3]</code> and <code>k=2</code>.
 </div>
 </div>
 
-<div id="outline-container-org08968d2" class="outline-3">
-<h3 id="org08968d2">References</h3>
-<div class="outline-text-3" id="text-org08968d2">
+<div id="outline-container-orgf2be79c" class="outline-3">
+<h3 id="orgf2be79c">References</h3>
+<div class="outline-text-3" id="text-orgf2be79c">
 <ul class="org-ul">
 <li>Map data structure: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">MDN Map Documentation</a></li>
 <li>Heap data structure: See <a href="https://en.wikipedia.org/wiki/Heap_(data_structure)">https://en.wikipedia.org/wiki/Heap_(data_structure)</a></li>
@@ -94,137 +94,22 @@ Consider <code>nums = [1,1,1,2,2,3]</code> and <code>k=2</code>.
 </div>
 </div>
 
-<div id="outline-container-orgfebface" class="outline-3">
-<h3 id="orgfebface">Solution</h3>
-<div class="outline-text-3" id="text-orgfebface">
+<div id="outline-container-org6beca00" class="outline-3">
+<h3 id="org6beca00">Solution</h3>
+<div class="outline-text-3" id="text-org6beca00">
 <p>
-Here is the skeleton of the solution with the helper functions that are necessary to approach the problem:
+My custom tests are failing, but the solution was accepted. I have failed to
+implement my own MaxQueue.
+So painful ;)
 </p>
 
+<p>
+2024-12-30 [Top K Frequent Elements - LeetCode](<a href="https://leetcode.com/problems/top-k-frequent-elements/submissions/1492189838/">https://leetcode.com/problems/top-k-frequent-elements/submissions/1492189838/</a>) { leetcode.com }
+</p>
+
+
 <div class="org-src-container">
-<pre class="src src-js">/**
- * BoundedMaxHeap - A data structure that maintains the largest element at the root.
- * Enforces a maximum size, discarding smaller elements when full.
- */
-class BoundedMaxHeap {
-    /**
-     * Creates a MaxHeap instance.
-     * @param {number} maxHeapSize - Maximum number of elements the heap can hold.
-     * @param {function} cmp - Comparison function to determine the heap order. Should return a positive number if the first argument is larger, 0 if equal, and a negative number if smaller.
-     * @throws {Error} If maxHeapSize is not greater than 0.
-     */
-    constructor(maxHeapSize, cmp) {
-        if (maxHeapSize &lt;= 0) {
-            throw new Error('MaxHeap maxHeapSize must be greater than 0.');
-        }
-        if (typeof cmp !== 'function') {
-            throw new Error('A valid comparison function must be provided.');
-        }
-        this.heap = []; // Array to store heap elements
-        this.maxHeapSize = maxHeapSize;
-        this.cmp = cmp; // Comparison function for ordering
-    }
-
-    /**
-     * Gets the current size of the heap.
-     * @returns {number} - The number of elements in the heap.
-     */
-    size() {
-        return this.heap.length;
-    }
-
-    /**
-     * Returns the largest element in the heap without removing it.
-     * @returns {*} - The largest element, or null if the heap is empty.
-     */
-    peek() {
-        return this.heap.length &gt; 0 ? this.heap[0] : null;
-    }
-
-    /**
-     * Inserts a new value into the heap. If the heap is full and the new value
-     * is larger than the smallest element, it replaces the smallest element.
-     * @param {*} val - The value to insert.
-     */
-    insert(val) {
-        if (this.size() &lt; this.maxHeapSize) {
-            this.heap.push(val);
-            this.bubbleUp();
-        } else if (this.cmp(val, this.heap[0]) &gt; 0) {
-            this.heap[0] = val;
-            this.bubbleDown();
-        }
-    }
-
-    /**
-     * Removes and returns the largest element from the heap.
-     * @returns {*} - The largest element, or null if the heap is empty.
-     */
-    extractMax() {
-        if (this.size() === 0) return null;
-        if (this.size() === 1) return this.heap.pop();
-
-        const max = this.heap[0];
-        this.heap[0] = this.heap.pop();
-        this.bubbleDown();
-        return max;
-    }
-
-    /**
-     * Restores the heap property by moving the last inserted element upwards
-     * until the heap condition is satisfied.
-     * @private
-     */
-    bubbleUp() {
-        let index = this.heap.length - 1;
-        const currentValue = this.heap[index];
-
-        while (index &gt; 0) {
-            const parentIndex = Math.floor((index - 1) / 2);
-            const parentValue = this.heap[parentIndex];
-
-            if (this.cmp(currentValue, parentValue) &lt;= 0) break;
-
-            this.heap[index] = parentValue;
-            index = parentIndex;
-        }
-
-        this.heap[index] = currentValue;
-    }
-
-    /**
-     * Restores the heap property by moving the root element downwards
-     * until the heap condition is satisfied.
-     * @private
-     */
-    bubbleDown() {
-        let index = 0;
-        const length = this.heap.length;
-        const current = this.heap[index];
-
-        while (true) {
-            const leftIndex = 2 * index + 1;
-            const rightIndex = 2 * index + 2;
-            let largestIndex = index;
-
-            if (leftIndex &lt; length &amp;&amp; this.cmp(this.heap[leftIndex], this.heap[largestIndex]) &gt; 0) {
-                largestIndex = leftIndex;
-            }
-
-            if (rightIndex &lt; length &amp;&amp; this.cmp(this.heap[rightIndex], this.heap[largestIndex]) &gt; 0) {
-                largestIndex = rightIndex;
-            }
-
-            if (largestIndex === index) break;
-
-            this.heap[index] = this.heap[largestIndex];
-            index = largestIndex;
-        }
-
-        this.heap[index] = current;
-    }
-}
-
+<pre class="src src-js">
 /**
  * Main function to find the top k frequent elements.
  * @param {number[]} nums - An array of integers.
@@ -252,23 +137,30 @@ function topKFrequent(nums, k) {
     const freqValueIndex = 1;
     const freqKeyIndex = 0;
 
-    const freqCompare = (pairA, pairB) =&gt; pairA[freqValueIndex] - pairB[freqValueIndex];
 
-    const maxHeap = new BoundedMaxHeap(k, freqCompare);
+    const unsorted = [];
 
     for (const freqKey of Object.keys(freq)) {
         const item = [Number(freqKey), freq[freqKey]];
-        maxHeap.insert(item);
+        unsorted.push(item);
     }
 
-    log(`maxHeap = ${JSON.stringify(maxHeap, null, 4)}`);
+    log(`unsorted = `);
+    table(unsorted);
+
+    const sorted = unsorted.sort((pairA, pairB) =&gt; pairB[freqValueIndex] - pairA[freqValueIndex]);
+
+    log(`sorted = `);
+    table(sorted);
 
     const result = [];
 
-    {
-        let item;
-        while (item = maxHeap.extractMax()) {
+    for (let i = 0; i &lt; k; i++) {
+        const item = sorted.shift();
+        if (item) {
             result.push(item[freqKeyIndex]);
+        } else {
+            break;
         }
     }
 
@@ -279,6 +171,7 @@ function topKFrequent(nums, k) {
 
 // Test cases to verify the solution
 const testCases = [
+    { nums: [6,0,1,4,9,7,-3,1,-4,-8,4,-7,-3,3,2,-3,9,5,-4,0], k: 2, expected: [-3,0,1,4,9,-4] },
     { nums: [1,1,1,2,2,3], k: 2, expected: [1, 2] },
     { nums: [1], k: 1, expected: [1] },
     { nums: [1,2,3,1,2,4,4,4,4], k: 1, expected: [4] },

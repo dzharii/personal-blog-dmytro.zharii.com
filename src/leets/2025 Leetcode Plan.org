@@ -53,7 +53,7 @@ string manipulation, and pattern searching that mirror concepts in search and in
    - Problems:
      - [ ] [[https://leetcode.com/problems/index-pairs-of-a-string/][#1065. Index Pairs of a String]] -- Finding all index pairs matching words in a dictionary simulates how an inverted
        index might point back to positions of terms.
-     - [ ] [[https://leetcode.com/problems/top-k-frequent-elements/][#347. Top K Frequent Elements]] -- Although about integers, it's a canonical frequency-based problem.
+     - [X] [[https://leetcode.com/problems/top-k-frequent-elements/][#347. Top K Frequent Elements]] -- Although about integers, it's a canonical frequency-based problem. 2024-12-30 [Top K Frequent Elements - LeetCode](https://leetcode.com/problems/top-k-frequent-elements/submissions/1492189838/) { leetcode.com } [[file:0347-Top-K-Frequent-Elements.org][ORG file: Solution 347. Top K Frequent Elements]]
      - [ ] [[https://leetcode.com/problems/intersection-of-two-arrays-ii/][#350. Intersection of Two Arrays II]] -- Frequency counting and intersection logic can inform how posting lists
        intersect in inverted indexes.
 

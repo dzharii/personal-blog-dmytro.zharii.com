@@ -22,27 +22,27 @@ Published 2024-12-17
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgd710202">Problem</a></li>
-<li><a href="#orga2a5395">Solution Description</a></li>
-<li><a href="#orgda6b0c8">Example</a></li>
-<li><a href="#org6beb4c9">References</a></li>
-<li><a href="#orgb9389fe">Solution</a></li>
+<li><a href="#orga033cae">Problem</a></li>
+<li><a href="#org5884022">Solution Description</a></li>
+<li><a href="#orgfdb355f">Example</a></li>
+<li><a href="#org91abede">References</a></li>
+<li><a href="#orgde80e5a">Solution</a></li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-orgd710202" class="outline-2">
-<h2 id="orgd710202">Problem</h2>
-<div class="outline-text-2" id="text-orgd710202">
+<div id="outline-container-orga033cae" class="outline-2">
+<h2 id="orga033cae">Problem</h2>
+<div class="outline-text-2" id="text-orga033cae">
 <p>
 Given an array <code>prices</code> where <code>prices[i]</code> is the price of the <code>i</code>-th item in a shop. There's a special discount for the item, which you will receive when you buy it: the discount will be equal to the cost of the next item later in the line which has a smaller or equal price than the current item. If there is no such item, you will not receive any discount at that time. Return an array where the <code>i</code>-th element is the final price you will pay for the <code>i</code>-th item of the shop considering the special discount.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orga2a5395" class="outline-2">
-<h2 id="orga2a5395">Solution Description</h2>
-<div class="outline-text-2" id="text-orga2a5395">
+<div id="outline-container-org5884022" class="outline-2">
+<h2 id="org5884022">Solution Description</h2>
+<div class="outline-text-2" id="text-org5884022">
 <p>
 To implement the solution, we need to iterate over each item in the <code>prices</code> array and for each item, check the subsequent items to find the first one that has a price less than or equal to the current item's price. The difference between the current item's price and this found price will be the discounted price. If no such item is found, the item price remains unaffected. We can achieve this with a simple nested loop:
 </p>
@@ -61,9 +61,9 @@ The time complexity of this solution is O(n<sup>2</sup>) where <code>n</code> is
 </div>
 </div>
 
-<div id="outline-container-orgda6b0c8" class="outline-2">
-<h2 id="orgda6b0c8">Example</h2>
-<div class="outline-text-2" id="text-orgda6b0c8">
+<div id="outline-container-orgfdb355f" class="outline-2">
+<h2 id="orgfdb355f">Example</h2>
+<div class="outline-text-2" id="text-orgfdb355f">
 <p>
 Consider the array of prices = [8, 4, 6, 2, 3].
 </p>
@@ -80,18 +80,18 @@ Thus, the final prices to be returned are = [4, 2, 4, 2, 3] =.
 </div>
 </div>
 
-<div id="outline-container-org6beb4c9" class="outline-2">
-<h2 id="org6beb4c9">References</h2>
-<div class="outline-text-2" id="text-org6beb4c9">
+<div id="outline-container-org91abede" class="outline-2">
+<h2 id="org91abede">References</h2>
+<div class="outline-text-2" id="text-org91abede">
 <p>
 For this problem, no specific frameworks or well-known algorithms are directly applicable. However, similar techniques for optimizing array traversals like using stacks can be explored for related problems. See also stack-based solutions for "next greater element" problems in coding platforms.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgb9389fe" class="outline-2">
-<h2 id="orgb9389fe">Solution</h2>
-<div class="outline-text-2" id="text-orgb9389fe">
+<div id="outline-container-orgde80e5a" class="outline-2">
+<h2 id="orgde80e5a">Solution</h2>
+<div class="outline-text-2" id="text-orgde80e5a">
 <p>
 <a href="https://leetcode.com/submissions/detail/1481723432/">2024-12-18 Final Prices With a Special Discount in a Shop - Submission Detail - LeetCode</a> <code>leetcode.com</code>
 </p>
