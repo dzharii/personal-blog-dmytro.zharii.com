@@ -1,0 +1,100 @@
+#+title: 0819 Most Common Word
+#+subtitle: docs
+#+date: <2025-01-11>
+#+language: en
+
+* Summary
+This section provides an overview of the problem, examples, and the approach used to solve it.
+
+** Problem Statement
+The problem, "Most Common Word" (LeetCode 0819), requires finding the most frequently occurring word in a paragraph that is not included in a given list of banned words. The solution must handle punctuation, case insensitivity, and edge cases effectively.
+
+** Examples
+Two examples illustrate the problem:
+
+1. Input:
+   - Paragraph: "Bob hit a ball, the hit BALL flew far after it was hit."
+   - Banned: =["hit"]=
+   - Expected Output: ="ball"=
+
+   Explanation: The word "hit" is banned. After excluding banned words, "ball" appears most frequently.
+
+2. Input:
+   - Paragraph: "a."
+   - Banned: []
+   - Expected Output: "a"
+
+   Explanation: The only word present is "a", and there are no banned words.
+
+** Approach
+The solution is implemented using Kusto Query Language (KQL). The steps are as follows:
+
+1. Tokenization:
+   - Split the paragraph into words using the =split()= function.
+   - Use =tolower()= to convert words to lowercase.
+   - Strip punctuation using =trim(@"\W", word)=.
+
+2. Filtering:
+   - Exclude empty words.
+   - Use the =has= operator to filter out words from the banned list.
+
+3. Counting:
+   - Group the words by =TestCaseID= and count occurrences using =summarize count()=.
+
+4. Selecting the most common word:
+   - Use the =arg_max()= function to identify the word with the highest frequency for each test case.
+
+5. Validation:
+   - Compare the result with the expected output to determine if the test case passes or fails.
+   - Output a table with the test case ID, the expected result, and a "Passed" or "Failed" status.
+
+#+include: "./00_include_kusto_prerequisites.org"
+
+* Solution
+
+#+begin_src sql
+let TestCases = datatable(TestCaseID:int, paragraph:string, banned:dynamic, expected:string)
+[
+    // TestCaseID, Paragraph,                          Banned Words,       Expected Result
+    1, "Bob hit a ball, the hit BALL flew far after it was hit.", dynamic(["hit"]), "ball",
+    2, "a.",                                                      dynamic([]),       "a"
+];
+//
+TestCases
+| mv-expand word = split(tostring(paragraph), ' ')
+| project TestCaseID, CleanWord = tolower(trim(@"\W", tostring(word)))
+| where CleanWord != ""
+| join kind=inner TestCases on TestCaseID
+| where banned !has CleanWord
+| summarize CountByWord = count() by TestCaseID, CleanWord
+| summarize arg_max(CountByWord, CleanWord) by TestCaseID
+| join kind=leftouter TestCases on TestCaseID
+| project
+    TestCaseID,
+    Expected = tolower(expected),
+    IsPassed = iif(CleanWord == tolower(expected), "Passed", "Failed")
+| order by TestCaseID asc
+#+end_src
+
+
+* Output:
+
+| TestCaseID | Expected | IsPassed |
+|------------+----------+----------|
+|          1 | ball     | Passed   |
+|          2 | a        | Passed   |
+
+
+* What I have learned
+
+=dynamic= works good with =has= or =!has=: =where banned !has CleanWord=
+
+I've used this approach of first, producing the empty line strings in my javascript implementation: [[https://dmytro.zharii.com/leets/0819-Most-Common-Word.html][2025-01-11 0819. Most Common Word]] =dmytro.zharii.com= but now I am not sure if this is the best way to solve it. It works, it is simple, but maybe there are some alternatives.
+
+#+begin_src sql
+| mv-expand word = split(tostring(paragraph), ' ')
+| project TestCaseID, CleanWord = tolower(trim(@"\W", tostring(word)))
+| where CleanWord != ""
+#+end_src
+
+Maybe I should somehow separate the logical blocks at this query.
