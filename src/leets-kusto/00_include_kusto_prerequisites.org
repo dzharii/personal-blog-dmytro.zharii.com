@@ -1,4 +1,4 @@
-* Prerequisites
+* Kusto Explorer Prerequisites
 To run the Kusto Query Language (KQL) queries and experiment with Azure Data Explorer, ensure you have the following prerequisites:
 
 ** Download Kusto Explorer

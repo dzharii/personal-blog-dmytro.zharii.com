@@ -1,0 +1,219 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2025-01-11 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>1065. Index Pairs of a String</title>
+<meta name="author" content="d)zharii" />
+<meta name="generator" content="Org Mode" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/t.css"/>
+</head>
+<body>
+<nav><a href="/" tabindex="0">&larrhk; Back to Index</a></nav><div id="preamble" class="status">
+Published 2024-12-29
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">1065. Index Pairs of a String</h1>
+<p class="subtitle" role="doc-subtitle">leetcode</p>
+</header><nav id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgb82369e">Problem</a></li>
+<li><a href="#org157e10b">Solution Description</a>
+<ul>
+<li><a href="#orgc93fad0">Other Approaches</a>
+<ul>
+<li><a href="#orge94862b">Trie-based Search:</a></li>
+<li><a href="#orge61449b">Aho-Corasick Algorithm:</a></li>
+<li><a href="#orgc17a2d1">Rolling Hash (Rabin-Karp):</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org84578e8">Example</a></li>
+<li><a href="#org54035df">Solution</a></li>
+</ul>
+</div>
+</nav>
+
+<div id="outline-container-orgb82369e" class="outline-2">
+<h2 id="orgb82369e">Problem</h2>
+<div class="outline-text-2" id="text-orgb82369e">
+<p>
+You are given a string <code>text</code> and an array of strings <code>words</code>. Your task is to find all the index pairs <code>[i, j]</code> such that the substring <code>text[i...j]</code> is present in <code>words</code>. Here, <code>i</code> and <code>j</code> are inclusive indices representing the start and end positions of the substring in <code>text</code>.
+</p>
+
+<p>
+The result should be a list of index pairs <code>[i, j]</code> that is sorted by the first index <code>i</code>, and for each <code>i</code>, by <code>j</code>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org157e10b" class="outline-2">
+<h2 id="org157e10b">Solution Description</h2>
+<div class="outline-text-2" id="text-org157e10b">
+<p>
+To implement a solution for finding all index pairs of substrings in <code>text</code> from <code>words</code>, we can use the following approach:
+</p>
+
+<ol class="org-ol">
+<li>Iterate over the list of <code>words</code> and find all starting indices of each word in the <code>text</code>.</li>
+<li>For each occurrence of a word, calculate the corresponding end index based on the word's length.</li>
+<li>Gather all index pairs and store them in a list.</li>
+<li>Once all matches are found, sort the list of index pairs first by the starting index <code>i</code>, and then by the ending index <code>j</code> for ties.</li>
+</ol>
+
+<p>
+This approach ensures that we check all possible substrings and match them efficiently. By iterating over all words and using the <code>String.indexOf</code> method repeatedly with different starting positions, we can find all occurrences in linear time relative to the length of <code>text</code> for each word.
+</p>
+
+<ul class="org-ul">
+<li>Time Complexity: O(w * n), where <code>w</code> is the number of words and <code>n</code> is the length of <code>text</code>. This accounts for searching each word in the text individually.</li>
+<li>Space Complexity: O(k), where <code>k</code> is the number of index pairs found.</li>
+</ul>
+
+<p>
+The approach used in this solution is a <b><b>brute-force substring matching</b></b> technique. By iterating over each word and searching for its occurrences in the `text`, we systematically identify all possible index pairs. This method is straightforward and easy to implement, but it may not be the most efficient for large inputs.
+</p>
+</div>
+
+<div id="outline-container-orgc93fad0" class="outline-3">
+<h3 id="orgc93fad0">Other Approaches</h3>
+<div class="outline-text-3" id="text-orgc93fad0">
+</div>
+<div id="outline-container-orge94862b" class="outline-4">
+<h4 id="orge94862b">Trie-based Search:</h4>
+<div class="outline-text-4" id="text-orge94862b">
+<p>
+Building a trie (prefix tree) of all the <code>words</code> allows for efficient searching of multiple words simultaneously within the =text. This reduces the number of redundant comparisons and can significantly improve performance, especially when dealing with a large dictionary of words.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge61449b" class="outline-4">
+<h4 id="orge61449b">Aho-Corasick Algorithm:</h4>
+<div class="outline-text-4" id="text-orge61449b">
+<p>
+This is an advanced string matching algorithm that constructs a finite state machine to efficiently find all occurrences of a set of <code>words</code> in the <code>text</code>. It combines the construction of a trie with additional links to handle transitions, enabling simultaneous search for multiple patterns in linear time relative to the length of the <code>text</code>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc17a2d1" class="outline-4">
+<h4 id="orgc17a2d1">Rolling Hash (Rabin-Karp):</h4>
+<div class="outline-text-4" id="text-orgc17a2d1">
+<p>
+The Rabin-Karp algorithm uses hashing to find any one of a set of pattern strings in the <code>text</code>. By computing a hash for each word and then rolling a hash over the <code>text</code>, it can quickly identify potential matches and verify them, offering a balance between simplicity and efficiency.
+</p>
+
+<p>
+Each of these approaches has its own trade-offs in terms of implementation complexity and performance, and the choice of which to use can depend on the specific requirements and constraints of the problem at hand.
+</p>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org84578e8" class="outline-2">
+<h2 id="org84578e8">Example</h2>
+<div class="outline-text-2" id="text-org84578e8">
+<p>
+Suppose <code>text = "thestoryofleetcode"</code> and <code>words = ["story", "leet", "code"]</code>.
+</p>
+<ul class="org-ul">
+<li>The word "story" starts at index 3 and ends at index 7.</li>
+<li>The word "leet" starts at index 10 and ends at index 13.</li>
+<li>The word "code" starts at index 14 and ends at index 17.</li>
+</ul>
+<p>
+The expected result is the list of pairs: <code>[[3, 7], [10, 13], [14, 17]]</code>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org54035df" class="outline-2">
+<h2 id="org54035df">Solution</h2>
+<div class="outline-text-2" id="text-org54035df">
+<div class="org-src-container">
+<pre class="src src-js">/**
+ * @param {string} text - The main text string to search within.
+ * @param {string[]} words - The list of words to find in the text.
+ * @returns {number[][]} List of index pairs [i, j] where each word starts and ends.
+ */
+function findIndexPairs(text, words) {
+    const log = typeof NestedInteger !== 'undefined' ? () =&gt; {} : console.log;
+    const table = typeof NestedInteger !== 'undefined' ? () =&gt; {} : console.table;
+
+    // Dummy return to allow testing framework setup
+    return [];
+}
+
+// Test cases
+const testCases = [
+    {
+        text: "thestoryofleetcode",
+        words: ["story", "leet", "code"],
+        expected: [[3, 7], [10, 13], [14, 17]]
+    },
+    {
+        text: "abc",
+        words: ["a", "b", "c"],
+        expected: [[0, 0], [1, 1], [2, 2]]
+    },
+    {
+        text: "abcdef",
+        words: ["ab", "bc", "de", "ef"],
+        expected: [[0, 1], [1, 2], [3, 4], [4, 5]]
+    },
+    {
+        text: "",
+        words: ["empty"],
+        expected: []
+    },
+    {
+        text: "singlematch",
+        words: ["single", "match", "gle"],
+        expected: [[0, 5], [6, 10], [3, 5]]
+    },
+    {
+        text: "ababa",
+        words: ["aba", "ab"],
+        expected: [[0, 1], [0, 2], [2, 3], [2, 4]]
+    },
+    {
+        text: "aaa",
+        words: ["a", "aa", "aaa"],
+        expected: [[0, 0], [0, 1], [0, 2], [1, 1], [1, 2], [2, 2]]
+    },
+    {
+        text: "hello",
+        words: ["world", "hi"],
+        expected: []
+    },
+    {
+        text: "abcabcabc",
+        words: ["abc", "bc", "c"],
+        expected: [[0, 2], [1, 2], [2, 2], [3, 5], [4, 5], [5, 5], [6, 8], [7, 8], [8, 8]]
+    }
+];
+
+testCases.forEach((test, index) =&gt; {
+    const result = findIndexPairs(test.text, test.words);
+    const sortedResult = result.sort((a, b) =&gt; a[0] - b[0] || a[1] - b[1]); // Sort results for comparison
+    const isPassed = JSON.stringify(sortedResult) === JSON.stringify(test.expected);
+    console.log(`Test Case ${index + 1}: ${isPassed ? 'Passed' : 'Failed'} (Expected: ${JSON.stringify(test.expected)}, Got: ${JSON.stringify(sortedResult)})`);
+});
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+&copy; d)zharii. <a href="/sitemap.html">sitemap</a>
+</div>
+</body>
+</html>

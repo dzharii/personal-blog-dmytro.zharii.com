@@ -48,7 +48,18 @@ The solution is implemented using Kusto Query Language (KQL). The steps are as f
    - Compare the result with the expected output to determine if the test case passes or fails.
    - Output a table with the test case ID, the expected result, and a "Passed" or "Failed" status.
 
+
+* Prerequisites
+[[file:00_include_kusto_prerequisites.org][Kusto Explorer Prerequisites]]
+
+Originally, I wanted to include the content here, but =org-html-publish-to-html= just hangs there...
+
+#+begin_example
+
 #+include: "./00_include_kusto_prerequisites.org"
+
+#+end_example
+
 
 * Solution
 

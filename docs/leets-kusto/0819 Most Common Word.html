@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2025-01-11 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>0819 Most Common Word</title>
+<meta name="author" content="d)zharii" />
+<meta name="generator" content="Org Mode" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/t.css"/>
+</head>
+<body>
+<nav><a href="/" tabindex="0">&larrhk; Back to Index</a></nav><div id="preamble" class="status">
+Published 2025-01-11
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">0819 Most Common Word</h1>
+<p class="subtitle" role="doc-subtitle">docs</p>
+</header><nav id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org98f65ad">Summary</a>
+<ul>
+<li><a href="#orgf49c551">Problem Statement</a></li>
+<li><a href="#org23f15b1">Examples</a></li>
+<li><a href="#orgf166099">Approach</a></li>
+</ul>
+</li>
+<li><a href="#org0c98be4">Prerequisites</a></li>
+<li><a href="#org9cf38a6">Solution</a></li>
+<li><a href="#orgefb5de6">Output:</a></li>
+<li><a href="#org0e4c595">What I have learned</a></li>
+</ul>
+</div>
+</nav>
+
+<div id="outline-container-org98f65ad" class="outline-2">
+<h2 id="org98f65ad">Summary</h2>
+<div class="outline-text-2" id="text-org98f65ad">
+<p>
+This section provides an overview of the problem, examples, and the approach used to solve it.
+</p>
+</div>
+
+<div id="outline-container-orgf49c551" class="outline-3">
+<h3 id="orgf49c551">Problem Statement</h3>
+<div class="outline-text-3" id="text-orgf49c551">
+<p>
+The problem, "Most Common Word" (LeetCode 0819), requires finding the most frequently occurring word in a paragraph that is not included in a given list of banned words. The solution must handle punctuation, case insensitivity, and edge cases effectively.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org23f15b1" class="outline-3">
+<h3 id="org23f15b1">Examples</h3>
+<div class="outline-text-3" id="text-org23f15b1">
+<p>
+Two examples illustrate the problem:
+</p>
+
+<ol class="org-ol">
+<li><p>
+Input:
+</p>
+<ul class="org-ul">
+<li>Paragraph: "Bob hit a ball, the hit BALL flew far after it was hit."</li>
+<li>Banned: <code>["hit"]</code></li>
+<li>Expected Output: <code>"ball"</code></li>
+</ul>
+
+<p>
+Explanation: The word "hit" is banned. After excluding banned words, "ball" appears most frequently.
+</p></li>
+
+<li><p>
+Input:
+</p>
+<ul class="org-ul">
+<li>Paragraph: "a."</li>
+<li>Banned: []</li>
+<li>Expected Output: "a"</li>
+</ul>
+
+<p>
+Explanation: The only word present is "a", and there are no banned words.
+</p></li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-orgf166099" class="outline-3">
+<h3 id="orgf166099">Approach</h3>
+<div class="outline-text-3" id="text-orgf166099">
+<p>
+The solution is implemented using Kusto Query Language (KQL). The steps are as follows:
+</p>
+
+<ol class="org-ol">
+<li>Tokenization:
+<ul class="org-ul">
+<li>Split the paragraph into words using the <code>split()</code> function.</li>
+<li>Use <code>tolower()</code> to convert words to lowercase.</li>
+<li>Strip punctuation using <code>trim(@"\W", word)</code>.</li>
+</ul></li>
+
+<li>Filtering:
+<ul class="org-ul">
+<li>Exclude empty words.</li>
+<li>Use the <code>has</code> operator to filter out words from the banned list.</li>
+</ul></li>
+
+<li>Counting:
+<ul class="org-ul">
+<li>Group the words by <code>TestCaseID</code> and count occurrences using <code>summarize count()</code>.</li>
+</ul></li>
+
+<li>Selecting the most common word:
+<ul class="org-ul">
+<li>Use the <code>arg_max()</code> function to identify the word with the highest frequency for each test case.</li>
+</ul></li>
+
+<li>Validation:
+<ul class="org-ul">
+<li>Compare the result with the expected output to determine if the test case passes or fails.</li>
+<li>Output a table with the test case ID, the expected result, and a "Passed" or "Failed" status.</li>
+</ul></li>
+</ol>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org0c98be4" class="outline-2">
+<h2 id="org0c98be4">Prerequisites</h2>
+<div class="outline-text-2" id="text-org0c98be4">
+<p>
+<a href="00_include_kusto_prerequisites.html">Kusto Explorer Prerequisites</a>
+</p>
+
+<p>
+Originally, I wanted to include the content here, but <code>org-html-publish-to-html</code> just hangs there&#x2026;
+</p>
+
+<pre class="example" id="org1dd0dfe">
+
+#+include: "./00_include_kusto_prerequisites.org"
+
+</pre>
+</div>
+</div>
+
+
+<div id="outline-container-org9cf38a6" class="outline-2">
+<h2 id="org9cf38a6">Solution</h2>
+<div class="outline-text-2" id="text-org9cf38a6">
+<div class="org-src-container">
+<pre class="src src-sql">let TestCases = datatable(TestCaseID:int, paragraph:string, banned:dynamic, expected:string)
+[
+    // TestCaseID, Paragraph,                          Banned Words,       Expected Result
+    1, "Bob hit a ball, the hit BALL flew far after it was hit.", dynamic(["hit"]), "ball",
+    2, "a.",                                                      dynamic([]),       "a"
+];
+//
+TestCases
+| mv-expand word = split(tostring(paragraph), ' ')
+| project TestCaseID, CleanWord = tolower(trim(@"\W", tostring(word)))
+| where CleanWord != ""
+| join kind=inner TestCases on TestCaseID
+| where banned !has CleanWord
+| summarize CountByWord = count() by TestCaseID, CleanWord
+| summarize arg_max(CountByWord, CleanWord) by TestCaseID
+| join kind=leftouter TestCases on TestCaseID
+| project
+    TestCaseID,
+    Expected = tolower(expected),
+    IsPassed = iif(CleanWord == tolower(expected), "Passed", "Failed")
+| order by TestCaseID asc
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgefb5de6" class="outline-2">
+<h2 id="orgefb5de6">Output:</h2>
+<div class="outline-text-2" id="text-orgefb5de6">
+<table>
+
+
+<colgroup>
+<col  class="org-right">
+
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">TestCaseID</th>
+<th scope="col" class="org-left">Expected</th>
+<th scope="col" class="org-left">IsPassed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">1</td>
+<td class="org-left">ball</td>
+<td class="org-left">Passed</td>
+</tr>
+
+<tr>
+<td class="org-right">2</td>
+<td class="org-left">a</td>
+<td class="org-left">Passed</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+<div id="outline-container-org0e4c595" class="outline-2">
+<h2 id="org0e4c595">What I have learned</h2>
+<div class="outline-text-2" id="text-org0e4c595">
+<p>
+<code>dynamic</code> works good with <code>has</code> or <code>!has</code>: <code>where banned !has CleanWord</code>
+</p>
+
+<p>
+I've used this approach of first, producing the empty line strings in my javascript implementation: <a href="https://dmytro.zharii.com/leets/0819-Most-Common-Word.html">2025-01-11 0819. Most Common Word</a> <code>dmytro.zharii.com</code> but now I am not sure if this is the best way to solve it. It works, it is simple, but maybe there are some alternatives.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sql">| mv-expand word = split(tostring(paragraph), ' ')
+| project TestCaseID, CleanWord = tolower(trim(@"\W", tostring(word)))
+| where CleanWord != ""
+</pre>
+</div>
+
+<p>
+Maybe I should somehow separate the logical blocks at this query.
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+&copy; d)zharii. <a href="/sitemap.html">sitemap</a>
+</div>
+</body>
+</html>
