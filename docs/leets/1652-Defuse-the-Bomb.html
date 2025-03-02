@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2025-01-11 -->
+<!-- 2025-03-01 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>1652. Defuse the Bomb</title>
@@ -22,18 +22,18 @@ Published 2024-11-18
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org1464282">Problem</a></li>
-<li><a href="#orge9f3133">Solution Description</a></li>
-<li><a href="#orga4e5a3c">Example</a></li>
-<li><a href="#org3082d5e">References</a></li>
-<li><a href="#orge54b507">Solution</a></li>
+<li><a href="#orgec5ea90">Problem</a></li>
+<li><a href="#org2ebaeb2">Solution Description</a></li>
+<li><a href="#orge3b6ce1">Example</a></li>
+<li><a href="#orgd409896">References</a></li>
+<li><a href="#org5646aa8">Solution</a></li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-org1464282" class="outline-2">
-<h2 id="org1464282">Problem</h2>
-<div class="outline-text-2" id="text-org1464282">
+<div id="outline-container-orgec5ea90" class="outline-2">
+<h2 id="orgec5ea90">Problem</h2>
+<div class="outline-text-2" id="text-orgec5ea90">
 <p>
 Given a coded array and an integer <code>k</code>, you need to "defuse" the array by extracting a new array of the same length, where each element is the sum of consecutive elements from the coded array. Specifically:
 </p>
@@ -49,9 +49,9 @@ The array can be considered circular, meaning that after the last element, it ro
 </div>
 </div>
 
-<div id="outline-container-orge9f3133" class="outline-2">
-<h2 id="orge9f3133">Solution Description</h2>
-<div class="outline-text-2" id="text-orge9f3133">
+<div id="outline-container-org2ebaeb2" class="outline-2">
+<h2 id="org2ebaeb2">Solution Description</h2>
+<div class="outline-text-2" id="text-org2ebaeb2">
 <p>
 To implement the defuse operation, we will iterate over each element in the coded array and calculate the partial sum based on the value of <code>k</code>. We will use modular arithmetic to handle the wrap-around nature of the circular array. Here is the optimal approach:
 </p>
@@ -69,9 +69,9 @@ The operation requires a single loop over the array and some constant operations
 </div>
 </div>
 
-<div id="outline-container-orga4e5a3c" class="outline-2">
-<h2 id="orga4e5a3c">Example</h2>
-<div class="outline-text-2" id="text-orga4e5a3c">
+<div id="outline-container-orge3b6ce1" class="outline-2">
+<h2 id="orge3b6ce1">Example</h2>
+<div class="outline-text-2" id="text-orge3b6ce1">
 <p>
 Given a coded array <code>[5,7,1,4]</code> and k=3:
 </p>
@@ -88,9 +88,9 @@ Resulting defused array: <code>[12, 10, 16, 13]</code>.
 </div>
 </div>
 
-<div id="outline-container-org3082d5e" class="outline-2">
-<h2 id="org3082d5e">References</h2>
-<div class="outline-text-2" id="text-org3082d5e">
+<div id="outline-container-orgd409896" class="outline-2">
+<h2 id="orgd409896">References</h2>
+<div class="outline-text-2" id="text-orgd409896">
 <ul class="org-ul">
 <li>Known Algorithm: Circular Array with Sum Computation</li>
 <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Arithmetic_Operators#%25_(Remainder)">JavaScript Remainder Operator</a></li>
@@ -98,9 +98,9 @@ Resulting defused array: <code>[12, 10, 16, 13]</code>.
 </div>
 </div>
 
-<div id="outline-container-orge54b507" class="outline-2">
-<h2 id="orge54b507">Solution</h2>
-<div class="outline-text-2" id="text-orge54b507">
+<div id="outline-container-org5646aa8" class="outline-2">
+<h2 id="org5646aa8">Solution</h2>
+<div class="outline-text-2" id="text-org5646aa8">
 <p>
 Submission: <a href="https://leetcode.com/submissions/detail/1456646811/">2024-11-18 Defuse the Bomb - Submission Detail - LeetCode</a> <code>leetcode.com</code>
 </p>

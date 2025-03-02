@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2025-01-11 -->
+<!-- 2025-03-01 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>1475. Final Prices With a Special Discount in a Shop</title>
@@ -22,27 +22,27 @@ Published 2024-12-17
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org54f9c8d">Problem</a></li>
-<li><a href="#org5d1b51d">Solution Description</a></li>
-<li><a href="#org33acc00">Example</a></li>
-<li><a href="#orga03c131">References</a></li>
-<li><a href="#orgbba23fb">Solution</a></li>
+<li><a href="#orgf2caf99">Problem</a></li>
+<li><a href="#orgd82e796">Solution Description</a></li>
+<li><a href="#orgd858b40">Example</a></li>
+<li><a href="#org31e022c">References</a></li>
+<li><a href="#org7eff7fe">Solution</a></li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-org54f9c8d" class="outline-2">
-<h2 id="org54f9c8d">Problem</h2>
-<div class="outline-text-2" id="text-org54f9c8d">
+<div id="outline-container-orgf2caf99" class="outline-2">
+<h2 id="orgf2caf99">Problem</h2>
+<div class="outline-text-2" id="text-orgf2caf99">
 <p>
 Given an array <code>prices</code> where <code>prices[i]</code> is the price of the <code>i</code>-th item in a shop. There's a special discount for the item, which you will receive when you buy it: the discount will be equal to the cost of the next item later in the line which has a smaller or equal price than the current item. If there is no such item, you will not receive any discount at that time. Return an array where the <code>i</code>-th element is the final price you will pay for the <code>i</code>-th item of the shop considering the special discount.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org5d1b51d" class="outline-2">
-<h2 id="org5d1b51d">Solution Description</h2>
-<div class="outline-text-2" id="text-org5d1b51d">
+<div id="outline-container-orgd82e796" class="outline-2">
+<h2 id="orgd82e796">Solution Description</h2>
+<div class="outline-text-2" id="text-orgd82e796">
 <p>
 To implement the solution, we need to iterate over each item in the <code>prices</code> array and for each item, check the subsequent items to find the first one that has a price less than or equal to the current item's price. The difference between the current item's price and this found price will be the discounted price. If no such item is found, the item price remains unaffected. We can achieve this with a simple nested loop:
 </p>
@@ -61,9 +61,9 @@ The time complexity of this solution is O(n<sup>2</sup>) where <code>n</code> is
 </div>
 </div>
 
-<div id="outline-container-org33acc00" class="outline-2">
-<h2 id="org33acc00">Example</h2>
-<div class="outline-text-2" id="text-org33acc00">
+<div id="outline-container-orgd858b40" class="outline-2">
+<h2 id="orgd858b40">Example</h2>
+<div class="outline-text-2" id="text-orgd858b40">
 <p>
 Consider the array of prices = [8, 4, 6, 2, 3].
 </p>
@@ -80,18 +80,18 @@ Thus, the final prices to be returned are = [4, 2, 4, 2, 3] =.
 </div>
 </div>
 
-<div id="outline-container-orga03c131" class="outline-2">
-<h2 id="orga03c131">References</h2>
-<div class="outline-text-2" id="text-orga03c131">
+<div id="outline-container-org31e022c" class="outline-2">
+<h2 id="org31e022c">References</h2>
+<div class="outline-text-2" id="text-org31e022c">
 <p>
 For this problem, no specific frameworks or well-known algorithms are directly applicable. However, similar techniques for optimizing array traversals like using stacks can be explored for related problems. See also stack-based solutions for "next greater element" problems in coding platforms.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgbba23fb" class="outline-2">
-<h2 id="orgbba23fb">Solution</h2>
-<div class="outline-text-2" id="text-orgbba23fb">
+<div id="outline-container-org7eff7fe" class="outline-2">
+<h2 id="org7eff7fe">Solution</h2>
+<div class="outline-text-2" id="text-org7eff7fe">
 <p>
 <a href="https://leetcode.com/submissions/detail/1481723432/">2024-12-18 Final Prices With a Special Discount in a Shop - Submission Detail - LeetCode</a> <code>leetcode.com</code>
 </p>

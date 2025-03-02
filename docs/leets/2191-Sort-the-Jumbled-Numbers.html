@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2025-01-11 -->
+<!-- 2025-03-01 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>2191. Sort the Jumbled Numbers</title>
@@ -22,21 +22,21 @@ Published 2024-07-23
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orge48f955">Submission</a></li>
-<li><a href="#org3ecb6af">Problem:</a></li>
-<li><a href="#org07f22ab">Solution Description:</a></li>
-<li><a href="#org741b335">Example:</a></li>
-<li><a href="#org4fd6c03">Setup:</a></li>
-<li><a href="#org8f4af3b">Test Execution:</a></li>
-<li><a href="#orgfc0f492">Always Provide testcases Example:</a></li>
-<li><a href="#org9311dbc">Output sample</a></li>
+<li><a href="#orgeb19b1b">Submission</a></li>
+<li><a href="#orgedf4237">Problem:</a></li>
+<li><a href="#org02a4e68">Solution Description:</a></li>
+<li><a href="#orgd9db996">Example:</a></li>
+<li><a href="#org6b5e431">Setup:</a></li>
+<li><a href="#org97b3d47">Test Execution:</a></li>
+<li><a href="#orge882f5c">Always Provide testcases Example:</a></li>
+<li><a href="#org6872e7e">Output sample</a></li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-orge48f955" class="outline-2">
-<h2 id="orge48f955">Submission</h2>
-<div class="outline-text-2" id="text-orge48f955">
+<div id="outline-container-orgeb19b1b" class="outline-2">
+<h2 id="orgeb19b1b">Submission</h2>
+<div class="outline-text-2" id="text-orgeb19b1b">
 <p>
 <a href="https://leetcode.com/submissions/detail/1331311653/">Sort the Jumbled Numbers</a>
 </p>
@@ -44,9 +44,9 @@ Published 2024-07-23
 </div>
 
 
-<div id="outline-container-org3ecb6af" class="outline-2">
-<h2 id="org3ecb6af">Problem:</h2>
-<div class="outline-text-2" id="text-org3ecb6af">
+<div id="outline-container-orgedf4237" class="outline-2">
+<h2 id="orgedf4237">Problem:</h2>
+<div class="outline-text-2" id="text-orgedf4237">
 <p>
 You are given an integer array `mapping` which ranges from 0 to 9 and an array of integers `nums`.
 The `mapping` representation of an integer is the new integer obtained by replacing each occurrence of digit `i` in the integer with `mapping[i]` for all 0 &lt;= i &lt;= 9.
@@ -67,9 +67,9 @@ Your task is to return a sorted array of `nums` such that `nums[i]` is less than
 </div>
 </div>
 
-<div id="outline-container-org07f22ab" class="outline-2">
-<h2 id="org07f22ab">Solution Description:</h2>
-<div class="outline-text-2" id="text-org07f22ab">
+<div id="outline-container-org02a4e68" class="outline-2">
+<h2 id="org02a4e68">Solution Description:</h2>
+<div class="outline-text-2" id="text-org02a4e68">
 <p>
 To implement this solution, we need to:
 </p>
@@ -87,9 +87,9 @@ Space Complexity: O(n), for storing the pairs and the intermediate mapped values
 </div>
 </div>
 
-<div id="outline-container-org741b335" class="outline-2">
-<h2 id="org741b335">Example:</h2>
-<div class="outline-text-2" id="text-org741b335">
+<div id="outline-container-orgd9db996" class="outline-2">
+<h2 id="orgd9db996">Example:</h2>
+<div class="outline-text-2" id="text-orgd9db996">
 <p>
 For `mapping = [2,1,4,8,6,3,0,9,7,5]` and `nums = [990, 332, 981]`,
 </p>
@@ -100,27 +100,27 @@ For `mapping = [2,1,4,8,6,3,0,9,7,5]` and `nums = [990, 332, 981]`,
 </div>
 </div>
 
-<div id="outline-container-org4fd6c03" class="outline-2">
-<h2 id="org4fd6c03">Setup:</h2>
-<div class="outline-text-2" id="text-org4fd6c03">
+<div id="outline-container-org6b5e431" class="outline-2">
+<h2 id="org6b5e431">Setup:</h2>
+<div class="outline-text-2" id="text-org6b5e431">
 <p>
 Create a general framework for this solution, including the skeleton for the function and a setup for testing using `console.log`.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org8f4af3b" class="outline-2">
-<h2 id="org8f4af3b">Test Execution:</h2>
-<div class="outline-text-2" id="text-org8f4af3b">
+<div id="outline-container-org97b3d47" class="outline-2">
+<h2 id="org97b3d47">Test Execution:</h2>
+<div class="outline-text-2" id="text-org97b3d47">
 <p>
 Design tests that verify input parameters, actual results, expected results, and whether the tests passed or failed, ensuring complete coverage.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgfc0f492" class="outline-2">
-<h2 id="orgfc0f492">Always Provide testcases Example:</h2>
-<div class="outline-text-2" id="text-orgfc0f492">
+<div id="outline-container-orge882f5c" class="outline-2">
+<h2 id="orge882f5c">Always Provide testcases Example:</h2>
+<div class="outline-text-2" id="text-orge882f5c">
 <p>
 ```js
 </p>
@@ -179,10 +179,10 @@ testCases.forEach((test, index) =&gt; {
 </div>
 </div>
 
-<div id="outline-container-org9311dbc" class="outline-2">
-<h2 id="org9311dbc">Output sample</h2>
-<div class="outline-text-2" id="text-org9311dbc">
-<pre class="example" id="org6f35cfe">
+<div id="outline-container-org6872e7e" class="outline-2">
+<h2 id="org6872e7e">Output sample</h2>
+<div class="outline-text-2" id="text-org6872e7e">
+<pre class="example" id="org2f6bc01">
 
 pairs:
 ┌─────────┬─────┬─────┐
