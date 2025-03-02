@@ -22,37 +22,37 @@ Published 2024-11-10
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgb55c925">Problem Restatement</a></li>
-<li><a href="#org6404a1a">Solution Description</a></li>
-<li><a href="#org3bcf720">Example</a></li>
-<li><a href="#org8df3ce9">References</a></li>
-<li><a href="#orgdae876f">Solution Code</a></li>
+<li><a href="#org40856e0">Problem Restatement</a></li>
+<li><a href="#org019f3d4">Solution Description</a></li>
+<li><a href="#org5174682">Example</a></li>
+<li><a href="#orgb33c9e5">References</a></li>
+<li><a href="#org6d46a4f">Solution Code</a></li>
 </ul>
 </div>
 </nav>
 
 
-<div id="outline-container-orgb55c925" class="outline-2">
-<h2 id="orgb55c925">Problem Restatement</h2>
-<div class="outline-text-2" id="text-orgb55c925">
+<div id="outline-container-org40856e0" class="outline-2">
+<h2 id="org40856e0">Problem Restatement</h2>
+<div class="outline-text-2" id="text-org40856e0">
 <p>
 The "Two Sum" problem requires finding two distinct indices in a given list of numbers (an array) such that their values sum up to a target number. The function should return these indices. It's guaranteed that there is exactly one solution, and the same element cannot be used twice.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org6404a1a" class="outline-2">
-<h2 id="org6404a1a">Solution Description</h2>
-<div class="outline-text-2" id="text-org6404a1a">
+<div id="outline-container-org019f3d4" class="outline-2">
+<h2 id="org019f3d4">Solution Description</h2>
+<div class="outline-text-2" id="text-org019f3d4">
 <p>
 To implement a solution that is both efficient and straightforward, we need to iterate through the array while using a hash map to store each number's index. For each element, we calculate the complement that would sum with the current element to reach the target. If this complement is already in the map, we have found our solution, and we return the indices. This implementation runs with a time complexity of O(n) and a space complexity of O(n) due to the hash map storage.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org3bcf720" class="outline-2">
-<h2 id="org3bcf720">Example</h2>
-<div class="outline-text-2" id="text-org3bcf720">
+<div id="outline-container-org5174682" class="outline-2">
+<h2 id="org5174682">Example</h2>
+<div class="outline-text-2" id="text-org5174682">
 <p>
 Consider the array nums = {2, 7, 11, 15} and target = 9. As we iterate:
 </p>
@@ -67,9 +67,9 @@ Hence, the indices returned will be {1, 2}.
 </div>
 </div>
 
-<div id="outline-container-org8df3ce9" class="outline-2">
-<h2 id="org8df3ce9">References</h2>
-<div class="outline-text-2" id="text-org8df3ce9">
+<div id="outline-container-orgb33c9e5" class="outline-2">
+<h2 id="orgb33c9e5">References</h2>
+<div class="outline-text-2" id="text-orgb33c9e5">
 <ul class="org-ul">
 <li>The algorithm utilizes hash maps for achieving efficient data retrieval.</li>
 <li>Refer to Lua hash map documentation: <a href="https://www.lua.org/manual/5.1/manual.html#2.5">https://www.lua.org/manual/5.1/manual.html#2.5</a></li>
@@ -77,9 +77,9 @@ Hence, the indices returned will be {1, 2}.
 </div>
 </div>
 
-<div id="outline-container-orgdae876f" class="outline-2">
-<h2 id="orgdae876f">Solution Code</h2>
-<div class="outline-text-2" id="text-orgdae876f">
+<div id="outline-container-org6d46a4f" class="outline-2">
+<h2 id="org6d46a4f">Solution Code</h2>
+<div class="outline-text-2" id="text-org6d46a4f">
 <div class="org-src-container">
 <pre class="src src-lua">-- Two Sum solution in Lua
 
