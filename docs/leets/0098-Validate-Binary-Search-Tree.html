@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2025-03-01 -->
+<!-- 2025-03-08 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>0098. Validate Binary Search Tree</title>
@@ -22,17 +22,17 @@ Published 2024-06-17
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgf2d72af">Problem:</a></li>
-<li><a href="#orgab6b30d">Solution Description:</a></li>
-<li><a href="#org104803b">Example:</a></li>
-<li><a href="#orgfdcb5f8">Setup:</a></li>
+<li><a href="#org52e1cda">Problem:</a></li>
+<li><a href="#org7c7463d">Solution Description:</a></li>
+<li><a href="#orgafba921">Example:</a></li>
+<li><a href="#org02a1f14">Setup:</a></li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-orgf2d72af" class="outline-2">
-<h2 id="orgf2d72af">Problem:</h2>
-<div class="outline-text-2" id="text-orgf2d72af">
+<div id="outline-container-org52e1cda" class="outline-2">
+<h2 id="org52e1cda">Problem:</h2>
+<div class="outline-text-2" id="text-org52e1cda">
 <p>
 We are given the root of a binary tree and our objective is to determine if it is a valid binary search tree (BST). A valid BST has the property that for every node with a value `N`, all nodes in its left subtree have values less than `N`, and all nodes in its right subtree have values greater than `N`.
 </p>
@@ -43,9 +43,9 @@ To accomplish this, we can use an efficient approach leveraging DFS (Depth First
 </div>
 </div>
 
-<div id="outline-container-orgab6b30d" class="outline-2">
-<h2 id="orgab6b30d">Solution Description:</h2>
-<div class="outline-text-2" id="text-orgab6b30d">
+<div id="outline-container-org7c7463d" class="outline-2">
+<h2 id="org7c7463d">Solution Description:</h2>
+<div class="outline-text-2" id="text-org7c7463d">
 <p>
 To implement the validation of a BST, we need to use a recursive function that traverses the tree while keeping track of the acceptable value range for each node. Specifically, we can use the following approach:
 </p>
@@ -67,9 +67,9 @@ The time complexity of this solution is O(N), where `N` is the number of nodes, 
 </div>
 </div>
 
-<div id="outline-container-org104803b" class="outline-2">
-<h2 id="org104803b">Example:</h2>
-<div class="outline-text-2" id="text-org104803b">
+<div id="outline-container-orgafba921" class="outline-2">
+<h2 id="orgafba921">Example:</h2>
+<div class="outline-text-2" id="text-orgafba921">
 <p>
 Consider the following binary tree:
 </p>
@@ -97,9 +97,9 @@ All nodes satisfy the BST properties, so the tree is a valid BST.
 </div>
 </div>
 
-<div id="outline-container-orgfdcb5f8" class="outline-2">
-<h2 id="orgfdcb5f8">Setup:</h2>
-<div class="outline-text-2" id="text-orgfdcb5f8">
+<div id="outline-container-org02a1f14" class="outline-2">
+<h2 id="org02a1f14">Setup:</h2>
+<div class="outline-text-2" id="text-org02a1f14">
 <div class="org-src-container">
 <pre class="src src-js">/**
  * Function to validate if a binary tree is a valid Binary Search Tree (BST).

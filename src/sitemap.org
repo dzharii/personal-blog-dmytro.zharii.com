@@ -18,6 +18,22 @@
   - [[file:leets-lua/1652-Defuse-the-Bomb.org][1652. Defuse the Bomb]]
 - adventofcode-2024-lua
   - [[file:adventofcode-2024-lua/puzzle01b.org][Day 1: Historian Hysteria (Part 2)]]
+- leets-kusto
+  - [[file:leets-kusto/0819 Most Common Word.org][0819 Most Common Word]]
+  - [[file:leets-kusto/00_include_kusto_prerequisites.org][00_include_kusto_prerequisites]]
+- thoughts
+  - [[file:thoughts/Strong Opinions Weakly Held.org][Strong Opinions Weakly Held]]
+  - [[file:thoughts/Confirmation Bias.org][Confirmation Bias]]
+  - [[file:thoughts/Belief Perseverance.org][Belief Perseverance]]
+  - [[file:thoughts/Overconfidence Bias.org][Overconfidence Bias]]
+  - [[file:thoughts/Sunk Cost Fallacy.org][Sunk Cost Fallacy]]
+  - [[file:thoughts/SCARF Motivation Model.org][SCARF Motivation Model]]
+  - [[file:thoughts/Thoughts disclaimer read this.org][Thoughts disclaimer READ THIS]]
+  - [[file:thoughts/Management One on One meetings.org][SCARF Motivation Model]]
+  - [[file:thoughts/Conflict-handling Avoiding Competing Accommodating Compromising Collaborating.org][Conflict-handling Avoiding Competing Accommodating Compromising Collaborating]]
+  - [[file:thoughts/Gaslighting at Work.org][Gaslighting at Work]]
+  - [[file:thoughts/TJS_Collaboration_Model_7_Compete_Coexist_Communicate_Cooperate_Coordinate_Collaborate_Converge.org][TJS Collaboration Model 7: Compete, Coexist, Communicate, Cooperate, Coordinate, Collaborate, Converge]]
+  - [[file:thoughts/ADKAR Effective Change Management.org][ADKAR Effective Change Management: Models for Influencing Leadership and Enhancing Transparency]]
 - leets
   - [[file:leets/0039-Combination-Sum.org][Combination Sum Problem Overview and Solution Plan]]
   - [[file:leets/0338-Counting-Bits.org][0338. Counting Bits]]
@@ -83,19 +99,4 @@
   - [[file:leets/0819-Most-Common-Word.org][0819. Most Common Word]]
   - [[file:leets/0347-Top-K-Frequent-Elements.org][0347. Top K Frequent Elements]]
   - [[file:leets/1065-Index-Pairs-of-a-String.org][1065. Index Pairs of a String]]
-- leets-kusto
-  - [[file:leets-kusto/0819 Most Common Word.org][0819 Most Common Word]]
-  - [[file:leets-kusto/00_include_kusto_prerequisites.org][00_include_kusto_prerequisites]]
-- thoughts
-  - [[file:thoughts/Strong Opinions Weakly Held.org][Strong Opinions Weakly Held]]
-  - [[file:thoughts/Confirmation Bias.org][Confirmation Bias]]
-  - [[file:thoughts/Belief Perseverance.org][Belief Perseverance]]
-  - [[file:thoughts/Overconfidence Bias.org][Overconfidence Bias]]
-  - [[file:thoughts/Sunk Cost Fallacy.org][Sunk Cost Fallacy]]
-  - [[file:thoughts/SCARF Motivation Model.org][SCARF Motivation Model]]
-  - [[file:thoughts/Thoughts disclaimer read this.org][Thoughts disclaimer READ THIS]]
-  - [[file:thoughts/Management One on One meetings.org][SCARF Motivation Model]]
-  - [[file:thoughts/Conflict-handling Avoiding Competing Accommodating Compromising Collaborating.org][Conflict-handling Avoiding Competing Accommodating Compromising Collaborating]]
-  - [[file:thoughts/Gaslighting at Work.org][Gaslighting at Work]]
-  - [[file:thoughts/TJS_Collaboration_Model_7_Compete_Coexist_Communicate_Cooperate_Coordinate_Collaborate_Converge.org][TJS Collaboration Model 7: Compete, Coexist, Communicate, Cooperate, Coordinate, Collaborate, Converge]]
-  - [[file:thoughts/ADKAR Effective Change Management.org][ADKAR Effective Change Management: Models for Influencing Leadership and Enhancing Transparency]]
+  - [[file:leets/2379-Minimum-Recolors-to-Get-K-Consecutive-Black-Blocks.org][2379. Minimum Recolors to Get K Consecutive Black Blocks]]

@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2025-03-01 -->
+<!-- 2025-03-08 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>0819. Most Common Word</title>
@@ -22,18 +22,18 @@ Published 2024-12-28
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orga02081e">Problem</a></li>
-<li><a href="#org58c4543">Solution Description</a></li>
-<li><a href="#orgd37c160">Example</a></li>
-<li><a href="#orgc9ce4cd">References</a></li>
-<li><a href="#orgfb073ad">Solution</a></li>
+<li><a href="#org75ab73c">Problem</a></li>
+<li><a href="#orgddb646a">Solution Description</a></li>
+<li><a href="#orgd5c1cce">Example</a></li>
+<li><a href="#orgc5fa068">References</a></li>
+<li><a href="#org45f933e">Solution</a></li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-orga02081e" class="outline-2">
-<h2 id="orga02081e">Problem</h2>
-<div class="outline-text-2" id="text-orga02081e">
+<div id="outline-container-org75ab73c" class="outline-2">
+<h2 id="org75ab73c">Problem</h2>
+<div class="outline-text-2" id="text-org75ab73c">
 <p>
 Given a paragraph and a list of banned words, your task is to find the most frequently occurring word that is not in the list of banned words. The word must be considered independently of punctuation and case.
 </p>
@@ -49,9 +49,9 @@ Assume:
 </div>
 </div>
 
-<div id="outline-container-org58c4543" class="outline-2">
-<h2 id="org58c4543">Solution Description</h2>
-<div class="outline-text-2" id="text-org58c4543">
+<div id="outline-container-orgddb646a" class="outline-2">
+<h2 id="orgddb646a">Solution Description</h2>
+<div class="outline-text-2" id="text-orgddb646a">
 <p>
 To implement this solution, we need to:
 </p>
@@ -68,9 +68,9 @@ To implement this solution, we need to:
 </div>
 </div>
 
-<div id="outline-container-orgd37c160" class="outline-2">
-<h2 id="orgd37c160">Example</h2>
-<div class="outline-text-2" id="text-orgd37c160">
+<div id="outline-container-orgd5c1cce" class="outline-2">
+<h2 id="orgd5c1cce">Example</h2>
+<div class="outline-text-2" id="text-orgd5c1cce">
 <p>
 For a paragraph <code>"Bob hit a ball, the hit BALL flew far after it was hit."</code> and a banned list <code>["hit"]</code>,
 </p>
@@ -83,18 +83,18 @@ For a paragraph <code>"Bob hit a ball, the hit BALL flew far after it was hit."<
 </div>
 </div>
 
-<div id="outline-container-orgc9ce4cd" class="outline-2">
-<h2 id="orgc9ce4cd">References</h2>
-<div class="outline-text-2" id="text-orgc9ce4cd">
+<div id="outline-container-orgc5fa068" class="outline-2">
+<h2 id="orgc5fa068">References</h2>
+<div class="outline-text-2" id="text-orgc5fa068">
 <p>
 For parsing and filtering words, you might look into JavaScript's <code>String</code> and <code>RegExp</code> methods for processing strings, and <code>Map</code> or objects for counting.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgfb073ad" class="outline-2">
-<h2 id="orgfb073ad">Solution</h2>
-<div class="outline-text-2" id="text-orgfb073ad">
+<div id="outline-container-org45f933e" class="outline-2">
+<h2 id="org45f933e">Solution</h2>
+<div class="outline-text-2" id="text-org45f933e">
 <p>
 <a href="https://leetcode.com/problems/most-common-word/submissions/1491292912/">2024-12-29 Most Common Word - LeetCode</a> <code>leetcode.com</code>
 </p>
@@ -195,7 +195,7 @@ testCases.forEach((test, index) =&gt; {
 </div>
 
 
-<pre class="example" id="orgb12c47c">
+<pre class="example" id="org8fec5b1">
 #+RESULTS:
 : Test Case 1: Passed (Expected: ball, Got: ball)
 : Test Case 2: Passed (Expected: a, Got: a)
