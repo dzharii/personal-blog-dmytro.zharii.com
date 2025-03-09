@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2025-03-08 -->
+<!-- 2025-03-09 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>1065. Index Pairs of a String</title>
@@ -22,27 +22,27 @@ Published 2024-12-29
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org82c0a5c">Problem</a></li>
-<li><a href="#org3106760">Solution Description</a>
+<li><a href="#orga020479">Problem</a></li>
+<li><a href="#orgf435319">Solution Description</a>
 <ul>
-<li><a href="#orgf80c610">Other Approaches</a>
+<li><a href="#org2a451ba">Other Approaches</a>
 <ul>
-<li><a href="#org03e5157">Trie-based Search:</a></li>
-<li><a href="#org1169960">Aho-Corasick Algorithm:</a></li>
-<li><a href="#org07357ed">Rolling Hash (Rabin-Karp):</a></li>
+<li><a href="#org69be2d0">Trie-based Search:</a></li>
+<li><a href="#org870e643">Aho-Corasick Algorithm:</a></li>
+<li><a href="#orge99300d">Rolling Hash (Rabin-Karp):</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org97752f3">Example</a></li>
-<li><a href="#orgf26ad12">Solution</a></li>
+<li><a href="#orga96aa2a">Example</a></li>
+<li><a href="#org282ee6a">Solution</a></li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-org82c0a5c" class="outline-2">
-<h2 id="org82c0a5c">Problem</h2>
-<div class="outline-text-2" id="text-org82c0a5c">
+<div id="outline-container-orga020479" class="outline-2">
+<h2 id="orga020479">Problem</h2>
+<div class="outline-text-2" id="text-orga020479">
 <p>
 You are given a string <code>text</code> and an array of strings <code>words</code>. Your task is to find all the index pairs <code>[i, j]</code> such that the substring <code>text[i...j]</code> is present in <code>words</code>. Here, <code>i</code> and <code>j</code> are inclusive indices representing the start and end positions of the substring in <code>text</code>.
 </p>
@@ -53,9 +53,9 @@ The result should be a list of index pairs <code>[i, j]</code> that is sorted by
 </div>
 </div>
 
-<div id="outline-container-org3106760" class="outline-2">
-<h2 id="org3106760">Solution Description</h2>
-<div class="outline-text-2" id="text-org3106760">
+<div id="outline-container-orgf435319" class="outline-2">
+<h2 id="orgf435319">Solution Description</h2>
+<div class="outline-text-2" id="text-orgf435319">
 <p>
 To implement a solution for finding all index pairs of substrings in <code>text</code> from <code>words</code>, we can use the following approach:
 </p>
@@ -81,31 +81,31 @@ The approach used in this solution is a <b><b>brute-force substring matching</b>
 </p>
 </div>
 
-<div id="outline-container-orgf80c610" class="outline-3">
-<h3 id="orgf80c610">Other Approaches</h3>
-<div class="outline-text-3" id="text-orgf80c610">
+<div id="outline-container-org2a451ba" class="outline-3">
+<h3 id="org2a451ba">Other Approaches</h3>
+<div class="outline-text-3" id="text-org2a451ba">
 </div>
-<div id="outline-container-org03e5157" class="outline-4">
-<h4 id="org03e5157">Trie-based Search:</h4>
-<div class="outline-text-4" id="text-org03e5157">
+<div id="outline-container-org69be2d0" class="outline-4">
+<h4 id="org69be2d0">Trie-based Search:</h4>
+<div class="outline-text-4" id="text-org69be2d0">
 <p>
 Building a trie (prefix tree) of all the <code>words</code> allows for efficient searching of multiple words simultaneously within the =text. This reduces the number of redundant comparisons and can significantly improve performance, especially when dealing with a large dictionary of words.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org1169960" class="outline-4">
-<h4 id="org1169960">Aho-Corasick Algorithm:</h4>
-<div class="outline-text-4" id="text-org1169960">
+<div id="outline-container-org870e643" class="outline-4">
+<h4 id="org870e643">Aho-Corasick Algorithm:</h4>
+<div class="outline-text-4" id="text-org870e643">
 <p>
 This is an advanced string matching algorithm that constructs a finite state machine to efficiently find all occurrences of a set of <code>words</code> in the <code>text</code>. It combines the construction of a trie with additional links to handle transitions, enabling simultaneous search for multiple patterns in linear time relative to the length of the <code>text</code>.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org07357ed" class="outline-4">
-<h4 id="org07357ed">Rolling Hash (Rabin-Karp):</h4>
-<div class="outline-text-4" id="text-org07357ed">
+<div id="outline-container-orge99300d" class="outline-4">
+<h4 id="orge99300d">Rolling Hash (Rabin-Karp):</h4>
+<div class="outline-text-4" id="text-orge99300d">
 <p>
 The Rabin-Karp algorithm uses hashing to find any one of a set of pattern strings in the <code>text</code>. By computing a hash for each word and then rolling a hash over the <code>text</code>, it can quickly identify potential matches and verify them, offering a balance between simplicity and efficiency.
 </p>
@@ -118,9 +118,9 @@ Each of these approaches has its own trade-offs in terms of implementation compl
 </div>
 </div>
 
-<div id="outline-container-org97752f3" class="outline-2">
-<h2 id="org97752f3">Example</h2>
-<div class="outline-text-2" id="text-org97752f3">
+<div id="outline-container-orga96aa2a" class="outline-2">
+<h2 id="orga96aa2a">Example</h2>
+<div class="outline-text-2" id="text-orga96aa2a">
 <p>
 Suppose <code>text = "thestoryofleetcode"</code> and <code>words = ["story", "leet", "code"]</code>.
 </p>
@@ -135,9 +135,9 @@ The expected result is the list of pairs: <code>[[3, 7], [10, 13], [14, 17]]</co
 </div>
 </div>
 
-<div id="outline-container-orgf26ad12" class="outline-2">
-<h2 id="orgf26ad12">Solution</h2>
-<div class="outline-text-2" id="text-orgf26ad12">
+<div id="outline-container-org282ee6a" class="outline-2">
+<h2 id="org282ee6a">Solution</h2>
+<div class="outline-text-2" id="text-org282ee6a">
 <div class="org-src-container">
 <pre class="src src-js">/**
  * @param {string} text - The main text string to search within.

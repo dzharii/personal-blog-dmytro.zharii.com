@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2025-03-08 -->
+<!-- 2025-03-09 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>0819 Most Common Word</title>
@@ -22,41 +22,41 @@ Published 2025-01-11
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org3806566">Summary</a>
+<li><a href="#org40c8617">Summary</a>
 <ul>
-<li><a href="#org78628e0">Problem Statement</a></li>
-<li><a href="#org9658a53">Examples</a></li>
-<li><a href="#org2ca3fbd">Approach</a></li>
+<li><a href="#orgb1ca6ba">Problem Statement</a></li>
+<li><a href="#org3781a84">Examples</a></li>
+<li><a href="#org903d1a5">Approach</a></li>
 </ul>
 </li>
-<li><a href="#org9848788">Prerequisites</a></li>
-<li><a href="#orgb25fc65">Solution</a></li>
-<li><a href="#orgdb15ba2">Output:</a></li>
-<li><a href="#org7ac343d">What I have learned</a></li>
+<li><a href="#org3376ac5">Prerequisites</a></li>
+<li><a href="#orgee851e6">Solution</a></li>
+<li><a href="#orgd6b9cd7">Output:</a></li>
+<li><a href="#orgbcf4898">What I have learned</a></li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-org3806566" class="outline-2">
-<h2 id="org3806566">Summary</h2>
-<div class="outline-text-2" id="text-org3806566">
+<div id="outline-container-org40c8617" class="outline-2">
+<h2 id="org40c8617">Summary</h2>
+<div class="outline-text-2" id="text-org40c8617">
 <p>
 This section provides an overview of the problem, examples, and the approach used to solve it.
 </p>
 </div>
 
-<div id="outline-container-org78628e0" class="outline-3">
-<h3 id="org78628e0">Problem Statement</h3>
-<div class="outline-text-3" id="text-org78628e0">
+<div id="outline-container-orgb1ca6ba" class="outline-3">
+<h3 id="orgb1ca6ba">Problem Statement</h3>
+<div class="outline-text-3" id="text-orgb1ca6ba">
 <p>
 The problem, "Most Common Word" (LeetCode 0819), requires finding the most frequently occurring word in a paragraph that is not included in a given list of banned words. The solution must handle punctuation, case insensitivity, and edge cases effectively.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org9658a53" class="outline-3">
-<h3 id="org9658a53">Examples</h3>
-<div class="outline-text-3" id="text-org9658a53">
+<div id="outline-container-org3781a84" class="outline-3">
+<h3 id="org3781a84">Examples</h3>
+<div class="outline-text-3" id="text-org3781a84">
 <p>
 Two examples illustrate the problem:
 </p>
@@ -91,9 +91,9 @@ Explanation: The only word present is "a", and there are no banned words.
 </div>
 </div>
 
-<div id="outline-container-org2ca3fbd" class="outline-3">
-<h3 id="org2ca3fbd">Approach</h3>
-<div class="outline-text-3" id="text-org2ca3fbd">
+<div id="outline-container-org903d1a5" class="outline-3">
+<h3 id="org903d1a5">Approach</h3>
+<div class="outline-text-3" id="text-org903d1a5">
 <p>
 The solution is implemented using Kusto Query Language (KQL). The steps are as follows:
 </p>
@@ -133,9 +133,9 @@ The solution is implemented using Kusto Query Language (KQL). The steps are as f
 </div>
 
 
-<div id="outline-container-org9848788" class="outline-2">
-<h2 id="org9848788">Prerequisites</h2>
-<div class="outline-text-2" id="text-org9848788">
+<div id="outline-container-org3376ac5" class="outline-2">
+<h2 id="org3376ac5">Prerequisites</h2>
+<div class="outline-text-2" id="text-org3376ac5">
 <p>
 <a href="00_include_kusto_prerequisites.html">Kusto Explorer Prerequisites</a>
 </p>
@@ -144,7 +144,7 @@ The solution is implemented using Kusto Query Language (KQL). The steps are as f
 Originally, I wanted to include the content here, but <code>org-html-publish-to-html</code> just hangs there&#x2026;
 </p>
 
-<pre class="example" id="orgba00799">
+<pre class="example" id="org2f5b094">
 
 #+include: "./00_include_kusto_prerequisites.org"
 
@@ -153,9 +153,9 @@ Originally, I wanted to include the content here, but <code>org-html-publish-to-
 </div>
 
 
-<div id="outline-container-orgb25fc65" class="outline-2">
-<h2 id="orgb25fc65">Solution</h2>
-<div class="outline-text-2" id="text-orgb25fc65">
+<div id="outline-container-orgee851e6" class="outline-2">
+<h2 id="orgee851e6">Solution</h2>
+<div class="outline-text-2" id="text-orgee851e6">
 <div class="org-src-container">
 <pre class="src src-sql">let TestCases = datatable(TestCaseID:int, paragraph:string, banned:dynamic, expected:string)
 [
@@ -184,9 +184,9 @@ TestCases
 </div>
 
 
-<div id="outline-container-orgdb15ba2" class="outline-2">
-<h2 id="orgdb15ba2">Output:</h2>
-<div class="outline-text-2" id="text-orgdb15ba2">
+<div id="outline-container-orgd6b9cd7" class="outline-2">
+<h2 id="orgd6b9cd7">Output:</h2>
+<div class="outline-text-2" id="text-orgd6b9cd7">
 <table>
 
 
@@ -222,9 +222,9 @@ TestCases
 </div>
 
 
-<div id="outline-container-org7ac343d" class="outline-2">
-<h2 id="org7ac343d">What I have learned</h2>
-<div class="outline-text-2" id="text-org7ac343d">
+<div id="outline-container-orgbcf4898" class="outline-2">
+<h2 id="orgbcf4898">What I have learned</h2>
+<div class="outline-text-2" id="text-orgbcf4898">
 <p>
 <code>dynamic</code> works good with <code>has</code> or <code>!has</code>: <code>where banned !has CleanWord</code>
 </p>

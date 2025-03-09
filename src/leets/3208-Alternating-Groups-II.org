@@ -1,0 +1,195 @@
+﻿#+title: 3208. Alternating Groups II
+#+subtitle: leetcode
+#+date: <2025-03-09>
+#+language: en
+
+* Problem
+We are given a circular array of tiles represented by an array ~colors~ where 0 represents a red tile and 1 represents a blue tile. An alternating group is defined as a contiguous sequence of exactly ~k~ tiles that alternate in color. In an alternating group, every pair of adjacent tiles must be of different colors. Since the tiles form a circle, the first and last tiles are also considered adjacent. The task is to count the number of alternating groups in the circular array.
+
+The constraints are as follows: 3 <= ~colors.length~ <= 10^5, each element in ~colors~ is either 0 or 1, and 3 <= ~k~ <= ~colors.length~.
+
+* Examples
+Example 1:
+Input: ~colors = [0, 1, 0, 1, 0]~, ~k = 3~.
+Expected Output: 3.
+Explanation: The valid alternating groups are ~[0, 1, 0]~, ~[1, 0, 1]~, and ~[0, 1, 0]~ (the last group wraps around from the end to the beginning).
+
+Example 2:
+Input: ~colors = [0, 1, 0, 0, 1, 0, 1]~, ~k = 6~.
+Expected Output: 2.
+Explanation: Only 2 groups of 6 contiguous tiles form an alternating pattern when considering the circular arrangement.
+
+Example 3:
+Input: ~colors = [1, 1, 0, 1]~, ~k = 4~.
+Expected Output: 0.
+Explanation: With ~k~ equal to the length of the array, the only possible group does not alternate properly.
+
+Additional Test Cases:
+Test Case 4:
+Input: ~colors = [0, 1, 0, 1, 1, 0, 1, 0]~, ~k = 4~.
+Expected Output: 2.
+Explanation: Valid groups can be found starting at index 0 and index 4 when considering wrap-around.
+
+Test Case 5:
+Input: ~colors = [1, 0, 1, 0, 1, 0]~, ~k = 3~.
+Expected Output: 6.
+Explanation: The entire array is alternating, so every contiguous group of 3 is valid.
+
+Test Case 6 (Edge Case):
+Input: ~colors = [0, 1, 0, 1, 0, 1, 0, 1, 0, 1]~, ~k = 5~.
+Expected Output: TBD.
+Explanation: When the array is fully alternating, many valid groups exist, but the exact count depends on the wrap-around behavior.
+
+Test Case 7 (Custom Scenario):
+Input: ~colors = [1, 0, 1, 1, 0, 1, 0, 0, 1, 0]~, ~k = 4~.
+Expected Output: TBD.
+Explanation: This case includes breaks in alternation; only some windows will satisfy the alternating condition.
+
+* Approach
+To solve this problem efficiently, first consider extending the array by appending the first ~k-1~ elements to the end. This makes it easier to handle the circular nature of the array by transforming it into a linear problem. Next, use a sliding window of size ~k~ to traverse the (possibly extended) array. For each window, check if every adjacent pair of tiles alternates in color. An incremental check can optimize this process by updating the condition as the window slides, rather than re-checking the entire window each time. The time complexity is O(n) and the space complexity is O(n) if an extended array is used, or O(1) with careful index management.
+
+* References
+For additional reading on sliding window techniques and handling circular arrays, see the articles at ~https://en.wikipedia.org/wiki/Sliding_window_protocol~ and ~https://en.wikipedia.org/wiki/Circular_buffer~.
+
+* Implementation Framework
+Below is a placeholder framework in JavaScript for solving the problem. Do not provide a full implementation in JavaScript; only use this as a structure reference.
+
+* My brute force Solution
+
+[[https://leetcode.com/problems/alternating-groups-ii/submissions/1568410168/?envType=daily-question&envId=2025-03-09][2025-03-09 Alternating Groups II - LeetCode]] =leetcode.com= solution is incomplete -- Time limit Exceeded on large input.
+
+#+begin_src js :tangle "3208_alternating_groups_ii.js"
+
+/**
+ ,* Calculates the number of alternating groups of size k in a circular array of colors.
+ ,* @param {number[]} colors - Array representing the colors of the tiles (0 for red, 1 for blue).
+ ,* @param {number} k - The number of tiles in each group.
+ ,* @returns {number} The number of alternating groups.
+ ,*/
+function countAlternatingGroups(colors, k) {
+    // Write your solution logic here.
+    // Placeholder implementation.
+    // 2025-03-09 Make espanso prompt to wrap logging
+
+    const log = typeof NestedInteger !== "undefined" ? () => {} : console.log;
+    const table = typeof NestedInteger !== "undefined" ? () => {} : console.table;
+
+
+    const len = colors.length;
+    function at(index) {
+        return colors[index % len];
+    }
+
+    function isAlternatingGroup(start, end) {
+        for (let i = start + 1; i < end; i++) {
+            if (at(i) === at(i - 1)) return false;
+        }
+        return true;
+    }
+
+    let alternatingGroupsCount = 0;
+    for (let i = 0; i < len; i++) {
+        if (isAlternatingGroup(i, i + k)) {
+            alternatingGroupsCount += 1;
+        }
+    }
+    return alternatingGroupsCount;
+}
+
+// Test cases
+const testCases = [
+    { colors: [0, 1, 0, 1, 0], k: 3, expected: 3 },
+    { colors: [0, 1, 0, 0, 1, 0, 1], k: 6, expected: 2 },
+    { colors: [1, 1, 0, 1], k: 4, expected: 0 },
+    { colors: [0, 1, 0, 1, 1, 0, 1, 0], k: 4, expected: 2 },
+    { colors: [1, 0, 1, 0, 1, 0], k: 3, expected: 6 },
+    { colors: [0, 1, 0, 1, 0, 1, 0, 1, 0, 1], k: 5, expected: "TBD" },
+    { colors: [1, 0, 1, 1, 0, 1, 0, 0, 1, 0], k: 4, expected: "TBD" },
+];
+
+testCases.forEach((test, index) => {
+    const result = countAlternatingGroups(test.colors, test.k);
+    console.log("Test Case " + (index + 1) + ": " + (result === test.expected ? "Passed" : "Failed") + " (Expected: " + test.expected + ", Got: " + result + ")");
+});
+#+end_src
+
+#+RESULTS:
+: Test Case 1: Passed (Expected: 3, Got: 3)
+: Test Case 2: Passed (Expected: 2, Got: 2)
+: Test Case 3: Passed (Expected: 0, Got: 0)
+: Test Case 4: Passed (Expected: 2, Got: 2)
+: Test Case 5: Passed (Expected: 6, Got: 6)
+: Test Case 6: Failed (Expected: TBD, Got: 10)
+: Test Case 7: Failed (Expected: TBD, Got: 4)
+: undefined
+
+
+* Correct Solution
+
+#+begin_src js :tangle "3208_alternating_groups_ii-a.js"
+// Optimized solution to handle large input using a sliding window approach
+
+/**
+ * Calculates the number of alternating groups of size k in a circular array of colors.
+ * @param {number[]} colors - Array representing the colors of the tiles (0 for red, 1 for blue).
+ * @param {number} k - The number of tiles in each group.
+ * @returns {number} The number of alternating groups.
+ */
+function countAlternatingGroups(colors, k) {
+    var n = colors.length;
+    // Create a diff array where diff[i] = 1 if colors[i] != colors[(i+1)%n], else 0.
+    var diff = new Array(n);
+    for (var i = 0; i < n; i++) {
+        diff[i] = (colors[i] !== colors[(i + 1) % n]) ? 1 : 0;
+    }
+    // For a group starting at index i to be alternating, the sum of diff values from i to i+k-2
+    // must equal k-1.
+    var currentSum = 0;
+    // Compute the initial sum for the window starting at index 0 (window size is k-1)
+    for (var j = 0; j < k - 1; j++) {
+        currentSum += diff[j % n];
+    }
+    var count = 0;
+    if (currentSum === k - 1) {
+        count++;
+    }
+    // Slide the window for each starting index from 1 to n-1.
+    for (var i = 1; i < n; i++) {
+        // Subtract the element leaving the window.
+        currentSum -= diff[(i - 1) % n];
+        // Add the new element entering the window.
+        currentSum += diff[(i + k - 2) % n];
+        if (currentSum === k - 1) {
+            count++;
+        }
+    }
+    return count;
+}
+
+// Test cases
+var testCases = [
+    { colors: [0, 1, 0, 1, 0], k: 3, expected: 3 },
+    { colors: [0, 1, 0, 0, 1, 0, 1], k: 6, expected: 2 },
+    { colors: [1, 1, 0, 1], k: 4, expected: 0 },
+    { colors: [0, 1, 0, 1, 1, 0, 1, 0], k: 4, expected: 2 },
+    { colors: [1, 0, 1, 0, 1, 0], k: 3, expected: 6 },
+    { colors: [0, 1, 0, 1, 0, 1, 0, 1, 0, 1], k: 5, expected: "TBD" },
+    { colors: [1, 0, 1, 1, 0, 1, 0, 0, 1, 0], k: 4, expected: "TBD" }
+];
+
+testCases.forEach(function(test, index) {
+    var result = countAlternatingGroups(test.colors, test.k);
+    console.log("Test Case " + (index + 1) + ": " + (result === test.expected ? "Passed" : "Failed") +
+                " (Expected: " + test.expected + ", Got: " + result + ")");
+});
+#+end_src
+
+#+RESULTS:
+: Test Case 1: Passed (Expected: 3, Got: 3)
+: Test Case 2: Passed (Expected: 2, Got: 2)
+: Test Case 3: Passed (Expected: 0, Got: 0)
+: Test Case 4: Passed (Expected: 2, Got: 2)
+: Test Case 5: Passed (Expected: 6, Got: 6)
+: Test Case 6: Failed (Expected: TBD, Got: 10)
+: Test Case 7: Failed (Expected: TBD, Got: 4)
+: undefined

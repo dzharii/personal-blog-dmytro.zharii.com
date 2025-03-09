@@ -1,0 +1,265 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2025-03-09 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>3208. Alternating Groups II</title>
+<meta name="author" content="d)zharii" />
+<meta name="generator" content="Org Mode" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/t.css"/>
+</head>
+<body>
+<nav><a href="/" tabindex="0">&larrhk; Back to Index</a></nav><div id="preamble" class="status">
+Published 2025-03-09
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">3208. Alternating Groups II</h1>
+<p class="subtitle" role="doc-subtitle">leetcode</p>
+</header><nav id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgd5da8a7">Problem</a></li>
+<li><a href="#orgdf6a9a9">Examples</a></li>
+<li><a href="#orgbb5d541">Approach</a></li>
+<li><a href="#orga28cac2">References</a></li>
+<li><a href="#org08909c3">Implementation Framework</a></li>
+<li><a href="#org6fa21ce">My brute force Solution</a></li>
+<li><a href="#org0aa68ac">Correct Solution</a></li>
+</ul>
+</div>
+</nav>
+
+<div id="outline-container-orgd5da8a7" class="outline-2">
+<h2 id="orgd5da8a7">Problem</h2>
+<div class="outline-text-2" id="text-orgd5da8a7">
+<p>
+We are given a circular array of tiles represented by an array <code>colors</code> where 0 represents a red tile and 1 represents a blue tile. An alternating group is defined as a contiguous sequence of exactly <code>k</code> tiles that alternate in color. In an alternating group, every pair of adjacent tiles must be of different colors. Since the tiles form a circle, the first and last tiles are also considered adjacent. The task is to count the number of alternating groups in the circular array.
+</p>
+
+<p>
+The constraints are as follows: 3 &lt;= <code>colors.length</code> &lt;= 10<sup>5</sup>, each element in <code>colors</code> is either 0 or 1, and 3 &lt;= <code>k</code> &lt;= <code>colors.length</code>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgdf6a9a9" class="outline-2">
+<h2 id="orgdf6a9a9">Examples</h2>
+<div class="outline-text-2" id="text-orgdf6a9a9">
+<p>
+Example 1:
+Input: <code>colors = [0, 1, 0, 1, 0]</code>, <code>k = 3</code>.
+Expected Output: 3.
+Explanation: The valid alternating groups are <code>[0, 1, 0]</code>, <code>[1, 0, 1]</code>, and <code>[0, 1, 0]</code> (the last group wraps around from the end to the beginning).
+</p>
+
+<p>
+Example 2:
+Input: <code>colors = [0, 1, 0, 0, 1, 0, 1]</code>, <code>k = 6</code>.
+Expected Output: 2.
+Explanation: Only 2 groups of 6 contiguous tiles form an alternating pattern when considering the circular arrangement.
+</p>
+
+<p>
+Example 3:
+Input: <code>colors = [1, 1, 0, 1]</code>, <code>k = 4</code>.
+Expected Output: 0.
+Explanation: With <code>k</code> equal to the length of the array, the only possible group does not alternate properly.
+</p>
+
+<p>
+Additional Test Cases:
+Test Case 4:
+Input: <code>colors = [0, 1, 0, 1, 1, 0, 1, 0]</code>, <code>k = 4</code>.
+Expected Output: 2.
+Explanation: Valid groups can be found starting at index 0 and index 4 when considering wrap-around.
+</p>
+
+<p>
+Test Case 5:
+Input: <code>colors = [1, 0, 1, 0, 1, 0]</code>, <code>k = 3</code>.
+Expected Output: 6.
+Explanation: The entire array is alternating, so every contiguous group of 3 is valid.
+</p>
+
+<p>
+Test Case 6 (Edge Case):
+Input: <code>colors = [0, 1, 0, 1, 0, 1, 0, 1, 0, 1]</code>, <code>k = 5</code>.
+Expected Output: TBD.
+Explanation: When the array is fully alternating, many valid groups exist, but the exact count depends on the wrap-around behavior.
+</p>
+
+<p>
+Test Case 7 (Custom Scenario):
+Input: <code>colors = [1, 0, 1, 1, 0, 1, 0, 0, 1, 0]</code>, <code>k = 4</code>.
+Expected Output: TBD.
+Explanation: This case includes breaks in alternation; only some windows will satisfy the alternating condition.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgbb5d541" class="outline-2">
+<h2 id="orgbb5d541">Approach</h2>
+<div class="outline-text-2" id="text-orgbb5d541">
+<p>
+To solve this problem efficiently, first consider extending the array by appending the first <code>k-1</code> elements to the end. This makes it easier to handle the circular nature of the array by transforming it into a linear problem. Next, use a sliding window of size <code>k</code> to traverse the (possibly extended) array. For each window, check if every adjacent pair of tiles alternates in color. An incremental check can optimize this process by updating the condition as the window slides, rather than re-checking the entire window each time. The time complexity is O(n) and the space complexity is O(n) if an extended array is used, or O(1) with careful index management.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga28cac2" class="outline-2">
+<h2 id="orga28cac2">References</h2>
+<div class="outline-text-2" id="text-orga28cac2">
+<p>
+For additional reading on sliding window techniques and handling circular arrays, see the articles at <code>https://en.wikipedia.org/wiki/Sliding_window_protocol</code> and <code>https://en.wikipedia.org/wiki/Circular_buffer</code>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org08909c3" class="outline-2">
+<h2 id="org08909c3">Implementation Framework</h2>
+<div class="outline-text-2" id="text-org08909c3">
+<p>
+Below is a placeholder framework in JavaScript for solving the problem. Do not provide a full implementation in JavaScript; only use this as a structure reference.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org6fa21ce" class="outline-2">
+<h2 id="org6fa21ce">My brute force Solution</h2>
+<div class="outline-text-2" id="text-org6fa21ce">
+<p>
+<a href="https://leetcode.com/problems/alternating-groups-ii/submissions/1568410168/?envType=daily-question&amp;envId=2025-03-09">2025-03-09 Alternating Groups II - LeetCode</a> <code>leetcode.com</code> solution is incomplete &#x2013; Time limit Exceeded on large input.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">
+/**
+ * Calculates the number of alternating groups of size k in a circular array of colors.
+ * @param {number[]} colors - Array representing the colors of the tiles (0 for red, 1 for blue).
+ * @param {number} k - The number of tiles in each group.
+ * @returns {number} The number of alternating groups.
+ */
+function countAlternatingGroups(colors, k) {
+    // Write your solution logic here.
+    // Placeholder implementation.
+    // 2025-03-09 Make espanso prompt to wrap logging
+
+    const log = typeof NestedInteger !== "undefined" ? () =&gt; {} : console.log;
+    const table = typeof NestedInteger !== "undefined" ? () =&gt; {} : console.table;
+
+
+    const len = colors.length;
+    function at(index) {
+        return colors[index % len];
+    }
+
+    function isAlternatingGroup(start, end) {
+        for (let i = start + 1; i &lt; end; i++) {
+            if (at(i) === at(i - 1)) return false;
+        }
+        return true;
+    }
+
+    let alternatingGroupsCount = 0;
+    for (let i = 0; i &lt; len; i++) {
+        if (isAlternatingGroup(i, i + k)) {
+            alternatingGroupsCount += 1;
+        }
+    }
+    return alternatingGroupsCount;
+}
+
+// Test cases
+const testCases = [
+    { colors: [0, 1, 0, 1, 0], k: 3, expected: 3 },
+    { colors: [0, 1, 0, 0, 1, 0, 1], k: 6, expected: 2 },
+    { colors: [1, 1, 0, 1], k: 4, expected: 0 },
+    { colors: [0, 1, 0, 1, 1, 0, 1, 0], k: 4, expected: 2 },
+    { colors: [1, 0, 1, 0, 1, 0], k: 3, expected: 6 },
+    { colors: [0, 1, 0, 1, 0, 1, 0, 1, 0, 1], k: 5, expected: "TBD" },
+    { colors: [1, 0, 1, 1, 0, 1, 0, 0, 1, 0], k: 4, expected: "TBD" },
+];
+
+testCases.forEach((test, index) =&gt; {
+    const result = countAlternatingGroups(test.colors, test.k);
+    console.log("Test Case " + (index + 1) + ": " + (result === test.expected ? "Passed" : "Failed") + " (Expected: " + test.expected + ", Got: " + result + ")");
+});
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org0aa68ac" class="outline-2">
+<h2 id="org0aa68ac">Correct Solution</h2>
+<div class="outline-text-2" id="text-org0aa68ac">
+<div class="org-src-container">
+<pre class="src src-js">// Optimized solution to handle large input using a sliding window approach
+
+/**
+ * Calculates the number of alternating groups of size k in a circular array of colors.
+ * @param {number[]} colors - Array representing the colors of the tiles (0 for red, 1 for blue).
+ * @param {number} k - The number of tiles in each group.
+ * @returns {number} The number of alternating groups.
+ */
+function countAlternatingGroups(colors, k) {
+    var n = colors.length;
+    // Create a diff array where diff[i] = 1 if colors[i] != colors[(i+1)%n], else 0.
+    var diff = new Array(n);
+    for (var i = 0; i &lt; n; i++) {
+        diff[i] = (colors[i] !== colors[(i + 1) % n]) ? 1 : 0;
+    }
+    // For a group starting at index i to be alternating, the sum of diff values from i to i+k-2
+    // must equal k-1.
+    var currentSum = 0;
+    // Compute the initial sum for the window starting at index 0 (window size is k-1)
+    for (var j = 0; j &lt; k - 1; j++) {
+        currentSum += diff[j % n];
+    }
+    var count = 0;
+    if (currentSum === k - 1) {
+        count++;
+    }
+    // Slide the window for each starting index from 1 to n-1.
+    for (var i = 1; i &lt; n; i++) {
+        // Subtract the element leaving the window.
+        currentSum -= diff[(i - 1) % n];
+        // Add the new element entering the window.
+        currentSum += diff[(i + k - 2) % n];
+        if (currentSum === k - 1) {
+            count++;
+        }
+    }
+    return count;
+}
+
+// Test cases
+var testCases = [
+    { colors: [0, 1, 0, 1, 0], k: 3, expected: 3 },
+    { colors: [0, 1, 0, 0, 1, 0, 1], k: 6, expected: 2 },
+    { colors: [1, 1, 0, 1], k: 4, expected: 0 },
+    { colors: [0, 1, 0, 1, 1, 0, 1, 0], k: 4, expected: 2 },
+    { colors: [1, 0, 1, 0, 1, 0], k: 3, expected: 6 },
+    { colors: [0, 1, 0, 1, 0, 1, 0, 1, 0, 1], k: 5, expected: "TBD" },
+    { colors: [1, 0, 1, 1, 0, 1, 0, 0, 1, 0], k: 4, expected: "TBD" }
+];
+
+testCases.forEach(function(test, index) {
+    var result = countAlternatingGroups(test.colors, test.k);
+    console.log("Test Case " + (index + 1) + ": " + (result === test.expected ? "Passed" : "Failed") +
+                " (Expected: " + test.expected + ", Got: " + result + ")");
+});
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+&copy; d)zharii. <a href="/sitemap.html">sitemap</a>
+</div>
+</body>
+</html>
