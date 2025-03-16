@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2025-03-09 -->
+<!-- 2025-03-16 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>2379. Minimum Recolors to Get K Consecutive Black Blocks</title>
@@ -22,27 +22,27 @@ Published 2025-03-08
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orga74926b">Problem</a></li>
-<li><a href="#orgd08c461">Solution Description</a></li>
-<li><a href="#orgec41207">Example</a></li>
-<li><a href="#org5376704">References</a></li>
-<li><a href="#org85fd29a">Solution</a></li>
+<li><a href="#orgf6a7e83">Problem</a></li>
+<li><a href="#org59ba62f">Solution Description</a></li>
+<li><a href="#org0b7a213">Example</a></li>
+<li><a href="#org9a22314">References</a></li>
+<li><a href="#orgf775a73">Solution</a></li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-orga74926b" class="outline-2">
-<h2 id="orga74926b">Problem</h2>
-<div class="outline-text-2" id="text-orga74926b">
+<div id="outline-container-orgf6a7e83" class="outline-2">
+<h2 id="orgf6a7e83">Problem</h2>
+<div class="outline-text-2" id="text-orgf6a7e83">
 <p>
 Given a binary string, consisting of 'B' (Black) and 'W' (White) blocks, and an integer K, find the minimum number of recoloring operations to get at least K consecutive 'B' blocks. Each operation allows changing a 'W' to 'B'. Return the minimum number of such operations needed.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgd08c461" class="outline-2">
-<h2 id="orgd08c461">Solution Description</h2>
-<div class="outline-text-2" id="text-orgd08c461">
+<div id="outline-container-org59ba62f" class="outline-2">
+<h2 id="org59ba62f">Solution Description</h2>
+<div class="outline-text-2" id="text-org59ba62f">
 <p>
 To implement the solution, we need to utilize a sliding window approach to keep track of a window of size K over the string. As we slide the window from the start of the string to the end, we calculate the number of 'W' blocks within the window. Our goal is to find the window with the fewest 'W' blocks, as this represents the minimum number of recolor operations needed to achieve K consecutive 'B' blocks. This approach ensures optimal performance.
 </p>
@@ -53,9 +53,9 @@ The time complexity of this approach is O(N), where N is the length of the strin
 </div>
 </div>
 
-<div id="outline-container-orgec41207" class="outline-2">
-<h2 id="orgec41207">Example</h2>
-<div class="outline-text-2" id="text-orgec41207">
+<div id="outline-container-org0b7a213" class="outline-2">
+<h2 id="org0b7a213">Example</h2>
+<div class="outline-text-2" id="text-org0b7a213">
 <p>
 Consider the binary string "WBWBBBW" with K = 3. We slide a window of size 3 across the string:
 </p>
@@ -73,18 +73,18 @@ The minimum recolors required are 0, achieved by the window "BBB".
 </div>
 </div>
 
-<div id="outline-container-org5376704" class="outline-2">
-<h2 id="org5376704">References</h2>
-<div class="outline-text-2" id="text-org5376704">
+<div id="outline-container-org9a22314" class="outline-2">
+<h2 id="org9a22314">References</h2>
+<div class="outline-text-2" id="text-org9a22314">
 <p>
 No specific frameworks are utilized but concepts of Sliding Window technique are used. Refer to <a href="https://en.wikipedia.org/wiki/Sliding_window_protocol">Sliding Window Protocol Wiki</a> for more information.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org85fd29a" class="outline-2">
-<h2 id="org85fd29a">Solution</h2>
-<div class="outline-text-2" id="text-org85fd29a">
+<div id="outline-container-orgf775a73" class="outline-2">
+<h2 id="orgf775a73">Solution</h2>
+<div class="outline-text-2" id="text-orgf775a73">
 <p>
 <a href="https://leetcode.com/problems/minimum-recolors-to-get-k-consecutive-black-blocks/submissions/1567324105/?envType=daily-question&amp;envId=2025-03-08">2025-03-08 Minimum Recolors to Get K Consecutive Black Blocks - LeetCode</a> <code>leetcode.com</code>
 </p>

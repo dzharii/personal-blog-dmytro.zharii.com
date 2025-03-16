@@ -101,3 +101,4 @@
   - [[file:leets/1065-Index-Pairs-of-a-String.org][1065. Index Pairs of a String]]
   - [[file:leets/2379-Minimum-Recolors-to-Get-K-Consecutive-Black-Blocks.org][2379. Minimum Recolors to Get K Consecutive Black Blocks]]
   - [[file:leets/3208-Alternating-Groups-II.org][3208. Alternating Groups II]]
+  - [[file:leets/2594-Minimum-Time-to-Repair-Cars.org][2594. Minimum Time to Repair Cars]]

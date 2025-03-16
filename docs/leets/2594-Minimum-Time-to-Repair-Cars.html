@@ -1,0 +1,245 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2025-03-16 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>2594. Minimum Time to Repair Cars</title>
+<meta name="author" content="d)zharii" />
+<meta name="generator" content="Org Mode" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/t.css"/>
+</head>
+<body>
+<nav><a href="/" tabindex="0">&larrhk; Back to Index</a></nav><div id="preamble" class="status">
+Published 2025-03-16
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">2594. Minimum Time to Repair Cars</h1>
+<p class="subtitle" role="doc-subtitle">LeetCode Problem</p>
+</header><nav id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org13bfe1f">Problem</a></li>
+<li><a href="#org9b67eaf">Key Observations</a></li>
+<li><a href="#org1768d27">Solution Plan</a></li>
+<li><a href="#org0aee8aa">Complexity</a></li>
+<li><a href="#orgdcb4f2d">Example</a></li>
+<li><a href="#org8f805b6">Solution (JavaScript)</a></li>
+</ul>
+</div>
+</nav>
+
+<div id="outline-container-org13bfe1f" class="outline-2">
+<h2 id="org13bfe1f">Problem</h2>
+<div class="outline-text-2" id="text-org13bfe1f">
+<p>
+You are given an integer array <code>ranks</code> representing the ranks of mechanics. Each mechanic has a rank <code>r</code> which determines the time taken to repair cars: specifically, a mechanic with rank <code>r</code> takes <code>r * n^2</code> minutes to repair <code>n</code> cars.
+</p>
+
+<p>
+You must calculate the smallest possible amount of time needed to repair exactly <code>cars</code> cars using all available mechanics optimally.
+</p>
+
+<p>
+<b><b>Formally</b></b>, given:
+</p>
+<ul class="org-ul">
+<li>An array of integers <code>ranks</code>, where <code>ranks[i]</code> is the rank of the <code>i-th</code> mechanic.</li>
+<li>An integer <code>cars</code>, representing the total number of cars to be repaired.</li>
+</ul>
+
+<p>
+Determine the minimum time necessary to repair all <code>cars</code>, given mechanics work simultaneously.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org9b67eaf" class="outline-2">
+<h2 id="org9b67eaf">Key Observations</h2>
+<div class="outline-text-2" id="text-org9b67eaf">
+<ul class="org-ul">
+<li>Mechanics repair cars simultaneously, each mechanic independently.</li>
+<li><p>
+Time taken by a mechanic of rank <code>r</code> to repair <code>n</code> cars is:
+</p>
+<pre class="example">
+time = r * n^2
+</pre></li>
+<li>The relationship between the number of cars repaired and the total time is monotonic, making it suitable for a binary search solution.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org1768d27" class="outline-2">
+<h2 id="org1768d27">Solution Plan</h2>
+<div class="outline-text-2" id="text-org1768d27">
+<p>
+To efficiently solve the problem, follow these steps clearly:
+</p>
+
+<ol class="org-ol">
+<li><b><b>Establish Search Bounds</b></b>
+<ul class="org-ul">
+<li>Lower bound: Set to 1 minute.</li>
+<li>Upper bound: Set to <code>max(ranks) * cars^2</code>, representing the maximum time needed in the worst case.</li>
+</ul></li>
+
+<li><b><b>Binary Search on Time</b></b>
+<ul class="org-ul">
+<li>While the lower bound is less than or equal to the upper bound:
+<ol class="org-ol">
+<li>Choose the midpoint (<code>mid</code>) as a candidate time.</li>
+<li>Check if it is possible to repair all <code>cars</code> within <code>mid</code> minutes:
+<ul class="org-ul">
+<li><p>
+For each mechanic with rank <code>r</code>, calculate how many cars can be repaired within <code>mid</code> minutes, using:
+</p>
+<pre class="example">
+cars_repaired = floor(sqrt(mid / r))
+</pre></li>
+<li>If the total number of cars repaired by all mechanics at <code>mid</code> minutes is at least <code>cars</code>, record <code>mid</code> as a candidate answer and search for a potentially smaller solution (set upper bound to <code>mid - 1</code>).</li>
+<li>If not enough cars are repaired, search with a larger time (set lower bound to <code>mid + 1</code>).</li>
+</ul></li>
+</ol></li>
+</ul></li>
+
+<li><b><b>Implement Feasibility Check</b></b>
+<ul class="org-ul">
+<li>For each given time <code>T</code>, calculate how many cars all mechanics can collectively repair. If it meets or exceeds <code>cars</code>, the time <code>T</code> is feasible.</li>
+</ul></li>
+
+<li><b><b>Return Final Answer</b></b>
+<ul class="org-ul">
+<li>The binary search result gives the minimum feasible time required.</li>
+</ul></li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org0aee8aa" class="outline-2">
+<h2 id="org0aee8aa">Complexity</h2>
+<div class="outline-text-2" id="text-org0aee8aa">
+<ul class="org-ul">
+<li>Time Complexity: O(n * log(maxTime))</li>
+<li>Space Complexity: O(1)</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgdcb4f2d" class="outline-2">
+<h2 id="orgdcb4f2d">Example</h2>
+<div class="outline-text-2" id="text-orgdcb4f2d">
+<p>
+Given:
+</p>
+<ul class="org-ul">
+<li><code>ranks = [4, 2, 3, 1]</code></li>
+<li><code>cars = 10</code></li>
+</ul>
+
+<p>
+Example calculation:
+</p>
+<ul class="org-ul">
+<li>Mechanic 1 (rank 4): repairs 2 cars in <code>4 * 2^2 = 16</code> mins</li>
+<li>Mechanic 2 (rank 2) repairs 2 cars: <code>2 * 2^2 = 8</code> mins</li>
+<li>Mechanic 3 (rank 3) repairs 2 cars: <code>3 * 2^2 = 12</code> mins</li>
+<li>Mechanic 4 (rank 1) repairs 4 cars: <code>1 * 4^2 = 16</code> mins</li>
+</ul>
+
+<p>
+Total cars repaired = 10. Minimum possible time is thus 16 minutes.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org8f805b6" class="outline-2">
+<h2 id="org8f805b6">Solution (JavaScript)</h2>
+<div class="outline-text-2" id="text-org8f805b6">
+<p>
+<a href="https://leetcode.com/problems/minimum-time-to-repair-cars/submissions/1576032416/?envType=daily-question&amp;envId=2025-03-16">2025-03-16 Minimum Time to Repair Cars - LeetCode</a> <code>leetcode.com</code>
+</p>
+
+<p>
+Below is a clear outline for the JavaScript implementation:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">
+/**
+ * Calculates the minimum time required to repair all cars.
+ * @param {number[]} ranks - An array of mechanic ranks.
+ * @param {number} cars - The total number of cars that need repairs.
+ * @return {number} The minimum time required.
+ */
+function repairCars(ranks, cars) {
+    const log = typeof NestedInteger !== 'undefined' ? () =&gt; {} : console.log;
+    const table = typeof NestedInteger!== 'undefined' ? () =&gt; {} : console.table;
+
+    log(`Initial ranks='${ranks}'; cars='${cars}'`);
+
+    const slowestRank = Math.max(...ranks);
+    log('slowestRank=', slowestRank);
+
+    const highestTime = slowestRank * cars * cars;
+    log('highestTime=', highestTime);
+
+    function canRepair(time, ranks, cars) {
+        let totalCars = 0;
+        for (let i = 0; i &lt; ranks.length; i++) {
+            const carsByRankPerMinute = Math.floor(Math.sqrt(time / ranks[i]));
+            totalCars += carsByRankPerMinute;
+        }
+        return totalCars &gt;= cars;
+    }
+
+    const p1 = [5, ranks, cars];
+    log(`canRepair(${p1}) = ${canRepair.apply(this, p1)}`);
+
+    //function bs()
+    let low = 0;
+    let high = highestTime;
+
+    let result = high;
+
+    while (low &lt;= high) {
+        const mid = Math.floor((low + high) / 2);
+        const can = canRepair(mid, ranks, cars);
+        if (can) {
+            log(`=== more optimal. new mid='${mid}'; old result = '${result}'`);
+            result = mid;
+            high = mid - 1;
+
+        } else {
+
+            low = mid + 1;
+        }
+    }
+
+    return result;
+}
+
+// Test cases
+const testCases = [
+    { ranks: [4, 2, 3, 1], cars: 10, expected: 16 },
+    { ranks: [5,1,8], cars: 6, expected: 16 },
+
+];
+
+testCases.forEach((test, index) =&gt; {
+    const result = repairCars(test.ranks, test.cars);
+    console.log(`Test Case ${index + 1}: ${result === test.expected ? 'Passed' : 'Failed'} (Expected: ${test.expected}, Got: ${result})`);
+});
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+&copy; d)zharii. <a href="/sitemap.html">sitemap</a>
+</div>
+</body>
+</html>
