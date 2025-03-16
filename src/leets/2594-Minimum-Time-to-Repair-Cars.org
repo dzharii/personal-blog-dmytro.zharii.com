@@ -1,0 +1,203 @@
+﻿#+title: 2594. Minimum Time to Repair Cars
+#+subtitle: LeetCode Problem
+#+date: <2025-03-16>
+#+language: en
+
+* Problem
+Given a group of mechanics, each with a unique rank determining their repair speed, calculate the minimum time required to repair a certain number of cars.
+
+Specifically, you're provided with:
+
+- An array ~ranks~, where each element ~ranks[i]~ represents the rank of the ~i~-th mechanic.
+- An integer ~cars~ indicating the total number of cars needing repairs.
+
+The repair speed of a mechanic is inversely proportional to their rank. Therefore, a mechanic with a lower rank repairs cars faster than one with a higher rank.
+
+The goal is to compute the smallest amount of time required to repair all ~cars~ by optimally assigning mechanics to the task.
+
+* Key Observations
+- Faster mechanics (lower rank) repair cars quicker.
+- The number of cars a mechanic with rank ~r~ can repair within time ~T~ is determined by the equation:
+  #+begin_src
+  repaired_cars = floor(T / r)
+  #+end_src
+- The optimal (minimal) time can be found efficiently using a binary search approach since the relationship between time and repaired cars is monotonic (increasing).
+
+* Structured Solution Plan
+Follow these clear steps to efficiently solve the problem:
+
+1. **Determine Search Bounds**
+   - *Lower Bound*: Set to ~1~ (minimum possible time).
+   - *Upper Bound*: Set to the product of the fastest mechanic’s rank and the number of cars, e.g., ~min(ranks) × cars~. This ensures the upper bound is sufficient to repair all cars.
+
+2. **Implement Binary Search**
+   - While the lower bound is less than or equal to the upper bound:
+     1. Calculate the midpoint time ~T = (low + high) / 2~.
+     2. Check feasibility: Can all cars be repaired within ~T~ minutes?
+        - Sum ~floor(T / ranks[i])~ for all mechanics.
+        - If the total repaired cars are greater than or equal to the required ~cars~, record this ~T~ as a potential answer, and reduce the upper bound (~high = T - 1~) to find a potentially smaller solution.
+        - If fewer cars than required are repaired, increase the lower bound (~low = T + 1~).
+
+3. **Feasibility Function**
+   - Create a helper function ~isFeasible(T, ranks, cars)~:
+     - Return ~true~ if the sum of repaired cars across all mechanics at time ~T~ meets or exceeds ~cars~.
+     - Otherwise, return ~false~.
+
+4. **Return the Minimum Time**
+   - Once binary search concludes, return the minimum valid time found.
+
+* Complexity
+- **Time Complexity**: ~O(n × log(maxTime))~
+  - ~n~ is the number of mechanics.
+  - ~maxTime~ is the upper bound for the binary search (initially set as ~min(ranks) × cars~).
+
+- **Space Complexity**: ~O(1)~, as no significant additional space beyond input variables is required.
+
+* Example
+Consider the scenario with:
+- ~ranks = [3, 5]~
+- ~cars = 10~
+
+Check various times (~T~):
+- ~T = 5~:
+  - Mechanic 1 repairs ~floor(5/3) = 1~ car.
+  - Mechanic 2 repairs ~floor(5/5) = 1~ car.
+  - Total repaired: ~1 + 1 = 2~, not enough.
+
+- ~T = 15~:
+  - Mechanic 1 repairs ~floor(15/3) = 5~ cars.
+  - Mechanic 2 repairs ~floor(15/5) = 3~ cars.
+  - Total repaired: ~5 + 3 = 8~, still insufficient.
+
+- ~T = 30~:
+  - Mechanic 1 repairs ~floor(30/3) = 10~ cars.
+  - Mechanic 2 repairs ~floor(30/5) = 6~ cars.
+  - Total repaired: ~10 + 6 = 16~, exceeds requirement, sufficient.
+
+Thus, the minimal time lies between 15 and 30, which can be efficiently found using binary search.
+
+* References
+- Binary Search Algorithm Fundamentals
+- Real-world scheduling optimization techniques
+
+* Solution (JavaScript)
+Below is a clear outline for the JavaScript implementation:
+
+#+begin_src js :tangle "2594_minimum_time_to_repair_cars.js"
+
+/**
+ ,* Calculates the minimum time required to repair all cars.
+ ,* @param {number[]} ranks - An array of mechanic ranks.
+ ,* @param {number} cars - The total number of cars that need repairs.
+ ,* @return {number} The minimum time required.
+ ,*/
+function repairCars(ranks, cars) {
+    const log = typeof NestedInteger !== 'undefined' ? () => {} : console.log;
+    const table = typeof NestedInteger!== 'undefined' ? () => {} : console.table;
+
+    log(`Initial ranks='${ranks}'; cars='${cars}'`);
+
+    const slowestRank = Math.max(...ranks);
+    log('slowestRank=', slowestRank);
+
+    const highestTime = slowestRank * cars;
+    log('highestTime=', highestTime);
+
+    function canRepair(time, ranks, cars) {
+        let total = 0;
+        for (const rank of ranks) {
+            total += Math.floor(time / rank);
+            if (total >= cars) return true;
+        }
+        return false;
+    }
+
+    const p1 = [5, ranks, cars];
+    log(`canRepair(${p1}) = ${canRepair.apply(this, p1)}`);
+
+    //function bs()
+    let low = 0;
+    let high = highestTime;
+
+    let result = high;
+
+    while (low <= high) {
+        const mid = Math.floor((low + high) / 2);
+        const can = canRepair(mid, ranks, cars);
+        if (can) {
+            log(`=== more optimal. new mid='${mid}'; old result = '${result}'`);
+            result = mid;
+            high = mid - 1;
+
+        } else {
+
+            low = mid + 1;
+        }
+    }
+
+    return result;
+}
+
+// Test cases
+const testCases = [
+    { ranks: [4, 2, 3, 1], cars: 10, expected: 16 },
+    { ranks: [3, 5], cars: 10, expected: 15 },
+    { ranks: [2, 3, 7], cars: 7, expected: 6 },
+    { ranks: [1, 2], cars: 5, expected: 5 },
+    { ranks: [10], cars: 100, expected: 1000 },
+    { ranks: [3, 4, 5, 6, 7], cars: 100, expected: 63 }, // Example of tightly configured mechanics and cars
+];
+
+testCases.forEach((test, index) => {
+    const result = repairCars(test.ranks, test.cars);
+    console.log(`Test Case ${index + 1}: ${result === test.expected ? 'Passed' : 'Failed'} (Expected: ${test.expected}, Got: ${result})`);
+});
+#+end_src
+
+#+RESULTS:
+#+begin_example
+Initial ranks='4,2,3,1'; cars='10'
+lowestRank= 1
+highestTime= 10
+canRepair(5,4,2,3,1,10) = false
+=== more optimal. new mid='8'; old result = '10'
+=== more optimal. new mid='6'; old result = '8'
+Test Case 1: Failed (Expected: 16, Got: 6)
+Initial ranks='3,5'; cars='10'
+lowestRank= 3
+highestTime= 30
+canRepair(5,3,5,10) = false
+=== more optimal. new mid='23'; old result = '30'
+=== more optimal. new mid='21'; old result = '23'
+=== more optimal. new mid='20'; old result = '21'
+Test Case 2: Failed (Expected: 15, Got: 20)
+Initial ranks='2,3,7'; cars='7'
+lowestRank= 2
+highestTime= 14
+canRepair(5,2,3,7,7) = false
+=== more optimal. new mid='11'; old result = '14'
+=== more optimal. new mid='9'; old result = '11'
+=== more optimal. new mid='8'; old result = '9'
+Test Case 3: Failed (Expected: 6, Got: 8)
+Initial ranks='1,2'; cars='5'
+lowestRank= 1
+highestTime= 5
+canRepair(5,1,2,5) = true
+=== more optimal. new mid='4'; old result = '5'
+Test Case 4: Failed (Expected: 5, Got: 4)
+Initial ranks='10'; cars='100'
+lowestRank= 10
+highestTime= 1000
+canRepair(5,10,100) = false
+=== more optimal. new mid='1000'; old result = '1000'
+Test Case 5: Passed (Expected: 1000, Got: 1000)
+Initial ranks='3,4,5,6,7'; cars='100'
+lowestRank= 3
+highestTime= 300
+canRepair(5,3,4,5,6,7,100) = false
+=== more optimal. new mid='150'; old result = '300'
+=== more optimal. new mid='112'; old result = '150'
+=== more optimal. new mid='93'; old result = '112'
+Test Case 6: Failed (Expected: 63, Got: 93)
+undefined
+#+end_example
