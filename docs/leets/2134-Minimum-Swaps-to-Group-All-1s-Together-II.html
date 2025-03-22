@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2025-03-16 -->
+<!-- 2025-03-22 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>2134. Minimum Swaps to Group All 1s Together II</title>
@@ -22,29 +22,29 @@ Published 2024-08-01
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orga69dfd9">Links</a></li>
-<li><a href="#orgc656053">Problem</a></li>
-<li><a href="#org665dc69">Solution Description</a></li>
-<li><a href="#org9a1dfe0">Example</a></li>
-<li><a href="#org492cbf0">References</a></li>
-<li><a href="#orgb3934f8">Solution</a></li>
+<li><a href="#orge1fbd1c">Links</a></li>
+<li><a href="#org8440243">Problem</a></li>
+<li><a href="#orgc23310c">Solution Description</a></li>
+<li><a href="#org4a3bf9e">Example</a></li>
+<li><a href="#org3e47830">References</a></li>
+<li><a href="#org32d8002">Solution</a></li>
 </ul>
 </div>
 </nav>
 
 
-<div id="outline-container-orga69dfd9" class="outline-2">
-<h2 id="orga69dfd9">Links</h2>
-<div class="outline-text-2" id="text-orga69dfd9">
+<div id="outline-container-orge1fbd1c" class="outline-2">
+<h2 id="orge1fbd1c">Links</h2>
+<div class="outline-text-2" id="text-orge1fbd1c">
 <ul class="org-ul">
 <li><a href="https://leetcode.com/submissions/detail/1341373218/">2024-08-02 Minimum Swaps to Group All 1's Together II - Submission Detail - LeetCode</a> (Time limit exceeded)</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgc656053" class="outline-2">
-<h2 id="orgc656053">Problem</h2>
-<div class="outline-text-2" id="text-orgc656053">
+<div id="outline-container-org8440243" class="outline-2">
+<h2 id="org8440243">Problem</h2>
+<div class="outline-text-2" id="text-org8440243">
 <p>
 Given a binary circular array nums, you need to find the minimum number of swaps required to group all <code>1</code>'s present in the array together in any location in the circular array.
 </p>
@@ -55,9 +55,9 @@ For instance, the array <code>[1, 0, 1, 0, 1]</code> as a circular array can be 
 </div>
 </div>
 
-<div id="outline-container-org665dc69" class="outline-2">
-<h2 id="org665dc69">Solution Description</h2>
-<div class="outline-text-2" id="text-org665dc69">
+<div id="outline-container-orgc23310c" class="outline-2">
+<h2 id="orgc23310c">Solution Description</h2>
+<div class="outline-text-2" id="text-orgc23310c">
 <p>
 To implement a solution for this problem, we need to use the sliding window technique. This approach allows us to assess a window of a fixed size (equal to the number of 1's in the array) and count the number of zeroes in that window. The goal is to identify the window with the fewest zeroes, as this indicates the minimum number of swaps needed to group all 1's together.
 </p>
@@ -79,9 +79,9 @@ Space Complexity: <code>O(1)</code> as we use a constant amount of extra space.
 </div>
 </div>
 
-<div id="outline-container-org9a1dfe0" class="outline-2">
-<h2 id="org9a1dfe0">Example</h2>
-<div class="outline-text-2" id="text-org9a1dfe0">
+<div id="outline-container-org4a3bf9e" class="outline-2">
+<h2 id="org4a3bf9e">Example</h2>
+<div class="outline-text-2" id="text-org4a3bf9e">
 <p>
 Consider the array <code>[1, 0, 1, 0, 1]</code>.
 </p>
@@ -98,9 +98,9 @@ Consider the array <code>[1, 0, 1, 0, 1]</code>.
 </div>
 </div>
 
-<div id="outline-container-org492cbf0" class="outline-2">
-<h2 id="org492cbf0">References</h2>
-<div class="outline-text-2" id="text-org492cbf0">
+<div id="outline-container-org3e47830" class="outline-2">
+<h2 id="org3e47830">References</h2>
+<div class="outline-text-2" id="text-org3e47830">
 <ul class="org-ul">
 <li>Sliding Window Technique: <a href="https://en.wikipedia.org/wiki/Sliding_window_protocol">https://en.wikipedia.org/wiki/Sliding_window_protocol</a></li>
 <li>Circular Array Handling: <a href="https://www.geeksforgeeks.org/circular-array/">https://www.geeksforgeeks.org/circular-array/</a></li>
@@ -108,9 +108,9 @@ Consider the array <code>[1, 0, 1, 0, 1]</code>.
 </div>
 </div>
 
-<div id="outline-container-orgb3934f8" class="outline-2">
-<h2 id="orgb3934f8">Solution</h2>
-<div class="outline-text-2" id="text-orgb3934f8">
+<div id="outline-container-org32d8002" class="outline-2">
+<h2 id="org32d8002">Solution</h2>
+<div class="outline-text-2" id="text-org32d8002">
 <p>
 <code>Roma</code>:
 </p>

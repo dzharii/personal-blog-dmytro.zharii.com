@@ -1,0 +1,189 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2025-03-22 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>2685. Count the Number of Complete Components</title>
+<meta name="author" content="d)zharii" />
+<meta name="generator" content="Org Mode" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/t.css"/>
+</head>
+<body>
+<nav><a href="/" tabindex="0">&larrhk; Back to Index</a></nav><div id="preamble" class="status">
+Published 2025-03-22
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">2685. Count the Number of Complete Components</h1>
+<p class="subtitle" role="doc-subtitle">LeetCode</p>
+</header><nav id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org4a994a0">Problem</a></li>
+<li><a href="#org473edac">Solution Description</a></li>
+<li><a href="#org6a2cd29">Example</a></li>
+<li><a href="#org7350130">References</a></li>
+<li><a href="#org780f04a">Solution</a></li>
+</ul>
+</div>
+</nav>
+
+<div id="outline-container-org4a994a0" class="outline-2">
+<h2 id="org4a994a0">Problem</h2>
+<div class="outline-text-2" id="text-org4a994a0">
+<p>
+We are given an undirected graph with <code>n</code> vertices labeled from <code>0</code> to <code>n - 1</code> and an edge list. A connected component is considered "complete" if every pair of distinct vertices within it is directly connected by an edge. In other words, for a component with <code>V</code> vertices, it must have exactly <code>V * (V - 1) / 2</code> edges. The task is to count the number of complete connected components in the graph.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org473edac" class="outline-2">
+<h2 id="org473edac">Solution Description</h2>
+<div class="outline-text-2" id="text-org473edac">
+<p>
+To solve the problem:
+</p>
+<ul class="org-ul">
+<li>Build the graph as an adjacency list (an array of sets), where each vertex stores its neighbors.</li>
+<li>Use Depth-First Search (DFS) to traverse the graph and collect the vertices for each connected component while maintaining a <code>visited</code> array.</li>
+<li>For each component, verify that every vertex in the component is connected to all other vertices by counting its neighbors (within the component) and ensuring the count equals <code>component length - 1</code>.</li>
+<li>Increment a counter for each complete component and return this count.</li>
+</ul>
+
+<p>
+The overall time complexity is <code>O(n + E)</code> and the space complexity is <code>O(n)</code>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org6a2cd29" class="outline-2">
+<h2 id="org6a2cd29">Example</h2>
+<div class="outline-text-2" id="text-org6a2cd29">
+<p>
+Example 1:
+Input: <code>n = 6, edges = [[0,1],[0,2],[1,2],[3,4]]</code>
+Output: <code>3</code>
+Explanation: The components are <code>[0,1,2]</code> (a triangle), <code>[3,4]</code> (an edge), and the isolated vertex <code>[5]</code>; all are complete.
+</p>
+
+<p>
+Example 2:
+Input: <code>n = 6, edges = [[0,1],[0,2],[1,2],[3,4],[3,5]]</code>
+Output: <code>1</code>
+Explanation: The component <code>[0,1,2]</code> is complete; the component <code>[3,4,5]</code> is not complete (missing an edge between <code>4</code> and <code>5</code>).
+</p>
+</div>
+</div>
+
+<div id="outline-container-org7350130" class="outline-2">
+<h2 id="org7350130">References</h2>
+<div class="outline-text-2" id="text-org7350130">
+<p>
+<code>https://en.wikipedia.org/wiki/Connected_component_(graph_theory)</code>
+<code>https://en.wikipedia.org/wiki/Complete_graph</code>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org780f04a" class="outline-2">
+<h2 id="org780f04a">Solution</h2>
+<div class="outline-text-2" id="text-org780f04a">
+<p>
+<a href="https://leetcode.com/problems/count-the-number-of-complete-components/submissions/1582394994/?envType=daily-question&amp;envId=2025-03-22">2025-03-22 Count the Number of Complete Components - LeetCode</a> <code>leetcode.com</code>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">/**
+ * @param {number} n - Number of vertices in the graph.
+ * @param {number[][]} edges - List of edges, where each edge is represented as [u, v].
+ * @return {number} - The count of complete components.
+ */
+var countCompleteComponents = function(n, edges) {
+    // debug
+
+    const log = typeof NestedInteger !== 'undefined' ? () =&gt; {} : console.log;
+    const table = typeof NestedInteger !== 'undefined' ? () =&gt; {} : console.table;
+
+    // make graph
+    const graph = Array.from({ length: n }, () =&gt; new Set());
+    for (const [src, dest] of edges) {
+        graph[src].add(dest);
+        graph[dest].add(src);
+    }
+
+    log('GRAPH');
+    log(graph);
+
+    //
+    const visited = new Array(n).fill(false);
+    let completeCount = 0;
+
+    function dfs(node, component) {
+        visited[node] = true;
+        component.push(node);
+        for (const neighbor of graph[node]) {
+            if (visited[neighbor]) continue;
+            dfs(neighbor, component);
+        }
+    }
+
+
+    for (let i = 0; i &lt; n; i++) {
+        if (visited[i]) continue;
+        const component = [];
+        dfs(i, component);
+
+        const compSet = new Set(component);
+        let isComplete = true;
+        for (const node of component) {
+            let count = 0;
+            for (const dest of graph[node]) {
+                if (compSet.has(dest)) {
+                    count++;
+                }
+            }
+            if (count !== component.length - 1) {
+                isComplete = false;
+                break;
+            }
+        }
+        if (isComplete) {
+            completeCount++;
+        }
+    }
+
+    return completeCount;
+};
+
+// Test cases: LitCode examples come first.
+const testCases = [
+    // LitCode Example 1:
+    { n: 6, edges: [[0,1],[0,2],[1,2],[3,4]], expected: 3 },
+    // LitCode Example 2:
+    { n: 6, edges: [[0,1],[0,2],[1,2],[3,4],[3,5]], expected: 1 },
+    // Additional tests:
+    { n: 3, edges: [[0,1],[1,2],[2,0]], expected: 1 },
+    { n: 4, edges: [[0,1],[1,2],[2,3],[3,0],[0,2]], expected: 0 },
+    { n: 4, edges: [[0,1],[0,2],[0,3]], expected: 0 },
+    { n: 1, edges: [], expected: 1 },
+    { n: 5, edges: [[0,1],[1,2]], expected: 2 },
+    { n: 8, edges: [[0,1],[1,2],[2,0],[3,4],[4,5],[5,3],[6,7]], expected: 3 },
+];
+
+testCases.forEach((test, index) =&gt; {
+    const result = countCompleteComponents(test.n, test.edges);
+    console.log(`Test Case ${index + 1}: ${result === test.expected ? 'Passed' : 'Failed'} (Expected: ${test.expected}, Got: ${result})`);
+});
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+&copy; d)zharii. <a href="/sitemap.html">sitemap</a>
+</div>
+</body>
+</html>

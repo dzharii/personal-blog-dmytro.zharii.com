@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2025-03-16 -->
+<!-- 2025-03-22 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>0840. Magic Squares In Grid</title>
@@ -22,30 +22,30 @@ Published 2024-08-08
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgcfe925f">Problem</a>
+<li><a href="#org55999a8">Problem</a>
 <ul>
-<li><a href="#org393c1ec">Submission</a></li>
+<li><a href="#orgfe8158f">Submission</a></li>
 </ul>
 </li>
-<li><a href="#orgf0951e8">Solution Description</a></li>
-<li><a href="#orga4802bc">Example</a></li>
-<li><a href="#org417360b">References</a></li>
-<li><a href="#org7b9e4b5">Solution</a></li>
+<li><a href="#org2994e8e">Solution Description</a></li>
+<li><a href="#orga0c1fdd">Example</a></li>
+<li><a href="#org67dd7f3">References</a></li>
+<li><a href="#orgd0ecd06">Solution</a></li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-orgcfe925f" class="outline-2">
-<h2 id="orgcfe925f">Problem</h2>
-<div class="outline-text-2" id="text-orgcfe925f">
+<div id="outline-container-org55999a8" class="outline-2">
+<h2 id="org55999a8">Problem</h2>
+<div class="outline-text-2" id="text-org55999a8">
 <p>
 Determine how many 3x3 "magic squares" are in a given grid. A "magic square" is a 3x3 grid of numbers such that each number is distinct and in the range 1-9, and all rows, columns, and both diagonals sum to the same number, 15.
 </p>
 </div>
 
-<div id="outline-container-org393c1ec" class="outline-3">
-<h3 id="org393c1ec">Submission</h3>
-<div class="outline-text-3" id="text-org393c1ec">
+<div id="outline-container-orgfe8158f" class="outline-3">
+<h3 id="orgfe8158f">Submission</h3>
+<div class="outline-text-3" id="text-orgfe8158f">
 <ul class="org-ul">
 <li><a href="https://leetcode.com/submissions/detail/1350442342/">2024-08-09 Magic Squares In Grid - Submission Detail - LeetCode</a></li>
 </ul>
@@ -53,9 +53,9 @@ Determine how many 3x3 "magic squares" are in a given grid. A "magic square" is 
 </div>
 </div>
 
-<div id="outline-container-orgf0951e8" class="outline-2">
-<h2 id="orgf0951e8">Solution Description</h2>
-<div class="outline-text-2" id="text-orgf0951e8">
+<div id="outline-container-org2994e8e" class="outline-2">
+<h2 id="org2994e8e">Solution Description</h2>
+<div class="outline-text-2" id="text-org2994e8e">
 <p>
 To implement the solution, we need to follow these steps:
 </p>
@@ -73,14 +73,14 @@ The approach involves iterating through potentially (m-2) x (n-2) sub-grids in a
 </div>
 </div>
 
-<div id="outline-container-orga4802bc" class="outline-2">
-<h2 id="orga4802bc">Example</h2>
-<div class="outline-text-2" id="text-orga4802bc">
+<div id="outline-container-orga0c1fdd" class="outline-2">
+<h2 id="orga0c1fdd">Example</h2>
+<div class="outline-text-2" id="text-orga0c1fdd">
 <p>
 Consider a 4x4 grid:
 </p>
 
-<pre class="example" id="org6150009">
+<pre class="example" id="orgb4924dd">
 4 3 8 4
 9 5 1 9
 2 7 6 2
@@ -91,7 +91,7 @@ Consider a 4x4 grid:
 We can identify one magic square in the top left 3x3 section:
 </p>
 
-<pre class="example" id="org92ffd0b">
+<pre class="example" id="org90ff1fd">
 4 3 8
 9 5 1
 2 7 6
@@ -110,9 +110,9 @@ This grid confirms to a magic square.
 </div>
 </div>
 
-<div id="outline-container-org417360b" class="outline-2">
-<h2 id="org417360b">References</h2>
-<div class="outline-text-2" id="text-org417360b">
+<div id="outline-container-org67dd7f3" class="outline-2">
+<h2 id="org67dd7f3">References</h2>
+<div class="outline-text-2" id="text-org67dd7f3">
 <ul class="org-ul">
 <li>Magic square: <a href="https://en.wikipedia.org/wiki/Magic_square">Wikipedia Magic Square</a></li>
 <li>Array traversal: Used to explore sub-grids within a larger array.</li>
@@ -120,9 +120,9 @@ This grid confirms to a magic square.
 </div>
 </div>
 
-<div id="outline-container-org7b9e4b5" class="outline-2">
-<h2 id="org7b9e4b5">Solution</h2>
-<div class="outline-text-2" id="text-org7b9e4b5">
+<div id="outline-container-orgd0ecd06" class="outline-2">
+<h2 id="orgd0ecd06">Solution</h2>
+<div class="outline-text-2" id="text-orgd0ecd06">
 <div class="org-src-container">
 <pre class="src src-js">/**
  * Main function to count magic squares in a grid

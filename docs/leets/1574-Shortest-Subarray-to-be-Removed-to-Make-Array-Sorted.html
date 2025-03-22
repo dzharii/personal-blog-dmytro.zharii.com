@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2025-03-16 -->
+<!-- 2025-03-22 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>1574. Shortest Subarray to be Removed to Make Array Sorted</title>
@@ -22,27 +22,27 @@ Published 2024-11-14
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org9a69ba0">Problem</a></li>
-<li><a href="#orgd8f2a19">Solution Description</a></li>
-<li><a href="#org7cba388">Example</a></li>
-<li><a href="#org732cd2d">References</a></li>
-<li><a href="#org997c1b1">Solution</a></li>
+<li><a href="#orgca448e5">Problem</a></li>
+<li><a href="#orgb6d103e">Solution Description</a></li>
+<li><a href="#orgb15aff9">Example</a></li>
+<li><a href="#org525ac2c">References</a></li>
+<li><a href="#org210e6a4">Solution</a></li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-org9a69ba0" class="outline-2">
-<h2 id="org9a69ba0">Problem</h2>
-<div class="outline-text-2" id="text-org9a69ba0">
+<div id="outline-container-orgca448e5" class="outline-2">
+<h2 id="orgca448e5">Problem</h2>
+<div class="outline-text-2" id="text-orgca448e5">
 <p>
 Given an array of integers, the task is to find the length of the shortest subarray that can be removed to make the remaining array sorted in non-decreasing order. The array can contain duplicates, and the result should be the smallest number of elements that need to be removed.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgd8f2a19" class="outline-2">
-<h2 id="orgd8f2a19">Solution Description</h2>
-<div class="outline-text-2" id="text-orgd8f2a19">
+<div id="outline-container-orgb6d103e" class="outline-2">
+<h2 id="orgb6d103e">Solution Description</h2>
+<div class="outline-text-2" id="text-orgb6d103e">
 <p>
 To implement a solution, we need to divide the array into two parts: a prefix that is sorted and a suffix that is sorted. The main idea is to find the maximum 'middle' section (between these two parts) that can be removed such that the resulting array is still sorted. This can be achieved in the following steps:
 </p>
@@ -59,9 +59,9 @@ The time complexity is O(n) as we only make one linear pass over the array to de
 </div>
 </div>
 
-<div id="outline-container-org7cba388" class="outline-2">
-<h2 id="org7cba388">Example</h2>
-<div class="outline-text-2" id="text-org7cba388">
+<div id="outline-container-orgb15aff9" class="outline-2">
+<h2 id="orgb15aff9">Example</h2>
+<div class="outline-text-2" id="text-orgb15aff9">
 <p>
 Consider the array = [1, 2, 3, 10, 4, 2, 3, 5]:
 </p>
@@ -73,9 +73,9 @@ Consider the array = [1, 2, 3, 10, 4, 2, 3, 5]:
 </div>
 </div>
 
-<div id="outline-container-org732cd2d" class="outline-2">
-<h2 id="org732cd2d">References</h2>
-<div class="outline-text-2" id="text-org732cd2d">
+<div id="outline-container-org525ac2c" class="outline-2">
+<h2 id="org525ac2c">References</h2>
+<div class="outline-text-2" id="text-org525ac2c">
 <p>
 This problem is related to array manipulation and greedy algorithms. No specific framework is used, but it involves understanding the array structure:
 </p>
@@ -85,9 +85,9 @@ This problem is related to array manipulation and greedy algorithms. No specific
 </div>
 </div>
 
-<div id="outline-container-org997c1b1" class="outline-2">
-<h2 id="org997c1b1">Solution</h2>
-<div class="outline-text-2" id="text-org997c1b1">
+<div id="outline-container-org210e6a4" class="outline-2">
+<h2 id="org210e6a4">Solution</h2>
+<div class="outline-text-2" id="text-org210e6a4">
 <p>
 We start by implementing the structure of the solution with placeholder return value to allow for user development.
 </p>
@@ -159,7 +159,7 @@ testCases.forEach((test, index) =&gt; {
 </pre>
 </div>
 
-<pre class="example" id="org31de619">
+<pre class="example" id="orgac3ff09">
 : Test Case 1: Passed (Expected: 3, Got: 3)
 : Test Case 2: Passed (Expected: 1, Got: 1)
 : Test Case 3: Passed (Expected: 0, Got: 0)

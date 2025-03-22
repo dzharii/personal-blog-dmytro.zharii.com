@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2025-03-16 -->
+<!-- 2025-03-22 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>1957. Delete Characters to Make Fancy String</title>
@@ -22,27 +22,27 @@ Published 2024-11-01
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgb7e81b3">Problem</a></li>
-<li><a href="#orgaab4c1d">Solution Description</a></li>
-<li><a href="#org5784fe9">Example</a></li>
-<li><a href="#org24d0736">References</a></li>
-<li><a href="#orga7c6edb">Solution</a></li>
+<li><a href="#org182cedf">Problem</a></li>
+<li><a href="#org5f87fd2">Solution Description</a></li>
+<li><a href="#orgdb5ca3b">Example</a></li>
+<li><a href="#org9e84864">References</a></li>
+<li><a href="#org856a5b0">Solution</a></li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-orgb7e81b3" class="outline-2">
-<h2 id="orgb7e81b3">Problem</h2>
-<div class="outline-text-2" id="text-orgb7e81b3">
+<div id="outline-container-org182cedf" class="outline-2">
+<h2 id="org182cedf">Problem</h2>
+<div class="outline-text-2" id="text-org182cedf">
 <p>
 Given a string, we need to delete characters to create a "fancy" string. A "fancy" string is defined as a string that does not have three consecutive identical characters. The task is to return the fanciest string we can possibly create by deleting some characters from the original string.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgaab4c1d" class="outline-2">
-<h2 id="orgaab4c1d">Solution Description</h2>
-<div class="outline-text-2" id="text-orgaab4c1d">
+<div id="outline-container-org5f87fd2" class="outline-2">
+<h2 id="org5f87fd2">Solution Description</h2>
+<div class="outline-text-2" id="text-org5f87fd2">
 <p>
 To implement a function that transforms a string into a fancy string, we need to traverse the string while maintaining a count of consecutive identical characters. The general idea is to iterate through the string character by character, keeping a count of consecutive occurrences of each character. If the count reaches three, we skip adding that character to the result. This ensures no three consecutive characters are present in the result.
 </p>
@@ -66,9 +66,9 @@ Space Complexity: <code>O(n)</code>, mainly for storing the result.
 </div>
 </div>
 
-<div id="outline-container-org5784fe9" class="outline-2">
-<h2 id="org5784fe9">Example</h2>
-<div class="outline-text-2" id="text-org5784fe9">
+<div id="outline-container-orgdb5ca3b" class="outline-2">
+<h2 id="orgdb5ca3b">Example</h2>
+<div class="outline-text-2" id="text-orgdb5ca3b">
 <p>
 Consider the string "aaabaaaa":
 </p>
@@ -87,18 +87,18 @@ Consider the string "aaabaaaa":
 </div>
 </div>
 
-<div id="outline-container-org24d0736" class="outline-2">
-<h2 id="org24d0736">References</h2>
-<div class="outline-text-2" id="text-org24d0736">
+<div id="outline-container-org9e84864" class="outline-2">
+<h2 id="org9e84864">References</h2>
+<div class="outline-text-2" id="text-org9e84864">
 <p>
 For a deeper understanding of string manipulation techniques, consider reviewing <a href="https://en.wikipedia.org/wiki/String_(computer_science)">String (Computer Science)</a>.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orga7c6edb" class="outline-2">
-<h2 id="orga7c6edb">Solution</h2>
-<div class="outline-text-2" id="text-orga7c6edb">
+<div id="outline-container-org856a5b0" class="outline-2">
+<h2 id="org856a5b0">Solution</h2>
+<div class="outline-text-2" id="text-org856a5b0">
 <p>
 <a href="https://leetcode.com/submissions/detail/1440181804/">2024-11-01 Delete Characters to Make Fancy String - Submission Detail - LeetCode</a> <code>leetcode.com</code>
 </p>

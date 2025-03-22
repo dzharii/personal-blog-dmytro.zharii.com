@@ -102,3 +102,4 @@
   - [[file:leets/2379-Minimum-Recolors-to-Get-K-Consecutive-Black-Blocks.org][2379. Minimum Recolors to Get K Consecutive Black Blocks]]
   - [[file:leets/3208-Alternating-Groups-II.org][3208. Alternating Groups II]]
   - [[file:leets/2594-Minimum-Time-to-Repair-Cars.org][2594. Minimum Time to Repair Cars]]
+  - [[file:leets/2685-Count-the-Number-of-Complete-Components.org][2685. Count the Number of Complete Components]]

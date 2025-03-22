@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2025-03-16 -->
+<!-- 2025-03-22 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>2594. Minimum Time to Repair Cars</title>
@@ -22,19 +22,19 @@ Published 2025-03-16
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org13bfe1f">Problem</a></li>
-<li><a href="#org9b67eaf">Key Observations</a></li>
-<li><a href="#org1768d27">Solution Plan</a></li>
-<li><a href="#org0aee8aa">Complexity</a></li>
-<li><a href="#orgdcb4f2d">Example</a></li>
-<li><a href="#org8f805b6">Solution (JavaScript)</a></li>
+<li><a href="#orgca0c497">Problem</a></li>
+<li><a href="#org4c35353">Key Observations</a></li>
+<li><a href="#org4bb886a">Solution Plan</a></li>
+<li><a href="#orgf9bdca2">Complexity</a></li>
+<li><a href="#org5275ecd">Example</a></li>
+<li><a href="#orgaa57abb">Solution (JavaScript)</a></li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-org13bfe1f" class="outline-2">
-<h2 id="org13bfe1f">Problem</h2>
-<div class="outline-text-2" id="text-org13bfe1f">
+<div id="outline-container-orgca0c497" class="outline-2">
+<h2 id="orgca0c497">Problem</h2>
+<div class="outline-text-2" id="text-orgca0c497">
 <p>
 You are given an integer array <code>ranks</code> representing the ranks of mechanics. Each mechanic has a rank <code>r</code> which determines the time taken to repair cars: specifically, a mechanic with rank <code>r</code> takes <code>r * n^2</code> minutes to repair <code>n</code> cars.
 </p>
@@ -57,9 +57,9 @@ Determine the minimum time necessary to repair all <code>cars</code>, given mech
 </div>
 </div>
 
-<div id="outline-container-org9b67eaf" class="outline-2">
-<h2 id="org9b67eaf">Key Observations</h2>
-<div class="outline-text-2" id="text-org9b67eaf">
+<div id="outline-container-org4c35353" class="outline-2">
+<h2 id="org4c35353">Key Observations</h2>
+<div class="outline-text-2" id="text-org4c35353">
 <ul class="org-ul">
 <li>Mechanics repair cars simultaneously, each mechanic independently.</li>
 <li><p>
@@ -73,9 +73,9 @@ time = r * n^2
 </div>
 </div>
 
-<div id="outline-container-org1768d27" class="outline-2">
-<h2 id="org1768d27">Solution Plan</h2>
-<div class="outline-text-2" id="text-org1768d27">
+<div id="outline-container-org4bb886a" class="outline-2">
+<h2 id="org4bb886a">Solution Plan</h2>
+<div class="outline-text-2" id="text-org4bb886a">
 <p>
 To efficiently solve the problem, follow these steps clearly:
 </p>
@@ -119,9 +119,9 @@ cars_repaired = floor(sqrt(mid / r))
 </div>
 </div>
 
-<div id="outline-container-org0aee8aa" class="outline-2">
-<h2 id="org0aee8aa">Complexity</h2>
-<div class="outline-text-2" id="text-org0aee8aa">
+<div id="outline-container-orgf9bdca2" class="outline-2">
+<h2 id="orgf9bdca2">Complexity</h2>
+<div class="outline-text-2" id="text-orgf9bdca2">
 <ul class="org-ul">
 <li>Time Complexity: O(n * log(maxTime))</li>
 <li>Space Complexity: O(1)</li>
@@ -129,9 +129,9 @@ cars_repaired = floor(sqrt(mid / r))
 </div>
 </div>
 
-<div id="outline-container-orgdcb4f2d" class="outline-2">
-<h2 id="orgdcb4f2d">Example</h2>
-<div class="outline-text-2" id="text-orgdcb4f2d">
+<div id="outline-container-org5275ecd" class="outline-2">
+<h2 id="org5275ecd">Example</h2>
+<div class="outline-text-2" id="text-org5275ecd">
 <p>
 Given:
 </p>
@@ -156,9 +156,9 @@ Total cars repaired = 10. Minimum possible time is thus 16 minutes.
 </div>
 </div>
 
-<div id="outline-container-org8f805b6" class="outline-2">
-<h2 id="org8f805b6">Solution (JavaScript)</h2>
-<div class="outline-text-2" id="text-org8f805b6">
+<div id="outline-container-orgaa57abb" class="outline-2">
+<h2 id="orgaa57abb">Solution (JavaScript)</h2>
+<div class="outline-text-2" id="text-orgaa57abb">
 <p>
 <a href="https://leetcode.com/problems/minimum-time-to-repair-cars/submissions/1576032416/?envType=daily-question&amp;envId=2025-03-16">2025-03-16 Minimum Time to Repair Cars - LeetCode</a> <code>leetcode.com</code>
 </p>

@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2025-03-16 -->
+<!-- 2025-03-22 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>3208. Alternating Groups II</title>
@@ -22,20 +22,20 @@ Published 2025-03-09
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org1cf735a">Problem</a></li>
-<li><a href="#orged2901a">Examples</a></li>
-<li><a href="#org7f0f7cd">Approach</a></li>
-<li><a href="#org8c787c5">References</a></li>
-<li><a href="#orgaf659e8">Implementation Framework</a></li>
-<li><a href="#org10bb51d">My brute force Solution</a></li>
-<li><a href="#orgc1d0fde">Correct Solution</a></li>
+<li><a href="#orgb4648b7">Problem</a></li>
+<li><a href="#org922b590">Examples</a></li>
+<li><a href="#org89b15fc">Approach</a></li>
+<li><a href="#orgc9d6c73">References</a></li>
+<li><a href="#org35f3c4f">Implementation Framework</a></li>
+<li><a href="#org451f9b8">My brute force Solution</a></li>
+<li><a href="#org8343a5e">Correct Solution</a></li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-org1cf735a" class="outline-2">
-<h2 id="org1cf735a">Problem</h2>
-<div class="outline-text-2" id="text-org1cf735a">
+<div id="outline-container-orgb4648b7" class="outline-2">
+<h2 id="orgb4648b7">Problem</h2>
+<div class="outline-text-2" id="text-orgb4648b7">
 <p>
 We are given a circular array of tiles represented by an array <code>colors</code> where 0 represents a red tile and 1 represents a blue tile. An alternating group is defined as a contiguous sequence of exactly <code>k</code> tiles that alternate in color. In an alternating group, every pair of adjacent tiles must be of different colors. Since the tiles form a circle, the first and last tiles are also considered adjacent. The task is to count the number of alternating groups in the circular array.
 </p>
@@ -46,9 +46,9 @@ The constraints are as follows: 3 &lt;= <code>colors.length</code> &lt;= 10<sup>
 </div>
 </div>
 
-<div id="outline-container-orged2901a" class="outline-2">
-<h2 id="orged2901a">Examples</h2>
-<div class="outline-text-2" id="text-orged2901a">
+<div id="outline-container-org922b590" class="outline-2">
+<h2 id="org922b590">Examples</h2>
+<div class="outline-text-2" id="text-org922b590">
 <p>
 Example 1:
 Input: <code>colors = [0, 1, 0, 1, 0]</code>, <code>k = 3</code>.
@@ -101,36 +101,36 @@ Explanation: This case includes breaks in alternation; only some windows will sa
 </div>
 </div>
 
-<div id="outline-container-org7f0f7cd" class="outline-2">
-<h2 id="org7f0f7cd">Approach</h2>
-<div class="outline-text-2" id="text-org7f0f7cd">
+<div id="outline-container-org89b15fc" class="outline-2">
+<h2 id="org89b15fc">Approach</h2>
+<div class="outline-text-2" id="text-org89b15fc">
 <p>
 To solve this problem efficiently, first consider extending the array by appending the first <code>k-1</code> elements to the end. This makes it easier to handle the circular nature of the array by transforming it into a linear problem. Next, use a sliding window of size <code>k</code> to traverse the (possibly extended) array. For each window, check if every adjacent pair of tiles alternates in color. An incremental check can optimize this process by updating the condition as the window slides, rather than re-checking the entire window each time. The time complexity is O(n) and the space complexity is O(n) if an extended array is used, or O(1) with careful index management.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org8c787c5" class="outline-2">
-<h2 id="org8c787c5">References</h2>
-<div class="outline-text-2" id="text-org8c787c5">
+<div id="outline-container-orgc9d6c73" class="outline-2">
+<h2 id="orgc9d6c73">References</h2>
+<div class="outline-text-2" id="text-orgc9d6c73">
 <p>
 For additional reading on sliding window techniques and handling circular arrays, see the articles at <code>https://en.wikipedia.org/wiki/Sliding_window_protocol</code> and <code>https://en.wikipedia.org/wiki/Circular_buffer</code>.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgaf659e8" class="outline-2">
-<h2 id="orgaf659e8">Implementation Framework</h2>
-<div class="outline-text-2" id="text-orgaf659e8">
+<div id="outline-container-org35f3c4f" class="outline-2">
+<h2 id="org35f3c4f">Implementation Framework</h2>
+<div class="outline-text-2" id="text-org35f3c4f">
 <p>
 Below is a placeholder framework in JavaScript for solving the problem. Do not provide a full implementation in JavaScript; only use this as a structure reference.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org10bb51d" class="outline-2">
-<h2 id="org10bb51d">My brute force Solution</h2>
-<div class="outline-text-2" id="text-org10bb51d">
+<div id="outline-container-org451f9b8" class="outline-2">
+<h2 id="org451f9b8">My brute force Solution</h2>
+<div class="outline-text-2" id="text-org451f9b8">
 <p>
 <a href="https://leetcode.com/problems/alternating-groups-ii/submissions/1568410168/?envType=daily-question&amp;envId=2025-03-09">2025-03-09 Alternating Groups II - LeetCode</a> <code>leetcode.com</code> solution is incomplete &#x2013; Time limit Exceeded on large input.
 </p>
@@ -194,9 +194,9 @@ testCases.forEach((test, index) =&gt; {
 </div>
 
 
-<div id="outline-container-orgc1d0fde" class="outline-2">
-<h2 id="orgc1d0fde">Correct Solution</h2>
-<div class="outline-text-2" id="text-orgc1d0fde">
+<div id="outline-container-org8343a5e" class="outline-2">
+<h2 id="org8343a5e">Correct Solution</h2>
+<div class="outline-text-2" id="text-org8343a5e">
 <div class="org-src-container">
 <pre class="src src-js">// Optimized solution to handle large input using a sliding window approach
 
